@@ -88,9 +88,11 @@ RedTorch
 
 + 安装MongoDB
 
-+ 安装JDK8+并设置环境变量，最低要求JDK8，JDK9 JDK10尚未测试
++ 安装vc2013x64 vc2015x64 
 
-+ IDE推荐使用最新版Eclipse IDE for Java EE Developers
++ 安装JDK8+x64并设置环境变量，最低要求JDK8，JDK9 JDK10尚未测试
+
++ IDE推荐使用最新版Eclipse IDE for Java EE Developers x64
 
 + 安装Maven3.x(可选，也可以使用Eclipse嵌入式)
 
