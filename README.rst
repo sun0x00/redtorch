@@ -50,7 +50,9 @@ RedTorch
 + 项目使用Maven构建
 
 + 框架采用事件驱动架构,使用观察者模式(Observer Pattern)构建事件引擎,且利用多核。
+
     - 每个事件观察者（Observer或者监听者Listener，例如策略线程、SocketIO数据线推送线程程等都属于这个范畴，下文统一用观察者代指）都运行在独立的线程中,项目中绝大部分事件引擎推送的事件都被存入了观察者各自的事件队列中，这些队列大部分都采用了阻塞队列（LinkedBlockingQueue）， 每个观察者各自的线程通过阻塞take方法实现事件处理。 因此彻底解决了Python GIL带来的性能问题。 
+    
     - P.s.性能问题解决前提是需要运行在多核CPU环境中。采用阻塞队列并不会比轮询稍慢，因take方法的阻塞使用的是操作系统中的condition wait，因此当新数据进入队列后，被取出处理的延迟是极低的，在框架使用的场景中，此方法可以很大程度的节省CPU。
 
 + Web界面部分采用SPA架构，使用VUE编写，数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合。Web的承载核心框架为Spring Boot，但是主引擎（MainEngine）、ZEUS策略引擎（ZeusEngine）、行情/交易接口实现（Gateway）等交易相关的都不依赖Spring Boot。因此Web部分可轻松剥离，不过值得一提的是，在多线程下，Web部分对交易部分的性能影响完全可以忽略不计，而且提供了一个应急操纵的交互接口。
@@ -85,23 +87,37 @@ RedTorch
 --------------------
 
 + 安装MongoDB
+
 + 安装JDK8+并设置环境变量，最低要求JDK8，JDK9 JDK10尚未测试
+
 + IDE推荐使用最新版Eclipse IDE for Java EE Developers
+
 + 安装Maven3.x(可选，也可以使用Eclipse嵌入式)
+
 + 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Maven Projects导入本项目
+
 + 修改application.properties文件
+
     - 配置端口。默认为9099（web）、9098（SocketIO）
+    
 + 修改RtConfig.properties
+
     - 配置ClientID(如果多人共享使用ClientDB)
+    
     - 配置Web认证口令（默认test test）
+    
     - 配置数据库(用户名密码等可选,行情和ClientDB可以使用同一个MongoDB实例)
+    
     - 日志路径（默认D:\\log，不存在请创建）
+    
     - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建）
+    
 + 一切就绪后运行ZeusApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
 
 FAQ
 ------
 + 策略如何配置
+
    如果没有对目录进行特殊配置，请寻找ZeusStartegyConfig文件夹，对应的<StrategyClassName>-setting.json文件，配置文件和策略的相关说明请等待文档发布
 
 
