@@ -88,6 +88,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 
 		String gatewayID = jsonObject.getString("gatewayID");
@@ -121,6 +122,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		if(StringUtils.isEmpty(jsonObject.getString("rtOrderID"))) {
 			result.setResultCode(ResultVO.ERROR);
@@ -139,6 +141,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		tradingService.cancelAllOrders();
 		
@@ -153,6 +156,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		if(!tradingService.subscribe(jsonObject.getString("rtSymbol"), jsonObject.getString("gatewayID"))) {
 			result.setResultCode(ResultVO.ERROR);
@@ -170,6 +174,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		GatewaySetting gatewaySetting = jsonObject.toJavaObject(GatewaySetting.class);
@@ -188,6 +193,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		tradingService.zeusLoadStrategy();
 		
@@ -203,6 +209,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		List<Map<String,Object>> strategyInfos = tradingService.zeusGetStrategyInfos();
@@ -220,6 +227,7 @@ public class ZeusApplication {
 		
 		if(!jsonObject.containsKey("actionType")||!tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		String type = jsonObject.getString("actionType");
@@ -259,6 +267,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		result.setData(tradingService.getGatewaySettings());
@@ -275,6 +284,7 @@ public class ZeusApplication {
 		
 		if(!jsonObject.containsKey("gatewayID")&& !tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		tradingService.deleteGateway(jsonObject.getString("gatewayID"));
@@ -289,6 +299,7 @@ public class ZeusApplication {
 		
 		if(!jsonObject.containsKey("gatewayID")&& !tokenService.validate(jsonObject.getString("token"))) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		tradingService.changeGatewayConnectStatus(jsonObject.getString("gatewayID"));
 		
@@ -304,6 +315,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		
 		result.setData(tradingService.getAccounts());
@@ -318,6 +330,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		result.setData(tradingService.getTrades());
 		return result;
@@ -331,6 +344,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 
 		result.setData(tradingService.getOrders());
@@ -345,6 +359,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 
 		result.setData(tradingService.getLocalPositionDetails());
@@ -359,6 +374,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 
 		result.setData(tradingService.getPositions());
@@ -374,6 +390,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 
 		result.setData(tradingService.getContracts());
@@ -388,6 +405,7 @@ public class ZeusApplication {
 		
 		if(!tokenService.validate(token)) {
 			result.setResultCode(ResultVO.ERROR);
+			return result;
 		}
 		result.setData(tradingService.getLogDatas());
 		return result;
