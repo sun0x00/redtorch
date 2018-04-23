@@ -54,7 +54,7 @@ public interface BacktestingEngine extends ZeusEngine{
 
 	/**
 	 * 优化设置
-	 * @author Administrator
+	 * @author sun0x00@gmail.com
 	 *
 	 */
 	static class OptimizationSetting{
@@ -116,7 +116,7 @@ public interface BacktestingEngine extends ZeusEngine{
 	
 	/**
 	 * 回测片段
-	 * @author Administrator
+	 * @author sun0x00@gmail.com
 	 *
 	 */
 	static class BacktestingSection{
@@ -149,7 +149,7 @@ public interface BacktestingEngine extends ZeusEngine{
 	
 	/**
 	 * 回测交易清算结果
-	 * @author Administrator
+	 * @author sun0x00@gmail.com
 	 *
 	 */
 	static class TradingResult {
@@ -229,7 +229,7 @@ public interface BacktestingEngine extends ZeusEngine{
 
 	/**
 	 * 回测结果
-	 * @author Administrator
+	 * @author sun0x00@gmail.com
 	 *
 	 */
 	static class BacktestingResult{
@@ -377,7 +377,7 @@ public interface BacktestingEngine extends ZeusEngine{
 	
 	/**
 	 * 回测按日计算结果
-	 * @author Administrator
+	 * @author sun0x00@gmail.com
 	 *
 	 */
 	static class DailyResult {

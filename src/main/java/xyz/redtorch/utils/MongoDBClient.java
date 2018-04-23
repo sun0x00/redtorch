@@ -3,6 +3,7 @@ package xyz.redtorch.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -75,10 +76,16 @@ public class MongoDBClient {
 
 		MongoClientOptions myOptions = build.build();
 		try {
-			MongoCredential mongoCredential = MongoCredential.createScramSha1Credential(username, authdb,
-					password.toCharArray());
-			// 数据库连接实例
-			mongoClient = new MongoClient(new ServerAddress(host, port), mongoCredential, myOptions);
+			if(StringUtils.isBlank(username)||StringUtils.isBlank(password)||StringUtils.isBlank(authdb)) {
+				log.info("使用无认证方式连接MongoDB");
+				mongoClient = new MongoClient(new ServerAddress(host, port), myOptions);
+			}else {
+				log.info("使用认证方式连接MongoDB");
+				MongoCredential mongoCredential = MongoCredential.createScramSha1Credential(username, authdb,
+						password.toCharArray());
+				// 数据库连接实例
+				mongoClient = new MongoClient(new ServerAddress(host, port), mongoCredential, myOptions);
+			}
 		} catch (MongoException e) {
 			throw new Exception("MongoDB连接失败", e);
 		}

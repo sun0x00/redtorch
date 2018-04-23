@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 import xyz.redtorch.api.jctp.trader.jctptraderapiv6v3v11x64Constants;
 import xyz.redtorch.trader.base.RtConstant;
 
+/**
+ * @author sun0x00@gmail.com
+ */
 public class CtpConstant {
 	public static Map<String,Character> priceTypeMap = new HashMap<>();
 	public static Map<Character,String> priceTypeMapReverse = new HashMap<>();
