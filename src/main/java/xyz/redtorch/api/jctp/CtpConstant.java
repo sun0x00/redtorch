@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import xyz.redtorch.api.jctp.trader.jctptraderapiv6v3v11x64Constants;
 import xyz.redtorch.trader.base.RtConstant;
 
 /**

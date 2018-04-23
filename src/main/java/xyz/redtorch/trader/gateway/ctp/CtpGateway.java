@@ -12,6 +12,7 @@ import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.SubscribeReq;
 import xyz.redtorch.trader.gateway.GatewayAbstract;
 import xyz.redtorch.trader.gateway.GatewaySetting;
+import xyz.redtorch.utils.CommonUtil;
 
 /**
  * @author sun0x00@gmail.com
@@ -20,17 +21,23 @@ public class CtpGateway extends GatewayAbstract {
 
 	static {		
 		String classPath = CtpGateway.class.getResource("/").getPath();
+		String libPath = classPath +File.separator+ "assembly";
+		File libDir = new File(libPath);
+		libPath = libDir.getAbsolutePath();
+        //将此目录添加到系统环境变量中   
+        CommonUtil.addDirToPath(libPath);  
+		
 		String suffix = ".dll";
 		if(System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
 			suffix = ".dll";
 		}else {
 			suffix = ".so";
 		}
-		System.load(classPath +File.separator+ "assembly" + File.separator + "libiconv"+ suffix);
-		System.load(classPath +File.separator+ "assembly" + File.separator + "thostmduserapi"+ suffix);
-		System.load(classPath +File.separator+ "assembly" + File.separator + "jctpmdapiv6v3v11x64"+ suffix);
-		System.load(classPath +File.separator+ "assembly" + File.separator + "thosttraderapi"+ suffix);
-		System.load(classPath +File.separator+ "assembly" + File.separator + "jctptraderapiv6v3v11x64"+ suffix);
+		System.load(libPath+File.separator+"libiconv"+ suffix);
+		System.load(libPath+File.separator+"thostmduserapi"+ suffix);
+		System.load(libPath+File.separator+"jctpmdapiv6v3v11x64"+ suffix);
+		System.load(libPath+File.separator+"thosttraderapi"+ suffix);
+		System.load(libPath+File.separator+"jctptraderapiv6v3v11x64"+ suffix);
 	}
 	
 	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
