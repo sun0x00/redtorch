@@ -1,8 +1,11 @@
 package xyz.redtorch.trader.gateway.ctp;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.HashMap;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -191,7 +194,20 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			loginStatus = false;
 
 		}
-		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi();
+		
+		String classPath = TdSpi.class.getResource("/").getPath();
+		String tempFilePath = classPath + "TEMP_CTP"+File.separator + "TD_" + ctpGateway.getGatewayID()+"_";
+		File tempFile = new File(tempFilePath);
+		if(!tempFile.getParentFile().exists()) {
+			try {
+				FileUtils.forceMkdirParent(tempFile);
+				log.info("创建临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+			} catch (IOException e) {
+				log.error("创建临时文件夹失败{}",tempFile.getParentFile().getAbsolutePath());
+			}
+		}
+		log.info("使用临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);
 		cThostFtdcTraderApi.Init();
