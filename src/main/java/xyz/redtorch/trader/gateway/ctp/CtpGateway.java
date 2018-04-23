@@ -19,28 +19,38 @@ import xyz.redtorch.utils.CommonUtil;
  */
 public class CtpGateway extends GatewayAbstract {
 
+	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
+	
 	static {		
 		String classPath = CtpGateway.class.getResource("/").getPath();
 		String libPath = classPath +File.separator+ "assembly";
 		File libDir = new File(libPath);
 		libPath = libDir.getAbsolutePath();
         //将此目录添加到系统环境变量中   
-        CommonUtil.addDirToPath(libPath);  
+        try {
+			CommonUtil.javaLibraryAdd(libDir);
+		} catch (Exception e) {
+			log.error("Add library path failed!",e);
+		} 
+        log.info(System.getProperty("java.library.path"));
 		
-		String suffix = ".dll";
 		if(System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
-			suffix = ".dll";
+			System.load(libPath+File.separator+"libiconv.dll");
+			System.load(libPath+File.separator+"thostmduserapi.dll");
+			System.load(libPath+File.separator+"jctpmdapiv6v3v11x64.dll");
+			System.load(libPath+File.separator+"thosttraderapi.dll");
+			System.load(libPath+File.separator+"jctptraderapiv6v3v11x64.dll");
 		}else {
-			suffix = ".so";
+
+			System.load(libPath+File.separator+"libiconv.so");
+			System.load(libPath+File.separator+"libthostmduserapi.so");
+			System.load(libPath+File.separator+"libjctpmdapiv6v3v11x64.so");
+			System.load(libPath+File.separator+"libthosttraderapi.so");
+			System.load(libPath+File.separator+"libjctptraderapiv6v3v11x64.so");
 		}
-		System.load(libPath+File.separator+"libiconv"+ suffix);
-		System.load(libPath+File.separator+"thostmduserapi"+ suffix);
-		System.load(libPath+File.separator+"jctpmdapiv6v3v11x64"+ suffix);
-		System.load(libPath+File.separator+"thosttraderapi"+ suffix);
-		System.load(libPath+File.separator+"jctptraderapiv6v3v11x64"+ suffix);
+
 	}
 	
-	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
 	
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();

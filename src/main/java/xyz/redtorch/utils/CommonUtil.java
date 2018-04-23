@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -446,25 +447,55 @@ public class CommonUtil {
         return new CSVPrinter(osw, format);  
     } 
     
-    public static void addDirToPath(String s){  
-        try {  
-            //获取系统path变量对象  
-            Field field=ClassLoader.class.getDeclaredField("sys_paths");  
-            //设置此变量对象可访问   
-            field.setAccessible(true);  
-            //获取此变量对象的值   
-            String[] path=(String[])field.get(null);  
-            //创建字符串数组，在原来的数组长度上增加一个，用于存放增加的目录  
-            String[] tem=new String[path.length+1];  
-            //将原来的path变量复制到tem中   
-            System.arraycopy(path,0,tem,0,path.length);  
-            //将增加的目录存入新的变量数组中   
-            tem[path.length]=s;  
-            //将增加目录后的数组赋给path变量对象  
-            field.set(null,tem);  
-        } catch (Exception e) {  
-            log.error("向PATH添加值发生错误",e); 
-        }  
-    }
-	
+    /** 
+     * Adds a path to the java.library.path System property 
+     * and updates the ClassLoader. Uses reflection to allow
+     * update to private system members. Will not work if JVM
+     * security policy gets in the way (like in an applet).
+     * Will not work if Sun changes the private members.
+     * This really shouldn't be used at all...
+     */
+     public static void javaLibraryAdd(File path) throws Exception
+     {
+          // Append the specified path to the
+          // existing java.library.path (if there is one already)
+          String newLibraryPath = System.getProperty("java.library.path");
+          if (newLibraryPath == null || newLibraryPath.length() < 1)
+          {
+               newLibraryPath = path.getCanonicalPath();
+          }
+          else
+          {
+               newLibraryPath += File.pathSeparator +
+                    path.getCanonicalPath();
+          }
+
+          // Reflect into java.lang.System to get the 
+          // static Properties reference
+          Field f = System.class.getDeclaredField("props");
+          f.setAccessible(true);
+          Properties props = (Properties) f.get(null);
+          // replace the java.library.path with our new one
+          props.put("java.library.path", newLibraryPath);
+
+          // The classLoader may have already been initialized,
+          // so it needs to be fixed up.
+          // Reflect into java.lang.ClassLoader to get the 
+          // static String[] of user paths to native libraries
+          Field usr_pathsField =
+                    ClassLoader.class.getDeclaredField("usr_paths");
+          usr_pathsField.setAccessible(true);
+          String[] usr_paths = (String[]) usr_pathsField.get(null);
+          String[] newUsr_paths = new String[usr_paths == null ? 1 : 
+               usr_paths.length + 1];
+          if (usr_paths != null)
+          {
+               System.arraycopy(usr_paths, 0, newUsr_paths,
+                    0, usr_paths.length);
+          }
+          // Add the specified path to the end of a new String[]
+          // of user paths to native libraries
+          newUsr_paths[newUsr_paths.length - 1] = path.getAbsolutePath();
+          usr_pathsField.set(null, newUsr_paths);
+     }
 }
