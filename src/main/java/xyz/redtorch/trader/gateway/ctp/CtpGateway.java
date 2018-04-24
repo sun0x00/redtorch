@@ -36,6 +36,12 @@ public class CtpGateway extends GatewayAbstract {
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/thosttraderapi.dll"));
 				CommonUtil.copyURLToFile(tempLibPath,
 						CtpGateway.class.getResource("/assembly/jctptraderapiv6v3v11x64.dll"));
+				
+				System.load(tempLibPath + File.separator + "libiconv.dll");
+				System.load(tempLibPath + File.separator + "thostmduserapi.dll");
+				System.load(tempLibPath + File.separator + "jctpmdapiv6v3v11x64.dll");
+				System.load(tempLibPath + File.separator + "thosttraderapi.dll");
+				System.load(tempLibPath + File.separator + "jctptraderapiv6v3v11x64.dll");
 			} else {
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2"));
