@@ -49,9 +49,6 @@ public class CtpGateway extends GatewayAbstract {
 				String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
 						+ File.separator + "jctp" + File.separator + "lib";
 				
-				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so"));
-				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2"));
-				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2.6.0"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libthostmduserapi.so"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libthosttraderapi.so"));
 				CommonUtil.copyURLToFile(tempLibPath,
@@ -59,7 +56,6 @@ public class CtpGateway extends GatewayAbstract {
 				CommonUtil.copyURLToFile(tempLibPath,
 						CtpGateway.class.getResource("/assembly/libjctptraderapiv6v3v11x64.so"));
 
-				System.load(tempLibPath + File.separator + "libiconv.so");
 				System.load(tempLibPath + File.separator + "libthostmduserapi.so");
 				System.load(tempLibPath + File.separator + "libjctpmdapiv6v3v11x64.so");
 				System.load(tempLibPath + File.separator + "libthosttraderapi.so");
