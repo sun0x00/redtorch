@@ -86,14 +86,16 @@ RedTorch
 
 + windows和linux CTP编译源码已经就绪，近期发布
 
++ 部分linux不能直接使用编译后的动态链接库，请等待CTP封装源码自行编译
+
 预览环境准备
 --------------------
 
 + 安装MongoDB
 
-+ 安装vs2013x64运行库 、 vs2015x64运行库
++ 安装vs2013x64运行库 、 vs2015x64运行库（Linux跳过）
 
-+ 安装JDK8+x64并设置环境变量，最低要求JDK8，JDK9 JDK10尚未测试
++ 安装JDK8+x64并设置环境变量（JAVA_HOME,PATH必须），最低要求JDK8，JDK9 JDK10尚未测试
 
 + IDE推荐使用最新版Eclipse IDE for Java EE Developers x64
 
