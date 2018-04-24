@@ -84,8 +84,7 @@ RedTorch
 
 + 使用Python将行情数据导入MongoDB的模版已经完成，但尚未整理发布。
 
-+ Java代码已经对Linux做了兼容处理，在环境gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)中编译了CTP，但首次仍需手动将assembly目录中的libthostmduserapi.so和libthosttraderapi.so复制的目录/usr/lib中，并使用管理员身份执行命令ldconfig，否则无法正常运行
-
++ windows和linux CTP编译源码已经就绪，近期发布
 
 预览环境准备
 --------------------
@@ -118,7 +117,9 @@ RedTorch
     
     - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建）
   
-+ 如果部署在linux中，首次需手动将assembly目录中的libthostmduserapi.so和libthosttraderapi.so复制的目录/usr/lib中，并使用管理员身份执行命令ldconfig，否则无法正常运行
++ 如果部署在linux中，需要使用临时目录/tmp/xyz/redtorch/api/jctp/lib(rpath目录)和用户临时目录
+
++ 如果部署在windows中，需要使用用户临时目录
     
 + 一切就绪后运行ZeusApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
 

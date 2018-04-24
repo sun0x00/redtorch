@@ -22,13 +22,14 @@ public class CtpGateway extends GatewayAbstract {
 	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
 
 	static {
-		String envTmpDir = System.getProperty("java.io.tmpdir");
-		String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
-				+ File.separator + "jctp" + File.separator + "lib";
 
 		try {
 			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
 
+				String envTmpDir = System.getProperty("java.io.tmpdir");
+				String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
+						+ File.separator + "jctp" + File.separator + "lib";
+				
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.dll"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/thostmduserapi.dll"));
 				CommonUtil.copyURLToFile(tempLibPath,
@@ -43,6 +44,11 @@ public class CtpGateway extends GatewayAbstract {
 				System.load(tempLibPath + File.separator + "thosttraderapi.dll");
 				System.load(tempLibPath + File.separator + "jctptraderapiv6v3v11x64.dll");
 			} else {
+
+				String envTmpDir = "/tmp";
+				String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
+						+ File.separator + "jctp" + File.separator + "lib";
+				
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2"));
 				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2.6.0"));
