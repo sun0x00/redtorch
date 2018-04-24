@@ -212,10 +212,10 @@
                                                                 <span class="virtual-table-cell">{{props.item.symbol}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.lastPrice}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.lastPrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.preClosePrice}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.preClosePrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
                                                                 <span class="virtual-table-cell">{{props.item.volume}}</span>
@@ -224,22 +224,22 @@
                                                                 <span class="virtual-table-cell">{{props.item.openInterest}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.openPrice}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.openPrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.highPrice}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.highPrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.lowPrice}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.lowPrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.bidPrice1}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.bidPrice1|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
                                                                 <span class="virtual-table-cell">{{props.item.bidVolume1}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.askPrice1}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.askPrice1|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
                                                                 <span class="virtual-table-cell">{{props.item.askVolume1}}</span>
@@ -878,6 +878,9 @@
     }
 
     Vue.filter('numberFormat', function (value, decimals) {
+        if(Math.abs(value)>10000000000){
+            return value.toExponential(decimals)
+        }
         if (isNaN(value)) {
             vaule = 0
         }
