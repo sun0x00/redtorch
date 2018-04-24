@@ -67,7 +67,7 @@ RedTorch
 
 + 接口（Gateway）一般是指 带有事件推送的行情/交易接口，目前本项目仅实现了上期技术的CTP接口。如果有其他需要，可以参考CTP接口加入其他行情交易接口，未来可能优先考虑加入飞创接口。
 
-  P.s. CTP接口采用Swig封装，具体封装过程会作为单独的项目发布，相关源码和方法陆续整理释放，目前时间安排过于紧张。由于JNA对底层字符编码转换不可逆转，因此在编译时对CTP的用到的相关中文接口进行了批量转码处理。
+  P.s. CTP接口采用Swig封装，已作为单独项目发布，详见底部FAQ。由于JNA对底层字符编码转换不可逆转，因此在编译时对CTP的用到的相关中文接口进行了批量转码处理。
 
 + 模块（Module）依赖主引擎，间接依赖事件引擎,数据引擎。ZEUS策略引擎（ZeusEngine）也是一个模块（Module）。ZEUS引擎的接口有两个实现，分别为实盘和回测。回测不需要启动SpringBoot，仅需要Java main方法直接启动。
 
@@ -84,9 +84,7 @@ RedTorch
 
 + 使用Python将行情数据导入MongoDB的模版已经完成，但尚未整理发布。
 
-+ windows和linux CTP编译源码已经就绪，近期发布
-
-+ 部分linux不能直接使用编译后的动态链接库，请等待CTP封装源码自行编译
++ 部分linux不能直接使用编译后的动态链接库，访问 `RedTorch-Resources <https://github.com/sun0x00/RedTorch-Resources>`_ 自行下载编译
 
 预览环境准备
 --------------------
@@ -133,6 +131,11 @@ FAQ
 
 
 + 如何运行回测（请等待简要文档发布）
+
+
++ CTP封装源码在哪里
+
+    访问 `RedTorch-Resources <https://github.com/sun0x00/RedTorch-Resources>`_
 
 联系作者
 --------------
