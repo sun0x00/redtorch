@@ -91,8 +91,14 @@ public class MdSpi extends CThostFtdcMdSpi {
 			loginStatus = false;
 
 		}
-		String classPath = TdSpi.class.getResource("/").getPath();
-		String tempFilePath = classPath + "TEMP_CTP"+File.separator + "MD_" + ctpGateway.getGatewayID()+"_";
+		String envTmpDir = System.getProperty("java.io.tmpdir");
+		String tempFilePath = envTmpDir + File.separator 
+				+ "xyz"+ File.separator 
+				+"redtorch"+ File.separator 
+				+"api"+ File.separator 
+				+"jctp"+ File.separator 
+				+"TEMP_CTP"+File.separator 
+				+ "MD_" + ctpGateway.getGatewayID()+"_";
 		File tempFile = new File(tempFilePath);
 		if(!tempFile.getParentFile().exists()) {
 			try {

@@ -20,44 +20,52 @@ import xyz.redtorch.utils.CommonUtil;
 public class CtpGateway extends GatewayAbstract {
 
 	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
-	
-	static {		
-		String classPath = CtpGateway.class.getResource("/").getPath();
-		String libPath = classPath +File.separator+ "assembly";
-		File libDir = new File(libPath);
-		libPath = libDir.getAbsolutePath();
-        //将此目录添加到系统环境变量中   
-        try {
-			CommonUtil.javaLibraryAdd(libDir);
-		} catch (Exception e) {
-			log.error("Add library path failed!",e);
-		} 
-        log.info(System.getProperty("java.library.path"));
-		
-		if(System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
-			System.load(libPath+File.separator+"libiconv.dll");
-			System.load(libPath+File.separator+"thostmduserapi.dll");
-			System.load(libPath+File.separator+"jctpmdapiv6v3v11x64.dll");
-			System.load(libPath+File.separator+"thosttraderapi.dll");
-			System.load(libPath+File.separator+"jctptraderapiv6v3v11x64.dll");
-		}else {
 
-			System.load(libPath+File.separator+"libiconv.so");
-			System.load(libPath+File.separator+"libthostmduserapi.so");
-			System.load(libPath+File.separator+"libjctpmdapiv6v3v11x64.so");
-			System.load(libPath+File.separator+"libthosttraderapi.so");
-			System.load(libPath+File.separator+"libjctptraderapiv6v3v11x64.so");
+	static {
+		String envTmpDir = System.getProperty("java.io.tmpdir");
+		String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
+				+ File.separator + "jctp" + File.separator + "lib";
+
+		try {
+			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.dll"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/thostmduserapi.dll"));
+				CommonUtil.copyURLToFile(tempLibPath,
+						CtpGateway.class.getResource("/assembly/jctpmdapiv6v3v11x64.dll"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/thosttraderapi.dll"));
+				CommonUtil.copyURLToFile(tempLibPath,
+						CtpGateway.class.getResource("/assembly/jctptraderapiv6v3v11x64.dll"));
+			} else {
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.so.2.6.0"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libthostmduserapi.so"));
+				CommonUtil.copyURLToFile(tempLibPath, CtpGateway.class.getResource("/assembly/libthosttraderapi.so"));
+				CommonUtil.copyURLToFile(tempLibPath,
+						CtpGateway.class.getResource("/assembly/libjctpmdapiv6v3v11x64.so"));
+				CommonUtil.copyURLToFile(tempLibPath,
+						CtpGateway.class.getResource("/assembly/libjctptraderapiv6v3v11x64.so"));
+
+				System.load(tempLibPath + File.separator + "libiconv.so");
+				System.load(tempLibPath + File.separator + "libthostmduserapi.so");
+				System.load(tempLibPath + File.separator + "libjctpmdapiv6v3v11x64.so");
+				System.load(tempLibPath + File.separator + "libthosttraderapi.so");
+				System.load(tempLibPath + File.separator + "libjctptraderapiv6v3v11x64.so");
+
+			}
+		} catch (Exception e) {
+			log.error("复制库失败!", e);
 		}
 
 	}
-	
-	
+
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();
 
 	private MdSpi mdSpi = new MdSpi(this);
 	private TdSpi tdSpi = new TdSpi(this);
-	
+
 	public CtpGateway(GatewaySetting gatewaySetting, EventEngine eventEngine) {
 		super(gatewaySetting, eventEngine);
 		log.info("初始化CTP接口,{}", gatewayLogInfo);
@@ -70,11 +78,11 @@ public class CtpGateway extends GatewayAbstract {
 	public HashMap<String, Integer> getContractSizeMap() {
 		return contractSizeMap;
 	}
-	
+
 	@Override
 	public void subscribe(SubscribeReq subscribeReq) {
 		subscribedSymbols.add(subscribeReq.getSymbol());
-		if(mdSpi!=null) {
+		if (mdSpi != null) {
 			mdSpi.subscribe(subscribeReq.getSymbol());
 		}
 	}
@@ -82,27 +90,27 @@ public class CtpGateway extends GatewayAbstract {
 	@Override
 	public void unSubscribe(String rtSymbol) {
 		subscribedSymbols.remove(rtSymbol);
-		if(mdSpi!=null) {
+		if (mdSpi != null) {
 			mdSpi.unSubscribe(rtSymbol);
 		}
 	}
 
 	@Override
 	public void connect() {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			tdSpi.connect();
 		}
-		if(mdSpi!=null) {
+		if (mdSpi != null) {
 			mdSpi.connect();
 		}
 	}
 
 	@Override
 	public void close() {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			tdSpi.close();
 		}
-		if(mdSpi!=null) {
+		if (mdSpi != null) {
 			mdSpi.close();
 		}
 
@@ -110,9 +118,9 @@ public class CtpGateway extends GatewayAbstract {
 
 	@Override
 	public String sendOrder(OrderReq orderReq) {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			return tdSpi.sendOrder(orderReq);
-		}else {
+		} else {
 			return null;
 		}
 
@@ -120,28 +128,28 @@ public class CtpGateway extends GatewayAbstract {
 
 	@Override
 	public void cancelOrder(CancelOrderReq cancelOrderReq) {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			tdSpi.cancelOrder(cancelOrderReq);
 		}
 	}
 
 	@Override
 	public void queryAccount() {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			tdSpi.queryAccount();
 		}
 	}
 
 	@Override
 	public void queryPosition() {
-		if(tdSpi!=null) {
+		if (tdSpi != null) {
 			tdSpi.queryPosition();
 		}
 	}
 
 	@Override
 	public boolean isConnected() {
-		return tdSpi!=null&&mdSpi!=null&&tdSpi.isConnected()&&mdSpi.isConnected();
+		return tdSpi != null && mdSpi != null && tdSpi.isConnected() && mdSpi.isConnected();
 	}
 
 }

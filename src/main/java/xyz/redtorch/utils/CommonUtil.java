@@ -27,6 +27,7 @@ import java.util.jar.JarFile;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -395,9 +396,8 @@ public class CommonUtil {
 			return null;
 		}
 	}
-	
 
-	public static  double rountToPriceTick(double priceTick, double price) {
+	public static double rountToPriceTick(double priceTick, double price) {
 		if (priceTick <= 0) {
 			log.error("检测到错误的priceTick值:{}", priceTick);
 			return price;
@@ -407,95 +407,106 @@ public class CommonUtil {
 
 		return newPrice;
 	}
-	
+
 	/**
 	 * 生成笛卡儿积
+	 * 
 	 * @param lists
 	 * @return
 	 */
-    public static <T> List<List<T>> cartesianProduct(List<List<T>> lists) {
-        List<List<T>> resultLists = new ArrayList<List<T>>();
-        if (lists.size() == 0) {
-            resultLists.add(new ArrayList<T>());
-            return resultLists;
-        } else {
-            List<T> firstList = lists.get(0);
-            List<List<T>> remainingLists = cartesianProduct(lists.subList(1, lists.size()));
-            for (T condition : firstList) {
-                for (List<T> remainingList : remainingLists) {
-                    ArrayList<T> resultList = new ArrayList<T>();
-                    resultList.add(condition);
-                    resultList.addAll(remainingList);
-                    resultLists.add(resultList);
-                }
-            }
-        }
-        return resultLists;
-    }
-    
-    public static CSVParser getCSVParser(String filePath) throws IOException  
-    {  
-        CSVFormat format = CSVFormat.DEFAULT.withHeader();  
-        InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath), "UTF-8");  
-        return new CSVParser(isr, format);  
-    }  
-  
-    public static CSVPrinter getCSVPrinter(String filePath) throws IOException  
-    {  
-        CSVFormat format = CSVFormat.DEFAULT.withRecordSeparator("\n");  
-        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");  
-        return new CSVPrinter(osw, format);  
-    } 
-    
-    /** 
-     * Adds a path to the java.library.path System property 
-     * and updates the ClassLoader. Uses reflection to allow
-     * update to private system members. Will not work if JVM
-     * security policy gets in the way (like in an applet).
-     * Will not work if Sun changes the private members.
-     * This really shouldn't be used at all...
-     */
-     public static void javaLibraryAdd(File path) throws Exception
-     {
-          // Append the specified path to the
-          // existing java.library.path (if there is one already)
-          String newLibraryPath = System.getProperty("java.library.path");
-          if (newLibraryPath == null || newLibraryPath.length() < 1)
-          {
-               newLibraryPath = path.getCanonicalPath();
-          }
-          else
-          {
-               newLibraryPath += File.pathSeparator +
-                    path.getCanonicalPath();
-          }
+	public static <T> List<List<T>> cartesianProduct(List<List<T>> lists) {
+		List<List<T>> resultLists = new ArrayList<List<T>>();
+		if (lists.size() == 0) {
+			resultLists.add(new ArrayList<T>());
+			return resultLists;
+		} else {
+			List<T> firstList = lists.get(0);
+			List<List<T>> remainingLists = cartesianProduct(lists.subList(1, lists.size()));
+			for (T condition : firstList) {
+				for (List<T> remainingList : remainingLists) {
+					ArrayList<T> resultList = new ArrayList<T>();
+					resultList.add(condition);
+					resultList.addAll(remainingList);
+					resultLists.add(resultList);
+				}
+			}
+		}
+		return resultLists;
+	}
 
-          // Reflect into java.lang.System to get the 
-          // static Properties reference
-          Field f = System.class.getDeclaredField("props");
-          f.setAccessible(true);
-          Properties props = (Properties) f.get(null);
-          // replace the java.library.path with our new one
-          props.put("java.library.path", newLibraryPath);
+	public static CSVParser getCSVParser(String filePath) throws IOException {
+		CSVFormat format = CSVFormat.DEFAULT.withHeader();
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath), "UTF-8");
+		return new CSVParser(isr, format);
+	}
 
-          // The classLoader may have already been initialized,
-          // so it needs to be fixed up.
-          // Reflect into java.lang.ClassLoader to get the 
-          // static String[] of user paths to native libraries
-          Field usr_pathsField =
-                    ClassLoader.class.getDeclaredField("usr_paths");
-          usr_pathsField.setAccessible(true);
-          String[] usr_paths = (String[]) usr_pathsField.get(null);
-          String[] newUsr_paths = new String[usr_paths == null ? 1 : 
-               usr_paths.length + 1];
-          if (usr_paths != null)
-          {
-               System.arraycopy(usr_paths, 0, newUsr_paths,
-                    0, usr_paths.length);
-          }
-          // Add the specified path to the end of a new String[]
-          // of user paths to native libraries
-          newUsr_paths[newUsr_paths.length - 1] = path.getAbsolutePath();
-          usr_pathsField.set(null, newUsr_paths);
-     }
+	public static CSVPrinter getCSVPrinter(String filePath) throws IOException {
+		CSVFormat format = CSVFormat.DEFAULT.withRecordSeparator("\n");
+		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");
+		return new CSVPrinter(osw, format);
+	}
+
+	/**
+	 * Adds a path to the java.library.path System property and updates the
+	 * ClassLoader. Uses reflection to allow update to private system members. Will
+	 * not work if JVM security policy gets in the way (like in an applet). Will not
+	 * work if Sun changes the private members. This really shouldn't be used at
+	 * all...
+	 */
+	public static void javaLibraryAdd(File path) throws Exception {
+		// Append the specified path to the
+		// existing java.library.path (if there is one already)
+		String newLibraryPath = System.getProperty("java.library.path");
+		if (newLibraryPath == null || newLibraryPath.length() < 1) {
+			newLibraryPath = path.getCanonicalPath();
+		} else {
+			newLibraryPath += File.pathSeparator + path.getCanonicalPath();
+		}
+
+		// Reflect into java.lang.System to get the
+		// static Properties reference
+		Field f = System.class.getDeclaredField("props");
+		f.setAccessible(true);
+		Properties props = (Properties) f.get(null);
+		// replace the java.library.path with our new one
+		props.put("java.library.path", newLibraryPath);
+
+		// The classLoader may have already been initialized,
+		// so it needs to be fixed up.
+		// Reflect into java.lang.ClassLoader to get the
+		// static String[] of user paths to native libraries
+		Field usr_pathsField = ClassLoader.class.getDeclaredField("usr_paths");
+		usr_pathsField.setAccessible(true);
+		String[] usr_paths = (String[]) usr_pathsField.get(null);
+		String[] newUsr_paths = new String[usr_paths == null ? 1 : usr_paths.length + 1];
+		if (usr_paths != null) {
+			System.arraycopy(usr_paths, 0, newUsr_paths, 0, usr_paths.length);
+		}
+		// Add the specified path to the end of a new String[]
+		// of user paths to native libraries
+		newUsr_paths[newUsr_paths.length - 1] = path.getAbsolutePath();
+		usr_pathsField.set(null, newUsr_paths);
+	}
+
+	public static void copyFileToDirectory(String targetDir, String orginFilePath) throws IOException {
+		File orginFile = new File(orginFilePath);
+		File targetFile = new File(targetDir + File.separator + orginFile.getName());
+		if (targetFile.exists()) {
+			targetFile.delete();
+		}
+		FileUtils.copyFileToDirectory(orginFile, new File(targetDir));
+
+		targetFile.deleteOnExit();
+	}
+
+	public static void copyURLToFile(String targetDir, URL sourceURL) throws IOException {
+		File orginFile = new File(sourceURL.getFile());
+		File targetFile = new File(targetDir + File.separator + orginFile.getName());
+		if (targetFile.exists()) {
+			targetFile.delete();
+		}
+		FileUtils.copyURLToFile(sourceURL, targetFile);
+
+		targetFile.deleteOnExit();
+	}
 }
