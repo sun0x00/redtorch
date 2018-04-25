@@ -260,7 +260,7 @@
                                                                 <span class="virtual-table-cell">{{props.item.lowPrice|numberFormat(4)}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
-                                                                <span class="virtual-table-cell">{{props.item.dateTime.millis|timestampFormat('HH:mm:ss.S')}}</span>
+                                                                <span class="virtual-table-cell">{{props.item.dateTime.millis|timestampFormat('HH:mm:ss.SSS')}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" style="width: 180px">
                                                                 <span class="virtual-table-cell">{{props.item.gatewayID}}</span>
@@ -854,7 +854,7 @@
 
     function formatDate(date, fmt) {
         if (/(y+)/.test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4-RegExp.$1.length));
         }
         let o = {
             'M+': date.getMonth() + 1,
@@ -862,19 +862,25 @@
             'H+': date.getHours(),
             'm+': date.getMinutes(),
             's+': date.getSeconds(),
-            'S': date.getMilliseconds()
+            'S+': date.getMilliseconds()
         };
         for (let k in o) {
             if (new RegExp(`(${k})`).test(fmt)) {
                 let str = o[k] + '';
-                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+                if(k ==  'S+'){
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str,3));
+                }else{
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str,2));
+                }
             }
         }
         return fmt;
     };
 
-    function padLeftZero(str) {
-        return ('00' + str).substr(str.length);
+    function leftZeroPad(val, minLength) {
+        if (typeof(val) != "string")
+            val = String(val);
+        return ("000000000000000000".substring(0, minLength - val.length)) + val;
     }
 
     Vue.filter('numberFormat', function (value, decimals) {
