@@ -1099,6 +1099,9 @@
                     this.ordersChange = false
                     let tmpOrders = Array.from(this.orderMap.values())
                     this.orders = tmpOrders.sort(this.sortOrdersByTimeAndID).reverse()
+                }else{
+                    // 在无事件的情况下通过这种方式降低刷新频率，但不停止刷新
+                    this.ordersChange = true;
                 }
             },
             tradeTableFreshTimer() {
@@ -1106,6 +1109,9 @@
                     this.tradesChange = false
                     let tmpTrades = Array.from(this.tradeMap.values())
                     this.trades = tmpTrades.sort(this.sortTradesByTimeAndID).reverse()
+                }else{
+                    // 在无事件的情况下通过这种方式降低刷新频率，但不停止刷新
+                    this.tradesChange = true;
                 }
             },
             sortOrdersByTimeAndID(orderA, orderB) {
@@ -1679,13 +1685,13 @@
                                     tmpOrders.forEach(function (order) {
                                         that.orderMap.set(order.rtOrderID, order);
                                     });
-                                    that[dataArr] = that[dataArr].concat(tmpOrders).reverse()
+                                    that.orders = that.orders.concat(tmpOrders).reverse()
                                 } else if ('getTrades' == apiName) {
                                     let tmpTrades = res.data.data.sort(that.sortTradeByTimeAndID)
                                     tmpTrades.forEach(function (trade) {
                                         that.tradeMap.set(trade.rtTradeID, trade);
                                     });
-                                    that[dataArr] = that[dataArr].concat(tmpTrades).reverse()
+                                    that.trades = that.trades.concat(tmpTrades).reverse()
                                 } else if ('getPositions' == apiName) {
                                     let tmpPositions = res.data.data
                                     tmpPositions.forEach(function (position) {
@@ -1694,6 +1700,11 @@
                                     that.positions = Array.from(that.positionMap.values()).sort(sortSymbol)
                                 } else if('getLogs' == apiName){
                                     that[dataArr] = that[dataArr].concat(res.data.data).sort(sortLogByTimestamp).reverse()
+                                }else if('getAccounts' == apiName){
+                                    that.accounts.forEach(function (account) {
+                                        that.accountMap.set(account.rtAccountID, account);
+                                    });
+                                    that.accounts = Array.from(that.accountMap.values())
                                 }else{
                                     that[dataArr] = that[dataArr].concat(res.data.data).reverse()
                                 }
@@ -2225,9 +2236,6 @@
             registerOrder() {
                 let that = this;
                 socket.on("E_ORDER|", function (data) {
-                    that.orders.forEach(function (order) {
-                        that.orderMap.set(order.rtOrderID, order);
-                    });
                     that.orderMap.set(data.rtOrderID, data);
                     that.ordersChange = true;
                     // 避免性能问题，改为定时刷新
@@ -2237,9 +2245,6 @@
             registerAccount() {
                 let that = this;
                 socket.on("E_ACCOUNT|", function (data) {
-                    that.accounts.forEach(function (account) {
-                        that.accountMap.set(account.rtAccountID, account);
-                    });
                     that.accountMap.set(data.rtAccountID, data);
                     that.accounts = Array.from(that.accountMap.values())
                 });
@@ -2247,9 +2252,6 @@
             registerPosition() {
                 let that = this;
                 socket.on("E_POSITION|", function (data) {
-                    that.positions.forEach(function (position) {
-                        that.positionMap.set(position.rtPositionName, position);
-                    });
                     that.positionMap.set(data.rtPositionName, data);
                     that.positions = Array.from(that.positionMap.values()).sort(sortSymbol)
                 });
@@ -2257,9 +2259,6 @@
             registerTrade() {
                 let that = this;
                 socket.on("E_TRADE|", function (data) {
-                    that.trades.forEach(function (trade) {
-                        that.tradeMap.set(trade.rtTradeID, trade);
-                    });
                     that.tradeMap.set(data.rtTradeID, data);
                     that.tradesChange = true;
                     // 避免性能问题，改为定时刷新
