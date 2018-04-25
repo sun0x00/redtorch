@@ -26,9 +26,13 @@ public class RunBacktestingForStrategyBT {
 		BacktestingSection backtestingSection= new BacktestingSection();
 		backtestingSection.setStartDate("20180222");
 		backtestingSection.setEndDate("20180319");
-		backtestingSection.addPrefixSuffix("IF", "1803");
-		backtestingSection.addPrefixSuffix("IC", "1803");
-		backtestingSection.addPrefixSuffix("IH", "1803");
+		backtestingSection.addAliasRtSymbol("IC", "IC1803.CFFEX");
+		backtestingSection.addAliasRtSymbol("IH", "IH1803.CFFEX");
+		
+		backtestingSection.addSubscribeRtSymbol("9999.724SN02.187.10030", "IF1803.CFFEX");
+		backtestingSection.addSubscribeRtSymbol("9999.724SN01.187.10030", "IC1803.CFFEX");
+		backtestingSection.addSubscribeRtSymbol("9999.724SN01.187.10030", "IH1803.CFFEX");
+		
 		backestingSectionList.add(backtestingSection);
 		
 //		backtestingSection= new BacktestingSection();

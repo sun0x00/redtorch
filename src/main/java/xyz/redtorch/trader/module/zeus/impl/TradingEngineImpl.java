@@ -331,12 +331,12 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 								}
 
 								boolean error = false;
-								for (StrategySetting.TradeContractSetting tradeContractSetting : strategySetting
+								for (StrategySetting.ContractSetting contractSetting : strategySetting
 										.getContracts()) {
-									if (tradeContractSetting.getTradeGateways() == null
-											|| tradeContractSetting.getTradeGateways().isEmpty()) {
+									if (contractSetting.getTradeGateways() == null
+											|| contractSetting.getTradeGateways().isEmpty()) {
 										logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-												+ "-Setting.json未能找到合约" + tradeContractSetting.getRtSymbol()
+												+ "-Setting.json未能找到合约" + contractSetting.getRtSymbol()
 												+ "的tradeGateways配置";
 										emitErrorLog(logContent);
 										log.error(logContent);
@@ -411,10 +411,10 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			mainEventEngine.removeListener(null, strategy);
 			strategy.stop();
 			// 取消订阅合约
-			for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : strategy.getStrategySetting()
+			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting()
 					.getGateways()) {
-				String gatewayID = tradeGatewaySetting.getGatewayID();
-				for (String rtSymbol : tradeGatewaySetting.getSubscribeRtSymbols()) {
+				String gatewayID = gatewaySetting.getGatewayID();
+				for (String rtSymbol : gatewaySetting.getSubscribeRtSymbols()) {
 					String logContent = logStr + "卸载策略,ID:" + strategyID + ",取消订阅接口" + gatewayID + "合约" + rtSymbol;
 					emitInfoLog(logContent);
 					log.info(logContent);
@@ -495,15 +495,15 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			/********************** 初始化持仓 ****************************/
 			Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
 			Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
-			for (StrategySetting.TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
-				String rtSymbol = tradeContractSetting.getRtSymbol();
+			for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
+				String rtSymbol = contractSetting.getRtSymbol();
 				if (!contractPositionMap.containsKey(rtSymbol)) {
 					contractPositionMap.put(rtSymbol, new ContractPositionDetail());
 				}
 
-				for (StrategySetting.ContractTradeGatewaySetting contractTradeGatewaySetting : tradeContractSetting
+				for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : contractSetting
 						.getTradeGateways()) {
-					String contractGatewayKey = rtSymbol + contractTradeGatewaySetting.getGatewayID();
+					String contractGatewayKey = rtSymbol + tradeGatewaySetting.getGatewayID();
 					contractGatewayKeySet.add(contractGatewayKey);
 				}
 
@@ -614,11 +614,11 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			log.info(logContent);
 			/************************ 订阅合约注册事件 *******************/
 			// 通过配置订阅合约注册事件
-			for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : strategy.getStrategySetting()
+			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting()
 					.getGateways()) {
-				String gatewayID = tradeGatewaySetting.getGatewayID();
+				String gatewayID = gatewaySetting.getGatewayID();
 
-				for (String rtSymbol : tradeGatewaySetting.getSubscribeRtSymbols()) {
+				for (String rtSymbol : gatewaySetting.getSubscribeRtSymbols()) {
 					// 为策略注册Tick数据监听事件
 					String event = EventConstant.EVENT_TICK + gatewayID + rtSymbol;
 					mainEventEngine.registerListener(event, strategy);

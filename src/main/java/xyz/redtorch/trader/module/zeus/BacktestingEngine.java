@@ -122,9 +122,20 @@ public interface BacktestingEngine extends ZeusEngine{
 	static class BacktestingSection{
 		private String startDate;
 		private String endDate;
-		private Map<String,String> prefixSuffixMap = new HashMap<>();
-		public void addPrefixSuffix(String prefix,String suffix) {
-			prefixSuffixMap.put(prefix, suffix);
+		private Map<String,String> aliasMap = new HashMap<>();
+		private Map<String,List<String>> gatewaySubscribeRtSymbolsMap = new HashMap<>();
+		public void addAliasRtSymbol(String alias,String rtSymbol) {
+			aliasMap.put(alias, rtSymbol);
+		}
+		public void addSubscribeRtSymbol(String gatewayID,String rtSymbol) {
+			List<String> subscribeRtSymbols;
+			if(gatewaySubscribeRtSymbolsMap.containsKey(gatewayID)) {
+				subscribeRtSymbols = gatewaySubscribeRtSymbolsMap.get(gatewayID);
+			}else {
+				subscribeRtSymbols = new ArrayList<>();
+				gatewaySubscribeRtSymbolsMap.put(gatewayID,subscribeRtSymbols);
+			}
+			subscribeRtSymbols.add(rtSymbol);
 		}
 		public String getStartDate() {
 			return startDate;
@@ -138,13 +149,18 @@ public interface BacktestingEngine extends ZeusEngine{
 		public void setEndDate(String endDate) {
 			this.endDate = endDate;
 		}
-		public Map<String, String> getPrefixSuffixMap() {
-			return prefixSuffixMap;
+		public Map<String, String> getAliasMap() {
+			return aliasMap;
 		}
-		public void setPrefixSuffixMap(Map<String, String> prefixSuffixMap) {
-			this.prefixSuffixMap = prefixSuffixMap;
+		public void setAliasMap(Map<String, String> aliasMap) {
+			this.aliasMap = aliasMap;
 		}
-		
+		public Map<String, List<String>> getGatewaySubscribeRtSymbolsMap() {
+			return gatewaySubscribeRtSymbolsMap;
+		}
+		public void setGatewaySubscribeRtSymbolsMap(Map<String, List<String>> gatewaySubscribeRtSymbolsMap) {
+			this.gatewaySubscribeRtSymbolsMap = gatewaySubscribeRtSymbolsMap;
+		}
 	}
 	
 	/**

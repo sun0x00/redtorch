@@ -98,10 +98,10 @@ public class ZeusUtil {
 					}
 
 					boolean error = false;
-					for (StrategySetting.TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
-						if (tradeContractSetting.getTradeGateways() == null
-								|| tradeContractSetting.getTradeGateways().isEmpty()) {
-							log.error("解析策略的配置文件未能找到合约{}的gateways配置", tradeContractSetting.getRtSymbol());
+					for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
+						if (contractSetting.getTradeGateways() == null
+								|| contractSetting.getTradeGateways().isEmpty()) {
+							log.error("解析策略的配置文件未能找到合约{}的gateways配置", contractSetting.getRtSymbol());
 							error = true;
 							break;
 						}

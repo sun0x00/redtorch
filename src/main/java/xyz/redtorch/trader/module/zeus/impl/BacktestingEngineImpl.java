@@ -43,9 +43,9 @@ import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
-import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractTradeGatewaySetting;
-import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeContractSetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeGatewaySetting;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractSetting;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.gatewaySetting;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -294,29 +294,30 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			// 生成下一个回测段的合约代码
 			String startDate = backtestingSection.getStartDate();
 			String endDate = backtestingSection.getEndDate();
-			Map<String, String> prefixMap = backtestingSection.getPrefixSuffixMap();
-			for (Entry<String, String> entry : prefixMap.entrySet()) {
-				String prefix = entry.getKey();
-				String suffix = entry.getValue();
-				for (TradeGatewaySetting gateway : strategySetting.getGateways()) {
-					if (gateway.getSubscribeContractPrefixSuffixMap().containsKey(prefix)) {
-						gateway.getSubscribeContractPrefixSuffixMap().put(prefix, suffix);
-					}
-				}
-				if (strategySetting.getContractByPrefix(prefix) != null) {
-					strategySetting.getContractByPrefix(prefix).setSuffix(suffix);
-				}
+			
+			Map<String, String> aliasMap = backtestingSection.getAliasMap();
+			for (Entry<String, String> entry : aliasMap.entrySet()) {
+				String alias = entry.getKey();
+				String rtSymbol = entry.getValue();
+				strategySetting.getContractByAlias(alias).setRtSymbol(rtSymbol);
 			}
-
+			
+			Map<String, List<String>> subscribeRtSymbolsMap = backtestingSection.getGatewaySubscribeRtSymbolsMap();
+			for (Entry<String, List<String>> entry : subscribeRtSymbolsMap.entrySet()) {
+				String gatewayID = entry.getKey();
+				List<String> rtSymbols = entry.getValue();
+				strategySetting.getGatewaySetting(gatewayID).setSubscribeRtSymbols(rtSymbols);
+			}
+			
 			strategySetting.fixSetting();
 
 			// 保存手续费率,滑点,合约大小等设置
-			for (TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
-				String rtSymbol = tradeContractSetting.getRtSymbol();
-				contractSizeMap.put(rtSymbol, tradeContractSetting.getSize());
-				slippageMap.put(rtSymbol, tradeContractSetting.getBacktestingSlippage());
+			for (ContractSetting contractSetting : strategySetting.getContracts()) {
+				String rtSymbol = contractSetting.getRtSymbol();
+				contractSizeMap.put(rtSymbol, contractSetting.getSize());
+				slippageMap.put(rtSymbol, contractSetting.getBacktestingSlippage());
 				List<String> gatewayIDList = new ArrayList<>();
-				for (ContractTradeGatewaySetting tradeGateway : tradeContractSetting.getTradeGateways()) {
+				for (TradeGatewaySetting tradeGateway : contractSetting.getTradeGateways()) {
 					String gatewayID = tradeGateway.getGatewayID();
 					String key = gatewayID + "." + rtSymbol;
 					rateMap.put(key, tradeGateway.getBacktestingRate());
@@ -329,7 +330,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 			List<String> subscribeRtSymbolList = new ArrayList<>();
 
-			for (TradeGatewaySetting gateway : strategySetting.getGateways()) {
+			for (gatewaySetting gateway : strategySetting.getGateways()) {
 				subscribeRtSymbolList.addAll(gateway.getSubscribeRtSymbols());
 			}
 
@@ -458,11 +459,11 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	 * @param rtSymbol
 	 */
 	private void updateDailyClose(String date, double lastPrice, String rtSymbol) {
-		if (strategy.getStrategySetting().getContract(rtSymbol) == null) {
+		if (strategy.getStrategySetting().getContractSetting(rtSymbol) == null) {
 			return;
 		}
 
-		List<ContractTradeGatewaySetting> gateways = strategy.getStrategySetting().getContract(rtSymbol)
+		List<TradeGatewaySetting> gateways = strategy.getStrategySetting().getContractSetting(rtSymbol)
 				.getTradeGateways();
 
 		Map<String, Map<String, DailyResult>> gatewayDailyResultDict;
@@ -470,13 +471,13 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			gatewayDailyResultDict = rtSymbolDailyResultMap.get(rtSymbol);
 		} else {
 			gatewayDailyResultDict = new LinkedHashMap<>();
-			for (ContractTradeGatewaySetting gateway : gateways) {
+			for (TradeGatewaySetting gateway : gateways) {
 				gatewayDailyResultDict.put(gateway.getGatewayID(), new LinkedHashMap<>());
 			}
 			rtSymbolDailyResultMap.put(rtSymbol, gatewayDailyResultDict);
 		}
 
-		for (ContractTradeGatewaySetting gateway : gateways) {
+		for (TradeGatewaySetting gateway : gateways) {
 			Map<String, DailyResult> dailyResultDict = gatewayDailyResultDict.get(gateway.getGatewayID());
 			if (dailyResultDict.containsKey(date)) {
 				dailyResultDict.get(date).setClosePrice(lastPrice);
@@ -629,13 +630,13 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
 		Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
 
-		for (StrategySetting.TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
-			String rtSymbol = tradeContractSetting.getRtSymbol();
+		for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
+			String rtSymbol = contractSetting.getRtSymbol();
 			if (!contractPositionMap.containsKey(rtSymbol)) {
 				contractPositionMap.put(rtSymbol, new ContractPositionDetail());
 			}
 
-			for (StrategySetting.ContractTradeGatewaySetting gatewaySetting : tradeContractSetting.getTradeGateways()) {
+			for (StrategySetting.TradeGatewaySetting gatewaySetting : contractSetting.getTradeGateways()) {
 				String contractGatewayKey = rtSymbol + gatewaySetting.getGatewayID();
 				contractGatewayKeySet.add(contractGatewayKey);
 			}

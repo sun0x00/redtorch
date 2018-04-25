@@ -1,6 +1,7 @@
 {
 	"name": "StrategyBT",
 	"id": "ID-StrategyBT",
+	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.StrategyBT",
 	"xMin": 0,
 	"tradingDay": "20180404",
 	"preTradingDay": "20180403",
@@ -23,31 +24,22 @@
 		{
 			"gatewayID": "9999.724SN02.187.10030",
 			"backtestingCapital": 5000000,
-			"subscribeContractPrefixSuffixMap": {
-				"IF":"1805"
-			},
-			"subscribeContractPrefixExchangeMap": {
-				"IF":"CFFEX"
-			}
+			"subscribeRtSymbols": [
+				"IF1805.CFFEX"
+			]
 		},
 		{
 			"gatewayID": "9999.724SN01.187.10030",
 			"backtestingCapital": 2000000,
-			"subscribeContractPrefixSuffixMap": {
-				"IC":"1805",
-				"IH":"1805"
-			},
-			"subscribeContractPrefixExchangeMap": {
-				"IC":"CFFEX",
-				"IH":"CFFEX"
-			}
+			"subscribeRtSymbols": [
+				"IH1805.CFFEX", "IC1806.CFFEX"
+			]
 	    }
 	],
 	"contracts": [
-		{
-			"prefix": "IH",
-			"suffix": "1805",
-			"exchange": "CFFEX",
+		{	
+			"alias": "IH",
+			"rtSymbol": "IH1805.CFFEX",
 			"backtestingSlippage": 0.4,
 			"backtestingPriceTick": 0.2,
 			"size": 300,
@@ -65,9 +57,8 @@
 			]
 		},
 		{
-			"prefix": "IC",
-			"suffix": "1805",
-			"exchange": "CFFEX",
+			"alias": "IC",
+			"rtSymbol": "IC1805.CFFEX",
 			"backtestingSlippage": 0.4,
 			"backtestingPriceTick": 0.2,
 			"size": 200,

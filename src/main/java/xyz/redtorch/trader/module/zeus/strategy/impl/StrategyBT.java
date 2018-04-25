@@ -46,8 +46,8 @@ public class StrategyBT extends StrategyTemplate{
 	public void onBar(Bar bar) throws Exception {
 		int timeTest = bar.getDateTime().getMinuteOfHour() + bar.getDateTime().getHourOfDay()*100;
 		
-		String icSymbol = strategySetting.getContractByPrefix("IC").getRtSymbol();
-		String ihSymbol = strategySetting.getContractByPrefix("IH").getRtSymbol();
+		String icSymbol = strategySetting.getContractByAlias("IC").getRtSymbol();
+		String ihSymbol = strategySetting.getContractByAlias("IH").getRtSymbol();
 		if(timeTest == 945 && trading) {
 			if(bar.getRtSymbol().equals(icSymbol)) {
 				buyByPreset(icSymbol, bar.getClose()+1);

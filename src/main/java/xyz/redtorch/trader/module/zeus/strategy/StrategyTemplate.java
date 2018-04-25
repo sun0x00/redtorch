@@ -28,8 +28,8 @@ import xyz.redtorch.trader.module.zeus.ZeusEngine;
 import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
-import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractTradeGatewaySetting;
-import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeContractSetting;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeGatewaySetting;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractSetting;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -110,16 +110,16 @@ public abstract class StrategyTemplate implements Strategy {
 
 		String tradingDay = strategySetting.getTradingDay();
 
-		for (TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
-			String rtSymbol = tradeContractSetting.getRtSymbol();
-			String exchange = tradeContractSetting.getExchange();
-			int contractSize = tradeContractSetting.getSize();
+		for (ContractSetting contractSetting : strategySetting.getContracts()) {
+			String rtSymbol = contractSetting.getRtSymbol();
+			String exchange = contractSetting.getExchange();
+			int contractSize = contractSetting.getSize();
 
 			ContractPositionDetail contractPositionDetail = new ContractPositionDetail(rtSymbol, tradingDay, name, id,
 					exchange, contractSize);
-			for (ContractTradeGatewaySetting contractTradeGatewaySetting : tradeContractSetting.getTradeGateways()) {
-				String gatewayID = contractTradeGatewaySetting.getGatewayID();
-				PositionDetail positionDetail = new PositionDetail(rtSymbol, contractTradeGatewaySetting.getGatewayID(),
+			for (TradeGatewaySetting tradeGatewaySetting : contractSetting.getTradeGateways()) {
+				String gatewayID = tradeGatewaySetting.getGatewayID();
+				PositionDetail positionDetail = new PositionDetail(rtSymbol, tradeGatewaySetting.getGatewayID(),
 						tradingDay, name, id, exchange, contractSize);
 				contractPositionDetail.getPositionDetailMap().put(gatewayID, positionDetail);
 			}
@@ -359,7 +359,7 @@ public abstract class StrategyTemplate implements Strategy {
 			String[] rtSymbolArray = rtSymbol.split("\\.");
 			symbol = rtSymbolArray[0];
 			exchange = rtSymbolArray[1];
-			priceTick = strategySetting.getContract(rtSymbol).getBacktestingPriceTick();
+			priceTick = strategySetting.getContractSetting(rtSymbol).getBacktestingPriceTick();
 		} else {
 			Contract contract = zeusEngine.getContract(rtSymbol, gatewayID);
 			symbol = contract.getSymbol();
@@ -439,7 +439,7 @@ public abstract class StrategyTemplate implements Strategy {
 		double priceTick = 0;
 
 		if (zeusEngine.getEngineType() == ZeusConstant.ENGINE_TYPE_BACKTESTING) {
-			priceTick = strategySetting.getContract(rtSymbol).getBacktestingPriceTick();
+			priceTick = strategySetting.getContractSetting(rtSymbol).getBacktestingPriceTick();
 		} else {
 			priceTick = zeusEngine.getPriceTick(rtSymbol, gatewayID);
 		}
@@ -647,13 +647,13 @@ public abstract class StrategyTemplate implements Strategy {
 
 		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
 
-		TradeContractSetting tradeContractSetting = strategySetting.getContract(rtSymbol);
-		if (tradeContractSetting != null) {
-			List<ContractTradeGatewaySetting> tradeGateways = tradeContractSetting.getTradeGateways();
+		ContractSetting contractSetting = strategySetting.getContractSetting(rtSymbol);
+		if (contractSetting != null) {
+			List<TradeGatewaySetting> tradeGateways = contractSetting.getTradeGateways();
 			if (tradeGateways != null && !tradeGateways.isEmpty()) {
 				if (contractPositionDetail != null) {
 					int longPos = contractPositionDetail.getLongPos();
-					int fixedPos = tradeContractSetting.getTradeFixedPos();
+					int fixedPos = contractSetting.getTradeFixedPos();
 					if (longPos == fixedPos) {
 						log.warn("合约{}的多头总持仓量已经达到预设值,指令终止!", rtSymbol);
 						return;
@@ -664,7 +664,7 @@ public abstract class StrategyTemplate implements Strategy {
 					}
 				}
 
-				for (ContractTradeGatewaySetting tradeGteway : tradeGateways) {
+				for (TradeGatewaySetting tradeGteway : tradeGateways) {
 					String gatewayID = tradeGteway.getGatewayID();
 					int gatewayFixedPos = tradeGteway.getTradeFixedPos();
 					int tradePos = gatewayFixedPos;
@@ -769,14 +769,14 @@ public abstract class StrategyTemplate implements Strategy {
 	public void sellShortByPreset(String rtSymbol, double price) {
 		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
 
-		TradeContractSetting tradeContractSetting = strategySetting.getContract(rtSymbol);
-		if (tradeContractSetting != null) {
-			List<ContractTradeGatewaySetting> tradeGateways = tradeContractSetting.getTradeGateways();
+		ContractSetting contractSetting = strategySetting.getContractSetting(rtSymbol);
+		if (contractSetting != null) {
+			List<TradeGatewaySetting> tradeGateways = contractSetting.getTradeGateways();
 			if (tradeGateways != null && !tradeGateways.isEmpty()) {
 
 				if (contractPositionDetail != null) {
 					int shortPos = contractPositionDetail.getShortPos();
-					int fixedPos = tradeContractSetting.getTradeFixedPos();
+					int fixedPos = contractSetting.getTradeFixedPos();
 					if (shortPos == fixedPos) {
 						log.warn("合约{}的空头总持仓量已经达到预设值,指令终止!", rtSymbol);
 						return;
@@ -787,7 +787,7 @@ public abstract class StrategyTemplate implements Strategy {
 					}
 				}
 
-				for (ContractTradeGatewaySetting tradeGteway : tradeGateways) {
+				for (TradeGatewaySetting tradeGteway : tradeGateways) {
 					String gatewayID = tradeGteway.getGatewayID();
 					int gatewayFixedPos = tradeGteway.getTradeFixedPos();
 					int tradePos = gatewayFixedPos;
