@@ -1,6 +1,7 @@
 package xyz.redtorch.trader.module.zeus;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 
 import xyz.redtorch.trader.base.BaseConfig;
+import xyz.redtorch.trader.gateway.ctp.CtpGateway;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 import xyz.redtorch.utils.CommonUtil;
 
@@ -30,8 +32,18 @@ public class ZeusUtil {
 	public static File getStartegyConfigFile(String fileName) {
 		String path = BaseConfig.rtConfig.getString("module.zeus.strategy.config.dir");
 		if(StringUtils.isEmpty(path)) {
-			path  = Thread.currentThread().getContextClassLoader ().getResource("").getPath();
-			File file = new File(path+File.separator+"ZeusStartegyConfig"+File.separator+fileName);
+			String envTmpDir = System.getProperty("java.io.tmpdir");
+			String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "trader"
+					+ File.separator + "module" + File.separator + "zeus" + File.separator + "conf";
+			try {
+				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/ZeusStartegyConfig/"+fileName));
+			} catch (IOException e) {
+				log.error("复制配置文件到临时目录发生错误",e);
+			}
+			File file = new File(tempLibPath + File.separator + fileName);
+			
+			log.info("ZEUS临时文件"+file.getAbsolutePath());
+			
 			return file;
 		}else {
 			File file = new File(path+File.separator+fileName);

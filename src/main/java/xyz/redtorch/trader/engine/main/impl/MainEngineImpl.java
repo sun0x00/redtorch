@@ -91,6 +91,7 @@ public class MainEngineImpl implements MainEngine {
 		eventEngine.registerListener(EventConstant.EVENT_ERROR, this);
 		eventEngine.registerListener(EventConstant.EVENT_GATEWAY, this);
 		eventEngine.registerListener(EventConstant.EVENT_LOG, this);
+		eventEngine.registerListener(EventConstant.EVENT_LOG+"ZEUS|", this);
 		//eventEngine.registerListener("", this);
 		
 	}
@@ -112,7 +113,7 @@ public class MainEngineImpl implements MainEngine {
 			} catch (InterruptedException e) {
 				logContent = "MAIN_ENGINE:捕获到线程中断异常,线程停止!!!";
 				CommonUtil.emitErrorLog(eventEngine, logContent);
-				log.error(logContent);
+				log.error(logContent,e);
 			}
 			// 判断消息类型
 			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
@@ -122,7 +123,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onTick发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
 				try {
@@ -131,7 +132,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onTrade发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
 				try {
@@ -140,7 +141,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onOrder发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_CONTRACT.equals(ed.getEventType())) {
 				try {
@@ -149,7 +150,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onContract发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_POSITION.equals(ed.getEventType())) {
 				try {
@@ -158,7 +159,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onPosition发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_ACCOUNT.equals(ed.getEventType())) {
 				try {
@@ -167,7 +168,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onAccount发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if (EventConstant.EVENT_LOG.equals(ed.getEventType())) {
 				try {
@@ -176,7 +177,7 @@ public class MainEngineImpl implements MainEngine {
 				} catch (Exception e) {
 					logContent = "MAIN_ENGINE:onLogData发生异常!!!";
 					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent);
+					log.error(logContent,e);
 				}
 			} else if(EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())){
 				break;

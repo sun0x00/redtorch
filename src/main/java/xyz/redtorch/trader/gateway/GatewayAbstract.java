@@ -43,7 +43,7 @@ public abstract class GatewayAbstract implements Gateway{
 		this.gatewaySetting = gatewaySetting;
 		this.gatewayID = gatewaySetting.getGatewayID();
 		this.gatewayDisplayName = gatewaySetting.getGatewayDisplayName();
-		this.gatewayLogInfo = "接口ID:" + gatewayID + "显示名称:" + gatewayDisplayName+" ";
+		this.gatewayLogInfo = "接口ID-[" + gatewayID + "] 名称-[" + gatewayDisplayName+"] >>> ";
 		String logContent = gatewayLogInfo+"开始初始化";
 		CommonUtil.emitInfoLog(eventEngine, logContent);
 		log.info(logContent);

@@ -110,7 +110,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			} catch (IOException e) {
 				logContent = gatewayLogInfo + "创建临时文件夹失败"+tempFile.getParentFile().getAbsolutePath();
 				ctpGateway.emitErrorLog(logContent);
-				log.error(gatewayLogInfo);
+				log.error(logContent);
 			}
 		}
 		logContent = gatewayLogInfo + "使用临时文件夹"+tempFile.getParentFile().getAbsolutePath();

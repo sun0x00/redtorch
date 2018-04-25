@@ -94,7 +94,7 @@ public abstract class StrategyTemplate implements Strategy {
 
 		this.id = strategySetting.getId();
 		this.name = strategySetting.getName();
-		this.logStr = "Strategy:" + name + " ID:" + id;
+		this.logStr = "策略-[" + name + "] ID-[" + id +"] >>> ";
 
 		this.zeusEngine = zeusEngine;
 

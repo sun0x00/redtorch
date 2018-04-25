@@ -449,18 +449,18 @@ public class CommonUtil {
 		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");
 		return new CSVPrinter(osw, format);
 	}
-	
-	public static Date changeDateTimeZoneFromLondonToShanghai(Date orginDate) throws ParseException{
-		SimpleDateFormat londonSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // 伦敦  
-		londonSdf.setTimeZone(TimeZone.getTimeZone("Europe/London"));  // 设置伦敦时区  
-		
+
+	public static Date changeDateTimeZoneFromLondonToShanghai(Date orginDate) throws ParseException {
+		SimpleDateFormat londonSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // 伦敦
+		londonSdf.setTimeZone(TimeZone.getTimeZone("Europe/London")); // 设置伦敦时区
+
 		String tmpDateTimeStr = londonSdf.format(orginDate);
-		
-		SimpleDateFormat shanghaiSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");     // 北京  
-		shanghaiSdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));  // 设置北京时区  
-		
+
+		SimpleDateFormat shanghaiSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // 北京
+		shanghaiSdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai")); // 设置北京时区
+
 		return shanghaiSdf.parse(tmpDateTimeStr);
-		  
+
 	}
 
 	/**
@@ -505,7 +505,13 @@ public class CommonUtil {
 		usr_pathsField.set(null, newUsr_paths);
 	}
 
-	public static void copyFileToDirectory(String targetDir, String orginFilePath) throws IOException {
+	/**
+	 * 复制文件到临时文件夹
+	 * @param targetDir
+	 * @param orginFilePath
+	 * @throws IOException
+	 */
+	public static void copyFileToDirectoryForTmp(String targetDir, String orginFilePath) throws IOException {
 		File orginFile = new File(orginFilePath);
 		File targetFile = new File(targetDir + File.separator + orginFile.getName());
 		if (targetFile.exists()) {
@@ -516,7 +522,13 @@ public class CommonUtil {
 		targetFile.deleteOnExit();
 	}
 
-	public static void copyURLToFile(String targetDir, URL sourceURL) throws IOException {
+	/**
+	 * 复制URL到临时文件夹,例如从war包中
+	 * @param targetDir
+	 * @param sourceURL
+	 * @throws IOException
+	 */
+	public static void copyURLToFileForTmp(String targetDir, URL sourceURL) throws IOException {
 		File orginFile = new File(sourceURL.getFile());
 		File targetFile = new File(targetDir + File.separator + orginFile.getName());
 		if (targetFile.exists()) {

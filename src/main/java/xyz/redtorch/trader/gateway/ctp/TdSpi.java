@@ -213,7 +213,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			} catch (IOException e) {
 				logContent = gatewayLogInfo + "创建临时文件夹失败"+tempFile.getParentFile().getAbsolutePath();
 				ctpGateway.emitErrorLog(logContent);
-				log.error(logContent);
+				log.error(logContent,e);
 			}
 		}
 		logContent = gatewayLogInfo + "使用临时文件夹"+tempFile.getParentFile().getAbsolutePath();

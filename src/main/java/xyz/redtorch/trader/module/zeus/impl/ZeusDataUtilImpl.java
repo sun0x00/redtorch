@@ -108,7 +108,7 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 			String strategyName = positionDetail.getStrategyName();
 			defaultDBClient.upsert(defaultDBName, positionCollection+strategyName,document, filter);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
-			log.error("保持持仓数据转换发生错误",e);
+			log.error("保存持仓数据转换发生错误",e);
 		}
 		
 	}

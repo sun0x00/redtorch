@@ -1191,6 +1191,26 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		}
 	}
 
+	@Override
+	public void emitErrorLog(String logContent) {
+		log.error("E_LOG|ZEUS--"+logContent);
+	}
+
+	@Override
+	public void emitWarnLog(String logContent) {
+		log.warn("E_LOG|ZEUS--"+logContent);
+	}
+
+	@Override
+	public void emitInfoLog(String logContent) {
+		log.info("E_LOG|ZEUS--"+logContent);
+	}
+
+	@Override
+	public void emitDebugLog(String logContent) {
+		log.debug("E_LOG|ZEUS--"+logContent);
+	}
+	
 	///////////////////////////// ↓↓↓↓↓↓↓回测不需要实现的方法↓↓↓↓↓↓↓////////////////////////////
 	@Override
 	public void onEvent(EventData eventData) {

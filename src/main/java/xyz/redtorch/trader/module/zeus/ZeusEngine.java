@@ -200,4 +200,36 @@ public interface ZeusEngine extends EventListener,Module {
 	 * @return
 	 */
 	Contract getContract(String rtSymbol, String gatewayID);
+
+	/**
+	 * 发出debug日志事件
+	 * 
+	 * @param eventEngine
+	 * @param logContent
+	 */
+	void emitDebugLog(String logContent);
+	
+	/**
+	 * 发出error日志事件
+	 * 
+	 * @param eventEngine
+	 * @param logContent
+	 */
+	void emitErrorLog(String logContent);
+	
+	/**
+	 * 发出warn日志事件
+	 * 
+	 * @param eventEngine
+	 * @param logContent
+	 */
+	void emitWarnLog(String logContent);
+	
+	/**
+	 * 发出info日志事件
+	 * 
+	 * @param eventEngine
+	 * @param logContent
+	 */
+	void emitInfoLog(String logContent);
 }

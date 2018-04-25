@@ -19,11 +19,9 @@ public interface DataEngine {
 	public final static String dailyDBName = BaseConfig.rtConfig.getString("mongodb.instance.md.dbname.daily");
 	public final static String defaultDBName = RtConstant.RED_TORCH_DB_NAME+"_"+BaseConfig.rtConfig.getString("rt.client.id");
 	
-	
 	List<Bar> loadBarDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
 
 	List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
-
 
 	MongoDBClient getMdDBClient();
 

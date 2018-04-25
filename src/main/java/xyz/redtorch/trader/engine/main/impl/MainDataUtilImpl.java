@@ -83,7 +83,7 @@ public class MainDataUtilImpl implements MainDataUtil {
 			Document document = MongoDBUtil.beanToDocument(gatewaySetting);
 			defaultDBClient.insert(defaultDBName, gatewaySettingCollection, document);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
-			log.error("保持接口设置到数据库发生错误",e);
+			log.error("保存接口设置到数据库发生错误",e);
 		}
 		
 	}

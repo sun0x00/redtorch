@@ -475,13 +475,13 @@
                                                                 <template slot-scope="props">
                                                                     <div :key="props.itemKey" class="virtual-table-tr">
                                                                         <span class="virtual-table-td" style="width: 180px">
-                                                                            <span class="virtual-table-cell">{{props.item.logTimestamp|timestampFormat('')}}</span>
+                                                                            <span class="virtual-table-cell" :class="getLogColor(props.item.logLevel)">{{props.item.logTimestamp|timestampFormat('')}}</span>
                                                                         </span>
                                                                         <span class="virtual-table-td">
-                                                                            <span class="virtual-table-cell">{{props.item.logLevel}}</span>
+                                                                            <span class="virtual-table-cell" :class="getLogColor(props.item.logLevel)">{{props.item.logLevel}}</span>
                                                                         </span>
                                                                         <span class="virtual-table-td" style="width: 3600px;text-align: left;">
-                                                                            <span class="virtual-table-cell">{{props.item.logContent}}</span>
+                                                                            <span class="virtual-table-cell" :class="getLogColor(props.item.logLevel)">{{props.item.logContent}}</span>
                                                                         </span>
                                                                     </div>
                                                                 </template>
@@ -556,33 +556,6 @@
                                                         </div>
                                                     </el-tab-pane>
                                                     <el-tab-pane label="资金" name="money" class="virtual-table-wrap">
-                                                        <!-- <el-table :data="accounts" :height="tableHeight" width="90" border style="width: 100%" :default-sort="{prop: 'gatewayID', order: 'descending'}">
-                                                            <el-table-column sortable width="90" prop="accountID" label="账户">
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="昨结">
-                                                                <template slot-scope="scope">{{scope.row.preBalance|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="净值">
-                                                                <template slot-scope="scope">{{scope.row.balance|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="可用">
-                                                                <template slot-scope="scope">{{scope.row.available|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="手续费">
-                                                                <template slot-scope="scope">{{scope.row.commission|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="保证金">
-                                                                <template slot-scope="scope">{{scope.row.margin|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="平仓盈亏">
-                                                                <template slot-scope="scope">{{scope.row.closeProfit|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable width="90" label="持仓盈亏">
-                                                                <template slot-scope="scope">{{scope.row.positionProfit|numberFormat(0)}}</template>
-                                                            </el-table-column>
-                                                            <el-table-column sortable prop="gatewayID" label="接口">
-                                                            </el-table-column>
-                                                        </el-table> -->
                                                         <div class="virtual-table">
                                                             <div class="virtual-table-header">
                                                                 <span class="virtual-table-th" :style="{width:virtualAccountTableColumnWidth}">
@@ -1090,6 +1063,19 @@
             // }
         },
         methods: {
+            getLogColor(level) {
+                if(level == null){
+                    return ''
+                }
+                if(level.indexOf('ERROR') != -1){
+                    return 'color-buy'
+                }
+                if(level.indexOf('WARN') != -1){
+                    return 'color-yellow'
+                }
+
+                return ''
+            },
             tickTableFreshTimer() {
                 let tmpTicks = Array.from(this.tickMap.values())
                 this.ticks = tmpTicks.sort(sortSymbol)
