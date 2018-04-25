@@ -14,7 +14,6 @@ import xyz.redtorch.utils.MongoDBClient;
 
 import org.bson.Document;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,11 +22,7 @@ import com.mongodb.BasicDBObject;
  * @author sun0x00@gmail.com
  */
 public class DataEngineImpl implements DataEngine {
-	static {
-		// 设置时区为UTC，否则MongoDB读取时间会出错
-		DateTimeZone zone = DateTimeZone.UTC;
-		DateTimeZone.setDefault(zone);
-	}
+
 	private static Logger log = LoggerFactory.getLogger(DataEngineImpl.class);
 
 	private MongoDBClient mdDBClient;

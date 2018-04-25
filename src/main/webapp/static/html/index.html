@@ -209,6 +209,9 @@
                                                     <span class="virtual-table-th" :style="{width: virtualTickTableColumnWidth}">
                                                         <span class="virtual-table-cell">最低价</span>
                                                     </span>
+                                                    <span class="virtual-table-th" :style="{width: virtualTickTableColumnWidth}">
+                                                        <span class="virtual-table-cell">时间</span>
+                                                    </span>
                                                     <span class="virtual-table-th" style="width: 180px">
                                                         <span class="virtual-table-cell">接口</span>
                                                     </span>
@@ -255,6 +258,9 @@
                                                             </span>
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
                                                                 <span class="virtual-table-cell">{{props.item.lowPrice|numberFormat(4)}}</span>
+                                                            </span>
+                                                            <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
+                                                                <span class="virtual-table-cell">{{props.item.dateTime.millis|timestampFormat('HH:mm:ss.S')}}</span>
                                                             </span>
                                                             <span class="virtual-table-td" style="width: 180px">
                                                                 <span class="virtual-table-cell">{{props.item.gatewayID}}</span>
@@ -880,10 +886,13 @@
         }
         return (value.toFixed(decimals));
     });
-
     Vue.filter('timestampFormat', function (timestamp, formatStr) {
         let date = new Date(timestamp);
-        return formatDate(date, "yyyy-MM-dd HH:mm:ss.S")
+        if(formatStr){
+            return formatDate(date, formatStr)
+        }else{
+            return formatDate(date, "yyyy-MM-dd HH:mm:ss.S")
+        }
     });
     // Vue.use(VueObserveVisibility)
     Vue.component('virtual-scroller', VueVirtualScroller.VirtualScroller)
@@ -901,7 +910,7 @@
                     "px",
                 virtualAccountTableColumnWidth: ((window.innerWidth / 2 - 180 - 60) / 7 || 90) + "px",
                 virtualContractTableColumnWidth: ((window.innerWidth - 60) / 9 || 90) + "px",
-                virtualTickTableColumnWidth: ((window.innerWidth - 330 - 180 - 60) / 13 || 90) + "px",
+                virtualTickTableColumnWidth: ((window.innerWidth - 330 - 180 - 60) / 14 || 90) + "px",
 
                 tableHeight: (window.innerHeight - 85) / 3 - 5 || 250,
                 maxTableHeight: (window.innerHeight - 85) - 5 || 250,
@@ -1022,7 +1031,7 @@
                     that.virtualContractTableColumnWidth = ((window.innerWidth - 60) / 9 || 90) +
                         "px";
                     that.virtualTickTableColumnWidth = ((window.innerWidth - 330 - 180 - 60) /
-                        13 || 90) + "px";
+                        14 || 90) + "px";
 
                     that.tableHeight = (window.innerHeight - 85) / 3 - 5 || 250;
                     that.maxTableHeight = (window.innerHeight - 85) - 5 || 250;
@@ -2074,6 +2083,7 @@
             registerTick(target) {
                 let that = this;
                 socket.on("E_TICK|", function (data) {
+                    // console.log(data)
                     that.ticks.forEach(function (tick) {
                         tick.priceRatio = (((tick.lastPrice / tick.preClosePrice) - 1) * 100.0)
                             .toFixed(2) + "%"

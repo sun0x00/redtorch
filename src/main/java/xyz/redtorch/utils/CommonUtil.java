@@ -15,12 +15,16 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.JarURLConnection;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -444,6 +448,19 @@ public class CommonUtil {
 		CSVFormat format = CSVFormat.DEFAULT.withRecordSeparator("\n");
 		OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8");
 		return new CSVPrinter(osw, format);
+	}
+	
+	public static Date changeDateTimeZoneFromLondonToShanghai(Date orginDate) throws ParseException{
+		SimpleDateFormat londonSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // 伦敦  
+		londonSdf.setTimeZone(TimeZone.getTimeZone("Europe/London"));  // 设置伦敦时区  
+		
+		String tmpDateTimeStr = londonSdf.format(orginDate);
+		
+		SimpleDateFormat shanghaiSdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");     // 北京  
+		shanghaiSdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));  // 设置北京时区  
+		
+		return shanghaiSdf.parse(tmpDateTimeStr);
+		  
 	}
 
 	/**

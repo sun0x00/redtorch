@@ -3,6 +3,7 @@ package xyz.redtorch.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
 import java.util.Date;
 
 import org.bson.Document;
@@ -209,7 +210,7 @@ public class MongoDBUtil {
 				Method m = bean.getClass().getMethod("set" + upperCaseVarName, DateTime.class);
 				if(objectType.equals("java.util.Date")) {
 					Date date = (Date) object;
-					DateTime newObject = new DateTime(date.getTime());
+					DateTime newObject = new DateTime(CommonUtil.changeDateTimeZoneFromLondonToShanghai(date).getTime());
 					m.invoke(bean, newObject);
 				} else if(objectType.equals("java.lang.Long")) {
 					DateTime newObject = new DateTime((Long)object);
@@ -219,7 +220,7 @@ public class MongoDBUtil {
 				}
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | NoSuchFieldException e) {
+				| InvocationTargetException | NoSuchFieldException | ParseException e) {
 			throw new RuntimeException(e);
 		}
 	}
