@@ -29,7 +29,7 @@ public interface Strategy extends EventListener {
 	String getName();
 	
 	/**
-	 * 返回引擎类型，区分实盘和回测
+	 * 返回引擎类型,区分实盘和回测
 	 * @return
 	 */
 	int getEngineType();
@@ -178,7 +178,7 @@ public interface Strategy extends EventListener {
 	void savePosition();
 	
 	/**
-	 * 重置策略，一般用于连续回测
+	 * 重置策略,一般用于连续回测
 	 * @param strategySetting
 	 */
 	void resetStrategy(StrategySetting strategySetting);

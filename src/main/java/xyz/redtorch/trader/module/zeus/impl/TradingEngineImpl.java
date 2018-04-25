@@ -65,7 +65,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	Map<String, Strategy> strategyMap = new ConcurrentHashMap<>(); // 策略Map
 
-	// 用于异步存储变量的队列(减少策略的IO等待时间，主要用于节省回测时间)
+	// 用于异步存储变量的队列(减少策略的IO等待时间,主要用于节省回测时间)
 	LinkedBlockingQueue<Map<String, String>> syncVarMapSaveQueue = new LinkedBlockingQueue<>();
 	LinkedBlockingQueue<PositionDetail> positionDetailSaveQueue = new LinkedBlockingQueue<>();
 	
@@ -96,7 +96,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			try {
 				ed = eventDataQueue.take();
 			} catch (InterruptedException e) {
-				log.error("{} 捕获到线程中断异常，线程停止！！！", logStr, e);
+				log.error("{} 捕获到线程中断异常,线程停止!!!", logStr, e);
 			}
 			// 判断消息类型
 			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
@@ -104,21 +104,21 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 					Tick tick = (Tick) ed.getEventObj();
 					onTick(tick);
 				} catch (Exception e) {
-					log.error("{} onTick发生异常！！！", logStr, e);
+					log.error("{} onTick发生异常!!!", logStr, e);
 				}
 			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
 				try {
 					Trade trade = (Trade) ed.getEventObj();
 					onTrade(trade);
 				} catch (Exception e) {
-					log.error("{} onTrade发生异常！！！", logStr, e);
+					log.error("{} onTrade发生异常!!!", logStr, e);
 				}
 			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
 				try {
 					Order order = (Order) ed.getEventObj();
 					onOrder(order);
 				} catch (Exception e) {
-					log.error("{} onOrder发生异常！！！", logStr, e);
+					log.error("{} onOrder发生异常!!!", logStr, e);
 				}
 			} else if(EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())){
 				// 弃用
@@ -216,7 +216,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		if (classes == null) {
 			log.error("{} 未能在包xyz.redtorch.trader下扫描到任何类");
 		} else {
-			// 寻找Strategy的实现类，不包含抽象类
+			// 寻找Strategy的实现类,不包含抽象类
 			Set<Class<?>> filteredClasses = CommonUtil.getImplementsByInterface(Strategy.class, classes, false);
 			if (filteredClasses.isEmpty()) {
 				log.error("{} 未能在包xyz.redtorch.trader下扫描到任何实现了Strategy接口的策略", logStr);
@@ -241,7 +241,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 									continue;
 								}
 								
-								// 如果参数StrategyID不为空，表示加载指定策略，其它忽略
+								// 如果参数StrategyID不为空,表示加载指定策略,其它忽略
 								if(!StringUtils.isEmpty(strategyID) && !strategyID.equals(strategySetting.getId())) {
 									continue;
 								}
@@ -303,7 +303,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 							if (strategySetting != null) {
 								if(strategyMap.containsKey(strategySetting.getId())) {
-									log.info("{} 策略-{} ID-{} 已经加载，不允许重复加载", logStr, strategySetting.getName(), strategySetting.getId(), className);
+									log.info("{} 策略-{} ID-{} 已经加载,不允许重复加载", logStr, strategySetting.getName(), strategySetting.getId(), className);
 									continue;
 								}
 
@@ -311,8 +311,8 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 									Constructor<?> c = clazz.getConstructor(ZeusEngine.class, StrategySetting.class);
 									Strategy strategy = (Strategy) c.newInstance(this, strategySetting);
 
-									// 启动策略线程（不是初始化也不是启动交易，仅仅是启动线程）
-									// 初始化之后就应该立即启动线程，便于通过事件结束run方法实现销毁
+									// 启动策略线程（不是初始化也不是启动交易,仅仅是启动线程）
+									// 初始化之后就应该立即启动线程,便于通过事件结束run方法实现销毁
 									executor.execute(strategy);
 									// Map缓存策略
 									strategyMap.put(strategySetting.getId(), strategy);
@@ -343,10 +343,19 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		if (strategy != null) {
 			mainEventEngine.removeListener(null, strategy);
 			strategy.stop();
+			// 取消订阅合约
+			for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : strategy.getStrategySetting()
+					.getGateways()) {
+				String gatewayID = tradeGatewaySetting.getGatewayID();
+				for (String rtSymbol : tradeGatewaySetting.getSubscribeRtSymbols()) {
+					mainEngine.unsubscribe(rtSymbol, gatewayID, strategyID);
+					log.info("{}取消订阅,接口{}合约{}", strategy.getLogStr(), gatewayID, rtSymbol);
+				}
+			}
 			strategyMap.remove(strategyID);
-			log.error("{} 策略已卸载，strategyID:{}", logStr, strategyID);
+			log.error("{} 策略已卸载,strategyID:{}", logStr, strategyID);
 		} else {
-			log.error("{} 未找到策略,卸载失败，strategyID:{}", logStr, strategyID);
+			log.error("{} 未找到策略,卸载失败,strategyID:{}", logStr, strategyID);
 		}
 	}
 
@@ -371,7 +380,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 				log.info("{}配置文件中varMap为空", strategy.getLogStr());
 			}
 
-			// 从MongoDB中加载所有存储的变量，如果和文件配置冲突，则覆盖
+			// 从MongoDB中加载所有存储的变量,如果和文件配置冲突,则覆盖
 			Map<String, String> dbSyncVarMap = zeusDataUtil.loadStrategySyncVarMap(strategy.getID());
 			if (dbSyncVarMap.isEmpty()) {
 				log.info("{}数据库中varMap为空", strategy.getLogStr());
@@ -414,7 +423,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 			List<PositionDetail> tdPositionDetailList = zeusDataUtil.loadStrategyPositionDetails(tradingDay, strategyID, strategyName);
 			if (tdPositionDetailList.isEmpty()) {
-				log.info("{} 当日持仓数据记录为空，尝试读取前一交易日", strategy.getLogStr());
+				log.info("{} 当日持仓数据记录为空,尝试读取前一交易日", strategy.getLogStr());
 				String preTradingDay = strategySetting.getPreTradingDay();
 				if (StringUtils.isEmpty(preTradingDay)) {
 					log.info("{} 前一交易日配置为空", strategy.getLogStr());
@@ -504,7 +513,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 					SubscribeReq subscribeReq = new SubscribeReq();
 					subscribeReq.setRtSymbol(rtSymbol);
 					subscribeReq.setGatewayID(gatewayID);
-					mainEngine.subscribe(subscribeReq);
+					mainEngine.subscribe(subscribeReq, strategyID);
 					log.info("{}通过接口{}订阅合约{}", strategy.getLogStr(), gatewayID, rtSymbol);
 				}
 			}
@@ -512,7 +521,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			/*********************************************************/
 			strategy.init();
 		} else {
-			log.error("{} 未找到策略,初始化失败，strategyID:{}", logStr, strategyID);
+			log.error("{} 未找到策略,初始化失败,strategyID:{}", logStr, strategyID);
 		}
 	}
 
@@ -522,7 +531,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		if (strategy != null) {
 			strategy.startTrading();
 		} else {
-			log.error("{} 未找到策略,策略启动失败，strategyID:{}", logStr, strategyID);
+			log.error("{} 未找到策略,策略启动失败,strategyID:{}", logStr, strategyID);
 		}
 	}
 
@@ -532,7 +541,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		if (strategy != null) {
 			strategy.stopTrading(false);
 		} else {
-			log.error("{} 未找到策略,策略停止失败，strategyID:{}", logStr, strategyID);
+			log.error("{} 未找到策略,策略停止失败,strategyID:{}", logStr, strategyID);
 		}
 	}
 
@@ -588,7 +597,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	@Override
 	public void asyncSaveSyncVarMap(String strategyID, String strategyName, Map<String, String> syncVarMap) {
-		// 实现深度复制，避免引用被修改
+		// 实现深度复制,避免引用被修改
 		Map<String,String> saveSyncVarMap = SerializationUtils.clone(new HashMap<>(syncVarMap));
 		saveSyncVarMap.put("strategyID", strategyID);
 		saveSyncVarMap.put("strategyName", strategyName);
@@ -616,7 +625,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 					PositionDetail positionDetail = positionDetailSaveQueue.take();
 					zeusDataUtil.saveStrategyPositionDetail(positionDetail);
 				} catch (InterruptedException e) {
-					log.error("{} 保存持仓任务捕获到线程中断异常，线程停止！！！", logStr, e);
+					log.error("{} 保存持仓任务捕获到线程中断异常,线程停止!!!", logStr, e);
 				}
 			}
 		}
@@ -629,7 +638,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 				Map<String,String> syncVarMapWithNameAndID = syncVarMapSaveQueue.take();
 				zeusDataUtil.saveStrategySyncVarMap(syncVarMapWithNameAndID);
 			} catch (InterruptedException e) {
-				log.error("{} 保存变量任务捕获到线程中断异常，线程停止！！！", logStr, e);
+				log.error("{} 保存变量任务捕获到线程中断异常,线程停止!!!", logStr, e);
 			}
 		}
 		

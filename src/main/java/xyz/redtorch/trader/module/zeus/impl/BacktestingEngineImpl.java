@@ -195,7 +195,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 	@Override
 	public void asyncSaveSyncVarMap(String strategyID, String strategyName, Map<String, String> syncVarMap) {
-		// 实现深度复制，避免引用被修改
+		// 实现深度复制,避免引用被修改
 		Map<String, String> saveSyncVarMap = SerializationUtils.clone(new HashMap<>(syncVarMap));
 		// 模拟存入数据库
 		syncVarSimulationDBMap.put(strategyID, saveSyncVarMap);
@@ -229,7 +229,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 	@Override
 	public List<Bar> loadBacktestingBarDataList(String startDate, String endDate, List<String> subscribeRtSymbolList) {
-		log.info("加载Bar回测数据，合约{}，开始日期{}，结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
+		log.info("加载Bar回测数据,合约{},开始日期{},结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
 		long startTime = System.currentTimeMillis();
 		DateTime startDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(startDate);
 		DateTime endDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(endDate);
@@ -242,7 +242,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			barList.addAll(tmpBarList);
 		}
 		barList.sort((Bar b1, Bar b2) -> b1.getDateTime().compareTo(b2.getDateTime()));
-		log.info("加载Bar回测数据结束，合约{}，共{}条", JSON.toJSONString(subscribeRtSymbolList), barList.size(),
+		log.info("加载Bar回测数据结束,合约{},共{}条", JSON.toJSONString(subscribeRtSymbolList), barList.size(),
 				System.currentTimeMillis() - startTime);
 		return barList;
 	}
@@ -250,7 +250,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	@Override
 	public List<Tick> loadBacktestingTickDataList(String startDate, String endDate,
 			List<String> subscribeRtSymbolList) {
-		log.info("加载Tick回测数据，合约{}，开始日期{}，结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
+		log.info("加载Tick回测数据,合约{},开始日期{},结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
 		long startTime = System.currentTimeMillis();
 		DateTime startDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(startDate);
 		DateTime endDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(endDate);
@@ -259,7 +259,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			tickList.addAll(zeusDataUtil.loadTickDataList(startDateTime, endDateTime, rtSymbol));
 		}
 		tickList.sort((Tick t1, Tick t2) -> t1.getDateTime().compareTo(t2.getDateTime()));
-		log.info("加载Tick回测数据结束，合约{}，共{}条,耗时{}ms", JSON.toJSONString(subscribeRtSymbolList), tickList.size(),
+		log.info("加载Tick回测数据结束,合约{},共{}条,耗时{}ms", JSON.toJSONString(subscribeRtSymbolList), tickList.size(),
 				System.currentTimeMillis() - startTime);
 		return tickList;
 	}
@@ -285,7 +285,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		try {
 			strategyClass = Class.forName(strategyClassName);
 		} catch (ClassNotFoundException e) {
-			log.error("未找到策略类，回测结束", e);
+			log.error("未找到策略类,回测结束", e);
 			return;
 		}
 
@@ -310,7 +310,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 			strategySetting.fixSetting();
 
-			// 保存手续费率，滑点，合约大小等设置
+			// 保存手续费率,滑点,合约大小等设置
 			for (TradeContractSetting tradeContractSetting : strategySetting.getContracts()) {
 				String rtSymbol = tradeContractSetting.getRtSymbol();
 				contractSizeMap.put(rtSymbol, tradeContractSetting.getSize());
@@ -367,7 +367,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 							strategy.init();
 							strategy.startTrading();
 						} else {
-							// 不重新实例化策略，不触发init事件
+							// 不重新实例化策略,不触发init事件
 							strategy.resetStrategy(strategySetting);
 							initStrategy(strategy);
 							if (!strategy.isTrading()) {
@@ -499,14 +499,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		// double buyBestCrossPrice;
 		// double sellBestCrossPrice;
 		if (backtestingDataMode == DATA_MODE_BAR) {
-			buyCrossPrice = barMap.get(rtSymbol).getLow(); // 若买入方向限价单价格高于该价格，则会成交
-			sellCrossPrice = barMap.get(rtSymbol).getHigh(); // 若卖出方向限价单价格低于该价格，则会成交
+			buyCrossPrice = barMap.get(rtSymbol).getLow(); // 若买入方向限价单价格高于该价格,则会成交
+			sellCrossPrice = barMap.get(rtSymbol).getHigh(); // 若卖出方向限价单价格低于该价格,则会成交
 			// buyBestCrossPrice = barMap.get(rtSymbol).getOpen(); // 在当前时间点前发出的买入委托可能的最优成交价
 			// sellBestCrossPrice = barMap.get(rtSymbol).getOpen(); //
 			// 在当前时间点前发出的卖出委托可能的最优成交价
 		} else {
-			buyCrossPrice = tickMap.get(rtSymbol).getAskPrice1(); // 若买入方向限价单价格高于该价格，则会成交
-			sellCrossPrice = tickMap.get(rtSymbol).getBidPrice1(); // 若卖出方向限价单价格低于该价格，则会成交
+			buyCrossPrice = tickMap.get(rtSymbol).getAskPrice1(); // 若买入方向限价单价格高于该价格,则会成交
+			sellCrossPrice = tickMap.get(rtSymbol).getBidPrice1(); // 若卖出方向限价单价格低于该价格,则会成交
 			// buyBestCrossPrice = tickMap.get(rtSymbol).getAskPrice1(); //
 			// 在当前时间点前发出的买入委托可能的最优成交价
 			// sellBestCrossPrice = tickMap.get(rtSymbol).getBidPrice1(); //
@@ -526,7 +526,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					strategy.processOrder(order);
 				}
 
-				// 判断是否会成交，排除涨跌停
+				// 判断是否会成交,排除涨跌停
 				boolean buyCross = order.getDirection().equals(RtConstant.DIRECTION_LONG)
 						&& order.getPrice() >= buyCrossPrice && buyCrossPrice > 0;
 				boolean sellCross = order.getDirection().equals(RtConstant.DIRECTION_SHORT)
@@ -545,7 +545,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					trade.setDirection(order.getDirection());
 					trade.setOffset(order.getOffset());
 					trade.setGatewayID(order.getGatewayID());
-					// 弃用最优价逻辑，实盘很难达成最优价条件
+					// 弃用最优价逻辑,实盘很难达成最优价条件
 					// if(buyCross) {
 					// trade.setPrice(Math.min(order.getPrice(), buyBestCrossPrice));
 					// }else {
@@ -642,7 +642,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 		}
 
-		// 这里不需要检查当日，只需要直接读取前一个交易日
+		// 这里不需要检查当日,只需要直接读取前一个交易日
 		if (StringUtils.isEmpty(preTradingDay)) {
 			log.info("{} 前一交易日配置为空", strategy.getLogStr());
 		} else {
@@ -723,7 +723,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				List<Integer> posList = new LinkedList<>();
 
 				for (Trade trade : tradeMap.values()) {
-					// 不是同一个合约同一个接口的，跳过
+					// 不是同一个合约同一个接口的,跳过
 					if (!trade.getRtSymbol().equals(rtSymbol) || !trade.getGatewayID().equals(gatewayID)) {
 						continue;
 					}
@@ -769,14 +769,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 									shortTradeList.remove(0);
 								}
 
-								// 如果平仓交易已经清算，推出循环
+								// 如果平仓交易已经清算,推出循环
 								if (exitTrade.getVolume() == 0) {
 									break;
 								}
 
 								// 如果平仓交易未清算完成
 								if (exitTrade.getVolume() != 0) {
-									// 开仓交易已经全部清算完成，则平仓交易剩余的部分等于新的反向开仓交易，添加到队列中
+									// 开仓交易已经全部清算完成,则平仓交易剩余的部分等于新的反向开仓交易,添加到队列中
 									if (shortTradeList.isEmpty()) {
 										longTradeList.add(exitTrade);
 										break;
@@ -819,14 +819,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 									longTradeList.remove(0);
 								}
 
-								// 如果平仓交易已经清算，推出循环
+								// 如果平仓交易已经清算,推出循环
 								if (exitTrade.getVolume() == 0) {
 									break;
 								}
 
 								// 如果平仓交易未清算完成
 								if (exitTrade.getVolume() != 0) {
-									// 开仓交易已经全部清算完成，则平仓交易剩余的部分等于新的反向开仓交易，添加到队列中
+									// 开仓交易已经全部清算完成,则平仓交易剩余的部分等于新的反向开仓交易,添加到队列中
 									if (longTradeList.isEmpty()) {
 										shortTradeList.add(exitTrade);
 										break;
@@ -840,7 +840,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 				}
 				
-				// 最后交易日尚未平仓的交易，以最后价格平仓
+				// 最后交易日尚未平仓的交易,以最后价格平仓
 				double endPrice;
 				String endTradingDay;
 				if (backtestingDataMode == DATA_MODE_BAR) {
@@ -916,10 +916,10 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				
 				// 检查是否存在交易结果
 				if (resultList.isEmpty()) {
-					log.warn("无交易结果，合约{}接口{}", rtSymbol, gatewayID);
+					log.warn("无交易结果,合约{}接口{}", rtSymbol, gatewayID);
 					continue;
 				}
-				// 然后基于每笔交易的结果，我们可以计算具体的盈亏曲线和最大回撤等
+				// 然后基于每笔交易的结果,我们可以计算具体的盈亏曲线和最大回撤等
 				double capital = 0; // 资金
 				double maxCapital = 0; // 资金最高净值
 				double drawdown = 0; // 回撤

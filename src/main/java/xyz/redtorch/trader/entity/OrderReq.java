@@ -14,7 +14,7 @@ public class OrderReq  implements Serializable{
 	// 代码编号相关
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
-	private String rtSymbol; // 系统中的唯一代码，通常是 合约代码.交易所代码
+	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
 
 	// 报单相关
 	private double price; // 报单价格

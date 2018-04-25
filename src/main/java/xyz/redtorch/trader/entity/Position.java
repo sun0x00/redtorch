@@ -14,14 +14,14 @@ public class Position  implements Serializable{
 	// 代码编号相关
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
-	private String rtSymbol; // 系统中的唯一代码，通常是 合约代码.交易所代码
+	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
 
 	// 持仓相关
 	private String direction; // 持仓方向
 	private int position; // 持仓量
 	private int frozen; // 冻结数量
 	private double price; // 持仓均价
-	private String rtPositionName; // 持仓在系统中的唯一代码，通常是rtSymbol.方向
+	private String rtPositionName; // 持仓在系统中的唯一代码,通常是rtSymbol.方向
 	private int ydPosition; // 昨持仓
 	private double positionProfit; // 持仓盈亏
 	public String getGatewayID() {

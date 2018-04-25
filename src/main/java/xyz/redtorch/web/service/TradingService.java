@@ -17,6 +17,8 @@ import xyz.redtorch.trader.gateway.GatewaySetting;
  */
 public interface TradingService {
 	boolean subscribe(String rtSymbol, String gatewayID);
+	
+	boolean unsubscribe(String rtSymbol, String gatewayID);
 
 	List<Trade> getTrades();
 
@@ -64,5 +66,6 @@ public interface TradingService {
 	void cancelOrder(String rtOrderID);
 
 	void cancelAllOrders();
+
 
 }

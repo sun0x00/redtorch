@@ -199,7 +199,7 @@ public class CommonUtil {
 				try {
 					// 添加到集合中去
 					// classes.add(Class.forName(packageName + '.' + className));
-					// 经过回复同学的提醒，这里用forName有一些不好，会触发static方法，没有使用classLoader的load干净
+					// 经过回复同学的提醒,这里用forName有一些不好,会触发static方法,没有使用classLoader的load干净
 					classes.add(
 							Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
 				} catch (ClassNotFoundException e) {

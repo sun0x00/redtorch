@@ -13,7 +13,7 @@ public class Account implements Serializable{
 
 	// 账号代码相关
 	private String accountID; // 账户代码
-	private String rtAccountID; // 账户在vt中的唯一代码，通常是 Gateway名.账户代码
+	private String rtAccountID; // 账户在vt中的唯一代码,通常是 Gateway名.账户代码
 
 	// 数值相关
 	private double preBalance; // 昨日账户结算净值

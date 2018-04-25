@@ -67,7 +67,7 @@ public class DataEngineImpl implements DataEngine {
 
 	@Override
 	public List<Bar> loadBarDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol) {
-		log.info("加载Bar数据，合约{}，开始日期时间{}结束日期时间{}", rtSymbol,
+		log.info("加载Bar数据,合约{},开始日期时间{}结束日期时间{}", rtSymbol,
 				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter),
 				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter));
 		long startTime = System.currentTimeMillis();
@@ -89,13 +89,13 @@ public class DataEngineImpl implements DataEngine {
 			barList.add(bar);
 		}
 		
-		log.info("加载Bar数据完成，合约{}，共{}条,耗时{}ms", rtSymbol, barList.size(),System.currentTimeMillis() - startTime);
+		log.info("加载Bar数据完成,合约{},共{}条,耗时{}ms", rtSymbol, barList.size(),System.currentTimeMillis() - startTime);
 		return barList;
 	}
 
 	@Override
 	public List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol) {
-		log.info("加载Tick数据，合约{}，开始日期时间{}结束日期时间{}", rtSymbol,
+		log.info("加载Tick数据,合约{},开始日期时间{}结束日期时间{}", rtSymbol,
 				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter),
 				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter));
 		long startTime = System.currentTimeMillis();
@@ -116,7 +116,7 @@ public class DataEngineImpl implements DataEngine {
 			}
 			tickList.add(tick);
 		}
-		log.info("加载Tick数据完成，合约{}，共{}条,耗时{}ms", rtSymbol, tickList.size(),System.currentTimeMillis() - startTime);
+		log.info("加载Tick数据完成,合约{},共{}条,耗时{}ms", rtSymbol, tickList.size(),System.currentTimeMillis() - startTime);
 		return tickList;
 	}
 

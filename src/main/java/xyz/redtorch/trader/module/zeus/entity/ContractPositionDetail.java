@@ -55,7 +55,7 @@ public class ContractPositionDetail implements Serializable{
 	private HashMap<String, PositionDetail> positionDetailMap = new HashMap<>(); // 各接口持仓详细
 
 	/**
-	 * 有参构造方法，需要传入必要信息
+	 * 有参构造方法,需要传入必要信息
 	 * @param rtSymbol
 	 * @param gatewayID
 	 * @param tradeDay

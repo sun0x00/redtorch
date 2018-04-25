@@ -22,7 +22,6 @@ public class CtpGateway extends GatewayAbstract {
 	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
 
 	static {
-
 		try {
 			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
 
@@ -60,7 +59,6 @@ public class CtpGateway extends GatewayAbstract {
 				System.load(tempLibPath + File.separator + "libjctpmdapiv6v3v11x64.so");
 				System.load(tempLibPath + File.separator + "libthosttraderapi.so");
 				System.load(tempLibPath + File.separator + "libjctptraderapiv6v3v11x64.so");
-
 			}
 		} catch (Exception e) {
 			log.error("复制库失败!", e);
@@ -76,7 +74,6 @@ public class CtpGateway extends GatewayAbstract {
 
 	public CtpGateway(GatewaySetting gatewaySetting, EventEngine eventEngine) {
 		super(gatewaySetting, eventEngine);
-		log.info("初始化CTP接口,{}", gatewayLogInfo);
 	}
 
 	public HashMap<String, String> getContractExchangeMap() {

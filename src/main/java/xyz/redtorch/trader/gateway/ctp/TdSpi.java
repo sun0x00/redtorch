@@ -179,6 +179,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 * 连接
 	 */
 	public synchronized void connect() {
+		String logContent;
 		if (isConnected() || connectProcessStatus) {
 			return;
 		}
@@ -206,12 +207,18 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if(!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info("创建临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+				logContent = gatewayLogInfo + "创建临时文件夹"+tempFile.getParentFile().getAbsolutePath();
+				ctpGateway.emitInfoLog(logContent);
+				log.info(logContent);
 			} catch (IOException e) {
-				log.error("创建临时文件夹失败{}",tempFile.getParentFile().getAbsolutePath());
+				logContent = gatewayLogInfo + "创建临时文件夹失败"+tempFile.getParentFile().getAbsolutePath();
+				ctpGateway.emitErrorLog(logContent);
+				log.error(logContent);
 			}
 		}
-		log.info("使用临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+		logContent = gatewayLogInfo + "使用临时文件夹"+tempFile.getParentFile().getAbsolutePath();
+		ctpGateway.emitInfoLog(logContent);
+		log.info(gatewayLogInfo);
 		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);
@@ -292,7 +299,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 */
 	public String sendOrder(OrderReq orderReq) {
 		if(cThostFtdcTraderApi == null) {
-			log.info("{}尚未初始化，无法发单",gatewayLogInfo);
+			log.info("{}尚未初始化,无法发单",gatewayLogInfo);
 			return null;
 		}
 		reqID+=1;
@@ -653,7 +660,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 					CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), ""));
 			position.setRtPositionName(gatewayID + rtSymbol + pInvestorPosition.getPosiDirection());
 		}
-		// 针对上期所持仓的今昨分条返回（有昨仓、无今仓），读取昨仓数据
+		// 针对上期所持仓的今昨分条返回（有昨仓、无今仓）,读取昨仓数据
 		if (pInvestorPosition.getYdPosition() > 0 && pInvestorPosition.getTodayPosition() == 0) {
 			position.setYdPosition(pInvestorPosition.getPosition());
 		}
@@ -924,7 +931,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		
         /*
          * CTP的报单号一致性维护需要基于frontID, sessionID, orderID三个字段
-         * 但在本接口设计中，已经考虑了CTP的OrderRef的自增性，避免重复
+         * 但在本接口设计中,已经考虑了CTP的OrderRef的自增性,避免重复
          * 唯一可能出现OrderRef重复的情况是多处登录并在非常接近的时间内（几乎同时发单
          */
 		order.setRtOrderID(gatewayID+"."+order.getOrderID());

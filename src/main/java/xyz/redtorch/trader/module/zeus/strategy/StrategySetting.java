@@ -20,11 +20,11 @@ public class StrategySetting {
 	private Map<String,String> varMap; //运行时可变参数字典
 	private List<String> syncVarList; // 数据库存储可变参数列表
 	
-	private List<TradeGatewaySetting> gateways; //接口设置，回测，订阅相关
-	private List<TradeContractSetting> contracts; //合约设置，回测，交易仓位相关
+	private List<TradeGatewaySetting> gateways; //接口设置,回测,订阅相关
+	private List<TradeContractSetting> contracts; //合约设置,回测,交易仓位相关
 	
 	/**
-	 * 在使用前务必执行此方法，校正相关数据项
+	 * 在使用前务必执行此方法,校正相关数据项
 	 */
 	public void fixSetting() {
 		for(TradeGatewaySetting tradeGatewaySetting:gateways) {

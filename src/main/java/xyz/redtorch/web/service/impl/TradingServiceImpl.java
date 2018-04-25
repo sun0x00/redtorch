@@ -75,7 +75,7 @@ public class TradingServiceImpl implements TradingService{
 		eventEngine.registerListener(EventConstant.EVENT_GATEWAY, eventTransferTask);
 		eventEngine.registerListener(EventConstant.EVENT_LOG, eventTransferTask);
 
-		// 这一步暂时没有实际意义，预留
+		// 这一步暂时没有实际意义,预留
 		mainEngine.addModel(zeusEngine);
 
 		executor.execute(mainEngine);
@@ -101,7 +101,7 @@ public class TradingServiceImpl implements TradingService{
 			
 			return mainEngine.sendOrder(orderReq);
 		}else {
-			log.error("发单失败，未找到合约");
+			log.error("发单失败,未找到合约");
 			return null;
 		}
 
@@ -128,7 +128,7 @@ public class TradingServiceImpl implements TradingService{
 				
 			}
 		}else {
-			log.error("无法撤单，未能找到委托ID {}", rtOrderID);
+			log.error("无法撤单,未能找到委托ID {}", rtOrderID);
 		}
 	}
 	
@@ -165,9 +165,17 @@ public class TradingServiceImpl implements TradingService{
 		SubscribeReq subscribeReq = new SubscribeReq();
 		subscribeReq.setGatewayID(gatewayID);
 		subscribeReq.setRtSymbol(rtSymbol);
-		return mainEngine.subscribe(subscribeReq);
+		return mainEngine.subscribe(subscribeReq, "web-page-00");
 	}
 
+	@Override
+	public boolean unsubscribe(String rtSymbol, String gatewayID) {
+		SubscribeReq subscribeReq = new SubscribeReq();
+		subscribeReq.setGatewayID(gatewayID);
+		subscribeReq.setRtSymbol(rtSymbol);
+		return mainEngine.unsubscribe(rtSymbol,gatewayID, "web-page-00");
+	}
+	
 	@Override
 	public List<Trade> getTrades(){
 		return mainEngine.getTrades();
@@ -318,58 +326,58 @@ public class TradingServiceImpl implements TradingService{
 			try {
 				ed = eventDataQueue.take();
 			} catch (InterruptedException e) {
-				log.error("主引擎捕获到线程中断异常，线程停止！！！", e);
+				log.error("主引擎捕获到线程中断异常,线程停止!!!", e);
 			}
 			// 判断消息类型
-			// 使用复杂的对比判断逻辑，便于扩展修改
+			// 使用复杂的对比判断逻辑,便于扩展修改
 			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
 				try {
 					Tick tick = (Tick) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), tick);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Tick发生异常！！！", e);
+					log.error("向SocketIO转发Tick发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
 				try {
 					Trade trade = (Trade) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), trade);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Trade发生异常！！！", e);
+					log.error("向SocketIO转发Trade发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
 				try {
 					Order order = (Order) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), order);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Order发生异常！！！", e);
+					log.error("向SocketIO转发Order发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_CONTRACT.equals(ed.getEventType())) {
 				try {
 					Contract contract = (Contract) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), contract);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Contract发生异常！！！", e);
+					log.error("向SocketIO转发Contract发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_POSITION.equals(ed.getEventType())) {
 				try {
 					Position position = (Position) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), position);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Position发生异常！！！", e);
+					log.error("向SocketIO转发Position发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_ACCOUNT.equals(ed.getEventType())) {
 				try {
 					Account account = (Account) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), account);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Account发生异常！！！", e);
+					log.error("向SocketIO转发Account发生异常!!!", e);
 				}
 			} else if (EventConstant.EVENT_LOG.equals(ed.getEventType())) {
 				try {
 					LogData logData = (LogData) ed.getEventObj();
 					socketIOMessageEventHandler.sendEvent(ed.getEvent(), logData);
 				} catch (Exception e) {
-					log.error("向SocketIO转发Order发生异常！！！", e);
+					log.error("向SocketIO转发Order发生异常!!!", e);
 				}
 			} else if(EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())){
 				// 弃用

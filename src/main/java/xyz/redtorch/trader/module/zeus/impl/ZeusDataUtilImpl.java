@@ -52,7 +52,7 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 			for(Entry<String, Object> entrySet:document.entrySet()) {
 				String key = entrySet.getKey();
 				String value = (String)entrySet.getValue();
-				// 剔除主键，ID和Name
+				// 剔除主键,ID和Name
 				if(!"_id".equals(key)&&!"strategyID".equals(key)&&!"strategyName".equals(key)) {
 					syncVarMap.put(key,value);
 				}
@@ -69,7 +69,7 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 		Document filter = new Document();
 		filter.put("strategyID", syncVarMapWithNameAndID.get("strategyID"));
 		
-		// 不使用upsert，避免有些字段在策略被删除后仍然在数据库中存在
+		// 不使用upsert,避免有些字段在策略被删除后仍然在数据库中存在
 		//defaultDBClient.upsert(defaultDBName, strategySyncVarCollection, document, filter);
 		
 		defaultDBClient.delete(defaultDBName, strategySyncVarCollection, filter);

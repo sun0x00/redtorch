@@ -81,9 +81,19 @@ public interface MainEngine extends EventListener{
 	/**
 	 * 订阅
 	 * @param subscribeReq
-	 * @return TODO
+	 * @param subscriberID
+	 * @return
 	 */
-	boolean subscribe(SubscribeReq subscribeReq);
+	boolean subscribe(SubscribeReq subscribeReq, String subscriberID);
+	
+	/**
+	 * 尝试取消订阅
+	 * @param rtSymbol
+	 * @param gatewayID
+	 * @param subscriberID
+	 * @return
+	 */
+	boolean unsubscribe(String rtSymbol, String gatewayID, String subscriberID);
 	
 	/**
 	 * 查询特定账户
@@ -219,10 +229,12 @@ public interface MainEngine extends EventListener{
 	List<LogData> getLogDatas();
 	
 	/**
-	 * 预留，把Module加入主引擎，实现一些统一接口
+	 * 预留,把Module加入主引擎,实现一些统一接口
 	 * @param module
 	 */
 	void addModel(Module module);
+
+
 	
 
 }

@@ -43,8 +43,10 @@ public abstract class GatewayAbstract implements Gateway{
 		this.gatewaySetting = gatewaySetting;
 		this.gatewayID = gatewaySetting.getGatewayID();
 		this.gatewayDisplayName = gatewaySetting.getGatewayDisplayName();
-		this.gatewayLogInfo = "GatewayID:" + gatewayID + " GatewayDisplayName:" + gatewayDisplayName+" ";
-		log.info(gatewayLogInfo+"初始化");
+		this.gatewayLogInfo = "接口ID:" + gatewayID + "显示名称:" + gatewayDisplayName+" ";
+		String logContent = gatewayLogInfo+"开始初始化";
+		CommonUtil.emitInfoLog(eventEngine, logContent);
+		log.info(logContent);
 		timer.schedule(new QueryTimerTask(), new Date(), 1000);
 
 	}
@@ -210,7 +212,9 @@ public abstract class GatewayAbstract implements Gateway{
 			    }
 			    Thread.sleep(1250);
 	    	}catch (Exception e) {
-				log.error("{} 定时查询发生异常",gatewayLogInfo,e);
+	    		String logContent = gatewayLogInfo+"定时查询发生异常";
+				CommonUtil.emitErrorLog(eventEngine, logContent);
+				log.error(logContent,e);
 			}
 	    }
 	}

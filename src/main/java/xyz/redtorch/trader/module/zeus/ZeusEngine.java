@@ -22,7 +22,7 @@ import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 public interface ZeusEngine extends EventListener,Module {
 
 	/**
-	 * 获取引擎类型，区分实盘模拟盘
+	 * 获取引擎类型,区分实盘模拟盘
 	 * 
 	 * @return
 	 */
@@ -65,7 +65,7 @@ public interface ZeusEngine extends EventListener,Module {
 	
 	/**
 	 * 扫描策略列表并加载
-	 * @param strategyID 可空，如果参数StrategyID不为空，表示加载指定策略，其它忽略
+	 * @param strategyID 可空,如果参数StrategyID不为空,表示加载指定策略,其它忽略
 	 */
 	void scanAndLoadStartegy(String strategyID);
 
@@ -125,7 +125,7 @@ public interface ZeusEngine extends EventListener,Module {
 	void stopAllStrategy();
 
 	/**
-	 * 加载Tick数据，根据交易日向前推移，不包含交易日当天
+	 * 加载Tick数据,根据交易日向前推移,不包含交易日当天
 	 * 
 	 * @param offsetDay
 	 * @return
@@ -133,7 +133,7 @@ public interface ZeusEngine extends EventListener,Module {
 	List<Tick> loadTickDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol);
 
 	/**
-	 * 加载Bar数据，根据交易日向前推移，不包含交易日当天
+	 * 加载Bar数据,根据交易日向前推移,不包含交易日当天
 	 * 
 	 * @param offsetDay
 	 * @return
@@ -141,7 +141,7 @@ public interface ZeusEngine extends EventListener,Module {
 	List<Bar> loadBarDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol);
 
 	/**
-	 * 加载Tick数据，包含开始日期和结束日期
+	 * 加载Tick数据,包含开始日期和结束日期
 	 * 
 	 * @param startDatetime
 	 * @param endDateTime
@@ -150,7 +150,7 @@ public interface ZeusEngine extends EventListener,Module {
 	List<Tick> loadTickData(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
 
 	/**
-	 * 加载Bar数据，包含开始日期和结束日期
+	 * 加载Bar数据,包含开始日期和结束日期
 	 * 
 	 * @param startDatetime
 	 * @param endDateTime

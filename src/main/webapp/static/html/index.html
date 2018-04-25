@@ -219,7 +219,7 @@
                                                 <virtual-scroller :style="{ height: virtualTickTableHeight,width:'100%'}" class="scroller" :items="ticks" item-height="25"
                                                     buffer="100" pool-size="2000">
                                                     <template slot-scope="props">
-                                                        <div :key="props.itemKey" class="virtual-table-tr" @click="clickTick(props.item.symbol)">
+                                                        <div :key="props.itemKey" class="virtual-table-tr" @click="connectLeftTrade(props.item.symbol)"  @dblclick="unsubscribe(props.item)">
                                                             <span class="virtual-table-td" :style="{width: virtualTickTableColumnWidth}">
                                                                 <span class="virtual-table-cell color-yellow">{{props.item.symbol}}</span>
                                                             </span>
@@ -424,7 +424,7 @@
                                                             <virtual-scroller :style="{ height: virtualTradeTableHeight,width:'100%',overflowY:'scroll'}" class="scroller" :items="trades"
                                                                 item-height="25" buffer="100" pool-size="2000">
                                                                 <template slot-scope="props">
-                                                                    <div :key="props.itemKey" class="virtual-table-tr" @click="clickTick(props.item.symbol)">
+                                                                    <div :key="props.itemKey" class="virtual-table-tr" @click="connectLeftTrade(props.item.symbol)">
                                                                         <span class="virtual-table-td">
                                                                             <span class="virtual-table-cell">{{props.item.tradeID}}</span>
                                                                         </span>
@@ -525,7 +525,7 @@
                                                             <virtual-scroller :style="{ height: virtualPositionTableHeight,width:'100%',overflowY:'scroll'}" class="scroller" :items="positions"
                                                                 item-height="25" buffer="100" pool-size="2000">
                                                                 <template slot-scope="props">
-                                                                    <div :key="props.itemKey" class="virtual-table-tr" @click="clickTick(props.item.symbol)">
+                                                                    <div :key="props.itemKey" class="virtual-table-tr" @click="connectLeftTrade(props.item.symbol)">
                                                                         <span class="virtual-table-td" :style="{width:virtualPositionTableColumnWidth}">
                                                                             <span class="virtual-table-cell color-yellow">{{props.item.symbol}}</span>
                                                                         </span>
@@ -854,7 +854,7 @@
 
     function formatDate(date, fmt) {
         if (/(y+)/.test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4-RegExp.$1.length));
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
         }
         let o = {
             'M+': date.getMonth() + 1,
@@ -867,10 +867,10 @@
         for (let k in o) {
             if (new RegExp(`(${k})`).test(fmt)) {
                 let str = o[k] + '';
-                if(k ==  'S+'){
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str,3));
-                }else{
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str,2));
+                if (k == 'S+') {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str, 3));
+                } else {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : leftZeroPad(str, 2));
                 }
             }
         }
@@ -878,14 +878,14 @@
     };
 
     function leftZeroPad(val, minLength) {
-        if (typeof(val) != "string")
+        if (typeof (val) != "string")
             val = String(val);
         return ("000000000000000000".substring(0, minLength - val.length)) + val;
     }
 
     Vue.filter('numberFormat', function (value, decimals) {
 
-        if(value == undefined){
+        if (value == undefined) {
             return undefined;
         }
         if (Math.abs(value) > 10000000000) {
@@ -898,9 +898,9 @@
     });
     Vue.filter('timestampFormat', function (timestamp, formatStr) {
         let date = new Date(timestamp);
-        if(formatStr){
+        if (formatStr) {
             return formatDate(date, formatStr)
-        }else{
+        } else {
             return formatDate(date, "yyyy-MM-dd HH:mm:ss.S")
         }
     });
@@ -1877,7 +1877,7 @@
                             that.loading.subScribe = false;
                             if (res.data.resultCode == "success") {
                                 let target = _rtSymbol
-                                that.clickTick(target)
+                                that.connectLeftTrade(target)
                                 that.tradeForm.rtSymbol = target;
                                 that.$message({
                                     message: '订阅指令发送成功',
@@ -1904,6 +1904,60 @@
                         })
 
                 }
+            },
+            unsubscribe(target) {
+
+                if (this.config.token == undefined || this.config.token == "") {
+                    this.$alert('请先登录', '警告', {
+                        confirmButtonText: '确定',
+                    });
+                    return;
+                }
+
+                const that = this;
+                var _rtSymbol = target.rtSymbol;
+                var _gatewayID = target.gatewayID;
+                var _symbol = target.symbol;
+                if (this.config.token == undefined || this.config.token == "") {
+                    this.getToken()
+                }
+
+                axios.post(host + "/unsubscribe", {
+                        rtSymbol: _rtSymbol,
+                        gatewayID: _gatewayID,
+                        token: this.config.token
+                    })
+                    .then(res => {
+                        if (res.data.resultCode == "success") {
+                            let target = _rtSymbol
+                            that.tickMap.delete(_rtSymbol);
+                            that.mixTickMap.delete(_rtSymbol);
+                            that.mixTickMap.delete(_symbol);
+                            that.connectLeftTrade(target)
+                            that.tradeForm.rtSymbol = target;
+                            that.$message({
+                                message: '取消订阅指令发送成功',
+                                type: 'success'
+                            });
+                        } else {
+                            that.$notify({
+                                title: '警告',
+                                message: '取消订阅失败,服务器未返回成功!',
+                                type: 'warning',
+                                duration: 4500
+                            });
+                        }
+                    })
+                    .catch(res => {
+                        console.log(res)
+                        that.$notify({
+                            title: '错误',
+                            message: '取消订阅失败,发生异常!',
+                            type: 'error',
+                            duration: 0
+                        });
+                    })
+
             },
             cancelOrder(e) {
                 if (this.config.token == undefined || this.config.token == "") {
@@ -2132,12 +2186,12 @@
 
                 });
             },
-            clickTick(e) {
+            connectLeftTrade(e) {
                 let that = this,
                     target = e.rtSymbol || e;
 
                 that.tradeForm.rtSymbol = target
-                if(that.mixTickMap.has(that.tradeForm.rtSymbol)){
+                if (that.mixTickMap.has(that.tradeForm.rtSymbol)) {
                     that.leftTrade = that.mixTickMap.get(that.tradeForm.rtSymbol);
                     let data = that.leftTrade;
                     if (that.tradeForm.priceFill == "最新价") {
@@ -2152,7 +2206,7 @@
                         }
                     }
 
-                }else{
+                } else {
                     that.leftTrade = {}
                 }
             },

@@ -70,7 +70,7 @@ public abstract class StrategyTemplate implements Strategy {
 
 	HashSet<String> rtTradeIDSet = new HashSet<String>(); // 用于过滤可能重复的Trade推送
 
-	// X分钟Bar生成器，由构造方法xMin参数决定是否实例化生效
+	// X分钟Bar生成器,由构造方法xMin参数决定是否实例化生效
 	private Map<String, XMinBarGenerator> xMinBarGeneratorMap = new HashMap<>();
 	private Map<String, BarGenerator> barGeneratorMap = new HashMap<>();
 
@@ -82,7 +82,7 @@ public abstract class StrategyTemplate implements Strategy {
 	 * @param name
 	 *            策略名称
 	 * @param xMin
-	 *            分钟数，用于x分钟Bar生成器，范围[2,+∞)，建议此值不要大于120
+	 *            分钟数,用于x分钟Bar生成器,范围[2,+∞),建议此值不要大于120
 	 * @param zeusEngine
 	 */
 	public StrategyTemplate(ZeusEngine zeusEngine, StrategySetting strategySetting) {
@@ -134,7 +134,7 @@ public abstract class StrategyTemplate implements Strategy {
 		}
 	}
 
-	// 接口Runnable的实现方法，用于开启独立线程
+	// 接口Runnable的实现方法,用于开启独立线程
 	@Override
 	public void run() {
 		while (!Thread.currentThread().isInterrupted()) {
@@ -143,7 +143,7 @@ public abstract class StrategyTemplate implements Strategy {
 				ed = eventDataQueue.take();
 			} catch (InterruptedException e) {
 				stopTrading(true);
-				log.error("{} 捕获到线程中断异常,停止策略！！！", logStr, e);
+				log.error("{} 捕获到线程中断异常,停止策略!!!", logStr, e);
 			}
 			// 判断消息类型
 			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
@@ -165,14 +165,14 @@ public abstract class StrategyTemplate implements Strategy {
 			}
 		}
 
-		log.info("{} 策略线程准备结束！等待2秒", logStr);
+		log.info("{} 策略线程准备结束!等待2秒", logStr);
 		try {
-			// 等待，防止异步线程没有完成
+			// 等待,防止异步线程没有完成
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			log.error("策略结束时线程异常", e);
 		}
-		log.info("{} 策略线程结束！", logStr);
+		log.info("{} 策略线程结束!", logStr);
 	}
 
 	/**
@@ -248,12 +248,12 @@ public abstract class StrategyTemplate implements Strategy {
 	@Override
 	public void startTrading() {
 		if (!initStatus) {
-			log.warn("{} 策略尚未初始化,无法开始交易！", logStr);
+			log.warn("{} 策略尚未初始化,无法开始交易!", logStr);
 			return;
 		}
 
 		if (trading) {
-			log.warn("{} 策略正在运行,请勿重复操作！", logStr);
+			log.warn("{} 策略正在运行,请勿重复操作!", logStr);
 			return;
 		}
 		this.trading = true;
@@ -262,7 +262,7 @@ public abstract class StrategyTemplate implements Strategy {
 			log.info("{} 开始交易", logStr);
 		} catch (Exception e) {
 			stopTrading(true);
-			log.error("{} 调用onStartTrading发生异常,停止策略！！！", logStr, e);
+			log.error("{} 调用onStartTrading发生异常,停止策略!!!", logStr, e);
 		}
 	}
 
@@ -272,14 +272,14 @@ public abstract class StrategyTemplate implements Strategy {
 	@Override
 	public void stopTrading(boolean isException) {
 		if (!trading) {
-			log.warn("{} 策略已经停止,请勿重复操作！", logStr);
+			log.warn("{} 策略已经停止,请勿重复操作!", logStr);
 			return;
 		}
 		this.trading = false;
 		try {
 			onStopTrading(isException);
 		} catch (Exception e) {
-			log.error("{} 策略停止后调用onStopTrading发生异常！", logStr, e);
+			log.error("{} 策略停止后调用onStopTrading发生异常!", logStr, e);
 		}
 	}
 
@@ -302,7 +302,7 @@ public abstract class StrategyTemplate implements Strategy {
 	@Override
 	public void init() {
 		if (initStatus == true) {
-			log.warn("{} 策略已经初始化,请勿重复操作！", logStr);
+			log.warn("{} 策略已经初始化,请勿重复操作!", logStr);
 			return;
 		}
 		initStatus = true;
@@ -311,7 +311,7 @@ public abstract class StrategyTemplate implements Strategy {
 			log.info("{} 初始化", logStr);
 		} catch (Exception e) {
 			initStatus = false;
-			log.error("{} 调用onInit发生异常！", logStr, e);
+			log.error("{} 调用onInit发生异常!", logStr, e);
 		}
 	}
 
@@ -517,7 +517,7 @@ public abstract class StrategyTemplate implements Strategy {
 			try {
 				onStopOrder(stopOrder);
 			} catch (Exception e) {
-				log.error("{} 通知策略StopOrder发生异常！！！", logStr, e);
+				log.error("{} 通知策略StopOrder发生异常!!!", logStr, e);
 				stopTrading(true);
 			}
 
@@ -585,7 +585,7 @@ public abstract class StrategyTemplate implements Strategy {
 					try {
 						onStopOrder(stopOrder);
 					} catch (Exception e) {
-						log.error("{} 通知策略StopOrder发生异常！！！", logStr, e);
+						log.error("{} 通知策略StopOrder发生异常!!!", logStr, e);
 						stopTrading(true);
 					}
 				}
@@ -655,10 +655,10 @@ public abstract class StrategyTemplate implements Strategy {
 					int longPos = contractPositionDetail.getLongPos();
 					int fixedPos = tradeContractSetting.getTradeFixedPos();
 					if (longPos == fixedPos) {
-						log.warn("合约{}的多头总持仓量已经达到预设值,指令终止！", rtSymbol);
+						log.warn("合约{}的多头总持仓量已经达到预设值,指令终止!", rtSymbol);
 						return;
 					} else if (longPos > fixedPos) {
-						log.error("合约{}的多头总持仓量{}已经超过预设值{},指令终止！！", rtSymbol);
+						log.error("合约{}的多头总持仓量{}已经超过预设值{},指令终止!!", rtSymbol);
 						stopTrading(true);
 						return;
 					}
@@ -675,10 +675,10 @@ public abstract class StrategyTemplate implements Strategy {
 							int gatewayLongPos = positionDetail.getLongPos();
 							int gatewayLongOpenFrozenPos = positionDetail.getLongOpenFrozen();
 							if (gatewayLongPos + gatewayLongOpenFrozenPos == gatewayFixedPos) {
-								log.warn("合约{}接口{}的多头持仓量加开仓冻结量已经达到预设值,指令忽略！", rtSymbol, gatewayID);
+								log.warn("合约{}接口{}的多头持仓量加开仓冻结量已经达到预设值,指令忽略!", rtSymbol, gatewayID);
 								continue;
 							} else if (gatewayLongPos > gatewayFixedPos) {
-								log.error("合约{}接口{}的多头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略！", rtSymbol, gatewayID,
+								log.error("合约{}接口{}的多头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略!", rtSymbol, gatewayID,
 										gatewayLongPos, gatewayLongOpenFrozenPos, gatewayFixedPos);
 								stopTrading(true);
 								continue;
@@ -710,10 +710,10 @@ public abstract class StrategyTemplate implements Strategy {
 		if (contractPositionDetail != null) {
 			int longPos = contractPositionDetail.getLongPos();
 			if (longPos == 0) {
-				log.warn("合约{}的多头总持仓量为0,指令终止！", rtSymbol);
+				log.warn("合约{}的多头总持仓量为0,指令终止!", rtSymbol);
 				return;
 			} else if (longPos < 0) {
-				log.error("合约{}的多头总持仓量{}小于0！", rtSymbol, longPos);
+				log.error("合约{}的多头总持仓量{}小于0!", rtSymbol, longPos);
 				stopTrading(true);
 				return;
 			}
@@ -728,7 +728,7 @@ public abstract class StrategyTemplate implements Strategy {
 				if (positionDetail.getLongPos() > 0) {
 					if (offsetType >= 0) {
 						if (positionDetail.getLongOpenFrozen() > 0) {
-							log.warn("合约{}接口{}多头开仓冻结为{}，这部分不会被处理", rtSymbol, gatewayID,
+							log.warn("合约{}接口{}多头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID,
 									positionDetail.getLongOpenFrozen());
 						}
 						if (positionDetail.getLongTd() > 0) {
@@ -778,10 +778,10 @@ public abstract class StrategyTemplate implements Strategy {
 					int shortPos = contractPositionDetail.getShortPos();
 					int fixedPos = tradeContractSetting.getTradeFixedPos();
 					if (shortPos == fixedPos) {
-						log.warn("合约{}的空头总持仓量已经达到预设值,指令终止！", rtSymbol);
+						log.warn("合约{}的空头总持仓量已经达到预设值,指令终止!", rtSymbol);
 						return;
 					} else if (shortPos > fixedPos) {
-						log.error("合约{}的空头总持仓量{}已经超过预设值{},指令终止！", rtSymbol);
+						log.error("合约{}的空头总持仓量{}已经超过预设值{},指令终止!", rtSymbol);
 						stopTrading(true);
 						return;
 					}
@@ -798,10 +798,10 @@ public abstract class StrategyTemplate implements Strategy {
 							int gatewayShortPos = positionDetail.getShortPos();
 							int gatewayShortOpenFrozenPos = positionDetail.getShortOpenFrozen();
 							if (gatewayShortPos + gatewayShortOpenFrozenPos == gatewayFixedPos) {
-								log.warn("合约{}接口{}的空头持仓量加开仓冻结量已经达到预设值,指令忽略！", rtSymbol, gatewayID);
+								log.warn("合约{}接口{}的空头持仓量加开仓冻结量已经达到预设值,指令忽略!", rtSymbol, gatewayID);
 								continue;
 							} else if (gatewayShortPos > gatewayFixedPos) {
-								log.error("合约{}接口{}的空头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略！", rtSymbol, gatewayID,
+								log.error("合约{}接口{}的空头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略!", rtSymbol, gatewayID,
 										gatewayShortPos, gatewayShortOpenFrozenPos, gatewayFixedPos);
 								stopTrading(true);
 								continue;
@@ -832,10 +832,10 @@ public abstract class StrategyTemplate implements Strategy {
 		if (contractPositionDetail != null) {
 			int shortPos = contractPositionDetail.getShortPos();
 			if (shortPos == 0) {
-				log.warn("合约{}的空头总持仓量为0,指令终止！", rtSymbol);
+				log.warn("合约{}的空头总持仓量为0,指令终止!", rtSymbol);
 				return;
 			} else if (shortPos < 0) {
-				log.error("合约{}的空头总持仓量{}小于0！", rtSymbol, shortPos);
+				log.error("合约{}的空头总持仓量{}小于0!", rtSymbol, shortPos);
 				stopTrading(true);
 				return;
 			}
@@ -850,7 +850,7 @@ public abstract class StrategyTemplate implements Strategy {
 				if (positionDetail.getShortPos() > 0) {
 					if (offsetType >= 0) {
 						if (positionDetail.getShortOpenFrozen() > 0) {
-							log.warn("合约{}接口{}空头开仓冻结为{}，这部分不会被处理", rtSymbol, gatewayID,
+							log.warn("合约{}接口{}空头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID,
 									positionDetail.getShortOpenFrozen());
 						}
 
@@ -897,10 +897,10 @@ public abstract class StrategyTemplate implements Strategy {
 		if (contractPositionDetail != null) {
 			int shortPos = contractPositionDetail.getShortPos();
 			if (shortPos == 0) {
-				log.warn("合约{}的空头总持仓量为0,指令终止！", rtSymbol);
+				log.warn("合约{}的空头总持仓量为0,指令终止!", rtSymbol);
 				return;
 			} else if (shortPos < 0) {
-				log.error("合约{}的空头总持仓量{}小于0！", rtSymbol, shortPos);
+				log.error("合约{}的空头总持仓量{}小于0!", rtSymbol, shortPos);
 				stopTrading(true);
 				return;
 			}
@@ -912,7 +912,7 @@ public abstract class StrategyTemplate implements Strategy {
 					continue;
 				}
 				if (positionDetail.getShortOpenFrozen() > 0) {
-					log.warn("合约{}接口{}空头开仓冻结为{}，这部分不会被处理", rtSymbol, gatewayID, positionDetail.getShortOpenFrozen());
+					log.warn("合约{}接口{}空头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID, positionDetail.getShortOpenFrozen());
 				}
 				if (positionDetail.getShortPos() > 0) {
 					buy(rtSymbol, positionDetail.getShortPos(), price, gatewayID);
@@ -933,10 +933,10 @@ public abstract class StrategyTemplate implements Strategy {
 		if (contractPositionDetail != null) {
 			int longPos = contractPositionDetail.getLongPos();
 			if (longPos == 0) {
-				log.warn("合约{}的多头总持仓量为0,指令终止！", rtSymbol);
+				log.warn("合约{}的多头总持仓量为0,指令终止!", rtSymbol);
 				return;
 			} else if (longPos < 0) {
-				log.error("合约{}的多头总持仓量{}小于0！", rtSymbol, longPos);
+				log.error("合约{}的多头总持仓量{}小于0!", rtSymbol, longPos);
 				stopTrading(true);
 				return;
 			}
@@ -951,7 +951,7 @@ public abstract class StrategyTemplate implements Strategy {
 
 				if (positionDetail.getLongPos() > 0) {
 					if (positionDetail.getLongOpenFrozen() > 0) {
-						log.warn("合约{}接口{}多头开仓冻结为{}，这部分不会被处理", rtSymbol, gatewayID, positionDetail.getLongOpenFrozen());
+						log.warn("合约{}接口{}多头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID, positionDetail.getLongOpenFrozen());
 					}
 					sellShort(rtSymbol, positionDetail.getLongPos(), price, gatewayID);
 				} else {
@@ -972,7 +972,7 @@ public abstract class StrategyTemplate implements Strategy {
 			onTick(tick);
 			// 基于合约的onBar和onMinBar
 			String bgKey = tick.getRtSymbol();
-			// 基于合约+接口的onBar和onMinBar，使用这个key会多次触发同一策略下同一品种的相同时间bar的事件
+			// 基于合约+接口的onBar和onMinBar,使用这个key会多次触发同一策略下同一品种的相同时间bar的事件
 			// String bgKey = tick.getRtSymbol()+tick.getGatewayID();
 			BarGenerator barGenerator;
 			if (barGeneratorMap.containsKey(bgKey)) {
@@ -991,7 +991,7 @@ public abstract class StrategyTemplate implements Strategy {
 			barGenerator.updateTick(tick);
 		} catch (Exception e) {
 			stopTrading(true);
-			log.error("{} 调用onTick发生异常,停止策略！！！", logStr, e);
+			log.error("{} 调用onTick发生异常,停止策略!!!", logStr, e);
 		}
 	}
 
@@ -1010,7 +1010,7 @@ public abstract class StrategyTemplate implements Strategy {
 
 		} catch (Exception e) {
 			stopTrading(true);
-			log.error("{} 调用onTrade发生异常,停止策略！！！", logStr, e);
+			log.error("{} 调用onTrade发生异常,停止策略!!!", logStr, e);
 		}
 	}
 
@@ -1026,7 +1026,7 @@ public abstract class StrategyTemplate implements Strategy {
 			onOrder(order);
 		} catch (Exception e) {
 			stopTrading(true);
-			log.error("{} 调用onOrder发生异常,停止策略！！！", logStr, e);
+			log.error("{} 调用onOrder发生异常,停止策略!!!", logStr, e);
 		}
 	}
 
@@ -1034,12 +1034,12 @@ public abstract class StrategyTemplate implements Strategy {
 	public void processBar(Bar bar) {
 
 		String bgKey = bar.getRtSymbol();
-		// 调用onBar方法，此方法会在onTick->bg.updateTick执行之后再执行
+		// 调用onBar方法,此方法会在onTick->bg.updateTick执行之后再执行
 		try {
 			onBar(bar);
 		} catch (Exception e) {
 			stopTrading(true);
-			log.error("{} 调用onBar发生异常,停止策略！！！", logStr, e);
+			log.error("{} 调用onBar发生异常,停止策略!!!", logStr, e);
 		}
 		// 判断是否需要调用xMinBarGenerate,设置xMin大于1分钟xMinBarGenerate会生效
 		if (strategySetting.getxMin() > 1) {
@@ -1056,7 +1056,7 @@ public abstract class StrategyTemplate implements Strategy {
 							onXMinBar(bar);
 						} catch (Exception e) {
 							stopTrading(true);
-							log.error("{} 调用onXMinBar发生异常,停止策略！！！", logStr, e);
+							log.error("{} 调用onXMinBar发生异常,停止策略!!!", logStr, e);
 						}
 					}
 				});
@@ -1069,7 +1069,7 @@ public abstract class StrategyTemplate implements Strategy {
 	// ##############################################################################
 
 	/**
-	 * CallBack接口，用于注册Bar生成器回调事件
+	 * CallBack接口,用于注册Bar生成器回调事件
 	 */
 	public static interface CallBackXMinBar {
 		void call(Bar bar);
@@ -1150,7 +1150,7 @@ public abstract class StrategyTemplate implements Strategy {
 	}
 
 	/**
-	 * X分钟Bar生成器,xMin在策略初始化时指定,当值大于1小于时生效。建议此数值不要大于120
+	 * X分钟Bar生成器,xMin在策略初始化时指定,当值大于1小于时生效,建议此数值不要大于120
 	 */
 	public static class XMinBarGenerator {
 

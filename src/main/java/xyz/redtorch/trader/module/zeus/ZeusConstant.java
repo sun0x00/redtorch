@@ -6,7 +6,7 @@ package xyz.redtorch.trader.module.zeus;
  *
  */
 public class ZeusConstant {
-	//引擎类型，区分策略环境
+	//引擎类型,区分策略环境
 	public static final int ENGINE_TYPE_BACKTESTING = 0;
 	public static final int ENGINE_TYPE_TRADING = 1;
 	//委托类型

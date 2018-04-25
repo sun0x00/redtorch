@@ -164,7 +164,22 @@ public class ZeusApplication {
 		
 		return result;
 	}
-	
+	@RequestMapping(value = "/unsubscribe",method = RequestMethod.POST)
+	@ResponseBody
+	public ResultVO unsubscribe(@RequestBody JSONObject jsonObject) {
+
+		ResultVO result = new ResultVO();
+		
+		if(!tokenService.validate(jsonObject.getString("token"))) {
+			result.setResultCode(ResultVO.ERROR);
+			return result;
+		}
+		if(!tradingService.unsubscribe(jsonObject.getString("rtSymbol"), jsonObject.getString("gatewayID"))) {
+			result.setResultCode(ResultVO.ERROR);
+		}
+		
+		return result;
+	}
 	
 	@RequestMapping(value = "/saveGateway",method = RequestMethod.POST)
 	@ResponseBody

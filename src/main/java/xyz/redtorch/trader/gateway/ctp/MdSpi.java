@@ -76,6 +76,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	 * 连接
 	 */
 	public synchronized void connect() {
+		String logContent;
 		if (isConnected() || connectProcessStatus) {
 			return;
 		}
@@ -103,12 +104,19 @@ public class MdSpi extends CThostFtdcMdSpi {
 		if(!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info("创建临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+				logContent = gatewayLogInfo + "创建临时文件夹"+tempFile.getParentFile().getAbsolutePath();
+				ctpGateway.emitInfoLog(logContent);
+				log.info(logContent);
 			} catch (IOException e) {
-				log.error("创建临时文件夹失败{}",tempFile.getParentFile().getAbsolutePath());
+				logContent = gatewayLogInfo + "创建临时文件夹失败"+tempFile.getParentFile().getAbsolutePath();
+				ctpGateway.emitErrorLog(logContent);
+				log.error(gatewayLogInfo);
 			}
 		}
-		log.info("使用临时文件夹{}",tempFile.getParentFile().getAbsolutePath());
+		logContent = gatewayLogInfo + "使用临时文件夹"+tempFile.getParentFile().getAbsolutePath();
+		ctpGateway.emitInfoLog(logContent);
+		log.info(logContent);
+		
 		cThostFtdcMdApi = CThostFtdcMdApi.CreateFtdcMdApi(tempFile.getAbsolutePath());
 		cThostFtdcMdApi.RegisterSpi(this);
 		cThostFtdcMdApi.RegisterFront(mdAddress);
@@ -287,10 +295,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() != 0) {
-			log.info("{}OnRspUnSubMarketData! 退订合约成功:{}", gatewayLogInfo, pSpecificInstrument.getInstrumentID());
+			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 退订合约成功:"+pSpecificInstrument.getInstrumentID();
+			ctpGateway.emitInfoLog(logContent);
+			log.info(logContent);
 		} else {
-			log.warn("{}OnRspUnSubMarketData! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
-					pRspInfo.getErrorMsg());
+			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 退订合约失败,ErrorID："+pRspInfo.getErrorID()+"ErrorMsg:"+pRspInfo.getErrorMsg();
+			ctpGateway.emitWarnLog(logContent);
+			log.warn(logContent);
 		}
 	}
 
@@ -304,7 +315,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 			String symbol = pDepthMarketData.getInstrumentID();
 			
 			if(!contractExchangeMap.containsKey(symbol)) {
-				log.error("{}合约{}尚未获取到交易所信息，丢弃",gatewayLogInfo,symbol );
+				String logContent = gatewayLogInfo + "收到合约"+symbol+"行情,但尚未获取到交易所信息,丢弃";
+				ctpGateway.emitInfoLog(logContent);
+				log.info(logContent);
 			}
 			
 			Tick tick = new Tick();
@@ -318,7 +331,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			tick.setVolume(pDepthMarketData.getVolume());
 			tick.setOpenInterest(pDepthMarketData.getOpenInterest());
 
-			// 上期所 郑商所正常，大商所错误
+			// 上期所 郑商所正常,大商所错误
 			//TODO 大商所时间修正
 			tick.setActionDay(pDepthMarketData.getActionDay());
 			Long updateTime = Long.valueOf(pDepthMarketData.getUpdateTime().replaceAll(":",""));
@@ -326,21 +339,6 @@ public class MdSpi extends CThostFtdcMdSpi {
 			Long actionDay = Long.valueOf(tick.getActionDay());
 			
 			String updateDateTimeWithMS = (actionDay*100*100*100*1000+updateTime*1000+updateMillisec)+"";
-			
-//			if(pDepthMarketData.getUpdateMillisec()<10) {
-//				updateDateTimeWithMS = updateDateTimeWithMS+"00"+pDepthMarketData.getUpdateMillisec();
-//			}else if(pDepthMarketData.getUpdateMillisec()<100) {
-//				updateDateTimeWithMS = updateDateTimeWithMS+"0"+pDepthMarketData.getUpdateMillisec();
-//			}else {
-//				updateDateTimeWithMS = updateDateTimeWithMS+""+pDepthMarketData.getUpdateMillisec();
-//			}
-//			
-//			if(updateDateTimeWithMS.length() == 8) {
-//				updateDateTimeWithMS = tick.getActionDay()+"0"+updateDateTimeWithMS;
-//			}else {
-//				updateDateTimeWithMS = tick.getActionDay()+updateDateTimeWithMS;
-//			}
-			
 			
 			DateTime dateTime;
 			try {

@@ -59,16 +59,16 @@ public class MongoDBClientSingleton extends MongoDBClient {
 				log.info("MongoDB IP:{} Port:{}", ip, port);
 				MongoClientOptions.Builder build = new MongoClientOptions.Builder();
 				/*
-				 * 一个线程访问数据库的时候，在成功获取到一个可用数据库连接之前的最长等待时间为2分钟
-				 * 这里比较危险，如果超过maxWaitTime都没有获取到这个连接的话，该线程就会抛出Exception
-				 * 故这里设置的maxWaitTime应该足够大，以免由于排队线程过多造成的数据库访问失败
+				 * 一个线程访问数据库的时候,在成功获取到一个可用数据库连接之前的最长等待时间为2分钟
+				 * 这里比较危险,如果超过maxWaitTime都没有获取到这个连接的话,该线程就会抛出Exception
+				 * 故这里设置的maxWaitTime应该足够大,以免由于排队线程过多造成的数据库访问失败
 				 */
 				build.maxWaitTime(1000 * 60 * 2);
 				build.connectTimeout(1000 * 60 * 1); // 与数据库建立连接的timeout设置为1分钟
-				build.socketTimeout(0);// 套接字超时时间，0无限制
+				build.socketTimeout(0);// 套接字超时时间,0无限制
 				build.connectionsPerHost(300); // 连接池设置为300个连接,默认为100
-				build.threadsAllowedToBlockForConnectionMultiplier(5000);// 线程队列数，如果连接线程排满了队列就会抛出“Out of semaphores to
-																			// get db”错误。
+				build.threadsAllowedToBlockForConnectionMultiplier(5000);// 线程队列数,如果连接线程排满了队列就会抛出“Out of semaphores to
+																			// get db”错误
 				build.writeConcern(WriteConcern.ACKNOWLEDGED);
 
 				MongoClientOptions myOptions = build.build();

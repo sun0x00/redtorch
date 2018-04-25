@@ -17,7 +17,7 @@ public class Tick implements Serializable{
 	// 代码相关
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
-	private String rtSymbol; // 系统中的唯一代码，通常是 合约代码.交易所代码
+	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
 
     private String tradingDay;       // 交易日
     private String actionDay;        // 业务发生日

@@ -225,7 +225,7 @@ public class LocalPositionDetail implements Serializable{
 				if (RtConstant.EXCHANGE_SHFE.equals(exchange)) {// 上期所等同于平昨
 					shortYd -= trade.getVolume();
 				} else {
-					// 非上期所，优先平今
+					// 非上期所,优先平今
 					shortTd -= trade.getVolume();
 					if (shortTd < 0) {
 						shortYd += shortTd;
@@ -245,7 +245,7 @@ public class LocalPositionDetail implements Serializable{
 			} else if (RtConstant.OFFSET_CLOSE.equals(trade.getOffset())) {// 平仓
 				if (RtConstant.EXCHANGE_SHFE.equals(exchange)) {// 上期所等同于平昨
 					longYd -= trade.getVolume();
-				} else {// 非上期所，优先平今
+				} else {// 非上期所,优先平今
 					longTd -= trade.getVolume();
 					if (longTd < 0) {
 						longYd += longTd;
