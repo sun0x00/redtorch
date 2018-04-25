@@ -525,7 +525,7 @@
                                                             <virtual-scroller :style="{ height: virtualPositionTableHeight,width:'100%',overflowY:'scroll'}" class="scroller" :items="positions"
                                                                 item-height="25" buffer="100" pool-size="2000">
                                                                 <template slot-scope="props">
-                                                                    <div :key="props.itemKey" class="virtual-table-tr" @click="connectLeftTrade(props.item.symbol)">
+                                                                    <div :key="props.itemKey" class="virtual-table-tr" @dblclick="dblclickPosition(props.item)">
                                                                         <span class="virtual-table-td" :style="{width:virtualPositionTableColumnWidth}">
                                                                             <span class="virtual-table-cell color-yellow">{{props.item.symbol}}</span>
                                                                         </span>
@@ -840,6 +840,10 @@
 
     function sortTime(a, b) {
         return b.logTime.replace(/:/g, "") - a.logTime.replace(/:/g, "")
+    }
+
+    function sortLogByTimestamp(a, b) {
+        return a.logTimestamp - b.logTimestamp
     }
 
     function sortVtOrderID(a, b) {
@@ -1688,7 +1692,9 @@
                                         that.positionMap.set(position.rtPositionName, position);
                                     });
                                     that.positions = Array.from(that.positionMap.values()).sort(sortSymbol)
-                                } else {
+                                } else if('getLogs' == apiName){
+                                    that[dataArr] = that[dataArr].concat(res.data.data).sort(sortLogByTimestamp).reverse()
+                                }else{
                                     that[dataArr] = that[dataArr].concat(res.data.data).reverse()
                                 }
 
@@ -2210,6 +2216,12 @@
                     that.leftTrade = {}
                 }
             },
+            dblclickPosition(e){
+                this.connectLeftTrade(e.rtSymbol)
+                if(!this.mixTickMap.has(e.rtSymbol)&&!this.tickMap.has(e.rtSymbol)){
+                    this.subscribe(e);
+                }
+            },
             registerOrder() {
                 let that = this;
                 socket.on("E_ORDER|", function (data) {
@@ -2257,7 +2269,7 @@
             registerLog() {
                 let that = this;
                 socket.on("E_LOG|", function (data) {
-                    that.logs = that.logs.concat(data).reverse()
+                    that.logs = that.logs.concat(data).sort(sortLogByTimestamp).reverse()
                 });
             },
             handleTabLeft(tab, event) {},
