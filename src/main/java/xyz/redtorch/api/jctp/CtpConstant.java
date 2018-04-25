@@ -37,7 +37,7 @@ public class CtpConstant {
 		
 		// 价格类型映射
 		priceTypeMap.put(RtConstant.PRICETYPE_LIMITPRICE, jctptraderapiv6v3v11x64Constants.THOST_FTDC_OPT_LimitPrice);
-		priceTypeMap.put(RtConstant.PRICETYPE_LIMITPRICE, jctptraderapiv6v3v11x64Constants.THOST_FTDC_OPT_AnyPrice);
+		priceTypeMap.put(RtConstant.PRICETYPE_MARKETPRICE, jctptraderapiv6v3v11x64Constants.THOST_FTDC_OPT_AnyPrice);
 		priceTypeMapReverse = priceTypeMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 		
 		// 方向类型映射
