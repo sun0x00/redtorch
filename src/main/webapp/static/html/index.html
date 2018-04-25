@@ -77,10 +77,10 @@
                                     <el-row>
                                         <el-col class="leftTrade" :style="{ height: leftTradeHeight, width:'330px'}">
                                             <el-row>
-                                                <el-form ref="form" :model="tradeForm" label-width="50px" show-message="true" inline-message="true" validate="formValidate">
+                                                <el-form ref="form" :model="tradeForm" label-width="40px" show-message="true" inline-message="true" validate="formValidate">
                                                     <div class="el-form-item">
-                                                        <label class="el-form-item__label" style="width: 50px;">代码</label>
-                                                        <div class="el-form-item__content" style="margin-left: 50px;">
+                                                        <label class="el-form-item__label" style="width: 40px;">代码</label>
+                                                        <div class="el-form-item__content" style="margin-left: 40px;">
                                                             <div class="el-input--suffix el-input el-input-group el-input-group--append">
                                                                 <input autocomplete="off" type="text" rows="2" validateevent="true" clearable="true" class="el-input__inner" @keyup.enter="subscribe"
                                                                     v-model="tradeForm.rtSymbol">
@@ -88,7 +88,7 @@
                                                                     <button type="button" class="el-button el-button--default" @click="subscribe">
                                                                 </div>
                                                             </div>
-                                                            <p>卖三</p>
+                                                            <p>A3</p>
                                                         </div>
                                                     </div>
                                                     <el-form-item label="方向">
@@ -96,7 +96,7 @@
                                                             <el-option label="多" value="多"></el-option>
                                                             <el-option label="空" value="空"></el-option>
                                                         </el-select>
-                                                        <p>卖二</p>
+                                                        <p>A2</p>
                                                     </el-form-item>
                                                     <el-form-item label="开平">
                                                         <el-select v-model="tradeForm.offset" placeholder="请选择">
@@ -105,15 +105,15 @@
                                                             <el-option label="平昨" value="平昨"></el-option>
                                                             <el-option label="平今" value="平今"></el-option>
                                                         </el-select>
-                                                        <p>卖一
-                                                            <span class="color-sell">{{leftTrade.askPrice1}}</span>
+                                                        <p>A1
+                                                            <span class="color-sell">{{leftTrade.askPrice1|numberFormat(4)}}</span>
                                                             <span class="color-count">{{leftTrade.askVolume1}}</span>
                                                         </p>
                                                     </el-form-item>
                                                     <el-form-item label="价格">
                                                         <el-input class="el-input--suffix" v-model="tradeForm.orderPrice"></el-input>
-                                                        <p>最新
-                                                            <span class="color-yellow">{{leftTrade.lastPrice}}</span>
+                                                        <p>N
+                                                            <span class="color-yellow">{{leftTrade.lastPrice|numberFormat(4)}}</span>
                                                             <span :class="[leftTrade.priceRatio!=null && leftTrade.priceRatio.indexOf('-') != -1 ? 'color-sell' : 'color-buy']">{{leftTrade.priceRatio}}</span>
                                                         </p>
                                                     </el-form-item>
@@ -124,14 +124,14 @@
                                                             <el-option label="FAK" value="FAK"></el-option>
                                                             <el-option label="FOK" value="FOK"></el-option>
                                                         </el-select>
-                                                        <p>买一
-                                                            <span class="color-buy">{{leftTrade.bidPrice1}}</span>
+                                                        <p>B1
+                                                            <span class="color-buy">{{leftTrade.bidPrice1|numberFormat(4)}}</span>
                                                             <span class="color-count">{{leftTrade.bidVolume1}}</span>
                                                         </p>
                                                     </el-form-item>
                                                     <el-form-item label="数量">
                                                         <el-input-number :min="1" class="el-input--suffix" v-model="tradeForm.volume"></el-input-number>
-                                                        <p>买二</p>
+                                                        <p>B2</p>
                                                     </el-form-item>
                                                     <el-form-item label="接口">
                                                         <el-select v-model="tradeForm.gatewayID" placeholder="请选择">
@@ -139,7 +139,7 @@
                                                             <el-option label="全部" value="ALL"></el-option>
                                                             <el-option v-for="gateway in tradeGateways" :key="gateway.gatewayID" :label="gateway.gatewayDisplayName" :value="gateway.gatewayID"></el-option>
                                                         </el-select>
-                                                        <p>买三</p>
+                                                        <p>B3</p>
                                                     </el-form-item>
                                                     <el-form-item label="填充">
                                                         <el-radio-group v-model="tradeForm.priceFill">
@@ -884,6 +884,10 @@
     }
 
     Vue.filter('numberFormat', function (value, decimals) {
+
+        if(value == undefined){
+            return undefined;
+        }
         if (Math.abs(value) > 10000000000) {
             return value.toExponential(decimals)
         }
@@ -2115,9 +2119,9 @@
                         if (that.tradeForm.priceFill == "最新价") {
                             that.tradeForm.orderPrice = data.lastPrice
                         } else if (that.tradeForm.priceFill == "A/B-1") {
-                            if (that.tradeForm.direction == "DIRECTION_LONG") {
+                            if (that.tradeForm.direction == "多") {
                                 that.tradeForm.orderPrice = data.askPrice1
-                            } else if (that.tradeForm.direction == "DIRECTION_SHORT") {
+                            } else if (that.tradeForm.direction == "空") {
                                 that.tradeForm.orderPrice = data.bidPrice1
                             } else {
                                 that.tradeForm.orderPrice = data.lastPrice
@@ -2135,6 +2139,19 @@
                 that.tradeForm.rtSymbol = target
                 if(that.mixTickMap.has(that.tradeForm.rtSymbol)){
                     that.leftTrade = that.mixTickMap.get(that.tradeForm.rtSymbol);
+                    let data = that.leftTrade;
+                    if (that.tradeForm.priceFill == "最新价") {
+                        that.tradeForm.orderPrice = data.lastPrice
+                    } else if (that.tradeForm.priceFill == "A/B-1") {
+                        if (that.tradeForm.direction == "多") {
+                            that.tradeForm.orderPrice = data.askPrice1
+                        } else if (that.tradeForm.direction == "空") {
+                            that.tradeForm.orderPrice = data.bidPrice1
+                        } else {
+                            that.tradeForm.orderPrice = data.lastPrice
+                        }
+                    }
+
                 }else{
                     that.leftTrade = {}
                 }

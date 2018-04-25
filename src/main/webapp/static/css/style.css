@@ -98,7 +98,9 @@ html,
 .el-input {
     width: 130px;
 }
-
+.el-radio__inner{
+    background: #333;
+}
 /* .el-button{
     padding: 5px 14px;
 } */
@@ -144,6 +146,7 @@ html,
 
 .el-form-item__label {
     line-height: 30px;
+    padding-right: 5px;
 }
 
 .el-form-item__label,
