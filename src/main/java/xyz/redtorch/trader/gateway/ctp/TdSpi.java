@@ -371,13 +371,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (loginFailed) {
 			String logContent = gatewayLogInfo+"交易接口登录曾发生错误,不再登录,以防被锁";
 			log.warn(logContent);
-			ctpGateway.emitWarnLog("logContent");
+			ctpGateway.emitWarnLog(logContent);
 		}
 
 		if (StringUtils.isEmpty(brokerID) || StringUtils.isEmpty(userID) || StringUtils.isEmpty(password)) {
 			String logContent = gatewayLogInfo+"BrokerID UserID Password不允许为空";
 			log.error(logContent);
-			ctpGateway.emitErrorLog("logContent");
+			ctpGateway.emitErrorLog(logContent);
 			return;
 		}
 
@@ -473,7 +473,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String logContent = MessageFormat.format("{0}交易接口错误回报!ErrorID:{1},ErrorMsg:{2},RequestID:{3},isLast{4}",gatewayLogInfo, pRspInfo.getErrorID(),
 				pRspInfo.getErrorMsg(), nRequestID, bIsLast);
 		ctpGateway.emitErrorLog(logContent);
-		log.info(logContent);
+		log.error(logContent);
 		
 	}
 
@@ -483,12 +483,18 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 		if (pRspInfo.getErrorID() == 0) {
 			authStatus = true;
-			log.info("{}交易接口客户端验证成功", gatewayLogInfo);
+			String logContent = gatewayLogInfo+"交易接口客户端验证成功";
+			ctpGateway.emitInfoLog(logContent);
+			log.info(logContent);
+			
 			login();
 
 		} else {
 			log.warn("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
+			String logContent = gatewayLogInfo+"交易接口客户端验证成功";
+			ctpGateway.emitErrorLog(logContent);
+			log.info(logContent);
 		}
 
 	}

@@ -198,7 +198,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 				||StringUtils.isEmpty(password)) {
 			String logContent = gatewayLogInfo+"BrokerID UserID Password不允许为空";
 			log.error(logContent);
-			ctpGateway.emitErrorLog("logContent");
+			ctpGateway.emitErrorLog(logContent);
 			return;
 		}
 		// 登录
