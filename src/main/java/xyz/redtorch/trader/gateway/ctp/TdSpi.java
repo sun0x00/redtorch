@@ -427,6 +427,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 					pRspUserLogin.getTradingDay(), pRspUserLogin.getSessionID(), pRspUserLogin.getBrokerID(),
 					pRspUserLogin.getUserID());
 			ctpGateway.emitInfoLog(gatewayLogInfo+"交易接口登录成功");
+			this.sessionID = pRspUserLogin.getSessionID();
+			this.frontID = pRspUserLogin.getFrontID();
 			// 修改登录状态为true
 			this.loginStatus = true;
 			tradingDayStr = pRspUserLogin.getTradingDay();

@@ -284,12 +284,12 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 订阅合约成功:"+pSpecificInstrument.getInstrumentID();
+			String logContent = gatewayLogInfo + "OnRspSubMarketData! 订阅合约成功:"+pSpecificInstrument.getInstrumentID();
 			ctpGateway.emitInfoLog(logContent);
 			log.info(logContent);
 		} else {
 
-			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 订阅合约失败,ErrorID："+pRspInfo.getErrorID()+"ErrorMsg:"+pRspInfo.getErrorMsg();
+			String logContent = gatewayLogInfo + "OnRspSubMarketData! 订阅合约失败,ErrorID："+pRspInfo.getErrorID()+"ErrorMsg:"+pRspInfo.getErrorMsg();
 			ctpGateway.emitWarnLog(logContent);
 			log.warn(logContent);
 		}

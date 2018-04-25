@@ -122,7 +122,7 @@ public class TradingServiceImpl implements TradingService{
 				cancelOrderReq.setFrontID(order.getFrontID());
 				cancelOrderReq.setSessionID(order.getSessionID());
 				cancelOrderReq.setOrderID(order.getOrderID());
-				cancelOrderReq.setGatewayID(order.getOrderID());
+				cancelOrderReq.setGatewayID(order.getGatewayID());
 
 				mainEngine.cancelOrder(cancelOrderReq);
 				
