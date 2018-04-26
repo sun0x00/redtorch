@@ -87,6 +87,82 @@ public class Tick implements Serializable{
 	private Integer askVolume8 = 0;
 	private Integer askVolume9 = 0;
 	private Integer askVolume10 = 0;
+	
+	
+	
+	public void setAllValue(String gatewayID, String symbol, String exchange, String rtSymbol, String tradingDay, String actionDay,
+			String actionTime, DateTime dateTime, Integer status, Double lastPrice, Integer lastVolume, Integer volume,
+			Double openInterest, Long preOpenInterest, Double preClosePrice, Double preSettlePrice, Double openPrice,
+			Double highPrice, Double lowPrice, Double upperLimit, Double lowerLimit, Double bidPrice1, Double bidPrice2,
+			Double bidPrice3, Double bidPrice4, Double bidPrice5, Double bidPrice6, Double bidPrice7, Double bidPrice8,
+			Double bidPrice9, Double bidPrice10, Double askPrice1, Double askPrice2, Double askPrice3, Double askPrice4,
+			Double askPrice5, Double askPrice6, Double askPrice7, Double askPrice8, Double askPrice9, Double askPrice10,
+			Integer bidVolume1, Integer bidVolume2, Integer bidVolume3, Integer bidVolume4, Integer bidVolume5,
+			Integer bidVolume6, Integer bidVolume7, Integer bidVolume8, Integer bidVolume9, Integer bidVolume10,
+			Integer askVolume1, Integer askVolume2, Integer askVolume3, Integer askVolume4, Integer askVolume5,
+			Integer askVolume6, Integer askVolume7, Integer askVolume8, Integer askVolume9, Integer askVolume10) {
+		this.gatewayID = gatewayID;
+		this.symbol = symbol;
+		this.exchange = exchange;
+		this.rtSymbol = rtSymbol;
+		this.tradingDay = tradingDay;
+		this.actionDay = actionDay;
+		this.actionTime = actionTime;
+		this.dateTime = dateTime;
+		this.status = status;
+		this.lastPrice = lastPrice;
+		this.lastVolume = lastVolume;
+		this.volume = volume;
+		this.openInterest = openInterest;
+		this.preOpenInterest = preOpenInterest;
+		this.preClosePrice = preClosePrice;
+		this.preSettlePrice = preSettlePrice;
+		this.openPrice = openPrice;
+		this.highPrice = highPrice;
+		this.lowPrice = lowPrice;
+		this.upperLimit = upperLimit;
+		this.lowerLimit = lowerLimit;
+		this.bidPrice1 = bidPrice1;
+		this.bidPrice2 = bidPrice2;
+		this.bidPrice3 = bidPrice3;
+		this.bidPrice4 = bidPrice4;
+		this.bidPrice5 = bidPrice5;
+		this.bidPrice6 = bidPrice6;
+		this.bidPrice7 = bidPrice7;
+		this.bidPrice8 = bidPrice8;
+		this.bidPrice9 = bidPrice9;
+		this.bidPrice10 = bidPrice10;
+		this.askPrice1 = askPrice1;
+		this.askPrice2 = askPrice2;
+		this.askPrice3 = askPrice3;
+		this.askPrice4 = askPrice4;
+		this.askPrice5 = askPrice5;
+		this.askPrice6 = askPrice6;
+		this.askPrice7 = askPrice7;
+		this.askPrice8 = askPrice8;
+		this.askPrice9 = askPrice9;
+		this.askPrice10 = askPrice10;
+		this.bidVolume1 = bidVolume1;
+		this.bidVolume2 = bidVolume2;
+		this.bidVolume3 = bidVolume3;
+		this.bidVolume4 = bidVolume4;
+		this.bidVolume5 = bidVolume5;
+		this.bidVolume6 = bidVolume6;
+		this.bidVolume7 = bidVolume7;
+		this.bidVolume8 = bidVolume8;
+		this.bidVolume9 = bidVolume9;
+		this.bidVolume10 = bidVolume10;
+		this.askVolume1 = askVolume1;
+		this.askVolume2 = askVolume2;
+		this.askVolume3 = askVolume3;
+		this.askVolume4 = askVolume4;
+		this.askVolume5 = askVolume5;
+		this.askVolume6 = askVolume6;
+		this.askVolume7 = askVolume7;
+		this.askVolume8 = askVolume8;
+		this.askVolume9 = askVolume9;
+		this.askVolume10 = askVolume10;
+	}
 	public String getGatewayID() {
 		return gatewayID;
 	}

@@ -34,6 +34,29 @@ public class Trade implements Serializable{
 	private String tradeDate; // 业务发生日
 	private String tradeTime; // 时间(HHMMSSmmm)
     private DateTime dateTime;
+    
+    
+	public void setAllValue(String gatewayID, String symbol, String exchange, String rtSymbol, String tradeID, String rtTradeID,
+			String orderID, String rtOrderID, String direction, String offset, double price, int volume,
+			String tradingDay, String tradeDate, String tradeTime, DateTime dateTime) {
+		this.gatewayID = gatewayID;
+		this.symbol = symbol;
+		this.exchange = exchange;
+		this.rtSymbol = rtSymbol;
+		this.tradeID = tradeID;
+		this.rtTradeID = rtTradeID;
+		this.orderID = orderID;
+		this.rtOrderID = rtOrderID;
+		this.direction = direction;
+		this.offset = offset;
+		this.price = price;
+		this.volume = volume;
+		this.tradingDay = tradingDay;
+		this.tradeDate = tradeDate;
+		this.tradeTime = tradeTime;
+		this.dateTime = dateTime;
+	}
+	
 	public String getGatewayID() {
 		return gatewayID;
 	}

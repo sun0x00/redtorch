@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,7 +15,8 @@ import com.alibaba.fastjson.JSON;
 
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.event.EventConstant;
-import xyz.redtorch.trader.engine.event.EventData;
+import xyz.redtorch.trader.engine.event.FastEvent;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandlerAbstract;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Contract;
 import xyz.redtorch.trader.entity.Order;
@@ -38,11 +38,9 @@ import xyz.redtorch.utils.CommonUtil;
  * @author sun0x00@gmail.com
  *
  */
-public abstract class StrategyTemplate implements Strategy {
+public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract implements Strategy {
 
 	private static final Logger log = LoggerFactory.getLogger(StrategyTemplate.class);
-
-	LinkedBlockingQueue<EventData> eventDataQueue = new LinkedBlockingQueue<>();
 
 	private String id; // 策略ID
 	private String name; // 策略名称
@@ -94,7 +92,7 @@ public abstract class StrategyTemplate implements Strategy {
 
 		this.id = strategySetting.getId();
 		this.name = strategySetting.getName();
-		this.logStr = "策略-[" + name + "] ID-[" + id +"] >>> ";
+		this.logStr = "策略-[" + name + "] ID-[" + id + "] >>> ";
 
 		this.zeusEngine = zeusEngine;
 
@@ -128,51 +126,25 @@ public abstract class StrategyTemplate implements Strategy {
 	}
 
 	@Override
-	public void onEvent(EventData eventData) {
-		if (eventData != null) {
-			eventDataQueue.add(eventData);
-		}
-	}
+	public void onEvent(final FastEvent fastEvent, final long sequence, final boolean endOfBatch) throws Exception {
 
-	// 接口Runnable的实现方法,用于开启独立线程
-	@Override
-	public void run() {
-		while (!Thread.currentThread().isInterrupted()) {
-			EventData ed = null;
-			try {
-				ed = eventDataQueue.take();
-			} catch (InterruptedException e) {
-				stopTrading(true);
-				log.error("{} 捕获到线程中断异常,停止策略!!!", logStr, e);
-			}
-			// 判断消息类型
-			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
-				Tick tick = (Tick) ed.getEventObj();
-				processTick(tick);
-
-			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
-				Trade trade = (Trade) ed.getEventObj();
-				processTrade(trade);
-			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
-				Order order = (Order) ed.getEventObj();
-				processOrder(order);
-			} else if (EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())) {
-				// 弃用
-				// Thread.currentThread().interrupt();
-				break;
-			} else {
-				log.warn("{} 未能识别的事件数据类型{}", logStr, JSON.toJSONString(ed));
-			}
+		if (!subscribedEventSet.contains(fastEvent.getEvent())) {
+			return;
 		}
+		// 判断消息类型
+		if (EventConstant.EVENT_TICK.equals(fastEvent.getEventType())) {
+			Tick tick = fastEvent.getTick();
+			processTick(tick);
 
-		log.info("{} 策略线程准备结束!等待2秒", logStr);
-		try {
-			// 等待,防止异步线程没有完成
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			log.error("策略结束时线程异常", e);
+		} else if (EventConstant.EVENT_TRADE.equals(fastEvent.getEventType())) {
+			Trade trade = fastEvent.getTrade();
+			processTrade(trade);
+		} else if (EventConstant.EVENT_ORDER.equals(fastEvent.getEventType())) {
+			Order order = fastEvent.getOrder();
+			processOrder(order);
+		} else {
+			log.warn("{} 未能识别的事件数据类型{}", logStr, JSON.toJSONString(fastEvent.getEvent()));
 		}
-		log.info("{} 策略线程结束!", logStr);
 	}
 
 	/**
@@ -266,6 +238,16 @@ public abstract class StrategyTemplate implements Strategy {
 		}
 	}
 
+	@Override
+	public void onStart() {
+
+	}
+
+	@Override
+	public void onShutdown() {
+		shutdownLatch.countDown();
+	}
+
 	/**
 	 * 停止交易
 	 */
@@ -275,25 +257,14 @@ public abstract class StrategyTemplate implements Strategy {
 			log.warn("{} 策略已经停止,请勿重复操作!", logStr);
 			return;
 		}
+		savePosition();
+		// XXX 保存中间变量varMap
 		this.trading = false;
 		try {
 			onStopTrading(isException);
 		} catch (Exception e) {
 			log.error("{} 策略停止后调用onStopTrading发生异常!", logStr, e);
 		}
-	}
-
-	/**
-	 * 完全关闭策略线程
-	 */
-	@Override
-	public void stop() {
-		stopTrading(false);
-		// 通知其他线程
-		EventData eventData = new EventData();
-		eventData.setEvent(EventConstant.EVENT_THREAD_STOP);
-		eventData.setEventType(EventConstant.EVENT_THREAD_STOP);
-		eventDataQueue.add(eventData);
 	}
 
 	/**
@@ -1018,7 +989,7 @@ public abstract class StrategyTemplate implements Strategy {
 	public void processOrder(Order order) {
 		try {
 			workingOrderMap.put(order.getRtOrderID(), order);
-			if(RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
+			if (RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
 				workingOrderMap.remove(order.getRtOrderID());
 			}
 			ContractPositionDetail contractPositionDetail = contractPositionMap.get(order.getRtSymbol());

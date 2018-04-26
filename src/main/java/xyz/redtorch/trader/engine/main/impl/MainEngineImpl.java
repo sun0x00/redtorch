@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,9 +19,8 @@ import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.data.DataEngine;
 import xyz.redtorch.trader.engine.data.impl.DataEngineImpl;
 import xyz.redtorch.trader.engine.event.EventConstant;
-import xyz.redtorch.trader.engine.event.EventData;
-import xyz.redtorch.trader.engine.event.EventEngine;
-import xyz.redtorch.trader.engine.event.impl.EventEngineImpl;
+import xyz.redtorch.trader.engine.event.FastEvent;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandlerAbstract;
 import xyz.redtorch.trader.engine.main.MainEngine;
 import xyz.redtorch.trader.engine.main.MainDataUtil;
 import xyz.redtorch.trader.entity.Account;
@@ -44,16 +42,12 @@ import xyz.redtorch.utils.CommonUtil;
 /**
  * @author sun0x00@gmail.com
  */
-public class MainEngineImpl implements MainEngine {
-	
-	
+public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements MainEngine {
+
 	private static Logger log = LoggerFactory.getLogger(MainEngineImpl.class);
 
-	LinkedBlockingQueue<EventData> eventDataQueue = new LinkedBlockingQueue<>();
-
-	private EventEngine eventEngine;
 	private DataEngine dataEngine;
-	
+
 	private MainDataUtil mainDataUtil;
 
 	private Map<String, Gateway> gatewayMap = new HashMap<>();
@@ -66,127 +60,121 @@ public class MainEngineImpl implements MainEngine {
 	private Map<String, LocalPositionDetail> localPositionDetailMap = new HashMap<>();
 	private Map<String, Position> positionMap = new HashMap<>();
 	private List<LogData> logDataList = new ArrayList<>();
-	
-	private Map<String,Set<String>> subscriberRelationshipMap = new HashMap<>();
-	
+
+	private Map<String, Set<String>> subscriberRelationshipMap = new HashMap<>();
+
 	private Map<String, HashSet<SubscribeReq>> subscribeReqSetMap = new HashMap<>();
 
 	public MainEngineImpl() {
 		log.info("MAIN_ENGINE:事件引擎初始化");
-		this.eventEngine = new EventEngineImpl();
 		try {
 			log.info("MAIN_ENGINE:数据引擎初始化");
-			dataEngine  = new DataEngineImpl();
+			dataEngine = new DataEngineImpl();
 			mainDataUtil = new MainDataUtilImpl(dataEngine);
-		}catch (Exception e) {
-			log.error("MAIN_ENGINE:数据引擎初始化失败,程序退出",e);
+		} catch (Exception e) {
+			log.error("MAIN_ENGINE:数据引擎初始化失败,程序退出", e);
 			System.exit(1);
 		}
-		eventEngine.registerListener(EventConstant.EVENT_TICK, this);
-		eventEngine.registerListener(EventConstant.EVENT_TRADE, this);
-		eventEngine.registerListener(EventConstant.EVENT_ORDER, this);
-		eventEngine.registerListener(EventConstant.EVENT_POSITION, this);
-		eventEngine.registerListener(EventConstant.EVENT_ACCOUNT, this);
-		eventEngine.registerListener(EventConstant.EVENT_CONTRACT, this);
-		eventEngine.registerListener(EventConstant.EVENT_ERROR, this);
-		eventEngine.registerListener(EventConstant.EVENT_GATEWAY, this);
-		eventEngine.registerListener(EventConstant.EVENT_LOG, this);
-		eventEngine.registerListener(EventConstant.EVENT_LOG+"ZEUS|", this);
-		//eventEngine.registerListener("", this);
-		
+		subscribeEvent(EventConstant.EVENT_TICK);
+		subscribeEvent(EventConstant.EVENT_TRADE);
+		subscribeEvent(EventConstant.EVENT_ORDER);
+		subscribeEvent(EventConstant.EVENT_POSITION);
+		subscribeEvent(EventConstant.EVENT_ACCOUNT);
+		subscribeEvent(EventConstant.EVENT_CONTRACT);
+		subscribeEvent(EventConstant.EVENT_ERROR);
+		subscribeEvent(EventConstant.EVENT_GATEWAY);
+		subscribeEvent(EventConstant.EVENT_LOG);
+		subscribeEvent(EventConstant.EVENT_LOG + "ZEUS|");
 	}
 
 	@Override
-	public void onEvent(EventData eventData) {
-		if (eventData != null) {
-			eventDataQueue.add(eventData);
+	public void onEvent(final FastEvent fastEvent, final long sequence, final boolean endOfBatch) throws Exception {
+
+		String logContent;
+
+		if (!subscribedEventSet.contains(fastEvent.getEvent())) {
+			return;
+		}
+
+		// 判断消息类型
+		if (EventConstant.EVENT_TICK.equals(fastEvent.getEventType())) {
+			try {
+				Tick tick = fastEvent.getTick();
+				onTick(tick);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onTick发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_TRADE.equals(fastEvent.getEventType())) {
+			try {
+				Trade trade = fastEvent.getTrade();
+				onTrade(trade);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onTrade发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_ORDER.equals(fastEvent.getEventType())) {
+			try {
+				Order order = fastEvent.getOrder();
+				onOrder(order);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onOrder发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_CONTRACT.equals(fastEvent.getEventType())) {
+			try {
+				Contract contract = fastEvent.getContract();
+				onContract(contract);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onContract发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_POSITION.equals(fastEvent.getEventType())) {
+			try {
+				Position position = fastEvent.getPosition();
+				onPosition(position);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onPosition发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_ACCOUNT.equals(fastEvent.getEventType())) {
+			try {
+				Account account = fastEvent.getAccount();
+				onAccount(account);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onAccount发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else if (EventConstant.EVENT_LOG.equals(fastEvent.getEventType())) {
+			try {
+				LogData logData = fastEvent.getLogData();
+				onLogData(logData);
+			} catch (Exception e) {
+				logContent = "MAIN_ENGINE:onLogData发生异常!!!";
+				CommonUtil.emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else {
+			logContent = "MAIN_ENGINE:未能识别的事件数据类型{}" + JSON.toJSONString(fastEvent.getEvent());
+			CommonUtil.emitWarnLog(logContent);
+			log.warn(logContent);
 		}
 	}
-	
+
 	@Override
-	public void run() {
-		String logContent;
-		while (!Thread.currentThread().isInterrupted()) {
-			EventData ed = null;
-			try {
-				ed = eventDataQueue.take();
-			} catch (InterruptedException e) {
-				logContent = "MAIN_ENGINE:捕获到线程中断异常,线程停止!!!";
-				CommonUtil.emitErrorLog(eventEngine, logContent);
-				log.error(logContent,e);
-			}
-			// 判断消息类型
-			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
-				try {
-					Tick tick = (Tick) ed.getEventObj();
-					onTick(tick);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onTick发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
-				try {
-					Trade trade = (Trade) ed.getEventObj();
-					onTrade(trade);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onTrade发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
-				try {
-					Order order = (Order) ed.getEventObj();
-					onOrder(order);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onOrder发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_CONTRACT.equals(ed.getEventType())) {
-				try {
-					Contract contract = (Contract) ed.getEventObj();
-					onContract(contract);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onContract发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_POSITION.equals(ed.getEventType())) {
-				try {
-					Position position = (Position) ed.getEventObj();
-					onPosition(position);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onPosition发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_ACCOUNT.equals(ed.getEventType())) {
-				try {
-					Account account = (Account) ed.getEventObj();
-					onAccount(account);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onAccount发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if (EventConstant.EVENT_LOG.equals(ed.getEventType())) {
-				try {
-					LogData logData = (LogData) ed.getEventObj();
-					onLogData(logData);
-				} catch (Exception e) {
-					logContent = "MAIN_ENGINE:onLogData发生异常!!!";
-					CommonUtil.emitErrorLog(eventEngine, logContent);
-					log.error(logContent,e);
-				}
-			} else if(EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())){
-				break;
-			} else {
-				logContent = "MAIN_ENGINE:未能识别的事件数据类型{}" + JSON.toJSONString(ed);
-				CommonUtil.emitWarnLog(eventEngine, logContent);
-				log.warn(logContent);
-			}
-		}
+	public void onStart() {
+
+	}
+
+	@Override
+	public void onShutdown() {
+		shutdownLatch.countDown();
 	}
 
 	private void onLogData(LogData logData) {
@@ -198,21 +186,21 @@ public class MainEngineImpl implements MainEngine {
 		contractMap.put(contract.getRtSymbol(), contract); // 多个接口同一个交易所之间的代码可能重复
 		contractMap.put(contract.getSymbol() + "." + contract.getGatewayID(), contract);
 		contractMap.put(contract.getRtSymbol() + "." + contract.getGatewayID(), contract);
-		
+
 		// CTP重连时Trade可能先于Contract到达,在此处重新赋值
-		String exchange = contract.getExchange(); 
+		String exchange = contract.getExchange();
 		String symbol = contract.getSymbol();
 		String contractName = contract.getName();
 		int contractSize = contract.getSize();
-		String positionDetailKey = contract.getRtSymbol()+"."+contract.getGatewayID();
+		String positionDetailKey = contract.getRtSymbol() + "." + contract.getGatewayID();
 		LocalPositionDetail localPositionDetail = localPositionDetailMap.get(positionDetailKey);
-		if(localPositionDetail!=null) {
+		if (localPositionDetail != null) {
 			localPositionDetail.setExchange(exchange);
 			localPositionDetail.setSymbol(symbol);
 			localPositionDetail.setContractName(contractName);
 			localPositionDetail.setContractSize(contractSize);
 		}
-		
+
 	}
 
 	private void onAccount(Account account) {
@@ -221,56 +209,56 @@ public class MainEngineImpl implements MainEngine {
 
 	private void onOrder(Order order) {
 		orderMap.put(order.getRtOrderID(), order);
-		if(RtConstant.STATUS_FINISHED.contains(order.getStatus())){
-			if(workingOrderMap.containsKey(order.getRtOrderID())){
+		if (RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
+			if (workingOrderMap.containsKey(order.getRtOrderID())) {
 				workingOrderMap.remove(order.getRtOrderID());
 			}
-		}else {
+		} else {
 			workingOrderMap.put(order.getRtOrderID(), order);
 		}
-		
-		LocalPositionDetail localPositionDetail= getLocalPositionDetail(order.getRtSymbol(),order.getGatewayID());
+
+		LocalPositionDetail localPositionDetail = getLocalPositionDetail(order.getRtSymbol(), order.getGatewayID());
 		localPositionDetail.updateOrder(order);
 	}
 
 	private void onTrade(Trade trade) {
-		LocalPositionDetail localPositionDetail= getLocalPositionDetail(trade.getRtSymbol(),trade.getGatewayID());
+		LocalPositionDetail localPositionDetail = getLocalPositionDetail(trade.getRtSymbol(), trade.getGatewayID());
 		localPositionDetail.updateTrade(trade);
 		tradeMap.put(trade.getRtTradeID(), trade);
 	}
 
 	private void onPosition(Position position) {
-		
+
 		Contract contract = getContract(position.getSymbol(), position.getGatewayID());
 		String rtSymbol = contract.getSymbol() + "." + position.getExchange();
-	
-		
-		LocalPositionDetail localPositionDetail= getLocalPositionDetail(rtSymbol,position.getGatewayID());
+
+		LocalPositionDetail localPositionDetail = getLocalPositionDetail(rtSymbol, position.getGatewayID());
 		localPositionDetail.updatePosition(position);
-		
+
 		positionMap.put(position.getRtPositionName(), position);
-	
+
 	}
 
 	private void onTick(Tick tick) {
 		// 更新指定接口的持仓盈亏
-		//LocalPositionDetail localPositionDetail= getLocalPositionDetail(tick.getRtSymbol(),tick.getGatewayID());
-		//localPositionDetail.updateLastPrice(tick.getLastPrice());
-		
+		// LocalPositionDetail localPositionDetail=
+		// getLocalPositionDetail(tick.getRtSymbol(),tick.getGatewayID());
+		// localPositionDetail.updateLastPrice(tick.getLastPrice());
+
 		// 更新所有相同rtSymbol的持仓盈亏
-		for(LocalPositionDetail  localPositionDetail:getLocalPositionDetails()) {
-			if(localPositionDetail.getRtSymbol().equals(tick.getRtSymbol())) {
+		for (LocalPositionDetail localPositionDetail : getLocalPositionDetails()) {
+			if (localPositionDetail.getRtSymbol().equals(tick.getRtSymbol())) {
 				localPositionDetail.updateLastPrice(tick.getLastPrice());
 			}
 		}
-	
+
 	}
 
 	@Override
 	public Contract getContract(String rtSymbol) {
 		if (StringUtils.isEmpty(rtSymbol)) {
 			String logContent = "MAIN_ENGINE:查询合约不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return null;
 		} else {
@@ -283,12 +271,12 @@ public class MainEngineImpl implements MainEngine {
 		String logContent;
 		if (StringUtils.isEmpty(rtSymbol)) {
 			logContent = "MAIN_ENGINE:查询合约,rtSymbol不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return null;
 		} else if (StringUtils.isEmpty(gatewayID)) {
 			logContent = "MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return null;
 		} else {
@@ -300,7 +288,7 @@ public class MainEngineImpl implements MainEngine {
 	public List<Contract> getContracts() {
 		return new ArrayList<Contract>(contractMap.values());
 	}
-	
+
 	@Override
 	public List<Account> getAccounts() {
 		return new ArrayList<Account>(accountMap.values());
@@ -310,7 +298,7 @@ public class MainEngineImpl implements MainEngine {
 	public List<Order> getOrders() {
 		return new ArrayList<Order>(orderMap.values());
 	}
-	
+
 	@Override
 	public List<Order> getWorkingOrders() {
 		return new ArrayList<Order>(workingOrderMap.values());
@@ -320,12 +308,12 @@ public class MainEngineImpl implements MainEngine {
 	public List<Trade> getTrades() {
 		return new ArrayList<Trade>(tradeMap.values());
 	}
-	
+
 	@Override
-	public List<LocalPositionDetail> getLocalPositionDetails(){
+	public List<LocalPositionDetail> getLocalPositionDetails() {
 		return new ArrayList<>(localPositionDetailMap.values());
 	}
-	
+
 	@Override
 	public List<Position> getPositions() {
 		return new ArrayList<>(positionMap.values());
@@ -333,34 +321,35 @@ public class MainEngineImpl implements MainEngine {
 
 	@Override
 	public LocalPositionDetail getLocalPositionDetail(String rtSymbol, String gatewayID) {
-	
-		String positionDetailKey = rtSymbol+"."+gatewayID;
-		if(localPositionDetailMap.containsKey(positionDetailKey)) {
+
+		String positionDetailKey = rtSymbol + "." + gatewayID;
+		if (localPositionDetailMap.containsKey(positionDetailKey)) {
 			return localPositionDetailMap.get(positionDetailKey);
-		}else {
+		} else {
 			Gateway gateway = getGateway(gatewayID);
 			String gatewayDisplayName = gateway.getGatewayDisplayName();
-			
+
 			String exchange = "";
 			String symbol = "";
 			String contractName = "";
 			int contractSize = 0;
 			Contract contract = getContract(rtSymbol, gatewayID);
-			
+
 			// 在CTP重新登陆时可能存在查不到合约的情况
-			if(contract!=null) {
-				exchange = contract.getExchange(); 
+			if (contract != null) {
+				exchange = contract.getExchange();
 				symbol = contract.getSymbol();
 				contractName = contract.getName();
 				contractSize = contract.getSize();
 			}
-			
-			LocalPositionDetail localPositionDetail = new LocalPositionDetail(gatewayID,gatewayDisplayName, exchange, rtSymbol, symbol, contractName,contractSize);
-			
+
+			LocalPositionDetail localPositionDetail = new LocalPositionDetail(gatewayID, gatewayDisplayName, exchange,
+					rtSymbol, symbol, contractName, contractSize);
+
 			localPositionDetailMap.put(positionDetailKey, localPositionDetail);
 			return localPositionDetail;
 		}
-		
+
 	}
 
 	@Override
@@ -369,11 +358,11 @@ public class MainEngineImpl implements MainEngine {
 		if (gateway != null) {
 			String rtOrderID = gateway.sendOrder(orderReq);
 			// 更新到本地持仓
-			updateOrderReq(orderReq,rtOrderID);
+			updateOrderReq(orderReq, rtOrderID);
 			return rtOrderID;
 		} else {
 			String logContent = "MAIN_ENGINE:发送委托失败,未能找到接口,OrderReq-" + JSON.toJSONString(orderReq);
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return null;
 		}
@@ -385,8 +374,8 @@ public class MainEngineImpl implements MainEngine {
 		if (gateway != null) {
 			gateway.queryAccount();
 		} else {
-			String logContent = "MAIN_ENGINE:查询账户失败,未能找到接口"+gatewayID;
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			String logContent = "MAIN_ENGINE:查询账户失败,未能找到接口" + gatewayID;
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 		}
 	}
@@ -397,15 +386,10 @@ public class MainEngineImpl implements MainEngine {
 		if (gateway != null) {
 			gateway.queryPosition();
 		} else {
-			String logContent = "MAIN_ENGINE:查询持仓失败,未能找到接口"+gatewayID;
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			String logContent = "MAIN_ENGINE:查询持仓失败,未能找到接口" + gatewayID;
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 		}
-	}
-
-	@Override
-	public EventEngine getEventEngine() {
-		return eventEngine;
 	}
 
 	@Override
@@ -424,43 +408,44 @@ public class MainEngineImpl implements MainEngine {
 		if (gateway != null) {
 			gateway.cancelOrder(cancelOrderReq);
 		} else {
-			String logContent = "MAIN_ENGINE: 撤单失败,未能找到接口,cancelOrderReq-"+JSON.toJSONString(cancelOrderReq);
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			String logContent = "MAIN_ENGINE: 撤单失败,未能找到接口,cancelOrderReq-" + JSON.toJSONString(cancelOrderReq);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 		}
 	}
 
 	@Override
 	public boolean subscribe(SubscribeReq subscribeReq, String subscriberID) {
-		
+
 		String logContent;
-		
+
 		Contract contract;
-		if(StringUtils.isEmpty(subscribeReq.getGatewayID())) {
+		if (StringUtils.isEmpty(subscribeReq.getGatewayID())) {
 			contract = getContract(subscribeReq.getRtSymbol());
-		}else {
-			contract = getContract(subscribeReq.getRtSymbol(),subscribeReq.getGatewayID());
+		} else {
+			contract = getContract(subscribeReq.getRtSymbol(), subscribeReq.getGatewayID());
 		}
-		if(contract == null) {
-			logContent = "MAIN_ENGINE:无法订阅行情,合约["+subscribeReq.getRtSymbol() + "]接口["+subscribeReq.getGatewayID()+"]订阅者ID["+subscriberID+"],未找到Contract";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+		if (contract == null) {
+			logContent = "MAIN_ENGINE:无法订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
+					+ "]订阅者ID[" + subscriberID + "],未找到Contract";
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return false;
 		}
-		
-		if(subscriberID != null) {
-			String subscriberRelationshipKey = subscribeReq.getRtSymbol()+"."+subscribeReq.getGatewayID();
-			
+
+		if (subscriberID != null) {
+			String subscriberRelationshipKey = subscribeReq.getRtSymbol() + "." + subscribeReq.getGatewayID();
+
 			Set<String> subscriberIDSet;
-			if(subscriberRelationshipMap.containsKey(subscriberRelationshipKey)) {
+			if (subscriberRelationshipMap.containsKey(subscriberRelationshipKey)) {
 				subscriberIDSet = subscriberRelationshipMap.get(subscriberRelationshipKey);
-			}else {
+			} else {
 				subscriberIDSet = new HashSet<>();
 				subscriberRelationshipMap.put(subscriberRelationshipKey, subscriberIDSet);
 			}
 			subscriberIDSet.add(subscriberID);
 		}
-		
+
 		String gatewayID = contract.getGatewayID();
 		subscribeReq.setRtSymbol(contract.getRtSymbol());
 		subscribeReq.setSymbol(contract.getSymbol());
@@ -472,100 +457,99 @@ public class MainEngineImpl implements MainEngine {
 		subscribeReq.setExpiry(contract.getExpiryDate());
 		// 加入主引擎缓存,如果接口重连,会自动重新订阅
 		HashSet<SubscribeReq> subscribedSymbols = null;
-		if(subscribeReqSetMap.containsKey(gatewayID)) {
+		if (subscribeReqSetMap.containsKey(gatewayID)) {
 			subscribedSymbols = subscribeReqSetMap.get(gatewayID);
-		}else {
+		} else {
 			subscribedSymbols = new HashSet<>();
 			subscribeReqSetMap.put(gatewayID, subscribedSymbols);
 		}
 		subscribedSymbols.add(subscribeReq);
-		
+
 		Gateway gateway = getGateway(gatewayID);
 		if (gateway != null) {
 			gateway.subscribe(subscribeReq);
 
-			logContent = "MAIN_ENGINE:成功订阅行情,合约["+subscribeReq.getRtSymbol() + "]接口["+subscribeReq.getGatewayID()+"]订阅者ID["+subscriberID+"]";
-			CommonUtil.emitInfoLog(eventEngine, logContent);
+			logContent = "MAIN_ENGINE:成功订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
+					+ "]订阅者ID[" + subscriberID + "]";
+			CommonUtil.emitInfoLog(logContent);
 			log.info(logContent);
 			return true;
 		} else {
-			logContent = "MAIN_ENGINE:无法订阅行情,合约["+subscribeReq.getRtSymbol() + "]接口["+subscribeReq.getGatewayID()+"]订阅者ID["+subscriberID+"]未找到接口";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			logContent = "MAIN_ENGINE:无法订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
+					+ "]订阅者ID[" + subscriberID + "]未找到接口";
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return false;
 		}
 	}
+
 	@Override
 	public boolean unsubscribe(String rtSymbol, String gatewayID, String subscriberID) {
 		String logContent;
-		if(StringUtils.isEmpty(rtSymbol)||StringUtils.isEmpty(gatewayID)) {
+		if (StringUtils.isEmpty(rtSymbol) || StringUtils.isEmpty(gatewayID)) {
 			logContent = "MAIN_ENGINE:无法取消订阅,参数不允许为空!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return false;
 		}
 		String subscriberRelationshipKey = rtSymbol + "." + gatewayID;
 
-			Set<String> subscriberIDSet = null;
-			if(subscriberRelationshipMap.containsKey(subscriberRelationshipKey)) {
-				subscriberIDSet = subscriberRelationshipMap.get(subscriberRelationshipKey);
+		Set<String> subscriberIDSet = null;
+		if (subscriberRelationshipMap.containsKey(subscriberRelationshipKey)) {
+			subscriberIDSet = subscriberRelationshipMap.get(subscriberRelationshipKey);
+		}
+
+		if (subscriberID != null && subscriberIDSet != null) {
+			subscriberIDSet.remove(subscriberID);
+		}
+		if (subscriberIDSet == null || subscriberIDSet.isEmpty()) {
+
+			subscriberRelationshipMap.remove(subscriberRelationshipKey);
+
+			// 从断开重新注册Map中删除
+			if (subscribeReqSetMap.containsKey(gatewayID)) {
+				Set<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
+				subscribeReqSet = subscribeReqSet.stream().filter(value -> !value.getRtSymbol().equals(rtSymbol))
+						.collect(Collectors.toSet());
 			}
-			
-			if(subscriberID != null && subscriberIDSet!= null) {
-				subscriberIDSet.remove(subscriberID);
-			}
-			if(subscriberIDSet == null || subscriberIDSet.isEmpty()) {
-				
-				subscriberRelationshipMap.remove(subscriberRelationshipKey);
-				
-				// 从断开重新注册Map中删除
-				if(subscribeReqSetMap.containsKey(gatewayID)) {
-					Set<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
-					subscribeReqSet = subscribeReqSet.stream().filter(value -> !value.getRtSymbol().equals(rtSymbol)).collect(Collectors.toSet());
-				}
-				
-				Gateway gateway = getGateway(gatewayID);
-				if (gateway != null) {
-					gateway.unSubscribe(rtSymbol);
-					
-					logContent = "MAIN_ENGINE:成功取消订阅行情,合约["+rtSymbol+ "]接口["+gatewayID+"]订阅者ID["+subscriberID+"]";
-					CommonUtil.emitInfoLog(eventEngine, logContent);
-					log.error(logContent);
-					return true;
-				} else {
-					logContent = "MAIN_ENGINE:取消订阅行情失败,合约["+rtSymbol+ "]接口["+gatewayID+"]订阅者ID["+subscriberID+"],未找到接口";
-					CommonUtil.emitInfoLog(eventEngine, logContent);
-					log.error(logContent);
-					return false;
-				}
-			}else {
-				logContent = "MAIN_ENGINE:取消订阅行情失败,合约["+rtSymbol+ "]接口["+gatewayID+"]订阅者ID["+subscriberID+"],存在其它订阅者";
-				CommonUtil.emitWarnLog(eventEngine, logContent);
-				log.warn(logContent);
+
+			Gateway gateway = getGateway(gatewayID);
+			if (gateway != null) {
+				gateway.unSubscribe(rtSymbol);
+
+				logContent = "MAIN_ENGINE:成功取消订阅行情,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
+						+ "]";
+				CommonUtil.emitInfoLog(logContent);
+				log.error(logContent);
+				return true;
+			} else {
+				logContent = "MAIN_ENGINE:取消订阅行情失败,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
+						+ "],未找到接口";
+				CommonUtil.emitInfoLog(logContent);
+				log.error(logContent);
 				return false;
 			}
+		} else {
+			logContent = "MAIN_ENGINE:取消订阅行情失败,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
+					+ "],存在其它订阅者";
+			CommonUtil.emitWarnLog(logContent);
+			log.warn(logContent);
+			return false;
+		}
 	}
+
 	@Override
 	public void updateOrderReq(OrderReq orderReq, String rtOrderID) {
-		LocalPositionDetail localPositionDetail = getLocalPositionDetail(orderReq.getRtSymbol(), orderReq.getGatewayID());
+		LocalPositionDetail localPositionDetail = getLocalPositionDetail(orderReq.getRtSymbol(),
+				orderReq.getGatewayID());
 		localPositionDetail.updateOrderReq(orderReq, rtOrderID);
-	}
-	
-	@Override
-	public void stop() {
-		eventEngine.removeListener(null, this);
-		// 通知其他线程
-		EventData eventData = new EventData();
-		eventData.setEvent(EventConstant.EVENT_THREAD_STOP);
-		eventData.setEventType(EventConstant.EVENT_THREAD_STOP);
-		eventDataQueue.add(eventData);
 	}
 
 	@Override
 	public Gateway getGateway(String gatewayID) {
 		if (StringUtils.isEmpty(gatewayID)) {
 			String logContent = "MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 			return null;
 		}
@@ -578,28 +562,37 @@ public class MainEngineImpl implements MainEngine {
 		if (gateway != null) {
 			gateway.close();
 			gatewayMap.remove(gatewayID);
-			
+
 			// 删除账户缓存
-			accountMap = accountMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			
+			accountMap = accountMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 			// 删除持仓详细缓存
-			localPositionDetailMap = localPositionDetailMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			
+			localPositionDetailMap = localPositionDetailMap.entrySet().stream()
+					.filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 			// 删除持仓缓存
-			positionMap = positionMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			
+			positionMap = positionMap.entrySet().stream()
+					.filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 			// 删除委托缓存
-			orderMap = orderMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			
+			orderMap = orderMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 			// 删除成交缓存
-			tradeMap = tradeMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			
+			tradeMap = tradeMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 			// 删除为完成委托缓存
-			workingOrderMap = workingOrderMap.entrySet().stream().filter(map -> !map.getValue().getGatewayID().equals(gatewayID)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-					
+			workingOrderMap = workingOrderMap.entrySet().stream()
+					.filter(map -> !map.getValue().getGatewayID().equals(gatewayID))
+					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 		} else {
-			String logContent = "MAIN_ENGINE:接口"+ gatewayID+"不存在,无法断开!";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			String logContent = "MAIN_ENGINE:接口" + gatewayID + "不存在,无法断开!";
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 		}
 	}
@@ -611,14 +604,14 @@ public class MainEngineImpl implements MainEngine {
 		Set<Class<?>> classes = CommonUtil.getClasses("xyz.redtorch.trader");
 		if (classes == null) {
 			logContent = "MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何类";
-			CommonUtil.emitErrorLog(eventEngine, logContent);
+			CommonUtil.emitErrorLog(logContent);
 			log.error(logContent);
 		} else {
 			// 寻找Gateway的实现类,不包含抽象类
 			Set<Class<?>> filteredClasses = CommonUtil.getImplementsByInterface(Gateway.class, classes, false);
 			if (filteredClasses.isEmpty()) {
 				logContent = "MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何Gateway接口的实现类";
-				CommonUtil.emitErrorLog(eventEngine, logContent);
+				CommonUtil.emitErrorLog(logContent);
 				log.error(logContent);
 			} else {
 				for (Class<?> clazz : filteredClasses) {
@@ -634,33 +627,34 @@ public class MainEngineImpl implements MainEngine {
 	public void connectGateway(String gatewayID) {
 
 		GatewaySetting gatewaySetting = mainDataUtil.queryGatewaySetting(gatewayID);
-		
-		if(gatewaySetting == null) {
-			String logContent = "MAIN_ENGINE:接口"+gatewayID+"无法连接,数据库中不存在";
-			CommonUtil.emitWarnLog(eventEngine, logContent);
+
+		if (gatewaySetting == null) {
+			String logContent = "MAIN_ENGINE:接口" + gatewayID + "无法连接,数据库中不存在";
+			CommonUtil.emitWarnLog(logContent);
 			log.warn(logContent);
 			return;
 		}
-		
+
 		String gatewayClassName = gatewaySetting.getGatewayClassName();
 
 		try {
 			Class<?> clazz = Class.forName(gatewayClassName);
-			Constructor<?> c = clazz.getConstructor(GatewaySetting.class, EventEngine.class);
-			Gateway gateway = (Gateway) c.newInstance(gatewaySetting, eventEngine);
+			Constructor<?> c = clazz.getConstructor(GatewaySetting.class);
+			Gateway gateway = (Gateway) c.newInstance(gatewaySetting);
 			gateway.connect();
 			// 重新订阅之前的合约
-			if(subscribeReqSetMap.containsKey(gatewayID)) {
+			if (subscribeReqSetMap.containsKey(gatewayID)) {
 				HashSet<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
-				for(SubscribeReq subscribeReq :subscribeReqSet) {
+				for (SubscribeReq subscribeReq : subscribeReqSet) {
 					gateway.subscribe(subscribeReq);
 				}
 			}
 			gatewayMap.put(gateway.getGatewayID(), gateway);
 
 		} catch (Exception e) {
-			CommonUtil.emitErrorLog(eventEngine, "MAIN_ENGINE:接口"+gatewayID+"无法连接,创建实例异常");
-			log.error("MAIN_ENGINE:创建接口{}实例发生异常,GatewaySetting{}", gatewayClassName, JSON.toJSONString(gatewaySetting), e);
+			CommonUtil.emitErrorLog("MAIN_ENGINE:接口" + gatewayID + "无法连接,创建实例异常");
+			log.error("MAIN_ENGINE:创建接口{}实例发生异常,GatewaySetting{}", gatewayClassName, JSON.toJSONString(gatewaySetting),
+					e);
 		}
 	}
 
@@ -717,7 +711,7 @@ public class MainEngineImpl implements MainEngine {
 
 	@Override
 	public void addModel(Module module) {
-		
+
 		// 预留,暂时没用到
 	}
 }

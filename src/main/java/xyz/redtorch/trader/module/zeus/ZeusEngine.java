@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
-import xyz.redtorch.trader.engine.event.EventListener;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Contract;
 import xyz.redtorch.trader.entity.Order;
@@ -19,7 +19,7 @@ import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 /**
  * @author sun0x00@gmail.com
  */
-public interface ZeusEngine extends EventListener,Module {
+public interface ZeusEngine extends FastEventDynamicHandler,Module {
 
 	/**
 	 * 获取引擎类型,区分实盘模拟盘

@@ -3,8 +3,7 @@ package xyz.redtorch.trader.engine.main;
 import java.util.List;
 
 import xyz.redtorch.trader.engine.data.DataEngine;
-import xyz.redtorch.trader.engine.event.EventEngine;
-import xyz.redtorch.trader.engine.event.EventListener;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
 import xyz.redtorch.trader.entity.Account;
 import xyz.redtorch.trader.entity.CancelOrderReq;
 import xyz.redtorch.trader.entity.Contract;
@@ -23,7 +22,7 @@ import xyz.redtorch.trader.module.Module;
 /**
  * @author sun0x00@gmail.com
  */
-public interface MainEngine extends EventListener{
+public interface MainEngine extends FastEventDynamicHandler{
 	
 	/**
 	 * 获取合约
@@ -46,12 +45,6 @@ public interface MainEngine extends EventListener{
 	 */
 	List<Contract> getContracts();
 	
-	/**
-	 * 获取主事件引擎
-	 * @return
-	 */
-	EventEngine getEventEngine();
-
 	/**
 	 * 获取数据引擎
 	 * @return

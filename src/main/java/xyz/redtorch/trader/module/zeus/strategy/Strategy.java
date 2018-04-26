@@ -3,7 +3,7 @@ package xyz.redtorch.trader.module.zeus.strategy;
 import java.util.List;
 import java.util.Map;
 
-import xyz.redtorch.trader.engine.event.EventListener;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.Tick;
@@ -14,7 +14,7 @@ import xyz.redtorch.trader.module.zeus.entity.StopOrder;
 /**
  * @author sun0x00@gmail.com
  */
-public interface Strategy extends EventListener {
+public interface Strategy extends FastEventDynamicHandler {
 	
 	/**
 	 * 返回策略ID

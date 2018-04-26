@@ -36,11 +36,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lmax.disruptor.RingBuffer;
+
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.event.EventConstant;
-import xyz.redtorch.trader.engine.event.EventData;
-import xyz.redtorch.trader.engine.event.EventEngine;
-import xyz.redtorch.trader.entity.LogData;
+import xyz.redtorch.trader.engine.event.FastEvent;
+import xyz.redtorch.trader.engine.event.FastEventEngine;
 
 /**
  * @author sun0x00@gmail.com
@@ -246,29 +247,35 @@ public class CommonUtil {
 		}
 		return classes;
 	}
-
 	/**
 	 * 发出error日志事件
 	 * 
 	 * @param eventEngine
 	 * @param logContent
 	 */
-	public static void emitErrorLog(EventEngine eventEngine, String logContent) {
-		if (eventEngine == null) {
-			log.error("事件引擎为null!!!");
-			return;
+	public static void emitLogBase(String event, String logLevel,String logContent) {
+		RingBuffer<FastEvent> ringBuffer  = FastEventEngine.getRingBuffer();
+		long sequence = ringBuffer.next(); // Grab the next sequence
+		try {
+			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
+			fastEvent.setEvent(event);
+			fastEvent.setEventType(EventConstant.EVENT_LOG);
+			fastEvent.getLogData().setLogTimestamp(System.currentTimeMillis());
+			fastEvent.getLogData().setLogLevel(logLevel);
+			fastEvent.getLogData().setLogContent(logContent);
+		} finally {
+			ringBuffer.publish(sequence);
 		}
-
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_ERROR);
-		logData.setLogContent(logContent);
-
+	}
+	/**
+	 * 发出error日志事件
+	 * 
+	 * @param eventEngine
+	 * @param logContent
+	 */
+	public static void emitErrorLog(String logContent) {
 		String event = EventConstant.EVENT_LOG;
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		eventEngine.emit(event, eventData);
+		emitLogBase(event, RtConstant.LOG_ERROR, logContent);
 	}
 
 	/**
@@ -277,22 +284,9 @@ public class CommonUtil {
 	 * @param eventEngine
 	 * @param logContent
 	 */
-	public static void emitWarnLog(EventEngine eventEngine, String logContent) {
-		if (eventEngine == null) {
-			log.error("事件引擎为null!!!");
-			return;
-		}
-
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_WARN);
-		logData.setLogContent(logContent);
-
+	public static void emitWarnLog(String logContent) {
 		String event = EventConstant.EVENT_LOG;
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		eventEngine.emit(event, eventData);
+		emitLogBase(event, RtConstant.LOG_WARN, logContent);
 	}
 
 	/**
@@ -301,21 +295,9 @@ public class CommonUtil {
 	 * @param eventEngine
 	 * @param logContent
 	 */
-	public static void emitInfoLog(EventEngine eventEngine, String logContent) {
-		if (eventEngine == null) {
-			log.error("事件引擎为null!!!");
-			return;
-		}
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_INFO);
-		logData.setLogContent(logContent);
-
+	public static void emitInfoLog(String logContent) {
 		String event = EventConstant.EVENT_LOG;
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		eventEngine.emit(event, eventData);
+		emitLogBase(event, RtConstant.LOG_INFO, logContent);
 	}
 
 	/**
@@ -324,21 +306,9 @@ public class CommonUtil {
 	 * @param eventEngine
 	 * @param logContent
 	 */
-	public static void emitDebugLog(EventEngine eventEngine, String logContent) {
-		if (eventEngine == null) {
-			log.error("事件引擎为null!!!");
-			return;
-		}
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_DEBUG);
-		logData.setLogContent(logContent);
-
+	public static void emitDebugLog(String logContent) {
 		String event = EventConstant.EVENT_LOG;
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		eventEngine.emit(event, eventData);
+		emitLogBase(event, RtConstant.LOG_DEBUG, logContent);
 	}
 
 	/**

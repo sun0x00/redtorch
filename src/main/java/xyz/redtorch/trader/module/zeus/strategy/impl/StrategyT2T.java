@@ -44,7 +44,7 @@ public class StrategyT2T extends StrategyTemplate{
 		// TODO Auto-generated method stub
 		if(trading) {
 			if("IH1805".equals(tick.getSymbol())) {
-				//sendOrder(tick.getRtSymbol(), ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, tick.getBidPrice1(), 1, "9999.724SN01.187.10030");
+				sendOrder(tick.getRtSymbol(), ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, tick.getBidPrice1(), 1, "9999.724SN01.187.10030");
 			}
 		}
 		

@@ -38,6 +38,35 @@ public class Order implements Serializable{
 	// CTP/LTS相关
 	private int frontID; // 前置机编号
 	private int sessionID; // 连接编号
+	
+	public Order() {}
+	
+	public void setAllValue(String gatewayID, String symbol, String exchange, String rtSymbol, String orderID, String rtOrderID,
+			String direction, String offset, double price, int totalVolume, int tradedVolume, String status,
+			String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
+			String updateTime, int frontID, int sessionID) {
+		this.gatewayID = gatewayID;
+		this.symbol = symbol;
+		this.exchange = exchange;
+		this.rtSymbol = rtSymbol;
+		this.orderID = orderID;
+		this.rtOrderID = rtOrderID;
+		this.direction = direction;
+		this.offset = offset;
+		this.price = price;
+		this.totalVolume = totalVolume;
+		this.tradedVolume = tradedVolume;
+		this.status = status;
+		this.tradingDay = tradingDay;
+		this.orderDate = orderDate;
+		this.orderTime = orderTime;
+		this.cancelTime = cancelTime;
+		this.activeTime = activeTime;
+		this.updateTime = updateTime;
+		this.frontID = frontID;
+		this.sessionID = sessionID;
+	}
+	
 	public String getGatewayID() {
 		return gatewayID;
 	}

@@ -28,7 +28,7 @@ import com.alibaba.fastjson.JSON;
 import xyz.redtorch.trader.base.BaseConfig;
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.data.DataEngine;
-import xyz.redtorch.trader.engine.event.EventData;
+import xyz.redtorch.trader.engine.event.FastEvent;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Contract;
 import xyz.redtorch.trader.entity.Order;
@@ -362,7 +362,6 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 						// 是否每个交易日都重新实例化
 						if (reloadStrategyEveryday) {
-							strategy.stop();
 							strategy = newInstance(strategyClass, strategySetting);
 							initStrategy(strategy);
 							strategy.init();
@@ -413,7 +412,6 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 						strategySetting.setPreTradingDay(lastDay);
 						strategySetting.setTradingDay(tradingDay);
 						if (reloadStrategyEveryday) {
-							strategy.stop();
 							strategy = newInstance(strategyClass, strategySetting);
 							initStrategy(strategy);
 							strategy.init();
@@ -1214,19 +1212,6 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	
 	///////////////////////////// ↓↓↓↓↓↓↓回测不需要实现的方法↓↓↓↓↓↓↓////////////////////////////
 	@Override
-	public void onEvent(EventData eventData) {
-
-	}
-
-	@Override
-	public void stop() {
-	}
-
-	@Override
-	public void run() {
-	}
-
-	@Override
 	public String getModuleID() {
 		return null;
 	}
@@ -1312,6 +1297,48 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	public Contract getContract(String rtSymbol, String gatewayID) {
 		return null;
 	}
+
+	@Override
+	public void awaitShutdown() throws InterruptedException {
+	}
+
+	@Override
+	public void onEvent(FastEvent event, long sequence, boolean endOfBatch) throws Exception {
+		
+	}
+
+	@Override
+	public void onStart() {
+		
+	}
+
+	@Override
+	public void onShutdown() {
+		
+	}
+	@Override
+	public List<String> getSubscribedEventList() {
+		return null;
+	}
+
+	@Override
+	public Set<String> getSubscribedEventSet() {
+		return null;
+	}
+
+	@Override
+	public void subscribeEvent(String event) {
+		
+	}
+
+	@Override
+	public void unsubscribeEvent(String event) {
+		
+	}
+	
 	///////////////////////////// ↑↑↑↑↑↑↑回测不需要实现的方法↑↑↑↑↑↑↑////////////////////////////
+
+
+
 
 }

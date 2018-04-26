@@ -24,6 +24,21 @@ public class Position  implements Serializable{
 	private String rtPositionName; // 持仓在系统中的唯一代码,通常是rtSymbol.方向
 	private int ydPosition; // 昨持仓
 	private double positionProfit; // 持仓盈亏
+	
+	public void setAllValue(String gatewayID, String symbol, String exchange, String rtSymbol, String direction, int position,
+			int frozen, double price, String rtPositionName, int ydPosition, double positionProfit) {
+		this.gatewayID = gatewayID;
+		this.symbol = symbol;
+		this.exchange = exchange;
+		this.rtSymbol = rtSymbol;
+		this.direction = direction;
+		this.position = position;
+		this.frozen = frozen;
+		this.price = price;
+		this.rtPositionName = rtPositionName;
+		this.ydPosition = ydPosition;
+		this.positionProfit = positionProfit;
+	}
 	public String getGatewayID() {
 		return gatewayID;
 	}

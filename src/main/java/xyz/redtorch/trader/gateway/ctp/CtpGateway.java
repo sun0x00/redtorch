@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.trader.engine.event.EventEngine;
 import xyz.redtorch.trader.entity.CancelOrderReq;
 import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.SubscribeReq;
@@ -72,8 +71,8 @@ public class CtpGateway extends GatewayAbstract {
 	private MdSpi mdSpi = new MdSpi(this);
 	private TdSpi tdSpi = new TdSpi(this);
 
-	public CtpGateway(GatewaySetting gatewaySetting, EventEngine eventEngine) {
-		super(gatewaySetting, eventEngine);
+	public CtpGateway(GatewaySetting gatewaySetting) {
+		super(gatewaySetting);
 	}
 
 	public HashMap<String, String> getContractExchangeMap() {

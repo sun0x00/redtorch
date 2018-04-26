@@ -24,12 +24,12 @@ import com.alibaba.fastjson.JSON;
 
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.event.EventConstant;
-import xyz.redtorch.trader.engine.event.EventData;
+import xyz.redtorch.trader.engine.event.FastEvent;
+import xyz.redtorch.trader.engine.event.FastEventEngine;
 import xyz.redtorch.trader.engine.main.MainEngine;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.CancelOrderReq;
 import xyz.redtorch.trader.entity.Contract;
-import xyz.redtorch.trader.entity.LogData;
 import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.SubscribeReq;
@@ -52,8 +52,6 @@ import xyz.redtorch.utils.CommonUtil;
 public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	private Logger log = LoggerFactory.getLogger(TradingEngineImpl.class);
-
-	LinkedBlockingQueue<EventData> eventDataQueue = new LinkedBlockingQueue<>();
 
 	private static final String moduleID = "MODULE_ZEUS";
 	private static final String moduleDisplayName = "Zeus实盘引擎";
@@ -83,56 +81,44 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	}
 
 	@Override
-	public void onEvent(EventData eventData) {
-		if (eventData != null) {
-			eventDataQueue.add(eventData);
-		}
-	}
+	public void onEvent(final FastEvent fastEvent, final long sequence, final boolean endOfBatch) throws Exception {
 
-	@Override
-	public void run() {
-		while (!Thread.currentThread().isInterrupted()) {
-			EventData ed = null;
+		String logContent;
+		if (!subscribedEventSet.contains(fastEvent.getEvent())) {
+			return;
+		}
+		// 判断消息类型
+		if (EventConstant.EVENT_TICK.equals(fastEvent.getEventType())) {
 			try {
-				ed = eventDataQueue.take();
-			} catch (InterruptedException e) {
-				log.error("{} 捕获到线程中断异常,线程停止!!!", logStr, e);
+				Tick tick = fastEvent.getTick();
+				onTick(tick);
+			} catch (Exception e) {
+				logContent = logStr + "onTick发生异常!!!";
+				emitErrorLog(logContent);
+				log.error(logContent, e);
 			}
-			// 判断消息类型
-			if (EventConstant.EVENT_TICK.equals(ed.getEventType())) {
-				try {
-					Tick tick = (Tick) ed.getEventObj();
-					onTick(tick);
-				} catch (Exception e) {
-					String logContent = logStr + "onTick发生异常!!!";
-					emitErrorLog(logContent);
-					log.error(logContent, e);
-				}
-			} else if (EventConstant.EVENT_TRADE.equals(ed.getEventType())) {
-				try {
-					Trade trade = (Trade) ed.getEventObj();
-					onTrade(trade);
-				} catch (Exception e) {
-					String logContent = logStr + "onTrade发生异常!!!";
-					emitErrorLog(logContent);
-					log.error(logContent, e);
-				}
-			} else if (EventConstant.EVENT_ORDER.equals(ed.getEventType())) {
-				try {
-					Order order = (Order) ed.getEventObj();
-					onOrder(order);
-				} catch (Exception e) {
-					String logContent = logStr + "onOrder发生异常!!!";
-					emitErrorLog(logContent);
-					log.error(logContent, e);
-				}
-			} else if (EventConstant.EVENT_THREAD_STOP.equals(ed.getEventType())) {
-				break;
-			} else {
-				String logContent = logStr + "未能识别的事件数据类型" + JSON.toJSONString(ed);
-				emitWarnLog(logContent);
-				log.warn(logContent);
+		} else if (EventConstant.EVENT_TRADE.equals(fastEvent.getEventType())) {
+			try {
+				Trade trade = fastEvent.getTrade();
+				onTrade(trade);
+			} catch (Exception e) {
+				logContent = logStr + "onTrade发生异常!!!";
+				emitErrorLog(logContent);
+				log.error(logContent, e);
 			}
+		} else if (EventConstant.EVENT_ORDER.equals(fastEvent.getEventType())) {
+			try {
+				Order order = fastEvent.getOrder();
+				onOrder(order);
+			} catch (Exception e) {
+				logContent = logStr + "onOrder发生异常!!!";
+				emitErrorLog(logContent);
+				log.error(logContent, e);
+			}
+		} else {
+			logContent = logStr + "未能识别的事件数据类型" + JSON.toJSONString(fastEvent.getEvent());
+			emitWarnLog(logContent);
+			log.warn(logContent);
 		}
 	}
 
@@ -152,21 +138,23 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	}
 
 	@Override
-	public void stop() {
+	public void onStart() {
+
+	}
+
+	@Override
+	public void onShutdown() {
 		stopAllStrategy();
-		executor.shutdownNow();
-		// 通知其他线程
-		EventData eventData = new EventData();
-		eventData.setEvent(EventConstant.EVENT_THREAD_STOP);
-		eventData.setEventType(EventConstant.EVENT_THREAD_STOP);
-		eventDataQueue.add(eventData);
+		shutdownLatch.countDown();
 	}
 
 	@Override
 	public String sendOrder(OrderReq orderReq, Strategy strategy) {
 		String rtOrderID = mainEngine.sendOrder(orderReq);
-		mainEventEngine.registerListener(EventConstant.EVENT_ORDER + rtOrderID, strategy);
-		mainEventEngine.registerListener(EventConstant.EVENT_ORDER + rtOrderID, this);
+
+		strategy.subscribeEvent(EventConstant.EVENT_ORDER + rtOrderID);
+		subscribeEvent(EventConstant.EVENT_ORDER + rtOrderID);
+
 		return rtOrderID;
 	}
 
@@ -186,13 +174,13 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 				cancelOrderReq.setOrderID(order.getOrderID());
 				cancelOrderReq.setGatewayID(order.getOrderID());
 				mainEngine.cancelOrder(cancelOrderReq);
-				
-			}else {
+
+			} else {
 				String logContent = logStr + "无法撤单,委托状态为完成,rtOrderID:" + rtOrderID;
 				emitWarnLog(logContent);
 				log.warn(logContent);
 			}
-		}else {
+		} else {
 			String logContent = logStr + "无法撤单,委托不存在,rtOrderID:" + rtOrderID;
 			emitWarnLog(logContent);
 			log.warn(logContent);
@@ -227,15 +215,15 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		String logContent = logStr + "加载指定策略,策略ID:" + strategyID;
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		scanAndLoadStartegy(strategyID);
 	}
 
 	@Override
 	public void scanAndLoadStartegy(String strategyID) {
-		
+
 		String logContent;
-		
+
 		Set<Class<?>> classes = CommonUtil.getClasses("xyz.redtorch.trader");
 		if (classes == null) {
 			logContent = logStr + "未能在包xyz.redtorch.trader下扫描到任何类!!!";
@@ -254,14 +242,13 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 					String classSimpleName = clazz.getSimpleName();
 					String className = clazz.getSimpleName();
 					File strategyConfigFile = ZeusUtil.getStartegyConfigFile(classSimpleName + "-Setting.json");
-					
-					logContent = logStr + "策略类" + className + "对应的配置文件临时路径"+strategyConfigFile.getAbsolutePath();
+
+					logContent = logStr + "策略类" + className + "对应的配置文件临时路径" + strategyConfigFile.getAbsolutePath();
 					emitInfoLog(logContent);
 					log.info(logContent);
-					
+
 					if (!strategyConfigFile.exists() || strategyConfigFile.isDirectory()) {
-						logContent = logStr + "未能找到策略类" + className + "对应的配置文件" + classSimpleName
-								+ "-Setting.json";
+						logContent = logStr + "未能找到策略类" + className + "对应的配置文件" + classSimpleName + "-Setting.json";
 						emitErrorLog(logContent);
 						log.error(logContent);
 					} else {
@@ -331,8 +318,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 								}
 
 								boolean error = false;
-								for (StrategySetting.ContractSetting contractSetting : strategySetting
-										.getContracts()) {
+								for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
 									if (contractSetting.getTradeGateways() == null
 											|| contractSetting.getTradeGateways().isEmpty()) {
 										logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
@@ -375,7 +361,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 									// 启动策略线程（不是初始化也不是启动交易,仅仅是启动线程）
 									// 初始化之后就应该立即启动线程,便于通过事件结束run方法实现销毁
-									executor.execute(strategy);
+									FastEventEngine.addHandler(strategy);
 									// Map缓存策略
 									strategyMap.put(strategySetting.getId(), strategy);
 
@@ -408,11 +394,10 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	public void unloadStrategy(String strategyID) {
 		Strategy strategy = strategyMap.get(strategyID);
 		if (strategy != null) {
-			mainEventEngine.removeListener(null, strategy);
-			strategy.stop();
+			strategy.stopTrading(false);
+			FastEventEngine.removeHandler(strategy);
 			// 取消订阅合约
-			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting()
-					.getGateways()) {
+			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting().getGateways()) {
 				String gatewayID = gatewaySetting.getGatewayID();
 				for (String rtSymbol : gatewaySetting.getSubscribeRtSymbols()) {
 					String logContent = logStr + "卸载策略,ID:" + strategyID + ",取消订阅接口" + gatewayID + "合约" + rtSymbol;
@@ -501,8 +486,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 					contractPositionMap.put(rtSymbol, new ContractPositionDetail());
 				}
 
-				for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : contractSetting
-						.getTradeGateways()) {
+				for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : contractSetting.getTradeGateways()) {
 					String contractGatewayKey = rtSymbol + tradeGatewaySetting.getGatewayID();
 					contractGatewayKeySet.add(contractGatewayKey);
 				}
@@ -614,14 +598,13 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			log.info(logContent);
 			/************************ 订阅合约注册事件 *******************/
 			// 通过配置订阅合约注册事件
-			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting()
-					.getGateways()) {
+			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting().getGateways()) {
 				String gatewayID = gatewaySetting.getGatewayID();
 
 				for (String rtSymbol : gatewaySetting.getSubscribeRtSymbols()) {
 					// 为策略注册Tick数据监听事件
 					String event = EventConstant.EVENT_TICK + gatewayID + rtSymbol;
-					mainEventEngine.registerListener(event, strategy);
+					strategy.subscribeEvent(event);
 
 					logContent = logStr + "初始化" + strategy.getLogStr() + "注册事件监听" + event;
 					emitInfoLog(logContent);
@@ -656,7 +639,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		String logContent = logStr + "启动策略,策略ID:" + strategyID;
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		Strategy strategy = strategyMap.get(strategyID);
 		if (strategy != null) {
 			strategy.startTrading();
@@ -672,7 +655,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		String logContent = logStr + "停止策略,策略ID:" + strategyID;
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		Strategy strategy = strategyMap.get(strategyID);
 		if (strategy != null) {
 			strategy.stopTrading(false);
@@ -689,7 +672,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		String logContent = logStr + "初始化所有策略";
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		for (Strategy strategy : strategyMap.values()) {
 			initStrategy(strategy.getID());
 		}
@@ -697,11 +680,11 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	@Override
 	public void startAllStrategy() {
-		
+
 		String logContent = logStr + "启动所有策略";
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		for (Strategy strategy : strategyMap.values()) {
 			strategy.startTrading();
 		}
@@ -709,11 +692,11 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	@Override
 	public void stopAllStrategy() {
-		
+
 		String logContent = logStr + "停止所有策略";
 		emitInfoLog(logContent);
 		log.info(logContent);
-		
+
 		for (Strategy strategy : strategyMap.values()) {
 			strategy.stopTrading(false);
 		}
@@ -821,58 +804,26 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	@Override
 	public void emitErrorLog(String logContent) {
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_ERROR);
-		logData.setLogContent(logContent);
-
 		String event = EventConstant.EVENT_LOG + "ZEUS|";
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		mainEventEngine.emit(event, eventData);
+		CommonUtil.emitLogBase(event, RtConstant.LOG_ERROR, logContent);
 	}
 
 	@Override
 	public void emitWarnLog(String logContent) {
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_WARN);
-		logData.setLogContent(logContent);
-
 		String event = EventConstant.EVENT_LOG + "ZEUS|";
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		mainEventEngine.emit(event, eventData);
+		CommonUtil.emitLogBase(event, RtConstant.LOG_WARN, logContent);
 	}
 
 	@Override
 	public void emitInfoLog(String logContent) {
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_INFO);
-		logData.setLogContent(logContent);
-
 		String event = EventConstant.EVENT_LOG + "ZEUS|";
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		mainEventEngine.emit(event, eventData);
+		CommonUtil.emitLogBase(event, RtConstant.LOG_INFO, logContent);
 	}
 
 	@Override
 	public void emitDebugLog(String logContent) {
-		LogData logData = new LogData();
-		logData.setLogLevel(RtConstant.LOG_DEBUG);
-		logData.setLogContent(logContent);
-
 		String event = EventConstant.EVENT_LOG + "ZEUS|";
-		EventData eventData = new EventData();
-		eventData.setEvent(event);
-		eventData.setEventType(EventConstant.EVENT_LOG);
-		eventData.setEventObj(logData);
-		mainEventEngine.emit(event, eventData);
+		CommonUtil.emitLogBase(event, RtConstant.LOG_DEBUG, logContent);
 	}
 
 }

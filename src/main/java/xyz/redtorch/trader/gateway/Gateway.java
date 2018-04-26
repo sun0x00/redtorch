@@ -2,16 +2,14 @@ package xyz.redtorch.trader.gateway;
 
 import java.util.HashSet;
 
-import xyz.redtorch.trader.engine.event.EventEngine;
+import org.joda.time.DateTime;
+
 import xyz.redtorch.trader.entity.Account;
 import xyz.redtorch.trader.entity.CancelOrderReq;
 import xyz.redtorch.trader.entity.Contract;
-import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.Position;
 import xyz.redtorch.trader.entity.SubscribeReq;
-import xyz.redtorch.trader.entity.Tick;
-import xyz.redtorch.trader.entity.Trade;
 
 /**
  * @author sun0x00@gmail.com
@@ -94,25 +92,34 @@ public interface Gateway {
 	 * 发送Tick事件
 	 * @param tick
 	 */
-	void emitTick(Tick tick);
+	void emitTick(String gatewayID, String symbol, String exchange, String rtSymbol, String tradingDay, String actionDay,
+			String actionTime, DateTime dateTime, Integer status, Double lastPrice, Integer lastVolume, Integer volume,
+			Double openInterest, Long preOpenInterest, Double preClosePrice, Double preSettlePrice, Double openPrice,
+			Double highPrice, Double lowPrice, Double upperLimit, Double lowerLimit, Double bidPrice1, Double bidPrice2,
+			Double bidPrice3, Double bidPrice4, Double bidPrice5, Double bidPrice6, Double bidPrice7, Double bidPrice8,
+			Double bidPrice9, Double bidPrice10, Double askPrice1, Double askPrice2, Double askPrice3, Double askPrice4,
+			Double askPrice5, Double askPrice6, Double askPrice7, Double askPrice8, Double askPrice9, Double askPrice10,
+			Integer bidVolume1, Integer bidVolume2, Integer bidVolume3, Integer bidVolume4, Integer bidVolume5,
+			Integer bidVolume6, Integer bidVolume7, Integer bidVolume8, Integer bidVolume9, Integer bidVolume10,
+			Integer askVolume1, Integer askVolume2, Integer askVolume3, Integer askVolume4, Integer askVolume5,
+			Integer askVolume6, Integer askVolume7, Integer askVolume8, Integer askVolume9, Integer askVolume10);
 
 	/**
 	 * 发送成交事件
 	 * @param trade
 	 */
-	void emitTrade(Trade trade);
+	void emitTrade(String gatewayID, String symbol, String exchange, String rtSymbol, String tradeID, String rtTradeID,
+			String orderID, String rtOrderID, String direction, String offset, double price, int volume,
+			String tradingDay, String tradeDate, String tradeTime, DateTime dateTime);
 	
 	/**
 	 * 发送委托事件
 	 * @param order
 	 */
-	void emitOrder(Order order);
-
-	/**
-	 * 获取事件引擎
-	 * @return
-	 */
-	EventEngine getEventEngine();
+	void emitOrder(String gatewayID, String symbol, String exchange, String rtSymbol, String orderID, String rtOrderID,
+			String direction, String offset, double price, int totalVolume, int tradedVolume, String status,
+			String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
+			String updateTime, int frontID, int sessionID);
 	
 	/**
 	 * 获取配置 
