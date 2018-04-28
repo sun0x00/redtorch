@@ -1119,7 +1119,7 @@
                 // console.log(dtAInt)
                 return (dtAInt * 100000000 + parseInt(orderA.orderID)) - (dtBInt * 100000000 + parseInt(orderB.orderID))
             },
-            sortTradeByTimeAndID(tradeA, tradeB) {
+            sortTradesByTimeAndID(tradeA, tradeB) {
                 let dtA = (tradeA.tradeDate + "" + tradeA.tradeTime).replace(/:/g, "").replace(/null/g, "").replace(
                     /undefined/g, "")
                 let dtAInt = 0
