@@ -25,8 +25,8 @@ public class DataEngineImpl implements DataEngine {
 
 	private static Logger log = LoggerFactory.getLogger(DataEngineImpl.class);
 
-	private MongoDBClient mdDBClient;
-	private MongoDBClient defaultDBClient;
+	private MongoDBClient mdDBClient;//行情数据库客户端
+	private MongoDBClient defaultDBClient;//默认数据库客户端
 
 	public DataEngineImpl() throws Exception {
 
@@ -68,15 +68,15 @@ public class DataEngineImpl implements DataEngine {
 	@Override
 	public List<Bar> loadBarDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol) {
 		log.info("加载Bar数据,合约{},开始日期时间{}结束日期时间{}", rtSymbol,
-				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter),
-				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter));
+				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER),
+				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
 		long startTime = System.currentTimeMillis();
 		Document filter = new Document();
 		filter.append("dateTime", new Document("$gte", startDateTime.toDate()).append("$lte", endDateTime.toDate()));
 
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
-		List<Document> documentList = mdDBClient.find(minuteDBName, rtSymbol, filter, sort);
+		List<Document> documentList = mdDBClient.find(MINUTE_DB_NAME, rtSymbol, filter, sort);
 
 		List<Bar> barList = new ArrayList<>();
 		for (Document document : documentList) {
@@ -96,15 +96,15 @@ public class DataEngineImpl implements DataEngine {
 	@Override
 	public List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol) {
 		log.info("加载Tick数据,合约{},开始日期时间{}结束日期时间{}", rtSymbol,
-				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter),
-				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_Formatter));
+				startDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER),
+				endDateTime.toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
 		long startTime = System.currentTimeMillis();
 		Document filter = new Document();
 		filter.append("dateTime", new Document("$gte", startDateTime.toDate()).append("$lte", endDateTime.toDate()));
 
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
-		List<Document> documentList = mdDBClient.find(tickDBName, rtSymbol, filter, sort);
+		List<Document> documentList = mdDBClient.find(TICK_DB_NAME, rtSymbol, filter, sort);
 
 		List<Tick> tickList = new ArrayList<>();
 		for (Document document : documentList) {

@@ -22,7 +22,7 @@ public class MainDataUtilImpl implements MainDataUtil {
 	
 	private MongoDBClient defaultDBClient;
 	
-	private String defaultDBName = DataEngine.defaultDBName;
+	private String defaultDBName = DataEngine.DEFAULT_DB_NAME;
 
 	
 	private Logger log = LoggerFactory.getLogger(MainDataUtilImpl.class);

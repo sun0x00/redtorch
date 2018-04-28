@@ -137,7 +137,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		order.setTotalVolume(orderReq.getVolume());
 		order.setOrderID(orderID);
 		order.setRtOrderID(orderID);
-		order.setOrderTime(lastDateTime.toString(RtConstant.T_FORMAT_Formatter));
+		order.setOrderTime(lastDateTime.toString(RtConstant.T_FORMAT_FORMATTER));
 		order.setGatewayID(orderReq.getGatewayID());
 		order.setDirection(orderReq.getDirection());
 		order.setOffset(orderReq.getOffset());
@@ -155,7 +155,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			Order order = workingLimitOrderMap.get(rtOrderID);
 
 			order.setStatus(RtConstant.STATUS_CANCELLED);
-			order.setCancelTime(lastDateTime.toString(RtConstant.T_FORMAT_Formatter));
+			order.setCancelTime(lastDateTime.toString(RtConstant.T_FORMAT_FORMATTER));
 
 			strategy.processOrder(order);
 
@@ -166,7 +166,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 	@Override
 	public List<Tick> loadTickDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol) {
-		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(tradingDay);
+		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(tradingDay);
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 
@@ -176,7 +176,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	@Override
 	public List<Bar> loadBarDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol) {
 
-		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(tradingDay);
+		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(tradingDay);
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 
@@ -231,8 +231,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	public List<Bar> loadBacktestingBarDataList(String startDate, String endDate, List<String> subscribeRtSymbolList) {
 		log.info("加载Bar回测数据,合约{},开始日期{},结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
 		long startTime = System.currentTimeMillis();
-		DateTime startDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(startDate);
-		DateTime endDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(endDate);
+		DateTime startDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(startDate);
+		DateTime endDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(endDate);
 		List<Bar> barList = new ArrayList<>();
 		for (String rtSymbol : subscribeRtSymbolList) {
 			List<Bar> tmpBarList = zeusDataUtil.loadBarDataList(startDateTime, endDateTime, rtSymbol);
@@ -252,8 +252,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			List<String> subscribeRtSymbolList) {
 		log.info("加载Tick回测数据,合约{},开始日期{},结束日期{}", JSON.toJSONString(subscribeRtSymbolList), startDate, endDate);
 		long startTime = System.currentTimeMillis();
-		DateTime startDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(startDate);
-		DateTime endDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(endDate);
+		DateTime startDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(startDate);
+		DateTime endDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(endDate);
 		List<Tick> tickList = new ArrayList<>();
 		for (String rtSymbol : subscribeRtSymbolList) {
 			tickList.addAll(zeusDataUtil.loadTickDataList(startDateTime, endDateTime, rtSymbol));
@@ -385,7 +385,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					crossLimitOrder(tick.getRtSymbol());
 					strategy.processTick(tick);
 
-					updateDailyClose(tick.getDateTime().toString(RtConstant.D_FORMAT_INT_Formatter),
+					updateDailyClose(tick.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER),
 							tick.getLastPrice(), tick.getRtSymbol());
 
 				}
@@ -393,7 +393,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				List<Bar> barDataList = loadBacktestingBarDataList(startDate, endDate, subscribeRtSymbolList);
 
 				// for (Bar bar : barDataList) {
-				// System.out.println(bar.getDateTime().toString(RtConstant.DT_FORMAT_WITH_MS_Formatter)
+				// System.out.println(bar.getDateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER)
 				// + "===" + bar.getRtSymbol());
 				// }
 				for (Bar bar : barDataList) {
@@ -434,7 +434,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					crossLimitOrder(bar.getRtSymbol());
 					strategy.processBar(bar);
 
-					updateDailyClose(bar.getDateTime().toString(RtConstant.D_FORMAT_INT_Formatter), bar.getClose(),
+					updateDailyClose(bar.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER), bar.getClose(),
 							bar.getRtSymbol());
 
 				}
@@ -864,9 +864,9 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					settleTrade.setRtSymbol(rtSymbol);
 					settleTrade.setRtTradeID("Settle-"+longTrade.getRtTradeID());
 					settleTrade.setSymbol(longTrade.getSymbol());
-					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_Formatter));
+					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_FORMATTER));
 					settleTrade.setTradeID("Settle-"+longTrade.getTradeID());
-					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_Formatter));
+					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_FORMATTER));
 					settleTrade.setTradingDay(endTradingDay);
 					settleTrade.setVolume(longTrade.getVolume());
 					
@@ -895,9 +895,9 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					settleTrade.setRtSymbol(rtSymbol);
 					settleTrade.setRtTradeID("Settle-"+shortTrade.getRtTradeID());
 					settleTrade.setSymbol(shortTrade.getSymbol());
-					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_Formatter));
+					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_FORMATTER));
 					settleTrade.setTradeID("Settle-"+shortTrade.getTradeID());
-					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_Formatter));
+					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_FORMATTER));
 					settleTrade.setTradingDay(endTradingDay);
 					settleTrade.setVolume(shortTrade.getVolume());
 					
@@ -1100,14 +1100,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	private void calculateDailyResult() {
 
 		for (Trade trade : tradeMap.values()) {
-			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_Formatter);
+			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER);
 
 			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getGatewayID())
 					.get(date);
 			dailyResult.addTrade(trade);
 		}
 		for (Trade trade : settleTradeMap.values()) {
-			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_Formatter);
+			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER);
 
 			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getGatewayID())
 					.get(date);

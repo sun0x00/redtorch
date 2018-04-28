@@ -135,19 +135,19 @@ public interface RtConstant {
 	static final String D_FORMAT_INT = "yyyyMMdd";
 	static final String D_FORMAT = "yyyy-MM-dd";
 
-	static final DateTimeFormatter DT_FORMAT_WITH_MS_Formatter = DateTimeFormat
+	static final DateTimeFormatter DT_FORMAT_WITH_MS_FORMATTER = DateTimeFormat
 			.forPattern(RtConstant.DT_FORMAT_WITH_MS);
-	static final DateTimeFormatter DT_FORMAT_WITH_MS_INT_Formatter = DateTimeFormat
+	static final DateTimeFormatter DT_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormat
 			.forPattern(RtConstant.DT_FORMAT_WITH_MS_INT);
-	static final DateTimeFormatter DT_FORMAT_Formatter = DateTimeFormat.forPattern(RtConstant.DT_FORMAT);
-	static final DateTimeFormatter DT_FORMAT_INT_Formatter = DateTimeFormat.forPattern(RtConstant.DT_FORMAT_INT);
+	static final DateTimeFormatter DT_FORMAT_FORMATTER = DateTimeFormat.forPattern(RtConstant.DT_FORMAT);
+	static final DateTimeFormatter DT_FORMAT_INT_FORMATTER = DateTimeFormat.forPattern(RtConstant.DT_FORMAT_INT);
 
-	static final DateTimeFormatter T_FORMAT_WITH_MS_INT_Formatter = DateTimeFormat
+	static final DateTimeFormatter T_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormat
 			.forPattern(RtConstant.T_FORMAT_WITH_MS_INT);
-	static final DateTimeFormatter T_FORMAT_WITH_MS_Formatter = DateTimeFormat.forPattern(RtConstant.T_FORMAT_WITH_MS);
-	static final DateTimeFormatter T_FORMAT_INT_Formatter = DateTimeFormat.forPattern(RtConstant.T_FORMAT_INT);
-	static final DateTimeFormatter T_FORMAT_Formatter = DateTimeFormat.forPattern(RtConstant.T_FORMAT);
+	static final DateTimeFormatter T_FORMAT_WITH_MS_FORMATTER = DateTimeFormat.forPattern(RtConstant.T_FORMAT_WITH_MS);
+	static final DateTimeFormatter T_FORMAT_INT_FORMATTER = DateTimeFormat.forPattern(RtConstant.T_FORMAT_INT);
+	static final DateTimeFormatter T_FORMAT_FORMATTER = DateTimeFormat.forPattern(RtConstant.T_FORMAT);
 
-	static final DateTimeFormatter D_FORMAT_INT_Formatter = DateTimeFormat.forPattern(RtConstant.D_FORMAT_INT);
-	static final DateTimeFormatter D_FORMAT_Formatter = DateTimeFormat.forPattern(RtConstant.D_FORMAT);
+	static final DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormat.forPattern(RtConstant.D_FORMAT_INT);
+	static final DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormat.forPattern(RtConstant.D_FORMAT);
 }

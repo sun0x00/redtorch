@@ -26,26 +26,21 @@ public class FastEventEngine {
 	private static Logger log = LoggerFactory.getLogger(FastEventEngine.class); 
 	
 	private static ExecutorService executor = Executors.newCachedThreadPool(DaemonThreadFactory.INSTANCE);
-
-	// BlockingWaitStrategy 低效
-	// SleepingWaitStrategy 对生产者影响较小
-	// YieldingWaitStrategy 高性能
-	// BusySpinWaitStrategy 对物理机有要求
 	
     // Build a disruptor and start it.
     private static Disruptor<FastEvent> disruptor ;
     static{
-    	if("BlockingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
+    	if("BusySpinWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
         	disruptor = new Disruptor<FastEvent>(
-            		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BlockingWaitStrategy());
+            		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BusySpinWaitStrategy());
     	}else if("SleepingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
         	disruptor = new Disruptor<FastEvent>(
             		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new SleepingWaitStrategy());
-    	}else if("YieldingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
+    	}else if("BlockingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
         	disruptor = new Disruptor<FastEvent>(
-            		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new YieldingWaitStrategy());
+            		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BlockingWaitStrategy());
     	}else {
-        	disruptor = new Disruptor<FastEvent>( new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BusySpinWaitStrategy());
+        	disruptor = new Disruptor<FastEvent>( new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new YieldingWaitStrategy());
     	}
     }
     private static RingBuffer<FastEvent> ringBuffer = disruptor.start();

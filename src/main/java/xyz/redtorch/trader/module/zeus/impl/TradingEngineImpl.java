@@ -704,7 +704,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	@Override
 	public List<Tick> loadTickDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol) {
-		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(tradingDay);
+		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(tradingDay);
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 
@@ -714,7 +714,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	@Override
 	public List<Bar> loadBarDataByOffsetDay(String tradingDay, int offsetDay, String rtSymbol) {
 
-		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_Formatter.parseDateTime(tradingDay);
+		DateTime tradingDateTime = RtConstant.D_FORMAT_INT_FORMATTER.parseDateTime(tradingDay);
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 

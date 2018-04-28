@@ -33,7 +33,7 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 	private DataEngine dataEngine;
 	
 	private MongoDBClient defaultDBClient;
-	private String defaultDBName = DataEngine.defaultDBName;
+	private String defaultDBName = DataEngine.DEFAULT_DB_NAME;
 	
 	public ZeusDataUtilImpl(DataEngine dataEngine) {
 		this.defaultDBClient = dataEngine.getDefaultDBClient();
@@ -70,7 +70,7 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 		filter.put("strategyID", syncVarMapWithNameAndID.get("strategyID"));
 		
 		// 不使用upsert,避免有些字段在策略被删除后仍然在数据库中存在
-		//defaultDBClient.upsert(defaultDBName, strategySyncVarCollection, document, filter);
+		//defaultDBClient.upsert(DEFAULT_DB_NAME, strategySyncVarCollection, document, filter);
 		
 		defaultDBClient.delete(defaultDBName, strategySyncVarCollection, filter);
 		defaultDBClient.insert(defaultDBName, strategySyncVarCollection, document);

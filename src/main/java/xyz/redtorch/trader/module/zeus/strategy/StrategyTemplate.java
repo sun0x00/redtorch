@@ -1081,7 +1081,7 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 			} else if (bar.getDateTime().getMinuteOfDay() != tick.getDateTime().getMinuteOfDay()) {
 
 				bar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
-				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_Formatter));
+				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
 
 				// 回调OnBar方法
 				callBackXMinBar.call(bar);
@@ -1159,7 +1159,7 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 
 			if ((xMinBar.getDateTime().getMinuteOfDay() + 1) % xMin == 0) {
 				bar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
-				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_Formatter));
+				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
 
 				// 回调onXMinBar方法
 				callBackXMinBar.call(xMinBar);

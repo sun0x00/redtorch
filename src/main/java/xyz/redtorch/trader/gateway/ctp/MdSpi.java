@@ -334,7 +334,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 			DateTime dateTime;
 			try {
-				dateTime = RtConstant.DT_FORMAT_WITH_MS_INT_Formatter.parseDateTime(updateDateTimeWithMS);
+				dateTime = RtConstant.DT_FORMAT_WITH_MS_INT_FORMATTER.parseDateTime(updateDateTimeWithMS);
 			} catch (Exception e) {
 				log.error("{}解析日期发生异常", gatewayLogInfo, e);
 				return;
@@ -344,7 +344,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			String rtSymbol = symbol + "." + exchange;
 			String tradingDay = tradingDayStr;
 			String actionDayStr = pDepthMarketData.getActionDay();
-			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_Formatter);
+			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
 			Integer status = 0;
 			Double lastPrice = pDepthMarketData.getLastPrice();
 			Integer lastVolume = 0;
