@@ -346,10 +346,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 			String actionDayStr = pDepthMarketData.getActionDay();
 			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_Formatter);
 			Integer status = 0;
-			Double lastPrice = 0d;
+			Double lastPrice = pDepthMarketData.getLastPrice();
 			Integer lastVolume = 0;
-			Integer volume = 0;
-			Double openInterest = 0d;
+			Integer volume = pDepthMarketData.getVolume();
+			Double openInterest = pDepthMarketData.getOpenInterest();
 			Long preOpenInterest = 0L;
 			Double preClosePrice = pDepthMarketData.getPreClosePrice();
 			Double preSettlePrice = pDepthMarketData.getPreSettlementPrice();
