@@ -109,7 +109,8 @@ public class ZeusApplication {
 			result.setMessage("参数不正确");
 			return result;
 		}
-		result.setData(tradingService.sendOrder(gatewayID, rtSymbol, price, volume, priceType, direction, offset));
+		String orderID = tradingService.sendOrder(gatewayID, rtSymbol, price, volume, priceType, direction, offset);
+		result.setData(orderID);
 		
 		return result;
 	}

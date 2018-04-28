@@ -341,7 +341,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 //		if("IH1805".equals(orderReq.getSymbol())) {
 //			System.out.println("T2T-OrderBefore-"+System.nanoTime());
 //		}
-//		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID);
+		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID);
 //		if("IH1805".equals(orderReq.getSymbol())) {
 //			System.out.println("T2T-Order-"+System.nanoTime());
 //		}
