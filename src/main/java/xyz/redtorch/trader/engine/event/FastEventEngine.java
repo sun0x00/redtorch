@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.lmax.disruptor.BatchEventProcessor;
 import com.lmax.disruptor.BlockingWaitStrategy;
+import com.lmax.disruptor.BusySpinWaitStrategy;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
@@ -28,16 +30,22 @@ public class FastEventEngine {
 	// BlockingWaitStrategy 低效
 	// SleepingWaitStrategy 对生产者影响较小
 	// YieldingWaitStrategy 高性能
+	// BusySpinWaitStrategy 对物理机有要求
 	
     // Build a disruptor and start it.
     private static Disruptor<FastEvent> disruptor ;
     static{
-    	if("slow".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
+    	if("BlockingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
         	disruptor = new Disruptor<FastEvent>(
             		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BlockingWaitStrategy());
-    	}else {
+    	}else if("SleepingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
+        	disruptor = new Disruptor<FastEvent>(
+            		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new SleepingWaitStrategy());
+    	}else if("YieldingWaitStrategy".equals(BaseConfig.rtConfig.getString("engine.event.FastEventEngine.WaitStrategy"))) {
         	disruptor = new Disruptor<FastEvent>(
             		new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new YieldingWaitStrategy());
+    	}else {
+        	disruptor = new Disruptor<FastEvent>( new FastEventFactory(), 65536, DaemonThreadFactory.INSTANCE,ProducerType.MULTI,new BusySpinWaitStrategy());
     	}
     }
     private static RingBuffer<FastEvent> ringBuffer = disruptor.start();

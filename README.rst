@@ -52,8 +52,11 @@ RedTorch
 + 项目使用Maven构建
 
 + 框架采用事件驱动架构,且利用多核。
+
     - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
+    
     - 使用 `LMAX Disruptor <http://www.vnpy.org/>`_ 重新设计了高速事件引擎（FastEventEngine），并加入性能调节配置
+    
     - 性能仍然需要通过多核CPU体现
     
 + Web界面部分采用SPA架构，使用VUE编写，数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合。Web的承载核心框架为Spring Boot，但是主引擎（MainEngine）、ZEUS策略引擎（ZeusEngine）、行情/交易接口实现（Gateway）等交易相关的都不依赖Spring Boot。因此Web部分可轻松剥离，不过值得一提的是，在多线程下，Web部分对交易部分的性能影响完全可以忽略不计，而且提供了一个应急操纵的交互接口。

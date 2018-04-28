@@ -311,10 +311,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField pDepthMarketData) {
 		if (pDepthMarketData != null) {
 
-			// T2T Test
-			if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
-				System.out.println("T2T-Tick-"+System.nanoTime());
-			}
+//			// T2T Test
+//			if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
+//				System.out.println("T2T-Tick-"+System.nanoTime());
+//			}
 			String symbol = pDepthMarketData.getInstrumentID();
 
 			if (!contractExchangeMap.containsKey(symbol)) {

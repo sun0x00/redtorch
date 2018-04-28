@@ -337,11 +337,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcInputOrderField.setTimeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_TC_IOC);
 			cThostFtdcInputOrderField.setVolumeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_VC_CV);
 		}
-
-		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID);
-		if("IH1805".equals(orderReq.getSymbol())) {
-			System.out.println("T2T-Trade-"+System.nanoTime());
-		}
+		
+//		if("IH1805".equals(orderReq.getSymbol())) {
+//			System.out.println("T2T-OrderBefore-"+System.nanoTime());
+//		}
+//		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID);
+//		if("IH1805".equals(orderReq.getSymbol())) {
+//			System.out.println("T2T-Order-"+System.nanoTime());
+//		}
 		String rtOrderID = gatewayID + "." + orderRef;
 
 		return rtOrderID;
