@@ -1,6 +1,13 @@
 RedTorch
 ^^^^^^^^
 
+.. image:: http://github.com/sun0x00/RedTorch-Pages/raw/master/docs/images/RtSnapshort0x00.png
+   :height: 992px
+   :width: 1929px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
+
 简介
 -----
 
