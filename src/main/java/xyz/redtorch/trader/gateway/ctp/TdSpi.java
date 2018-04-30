@@ -213,7 +213,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 		logContent = gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath();
 		ctpGateway.emitInfoLog(logContent);
-		log.info(gatewayLogInfo);
+		log.info(logContent);
 		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);

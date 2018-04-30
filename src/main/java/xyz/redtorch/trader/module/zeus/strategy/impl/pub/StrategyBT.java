@@ -1,4 +1,4 @@
-package xyz.redtorch.trader.module.zeus.strategy.impl;
+package xyz.redtorch.trader.module.zeus.strategy.impl.pub;
 
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Order;
