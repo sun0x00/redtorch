@@ -1,7 +1,7 @@
 {
 	"name": "StrategyBT",
 	"id": "ID-StrategyBT",
-	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.StrategyBT",
+	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.pub.StrategyBT",
 	"xMin": 0,
 	"tradingDay": "20180404",
 	"preTradingDay": "20180403",

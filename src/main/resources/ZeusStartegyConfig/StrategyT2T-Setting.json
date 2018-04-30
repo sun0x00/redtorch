@@ -1,7 +1,7 @@
 {
 	"name": "StrategyT2T",
 	"id": "ID-StrategyT2T",
-	"className":"",
+	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.pub.StrategyT2T",
 	"xMin": 0,
 	"tradingDay": "20180404",
 	"preTradingDay": "20180403",
