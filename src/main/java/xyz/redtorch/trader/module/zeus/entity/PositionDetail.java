@@ -31,34 +31,34 @@ public class PositionDetail implements Serializable {
 	private String strategyName;
 	private String strategyID;
 
-	private int contractSize;
+	private Integer contractSize = 0;
 	private String exchange;
 
-	private double pnl;
-	private double openContractValue;
+	private Double pnl = 0d;
+	private Double openContractValue = 0d;
 
-	private int longPos;
-	private double longPnl;
-	private double longOpenContractValue;
-	private double longPrice;
+	private Integer longPos = 0;
+	private Double longPnl = 0d;
+	private Double longOpenContractValue = 0d;
+	private Double longPrice = 0d;
 
-	private int longYd;
-	private int longTd;
-	private int longPosFrozen;
-	private int longYdFrozen;
-	private int longTdFrozen;
-	private int longOpenFrozen;
+	private Integer longYd = 0;
+	private Integer longTd = 0;
+	private Integer longPosFrozen = 0;
+	private Integer longYdFrozen = 0;
+	private Integer longTdFrozen = 0;
+	private Integer longOpenFrozen = 0;
 
-	private int shortPos;
-	private double shortPnl;
-	private double shortOpenContractValue;
-	private double shortPrice;
-	private int shortYd;
-	private int shortTd;
-	private int shortPosFrozen;
-	private int shortYdFrozen;
-	private int shortTdFrozen;
-	private int shortOpenFrozen;
+	private Integer shortPos = 0;
+	private double shortPnl = 0;
+	private double shortOpenContractValue = 0;
+	private double shortPrice = 0;
+	private Integer shortYd = 0;
+	private Integer shortTd = 0;
+	private Integer shortPosFrozen = 0;
+	private Integer shortYdFrozen = 0;
+	private Integer shortTdFrozen = 0;
+	private Integer shortOpenFrozen = 0;
 
 	private double lastPrice;
 
@@ -121,11 +121,11 @@ public class PositionDetail implements Serializable {
 		this.strategyID = strategyID;
 	}
 
-	public int getContractSize() {
+	public Integer getContractSize() {
 		return contractSize;
 	}
 
-	public void setContractSize(int contractSize) {
+	public void setContractSize(Integer contractSize) {
 		this.contractSize = contractSize;
 	}
 
@@ -137,107 +137,107 @@ public class PositionDetail implements Serializable {
 		this.exchange = exchange;
 	}
 
-	public double getPnl() {
+	public Double getPnl() {
 		return pnl;
 	}
 
-	public void setPnl(double pnl) {
+	public void setPnl(Double pnl) {
 		this.pnl = pnl;
 	}
 
-	public double getOpenContractValue() {
+	public Double getOpenContractValue() {
 		return openContractValue;
 	}
 
-	public void setOpenContractValue(double openContractValue) {
+	public void setOpenContractValue(Double openContractValue) {
 		this.openContractValue = openContractValue;
 	}
 
-	public int getLongPos() {
+	public Integer getLongPos() {
 		return longPos;
 	}
 
-	public void setLongPos(int longPos) {
+	public void setLongPos(Integer longPos) {
 		this.longPos = longPos;
 	}
 
-	public double getLongPnl() {
+	public Double getLongPnl() {
 		return longPnl;
 	}
 
-	public void setLongPnl(double longPnl) {
+	public void setLongPnl(Double longPnl) {
 		this.longPnl = longPnl;
 	}
 
-	public double getLongOpenContractValue() {
+	public Double getLongOpenContractValue() {
 		return longOpenContractValue;
 	}
 
-	public void setLongOpenContractValue(double longOpenContractValue) {
+	public void setLongOpenContractValue(Double longOpenContractValue) {
 		this.longOpenContractValue = longOpenContractValue;
 	}
 
-	public double getLongPrice() {
+	public Double getLongPrice() {
 		return longPrice;
 	}
 
-	public void setLongPrice(double longPrice) {
+	public void setLongPrice(Double longPrice) {
 		this.longPrice = longPrice;
 	}
 
-	public int getLongYd() {
+	public Integer getLongYd() {
 		return longYd;
 	}
 
-	public void setLongYd(int longYd) {
+	public void setLongYd(Integer longYd) {
 		this.longYd = longYd;
 	}
 
-	public int getLongTd() {
+	public Integer getLongTd() {
 		return longTd;
 	}
 
-	public void setLongTd(int longTd) {
+	public void setLongTd(Integer longTd) {
 		this.longTd = longTd;
 	}
 
-	public int getLongPosFrozen() {
+	public Integer getLongPosFrozen() {
 		return longPosFrozen;
 	}
 
-	public void setLongPosFrozen(int longPosFrozen) {
+	public void setLongPosFrozen(Integer longPosFrozen) {
 		this.longPosFrozen = longPosFrozen;
 	}
 
-	public int getLongYdFrozen() {
+	public Integer getLongYdFrozen() {
 		return longYdFrozen;
 	}
 
-	public void setLongYdFrozen(int longYdFrozen) {
+	public void setLongYdFrozen(Integer longYdFrozen) {
 		this.longYdFrozen = longYdFrozen;
 	}
 
-	public int getLongTdFrozen() {
+	public Integer getLongTdFrozen() {
 		return longTdFrozen;
 	}
 
-	public void setLongTdFrozen(int longTdFrozen) {
+	public void setLongTdFrozen(Integer longTdFrozen) {
 		this.longTdFrozen = longTdFrozen;
 	}
 
-	public int getLongOpenFrozen() {
+	public Integer getLongOpenFrozen() {
 		return longOpenFrozen;
 	}
 
-	public void setLongOpenFrozen(int longOpenFrozen) {
+	public void setLongOpenFrozen(Integer longOpenFrozen) {
 		this.longOpenFrozen = longOpenFrozen;
 	}
 
-	public int getShortPos() {
+	public Integer getShortPos() {
 		return shortPos;
 	}
 
-	public void setShortPos(int shortPos) {
+	public void setShortPos(Integer shortPos) {
 		this.shortPos = shortPos;
 	}
 
@@ -265,51 +265,51 @@ public class PositionDetail implements Serializable {
 		this.shortPrice = shortPrice;
 	}
 
-	public int getShortYd() {
+	public Integer getShortYd() {
 		return shortYd;
 	}
 
-	public void setShortYd(int shortYd) {
+	public void setShortYd(Integer shortYd) {
 		this.shortYd = shortYd;
 	}
 
-	public int getShortTd() {
+	public Integer getShortTd() {
 		return shortTd;
 	}
 
-	public void setShortTd(int shortTd) {
+	public void setShortTd(Integer shortTd) {
 		this.shortTd = shortTd;
 	}
 
-	public int getShortPosFrozen() {
+	public Integer getShortPosFrozen() {
 		return shortPosFrozen;
 	}
 
-	public void setShortPosFrozen(int shortPosFrozen) {
+	public void setShortPosFrozen(Integer shortPosFrozen) {
 		this.shortPosFrozen = shortPosFrozen;
 	}
 
-	public int getShortYdFrozen() {
+	public Integer getShortYdFrozen() {
 		return shortYdFrozen;
 	}
 
-	public void setShortYdFrozen(int shortYdFrozen) {
+	public void setShortYdFrozen(Integer shortYdFrozen) {
 		this.shortYdFrozen = shortYdFrozen;
 	}
 
-	public int getShortTdFrozen() {
+	public Integer getShortTdFrozen() {
 		return shortTdFrozen;
 	}
 
-	public void setShortTdFrozen(int shortTdFrozen) {
+	public void setShortTdFrozen(Integer shortTdFrozen) {
 		this.shortTdFrozen = shortTdFrozen;
 	}
 
-	public int getShortOpenFrozen() {
+	public Integer getShortOpenFrozen() {
 		return shortOpenFrozen;
 	}
 
-	public void setShortOpenFrozen(int shortOpenFrozen) {
+	public void setShortOpenFrozen(Integer shortOpenFrozen) {
 		this.shortOpenFrozen = shortOpenFrozen;
 	}
 
@@ -319,6 +319,14 @@ public class PositionDetail implements Serializable {
 
 	public void setLastPrice(double lastPrice) {
 		this.lastPrice = lastPrice;
+	}
+
+	public HashMap<String, Order> getWorkingOrderMap() {
+		return workingOrderMap;
+	}
+
+	public void setWorkingOrderMap(HashMap<String, Order> workingOrderMap) {
+		this.workingOrderMap = workingOrderMap;
 	}
 
 	/**
@@ -461,7 +469,7 @@ public class PositionDetail implements Serializable {
                 if(newPos>0) {
                     longPrice = cost / newPos;
                 } else {
-                    longPrice = 0;
+                    longPrice = 0d;
                 }
             }else {
                 cost = shortPrice * shortPos;

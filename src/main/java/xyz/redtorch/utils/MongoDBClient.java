@@ -142,7 +142,7 @@ public class MongoDBClient {
 		if (document != null) {
 			UpdateOptions updateOptions = new UpdateOptions();
 			updateOptions.upsert(true);
-			mongoClient.getDatabase(dbName).getCollection(collectionName).updateOne(filter, document, updateOptions);
+			mongoClient.getDatabase(dbName).getCollection(collectionName).replaceOne(filter, document, updateOptions);
 			return true;
 		}
 		return false;

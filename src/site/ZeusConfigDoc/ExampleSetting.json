@@ -1,7 +1,7 @@
 {
-	"name": "StrategyT2T",
-	"id": "ID-StrategyT2T",
-	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.pub.StrategyT2T",
+	"strategyName": "StrategyExample",
+    "strategyID": "example0x00",
+	"className":"xyz.redtorch.trader.module.zeus.strategy.impl.pub.StrategyExample",
 	"xMin": 0,
 	"tradingDay": "20180404",
 	"preTradingDay": "20180403",
@@ -19,7 +19,6 @@
 		"vTetsA",
 		"vTetsB"
 	],
-	"initSyncVarFromFileFirst": false,
 	"gateways": [
 		{
 			"gatewayID": "9999.724SN02.187.10030",

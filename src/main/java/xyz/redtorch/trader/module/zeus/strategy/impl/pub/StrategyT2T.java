@@ -1,11 +1,9 @@
 package xyz.redtorch.trader.module.zeus.strategy.impl.pub;
 
-import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
-import xyz.redtorch.trader.module.zeus.ZeusConstant;
 import xyz.redtorch.trader.module.zeus.ZeusEngine;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
@@ -41,10 +39,16 @@ public class StrategyT2T extends StrategyTemplate{
 
 	@Override
 	public void onTick(Tick tick) throws Exception {
+		Integer i = 0;
+		if(strategySetting.getVarMap().containsKey("testTick")) {
+			i = Integer.valueOf(strategySetting.getVarMap().get("testTick"));
+		}
+		i++;
+		setVarValue("testTick", i+"");
 		// TODO Auto-generated method stub
 		if(trading) {
 			if("IH1805".equals(tick.getSymbol())) {
-				sendOrder(tick.getRtSymbol(), ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, tick.getBidPrice1(), 1, "9999.724SN01.187.10030");
+				//sendOrder(tick.getRtSymbol(), ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, tick.getBidPrice1(), 1, "9999.724SN01.187.10030");
 			}
 		}
 		
@@ -52,7 +56,12 @@ public class StrategyT2T extends StrategyTemplate{
 
 	@Override
 	public void onBar(Bar bar) throws Exception {
-		// TODO Auto-generated method stub
+		Integer i = 0;
+		if(strategySetting.getVarMap().containsKey("testBar")) {
+			i = Integer.valueOf(strategySetting.getVarMap().get("testBar"));
+		}
+		i++;
+		setVarValue("testBar", i+"");
 		
 	}
 

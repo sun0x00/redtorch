@@ -40,7 +40,7 @@ public class MongoDBUtil {
 				field.setAccessible(true);
 			}
 			Object param = field.get(bean);
-			if (param == null) {
+			if (param == null || "serialVersionUID".equals(field.getName())) {
 				continue;
 			} else if (param instanceof Integer) {
 				// 判断变量的类型

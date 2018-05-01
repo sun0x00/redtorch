@@ -262,8 +262,8 @@ public class TradingServiceImpl implements TradingService {
 			strategyInfo.put("initStatus", strategy.isInitStatus());
 			strategyInfo.put("trading", strategy.isTrading());
 
-			strategyInfo.put("paramMap", strategy.getParamMap());
-			strategyInfo.put("varMap", strategy.getVarMap());
+			strategyInfo.put("paramMap", strategy.getStrategySetting().getParamMap());
+			strategyInfo.put("varMap", strategy.getStrategySetting().getVarMap());
 			strategyInfos.add(strategyInfo);
 		}
 		return strategyInfos;

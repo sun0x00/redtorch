@@ -1,7 +1,6 @@
 package xyz.redtorch.trader.module.zeus;
 
 import java.util.List;
-import java.util.Map;
 
 import org.joda.time.DateTime;
 
@@ -15,6 +14,7 @@ import xyz.redtorch.trader.entity.Trade;
 import xyz.redtorch.trader.module.Module;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 
 /**
  * @author sun0x00@gmail.com
@@ -64,10 +64,10 @@ public interface ZeusEngine extends FastEventDynamicHandler,Module {
 	void onTrade(Trade trade);
 	
 	/**
-	 * 扫描策略列表并加载
+	 * 从
 	 * @param strategyID 可空,如果参数StrategyID不为空,表示加载指定策略,其它忽略
 	 */
-	void scanAndLoadStartegy(String strategyID);
+	void initStrategyClassInstance(StrategySetting strategySetting);
 
 	/**
 	 * 卸载策略
@@ -159,12 +159,10 @@ public interface ZeusEngine extends FastEventDynamicHandler,Module {
 	List<Bar> loadBarData(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
 
 	/**
-	 * 保存变量到数据库
-	 * @param strategyID
-	 * @param strategyName
-	 * @param syncVarMap
+	 * 保存配置到数据库
+	 * @param strategySetting
 	 */
-	void asyncSaveSyncVarMap(String strategyID, String strategyName, Map<String, String> syncVarMap);
+	void asyncSaveStrategySetting(StrategySetting strategySetting);
 	
 	/**
 	 * 保存持仓到数据库

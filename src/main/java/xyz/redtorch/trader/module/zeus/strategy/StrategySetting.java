@@ -1,23 +1,28 @@
 package xyz.redtorch.trader.module.zeus.strategy;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author sun0x00@gmail.com
  */
-public class StrategySetting {
-	private String name; // 策略名称
-	private String id; // 策略ID
+public class StrategySetting implements Serializable{
+
+	private static final long serialVersionUID = 4037995985601670824L;
+	
+	private String strategyName; // 策略名称
+	private String strategyID; // 策略ID
 	private String className;
 	private int xMin = 0; //x分钟Bar生成器参数
 	private String tradingDay; //交易日
 	private String preTradingDay; //前一个交易日
 	private boolean lastTradingDay; //最后一个交易日
 	
-	private Map<String,String> paramMap; // 运行时不可变参数列表
-	private Map<String,String> varMap; //运行时可变参数字典
-	private List<String> syncVarList; // 数据库存储可变参数列表
+	private Map<String,String> paramMap = new HashMap<>(); // 运行时不可变参数列表
+	private Map<String,String> varMap = new HashMap<>(); //运行时可变参数字典
 	
 	private List<gatewaySetting> gateways; //接口设置,回测,订阅相关
 	private List<ContractSetting> contracts; //合约设置,回测,交易仓位相关
@@ -38,6 +43,8 @@ public class StrategySetting {
 				}
 				contractSetting.setTradeFixedPos(tradeFixedPos);
 		}
+		// 不允许修改(通过setParamMap仍可修改，但不建议这么做)
+		paramMap = Collections.unmodifiableMap(paramMap);
 	}
 	
 	public gatewaySetting getGatewaySetting(String gatewayID) {
@@ -75,18 +82,23 @@ public class StrategySetting {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	public String getName() {
-		return name;
+
+	public String getStrategyName() {
+		return strategyName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setStrategyName(String strategyName) {
+		this.strategyName = strategyName;
 	}
-	public String getId() {
-		return id;
+
+	public String getStrategyID() {
+		return strategyID;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setStrategyID(String strategyID) {
+		this.strategyID = strategyID;
 	}
+
 	public int getxMin() {
 		return xMin;
 	}
@@ -123,12 +135,6 @@ public class StrategySetting {
 	public void setVarMap(Map<String, String> varMap) {
 		this.varMap = varMap;
 	}
-	public List<String> getSyncVarList() {
-		return syncVarList;
-	}
-	public void setSyncVarList(List<String> syncVarList) {
-		this.syncVarList = syncVarList;
-	}
 	public List<gatewaySetting> getGateways() {
 		return gateways;
 	}
@@ -142,7 +148,9 @@ public class StrategySetting {
 		this.contracts = contracts;
 	}
 
-	public static class gatewaySetting{
+	public static class gatewaySetting implements Serializable {
+
+		private static final long serialVersionUID = -8397027643670882941L;
 		private String gatewayID; // 接口ID
 		private double backtestingCapital; // 回测账户资本设置
 		private List<String> subscribeRtSymbols; // 完整的合约List
@@ -166,7 +174,10 @@ public class StrategySetting {
 		}
 	}
 	
-	public static class ContractSetting{
+	public static class ContractSetting implements Serializable{
+		
+		private static final long serialVersionUID = 4564498502584597194L;
+		
 		private String alias;  // 合约前缀
 		private String rtSymbol; // 合约唯一标识
 		private String symbol; // 合约唯一标识
@@ -232,7 +243,8 @@ public class StrategySetting {
 		}
 	}
 	
-	public static class TradeGatewaySetting{
+	public static class TradeGatewaySetting implements Serializable{
+		private static final long serialVersionUID = -7347630763385748181L;
 		private String gatewayID;
 		private int tradeFixedPos; // 某一个合约的某一个接口的固定仓位值
 		private double backtestingRate; // 此合约在回测中的佣金比例

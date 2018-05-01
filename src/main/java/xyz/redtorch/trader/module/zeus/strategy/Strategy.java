@@ -1,6 +1,5 @@
 package xyz.redtorch.trader.module.zeus.strategy;
 
-import java.util.List;
 import java.util.Map;
 
 import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
@@ -147,24 +146,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @return
 	 */
 	String getLogStr();
-
-	/**
-	 * 获取存入数据库的变量列表
-	 * @return
-	 */
-	List<String> getSyncVarList();
-
-	/**
-	 * 获取参数字典
-	 * @return
-	 */
-	Map<String, String> getParamMap();
-
-	/**
-	 * 获取变量字典
-	 * @return
-	 */
-	Map<String, String> getVarMap();
 	
 	/**
 	 * 获取未完成的停止单字典
@@ -176,6 +157,16 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * 保存持仓
 	 */
 	void savePosition();
+	
+	/**
+	 * 保存配置
+	 */
+	void saveStrategySetting();
+	
+	/**
+	 * 设置变量值
+	 */
+	void setVarValue(String key,String value);
 	
 	/**
 	 * 重置策略,一般用于连续回测

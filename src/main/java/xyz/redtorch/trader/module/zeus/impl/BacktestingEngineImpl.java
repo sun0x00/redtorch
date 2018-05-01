@@ -61,7 +61,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	// 模拟数据库存储持仓
 	private Map<String, Map<String, PositionDetail>> posSimulationDBMap = new HashMap<>();
 	// 模拟数据库存储同步变量
-	private Map<String, Map<String, String>> syncVarSimulationDBMap = new HashMap<>();
+	private Map<String, StrategySetting> syncStrategySettingSimulationDBMap = new HashMap<>();
 	// 合约最新Bar
 	private Map<String, Bar> barMap = new HashMap<>();
 	// 合约最新Tick
@@ -101,16 +101,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 	private StrategySetting strategySetting;
 
-	private String strategyClassName;
 	private List<BacktestingSection> backestingSectionList;
 	private int backtestingDataMode = 0;
 	private Boolean reloadStrategyEveryday;
 
-	public BacktestingEngineImpl(DataEngine dataEngine, String strategyClassName, StrategySetting strategySetting,
+	public BacktestingEngineImpl(DataEngine dataEngine, String strategyID, 
 			List<BacktestingSection> backestingSectionList, int backtestingDataMode, Boolean reloadStrategyEveryday) {
 		zeusDataUtil = new ZeusDataUtilImpl(dataEngine);
-		this.strategySetting = strategySetting;
-		this.strategyClassName = strategyClassName;
+		this.strategySetting = zeusDataUtil.loadStrategySetting(strategyID);
 		this.backestingSectionList = backestingSectionList;
 		this.backtestingDataMode = backtestingDataMode;
 		this.reloadStrategyEveryday = reloadStrategyEveryday;
@@ -194,11 +192,11 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 
 	@Override
-	public void asyncSaveSyncVarMap(String strategyID, String strategyName, Map<String, String> syncVarMap) {
+	public void asyncSaveStrategySetting(StrategySetting strategySetting) {
 		// 实现深度复制,避免引用被修改
-		Map<String, String> saveSyncVarMap = SerializationUtils.clone(new HashMap<>(syncVarMap));
+		StrategySetting copyStrategySetting = SerializationUtils.clone(strategySetting);
 		// 模拟存入数据库
-		syncVarSimulationDBMap.put(strategyID, saveSyncVarMap);
+		syncStrategySettingSimulationDBMap.put(strategySetting.getStrategyID(), copyStrategySetting);
 
 	}
 
@@ -283,7 +281,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		// 加载策略类
 		Class<?> strategyClass;
 		try {
-			strategyClass = Class.forName(strategyClassName);
+			strategyClass = Class.forName(strategySetting.getClassName());
 		} catch (ClassNotFoundException e) {
 			log.error("未找到策略类,回测结束", e);
 			return;
@@ -603,22 +601,15 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 		StrategySetting strategySetting = strategy.getStrategySetting();
 
-		// 从模拟数据库中加载Var
-		Map<String, String> dbSyncVarMap = new HashMap<>();
-		if (syncVarSimulationDBMap.containsKey(strategy.getID())) {
-			dbSyncVarMap = syncVarSimulationDBMap.get(strategy.getID());
+		// 从模拟数据库中加载StrategySetting
+		StrategySetting simStrategySetting = null;
+		if (syncStrategySettingSimulationDBMap.containsKey(strategySetting.getStrategyID())) {
+			simStrategySetting = syncStrategySettingSimulationDBMap.get(strategySetting.getStrategyID());
 		}
-		if (dbSyncVarMap.isEmpty()) {
-			log.info("{}数据库中varMap为空", strategy.getLogStr());
+		if (simStrategySetting==null) {
+			log.info("{}模拟数据库中StrategySetting为空", strategy.getLogStr());
 		} else {
-			// 过滤不在syncList中的kv
-			Map<String, String> syncVarMap = new HashMap<>();
-			for (String key : strategySetting.getSyncVarList()) {
-				if (dbSyncVarMap.containsKey(key)) {
-					syncVarMap.put(key, syncVarMap.get(key));
-				}
-			}
-			strategy.getVarMap().putAll(syncVarMap);
+			strategySetting.setVarMap(simStrategySetting.getVarMap());
 		}
 
 		String tradingDay = strategySetting.getTradingDay();
@@ -670,7 +661,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 						if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
 
 							PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, gatewayID, preTradingDay,
-									strategy.getStrategySetting().getName(), strategy.getStrategySetting().getId(),
+									strategy.getStrategySetting().getStrategyName(), strategy.getStrategySetting().getStrategyID(),
 									ydPositionDetail.getExchange(), ydPositionDetail.getContractSize());
 							tdPositionDetail.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
 							tdPositionDetail.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
@@ -1239,7 +1230,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 
 	@Override
-	public void scanAndLoadStartegy(String strategyID) {
+	public void initStrategyClassInstance(StrategySetting strategySetting) {
 	}
 
 	@Override

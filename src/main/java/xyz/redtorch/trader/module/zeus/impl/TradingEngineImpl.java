@@ -1,10 +1,8 @@
 package xyz.redtorch.trader.module.zeus.impl;
 
-import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +37,6 @@ import xyz.redtorch.trader.module.ModuleAbstract;
 import xyz.redtorch.trader.module.zeus.ZeusConstant;
 import xyz.redtorch.trader.module.zeus.ZeusEngine;
 import xyz.redtorch.trader.module.zeus.ZeusDataUtil;
-import xyz.redtorch.trader.module.zeus.ZeusUtil;
 import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
@@ -64,14 +61,14 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	Map<String, Strategy> strategyMap = new ConcurrentHashMap<>(); // 策略Map
 
-	// 用于异步存储变量的队列(减少策略的IO等待时间,主要用于节省回测时间)
-	LinkedBlockingQueue<Map<String, String>> syncVarMapSaveQueue = new LinkedBlockingQueue<>();
+	// 用于异步存储配置的队列(减少策略的IO等待时间,主要用于节省回测时间)
+	LinkedBlockingQueue<StrategySetting> strategySettingSaveQueue = new LinkedBlockingQueue<>();
 	LinkedBlockingQueue<PositionDetail> positionDetailSaveQueue = new LinkedBlockingQueue<>();
 
 	public TradingEngineImpl(MainEngine mainEngine) {
 		super(mainEngine);
 		zeusDataUtil = new ZeusDataUtilImpl(mainEngine.getDataEngine());
-		executor.execute(new SaveSyncVarMapTask());
+		executor.execute(new SaveStrategySettingTask());
 		executor.execute(new SavePositionTask());
 	}
 
@@ -206,7 +203,12 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		String logContent = logStr + "加载所有策略";
 		emitInfoLog(logContent);
 		log.info(logContent);
-		scanAndLoadStartegy(null);
+		List<StrategySetting> strategySettings = zeusDataUtil.loadStrategySettings();
+		if(strategySettings!=null) {
+			for(StrategySetting strategySetting: strategySettings) {
+				initStrategyClassInstance(strategySetting);
+			}
+		}
 	}
 
 	@Override
@@ -216,176 +218,45 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		emitInfoLog(logContent);
 		log.info(logContent);
 
-		scanAndLoadStartegy(strategyID);
+		StrategySetting strategySetting = zeusDataUtil.loadStrategySetting(strategyID);
+		
+		if(strategySetting == null) {
+			logContent = logStr + "加载指定策略失败,策略ID:" + strategyID+"无法找到配置";
+			emitInfoLog(logContent);
+			log.info(logContent);
+			return;
+		}
+		
+		initStrategyClassInstance(strategySetting);
 	}
 
 	@Override
-	public void scanAndLoadStartegy(String strategyID) {
+	public void initStrategyClassInstance(StrategySetting strategySetting) {
 
 		String logContent;
 
-		Set<Class<?>> classes = CommonUtil.getClasses("xyz.redtorch.trader");
-		if (classes == null) {
-			logContent = logStr + "未能在包xyz.redtorch.trader下扫描到任何类!!!";
+		
+		try {
+			Class<?> clazz = Class.forName(strategySetting.getClassName());
+			Constructor<?> c = clazz.getConstructor(ZeusEngine.class, StrategySetting.class);
+			Strategy strategy = (Strategy) c.newInstance(this, strategySetting);
+
+			// 注册到事件引擎，启动策略线程（不是初始化也不是启动交易,仅仅是启动线程）
+			FastEventEngine.addHandler(strategy);
+			// Map缓存策略
+			strategyMap.put(strategySetting.getStrategyID(), strategy);
+
+			logContent = logStr + "策略:" + strategySetting.getStrategyName() + "ID:"
+					+ strategySetting.getStrategyID() + "实现类" + strategySetting.getClassName() + "加载成功!";
+			emitInfoLog(logContent);
+			log.info(logContent);
+		} catch (NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException | ClassNotFoundException e) {
+
+			logContent = logStr + "反射创建策略类" + strategySetting.getClassName() + "实例发生异常";
 			emitErrorLog(logContent);
-			log.error(logContent);
-		} else {
-			// 寻找Strategy的实现类,不包含抽象类
-			Set<Class<?>> filteredClasses = CommonUtil.getImplementsByInterface(Strategy.class, classes, false);
-			if (filteredClasses.isEmpty()) {
-				logContent = logStr + "未能在包xyz.redtorch.trader下扫描到任何实现了Strategy接口的策略!!!";
-				emitErrorLog(logContent);
-				log.error(logContent);
-			} else {
-				for (Class<?> clazz : filteredClasses) {
-
-					String classSimpleName = clazz.getSimpleName();
-					String className = clazz.getSimpleName();
-					File strategyConfigFile = ZeusUtil.getStartegyConfigFile(classSimpleName + "-Setting.json");
-
-					logContent = logStr + "策略类" + className + "对应的配置文件临时路径" + strategyConfigFile.getAbsolutePath();
-					emitInfoLog(logContent);
-					log.info(logContent);
-
-					if (!strategyConfigFile.exists() || strategyConfigFile.isDirectory()) {
-						logContent = logStr + "未能找到策略类" + className + "对应的配置文件" + classSimpleName + "-Setting.json";
-						emitErrorLog(logContent);
-						log.error(logContent);
-					} else {
-						String configString = CommonUtil.readFileToString(strategyConfigFile.getAbsolutePath());
-						if (StringUtils.isEmpty(configString)) {
-							logContent = logStr + "读取策略类" + className + "对应的配置文件" + classSimpleName
-									+ "-Setting.json发生异常";
-							emitErrorLog(logContent);
-							log.error(logContent);
-						} else {
-							StrategySetting strategySetting = null;
-							try {
-								strategySetting = JSON.parseObject(configString, StrategySetting.class);
-								if (strategySetting == null) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json发生异常";
-									emitErrorLog(logContent);
-									log.error(logContent);
-								}
-
-								// 如果参数StrategyID不为空,表示加载指定策略,其它忽略
-								if (!StringUtils.isEmpty(strategyID) && !strategyID.equals(strategySetting.getId())) {
-									continue;
-								}
-
-								// 合成一些配置
-								strategySetting.fixSetting();
-
-								/////////////////////////////
-								// 对配置文件进行基本检查
-								////////////////////////////
-								if (StringUtils.isEmpty(strategySetting.getId())) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json未能找到策略ID配置";
-									emitErrorLog(logContent);
-									log.error(logContent);
-									continue;
-								}
-								if (StringUtils.isEmpty(strategySetting.getName())) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json未能找到策略Name配置";
-									emitErrorLog(logContent);
-									log.error(logContent);
-									continue;
-								}
-								if (StringUtils.isEmpty(strategySetting.getTradingDay())) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json未能找到tradingDay配置";
-									emitErrorLog(logContent);
-									log.error(logContent);
-									continue;
-								}
-								if (strategySetting.getGateways() == null || strategySetting.getGateways().isEmpty()) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json未能找到gateways配置";
-									emitErrorLog(logContent);
-									log.error(logContent);
-									continue;
-								}
-								if (strategySetting.getContracts() == null
-										|| strategySetting.getContracts().isEmpty()) {
-									logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-											+ "-Setting.json未能找到contracts配置";
-									emitErrorLog(logContent);
-									log.error(logContent);
-									continue;
-								}
-
-								boolean error = false;
-								for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
-									if (contractSetting.getTradeGateways() == null
-											|| contractSetting.getTradeGateways().isEmpty()) {
-										logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-												+ "-Setting.json未能找到合约" + contractSetting.getRtSymbol()
-												+ "的tradeGateways配置";
-										emitErrorLog(logContent);
-										log.error(logContent);
-										error = true;
-										break;
-									}
-
-								}
-								if (error) {
-									continue;
-								}
-								////////////////////////////
-
-							} catch (Exception e) {
-
-								logContent = logStr + "解析策略类" + className + "对应的配置文件" + classSimpleName
-										+ "-Setting.json发生异常";
-								emitErrorLog(logContent);
-								log.error(logContent, e);
-							}
-
-							if (strategySetting != null) {
-								if (strategyMap.containsKey(strategySetting.getId())) {
-
-									logContent = logStr + "策略:" + strategySetting.getName() + "ID:"
-											+ strategySetting.getId() + "已经加载,不允许重复加载!";
-									emitWarnLog(logContent);
-									log.warn(logContent);
-
-									continue;
-								}
-
-								try {
-									Constructor<?> c = clazz.getConstructor(ZeusEngine.class, StrategySetting.class);
-									Strategy strategy = (Strategy) c.newInstance(this, strategySetting);
-
-									// 启动策略线程（不是初始化也不是启动交易,仅仅是启动线程）
-									// 初始化之后就应该立即启动线程,便于通过事件结束run方法实现销毁
-									FastEventEngine.addHandler(strategy);
-									// Map缓存策略
-									strategyMap.put(strategySetting.getId(), strategy);
-
-									logContent = logStr + "策略:" + strategySetting.getName() + "ID:"
-											+ strategySetting.getId() + "实现类" + className + "加载成功!";
-									emitInfoLog(logContent);
-									log.info(logContent);
-								} catch (NoSuchMethodException | SecurityException | InstantiationException
-										| IllegalAccessException | IllegalArgumentException
-										| InvocationTargetException e) {
-
-									logContent = logStr + "反射创建策略类" + className + "实例发生异常";
-									emitErrorLog(logContent);
-									log.error(logContent, e);
-								}
-							}
-
-						}
-
-					}
-
-				}
-			}
-
+			log.error(logContent, e);
 		}
 
 	}
@@ -432,50 +303,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 			StrategySetting strategySetting = strategy.getStrategySetting();
 
-			String strategyName = strategySetting.getName();
-			/******************** 初始化变量 ******************************/
-			// 从文件中加载所有变量
-			if (strategySetting.getVarMap() != null) {
-				strategy.getVarMap().putAll(strategySetting.getVarMap());
-			} else {
-				logContent = logStr + "初始化" + strategy.getLogStr() + "配置文件中varMap为空";
-				emitWarnLog(logContent);
-				log.warn(logContent);
-			}
-
-			// 从MongoDB中加载所有存储的变量,如果和文件配置冲突,则覆盖
-			Map<String, String> dbSyncVarMap = zeusDataUtil.loadStrategySyncVarMap(strategy.getID());
-			if (dbSyncVarMap.isEmpty()) {
-				logContent = logStr + "初始化" + strategy.getLogStr() + "数据库中varMap为空";
-				emitWarnLog(logContent);
-				log.warn(logContent);
-			} else {
-				// 过滤不在syncList中的kv
-				Map<String, String> syncVarMap = new HashMap<>();
-				for (String key : strategySetting.getSyncVarList()) {
-					if (dbSyncVarMap.containsKey(key)) {
-						syncVarMap.put(key, syncVarMap.get(key));
-					}
-				}
-				strategy.getVarMap().putAll(syncVarMap);
-			}
-
-			logContent = logStr + "初始化" + strategy.getLogStr() + "初始化varMap完成";
-			emitInfoLog(logContent);
-			log.info(logContent);
-
-			/********************** 初始化参数 ****************************/
-			if (strategySetting.getParamMap() != null) {
-				strategy.getParamMap().putAll(strategySetting.getParamMap());
-			} else {
-				logContent = logStr + "初始化" + strategy.getLogStr() + "配置文件中paramMap为空";
-				emitWarnLog(logContent);
-				log.warn(logContent);
-			}
-
-			logContent = logStr + "初始化" + strategy.getLogStr() + "初始化paramMap完成";
-			emitInfoLog(logContent);
-			log.info(logContent);
+			String strategyName = strategySetting.getStrategyName();
 
 			/********************** 初始化持仓 ****************************/
 			Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
@@ -732,12 +560,10 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	}
 
 	@Override
-	public void asyncSaveSyncVarMap(String strategyID, String strategyName, Map<String, String> syncVarMap) {
+	public void asyncSaveStrategySetting(StrategySetting strategySetting) {
 		// 实现深度复制,避免引用被修改
-		Map<String, String> saveSyncVarMap = SerializationUtils.clone(new HashMap<>(syncVarMap));
-		saveSyncVarMap.put("strategyID", strategyID);
-		saveSyncVarMap.put("strategyName", strategyName);
-		syncVarMapSaveQueue.add(saveSyncVarMap);
+		StrategySetting copyStrategySetting = SerializationUtils.clone(strategySetting);
+		strategySettingSaveQueue.add(copyStrategySetting);
 	}
 
 	@Override
@@ -768,14 +594,16 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 	}
 
-	private class SaveSyncVarMapTask implements Runnable {
+	private class SaveStrategySettingTask implements Runnable {
 		@Override
 		public void run() {
-			try {
-				Map<String, String> syncVarMapWithNameAndID = syncVarMapSaveQueue.take();
-				zeusDataUtil.saveStrategySyncVarMap(syncVarMapWithNameAndID);
-			} catch (InterruptedException e) {
-				log.error("{} 保存变量任务捕获到线程中断异常,线程停止!!!", logStr, e);
+			while (!Thread.currentThread().isInterrupted()) {
+				try {
+					StrategySetting strategySetting = strategySettingSaveQueue.take();
+					zeusDataUtil.saveStrategySetting(strategySetting);
+				} catch (InterruptedException e) {
+					log.error("{} 保存配置任务捕获到线程中断异常,线程停止!!!", logStr, e);
+				}
 			}
 		}
 

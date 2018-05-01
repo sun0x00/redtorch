@@ -54,12 +54,6 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 
 	protected Map<String, ContractPositionDetail> contractPositionMap = new HashMap<>(); // 合约仓位维护
 
-	private Map<String, String> varMap = new HashMap<>(); // 变量
-
-	private List<String> syncVarList = new ArrayList<String>(); // 存入数据库的变量
-
-	private Map<String, String> paramMap = new HashMap<>(); // 参数
-
 	Map<String, StopOrder> workingStopOrderMap = new HashMap<>(); // 本地停止单,停止单撤销后会被删除
 
 	Map<String, Order> workingOrderMap = new HashMap<>(); // 委托单
@@ -86,12 +80,9 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 	public StrategyTemplate(ZeusEngine zeusEngine, StrategySetting strategySetting) {
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
-		this.paramMap.putAll(strategySetting.getParamMap());
-		this.varMap.putAll(strategySetting.getVarMap());
-		this.syncVarList.addAll(strategySetting.getSyncVarList());
 
-		this.id = strategySetting.getId();
-		this.name = strategySetting.getName();
+		this.id = strategySetting.getStrategyID();
+		this.name = strategySetting.getStrategyName();
 		this.logStr = "策略-[" + name + "] ID-[" + id + "] >>> ";
 
 		this.zeusEngine = zeusEngine;
@@ -203,21 +194,6 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 	}
 
 	@Override
-	public Map<String, String> getVarMap() {
-		return varMap;
-	}
-
-	@Override
-	public Map<String, String> getParamMap() {
-		return paramMap;
-	}
-
-	@Override
-	public List<String> getSyncVarList() {
-		return syncVarList;
-	}
-
-	@Override
 	public void startTrading() {
 		if (!initStatus) {
 			log.warn("{} 策略尚未初始化,无法开始交易!", logStr);
@@ -257,8 +233,10 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 			log.warn("{} 策略已经停止,请勿重复操作!", logStr);
 			return;
 		}
+		// 保存持仓
 		savePosition();
-		// XXX 保存中间变量varMap
+		// 保存策略配置
+		saveStrategySetting();
 		this.trading = false;
 		try {
 			onStopTrading(isException);
@@ -296,19 +274,24 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 	}
 
 	@Override
+	public void saveStrategySetting() {
+		zeusEngine.asyncSaveStrategySetting(strategySetting);
+	}
+	
+	@Override
+	public void setVarValue(String key,String value) {
+		strategySetting.getVarMap().put(key, value);
+		saveStrategySetting();
+	}
+	
+	@Override
 	public void resetStrategy(StrategySetting strategySetting) {
-		this.varMap.clear();
 		this.workingStopOrderMap.clear();
 		this.rtTradeIDSet.clear();
-		this.paramMap.clear();
 		this.contractPositionMap.clear();
-		this.syncVarList.clear();
 
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
-		this.paramMap.putAll(strategySetting.getParamMap());
-		this.varMap.putAll(strategySetting.getVarMap());
-		this.syncVarList.addAll(strategySetting.getSyncVarList());
 
 		initContractPositionMap();
 

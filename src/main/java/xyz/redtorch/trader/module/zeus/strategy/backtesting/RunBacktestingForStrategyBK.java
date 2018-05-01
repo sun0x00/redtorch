@@ -7,18 +7,15 @@ import xyz.redtorch.trader.engine.data.DataEngine;
 import xyz.redtorch.trader.engine.data.impl.DataEngineImpl;
 import xyz.redtorch.trader.module.zeus.BacktestingEngine;
 import xyz.redtorch.trader.module.zeus.BacktestingEngine.BacktestingSection;
-import xyz.redtorch.trader.module.zeus.BacktestingUtil;
 import xyz.redtorch.trader.module.zeus.impl.BacktestingEngineImpl;
-import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 
 
 /**
  * @author sun0x00@gmail.com
  */
-public class RunBacktestingForStrategyBT {
+public class RunBacktestingForStrategyBK {
 	public static void main(String[] args) throws Exception {
-		String strategyClassName = "xyz.redtorch.trader.module.zeus.strategy.impl.StrategyBT";
-		StrategySetting strategySetting = BacktestingUtil.getConfigFileByClassName(strategyClassName);
+		String strategyID = "ID-StrategyBK01";
 		boolean reloadStrategyEveryday = false;
 		int backtestingDataMode = BacktestingEngine.DATA_MODE_BAR;
 		List<BacktestingSection> backestingSectionList = new ArrayList<>();
@@ -45,7 +42,7 @@ public class RunBacktestingForStrategyBT {
 		
 		DataEngine dataEngine = new DataEngineImpl();
 		
-		BacktestingEngine backtestingEngine = new BacktestingEngineImpl(dataEngine, strategyClassName, strategySetting, backestingSectionList, backtestingDataMode, reloadStrategyEveryday);
+		BacktestingEngine backtestingEngine = new BacktestingEngineImpl(dataEngine, strategyID, backestingSectionList, backtestingDataMode, reloadStrategyEveryday);
 		backtestingEngine.runBacktesting();
 	}
 }

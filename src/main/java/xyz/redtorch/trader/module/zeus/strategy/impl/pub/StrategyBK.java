@@ -12,9 +12,9 @@ import xyz.redtorch.trader.module.zeus.strategy.StrategyTemplate;
 /**
  * @author sun0x00@gmail.com
  */
-public class StrategyBT extends StrategyTemplate{
+public class StrategyBK extends StrategyTemplate{
 
-	public StrategyBT(ZeusEngine zeusEngine, StrategySetting strategySetting) {
+	public StrategyBK(ZeusEngine zeusEngine, StrategySetting strategySetting) {
 		super(zeusEngine, strategySetting);
 		// TODO Auto-generated constructor stub
 	}
@@ -39,11 +39,18 @@ public class StrategyBT extends StrategyTemplate{
 
 	@Override
 	public void onTick(Tick tick) throws Exception {
-		
 	}
 
 	@Override
 	public void onBar(Bar bar) throws Exception {
+
+		Integer i = 0;
+		if(strategySetting.getVarMap().containsKey("testBar")) {
+			i = Integer.valueOf(strategySetting.getVarMap().get("testBar"));
+		}
+		i++;
+		setVarValue("testBar", i+"");
+		
 		int timeTest = bar.getDateTime().getMinuteOfHour() + bar.getDateTime().getHourOfDay()*100;
 		
 		String icSymbol = strategySetting.getContractByAlias("IC").getRtSymbol();
