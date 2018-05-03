@@ -41,6 +41,7 @@ import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
+import xyz.redtorch.trader.module.zeus.strategy.routine.RoutineStrategyTemplate;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -59,7 +60,8 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	// 使用无大小限制的线程池,线程空闲60s会被释放
 	ExecutorService executor = Executors.newCachedThreadPool();
 
-	Map<String, Strategy> strategyMap = new ConcurrentHashMap<>(); // 策略Map
+	// 策略Map
+	Map<String, Strategy> strategyMap = new ConcurrentHashMap<>();
 
 	// 用于异步存储配置的队列(减少策略的IO等待时间,主要用于节省回测时间)
 	LinkedBlockingQueue<StrategySetting> strategySettingSaveQueue = new LinkedBlockingQueue<>();
@@ -68,7 +70,9 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	public TradingEngineImpl(MainEngine mainEngine) {
 		super(mainEngine);
 		zeusDataUtil = new ZeusDataUtilImpl(mainEngine.getDataEngine());
+		// 启动异步存储策略设置线程
 		executor.execute(new SaveStrategySettingTask());
+		// 启动异步存储仓位线程
 		executor.execute(new SavePositionTask());
 	}
 
@@ -206,7 +210,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		List<StrategySetting> strategySettings = zeusDataUtil.loadStrategySettings();
 		if(strategySettings!=null) {
 			for(StrategySetting strategySetting: strategySettings) {
-				initStrategyClassInstance(strategySetting);
+				createStrategyClassInstance(strategySetting);
 			}
 		}
 	}
@@ -227,11 +231,11 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			return;
 		}
 		
-		initStrategyClassInstance(strategySetting);
+		createStrategyClassInstance(strategySetting);
 	}
 
 	@Override
-	public void initStrategyClassInstance(StrategySetting strategySetting) {
+	public void createStrategyClassInstance(StrategySetting strategySetting) {
 
 		String logContent;
 
@@ -306,124 +310,127 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			String strategyName = strategySetting.getStrategyName();
 
 			/********************** 初始化持仓 ****************************/
-			Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
-			Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
-			for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
-				String rtSymbol = contractSetting.getRtSymbol();
-				if (!contractPositionMap.containsKey(rtSymbol)) {
-					contractPositionMap.put(rtSymbol, new ContractPositionDetail());
+			// 判断是否属于常规策略,HFT策略不使用复杂持仓逻辑
+			if(RoutineStrategyTemplate.class.isAssignableFrom(strategy.getClass())) {
+				Map<String, ContractPositionDetail> contractPositionMap = ((RoutineStrategyTemplate)strategy).getContractPositionMap();
+				Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
+				for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
+					String rtSymbol = contractSetting.getRtSymbol();
+					if (!contractPositionMap.containsKey(rtSymbol)) {
+						contractPositionMap.put(rtSymbol, new ContractPositionDetail());
+					}
+
+					for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : contractSetting.getTradeGateways()) {
+						String contractGatewayKey = rtSymbol + tradeGatewaySetting.getGatewayID();
+						contractGatewayKeySet.add(contractGatewayKey);
+					}
+
 				}
 
-				for (StrategySetting.TradeGatewaySetting tradeGatewaySetting : contractSetting.getTradeGateways()) {
-					String contractGatewayKey = rtSymbol + tradeGatewaySetting.getGatewayID();
-					contractGatewayKeySet.add(contractGatewayKey);
-				}
+				String tradingDay = strategySetting.getTradingDay();
 
-			}
-
-			String tradingDay = strategySetting.getTradingDay();
-
-			List<PositionDetail> tdPositionDetailList = zeusDataUtil.loadStrategyPositionDetails(tradingDay, strategyID,
-					strategyName);
-			if (tdPositionDetailList.isEmpty()) {
-				logContent = logStr + "初始化" + strategy.getLogStr() + "当日持仓数据记录为空,尝试读取前一交易日";
-				emitWarnLog(logContent);
-				log.warn(logContent);
-
-				String preTradingDay = strategySetting.getPreTradingDay();
-				if (StringUtils.isEmpty(preTradingDay)) {
-					logContent = logStr + "初始化" + strategy.getLogStr() + "前一交易日配置为空";
+				List<PositionDetail> tdPositionDetailList = zeusDataUtil.loadStrategyPositionDetails(tradingDay, strategyID,
+						strategyName);
+				if (tdPositionDetailList.isEmpty()) {
+					logContent = logStr + "初始化" + strategy.getLogStr() + "当日持仓数据记录为空,尝试读取前一交易日";
 					emitWarnLog(logContent);
 					log.warn(logContent);
-				} else {
-					List<PositionDetail> ydPositionDetailList = zeusDataUtil.loadStrategyPositionDetails(preTradingDay,
-							strategyID, strategyName);
-					if (ydPositionDetailList.isEmpty()) {
-						logContent = logStr + "初始化" + strategy.getLogStr() + "前一日持仓数据记录为空";
+
+					String preTradingDay = strategySetting.getPreTradingDay();
+					if (StringUtils.isEmpty(preTradingDay)) {
+						logContent = logStr + "初始化" + strategy.getLogStr() + "前一交易日配置为空";
 						emitWarnLog(logContent);
 						log.warn(logContent);
 					} else {
+						List<PositionDetail> ydPositionDetailList = zeusDataUtil.loadStrategyPositionDetails(preTradingDay,
+								strategyID, strategyName);
+						if (ydPositionDetailList.isEmpty()) {
+							logContent = logStr + "初始化" + strategy.getLogStr() + "前一日持仓数据记录为空";
+							emitWarnLog(logContent);
+							log.warn(logContent);
+						} else {
 
-						List<PositionDetail> insertPositionDetailList = new ArrayList<>();
-						for (PositionDetail ydPositionDetail : ydPositionDetailList) {
-							String rtSymbol = ydPositionDetail.getRtSymbol();
-							String gatewayID = ydPositionDetail.getGatewayID();
+							List<PositionDetail> insertPositionDetailList = new ArrayList<>();
+							for (PositionDetail ydPositionDetail : ydPositionDetailList) {
+								String rtSymbol = ydPositionDetail.getRtSymbol();
+								String gatewayID = ydPositionDetail.getGatewayID();
 
-							if (contractPositionMap.containsKey(rtSymbol)) {
-								ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-								String tmpContractGatewayKey = rtSymbol + gatewayID;
+								if (contractPositionMap.containsKey(rtSymbol)) {
+									ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
+									String tmpContractGatewayKey = rtSymbol + gatewayID;
 
-								if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
+									if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
 
-									PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, gatewayID,
-											preTradingDay, strategyName, strategyID, ydPositionDetail.getExchange(),
-											ydPositionDetail.getContractSize());
-									tdPositionDetail
-											.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
-									tdPositionDetail
-											.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
-									tdPositionDetail.setLastPrice(ydPositionDetail.getLastPrice());
-									tdPositionDetail.setLongPrice(ydPositionDetail.getLongPrice());
-									tdPositionDetail.setShortPrice(ydPositionDetail.getShortPrice());
-									tdPositionDetail.setTradingDay(tradingDay);
+										PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, gatewayID,
+												preTradingDay, strategyName, strategyID, ydPositionDetail.getExchange(),
+												ydPositionDetail.getContractSize());
+										tdPositionDetail
+												.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
+										tdPositionDetail
+												.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
+										tdPositionDetail.setLastPrice(ydPositionDetail.getLastPrice());
+										tdPositionDetail.setLongPrice(ydPositionDetail.getLongPrice());
+										tdPositionDetail.setShortPrice(ydPositionDetail.getShortPrice());
+										tdPositionDetail.setTradingDay(tradingDay);
 
-									tdPositionDetail.calculatePosition();
-									tdPositionDetail.calculatePnl();
+										tdPositionDetail.calculatePosition();
+										tdPositionDetail.calculatePnl();
 
-									contractPositionDetail.getPositionDetailMap().put(gatewayID, tdPositionDetail);
-									contractPositionDetail.calculatePosition();
-									insertPositionDetailList.add(tdPositionDetail);
+										contractPositionDetail.getPositionDetailMap().put(gatewayID, tdPositionDetail);
+										contractPositionDetail.calculatePosition();
+										insertPositionDetailList.add(tdPositionDetail);
+									} else {
+										logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到合约" + rtSymbol
+												+ "接口ID" + gatewayID + "组合与配置不匹配";
+										emitErrorLog(logContent);
+										log.error(logContent);
+									}
 								} else {
-									logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到合约" + rtSymbol
-											+ "接口ID" + gatewayID + "组合与配置不匹配";
+									logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到配置中不存在的合约" + rtSymbol;
 									emitErrorLog(logContent);
 									log.error(logContent);
 								}
+							}
+
+							// 存入数据库
+							asyncSavePositionDetail(insertPositionDetailList);
+
+						}
+					}
+				} else {
+					List<PositionDetail> insertPositionDetailList = new ArrayList<>();
+					for (PositionDetail positionDetail : tdPositionDetailList) {
+						String rtSymbol = positionDetail.getRtSymbol();
+						String gatewayID = positionDetail.getGatewayID();
+
+						if (contractPositionMap.containsKey(rtSymbol)) {
+							ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
+							String tmpContractGatewayKey = rtSymbol + gatewayID;
+
+							if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
+								positionDetail.setTradingDay(tradingDay);
+								contractPositionDetail.getPositionDetailMap().put(gatewayID, positionDetail);
+								contractPositionDetail.calculatePosition();
+								insertPositionDetailList.add(positionDetail);
 							} else {
-								logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到配置中不存在的合约" + rtSymbol;
+								logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到合约" + rtSymbol + "接口ID"
+										+ gatewayID + "组合与配置不匹配";
 								emitErrorLog(logContent);
 								log.error(logContent);
 							}
-						}
-
-						// 存入数据库
-						asyncSavePositionDetail(insertPositionDetailList);
-
-					}
-				}
-			} else {
-				List<PositionDetail> insertPositionDetailList = new ArrayList<>();
-				for (PositionDetail positionDetail : tdPositionDetailList) {
-					String rtSymbol = positionDetail.getRtSymbol();
-					String gatewayID = positionDetail.getGatewayID();
-
-					if (contractPositionMap.containsKey(rtSymbol)) {
-						ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-						String tmpContractGatewayKey = rtSymbol + gatewayID;
-
-						if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
-							positionDetail.setTradingDay(tradingDay);
-							contractPositionDetail.getPositionDetailMap().put(gatewayID, positionDetail);
-							contractPositionDetail.calculatePosition();
-							insertPositionDetailList.add(positionDetail);
 						} else {
-							logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到合约" + rtSymbol + "接口ID"
-									+ gatewayID + "组合与配置不匹配";
+							logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到配置中不存在的合约" + rtSymbol;
 							emitErrorLog(logContent);
 							log.error(logContent);
 						}
-					} else {
-						logContent = logStr + "初始化" + strategy.getLogStr() + "从数据库中读取到配置中不存在的合约" + rtSymbol;
-						emitErrorLog(logContent);
-						log.error(logContent);
 					}
+
 				}
 
+				logContent = logStr + "初始化" + strategy.getLogStr() + "初始化持仓完成";
+				emitInfoLog(logContent);
+				log.info(logContent);
 			}
-
-			logContent = logStr + "初始化" + strategy.getLogStr() + "初始化持仓完成";
-			emitInfoLog(logContent);
-			log.info(logContent);
 			/************************ 订阅合约注册事件 *******************/
 			// 通过配置订阅合约注册事件
 			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting().getGateways()) {

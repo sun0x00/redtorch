@@ -64,10 +64,10 @@ public interface ZeusEngine extends FastEventDynamicHandler,Module {
 	void onTrade(Trade trade);
 	
 	/**
-	 * 从
-	 * @param strategyID 可空,如果参数StrategyID不为空,表示加载指定策略,其它忽略
+	 * 创建策略实例
+	 * @param strategyID
 	 */
-	void initStrategyClassInstance(StrategySetting strategySetting);
+	void createStrategyClassInstance(StrategySetting strategySetting);
 
 	/**
 	 * 卸载策略
@@ -77,7 +77,7 @@ public interface ZeusEngine extends FastEventDynamicHandler,Module {
 	void unloadStrategy(String strategyID);
 
 	/**
-	 * 加载策略
+	 * 加载所有策略
 	 */
 	void loadStartegy();
 	

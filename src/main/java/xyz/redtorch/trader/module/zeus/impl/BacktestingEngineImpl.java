@@ -46,6 +46,7 @@ import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeGatewaySetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractSetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.gatewaySetting;
+import xyz.redtorch.trader.module.zeus.strategy.routine.RoutineStrategyTemplate;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -332,7 +333,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				subscribeRtSymbolList.addAll(gateway.getSubscribeRtSymbols());
 			}
 
-			Strategy strategy = null;
+			RoutineStrategyTemplate strategy = null;
 
 			String lastDay = null;
 			if (DATA_MODE_TICK == backtestingDataMode) {
@@ -579,10 +580,10 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	 * @param strategySetting
 	 * @return
 	 */
-	private Strategy newInstance(Class<?> clazz, StrategySetting strategySetting) {
+	private RoutineStrategyTemplate newInstance(Class<?> clazz, StrategySetting strategySetting) {
 		try {
 			Constructor<?> c = clazz.getConstructor(ZeusEngine.class, StrategySetting.class);
-			Strategy strategy = (Strategy) c.newInstance(this, strategySetting);
+			RoutineStrategyTemplate strategy = (RoutineStrategyTemplate) c.newInstance(this, strategySetting);
 			this.strategy = strategy;
 			return strategy;
 		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
@@ -597,7 +598,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	 * 
 	 * @param strategy
 	 */
-	private void initStrategy(Strategy strategy) {
+	private void initStrategy(RoutineStrategyTemplate strategy) {
 
 		StrategySetting strategySetting = strategy.getStrategySetting();
 
@@ -1230,7 +1231,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 
 	@Override
-	public void initStrategyClassInstance(StrategySetting strategySetting) {
+	public void createStrategyClassInstance(StrategySetting strategySetting) {
 	}
 
 	@Override

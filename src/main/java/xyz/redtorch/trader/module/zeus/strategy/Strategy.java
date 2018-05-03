@@ -3,11 +3,9 @@ package xyz.redtorch.trader.module.zeus.strategy;
 import java.util.Map;
 
 import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
-import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
-import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
 
 /**
@@ -37,7 +35,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * 初始化
 	 */
 	void init();
-	
 
 	/**
 	 * 开始交易
@@ -91,24 +88,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	void onTick(Tick tick) throws Exception;
 	
 	/**
-	 * 在一分钟Bar产生时调用
-	 * <br/>
-	 * 注意,此处默认<b>过滤</b>同一个策略使用多个接口订阅同一个品种导致的同一个品种重复调用
-	 * @param bar
-	 * @throws Exception
-	 */
-	void onBar(Bar bar) throws Exception;
-	
-	/**
-	 * 在X分钟Bar产生时调用
-	 * <br/>
-	 * 注意,此处默认<b>过滤</b>同一个策略使用多个接口订阅同一个品种导致的同一个品种重复调用
-	 * @param bar
-	 * @throws Exception
-	 */
-	void onXMinBar(Bar bar) throws Exception;
-
-	/**
 	 * 在有委托数据时调用
 	 * @param order
 	 * @throws Exception
@@ -136,12 +115,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	StrategySetting getStrategySetting();
 
 	/**
-	 * 获取策略持仓
-	 * @return
-	 */
-	Map<String, ContractPositionDetail> getContractPositionMap();
-
-	/**
 	 * 获取日志便捷字符串
 	 * @return
 	 */
@@ -154,11 +127,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	Map<String, StopOrder> getWorkingStopOrderMap();	
 	
 	/**
-	 * 保存持仓
-	 */
-	void savePosition();
-	
-	/**
 	 * 保存配置
 	 */
 	void saveStrategySetting();
@@ -169,65 +137,139 @@ public interface Strategy extends FastEventDynamicHandler {
 	void setVarValue(String key,String value);
 	
 	/**
-	 * 重置策略,一般用于连续回测
-	 * @param strategySetting
+	 * 发单
+	 * @param rtSymbol
+	 * @param orderType
+	 * @param priceType
+	 * @param price
+	 * @param volume
+	 * @param gatewayID
+	 * @return
 	 */
-	void resetStrategy(StrategySetting strategySetting);
-
 	String sendOrder(String rtSymbol, String orderType, String priceType, double price, int volume, String gatewayID);
 	
+	/**
+	 * 发送停止单
+	 * @param rtSymbol
+	 * @param orderType
+	 * @param priceType
+	 * @param price
+	 * @param volume
+	 * @param gatewayID
+	 * @param strategy
+	 * @return
+	 */
 	String sendStopOrder(String rtSymbol, String orderType, String priceType, double price, int volume,
 			String gatewayID, Strategy strategy);
 
+	/**
+	 * 撤销停止单
+	 * @param stopOrderID
+	 */
 	void cancelStopOrder(String stopOrderID);
 	
+	/**
+	 * 撤单
+	 * @param rtOrderID
+	 */
 	void cancelOrder(String rtOrderID);
 	
+	/**
+	 * 撤销所有委托
+	 */
 	void cancelAll();
 	
+	/**
+	 * 买开多
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void buy(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 卖平多
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void sell(String rtSymbol, int volume, double price, String gatewayID);
 
+	/**
+	 * 卖平今多
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void sellTd(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 卖平昨多
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void sellYd(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 卖开空
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void sellShort(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 买平空
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void buyToCover(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 买平今空
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID);
 	
+	/**
+	 * 买平昨空
+	 * @param rtSymbol
+	 * @param volume
+	 * @param price
+	 * @param gatewayID
+	 */
 	void buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID);
 	
-	void buyByPreset(String rtSymbol, double price);
 	
-	void sellByPosition(String rtSymbol, double price);
-	
-	void sellTdByPosition(String rtSymbol, double price);
-	
-	void sellYdByPosition(String rtSymbol, double price);
-	
-	void sellShortByPreset(String rtSymbol, double price);
-	
-	void buyToCoverByPosition(String rtSymbol, double price);
-	
-	void buyToCoverTdByPosition(String rtSymbol, double price);
-	
-	void buyToCoverYdByPosition(String rtSymbol, double price);
-	
-	void buyToLockByPosition(String rtSymbol, double price);
-	
-	void sellShortToLockByPosition(String rtSymbol, double price);
-	
+	/**
+	 * 处理Order
+	 * @param order
+	 */
 	void processOrder(Order order);
 
+	/**
+	 * 处理Tick
+	 * @param tick
+	 */
 	void processTick(Tick tick);
 
+	/**
+	 * 处理成交
+	 * @param trade
+	 */
 	void processTrade(Trade trade);
 
-	void processBar(Bar bar);
 
 	
 	
