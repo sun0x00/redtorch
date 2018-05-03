@@ -69,15 +69,9 @@ public abstract class RoutineStrategyTemplate extends FastEventDynamicHandlerAbs
 	private Map<String, BarGenerator> barGeneratorMap = new HashMap<>();
 
 	/**
-	 * 强制使用有参构造方法
-	 * 
-	 * @param id
-	 *            策略ID
-	 * @param name
-	 *            策略名称
-	 * @param xMin
-	 *            分钟数,用于x分钟Bar生成器,范围[2,+∞),建议此值不要大于120
+	 * 必须使用有参构造方法
 	 * @param zeusEngine
+	 * @param strategySetting
 	 */
 	public RoutineStrategyTemplate(ZeusEngine zeusEngine, StrategySetting strategySetting) {
 		strategySetting.fixSetting();
