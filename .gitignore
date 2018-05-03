@@ -27,7 +27,7 @@ hs_err_pid*
 /.settings/
 
 # private
-/src/main/java/xyz/redtorch/trader/module/hft/*
-/src/main/java/xyz/redtorch/trader/module/zeus/strategy/impl/pvt/*
+/src/main/java/xyz/redtorch/trader/module/zeus/strategy/routine/pvt/impl/*
+/src/main/java/xyz/redtorch/trader/module/zeus/strategy/hft/*
 /src/main/java/xyz/redtorch/trader/rm/impl/*
 

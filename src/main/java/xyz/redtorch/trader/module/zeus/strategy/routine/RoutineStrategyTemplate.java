@@ -1,4 +1,4 @@
-package xyz.redtorch.trader.module.zeus.strategy;
+package xyz.redtorch.trader.module.zeus.strategy.routine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +29,8 @@ import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeGatewaySetting;
+import xyz.redtorch.trader.module.zeus.strategy.Strategy;
+import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractSetting;
 import xyz.redtorch.utils.CommonUtil;
 
@@ -38,9 +40,9 @@ import xyz.redtorch.utils.CommonUtil;
  * @author sun0x00@gmail.com
  *
  */
-public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract implements Strategy {
+public abstract class RoutineStrategyTemplate extends FastEventDynamicHandlerAbstract implements Strategy {
 
-	private static final Logger log = LoggerFactory.getLogger(StrategyTemplate.class);
+	private static final Logger log = LoggerFactory.getLogger(RoutineStrategyTemplate.class);
 
 	private String id; // 策略ID
 	private String name; // 策略名称
@@ -77,7 +79,7 @@ public abstract class StrategyTemplate extends FastEventDynamicHandlerAbstract i
 	 *            分钟数,用于x分钟Bar生成器,范围[2,+∞),建议此值不要大于120
 	 * @param zeusEngine
 	 */
-	public StrategyTemplate(ZeusEngine zeusEngine, StrategySetting strategySetting) {
+	public RoutineStrategyTemplate(ZeusEngine zeusEngine, StrategySetting strategySetting) {
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
 
