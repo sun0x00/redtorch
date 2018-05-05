@@ -303,7 +303,9 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 
 		String rtOrderID = zeusEngine.sendOrder(orderReq, this);
 
-		contractPositionMap.get(rtSymbol).updateOrderReq(orderReq, rtOrderID);
+		if(contractPositionMap.containsKey(rtSymbol)) {
+			contractPositionMap.get(rtSymbol).updateOrderReq(orderReq, rtOrderID);
+		}
 
 		return rtOrderID;
 	}
@@ -480,48 +482,48 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 	}
 
 	@Override
-	public void buy(String rtSymbol, int volume, double price, String gatewayID) {
+	public String buy(String rtSymbol, int volume, double price, String gatewayID) {
 
-		sendOrder(rtSymbol, ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
 
 	}
 
 	@Override
-	public void sell(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_SELL, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String sell(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELL, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
 	}
 
 	@Override
-	public void sellTd(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_SELLTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String sellTd(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELLTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
 	}
 
 	@Override
-	public void sellYd(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_SELLYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
+	public String sellYd(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELLYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
 				gatewayID);
 	}
 
 	@Override
-	public void sellShort(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_SHORT, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String sellShort(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SHORT, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
 	}
 
 	@Override
-	public void buyToCover(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_COVER, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
-
-	}
-
-	@Override
-	public void buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_COVERTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String buyToCover(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVER, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
 
 	}
 
 	@Override
-	public void buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID) {
-		sendOrder(rtSymbol, ZeusConstant.ORDER_COVERYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
+	public String buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVERTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+
+	}
+
+	@Override
+	public String buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID) {
+		return  sendOrder(rtSymbol, ZeusConstant.ORDER_COVERYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
 				gatewayID);
 
 	}

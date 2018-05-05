@@ -113,7 +113,6 @@ public abstract class RoutineStrategyTemplate extends StrategyAbstract{
 
 	}
 	
-
 	/**
 	 * 初始化持仓数据结构
 	 */

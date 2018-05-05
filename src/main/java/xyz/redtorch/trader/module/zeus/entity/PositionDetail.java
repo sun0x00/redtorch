@@ -2,7 +2,6 @@ package xyz.redtorch.trader.module.zeus.entity;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.entity.Order;
@@ -15,15 +14,6 @@ import xyz.redtorch.trader.entity.Trade;
 public class PositionDetail implements Serializable {
 
 	private static final long serialVersionUID = 6210968936139034645L;
-
-	private HashSet<String> WORKING_STATUS = new HashSet<String>() {
-		private static final long serialVersionUID = 909683985291870766L;
-		{
-			add(RtConstant.STATUS_UNKNOWN);
-			add(RtConstant.STATUS_NOTTRADED);
-			add(RtConstant.STATUS_PARTTRADED);
-		}
-	};
 
 	private String tradingDay;
 	private String rtSymbol;
@@ -77,10 +67,6 @@ public class PositionDetail implements Serializable {
 	
 	public PositionDetail() {}
 	
-	public HashSet<String> getWORKING_STATUS() {
-		return WORKING_STATUS;
-	}
-
 	public String getTradingDay() {
 		return tradingDay;
 	}
@@ -389,7 +375,7 @@ public class PositionDetail implements Serializable {
 	 */
 	public void updateOrder(Order order) {
 		// 将活动委托缓存下来
-		if (WORKING_STATUS.contains(order.getStatus())) {
+		if (RtConstant.STATUS_WORKING.contains(order.getStatus())) {
 			workingOrderMap.put(order.getRtOrderID(), order);
 
 			// 移除缓存中已经完成的委托
@@ -522,7 +508,7 @@ public class PositionDetail implements Serializable {
 						shortTdFrozen = shortTd;
 					}
 				} else if (RtConstant.OFFSET_OPEN.equals(order.getOffset())) {// 开仓
-					if (WORKING_STATUS.contains(order.getStatus())) {
+					if (RtConstant.STATUS_WORKING.contains(order.getStatus())) {
 						longOpenFrozen += frozenVolume;
 					}
 				}
@@ -538,7 +524,7 @@ public class PositionDetail implements Serializable {
 						longTdFrozen = longTd;
 					}
 				} else if (RtConstant.OFFSET_OPEN.equals(order.getOffset())) {// 开仓
-					if (WORKING_STATUS.contains(order.getStatus())) {
+					if (RtConstant.STATUS_WORKING.contains(order.getStatus())) {
 						shortOpenFrozen += frozenVolume;
 					}
 				}

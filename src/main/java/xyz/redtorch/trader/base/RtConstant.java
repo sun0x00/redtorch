@@ -42,6 +42,15 @@ public interface RtConstant {
 			add(RtConstant.STATUS_ALLTRADED);
 		}
 	};
+	
+	static HashSet<String> STATUS_WORKING = new HashSet<String>() {
+		private static final long serialVersionUID = 909683985291870766L;
+		{
+			add(RtConstant.STATUS_UNKNOWN);
+			add(RtConstant.STATUS_NOTTRADED);
+			add(RtConstant.STATUS_PARTTRADED);
+		}
+	};
 
 	// 合约类型常量
 	static final String PRODUCT_EQUITY = "股票";

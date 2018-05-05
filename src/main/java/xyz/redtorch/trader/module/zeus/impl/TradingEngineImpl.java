@@ -155,6 +155,9 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 		strategy.subscribeEvent(EventConstant.EVENT_ORDER + rtOrderID);
 		subscribeEvent(EventConstant.EVENT_ORDER + rtOrderID);
+		
+		strategy.subscribeEvent(EventConstant.EVENT_TRADE+rtOrderID);
+		subscribeEvent(EventConstant.EVENT_TRADE + rtOrderID);
 
 		return rtOrderID;
 	}
@@ -173,7 +176,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 				cancelOrderReq.setFrontID(order.getFrontID());
 				cancelOrderReq.setSessionID(order.getSessionID());
 				cancelOrderReq.setOrderID(order.getOrderID());
-				cancelOrderReq.setGatewayID(order.getOrderID());
+				cancelOrderReq.setGatewayID(order.getGatewayID());
 				mainEngine.cancelOrder(cancelOrderReq);
 
 			} else {
@@ -238,7 +241,13 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	public void createStrategyClassInstance(StrategySetting strategySetting) {
 
 		String logContent;
-
+		
+		if(strategyMap.containsKey(strategySetting.getStrategyID())) {
+			logContent = logStr +"策略已经加载，请勿重复加载,策略ID-"+strategySetting.getStrategyID();
+			emitErrorLog(logContent);
+			log.error(logContent);
+			return;
+		}
 		
 		try {
 			Class<?> clazz = Class.forName(strategySetting.getClassName());

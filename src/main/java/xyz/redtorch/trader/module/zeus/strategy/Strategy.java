@@ -186,7 +186,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void buy(String rtSymbol, int volume, double price, String gatewayID);
+	String buy(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 卖平多
@@ -195,7 +195,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void sell(String rtSymbol, int volume, double price, String gatewayID);
+	String sell(String rtSymbol, int volume, double price, String gatewayID);
 
 	/**
 	 * 卖平今多
@@ -204,7 +204,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void sellTd(String rtSymbol, int volume, double price, String gatewayID);
+	String sellTd(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 卖平昨多
@@ -213,7 +213,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void sellYd(String rtSymbol, int volume, double price, String gatewayID);
+	String sellYd(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 卖开空
@@ -222,7 +222,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void sellShort(String rtSymbol, int volume, double price, String gatewayID);
+	String sellShort(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 买平空
@@ -231,7 +231,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void buyToCover(String rtSymbol, int volume, double price, String gatewayID);
+	String buyToCover(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 买平今空
@@ -240,7 +240,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID);
+	String buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID);
 	
 	/**
 	 * 买平昨空
@@ -249,7 +249,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param price
 	 * @param gatewayID
 	 */
-	void buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID);
+	String buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID);
 	
 	
 	/**

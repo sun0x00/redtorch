@@ -184,7 +184,7 @@ public abstract class GatewayAbstract implements Gateway{
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.getTrade().setAllValue(gatewayID, symbol, exchange, rtSymbol, tradeID, rtTradeID, orderID, rtOrderID, direction, offset, price, volume, tradingDay, tradeDate, tradeTime, dateTime);
-			fastEvent.setEvent(EventConstant.EVENT_TRADE + rtSymbol);
+			fastEvent.setEvent(EventConstant.EVENT_TRADE + rtOrderID);
 			fastEvent.setEventType(EventConstant.EVENT_TRADE);
 			
 		} finally {
