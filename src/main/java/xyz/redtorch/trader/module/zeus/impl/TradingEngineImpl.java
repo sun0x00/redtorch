@@ -621,7 +621,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			while (!Thread.currentThread().isInterrupted()) {
 				try {
 					StrategySetting strategySetting = strategySettingSaveQueue.poll();
-					if(strategySetting!=null) {
+					if(strategySetting == null) {
 						Thread.sleep(10);
 					}else {
 						zeusDataUtil.saveStrategySetting(strategySetting);
