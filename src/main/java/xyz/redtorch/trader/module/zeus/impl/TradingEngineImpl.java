@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -64,8 +65,8 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	Map<String, Strategy> strategyMap = new ConcurrentHashMap<>();
 
 	// 用于异步存储配置的队列(减少策略的IO等待时间,主要用于节省回测时间)
-	LinkedBlockingQueue<StrategySetting> strategySettingSaveQueue = new LinkedBlockingQueue<>();
-	LinkedBlockingQueue<PositionDetail> positionDetailSaveQueue = new LinkedBlockingQueue<>();
+	Queue<StrategySetting> strategySettingSaveQueue = new ConcurrentLinkedQueue<>();
+	Queue<PositionDetail> positionDetailSaveQueue = new ConcurrentLinkedQueue<>();
 
 	public TradingEngineImpl(MainEngine mainEngine) {
 		super(mainEngine);
@@ -600,8 +601,12 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
 				try {
-					PositionDetail positionDetail = positionDetailSaveQueue.take();
-					zeusDataUtil.saveStrategyPositionDetail(positionDetail);
+					PositionDetail positionDetail = positionDetailSaveQueue.poll();
+					if(positionDetail==null) {
+						Thread.sleep(10);
+					}else {
+						zeusDataUtil.saveStrategyPositionDetail(positionDetail);
+					}
 				} catch (InterruptedException e) {
 					log.error("{} 保存持仓任务捕获到线程中断异常,线程停止!!!", logStr, e);
 				}
@@ -615,8 +620,12 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
 				try {
-					StrategySetting strategySetting = strategySettingSaveQueue.take();
-					zeusDataUtil.saveStrategySetting(strategySetting);
+					StrategySetting strategySetting = strategySettingSaveQueue.poll();
+					if(strategySetting!=null) {
+						Thread.sleep(10);
+					}else {
+						zeusDataUtil.saveStrategySetting(strategySetting);
+					}
 				} catch (InterruptedException e) {
 					log.error("{} 保存配置任务捕获到线程中断异常,线程停止!!!", logStr, e);
 				}
