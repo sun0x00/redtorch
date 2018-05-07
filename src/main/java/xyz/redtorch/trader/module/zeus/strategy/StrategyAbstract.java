@@ -382,6 +382,9 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 	@Override
 	public void cancelOrder(String rtOrderID) {
 		if (StringUtils.isEmpty(rtOrderID)) {
+			String logContent = logStr + "无法撤单,RtOrderID为空";
+			CommonUtil.emitErrorLog(logContent);
+			log.error(logContent);
 			return;
 		}
 		if (workingOrderMap.containsKey(rtOrderID)) {
