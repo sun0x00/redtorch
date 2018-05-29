@@ -939,7 +939,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	// 委托回报
 	public void OnRtnOrder(CThostFtdcOrderField pOrder) {
 
-		String newRef = pOrder.getOrderRef();
+		String newRef = pOrder.getOrderRef().replace(" ", "");
 		// 更新最大报单编号
 		orderRef = Math.max(orderRef, Integer.valueOf(newRef));
 
