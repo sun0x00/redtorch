@@ -188,8 +188,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			return;
 		}
 		if (cThostFtdcTraderApi != null) {
+			cThostFtdcTraderApi.RegisterSpi(null);
 			cThostFtdcTraderApi.Release();
-			cThostFtdcTraderApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -231,8 +231,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		if (cThostFtdcTraderApi != null) {
+			cThostFtdcTraderApi.RegisterSpi(null);
 			cThostFtdcTraderApi.Release();
-			cThostFtdcTraderApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;

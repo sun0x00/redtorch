@@ -85,8 +85,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 			return;
 		}
 		if (cThostFtdcMdApi != null) {
+			cThostFtdcMdApi.RegisterSpi(null);
 			cThostFtdcMdApi.Release();
-			cThostFtdcMdApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -129,8 +129,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 		}
 
 		if (cThostFtdcMdApi != null) {
+			cThostFtdcMdApi.RegisterSpi(null);
 			cThostFtdcMdApi.Release();
-			cThostFtdcMdApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;
