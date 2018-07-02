@@ -11,7 +11,6 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CtpConstant;
 import xyz.redtorch.api.jctp.CThostFtdcAccountregisterField;
 import xyz.redtorch.api.jctp.CThostFtdcBatchOrderActionField;
 import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingAlgosField;
@@ -129,7 +128,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private String brokerID;
 	private String userID;
 	private String password;
-	private String autoCode;
+	private String authCode;
 	private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
@@ -148,7 +147,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
 		this.userID = ctpGateway.getGatewaySetting().getUserID();
 		this.password = ctpGateway.getGatewaySetting().getPassword();
-		this.autoCode = ctpGateway.getGatewaySetting().getAuthCode();
+		this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
 		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
@@ -188,8 +187,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			return;
 		}
 		if (cThostFtdcTraderApi != null) {
+			cThostFtdcTraderApi.RegisterSpi(null);
 			cThostFtdcTraderApi.Release();
-			cThostFtdcTraderApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -231,8 +230,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		if (cThostFtdcTraderApi != null) {
+			cThostFtdcTraderApi.RegisterSpi(null);
 			cThostFtdcTraderApi.Release();
-			cThostFtdcTraderApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;
@@ -387,10 +386,10 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			return;
 		}
 
-		if (!StringUtils.isEmpty(autoCode) && !authStatus) {
+		if (!StringUtils.isEmpty(authCode) && !authStatus) {
 			// 验证
 			CThostFtdcReqAuthenticateField authenticateField = new CThostFtdcReqAuthenticateField();
-			authenticateField.setAuthCode(autoCode);
+			authenticateField.setAuthCode(authCode);
 			authenticateField.setUserID(userID);
 			authenticateField.setBrokerID(brokerID);
 			authenticateField.setUserProductInfo(userProductInfo);

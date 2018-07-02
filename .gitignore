@@ -31,8 +31,12 @@ hs_err_pid*
 /src/main/java/xyz/redtorch/trader/module/zeus/strategy/hft/*
 /src/main/java/xyz/redtorch/trader/rm/impl/*
 
-
 /src/main/java/xyz/redtorch/trader/rm/impl/*
 
 /src/test/java/xyz/redtorch/trader/common/*
+
+/src/main/java/xyz/redtorch/trader/gateway/pctp/*
+/src/main/java/xyz/redtorch/api/pctp/*
+/src/test/java/xyz/redtorch/api/pctp/*
+/src/test/resources/ctp/*
 

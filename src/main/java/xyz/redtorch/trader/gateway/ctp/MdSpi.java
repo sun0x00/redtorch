@@ -35,7 +35,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	private String brokerID;
 	private String userID;
 	private String password;
-	// private String autoCode;
+	// private String authCode;
 	// private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
@@ -55,7 +55,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
 		this.userID = ctpGateway.getGatewaySetting().getUserID();
 		this.password = ctpGateway.getGatewaySetting().getPassword();
-		// this.autoCode = ctpGateway.getGatewaySetting().getAuthCode();
+		// this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
 		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
@@ -85,8 +85,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 			return;
 		}
 		if (cThostFtdcMdApi != null) {
+			cThostFtdcMdApi.RegisterSpi(null);
 			cThostFtdcMdApi.Release();
-			cThostFtdcMdApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -129,8 +129,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 		}
 
 		if (cThostFtdcMdApi != null) {
+			cThostFtdcMdApi.RegisterSpi(null);
 			cThostFtdcMdApi.Release();
-			cThostFtdcMdApi.delete();
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;
