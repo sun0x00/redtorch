@@ -63,9 +63,6 @@ public class TradingServiceImpl implements TradingService {
 	public TradingServiceImpl() {
 		EventTransferTask eventTransferTask = new EventTransferTask();
 
-		// 这一步暂时没有实际意义,预留
-		mainEngine.addModel(zeusEngine);
-
 		FastEventEngine.addHandler(mainEngine);
 		FastEventEngine.addHandler(zeusEngine);
 		FastEventEngine.addHandler(eventTransferTask);

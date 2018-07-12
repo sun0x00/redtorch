@@ -46,7 +46,6 @@ import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.TradeGatewaySetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.ContractSetting;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting.gatewaySetting;
-import xyz.redtorch.trader.module.zeus.strategy.routine.RoutineStrategyTemplate;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -333,7 +332,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				subscribeRtSymbolList.addAll(gateway.getSubscribeRtSymbols());
 			}
 
-			RoutineStrategyTemplate strategy = null;
+			Strategy strategy = null;
 
 			String lastDay = null;
 			if (DATA_MODE_TICK == backtestingDataMode) {
@@ -580,10 +579,10 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	 * @param strategySetting
 	 * @return
 	 */
-	private RoutineStrategyTemplate newInstance(Class<?> clazz, StrategySetting strategySetting) {
+	private Strategy newInstance(Class<?> clazz, StrategySetting strategySetting) {
 		try {
 			Constructor<?> c = clazz.getConstructor(ZeusEngine.class, StrategySetting.class);
-			RoutineStrategyTemplate strategy = (RoutineStrategyTemplate) c.newInstance(this, strategySetting);
+			Strategy strategy = (Strategy) c.newInstance(this, strategySetting);
 			this.strategy = strategy;
 			return strategy;
 		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
@@ -598,7 +597,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	 * 
 	 * @param strategy
 	 */
-	private void initStrategy(RoutineStrategyTemplate strategy) {
+	private void initStrategy(Strategy strategy) {
 
 		StrategySetting strategySetting = strategy.getStrategySetting();
 
@@ -1203,21 +1202,6 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 	
 	///////////////////////////// ↓↓↓↓↓↓↓回测不需要实现的方法↓↓↓↓↓↓↓////////////////////////////
-	@Override
-	public String getModuleID() {
-		return null;
-	}
-
-	@Override
-	public String getModuleDisplayName() {
-		return null;
-	}
-
-	@Override
-	public String getLogStr() {
-		return null;
-	}
-
 	@Override
 	public void onTick(Tick tick) {
 	}

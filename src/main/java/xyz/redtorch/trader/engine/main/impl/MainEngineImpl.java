@@ -36,7 +36,6 @@ import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
 import xyz.redtorch.trader.gateway.Gateway;
 import xyz.redtorch.trader.gateway.GatewaySetting;
-import xyz.redtorch.trader.module.Module;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -515,8 +514,10 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 
 			Gateway gateway = getGateway(gatewayID);
 			if (gateway != null) {
-				gateway.unSubscribe(rtSymbol);
-
+				String[] rtSymbolArray = rtSymbol.split("\\.");
+				if(rtSymbolArray.length>1) {
+					gateway.unSubscribe(rtSymbolArray[0]);
+				}
 				logContent = "MAIN_ENGINE:成功取消订阅行情,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
 						+ "]";
 				CommonUtil.emitInfoLog(logContent);
@@ -707,11 +708,5 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 	@Override
 	public List<LogData> getLogDatas() {
 		return logDataList;
-	}
-
-	@Override
-	public void addModel(Module module) {
-
-		// 预留,暂时没用到
 	}
 }

@@ -3,9 +3,11 @@ package xyz.redtorch.trader.module.zeus.strategy;
 import java.util.Map;
 
 import xyz.redtorch.trader.engine.event.FastEventDynamicHandler;
+import xyz.redtorch.trader.entity.Bar;
 import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
+import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
 
 /**
@@ -35,6 +37,12 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * 初始化
 	 */
 	void init();
+	
+	/**
+	 * 重置策略,一般被回测引擎使用,用于实现连续回测
+	 * @param strategySetting
+	 */
+	void resetStrategy(StrategySetting strategySetting);
 
 	/**
 	 * 开始交易
@@ -107,13 +115,32 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @throws Exception
 	 */
 	void onStopOrder(StopOrder StopOrder) throws Exception;
+	
+	/**
+	 * 处理Order
+	 * @param order
+	 */
+	void processOrder(Order order);
 
 	/**
-	 * 获取策略设置
-	 * @return
+	 * 处理Tick
+	 * @param tick
 	 */
-	StrategySetting getStrategySetting();
-
+	void processTick(Tick tick);
+	
+	/**
+	 * 处理Bar
+	 * @param bar
+	 */
+	void processBar(Bar bar);
+	
+	/**
+	 * 处理成交
+	 * @param trade
+	 */
+	void processTrade(Trade trade);
+	
+	
 	/**
 	 * 获取日志便捷字符串
 	 * @return
@@ -125,6 +152,18 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @return
 	 */
 	Map<String, StopOrder> getWorkingStopOrderMap();	
+	
+	/**
+	 * 获取策略设置
+	 * @return
+	 */
+	StrategySetting getStrategySetting();
+	
+	/**
+	 * 获取持仓结构
+	 * @return
+	 */
+	Map<String, ContractPositionDetail> getContractPositionMap();
 	
 	/**
 	 * 保存配置
@@ -178,6 +217,7 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * 撤销所有委托
 	 */
 	void cancelAll();
+	
 	
 	/**
 	 * 买开多
@@ -250,28 +290,6 @@ public interface Strategy extends FastEventDynamicHandler {
 	 * @param gatewayID
 	 */
 	String buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID);
-	
-	
-	/**
-	 * 处理Order
-	 * @param order
-	 */
-	void processOrder(Order order);
 
-	/**
-	 * 处理Tick
-	 * @param tick
-	 */
-	void processTick(Tick tick);
-
-	/**
-	 * 处理成交
-	 * @param trade
-	 */
-	void processTrade(Trade trade);
-
-
-	
-	
 
 }

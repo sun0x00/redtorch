@@ -24,6 +24,7 @@ import com.alibaba.fastjson.JSON;
 import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.event.EventConstant;
 import xyz.redtorch.trader.engine.event.FastEvent;
+import xyz.redtorch.trader.engine.event.FastEventDynamicHandlerAbstract;
 import xyz.redtorch.trader.engine.event.FastEventEngine;
 import xyz.redtorch.trader.engine.main.MainEngine;
 import xyz.redtorch.trader.entity.Bar;
@@ -34,7 +35,6 @@ import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.SubscribeReq;
 import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
-import xyz.redtorch.trader.module.ModuleAbstract;
 import xyz.redtorch.trader.module.zeus.ZeusConstant;
 import xyz.redtorch.trader.module.zeus.ZeusEngine;
 import xyz.redtorch.trader.module.zeus.ZeusDataUtil;
@@ -42,20 +42,18 @@ import xyz.redtorch.trader.module.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
-import xyz.redtorch.trader.module.zeus.strategy.routine.RoutineStrategyTemplate;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
  * @author sun0x00@gmail.com
  */
-public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
+public class TradingEngineImpl extends FastEventDynamicHandlerAbstract implements ZeusEngine {
 
 	private Logger log = LoggerFactory.getLogger(TradingEngineImpl.class);
 
-	private static final String moduleID = "MODULE_ZEUS";
-	private static final String moduleDisplayName = "Zeus实盘引擎";
-	private static final String logStr = "模块ID-[" + moduleID + "] 名称-[" + moduleDisplayName + "] >>> ";
+	private static final String logStr = "ZEUS引擎  >>> ";
 
+	private MainEngine mainEngine;
 	private ZeusDataUtil zeusDataUtil;
 
 	// 使用无大小限制的线程池,线程空闲60s会被释放
@@ -69,7 +67,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 	Queue<PositionDetail> positionDetailSaveQueue = new ConcurrentLinkedQueue<>();
 
 	public TradingEngineImpl(MainEngine mainEngine) {
-		super(mainEngine);
+		this.mainEngine = mainEngine;
 		zeusDataUtil = new ZeusDataUtilImpl(mainEngine.getDataEngine());
 		// 启动异步存储策略设置线程
 		executor.execute(new SaveStrategySettingTask());
@@ -122,21 +120,6 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 			emitWarnLog(logContent);
 			log.warn(logContent);
 		}
-	}
-
-	@Override
-	public String getModuleID() {
-		return moduleID;
-	}
-
-	@Override
-	public String getModuleDisplayName() {
-		return moduleDisplayName;
-	}
-
-	@Override
-	public String getLogStr() {
-		return logStr;
 	}
 
 	@Override
@@ -321,8 +304,7 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 
 			/********************** 初始化持仓 ****************************/
 			// 判断是否属于常规策略,HFT策略不使用复杂持仓逻辑
-			if(RoutineStrategyTemplate.class.isAssignableFrom(strategy.getClass())) {
-				Map<String, ContractPositionDetail> contractPositionMap = ((RoutineStrategyTemplate)strategy).getContractPositionMap();
+				Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
 				Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
 				for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
 					String rtSymbol = contractSetting.getRtSymbol();
@@ -440,7 +422,6 @@ public class TradingEngineImpl extends ModuleAbstract implements ZeusEngine {
 				logContent = logStr + "初始化" + strategy.getLogStr() + "初始化持仓完成";
 				emitInfoLog(logContent);
 				log.info(logContent);
-			}
 			/************************ 订阅合约注册事件 *******************/
 			// 通过配置订阅合约注册事件
 			for (StrategySetting.gatewaySetting gatewaySetting : strategy.getStrategySetting().getGateways()) {

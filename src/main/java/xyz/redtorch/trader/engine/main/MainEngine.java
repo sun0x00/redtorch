@@ -16,8 +16,6 @@ import xyz.redtorch.trader.entity.SubscribeReq;
 import xyz.redtorch.trader.entity.Trade;
 import xyz.redtorch.trader.gateway.Gateway;
 import xyz.redtorch.trader.gateway.GatewaySetting;
-import xyz.redtorch.trader.module.Module;
-
 
 /**
  * @author sun0x00@gmail.com
@@ -220,14 +218,5 @@ public interface MainEngine extends FastEventDynamicHandler{
 	 * @return
 	 */
 	List<LogData> getLogDatas();
-	
-	/**
-	 * 预留,把Module加入主引擎,实现一些统一接口
-	 * @param module
-	 */
-	void addModel(Module module);
-
-
-	
 
 }
