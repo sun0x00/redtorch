@@ -115,8 +115,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 		cThostFtdcMdApi = CThostFtdcMdApi.CreateFtdcMdApi(tempFile.getAbsolutePath());
 		cThostFtdcMdApi.RegisterSpi(this);
 		cThostFtdcMdApi.RegisterFront(mdAddress);
-		cThostFtdcMdApi.Init();
 		connectProcessStatus = true;
+		cThostFtdcMdApi.Init();
 
 	}
 
@@ -232,7 +232,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			// 修改登录状态为true
 			this.loginStatus = true;
 			tradingDayStr = pRspUserLogin.getTradingDay();
-			log.info("{}获取到的交易日为{}", gatewayLogInfo, tradingDayStr);
+			log.info("{}行情接口获取到的交易日为{}", gatewayLogInfo, tradingDayStr);
 			// 重新订阅之前的合约
 			if (!ctpGateway.getSubscribedSymbols().isEmpty()) {
 				String[] subscribedSymbolsArray = ctpGateway.getSubscribedSymbols()
