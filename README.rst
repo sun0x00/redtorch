@@ -20,7 +20,7 @@ RedTorch
 
 + Python GIL带来的性能问题难以突破，不能有效使用多核CPU。对于绝大部分策略可能对实盘T2T延迟并没有太高的要求，使用vn.py便捷可靠，但当策略回测时需要使用Tick级别或多合约回测，控制性能问题带来的时间成本就显得格外重要。
 
-+ 作为便捷的动态语言，原生Python没有编译期检查，但这是一把双刃剑,虽然Java也有令人诟病的 NullPointerException，但还是可以暴露一些潜在的问题。
++ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但"动态语言一时爽，生产Bug火葬场"，原生Python没有编译期检查，这是一把双刃剑。个人亲历了一次因为官方解释器None与0比较不报异常，且None无限小的问题，导致交易中30秒亏损数万元。虽然Java也有令人诟病的 NullPointerException，但还是可以暴露一些潜在的问题。
 
 + 曾考虑使用C++，但因工作量太大只能作罢，而且已有此类工具。得益于JVM的良好设计，框架在多核利用和内部T2T延迟方面表现良好，绝大部分时候内部T2T延迟控制在70μs~200μs，而vn.py创始前辈对vn.py早期的T2T测试结果大概24ms,这只是vnpy早期数据，现在应该更快了。
 
@@ -57,7 +57,7 @@ RedTorch
 项目结构
 ---------
 
-+ 项目使用Maven构建
++ 项目使用Gradle构建
 
 + 框架采用事件驱动架构,且利用多核。
 
@@ -107,9 +107,9 @@ RedTorch
 
 + IDE推荐使用最新版Eclipse IDE for Java EE Developers x64
 
-+ 安装Maven3.x(可选，也可以使用Eclipse嵌入式)
++ 安装Gradle
 
-+ 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Maven Projects导入本项目
++ 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Gradle Projects导入本项目
 
 + 修改application.properties文件
 

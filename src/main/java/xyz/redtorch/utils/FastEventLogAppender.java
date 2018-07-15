@@ -41,7 +41,8 @@ public class FastEventLogAppender extends AppenderBase<ILoggingEvent> {
 
 		String event = EventConstant.EVENT_LOG;
 		StringBuffer sb = new StringBuffer();
-		sb.append(le.getThreadName()).append("\t").append(le.getLoggerName())
+		String loggerName = le.getLoggerName();
+		sb.append(le.getThreadName()).append("\t").append(loggerName.split("\\.")[loggerName.split("\\.").length-1])
 			.append("\t").append(le.getFormattedMessage()); 
 		CommonUtil.emitLogBase(le.getTimeStamp(), event, rtLevel, sb.toString());
 		
