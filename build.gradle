@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+	id 'org.springframework.boot' version '2.0.3.RELEASE'
+	id 'com.github.ben-manes.versions' version '0.20.0'
+}
+
+group = 'xyz.redtorch'
+version = '0.1'
+description = """Java开源量化交易开发框架 http://redtorch.io/"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.encoding = "UTF-8"
+}
+
+repositories {
+	mavenLocal()
+	maven {
+		url "http://maven.aliyun.com/nexus/content/groups/public/"
+	}
+	jcenter()
+	//mavenCentral()
+}
+
+dependencies {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.3.RELEASE') {
+			exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:'2.0.3.RELEASE'
+    compile group: 'com.alibaba', name: 'fastjson', version:'1.2.47'
+    compile group: 'com.google.guava', name: 'guava', version:'25.1-jre'
+    compile group: 'joda-time', name: 'joda-time', version:'2.10'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.7'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version:'3.6.3'
+    compile group: 'org.apache.commons', name: 'commons-configuration2', version:'2.2'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version:'1.9.3'
+    compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version:'1.7.16'
+    compile group: 'org.apache.commons', name: 'commons-math3', version:'3.6.1'
+    compile group: 'org.apache.commons', name: 'commons-csv', version:'1.5'
+    compile group: 'commons-io', name: 'commons-io', version:'2.6'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.2'
+    compile group: 'com.lmax', name: 'disruptor', version:'3.4.2'
+    compile group: 'junit', name: 'junit', version:'4.12'
+}
