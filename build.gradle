@@ -29,22 +29,22 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.0.RELEASE') {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.3.RELEASE') {
 			exclude(module: 'spring-boot-starter-tomcat')
     }
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:'2.0.3.RELEASE'
     compile group: 'com.alibaba', name: 'fastjson', version:'1.2.47'
-    compile group: 'com.google.guava', name: 'guava', version:'18.0'
-    compile group: 'joda-time', name: 'joda-time', version:'2.9.9'
+    compile group: 'com.google.guava', name: 'guava', version:'25.1-jre'
+    compile group: 'joda-time', name: 'joda-time', version:'2.10'
     compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.7'
     compile group: 'org.mongodb', name: 'mongo-java-driver', version:'3.6.3'
     compile group: 'org.apache.commons', name: 'commons-configuration2', version:'2.2'
     compile group: 'commons-beanutils', name: 'commons-beanutils', version:'1.9.3'
-    compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version:'1.7.14'
+    compile group: 'com.corundumstudio.socketio', name: 'netty-socketio', version:'1.7.16'
     compile group: 'org.apache.commons', name: 'commons-math3', version:'3.6.1'
     compile group: 'org.apache.commons', name: 'commons-csv', version:'1.5'
     compile group: 'commons-io', name: 'commons-io', version:'2.6'
-    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.1'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.2'
     compile group: 'com.lmax', name: 'disruptor', version:'3.4.2'
-    compile group: 'junit', name: 'junit', version:'4.11'
+    compile group: 'junit', name: 'junit', version:'4.12'
 }
