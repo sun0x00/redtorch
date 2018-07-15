@@ -128,30 +128,6 @@ public interface Gateway {
 	GatewaySetting getGatewaySetting();
 
 	/**
-	 * 发送错误日志
-	 * @param logContent
-	 */
-	void emitErrorLog(String logContent);
-
-	/**
-	 * 发送日志
-	 * @param logContent
-	 */
-	void emitInfoLog(String logContent);
-
-	/**
-	 * 发送警告日志
-	 * @param logContent
-	 */
-	void emitWarnLog(String logContent);
-
-	/**
-	 * 发送debug日志
-	 * @param logContent
-	 */
-	void emitDebugLog(String logContent);
-
-	/**
 	 * 获取已经订阅的合约符号
 	 * @return
 	 */

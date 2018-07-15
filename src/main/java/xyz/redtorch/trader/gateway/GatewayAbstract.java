@@ -17,7 +17,6 @@ import xyz.redtorch.trader.engine.event.FastEventEngine;
 import xyz.redtorch.trader.entity.Account;
 import xyz.redtorch.trader.entity.Contract;
 import xyz.redtorch.trader.entity.Position;
-import xyz.redtorch.utils.CommonUtil;
 
 /**
  * @author sun0x00@gmail.com
@@ -42,9 +41,7 @@ public abstract class GatewayAbstract implements Gateway{
 		this.gatewayID = gatewaySetting.getGatewayID();
 		this.gatewayDisplayName = gatewaySetting.getGatewayDisplayName();
 		this.gatewayLogInfo = "接口ID-[" + gatewayID + "] 名称-[" + gatewayDisplayName+"] >>> ";
-		String logContent = gatewayLogInfo+"开始初始化";
-		CommonUtil.emitInfoLog(logContent);
-		log.info(logContent);
+		log.info(gatewayLogInfo+"开始初始化");
 		timer.schedule(new QueryTimerTask(), new Date(), 1000);
 
 	}
@@ -236,26 +233,6 @@ public abstract class GatewayAbstract implements Gateway{
 
 	}
 
-	@Override
-	public void emitErrorLog(String logContent) {
-		CommonUtil.emitErrorLog(logContent);
-	}
-	
-	@Override
-	public void emitInfoLog(String logContent) {
-		CommonUtil.emitInfoLog(logContent);
-	}
-	
-	@Override
-	public void emitWarnLog(String logContent) {
-		CommonUtil.emitWarnLog(logContent);
-	}
-	
-	@Override
-	public void emitDebugLog(String logContent) {
-		CommonUtil.emitDebugLog(logContent);
-	}
-	
 	class QueryTimerTask extends TimerTask{
 
 	    @Override
@@ -270,9 +247,7 @@ public abstract class GatewayAbstract implements Gateway{
 			    }
 			    Thread.sleep(1250);
 	    	}catch (Exception e) {
-	    		String logContent = gatewayLogInfo+"定时查询发生异常";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent,e);
+				log.error(gatewayLogInfo+"定时查询发生异常",e);
 			}
 	    }
 	}
