@@ -40,3 +40,5 @@ hs_err_pid*
 /src/test/java/xyz/redtorch/api/pctp/*
 /src/test/resources/ctp/*
 
+/.gradle
+/build
