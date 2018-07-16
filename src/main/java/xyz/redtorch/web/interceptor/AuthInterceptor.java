@@ -1,9 +1,9 @@
-package xyz.redtorch.interceptor;
+package xyz.redtorch.web.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import xyz.redtorch.author.annotation.Authorization;
+import xyz.redtorch.web.annotation.Authorization;
 import xyz.redtorch.web.vo.ResultVO;
 
 import javax.servlet.http.HttpServletRequest;

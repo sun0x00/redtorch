@@ -26,7 +26,7 @@ import com.corundumstudio.socketio.HandshakeData;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 
-import xyz.redtorch.author.annotation.Authorization;
+import xyz.redtorch.web.annotation.Authorization;
 import xyz.redtorch.trader.gateway.GatewaySetting;
 import xyz.redtorch.web.service.TokenService;
 import xyz.redtorch.web.service.TradingService;

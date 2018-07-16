@@ -1,4 +1,4 @@
-package xyz.redtorch.author.annotation;
+package xyz.redtorch.web.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
