@@ -12,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +40,7 @@ import xyz.redtorch.web.vo.ResultVO;
 @SpringBootApplication
 @RestController
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+@ServletComponentScan(basePackages = {"xyz.redtorch.web.filter"})
 public class ZeusApplication {
 	
 	private Logger log = LoggerFactory.getLogger(ZeusApplication.class);
