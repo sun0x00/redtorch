@@ -27,11 +27,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                     ResultVO result = new ResultVO();
                     result.setResultCode(ResultVO.ERROR);
                     response.getWriter().print(JSON.toJSONString(result));
+                    return false;
                 }
             }
         }else{
             return true;
         }
-        return super.preHandle(request, response, handler);
     }
 }
