@@ -1058,9 +1058,11 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 		try {
 			// 过滤重复
 			if (!rtTradeIDSet.contains(trade.getRtTradeID())) {
-				ContractPositionDetail contractPositionDetail = contractPositionMap.get(trade.getRtSymbol());
-				contractPositionDetail.updateTrade(trade);
-				savePosition();
+				if(contractPositionMap.containsKey(trade.getRtSymbol())) {
+					ContractPositionDetail contractPositionDetail = contractPositionMap.get(trade.getRtSymbol());
+					contractPositionDetail.updateTrade(trade);
+					savePosition();
+				}
 				rtTradeIDSet.add(trade.getRtTradeID());
 
 				onTrade(trade);
