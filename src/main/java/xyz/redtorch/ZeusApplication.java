@@ -26,6 +26,7 @@ import com.corundumstudio.socketio.HandshakeData;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 
+import xyz.redtorch.author.annotation.Authorization;
 import xyz.redtorch.trader.gateway.GatewaySetting;
 import xyz.redtorch.web.service.TokenService;
 import xyz.redtorch.web.service.TradingService;
@@ -82,15 +83,11 @@ public class ZeusApplication {
 	
 	@RequestMapping(value = "/sendOrder",method = RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO sendOrder(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
 		
-		if(!tokenService.validate(jsonObject.getString("token"))) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
-
 		String gatewayID = jsonObject.getString("gatewayID");
 		String rtSymbol = jsonObject.getString("rtSymbol");
 		double price = jsonObject.getDouble("price");
@@ -151,14 +148,11 @@ public class ZeusApplication {
 	
 	@RequestMapping(value = "/subscribe",method = RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO subscribe(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(jsonObject.getString("token"))) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		if(!tradingService.subscribe(jsonObject.getString("rtSymbol"), jsonObject.getString("gatewayID"))) {
 			result.setResultCode(ResultVO.ERROR);
 		}
@@ -167,14 +161,11 @@ public class ZeusApplication {
 	}
 	@RequestMapping(value = "/unsubscribe",method = RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO unsubscribe(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(jsonObject.getString("token"))) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		if(!tradingService.unsubscribe(jsonObject.getString("rtSymbol"), jsonObject.getString("gatewayID"))) {
 			result.setResultCode(ResultVO.ERROR);
 		}
@@ -184,14 +175,10 @@ public class ZeusApplication {
 	
 	@RequestMapping(value = "/saveGateway",method = RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO saveGateway(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(jsonObject.getString("token"))) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
 		
 		GatewaySetting gatewaySetting = jsonObject.toJavaObject(GatewaySetting.class);
 		
@@ -219,14 +206,11 @@ public class ZeusApplication {
 	}
 	@RequestMapping("/zeus/getStrategyInfos")
 	@ResponseBody
+	@Authorization
 	public ResultVO zeusGetStrategyInfos(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		
 		List<Map<String,Object>> strategyInfos = tradingService.zeusGetStrategyInfos();
 		
@@ -237,11 +221,12 @@ public class ZeusApplication {
 	
 	@RequestMapping(value="/zeus/changeStrategyStatus",method=RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO zeusChangeStrategyStatus(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
 		
-		if(!jsonObject.containsKey("actionType")||!tokenService.validate(jsonObject.getString("token"))) {
+		if(!jsonObject.containsKey("actionType")) {
 			result.setResultCode(ResultVO.ERROR);
 			return result;
 		}
@@ -277,14 +262,11 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getGatewaySettings")
 	@ResponseBody
+	@Authorization
 	public ResultVO getGatewaySettings(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		
 		result.setData(tradingService.getGatewaySettings());
 		
@@ -293,12 +275,13 @@ public class ZeusApplication {
 	
 	@RequestMapping(value = "/deleteGateway",method= RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO deleteGateway(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
 		
 		
-		if(!jsonObject.containsKey("gatewayID")&& !tokenService.validate(jsonObject.getString("token"))) {
+		if(!jsonObject.containsKey("gatewayID")) {
 			result.setResultCode(ResultVO.ERROR);
 			return result;
 		}
@@ -309,11 +292,12 @@ public class ZeusApplication {
 	}
 	@RequestMapping(value ="/changeGatewayConnectStatus",method= RequestMethod.POST)
 	@ResponseBody
+	@Authorization
 	public ResultVO changeGatewayConnectStatus(@RequestBody JSONObject jsonObject) {
 
 		ResultVO result = new ResultVO();
 		
-		if(!jsonObject.containsKey("gatewayID")&& !tokenService.validate(jsonObject.getString("token"))) {
+		if(!jsonObject.containsKey("gatewayID")) {
 			result.setResultCode(ResultVO.ERROR);
 			return result;
 		}
@@ -325,14 +309,11 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getAccounts")
 	@ResponseBody
+	@Authorization
 	public ResultVO getAccounts(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		
 		result.setData(tradingService.getAccounts());
 		return result;
@@ -340,28 +321,22 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getTrades")
 	@ResponseBody
+	@Authorization
 	public ResultVO getTrades(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		result.setData(tradingService.getTrades());
 		return result;
 	}
 	
 	@RequestMapping("/getOrders")
 	@ResponseBody
+	@Authorization
 	public ResultVO getOrders(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 
 		result.setData(tradingService.getOrders());
 		return result;
@@ -369,14 +344,10 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getLocalPositionDetails")
 	@ResponseBody
+	@Authorization
 	public ResultVO getLocalPositionDetails(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
 
 		result.setData(tradingService.getLocalPositionDetails());
 		return result;
@@ -384,14 +355,11 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getPositions")
 	@ResponseBody
+	@Authorization
 	public ResultVO getPositions(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 
 		result.setData(tradingService.getPositions());
 		return result;
@@ -400,14 +368,10 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getContracts")
 	@ResponseBody
+	@Authorization
 	public ResultVO getContracts(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
 
 		result.setData(tradingService.getContracts());
 		return result;
@@ -415,14 +379,11 @@ public class ZeusApplication {
 	
 	@RequestMapping("/getLogs")
 	@ResponseBody
+	@Authorization
 	public ResultVO getLogs(String token) {
 
 		ResultVO result = new ResultVO();
-		
-		if(!tokenService.validate(token)) {
-			result.setResultCode(ResultVO.ERROR);
-			return result;
-		}
+
 		result.setData(tradingService.getLogDatas());
 		return result;
 	}
