@@ -127,6 +127,14 @@ public class OrderReq  implements Serializable{
 	public void setMultiplier(String multiplier) {
 		this.multiplier = multiplier;
 	}
+	@Override
+	public String toString() {
+		return "OrderReq [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", price=" + price + ", volume=" + volume + ", direction=" + direction + ", offset="
+				+ offset + ", priceType=" + priceType + ", productClass=" + productClass + ", currency=" + currency
+				+ ", expiry=" + expiry + ", strikePrice=" + strikePrice + ", optionType=" + optionType
+				+ ", lastTradeDateOrContractMonth=" + lastTradeDateOrContractMonth + ", multiplier=" + multiplier + "]";
+	}
 
 	
 }

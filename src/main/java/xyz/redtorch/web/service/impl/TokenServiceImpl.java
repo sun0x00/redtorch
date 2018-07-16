@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import xyz.redtorch.trader.base.BaseConfig;
 import xyz.redtorch.web.service.TokenService;
 
 /**
@@ -21,10 +21,13 @@ public class TokenServiceImpl implements TokenService {
 	
 	public static Map<String,String> tokenMap = new HashMap<>();
 
+	@Value("${rt.web.username}")
+	String usernameConf;
+	@Value("${rt.web.password}")
+	String passwordConf;
+	
 	@Override
 	public String login(String username, String password) {
-		String usernameConf = BaseConfig.rtConfig.getString("rt.web.username");
-		String passwordConf = BaseConfig.rtConfig.getString("rt.web.password");
 		
 		if(usernameConf!=null && usernameConf.equals(username)&& passwordConf!=null&& passwordConf.equals(password)) {
 			String token = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();

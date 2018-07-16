@@ -2,8 +2,8 @@ package xyz.redtorch.trader.gateway.ctp;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -11,7 +11,6 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CtpConstant;
 import xyz.redtorch.api.jctp.CThostFtdcAccountregisterField;
 import xyz.redtorch.api.jctp.CThostFtdcBatchOrderActionField;
 import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingAlgosField;
@@ -129,7 +128,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private String brokerID;
 	private String userID;
 	private String password;
-	private String autoCode;
+	private String authCode;
 	private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
@@ -148,7 +147,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
 		this.userID = ctpGateway.getGatewaySetting().getUserID();
 		this.password = ctpGateway.getGatewaySetting().getPassword();
-		this.autoCode = ctpGateway.getGatewaySetting().getAuthCode();
+		this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
 		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
@@ -165,8 +164,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private boolean loginStatus = false; // 登陆状态
 	private String tradingDayStr;
 
-	private volatile int reqID = 0; // 操作请求编号
-	private volatile int orderRef = 0; // 订单编号
+	private AtomicInteger reqID = new AtomicInteger(0); // 操作请求编号
+	private AtomicInteger orderRef = new AtomicInteger(0); // 订单编号
 
 	private boolean authStatus = false; // 验证状态
 	private boolean loginFailed = false; // 是否已经使用错误的信息尝试登录过
@@ -178,7 +177,6 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 * 连接
 	 */
 	public synchronized void connect() {
-		String logContent;
 		if (isConnected() || connectProcessStatus) {
 			return;
 		}
@@ -202,23 +200,17 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				logContent = gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath();
-				ctpGateway.emitInfoLog(logContent);
-				log.info(logContent);
+				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				logContent = gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath();
-				ctpGateway.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath(), e);
 			}
 		}
-		logContent = gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath();
-		ctpGateway.emitInfoLog(logContent);
-		log.info(logContent);
+		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
 		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);
-		cThostFtdcTraderApi.Init();
 		connectProcessStatus = true;
+		cThostFtdcTraderApi.Init();
 
 	}
 
@@ -267,8 +259,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			return;
 		}
 		CThostFtdcQryTradingAccountField cThostFtdcQryTradingAccountField = new CThostFtdcQryTradingAccountField();
-		reqID += 1;
-		cThostFtdcTraderApi.ReqQryTradingAccount(cThostFtdcQryTradingAccountField, reqID);
+		cThostFtdcTraderApi.ReqQryTradingAccount(cThostFtdcQryTradingAccountField, reqID.incrementAndGet());
 	}
 
 	/**
@@ -279,13 +270,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			log.info("{}尚未初始化,无法查询持仓", gatewayLogInfo);
 			return;
 		}
-		reqID += 1;
 
 		CThostFtdcQryInvestorPositionField cThostFtdcQryInvestorPositionField = new CThostFtdcQryInvestorPositionField();
 		// log.info("查询持仓");
 		cThostFtdcQryInvestorPositionField.setBrokerID(brokerID);
 		cThostFtdcQryInvestorPositionField.setInvestorID(userID);
-		cThostFtdcTraderApi.ReqQryInvestorPosition(cThostFtdcQryInvestorPositionField, reqID);
+		cThostFtdcTraderApi.ReqQryInvestorPosition(cThostFtdcQryInvestorPositionField, reqID.incrementAndGet());
 	}
 
 	/**
@@ -299,10 +289,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			log.info("{}尚未初始化,无法发单", gatewayLogInfo);
 			return null;
 		}
-		reqID += 1;
-		orderRef += 1;
 		CThostFtdcInputOrderField cThostFtdcInputOrderField = new CThostFtdcInputOrderField();
-
+		orderRef.incrementAndGet();
 		cThostFtdcInputOrderField.setInstrumentID(orderReq.getSymbol());
 		cThostFtdcInputOrderField.setLimitPrice(orderReq.getPrice());
 		cThostFtdcInputOrderField.setVolumeTotalOriginal(orderReq.getVolume());
@@ -313,7 +301,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				.setDirection(CtpConstant.directionMap.getOrDefault(orderReq.getDirection(), Character.valueOf('\0')));
 		cThostFtdcInputOrderField.setCombOffsetFlag(
 				String.valueOf(CtpConstant.offsetMap.getOrDefault(orderReq.getOffset(), Character.valueOf('\0'))));
-		cThostFtdcInputOrderField.setOrderRef(orderRef + "");
+		cThostFtdcInputOrderField.setOrderRef(orderRef.get() + "");
 		cThostFtdcInputOrderField.setInvestorID(userID);
 		cThostFtdcInputOrderField.setUserID(userID);
 		cThostFtdcInputOrderField.setBrokerID(brokerID);
@@ -337,15 +325,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcInputOrderField.setTimeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_TC_IOC);
 			cThostFtdcInputOrderField.setVolumeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_VC_CV);
 		}
-		
-//		if("IH1805".equals(orderReq.getSymbol())) {
-//			System.out.println("T2T-OrderBefore-"+System.nanoTime());
-//		}
-		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID);
-//		if("IH1805".equals(orderReq.getSymbol())) {
-//			System.out.println("T2T-Order-"+System.nanoTime());
-//		}
-		String rtOrderID = gatewayID + "." + orderRef;
+
+		// if("IH1805".equals(orderReq.getSymbol())) {
+		// System.out.println("T2T-OrderBefore-"+System.nanoTime());
+		// }
+		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID.incrementAndGet());
+		// if("IH1805".equals(orderReq.getSymbol())) {
+		// System.out.println("T2T-Order-"+System.nanoTime());
+		// }
+		String rtOrderID = gatewayID + "." + orderRef.get();
 
 		return rtOrderID;
 	}
@@ -357,7 +345,6 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			log.info("{}尚未初始化,无法撤单", gatewayLogInfo);
 			return;
 		}
-		reqID += 1;
 		CThostFtdcInputOrderActionField cThostFtdcInputOrderActionField = new CThostFtdcInputOrderActionField();
 
 		cThostFtdcInputOrderActionField.setInstrumentID(cancelOrderReq.getSymbol());
@@ -370,32 +357,27 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		cThostFtdcInputOrderActionField.setBrokerID(brokerID);
 		cThostFtdcInputOrderActionField.setInvestorID(userID);
 
-		cThostFtdcTraderApi.ReqOrderAction(cThostFtdcInputOrderActionField, reqID);
+		cThostFtdcTraderApi.ReqOrderAction(cThostFtdcInputOrderActionField, reqID.incrementAndGet());
 	}
 
 	private void login() {
 		if (loginFailed) {
-			String logContent = gatewayLogInfo + "交易接口登录曾发生错误,不再登录,以防被锁";
-			log.warn(logContent);
-			ctpGateway.emitWarnLog(logContent);
+			log.warn(gatewayLogInfo + "交易接口登录曾发生错误,不再登录,以防被锁");
 		}
 
 		if (StringUtils.isEmpty(brokerID) || StringUtils.isEmpty(userID) || StringUtils.isEmpty(password)) {
-			String logContent = gatewayLogInfo + "BrokerID UserID Password不允许为空";
-			log.error(logContent);
-			ctpGateway.emitErrorLog(logContent);
+			log.error(gatewayLogInfo + "BrokerID UserID Password不允许为空");
 			return;
 		}
 
-		if (!StringUtils.isEmpty(autoCode) && !authStatus) {
+		if (!StringUtils.isEmpty(authCode) && !authStatus) {
 			// 验证
 			CThostFtdcReqAuthenticateField authenticateField = new CThostFtdcReqAuthenticateField();
-			authenticateField.setAuthCode(autoCode);
+			authenticateField.setAuthCode(authCode);
 			authenticateField.setUserID(userID);
 			authenticateField.setBrokerID(brokerID);
 			authenticateField.setUserProductInfo(userProductInfo);
-			reqID += 1;
-			cThostFtdcTraderApi.ReqAuthenticate(authenticateField, reqID);
+			cThostFtdcTraderApi.ReqAuthenticate(authenticateField, reqID.incrementAndGet());
 		} else {
 			// 登录
 			CThostFtdcReqUserLoginField userLoginField = new CThostFtdcReqUserLoginField();
@@ -408,9 +390,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机联机回报
 	public void OnFrontConnected() {
-		String logContent = gatewayLogInfo + "交易接口前置机已连接";
-		log.info(logContent);
-		ctpGateway.emitInfoLog(logContent);
+		log.info(gatewayLogInfo + "交易接口前置机已连接");
 		// 修改前置机连接状态为true
 		connectionStatus = true;
 		connectProcessStatus = false;
@@ -419,9 +399,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
-		String logContent = gatewayLogInfo + "交易接口前置机已断开,Reason:" + nReason;
-		log.info(logContent);
-		ctpGateway.emitInfoLog(logContent);
+		log.info(gatewayLogInfo + "交易接口前置机已断开,Reason:" + nReason);
 		this.connectionStatus = false;
 	}
 
@@ -429,10 +407,9 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspUserLogin(CThostFtdcRspUserLoginField pRspUserLogin, CThostFtdcRspInfoField pRspInfo,
 			int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			log.info("{}OnRspUserLogin! TradingDay:{},SessionID:{},BrokerID:{},UserID:{}", gatewayLogInfo,
+			log.info("{} 交易接口登录成功! TradingDay:{},SessionID:{},BrokerID:{},UserID:{}", gatewayLogInfo,
 					pRspUserLogin.getTradingDay(), pRspUserLogin.getSessionID(), pRspUserLogin.getBrokerID(),
 					pRspUserLogin.getUserID());
-			ctpGateway.emitInfoLog(gatewayLogInfo + "交易接口登录成功");
 			this.sessionID = pRspUserLogin.getSessionID();
 			this.frontID = pRspUserLogin.getFrontID();
 			// 修改登录状态为true
@@ -444,8 +421,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			CThostFtdcSettlementInfoConfirmField settlementInfoConfirmField = new CThostFtdcSettlementInfoConfirmField();
 			settlementInfoConfirmField.setBrokerID(brokerID);
 			settlementInfoConfirmField.setInvestorID(userID);
-			reqID += 1;
-			cThostFtdcTraderApi.ReqSettlementInfoConfirm(settlementInfoConfirmField, reqID);
+			cThostFtdcTraderApi.ReqSettlementInfoConfirm(settlementInfoConfirmField, reqID.incrementAndGet());
 
 		} else {
 			log.warn("{}交易接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
@@ -457,9 +433,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 心跳警告
 	public void OnHeartBeatWarning(int nTimeLapse) {
-		String logContent = gatewayLogInfo + "交易接口心跳警告 nTimeLapse:" + nTimeLapse;
-		log.warn(logContent);
-		ctpGateway.emitWarnLog(logContent);
+		log.warn(gatewayLogInfo + "交易接口心跳警告 nTimeLapse:" + nTimeLapse);
 	}
 
 	// 登出回报
@@ -478,10 +452,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 错误回报
 	public void OnRspError(CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
-		String logContent = MessageFormat.format("{0}交易接口错误回报!ErrorID:{1},ErrorMsg:{2},RequestID:{3},isLast{4}",
-				gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg(), nRequestID, bIsLast);
-		ctpGateway.emitErrorLog(logContent);
-		log.error(logContent);
+		log.error("{}交易接口错误回报!ErrorID:{},ErrorMsg:{},RequestID:{},isLast:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg(), nRequestID, bIsLast);
 
 	}
 
@@ -491,18 +463,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 		if (pRspInfo.getErrorID() == 0) {
 			authStatus = true;
-			String logContent = gatewayLogInfo + "交易接口客户端验证成功";
-			ctpGateway.emitInfoLog(logContent);
-			log.info(logContent);
+			log.info(gatewayLogInfo + "交易接口客户端验证成功");
 
 			login();
 
 		} else {
 			log.warn("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
-			String logContent = gatewayLogInfo + "交易接口客户端验证成功";
-			ctpGateway.emitErrorLog(logContent);
-			log.info(logContent);
 		}
 
 	}
@@ -545,10 +512,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				frontID, sessionID);
 
 		// 发送委托事件
-		String logContent = MessageFormat.format("{0}交易接口发单错误回报(柜台)! ErrorID:{1},ErrorMsg:{2}", gatewayLogInfo,
-				pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
-		log.error(logContent);
-		ctpGateway.emitErrorLog(logContent);
+		log.error("{}交易接口发单错误回报(柜台)! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg());
 
 	}
 
@@ -564,11 +529,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspOrderAction(CThostFtdcInputOrderActionField pInputOrderAction, CThostFtdcRspInfoField pRspInfo,
 			int nRequestID, boolean bIsLast) {
 
-		String logContent = MessageFormat.format("{0}交易接口撤单错误（柜台）! ErrorID:{1},ErrorMsg:{2}", gatewayLogInfo,
-				pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
-		log.error(logContent);
-
-		ctpGateway.emitErrorLog(logContent);
+		log.error("{}交易接口撤单错误（柜台）! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg());
 	}
 
 	public void OnRspQueryMaxOrderVolume(CThostFtdcQueryMaxOrderVolumeField pQueryMaxOrderVolume,
@@ -580,22 +542,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 
 		if (pRspInfo.getErrorID() == 0) {
-			String logContent = MessageFormat.format("{0}交易接口结算信息确认完成!", gatewayLogInfo, pRspInfo.getErrorID(),
-					pRspInfo.getErrorMsg());
-			ctpGateway.emitWarnLog(logContent);
-			log.warn(logContent);
-
+			log.warn("{}交易接口结算信息确认完成!", gatewayLogInfo);
 		} else {
-			String logContent = MessageFormat.format("{0}交易接口结算信息确认出错! ErrorID:{1},ErrorMsg:{2}", gatewayLogInfo,
-					pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
-			ctpGateway.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("{}交易接口结算信息确认出错! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+					pRspInfo.getErrorMsg());
 		}
 
 		// 查询所有合约
-		reqID += 1;
 		CThostFtdcQryInstrumentField cThostFtdcQryInstrumentField = new CThostFtdcQryInstrumentField();
-		cThostFtdcTraderApi.ReqQryInstrument(cThostFtdcQryInstrumentField, reqID);
+		cThostFtdcTraderApi.ReqQryInstrument(cThostFtdcQryInstrumentField, reqID.incrementAndGet());
 
 	}
 
@@ -799,9 +754,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		ctpGateway.emitContract(contract);
 
 		if (bIsLast) {
-			String logContent = gatewayLogInfo + "交易接口合约信息获取完成";
-			log.info(logContent);
-			ctpGateway.emitInfoLog(logContent);
+			log.info(gatewayLogInfo + "交易接口合约信息获取完成!");
 		}
 	}
 
@@ -941,7 +894,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 		String newRef = pOrder.getOrderRef().replace(" ", "");
 		// 更新最大报单编号
-		orderRef = Math.max(orderRef, Integer.valueOf(newRef));
+		orderRef = new AtomicInteger(Math.max(orderRef.get(), Integer.valueOf(newRef)));
 
 		String symbol = pOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pOrder.getExchangeID());
@@ -1041,19 +994,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		ctpGateway.emitOrder(gatewayID, symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price,
 				totalVolume, tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime,
 				frontID, sessionID);
-		String logContent = MessageFormat.format("{0}交易接口发单错误回报（交易所）! ErrorID:{1},ErrorMsg:{2}", gatewayLogInfo,
-				pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
-		log.error(logContent);
-		ctpGateway.emitErrorLog(logContent);
+		log.error("{}交易接口发单错误回报（交易所）! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg());
 
 	}
 
 	// 撤单错误回报（交易所）
 	public void OnErrRtnOrderAction(CThostFtdcOrderActionField pOrderAction, CThostFtdcRspInfoField pRspInfo) {
-		String logContent = MessageFormat.format("{0}交易接口撤单错误回报（交易所）! ErrorID:{1},ErrorMsg:{2}", gatewayLogInfo,
-				pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
-		log.error(logContent);
-		ctpGateway.emitErrorLog(logContent);
+		log.error("{}交易接口撤单错误回报（交易所）! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg());
 	}
 
 	public void OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField pInstrumentStatus) {

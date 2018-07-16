@@ -63,9 +63,6 @@ public class TradingServiceImpl implements TradingService {
 	public TradingServiceImpl() {
 		EventTransferTask eventTransferTask = new EventTransferTask();
 
-		// 这一步暂时没有实际意义,预留
-		mainEngine.addModel(zeusEngine);
-
 		FastEventEngine.addHandler(mainEngine);
 		FastEventEngine.addHandler(zeusEngine);
 		FastEventEngine.addHandler(eventTransferTask);
@@ -381,9 +378,13 @@ public class TradingServiceImpl implements TradingService {
 				try {
 					LogData logData = fastEvent.getLogData();
 					// 发送所有日志
-					socketIOMessageEventHandler.sendEvent(EventConstant.EVENT_LOG, logData);
+					if(socketIOMessageEventHandler != null) {
+						socketIOMessageEventHandler.sendEvent(EventConstant.EVENT_LOG, logData);
+					}else {
+						log.warn("系统启动初期socketIOMessageEventHandler可能尚未注入");
+					}
 				} catch (Exception e) {
-					log.error("向SocketIO转发Order发生异常!!!", e);
+					log.error("向SocketIO转发Log发生异常!!!", e);
 				}
 			} else {
 				log.warn("主引擎未能识别的事件数据类型{}", JSON.toJSONString(fastEvent.getEvent()));

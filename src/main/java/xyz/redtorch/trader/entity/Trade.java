@@ -154,4 +154,13 @@ public class Trade implements Serializable{
 		this.dateTime = dateTime;
 	}
 
+	@Override
+	public String toString() {
+		return "Trade [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", tradeID=" + tradeID + ", rtTradeID=" + rtTradeID + ", orderID=" + orderID
+				+ ", rtOrderID=" + rtOrderID + ", direction=" + direction + ", offset=" + offset + ", price=" + price
+				+ ", volume=" + volume + ", tradingDay=" + tradingDay + ", tradeDate=" + tradeDate + ", tradeTime="
+				+ tradeTime + ", dateTime=" + dateTime + "]";
+	}
+
 }

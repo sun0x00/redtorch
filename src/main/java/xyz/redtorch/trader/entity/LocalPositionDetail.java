@@ -432,5 +432,17 @@ public class LocalPositionDetail implements Serializable{
 
 		
 	}
+	@Override
+	public String toString() {
+		return "LocalPositionDetail [WORKING_STATUS=" + WORKING_STATUS + ", rtSymbol=" + rtSymbol + ", gatewayID="
+				+ gatewayID + ", gatewayDisplayName=" + gatewayDisplayName + ", symbol=" + symbol + ", contractName="
+				+ contractName + ", contractSize=" + contractSize + ", exchange=" + exchange + ", longPos=" + longPos
+				+ ", longYd=" + longYd + ", longTd=" + longTd + ", longPosFrozen=" + longPosFrozen + ", longYdFrozen="
+				+ longYdFrozen + ", longTdFrozen=" + longTdFrozen + ", longPnl=" + longPnl + ", longPrice=" + longPrice
+				+ ", shortPos=" + shortPos + ", shortYd=" + shortYd + ", shortTd=" + shortTd + ", shortPosFrozen="
+				+ shortPosFrozen + ", shortYdFrozen=" + shortYdFrozen + ", shortTdFrozen=" + shortTdFrozen
+				+ ", shortPnl=" + shortPnl + ", shortPrice=" + shortPrice + ", lastPrice=" + lastPrice
+				+ ", workingOrderMap=" + workingOrderMap + "]";
+	}
 
 }

@@ -530,4 +530,19 @@ public class ContractPositionDetail implements Serializable{
 		calculatePosition();
 	}
 
+	@Override
+	public String toString() {
+		return "ContractPositionDetail [tradingDay=" + tradingDay + ", rtSymbol=" + rtSymbol + ", strategyName="
+				+ strategyName + ", strategyID=" + strategyID + ", exchange=" + exchange + ", contractSize="
+				+ contractSize + ", isLocked=" + isLocked + ", ydIsLocked=" + ydIsLocked + ", tdIsLocked=" + tdIsLocked
+				+ ", mixLocked=" + mixLocked + ", pos=" + pos + ", ydPos=" + ydPos + ", tdPos=" + tdPos + ", pnl=" + pnl
+				+ ", openContractValue=" + openContractValue + ", longPos=" + longPos + ", longYd=" + longYd
+				+ ", longTd=" + longTd + ", longPosFrozen=" + longPosFrozen + ", longYdFrozen=" + longYdFrozen
+				+ ", longTdFrozen=" + longTdFrozen + ", longOpenFrozen=" + longOpenFrozen + ", longPnl=" + longPnl
+				+ ", longOpenContractValue=" + longOpenContractValue + ", shortPos=" + shortPos + ", shortYd=" + shortYd
+				+ ", shortTd=" + shortTd + ", shortPosFrozen=" + shortPosFrozen + ", shortYdFrozen=" + shortYdFrozen
+				+ ", shortTdFrozen=" + shortTdFrozen + ", shortOpenFrozen=" + shortOpenFrozen + ", shortPnl=" + shortPnl
+				+ ", shortOpenContractValue=" + shortOpenContractValue + ", positionDetailMap=" + positionDetailMap
+				+ "]";
+	}
 }

@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.JarURLConnection;
@@ -32,13 +31,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lmax.disruptor.RingBuffer;
 
-import xyz.redtorch.trader.base.RtConstant;
 import xyz.redtorch.trader.engine.event.EventConstant;
 import xyz.redtorch.trader.engine.event.FastEvent;
 import xyz.redtorch.trader.engine.event.FastEventEngine;
@@ -188,23 +185,25 @@ public class CommonUtil {
 				return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
 			}
 		});
-		// 循环所有文件
-		for (File file : dirfiles) {
-			// 如果是目录 则继续扫描
-			if (file.isDirectory()) {
-				findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive,
-						classes);
-			} else {
-				// 如果是java类文件 去掉后面的.class 只留下类名
-				String className = file.getName().substring(0, file.getName().length() - 6);
-				try {
-					// 添加到集合中去
-					// classes.add(Class.forName(packageName + '.' + className));
-					// 经过回复同学的提醒,这里用forName有一些不好,会触发static方法,没有使用classLoader的load干净
-					classes.add(
-							Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
-				} catch (ClassNotFoundException e) {
-					log.error("添加用户自定义视图类错误 找不到此类的.class文件");
+		if(dirfiles!=null) {
+			// 循环所有文件
+			for (File file : dirfiles) {
+				// 如果是目录 则继续扫描
+				if (file.isDirectory()) {
+					findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive,
+							classes);
+				} else {
+					// 如果是java类文件 去掉后面的.class 只留下类名
+					String className = file.getName().substring(0, file.getName().length() - 6);
+					try {
+						// 添加到集合中去
+						// classes.add(Class.forName(packageName + '.' + className));
+						// 经过回复同学的提醒,这里用forName有一些不好,会触发static方法,没有使用classLoader的load干净
+						classes.add(
+								Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
+					} catch (ClassNotFoundException e) {
+						log.error("添加用户自定义视图类错误 找不到此类的.class文件");
+					}
 				}
 			}
 		}
@@ -253,123 +252,21 @@ public class CommonUtil {
 	 * @param eventEngine
 	 * @param logContent
 	 */
-	public static void emitLogBase(String event, String logLevel,String logContent) {
+	public static void emitLogBase(long timestmap, String event, String logLevel,String logContent) {
 		RingBuffer<FastEvent> ringBuffer  = FastEventEngine.getRingBuffer();
 		long sequence = ringBuffer.next(); // Grab the next sequence
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setEvent(event);
 			fastEvent.setEventType(EventConstant.EVENT_LOG);
-			fastEvent.getLogData().setLogTimestamp(System.currentTimeMillis());
+			fastEvent.getLogData().setLogTimestamp(timestmap);
 			fastEvent.getLogData().setLogLevel(logLevel);
 			fastEvent.getLogData().setLogContent(logContent);
 		} finally {
 			ringBuffer.publish(sequence);
 		}
 	}
-	/**
-	 * 发出error日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	public static void emitErrorLog(String logContent) {
-		String event = EventConstant.EVENT_LOG;
-		emitLogBase(event, RtConstant.LOG_ERROR, logContent);
-	}
-
-	/**
-	 * 发出warn日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	public static void emitWarnLog(String logContent) {
-		String event = EventConstant.EVENT_LOG;
-		emitLogBase(event, RtConstant.LOG_WARN, logContent);
-	}
-
-	/**
-	 * 发出info日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	public static void emitInfoLog(String logContent) {
-		String event = EventConstant.EVENT_LOG;
-		emitLogBase(event, RtConstant.LOG_INFO, logContent);
-	}
-
-	/**
-	 * 发出debug日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	public static void emitDebugLog(String logContent) {
-		String event = EventConstant.EVENT_LOG;
-		emitLogBase(event, RtConstant.LOG_DEBUG, logContent);
-	}
-
-	/**
-	 * GBK转UTF8
-	 * 
-	 * @param gbkStr
-	 * @return
-	 */
-	public static String getUTF8StringFromGBKString(String gbkStr) {
-		if (StringUtils.isEmpty(gbkStr)) {
-			return gbkStr;
-		}
-		try {
-			return new String(getUTF8BytesFromGBKString(gbkStr), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			throw new InternalError();
-		}
-	}
-
-	/**
-	 * GBK转byte
-	 * 
-	 * @param gbkStr
-	 * @return
-	 */
-	public static byte[] getUTF8BytesFromGBKString(String gbkStr) {
-		int n = gbkStr.length();
-		byte[] utfBytes = new byte[3 * n];
-		int k = 0;
-		for (int i = 0; i < n; i++) {
-			int m = gbkStr.charAt(i);
-			if (m < 128 && m >= 0) {
-				utfBytes[k++] = (byte) m;
-				continue;
-			}
-			utfBytes[k++] = (byte) (0xe0 | (m >> 12));
-			utfBytes[k++] = (byte) (0x80 | ((m >> 6) & 0x3f));
-			utfBytes[k++] = (byte) (0x80 | (m & 0x3f));
-		}
-		if (k < utfBytes.length) {
-			byte[] tmp = new byte[k];
-			System.arraycopy(utfBytes, 0, tmp, 0, k);
-			return tmp;
-		}
-		return utfBytes;
-	}
-
-	/**
-	 * GB2312转UTF8
-	 * 
-	 * @param gb2312Str
-	 * @return
-	 */
-	public static String getUTF8StringFromGB2312(String gb2312Str) {
-		try {
-			return new String(gb2312Str.getBytes("GB2312"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			log.error("字符编码转换发生错误");
-			return null;
-		}
-	}
+	
 
 	public static double rountToPriceTick(double priceTick, double price) {
 		if (priceTick <= 0) {

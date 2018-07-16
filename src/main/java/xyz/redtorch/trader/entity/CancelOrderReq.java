@@ -63,5 +63,10 @@ public class CancelOrderReq  implements Serializable{
 	public void setSessionID(int sessionID) {
 		this.sessionID = sessionID;
 	}
-	
+	@Override
+	public String toString() {
+		return "CancelOrderReq [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange
+				+ ", rtSymbol=" + rtSymbol + ", orderID=" + orderID + ", frontID=" + frontID + ", sessionID="
+				+ sessionID + "]";
+	}
 }

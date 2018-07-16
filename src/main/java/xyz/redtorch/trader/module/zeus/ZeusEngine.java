@@ -11,7 +11,6 @@ import xyz.redtorch.trader.entity.Order;
 import xyz.redtorch.trader.entity.OrderReq;
 import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
-import xyz.redtorch.trader.module.Module;
 import xyz.redtorch.trader.module.zeus.entity.PositionDetail;
 import xyz.redtorch.trader.module.zeus.strategy.Strategy;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
@@ -19,7 +18,7 @@ import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
 /**
  * @author sun0x00@gmail.com
  */
-public interface ZeusEngine extends FastEventDynamicHandler,Module {
+public interface ZeusEngine extends FastEventDynamicHandler {
 
 	/**
 	 * 获取引擎类型,区分实盘模拟盘

@@ -36,7 +36,6 @@ import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
 import xyz.redtorch.trader.gateway.Gateway;
 import xyz.redtorch.trader.gateway.GatewaySetting;
-import xyz.redtorch.trader.module.Module;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -90,8 +89,6 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 	@Override
 	public void onEvent(final FastEvent fastEvent, final long sequence, final boolean endOfBatch) throws Exception {
 
-		String logContent;
-
 		if (!subscribedEventSet.contains(fastEvent.getEvent())) {
 			return;
 		}
@@ -102,68 +99,52 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 				Tick tick = fastEvent.getTick();
 				onTick(tick);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onTick发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onTick发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_TRADE.equals(fastEvent.getEventType())) {
 			try {
 				Trade trade = fastEvent.getTrade();
 				onTrade(trade);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onTrade发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onTrade发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_ORDER.equals(fastEvent.getEventType())) {
 			try {
 				Order order = fastEvent.getOrder();
 				onOrder(order);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onOrder发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onOrder发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_CONTRACT.equals(fastEvent.getEventType())) {
 			try {
 				Contract contract = fastEvent.getContract();
 				onContract(contract);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onContract发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onContract发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_POSITION.equals(fastEvent.getEventType())) {
 			try {
 				Position position = fastEvent.getPosition();
 				onPosition(position);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onPosition发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onPosition发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_ACCOUNT.equals(fastEvent.getEventType())) {
 			try {
 				Account account = fastEvent.getAccount();
 				onAccount(account);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onAccount发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onAccount发生异常!!!", e);
 			}
 		} else if (EventConstant.EVENT_LOG.equals(fastEvent.getEventType())) {
 			try {
 				LogData logData = fastEvent.getLogData();
 				onLogData(logData);
 			} catch (Exception e) {
-				logContent = "MAIN_ENGINE:onLogData发生异常!!!";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent, e);
+				log.error("MAIN_ENGINE:onLogData发生异常!!!", e);
 			}
 		} else {
-			logContent = "MAIN_ENGINE:未能识别的事件数据类型{}" + JSON.toJSONString(fastEvent.getEvent());
-			CommonUtil.emitWarnLog(logContent);
-			log.warn(logContent);
+			log.warn("MAIN_ENGINE:未能识别的事件数据类型{}", JSON.toJSONString(fastEvent.getEvent()));
 		}
 	}
 
@@ -257,9 +238,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 	@Override
 	public Contract getContract(String rtSymbol) {
 		if (StringUtils.isEmpty(rtSymbol)) {
-			String logContent = "MAIN_ENGINE:查询合约不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询合约不允许使用空字符串或null!!!");
 			return null;
 		} else {
 			return contractMap.get(rtSymbol);
@@ -268,16 +247,11 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 
 	@Override
 	public Contract getContract(String rtSymbol, String gatewayID) {
-		String logContent;
 		if (StringUtils.isEmpty(rtSymbol)) {
-			logContent = "MAIN_ENGINE:查询合约,rtSymbol不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询合约,rtSymbol不允许使用空字符串或null!!!");
 			return null;
 		} else if (StringUtils.isEmpty(gatewayID)) {
-			logContent = "MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!");
 			return null;
 		} else {
 			return contractMap.get(rtSymbol + "." + gatewayID);
@@ -361,9 +335,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 			updateOrderReq(orderReq, rtOrderID);
 			return rtOrderID;
 		} else {
-			String logContent = "MAIN_ENGINE:发送委托失败,未能找到接口,OrderReq-" + JSON.toJSONString(orderReq);
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:发送委托失败,未能找到接口,OrderReq-{}", JSON.toJSONString(orderReq));
 			return null;
 		}
 	}
@@ -374,9 +346,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 		if (gateway != null) {
 			gateway.queryAccount();
 		} else {
-			String logContent = "MAIN_ENGINE:查询账户失败,未能找到接口" + gatewayID;
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询账户失败,未能找到接口{}", gatewayID);
 		}
 	}
 
@@ -386,9 +356,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 		if (gateway != null) {
 			gateway.queryPosition();
 		} else {
-			String logContent = "MAIN_ENGINE:查询持仓失败,未能找到接口" + gatewayID;
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询持仓失败,未能找到接口{}", gatewayID);
 		}
 	}
 
@@ -408,16 +376,12 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 		if (gateway != null) {
 			gateway.cancelOrder(cancelOrderReq);
 		} else {
-			String logContent = "MAIN_ENGINE: 撤单失败,未能找到接口,cancelOrderReq-" + JSON.toJSONString(cancelOrderReq);
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE: 撤单失败,未能找到接口,cancelOrderReq-", JSON.toJSONString(cancelOrderReq));
 		}
 	}
 
 	@Override
 	public boolean subscribe(SubscribeReq subscribeReq, String subscriberID) {
-
-		String logContent;
 
 		Contract contract;
 		if (StringUtils.isEmpty(subscribeReq.getGatewayID())) {
@@ -426,10 +390,8 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 			contract = getContract(subscribeReq.getRtSymbol(), subscribeReq.getGatewayID());
 		}
 		if (contract == null) {
-			logContent = "MAIN_ENGINE:无法订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
-					+ "]订阅者ID[" + subscriberID + "],未找到Contract";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:无法订阅行情,合约[{}]接口[{}]订阅者ID[{}],未找到Contract", subscribeReq.getRtSymbol(),
+					subscribeReq.getGatewayID(), subscriberID);
 			return false;
 		}
 
@@ -468,28 +430,20 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 		Gateway gateway = getGateway(gatewayID);
 		if (gateway != null) {
 			gateway.subscribe(subscribeReq);
-
-			logContent = "MAIN_ENGINE:成功订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
-					+ "]订阅者ID[" + subscriberID + "]";
-			CommonUtil.emitInfoLog(logContent);
-			log.info(logContent);
+			log.info("MAIN_ENGINE:成功订阅行情,合约[{}]接口[{}]订阅者ID[{}]", subscribeReq.getRtSymbol(),
+					subscribeReq.getGatewayID(), subscriberID);
 			return true;
 		} else {
-			logContent = "MAIN_ENGINE:无法订阅行情,合约[" + subscribeReq.getRtSymbol() + "]接口[" + subscribeReq.getGatewayID()
-					+ "]订阅者ID[" + subscriberID + "]未找到接口";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:成功订阅行情,合约[{}]接口[{}]订阅者ID[{}]未找到接口", subscribeReq.getRtSymbol(),
+					subscribeReq.getGatewayID(), subscriberID);
 			return false;
 		}
 	}
 
 	@Override
 	public boolean unsubscribe(String rtSymbol, String gatewayID, String subscriberID) {
-		String logContent;
 		if (StringUtils.isEmpty(rtSymbol) || StringUtils.isEmpty(gatewayID)) {
-			logContent = "MAIN_ENGINE:无法取消订阅,参数不允许为空!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:无法取消订阅,参数不允许为空!");
 			return false;
 		}
 		String subscriberRelationshipKey = rtSymbol + "." + gatewayID;
@@ -515,25 +469,18 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 
 			Gateway gateway = getGateway(gatewayID);
 			if (gateway != null) {
-				gateway.unSubscribe(rtSymbol);
-
-				logContent = "MAIN_ENGINE:成功取消订阅行情,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
-						+ "]";
-				CommonUtil.emitInfoLog(logContent);
-				log.error(logContent);
+				String[] rtSymbolArray = rtSymbol.split("\\.");
+				if (rtSymbolArray.length > 1) {
+					gateway.unSubscribe(rtSymbolArray[0]);
+				}
+				log.info("MAIN_ENGINE:成功取消订阅行情,合约[{}]接口[{}]订阅者ID[{}]", rtSymbol, gatewayID, subscriberID);
 				return true;
 			} else {
-				logContent = "MAIN_ENGINE:取消订阅行情失败,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
-						+ "],未找到接口";
-				CommonUtil.emitInfoLog(logContent);
-				log.error(logContent);
+				log.error("MAIN_ENGINE:取消订阅行情失败,合约[{}]接口[{}]订阅者ID[{}],未找到接口", rtSymbol, gatewayID, subscriberID);
 				return false;
 			}
 		} else {
-			logContent = "MAIN_ENGINE:取消订阅行情失败,合约[" + rtSymbol + "]接口[" + gatewayID + "]订阅者ID[" + subscriberID
-					+ "],存在其它订阅者";
-			CommonUtil.emitWarnLog(logContent);
-			log.warn(logContent);
+			log.error("MAIN_ENGINE:取消订阅行情失败,合约[{}]接口[{}]订阅者ID[{}],存在其它订阅者", rtSymbol, gatewayID, subscriberID);
 			return false;
 		}
 	}
@@ -548,9 +495,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 	@Override
 	public Gateway getGateway(String gatewayID) {
 		if (StringUtils.isEmpty(gatewayID)) {
-			String logContent = "MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:查询合约,gatewayID不允许使用空字符串或null!!!");
 			return null;
 		}
 		return gatewayMap.get(gatewayID);
@@ -591,28 +536,21 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 		} else {
-			String logContent = "MAIN_ENGINE:接口" + gatewayID + "不存在,无法断开!";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:接口{}不存在,无法断开!", gatewayID);
 		}
 	}
 
 	@Override
 	public List<String> scanGatewayImpl() {
-		String logContent;
 		List<String> gatewayNameList = new ArrayList<>();
 		Set<Class<?>> classes = CommonUtil.getClasses("xyz.redtorch.trader");
 		if (classes == null) {
-			logContent = "MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何类";
-			CommonUtil.emitErrorLog(logContent);
-			log.error(logContent);
+			log.error("MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何类");
 		} else {
 			// 寻找Gateway的实现类,不包含抽象类
 			Set<Class<?>> filteredClasses = CommonUtil.getImplementsByInterface(Gateway.class, classes, false);
 			if (filteredClasses.isEmpty()) {
-				logContent = "MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何Gateway接口的实现类";
-				CommonUtil.emitErrorLog(logContent);
-				log.error(logContent);
+				log.error("MAIN_ENGINE:未能在包xyz.redtorch.trader下扫描到任何Gateway接口的实现类");
 			} else {
 				for (Class<?> clazz : filteredClasses) {
 					String className = clazz.getSimpleName();
@@ -629,9 +567,7 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 		GatewaySetting gatewaySetting = mainDataUtil.queryGatewaySetting(gatewayID);
 
 		if (gatewaySetting == null) {
-			String logContent = "MAIN_ENGINE:接口" + gatewayID + "无法连接,数据库中不存在";
-			CommonUtil.emitWarnLog(logContent);
-			log.warn(logContent);
+			log.warn("MAIN_ENGINE:接口{}无法连接,数据库中不存在", gatewayID);
 			return;
 		}
 
@@ -652,9 +588,8 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 			gatewayMap.put(gateway.getGatewayID(), gateway);
 
 		} catch (Exception e) {
-			CommonUtil.emitErrorLog("MAIN_ENGINE:接口" + gatewayID + "无法连接,创建实例异常");
-			log.error("MAIN_ENGINE:创建接口{}实例发生异常,GatewaySetting{}", gatewayClassName, JSON.toJSONString(gatewaySetting),
-					e);
+			log.error("MAIN_ENGINE:接口ID{},创建接口{}实例发生异常,GatewaySetting{}", gatewayID, gatewayClassName,
+					JSON.toJSONString(gatewaySetting), e);
 		}
 	}
 
@@ -707,11 +642,5 @@ public class MainEngineImpl extends FastEventDynamicHandlerAbstract implements M
 	@Override
 	public List<LogData> getLogDatas() {
 		return logDataList;
-	}
-
-	@Override
-	public void addModel(Module module) {
-
-		// 预留,暂时没用到
 	}
 }

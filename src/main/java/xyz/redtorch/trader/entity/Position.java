@@ -105,4 +105,11 @@ public class Position  implements Serializable{
 	public void setPositionProfit(double positionProfit) {
 		this.positionProfit = positionProfit;
 	}
+	@Override
+	public String toString() {
+		return "Position [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", direction=" + direction + ", position=" + position + ", frozen=" + frozen + ", price="
+				+ price + ", rtPositionName=" + rtPositionName + ", ydPosition=" + ydPosition + ", positionProfit="
+				+ positionProfit + "]";
+	}
 }

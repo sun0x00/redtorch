@@ -83,4 +83,12 @@ public class Account implements Serializable{
 	public void setPositionProfit(double positionProfit) {
 		this.positionProfit = positionProfit;
 	}
+	@Override
+	public String toString() {
+		return "Account [gatewayID=" + gatewayID + ", accountID=" + accountID + ", rtAccountID=" + rtAccountID
+				+ ", preBalance=" + preBalance + ", balance=" + balance + ", available=" + available + ", commission="
+				+ commission + ", margin=" + margin + ", closeProfit=" + closeProfit + ", positionProfit="
+				+ positionProfit + "]";
+	}
+
 }

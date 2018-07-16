@@ -23,18 +23,27 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /target/
+
 #idea local config
 /.idea/
+
+/bin/
+
 
 /.settings/
 
 # private
 /src/main/java/xyz/redtorch/trader/module/zeus/strategy/routine/pvt/impl/*
 /src/main/java/xyz/redtorch/trader/module/zeus/strategy/hft/*
-/src/main/java/xyz/redtorch/trader/rm/impl/*
-
 
 /src/main/java/xyz/redtorch/trader/rm/impl/*
 
 /src/test/java/xyz/redtorch/trader/common/*
 
+/src/main/java/xyz/redtorch/trader/gateway/pctp/*
+/src/main/java/xyz/redtorch/api/pctp/*
+/src/test/java/xyz/redtorch/api/pctp/*
+/src/test/resources/ctp/*
+
+/.gradle
+/build

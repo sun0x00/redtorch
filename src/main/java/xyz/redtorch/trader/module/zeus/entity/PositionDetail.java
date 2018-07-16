@@ -536,4 +536,19 @@ public class PositionDetail implements Serializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return "PositionDetail [tradingDay=" + tradingDay + ", rtSymbol=" + rtSymbol + ", gatewayID=" + gatewayID
+				+ ", strategyName=" + strategyName + ", strategyID=" + strategyID + ", contractSize=" + contractSize
+				+ ", exchange=" + exchange + ", pnl=" + pnl + ", openContractValue=" + openContractValue + ", longPos="
+				+ longPos + ", longPnl=" + longPnl + ", longOpenContractValue=" + longOpenContractValue + ", longPrice="
+				+ longPrice + ", longYd=" + longYd + ", longTd=" + longTd + ", longPosFrozen=" + longPosFrozen
+				+ ", longYdFrozen=" + longYdFrozen + ", longTdFrozen=" + longTdFrozen + ", longOpenFrozen="
+				+ longOpenFrozen + ", shortPos=" + shortPos + ", shortPnl=" + shortPnl + ", shortOpenContractValue="
+				+ shortOpenContractValue + ", shortPrice=" + shortPrice + ", shortYd=" + shortYd + ", shortTd="
+				+ shortTd + ", shortPosFrozen=" + shortPosFrozen + ", shortYdFrozen=" + shortYdFrozen
+				+ ", shortTdFrozen=" + shortTdFrozen + ", shortOpenFrozen=" + shortOpenFrozen + ", lastPrice="
+				+ lastPrice + ", workingOrderMap=" + workingOrderMap + "]";
+	}
+
 }

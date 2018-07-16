@@ -2,7 +2,6 @@ package xyz.redtorch.trader.gateway.ctp;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
@@ -35,7 +34,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	private String brokerID;
 	private String userID;
 	private String password;
-	// private String autoCode;
+	// private String authCode;
 	// private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
@@ -55,7 +54,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
 		this.userID = ctpGateway.getGatewaySetting().getUserID();
 		this.password = ctpGateway.getGatewaySetting().getPassword();
-		// this.autoCode = ctpGateway.getGatewaySetting().getAuthCode();
+		// this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
 		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
@@ -75,7 +74,6 @@ public class MdSpi extends CThostFtdcMdSpi {
 	 * 连接
 	 */
 	public synchronized void connect() {
-		String logContent;
 		if (isConnected() || connectProcessStatus) {
 			return;
 		}
@@ -99,24 +97,18 @@ public class MdSpi extends CThostFtdcMdSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				logContent = gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath();
-				ctpGateway.emitInfoLog(logContent);
-				log.info(logContent);
+				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				logContent = gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath();
-				ctpGateway.emitErrorLog(logContent);
-				log.error(logContent);
+				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath());
 			}
 		}
-		logContent = gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath();
-		ctpGateway.emitInfoLog(logContent);
-		log.info(logContent);
+		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
 
 		cThostFtdcMdApi = CThostFtdcMdApi.CreateFtdcMdApi(tempFile.getAbsolutePath());
 		cThostFtdcMdApi.RegisterSpi(this);
 		cThostFtdcMdApi.RegisterFront(mdAddress);
-		cThostFtdcMdApi.Init();
 		connectProcessStatus = true;
+		cThostFtdcMdApi.Init();
 
 	}
 
@@ -167,9 +159,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			symbolArray[0] = symbol;
 			cThostFtdcMdApi.SubscribeMarketData(symbolArray, 1);
 		} else {
-			String logContent = gatewayLogInfo + "无法订阅行情,行情服务器尚未连接成功";
-			log.warn(logContent);
-			ctpGateway.emitWarnLog(logContent);
+			log.warn(gatewayLogInfo + "无法订阅行情,行情服务器尚未连接成功");
 		}
 	}
 
@@ -182,17 +172,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 			rtSymbolArray[0] = rtSymbol;
 			cThostFtdcMdApi.UnSubscribeMarketData(rtSymbolArray, 1);
 		} else {
-			String logContent = gatewayLogInfo + "退订无效,行情服务器尚未连接成功";
-			log.warn(logContent);
-			ctpGateway.emitWarnLog(logContent);
+			log.warn(gatewayLogInfo + "退订无效,行情服务器尚未连接成功");
 		}
 	}
 
 	private void login() {
 		if (StringUtils.isEmpty(brokerID) || StringUtils.isEmpty(userID) || StringUtils.isEmpty(password)) {
-			String logContent = gatewayLogInfo + "BrokerID UserID Password不允许为空";
-			log.error(logContent);
-			ctpGateway.emitErrorLog(logContent);
+			log.error(gatewayLogInfo + "BrokerID UserID Password不允许为空");
 			return;
 		}
 		// 登录
@@ -205,9 +191,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 	// 前置机联机回报
 	public void OnFrontConnected() {
-		String logContent = gatewayLogInfo + "行情接口前置机已连接";
-		log.info(logContent);
-		ctpGateway.emitInfoLog(logContent);
+		log.info(gatewayLogInfo + "行情接口前置机已连接");
 		// 修改前置机连接状态为true
 		connectionStatus = true;
 		connectProcessStatus = false;
@@ -216,9 +200,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
-		String logContent = gatewayLogInfo + "行情接口前置机已断开,Reason:" + nReason;
-		log.info(logContent);
-		ctpGateway.emitInfoLog(logContent);
+		log.info(gatewayLogInfo + "行情接口前置机已断开,Reason:" + nReason);
 		this.connectionStatus = false;
 	}
 
@@ -232,7 +214,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			// 修改登录状态为true
 			this.loginStatus = true;
 			tradingDayStr = pRspUserLogin.getTradingDay();
-			log.info("{}获取到的交易日为{}", gatewayLogInfo, tradingDayStr);
+			log.info("{}行情接口获取到的交易日为{}", gatewayLogInfo, tradingDayStr);
 			// 重新订阅之前的合约
 			if (!ctpGateway.getSubscribedSymbols().isEmpty()) {
 				String[] subscribedSymbolsArray = ctpGateway.getSubscribedSymbols()
@@ -248,9 +230,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 	// 心跳警告
 	public void OnHeartBeatWarning(int nTimeLapse) {
-		String logContent = gatewayLogInfo + "行情接口心跳警告 nTimeLapse:" + nTimeLapse;
-		log.warn(logContent);
-		ctpGateway.emitWarnLog(logContent);
+		log.warn(gatewayLogInfo + "行情接口心跳警告 nTimeLapse:" + nTimeLapse);
 	}
 
 	// 登出回报
@@ -269,25 +249,18 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 	// 错误回报
 	public void OnRspError(CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
-		String logContent = MessageFormat.format("{0}行情接口错误回报!ErrorID:{1},ErrorMsg:{2},RequestID:{3},isLast{4}",
-				gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg(), nRequestID, bIsLast);
-		ctpGateway.emitErrorLog(logContent);
-		log.info(logContent);
+		log.info("{}行情接口错误回报!ErrorID:{},ErrorMsg:{},RequestID:{},isLast{}", gatewayLogInfo, pRspInfo.getErrorID(),
+				pRspInfo.getErrorMsg(), nRequestID, bIsLast);
 	}
 
 	// 订阅合约回报
 	public void OnRspSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			String logContent = gatewayLogInfo + "OnRspSubMarketData! 订阅合约成功:" + pSpecificInstrument.getInstrumentID();
-			ctpGateway.emitInfoLog(logContent);
-			log.info(logContent);
+			log.info(gatewayLogInfo + "OnRspSubMarketData! 订阅合约成功:" + pSpecificInstrument.getInstrumentID());
 		} else {
-
-			String logContent = gatewayLogInfo + "OnRspSubMarketData! 订阅合约失败,ErrorID：" + pRspInfo.getErrorID()
-					+ "ErrorMsg:" + pRspInfo.getErrorMsg();
-			ctpGateway.emitWarnLog(logContent);
-			log.warn(logContent);
+			log.warn(gatewayLogInfo + "OnRspSubMarketData! 订阅合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
+					+ pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -295,15 +268,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 退订合约成功:"
-					+ pSpecificInstrument.getInstrumentID();
-			ctpGateway.emitInfoLog(logContent);
-			log.info(logContent);
+			log.info(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约成功:" + pSpecificInstrument.getInstrumentID());
 		} else {
-			String logContent = gatewayLogInfo + "OnRspUnSubMarketData! 退订合约失败,ErrorID：" + pRspInfo.getErrorID()
-					+ "ErrorMsg:" + pRspInfo.getErrorMsg();
-			ctpGateway.emitWarnLog(logContent);
-			log.warn(logContent);
+			log.warn(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
+					+ pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -311,16 +279,14 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField pDepthMarketData) {
 		if (pDepthMarketData != null) {
 
-//			// T2T Test
-//			if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
-//				System.out.println("T2T-Tick-"+System.nanoTime());
-//			}
+			// // T2T Test
+			// if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
+			// System.out.println("T2T-Tick-"+System.nanoTime());
+			// }
 			String symbol = pDepthMarketData.getInstrumentID();
 
 			if (!contractExchangeMap.containsKey(symbol)) {
-				String logContent = gatewayLogInfo + "收到合约" + symbol + "行情,但尚未获取到交易所信息,丢弃";
-				ctpGateway.emitInfoLog(logContent);
-				log.info(logContent);
+				log.info(gatewayLogInfo + "收到合约" + symbol + "行情,但尚未获取到交易所信息,丢弃");
 			}
 
 			// 上期所 郑商所正常,大商所错误

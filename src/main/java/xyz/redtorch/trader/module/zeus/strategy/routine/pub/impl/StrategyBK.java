@@ -6,13 +6,13 @@ import xyz.redtorch.trader.entity.Tick;
 import xyz.redtorch.trader.entity.Trade;
 import xyz.redtorch.trader.module.zeus.ZeusEngine;
 import xyz.redtorch.trader.module.zeus.entity.StopOrder;
+import xyz.redtorch.trader.module.zeus.strategy.StrategyAbstract;
 import xyz.redtorch.trader.module.zeus.strategy.StrategySetting;
-import xyz.redtorch.trader.module.zeus.strategy.routine.RoutineStrategyTemplate;
 
 /**
  * @author sun0x00@gmail.com
  */
-public class StrategyBK extends RoutineStrategyTemplate{
+public class StrategyBK extends StrategyAbstract{
 
 	public StrategyBK(ZeusEngine zeusEngine, StrategySetting strategySetting) {
 		super(zeusEngine, strategySetting);
