@@ -19,7 +19,7 @@ public class TokenServiceImpl implements TokenService {
 	
 	private Logger log = LoggerFactory.getLogger(TokenServiceImpl.class);
 	
-	private Map<String,String> tokenMap = new HashMap<>();
+	public static Map<String,String> tokenMap = new HashMap<>();
 
 	@Value("${rt.web.username}")
 	String usernameConf;
