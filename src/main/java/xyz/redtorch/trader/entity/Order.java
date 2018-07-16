@@ -187,5 +187,15 @@ public class Order implements Serializable{
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Order [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", orderID=" + orderID + ", rtOrderID=" + rtOrderID + ", direction=" + direction
+				+ ", offset=" + offset + ", price=" + price + ", totalVolume=" + totalVolume + ", tradedVolume="
+				+ tradedVolume + ", status=" + status + ", tradingDay=" + tradingDay + ", orderDate=" + orderDate
+				+ ", orderTime=" + orderTime + ", cancelTime=" + cancelTime + ", activeTime=" + activeTime
+				+ ", updateTime=" + updateTime + ", frontID=" + frontID + ", sessionID=" + sessionID + "]";
+	}
 	
 }

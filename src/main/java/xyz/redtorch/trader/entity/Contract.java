@@ -98,6 +98,11 @@ public class Contract  implements Serializable{
 	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-
-	
+	@Override
+	public String toString() {
+		return "Contract [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", name=" + name + ", productClass=" + productClass + ", size=" + size + ", priceTick="
+				+ priceTick + ", strikePrice=" + strikePrice + ", underlyingSymbol=" + underlyingSymbol
+				+ ", optionType=" + optionType + ", expiryDate=" + expiryDate + "]";
+	}
 }

@@ -529,4 +529,27 @@ public class Tick implements Serializable{
 	public void setAskVolume10(Integer askVolume10) {
 		this.askVolume10 = askVolume10;
 	}
+	@Override
+	public String toString() {
+		return "Tick [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", tradingDay=" + tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime
+				+ ", dateTime=" + dateTime + ", status=" + status + ", lastPrice=" + lastPrice + ", lastVolume="
+				+ lastVolume + ", volume=" + volume + ", openInterest=" + openInterest + ", preOpenInterest="
+				+ preOpenInterest + ", preClosePrice=" + preClosePrice + ", preSettlePrice=" + preSettlePrice
+				+ ", openPrice=" + openPrice + ", highPrice=" + highPrice + ", lowPrice=" + lowPrice + ", upperLimit="
+				+ upperLimit + ", lowerLimit=" + lowerLimit + ", bidPrice1=" + bidPrice1 + ", bidPrice2=" + bidPrice2
+				+ ", bidPrice3=" + bidPrice3 + ", bidPrice4=" + bidPrice4 + ", bidPrice5=" + bidPrice5 + ", bidPrice6="
+				+ bidPrice6 + ", bidPrice7=" + bidPrice7 + ", bidPrice8=" + bidPrice8 + ", bidPrice9=" + bidPrice9
+				+ ", bidPrice10=" + bidPrice10 + ", askPrice1=" + askPrice1 + ", askPrice2=" + askPrice2
+				+ ", askPrice3=" + askPrice3 + ", askPrice4=" + askPrice4 + ", askPrice5=" + askPrice5 + ", askPrice6="
+				+ askPrice6 + ", askPrice7=" + askPrice7 + ", askPrice8=" + askPrice8 + ", askPrice9=" + askPrice9
+				+ ", askPrice10=" + askPrice10 + ", bidVolume1=" + bidVolume1 + ", bidVolume2=" + bidVolume2
+				+ ", bidVolume3=" + bidVolume3 + ", bidVolume4=" + bidVolume4 + ", bidVolume5=" + bidVolume5
+				+ ", bidVolume6=" + bidVolume6 + ", bidVolume7=" + bidVolume7 + ", bidVolume8=" + bidVolume8
+				+ ", bidVolume9=" + bidVolume9 + ", bidVolume10=" + bidVolume10 + ", askVolume1=" + askVolume1
+				+ ", askVolume2=" + askVolume2 + ", askVolume3=" + askVolume3 + ", askVolume4=" + askVolume4
+				+ ", askVolume5=" + askVolume5 + ", askVolume6=" + askVolume6 + ", askVolume7=" + askVolume7
+				+ ", askVolume8=" + askVolume8 + ", askVolume9=" + askVolume9 + ", askVolume10=" + askVolume10 + "]";
+	}
+	
 }

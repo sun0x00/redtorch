@@ -38,6 +38,9 @@ public class LogData implements Serializable{
 	public void setLogLevel(String logLevel) {
 		this.logLevel = logLevel;
 	}
-    
+	@Override
+	public String toString() {
+		return "LogData [logTimestamp=" + logTimestamp + ", logContent=" + logContent + ", logLevel=" + logLevel + "]";
+	}
     
 }

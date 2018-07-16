@@ -78,6 +78,11 @@ public class StopOrder  implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	@Override
+	public String toString() {
+		return "StopOrder [gatewayID=" + gatewayID + ", rtSymbol=" + rtSymbol + ", orderType=" + orderType
+				+ ", direction=" + direction + ", offset=" + offset + ", priceType=" + priceType + ", price=" + price
+				+ ", volume=" + volume + ", stopOrderID=" + stopOrderID + ", status=" + status + "]";
+	}
 	
 }

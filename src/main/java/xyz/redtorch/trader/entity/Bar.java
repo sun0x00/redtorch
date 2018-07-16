@@ -114,5 +114,12 @@ public class Bar implements Serializable{
 	public void setOpenInterest(Double openInterest) {
 		this.openInterest = openInterest;
 	}
+	@Override
+	public String toString() {
+		return "Bar [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", tradingDay=" + tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime
+				+ ", dateTime=" + dateTime + ", open=" + open + ", high=" + high + ", low=" + low + ", close=" + close
+				+ ", volume=" + volume + ", openInterest=" + openInterest + "]";
+	}
 
 }

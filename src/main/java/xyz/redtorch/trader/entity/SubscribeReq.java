@@ -75,5 +75,11 @@ public class SubscribeReq  implements Serializable{
 	public void setOptionType(String optionType) {
 		this.optionType = optionType;
 	}
+	@Override
+	public String toString() {
+		return "SubscribeReq [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", productClass=" + productClass + ", currency=" + currency + ", expiry=" + expiry
+				+ ", strikePrice=" + strikePrice + ", optionType=" + optionType + "]";
+	}
 
 }
