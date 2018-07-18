@@ -1036,7 +1036,7 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 			if (barGeneratorMap.containsKey(bgKey)) {
 				barGenerator = barGeneratorMap.get(bgKey);
 			} else {
-				barGenerator = new BarGenerator(new CallBackXMinBar() {
+				barGenerator = new BarGenerator(new CommonBarCallBack() {
 					@Override
 					public void call(Bar bar) {
 						processBar(bar);
@@ -1114,7 +1114,7 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 			if (xMinBarGeneratorMap.containsKey(bgKey)) {
 				xMinBarGenerator = xMinBarGeneratorMap.get(bgKey);
 			} else {
-				xMinBarGenerator = new XMinBarGenerator(strategySetting.getxMin(), new CallBackXMinBar() {
+				xMinBarGenerator = new XMinBarGenerator(strategySetting.getxMin(), new CommonBarCallBack() {
 					@Override
 					public void call(Bar bar) {
 						try {
@@ -1138,7 +1138,7 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 	/**
 	 * CallBack接口,用于注册Bar生成器回调事件
 	 */
-	public static interface CallBackXMinBar {
+	public static interface CommonBarCallBack {
 		void call(Bar bar);
 	}
 
@@ -1149,10 +1149,10 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 
 		private Bar bar = null;
 		private Tick lastTick = null;
-		CallBackXMinBar callBackXMinBar;
+		CommonBarCallBack commonBarCallBack;
 
-		BarGenerator(CallBackXMinBar callBackXMinBar) {
-			this.callBackXMinBar = callBackXMinBar;
+		BarGenerator(CommonBarCallBack commonBarCallBack) {
+			this.commonBarCallBack = commonBarCallBack;
 		}
 
 		/**
@@ -1180,7 +1180,7 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
 
 				// 回调OnBar方法
-				callBackXMinBar.call(bar);
+				commonBarCallBack.call(bar);
 
 				bar = new Bar();
 				newMinute = true;
@@ -1223,10 +1223,10 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 
 		private int xMin;
 		private Bar xMinBar = null;
-		CallBackXMinBar callBackXMinBar;
+		CommonBarCallBack commonBarCallBack;
 
-		XMinBarGenerator(int xMin, CallBackXMinBar callBackXMinBar) {
-			this.callBackXMinBar = callBackXMinBar;
+		XMinBarGenerator(int xMin, CommonBarCallBack commonBarCallBack) {
+			this.commonBarCallBack = commonBarCallBack;
 			this.xMin = xMin;
 		}
 
@@ -1246,20 +1246,24 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 				xMinBar.setHigh(bar.getHigh());
 				xMinBar.setLow(bar.getLow());
 
-				xMinBar.setDateTime(bar.getDateTime());
 
 			} else {
-				xMinBar.setDateTime(bar.getDateTime());
 				xMinBar.setHigh(Math.max(xMinBar.getHigh(), bar.getHigh()));
 				xMinBar.setLow(Math.min(xMinBar.getLow(), bar.getLow()));
 			}
+
+			xMinBar.setDateTime(bar.getDateTime());
+			xMinBar.setClose(bar.getClose());
+			xMinBar.setOpenInterest(bar.getOpenInterest());
+			xMinBar.setVolume(xMinBar.getVolume()+bar.getVolume());
+			
 			if ((xMinBar.getDateTime().getMinuteOfDay() + 1) % xMin == 0) {
 
-				xMinBar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
-				xMinBar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
+				xMinBar.setDateTime(xMinBar.getDateTime().plusMinutes(1).withSecondOfMinute(0).withMillisOfSecond(0));
+				xMinBar.setActionTime(xMinBar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
 
 				// 回调onXMinBar方法
-				callBackXMinBar.call(xMinBar);
+				commonBarCallBack.call(xMinBar);
 
 				xMinBar = null;
 			}
