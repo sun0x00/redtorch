@@ -117,22 +117,26 @@ public class ZeusDataUtilImpl implements ZeusDataUtil {
 				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到gateways!");
 				return null;
 			}
+			
+			// 允许不配置合约
 			if (strategySetting.getContracts() == null || strategySetting.getContracts().isEmpty()) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到contracts!");
-				return null;
+				log.warn(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到contracts!");
 			}
 
 			boolean error = false;
-			for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
-				if (contractSetting.getTradeGateways() == null || contractSetting.getTradeGateways().isEmpty()) {
+			// 如果配置了合约，则不允许不配置交易接口
+			if(strategySetting.getContracts() != null) {
+				for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
+					if (contractSetting.getTradeGateways() == null || contractSetting.getTradeGateways().isEmpty()) {
 
-					log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到合约" + contractSetting.getRtSymbol()
-							+ "的tradeGateways配置");
-					error = true;
-					break;
+						log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到合约" + contractSetting.getRtSymbol()
+								+ "的tradeGateways配置");
+						error = true;
+						break;
+					}
 				}
-
 			}
+
 			if (error) {
 				return null;
 			}

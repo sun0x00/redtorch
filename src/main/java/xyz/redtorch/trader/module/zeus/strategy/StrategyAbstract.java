@@ -1081,8 +1081,10 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 			if (RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
 				workingOrderMap.remove(order.getRtOrderID());
 			}
-			ContractPositionDetail contractPositionDetail = contractPositionMap.get(order.getRtSymbol());
-			contractPositionDetail.updateOrder(order);
+			if(contractPositionMap.containsKey(order.getRtSymbol())) {
+				ContractPositionDetail contractPositionDetail = contractPositionMap.get(order.getRtSymbol());
+				contractPositionDetail.updateOrder(order);
+			}
 			onOrder(order);
 		} catch (Exception e) {
 			stopTrading(true);
@@ -1247,13 +1249,14 @@ public abstract class StrategyAbstract extends FastEventDynamicHandlerAbstract i
 				xMinBar.setDateTime(bar.getDateTime());
 
 			} else {
+				xMinBar.setDateTime(bar.getDateTime());
 				xMinBar.setHigh(Math.max(xMinBar.getHigh(), bar.getHigh()));
 				xMinBar.setLow(Math.min(xMinBar.getLow(), bar.getLow()));
 			}
-
 			if ((xMinBar.getDateTime().getMinuteOfDay() + 1) % xMin == 0) {
-				bar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
-				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
+
+				xMinBar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
+				xMinBar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
 
 				// 回调onXMinBar方法
 				callBackXMinBar.call(xMinBar);
