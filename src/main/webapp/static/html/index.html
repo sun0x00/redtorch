@@ -952,6 +952,8 @@
                 activeTabRight: 'position',
                 orderObj: {}, //委托对象
                 logs: [], //日志
+                logsCache:[],
+                logsChange:false,
                 ticks: [],
                 tickMap: new Map(),
                 mixTickMap: new Map(),
@@ -1047,6 +1049,7 @@
                 setInterval(that.tickTableFreshTimer, 400);
                 setInterval(that.orderTableFreshTimer, 1000);
                 setInterval(that.tradeTableFreshTimer, 1000);
+                setInterval(that.logTableFreshTimer, 1500);
             })
         },
         watch: {
@@ -1098,6 +1101,15 @@
                 }else{
                     // 在无事件的情况下通过这种方式降低刷新频率，但不停止刷新
                     this.tradesChange = true;
+                }
+            },
+            logTableFreshTimer() {
+                if (this.logsChange) {
+                    this.logsChange = false
+                    this.logs = this.logsCache.sort(sortLogByTimestamp).reverse()
+                }else{
+                    // 在无事件的情况下通过这种方式降低刷新频率，但不停止刷新
+                    this.logsChange = true;
                 }
             },
             sortOrdersByTimeAndID(orderA, orderB) {
@@ -1685,7 +1697,8 @@
                                     });
                                     that.positions = Array.from(that.positionMap.values()).sort(sortSymbol)
                                 } else if('getLogs' == apiName){
-                                    that[dataArr] = that[dataArr].concat(res.data.data).sort(sortLogByTimestamp).reverse()
+                                    //不在加载后立即渲染log
+                                    that.logsCache = that.logsCache.concat(res.data.data).sort(sortLogByTimestamp).reverse()
                                 }else if('getAccounts' == apiName){
                                     that.accounts.forEach(function (account) {
                                         that.accountMap.set(account.rtAccountID, account);
@@ -2254,7 +2267,10 @@
             registerLog() {
                 let that = this;
                 socket.on("E_LOG|", function (data) {
-                    that.logs = that.logs.concat(data).sort(sortLogByTimestamp).reverse()
+                    // 避免性能问题，改为定时刷新
+                    that.logsCache = that.logsCache.concat(data);
+                    that.logsChange = true;
+                    //that.logs = that.logs.concat(data).sort(sortLogByTimestamp).reverse()
                 });
             },
             handleTabLeft(tab, event) {},
