@@ -1,4 +1,5 @@
 plugins {
+	id 'war'
 	id 'java'
 	id 'eclipse'
 	id 'idea'
