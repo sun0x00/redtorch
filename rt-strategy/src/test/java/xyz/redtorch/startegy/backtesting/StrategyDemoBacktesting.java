@@ -1,4 +1,4 @@
-package xyx.redtorch.startegy.backtesting;
+package xyz.redtorch.startegy.backtesting;
 
 import java.util.ArrayList;
 import java.util.List;

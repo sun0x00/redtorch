@@ -41,7 +41,7 @@ build/
 pvt/
 hft/
 
-/rt-api-pctp/
-/rt-gateway-pctp/
+rt-api-pctp/
+rt-gateway-pctp/
 
 
