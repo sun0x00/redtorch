@@ -1,0 +1,5 @@
+在设定的ClientDB中新建Collection,命名为StrategySetting
+
+将StrategyDemo.bson中的内容导入到上述Collection中
+
+推荐使用Studio 3T作为Mongo客户端

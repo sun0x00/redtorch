@@ -16,24 +16,24 @@ RedTorch
 
 本框架需要有Java语言使用经验，因此Java编程经验少于两年的朋友请审慎使用，建议移步 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。
 
-使用Java重构的原因主要有以下几点：
+使用Java重构的主要原因：
 
 + Python GIL带来的性能问题难以突破，不能有效使用多核CPU。对于绝大部分策略可能对实盘T2T延迟并没有太高的要求，使用vn.py便捷可靠，但当策略回测时需要使用Tick级别或多合约回测，控制性能问题带来的时间成本就显得格外重要。
 
-+ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但"动态语言一时爽，生产Bug火葬场"，原生Python没有编译期检查，这是一把双刃剑。个人亲历了一次因为官方解释器None与0比较不报异常，且None无限小的问题，导致交易中30秒亏损数万元。虽然Java也有令人诟病的 NullPointerException，但还是可以暴露一些潜在的问题。
++ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但"动态语言一时爽，生产Bug火葬场"，原生Python没有编译期检查，这是一把双刃剑。个人亲历了一次因官方解释器None与0比较不报异常，且None无限小的问题，导致交易中30秒亏损数万元。虽然Java也有令人诟病的 NullPointerException，但还是可以暴露一些潜在的问题。
 
-+ 曾考虑使用C++，但因工作量太大只能作罢，而且已有此类工具。得益于JVM的良好设计，框架在多核利用和内部T2T延迟方面表现良好，绝大部分时候内部T2T延迟控制在70μs~200μs，而vn.py创始前辈对vn.py早期的T2T测试结果大概24ms,这只是vnpy早期数据，现在应该更快了。
++ 曾考虑使用C++，但因工作量太大只能作罢，且已有大量此类开源工具。得益于JVM的良好设计，框架在多核利用和内部T2T延迟方面表现良好，绝大部分时候内部T2T延迟控制在70μs~200μs。vn.py创始前辈对vn.py早期的T2T测试结果是ms级别（这只是vnpy早期数据，现在应该更快了）。
 
 
 重要提示
 --------
-+ 项目尚处于开发预览阶段，测试覆盖率不足50%，因此使用前请务必严格测试。
++ 项目尚处于开发预览阶段，测试覆盖率不足，因此使用前请务必严格测试。
 
-+ 强烈建议watch本项目，任何问题的最新修正都会在第一时间发布。
-
-+ 预计第一个Relase版本将在7月下旬发布（股票已经清盘，可以专注一些，跳票几率小了^_^）。
++ 强烈建议watch或star本项目，任何问题的最新修正都会在第一时间发布。
 
 + 从决定移植到本项目第一次发布，大概用了20个工作日，时间仓促，难免有错误之处，还望不吝赐教随手指正，相关问题请发issues，在此先表示感谢。
+
++ 欢迎发起 Pull Request
 
 + 永久免费开源，但请遵循协议。
 
@@ -56,41 +56,39 @@ RedTorch
 
 项目结构
 ---------
-
-+ 项目使用Gradle构建
++ 项目使用Gradle构建，并做了适当的拆分
+   
+   - **rt-core** 核心模块，包含了核心引擎，高速事件引擎，Zeus实盘交易引擎，Zeus回测引擎，以及相关的数据服务。相关服务实例使用Spring框架托管。
+   - **rt-api-jctp** Swig封装官方CTP的API模块，由于JNI对底层字符编码转换不可逆转，因此在编译时对CTP的用到的相关中文接口进行了批量转码处理，相关的C++代码已作为单独项目发布，详见底部FAQ。
+   - **rt-gateway-jctp** 适配rt-api-jctp的接口模块，实现了rt-core中的Gateway接口。
+   - **rt-front-web** Spring Boot承载的Web模块，暴露HTTP接口，提供SPA页面静态资源访问。
+   - **rt-common** 通用模块
+   - **rt-strategy** 策略模块，提供了策略示例以及回测示例。请注意，回测需要在test环境中进行。
 
 + 框架采用事件驱动架构,且利用多核。
 
     - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
     
-    - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngine），并加入性能调节配置
+    - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngineService），并加入性能调节配置
     
-    - 性能仍然需要通过多核CPU体现
+    - 请注意,性能仍然需要通过多核CPU体现
     
-+ Web界面部分采用SPA架构，使用VUE编写，数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合。Web的承载核心框架为Spring Boot，但是主引擎（MainEngine）、ZEUS策略引擎（ZeusEngine）、行情/交易接口实现（Gateway）等交易相关的都不依赖Spring Boot。因此Web部分可轻松剥离，不过值得一提的是，在多线程下，Web部分对交易部分的性能影响完全可以忽略不计，而且提供了一个应急操纵的交互接口。
++ Web界面部分采用SPA架构，使用VUE编写，数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合。承载Web的核心框架为Spring Boot，得益于Java对多核CPU的优化，Web部分对交易部分的性能影响完全可以忽略不计，而且提供了一个便利的应急操纵的交互接口。
 
-+ 事件引擎（EventEngine）是整个交易框架的核心之一，是其他引擎、接口之间的事件媒介。
 
-+ 数据引擎（DataEngine）管理与数据库之间的连接，目前区分了行情数据库和默认库，为满足多人使用同一个行情数据库提供了基础，也可以通过修改配置ClientID兼容同一个数据库实例下使用多个平台实例。
-
-+ 主引擎（MainEngine）负责管理数据引擎(DataEngine), 接口（Gateway）,模块（Module），对外暴露管理API，依赖事件引擎
-
-+ 接口（Gateway）一般是指 带有事件推送的行情/交易接口，目前本项目仅实现了上期技术的CTP接口。如果有其他需要，可以参考CTP接口加入其他行情交易接口，未来可能优先考虑加入飞创接口。
-
-  P.s. CTP接口采用Swig封装，已作为单独项目发布，详见底部FAQ。由于JNI对底层字符编码转换不可逆转，因此在编译时对CTP的用到的相关中文接口进行了批量转码处理。
-
-+ 模块（Module）依赖主引擎，间接依赖事件引擎,数据引擎。ZEUS策略引擎（ZeusEngine）也是一个模块（Module）。ZEUS引擎的接口有两个实现，分别为实盘和回测。回测不需要启动SpringBoot，仅需要Java main方法直接启动。
 
 
 项目文档
 -----------
-还在写，文档没有deadline，文档deadline不可能有的，这辈子不可能有deadline。不过第一个Relase版本发布时会提供一个简要的文档，后续会组织补充。
+还在写，文档没有deadline，文档deadline不可能有的，这辈子不可能有deadline。
+
+先看一下这个视频吧。
 
 
 项目已知问题
 -----------------
 
-+ 分段回测、多合约回测已经实现，各合约回测结果已经写入csv文件，但尚未进行结果汇总，回测绘图等功能正在开发，第一个Relase版本前将会提供。
++ 分段回测、多合约回测已经实现，各合约回测结果已经写入csv文件，但尚未进行结果汇总，回测绘图等功能正在开发。
 
 + 使用Python将行情数据导入MongoDB的模版已经完成，但尚未整理发布。
 
@@ -107,7 +105,7 @@ RedTorch
 
 + IDE推荐使用最新版Eclipse IDE for Java EE Developers x64
 
-+ 安装Gradle
++ 安装Gradle(可选,最新版Eclipse已经集成)
 
 + 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Gradle Projects导入本项目
 
@@ -117,7 +115,7 @@ RedTorch
     
 + 修改RtConfig.properties
 
-    - 配置ClientID(如果多人共享使用ClientDB)
+    - 配置ClientDB修改rt-core
     
     - 配置Web认证口令（默认test test）
     
@@ -125,23 +123,24 @@ RedTorch
     
     - 日志路径（默认D:\\log，不存在请创建）
     
-    - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建）
+    - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建或修改配置）
   
 + 如果部署在linux中，需要使用临时目录/tmp/xyz/redtorch/api/jctp/lib(rpath目录)和用户临时目录
 
 + 如果部署在windows中，需要使用用户临时目录
     
-+ 一切就绪后运行ZeusApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
++ 一切就绪后运行RtApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
 
 FAQ
 ------
 + 策略如何配置
 
-   如果没有对目录进行特殊配置，请寻找ZeusStartegyConfig文件夹，对应的<StrategyClassName>-setting.json文件，配置文件和策略的相关说明请等待文档发布
+   请访问视频
 
 
 + 如何运行回测（请等待简要文档发布）
 
+   请访问视频
 
 + CTP封装源码在哪里
 
@@ -150,6 +149,8 @@ FAQ
 联系作者
 --------------
 sun0x00@gmail.com
+
+QQ:1055532121
 
 License
 ---------

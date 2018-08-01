@@ -1,0 +1,7 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """Swig封装CTP官方API"""
+
+dependencies {
+	compile project(':rt-common')
+}

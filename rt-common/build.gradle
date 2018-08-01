@@ -1,0 +1,15 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """通用模块"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.encoding = "UTF-8"
+}
+dependencies {
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoDriverVersion}"
+}
