@@ -40,7 +40,7 @@
                     <el-input v-model="gatewayForm.userID" auto-complete="off" style="width:100%"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" :label-width="formLabelWidth">
-                    <el-input v-model="gatewayForm.password" auto-complete="off" style="width:100%"></el-input>
+                    <el-input type="password" v-model="gatewayForm.password" auto-complete="off" style="width:100%"></el-input>
                 </el-form-item>
                 <el-form-item label="经纪商ID" :label-width="formLabelWidth">
                     <el-input v-model="gatewayForm.brokerID" auto-complete="off" style="width:100%"></el-input>
@@ -645,8 +645,8 @@
                                         </el-table-column>
                                         <el-table-column sortable width="120" prop="userID" label="用户ID">
                                         </el-table-column>
-                                        <el-table-column sortable width="120" prop="password" label="密码">
-                                        </el-table-column>
+                                        <!-- <el-table-column sortable width="120" prop="password" label="密码">
+                                        </el-table-column> -->
                                         <el-table-column sortable width="120" prop="brokerID" label="经纪商ID">
                                         </el-table-column>
                                         <el-table-column sortable width="120" prop="tdAddress" label="交易地址">
