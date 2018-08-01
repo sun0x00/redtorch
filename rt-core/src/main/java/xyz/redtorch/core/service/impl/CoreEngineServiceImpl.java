@@ -33,7 +33,7 @@ import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.core.gateway.Gateway;
 import xyz.redtorch.core.gateway.GatewaySetting;
 import xyz.redtorch.core.service.MongoDBService;
-import xyz.redtorch.core.service.TradeEngineDataService;
+import xyz.redtorch.core.service.CoreEngineDataService;
 import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.core.service.extend.event.FastEvent;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandlerAbstract;
@@ -52,7 +52,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract imple
 	@Autowired
 	private MongoDBService mongoDBService;
 	@Autowired
-	private TradeEngineDataService tradeEngineDataService;
+	private CoreEngineDataService coreEngineDataService;
 	@Autowired
 	private FastEventEngineService fastEventEngineService;
 	
@@ -566,7 +566,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract imple
 	@Override
 	public void connectGateway(String gatewayID) {
 
-		GatewaySetting gatewaySetting = tradeEngineDataService.queryGatewaySetting(gatewayID);
+		GatewaySetting gatewaySetting = coreEngineDataService.queryGatewaySetting(gatewayID);
 
 		if (gatewaySetting == null) {
 			log.warn("CORE_ENGINE:接口{}无法连接,数据库中不存在", gatewayID);
@@ -597,13 +597,13 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract imple
 
 	@Override
 	public void saveGateway(GatewaySetting gatewaySetting) {
-		tradeEngineDataService.saveGatewaySetting(gatewaySetting);
+		coreEngineDataService.saveGatewaySetting(gatewaySetting);
 	}
 
 	@Override
 	public void deleteGateway(String gatewayID) {
 		disconnectGateway(gatewayID);
-		tradeEngineDataService.deleteGatewaySetting(gatewayID);
+		coreEngineDataService.deleteGatewaySetting(gatewayID);
 	}
 
 	@Override
@@ -622,8 +622,8 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract imple
 			isLoaded = true;
 		}
 
-		tradeEngineDataService.deleteGatewaySetting(gatewayID);
-		tradeEngineDataService.saveGatewaySetting(gatewaySetting);
+		coreEngineDataService.deleteGatewaySetting(gatewayID);
+		coreEngineDataService.saveGatewaySetting(gatewaySetting);
 
 		// 重新连接
 		if (isLoaded) {
@@ -633,12 +633,12 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract imple
 
 	@Override
 	public GatewaySetting queryGatewaySetting(String gatewayID) {
-		return tradeEngineDataService.queryGatewaySetting(gatewayID);
+		return coreEngineDataService.queryGatewaySetting(gatewayID);
 	}
 
 	@Override
 	public List<GatewaySetting> queryGatewaySettings() {
-		return tradeEngineDataService.queryGatewaySettings();
+		return coreEngineDataService.queryGatewaySettings();
 	}
 
 	@Override

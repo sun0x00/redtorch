@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import xyz.redtorch.core.gateway.GatewaySetting;
 import xyz.redtorch.core.service.MongoDBService;
-import xyz.redtorch.core.service.TradeEngineDataService;
+import xyz.redtorch.core.service.CoreEngineDataService;
 import xyz.redtorch.utils.MongoDBClient;
 import xyz.redtorch.utils.MongoDBUtil;
 /**
@@ -23,9 +23,9 @@ import xyz.redtorch.utils.MongoDBUtil;
  */
 @Service
 @PropertySource(value = {"classpath:rt-core.properties"})
-public class TradeEngineDataServiceImpl implements TradeEngineDataService,InitializingBean {
+public class CoreEngineDataServiceImpl implements CoreEngineDataService,InitializingBean {
 
-	private Logger log = LoggerFactory.getLogger(TradeEngineDataServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(CoreEngineDataServiceImpl.class);
 	
 	private final String gatewaySettingCollection = "GatewaySetting";
 	

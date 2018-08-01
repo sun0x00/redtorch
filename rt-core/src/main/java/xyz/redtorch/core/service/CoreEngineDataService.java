@@ -6,7 +6,7 @@ import xyz.redtorch.core.gateway.GatewaySetting;
 /**
  * @author sun0x00@gmail.com
  */
-public interface TradeEngineDataService {
+public interface CoreEngineDataService {
 	GatewaySetting queryGatewaySetting(String gatewayID);
 
 	List<GatewaySetting> queryGatewaySettings();
