@@ -82,7 +82,7 @@ RedTorch
 -----------
 还在写，文档没有deadline，文档deadline不可能有的，这辈子不可能有deadline。
 
-先看一下这个`概要视频(注意选择分辨率)  <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 吧。
+先看一下这个 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 吧。
 
 
 项目已知问题
@@ -135,12 +135,12 @@ FAQ
 ------
 + 策略如何配置
 
-   请访问`概要视频(注意选择分辨率)  <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
+   请访问 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
 
 
 + 如何运行回测（请等待简要文档发布）
 
-   请访问`概要视频(注意选择分辨率)  <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
+   请访问 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
 
 + CTP封装源码在哪里
 
