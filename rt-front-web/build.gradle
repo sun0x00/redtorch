@@ -3,7 +3,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
-	id 'org.springframework.boot'
+	id 'spring-boot'
 }
 
 group = "${rootProject.group}"
