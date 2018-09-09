@@ -9,11 +9,22 @@ ext {
         mongoDriverVersion = '3.6.3'
 }
 
-subprojects {
+buildscript {
+	repositories {
+		mavenCentral()
+	}
 
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+	}
+}
+
+
+subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 	apply plugin: 'idea'
+	apply plugin: 'org.springframework.boot'
 
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8

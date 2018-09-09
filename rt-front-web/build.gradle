@@ -3,6 +3,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
+	id 'org.springframework.boot'
 }
 
 group = "${rootProject.group}"
@@ -24,4 +25,13 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
 	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
+}
+
+jar {
+	baseName = 'rt-front'
+	version = '0.0.1'
+	manifest {
+		attributes "Manifest-Version": 1.0,
+				'Main-Class': 'xyz.redtouch.RtApplication'
+	}
 }
