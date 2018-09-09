@@ -3,17 +3,28 @@ version = "0.1"
 description = """Java开源量化交易开发框架 http://redtorch.io/"""
 
 ext {
-        springBootVersion = '2.0.3.RELEASE'
+        springBootVersion = '1.5.15.RELEASE'
         springTestVersion = '5.0.8.RELEASE'
         disruptorVersion = '3.4.2'
         mongoDriverVersion = '3.6.3'
 }
 
-subprojects {
+buildscript {
+	repositories {
+		mavenCentral()
+	}
 
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.15.RELEASE")
+	}
+}
+
+
+subprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 	apply plugin: 'idea'
+	apply plugin: 'spring-boot'
 
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
