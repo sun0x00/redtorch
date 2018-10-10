@@ -3,6 +3,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
+	id 'org.springframework.boot' version "2.0.3.RELEASE"
 }
 
 group = "${rootProject.group}"
