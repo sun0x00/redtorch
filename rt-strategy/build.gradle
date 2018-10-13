@@ -1,3 +1,9 @@
+plugins {
+	id 'war'
+	id 'java'
+	id 'eclipse'
+	id 'idea'
+}
 group = "${rootProject.group}"
 version = "${rootProject.version}"
 description = """策略模块"""
@@ -5,6 +11,11 @@ description = """策略模块"""
 dependencies {
 	compile project(':rt-common')
 	compile project(':rt-core')
+	
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:"${rootProject.springBootVersion}") {
+			exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
 	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
 }

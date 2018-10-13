@@ -12,14 +12,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import xyz.redtorch.core.test.TestConfiguration;
+import xyz.redtorch.core.CoreRunConfiguration;
 import xyz.redtorch.core.zeus.BacktestingEngine;
 import xyz.redtorch.core.zeus.ZeusDataService;
 import xyz.redtorch.core.zeus.BacktestingEngine.BacktestingSection;
 import xyz.redtorch.core.zeus.impl.BacktestingEngineImpl;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestConfiguration.class)
+@SpringBootTest(classes = CoreRunConfiguration.class)
 @PropertySource(value = { "classpath:rt-core.properties" })
 public class StrategyDemoBacktesting {
 

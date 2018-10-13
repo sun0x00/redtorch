@@ -1,0 +1,7 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """IB Client API 9.73.07"""
+
+dependencies {
+	compile project(':rt-common')
+}

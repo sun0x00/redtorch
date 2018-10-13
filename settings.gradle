@@ -1,2 +1,2 @@
-//include 'rt-common','rt-core', 'rt-api-jctp', 'rt-api-pctp', 'rt-gateway-jctp', 'rt-gateway-pctp', 'rt-front-web', 'rt-strategy'
-include 'rt-common','rt-core', 'rt-api-jctp', 'rt-gateway-jctp', 'rt-front-web', 'rt-strategy'
+//include 'rt-common','rt-core', 'rt-api-jctp', 'rt-api-pctp', 'rt-gateway-jctp', 'rt-gateway-pctp','rt-gateway-ib',"rt-api-ib", 'rt-front-web', 'rt-strategy', 'rt-strategy-prd'
+include 'rt-common','rt-core', 'rt-api-jctp', 'rt-gateway-jctp', 'rt-front-web', 'rt-strategy', 'rt-gateway-ib', "rt-api-ib"

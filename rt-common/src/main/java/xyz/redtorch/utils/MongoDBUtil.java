@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MongoDBUtil {
 	private static Logger log = LoggerFactory.getLogger(MongoDBUtil.class);
+
 	/**
 	 * 将实体Bean对象转换成Mongo Document
 	 * 
@@ -116,107 +117,194 @@ public class MongoDBUtil {
 	public static <T> void setProperty(T bean, String varName, T object) {
 		String upperCaseVarName = varName.substring(0, 1).toUpperCase() + varName.substring(1);
 		try {
-			// 获取变量类型
-			//String type = object.getClass().getName();
-			if(bean.getClass().getDeclaredField(varName) == null) {
-				log.error("Class-{}中无法找到对应成员变量{}",bean.getClass().getName(),varName);
+			if (bean.getClass().getDeclaredField(varName) == null) {
+				log.error("Class-{}中无法找到对应成员变量{}", bean.getClass().getName(), varName);
 				return;
 			}
-			String type = bean.getClass().getDeclaredField(varName).getType().getName();
-			String objectType = object.getClass().getName();
+			Class<?> beanFieldClazz = bean.getClass().getDeclaredField(varName).getType();
+			Class<?> objectClzz = object.getClass();
 			// 类型为String
-			if (type.equals("java.lang.String")) {
+			if (beanFieldClazz == String.class) {
 				Method m = bean.getClass().getMethod("set" + upperCaseVarName, String.class);
-				if(objectType.equals("java.lang.String")) {
+				if (objectClzz == String.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						String castingObject = object.toString();
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			} else if (type.equals("java.lang.Integer")) { // 类型为Integer
+			} else if (beanFieldClazz == Integer.class) { // 类型为Integer
 				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Integer.class);
-				if(objectType.equals("java.lang.Integer")) {
+				if (objectClzz == Integer.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Integer castingObject = Integer.valueOf(object.toString());
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			} else if (type.equals("java.lang.Boolean")) {// 类型为Boolean
-				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Boolean.class);
-				if(objectType.equals("java.lang.Boolean")) {
+			} else if (beanFieldClazz == int.class) { // 类型为integer
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, int.class);
+				if (objectClzz == int.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
+					try {
+						int castingObject = Integer.valueOf(object.toString()).intValue();
+						m.invoke(bean, castingObject);
+					} catch (Exception e) {
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
+					}
+				}
+			} else if (beanFieldClazz == Boolean.class) {// 类型为Boolean
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Boolean.class);
+				if (objectClzz == Boolean.class) {
+					m.invoke(bean, object);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Boolean castingObject = Boolean.valueOf(object.toString());
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			} else if (type.equals("java.lang.Long")) { // 类型为Long
-				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Long.class);
-				if(objectType.equals("java.lang.Long")) {
+			} else if (beanFieldClazz == boolean.class) {// 类型为boolean
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, boolean.class);
+				if (objectClzz == boolean.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
+					try {
+						boolean castingObject = Boolean.valueOf(object.toString()).booleanValue();
+						m.invoke(bean, castingObject);
+					} catch (Exception e) {
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
+					}
+				}
+			} else if (beanFieldClazz == Long.class) { // 类型为Long
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Long.class);
+				if (objectClzz == Long.class) {
+					m.invoke(bean, object);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Long castingObject = Long.valueOf(object.toString());
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			} else if (type.equals("java.lang.Float")) {// 类型为Float
-				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Float.class);
-				if(objectType.equals("java.lang.Float")) {
+			} else if (beanFieldClazz == long.class) { // 类型为long
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, long.class);
+				if (objectClzz == long.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
+					try {
+						long castingObject = Long.valueOf(object.toString()).longValue();
+						m.invoke(bean, castingObject);
+					} catch (Exception e) {
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
+					}
+				}
+			} else if (beanFieldClazz == Float.class) {// 类型为Float
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Float.class);
+				if (objectClzz == Float.class) {
+					m.invoke(bean, object);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Float castingObject = Float.valueOf(object.toString());
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			}else if (type.equals("java.lang.Double")) {// 类型为Double
-				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Double.class);
-				if(objectType.equals("java.lang.Double")) {
+			} else if (beanFieldClazz == float.class) {// 类型为float
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, float.class);
+				if (objectClzz == float.class) {
 					m.invoke(bean, object);
-				}else{
-					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
+					try {
+						float castingObject = Float.valueOf(object.toString()).floatValue();
+						m.invoke(bean, castingObject);
+					} catch (Exception e) {
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
+					}
+				}
+			} else if (beanFieldClazz == Double.class) {// 类型为Double
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Double.class);
+				if (objectClzz == Double.class) {
+					m.invoke(bean, object);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Double castingObject = Double.valueOf(object.toString());
 						m.invoke(bean, castingObject);
 					} catch (Exception e) {
-						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错",bean.getClass().getName(),varName,type,objectType);
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
 					}
 				}
-			} else if (type.equals("java.util.Date")) {// 类型为Date或者DateTime
+			} else if (beanFieldClazz == double.class) {// 类型为double
+				Method m = bean.getClass().getMethod("set" + upperCaseVarName, double.class);
+				if (objectClzz == double.class) {
+					m.invoke(bean, object);
+				} else {
+					log.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
+					try {
+						double castingObject = Double.valueOf(object.toString()).doubleValue();
+						m.invoke(bean, castingObject);
+					} catch (Exception e) {
+						log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,强制转换出错", bean.getClass().getName(), varName,
+								beanFieldClazz, objectClzz);
+					}
+				}
+			} else if (beanFieldClazz == Date.class) {// 类型为Date或者DateTime
 				Method m = bean.getClass().getMethod("set" + upperCaseVarName, Date.class);
 				m.invoke(bean, object);
-			} else if(type.equals("org.joda.time.DateTime")) {
+			} else if (beanFieldClazz == DateTime.class) {
 				Method m = bean.getClass().getMethod("set" + upperCaseVarName, DateTime.class);
-				if(objectType.equals("java.util.Date")) {
+				if (objectClzz == Date.class) {
 					Date date = (Date) object;
-					DateTime newObject = new DateTime(CommonUtil.changeDateTimeZoneFromLondonToShanghai(date).getTime());
+					DateTime newObject = new DateTime(
+							CommonUtil.changeDateTimeZoneFromLondonToShanghai(date).getTime());
 					m.invoke(bean, newObject);
-				} else if(objectType.equals("java.lang.Long")) {
-					DateTime newObject = new DateTime((Long)object);
+				} else if (objectClzz == Long.class) {
+					DateTime newObject = new DateTime((Long) object);
 					m.invoke(bean, newObject);
-				}else {
-					log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,不可赋值",bean.getClass().getName(),varName,type,objectType);
+				} else {
+					log.error("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,不可赋值", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 				}
 			}
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException

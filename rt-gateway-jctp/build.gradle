@@ -1,7 +1,6 @@
 group = "${rootProject.group}"
 version = "${rootProject.version}"
-description = """适配JCTP的接口"""
-
+description = """JCTP网关"""
 
 dependencies {
 	compile project(':rt-common')

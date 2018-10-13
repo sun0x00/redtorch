@@ -32,7 +32,6 @@ import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
-import xyz.redtorch.core.service.extend.event.FastEvent;
 import xyz.redtorch.core.zeus.BacktestingEngine;
 import xyz.redtorch.core.zeus.ZeusConstant;
 import xyz.redtorch.core.zeus.ZeusDataService;
@@ -42,8 +41,7 @@ import xyz.redtorch.core.zeus.entity.PositionDetail;
 import xyz.redtorch.core.zeus.strategy.Strategy;
 import xyz.redtorch.core.zeus.strategy.StrategySetting;
 import xyz.redtorch.core.zeus.strategy.StrategySetting.ContractSetting;
-import xyz.redtorch.core.zeus.strategy.StrategySetting.TradeGatewaySetting;
-import xyz.redtorch.core.zeus.strategy.StrategySetting.gatewaySetting;
+import xyz.redtorch.core.zeus.strategy.StrategySetting.GatewaySetting;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -53,7 +51,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 	private Logger log = LoggerFactory.getLogger(BacktestingEngineImpl.class);
 
-	private String  backtestingOutputDir;
+	private String backtestingOutputDir;
 
 	private ZeusDataService zeusDataService;
 	// 模拟数据库存储持仓
@@ -80,21 +78,20 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	private int tradeCount = 0;
 	// 限价单委托计数
 	private int limitOrderCount = 0;
-	// 合约接口手续费率
+	// 合约网关手续费率
 	private Map<String, Double> rateMap = new HashMap<>();
 	// 合约滑点
 	private Map<String, Double> slippageMap = new HashMap<>();
 	// 合约大小
 	private Map<String, Integer> contractSizeMap = new HashMap<>();
-	// 合约接口信息
-	private Map<String, List<String>> rtSymbolMap = new LinkedHashMap<>();
+	// 合约网关信息
+	private Map<String, Set<String>> rtSymbolMap = new LinkedHashMap<>();
 	// 计算对冲平仓Trade
 	private Map<String, Trade> settleTradeMap = new LinkedHashMap<>();
-	
 
-	// 交易结果 rtSymbol--gatewayID--BacktestingResult
+	// 交易结果 rtSymbol--rtAccountID--BacktestingResult
 	private Map<String, Map<String, BacktestingResult>> rtSymbolResultMap = new HashMap<>();
-	// 按日计算结果 rtSymbol--gatewayID--date--DailyResult
+	// 按日计算结果 rtSymbol--rtAccountID--date--DailyResult
 	private Map<String, Map<String, Map<String, DailyResult>>> rtSymbolDailyResultMap = new LinkedHashMap<>();
 
 	private StrategySetting strategySetting;
@@ -103,9 +100,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	private int backtestingDataMode = 0;
 	private Boolean reloadStrategyEveryday;
 
-	public BacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID, 
-			List<BacktestingSection> backestingSectionList, int backtestingDataMode, 
-			Boolean reloadStrategyEveryday,
+	public BacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID,
+			List<BacktestingSection> backestingSectionList, int backtestingDataMode, Boolean reloadStrategyEveryday,
 			String backtestingOutputDir) {
 		this.zeusDataService = zeusDataService;
 		this.strategySetting = zeusDataService.loadStrategySetting(strategyID);
@@ -122,13 +118,13 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 
 	@Override
-	public String sendOrder(OrderReq orderReq, Strategy strategy) {
+	public void sendOrder(OrderReq orderReq) {
 
 		String orderReqJsonString = JSON.toJSONString(orderReq);
 		log.info("发送委托{}", orderReqJsonString);
 
 		limitOrderCount += 1;
-		String orderID = orderReq.getGatewayID() + "." + limitOrderCount;
+		String orderID = orderReq.getRtAccountID() + "." + limitOrderCount;
 
 		Order order = new Order();
 		order.setRtSymbol(orderReq.getRtSymbol());
@@ -138,13 +134,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		order.setRtOrderID(orderID);
 		order.setOrderTime(lastDateTime.toString(RtConstant.T_FORMAT_FORMATTER));
 		order.setGatewayID(orderReq.getGatewayID());
+		order.setAccountID(orderReq.getAccountID());
+		order.setRtAccountID(orderReq.getRtAccountID());
 		order.setDirection(orderReq.getDirection());
 		order.setOffset(orderReq.getOffset());
+		order.setOriginalOrderID(orderReq.getOriginalOrderID());
 
 		workingLimitOrderMap.put(orderID, order);
 		limitOrderMap.put(orderID, order);
-
-		return orderID;
 
 	}
 
@@ -219,8 +216,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				posSimulationDBMap.put(firstLevelKey, secondLevelMap);
 			}
 
-			// 使用RtSymbol和接口ID确定第二层Map
-			String secondLevelKey = savePositionDetail.getRtSymbol() + savePositionDetail.getGatewayID();
+			// 使用RtSymbol和账户ID确定第二层Map
+			String secondLevelKey = savePositionDetail.getRtSymbol() + savePositionDetail.getRtAccountID();
 			secondLevelMap.put(secondLevelKey, savePositionDetail);
 
 		}
@@ -293,21 +290,21 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			// 生成下一个回测段的合约代码
 			String startDate = backtestingSection.getStartDate();
 			String endDate = backtestingSection.getEndDate();
-			
+
 			Map<String, String> aliasMap = backtestingSection.getAliasMap();
 			for (Entry<String, String> entry : aliasMap.entrySet()) {
 				String alias = entry.getKey();
 				String rtSymbol = entry.getValue();
 				strategySetting.getContractByAlias(alias).setRtSymbol(rtSymbol);
 			}
-			
+
 			Map<String, List<String>> subscribeRtSymbolsMap = backtestingSection.getGatewaySubscribeRtSymbolsMap();
 			for (Entry<String, List<String>> entry : subscribeRtSymbolsMap.entrySet()) {
 				String gatewayID = entry.getKey();
 				List<String> rtSymbols = entry.getValue();
 				strategySetting.getGatewaySetting(gatewayID).setSubscribeRtSymbols(rtSymbols);
 			}
-			
+
 			strategySetting.fixSetting();
 
 			// 保存手续费率,滑点,合约大小等设置
@@ -315,21 +312,13 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				String rtSymbol = contractSetting.getRtSymbol();
 				contractSizeMap.put(rtSymbol, contractSetting.getSize());
 				slippageMap.put(rtSymbol, contractSetting.getBacktestingSlippage());
-				List<String> gatewayIDList = new ArrayList<>();
-				for (TradeGatewaySetting tradeGateway : contractSetting.getTradeGateways()) {
-					String gatewayID = tradeGateway.getGatewayID();
-					String key = gatewayID + "." + rtSymbol;
-					rateMap.put(key, tradeGateway.getBacktestingRate());
-					gatewayIDList.add(gatewayID);
-
-				}
-				rtSymbolMap.put(rtSymbol, gatewayIDList);
-
+				rateMap.put(rtSymbol, contractSetting.getBacktestingRate());
+				rtSymbolMap.put(rtSymbol, new HashSet<>());
 			}
 
 			List<String> subscribeRtSymbolList = new ArrayList<>();
 
-			for (gatewaySetting gateway : strategySetting.getGateways()) {
+			for (GatewaySetting gateway : strategySetting.getGateways()) {
 				subscribeRtSymbolList.addAll(gateway.getSubscribeRtSymbols());
 			}
 
@@ -460,26 +449,25 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 			return;
 		}
 
-		List<TradeGatewaySetting> gateways = strategy.getStrategySetting().getContractSetting(rtSymbol)
-				.getTradeGateways();
+		Set<String> rtAccountIDSet = rtSymbolMap.get(rtSymbol);
 
-		Map<String, Map<String, DailyResult>> gatewayDailyResultDict;
+		Map<String, Map<String, DailyResult>> rtAccountDailyResultDict;
 		if (rtSymbolDailyResultMap.containsKey(rtSymbol)) {
-			gatewayDailyResultDict = rtSymbolDailyResultMap.get(rtSymbol);
+			rtAccountDailyResultDict = rtSymbolDailyResultMap.get(rtSymbol);
 		} else {
-			gatewayDailyResultDict = new LinkedHashMap<>();
-			for (TradeGatewaySetting gateway : gateways) {
-				gatewayDailyResultDict.put(gateway.getGatewayID(), new LinkedHashMap<>());
+			rtAccountDailyResultDict = new LinkedHashMap<>();
+			for (String rtAccountID : rtAccountIDSet) {
+				rtAccountDailyResultDict.put(rtAccountID, new LinkedHashMap<>());
 			}
-			rtSymbolDailyResultMap.put(rtSymbol, gatewayDailyResultDict);
+			rtSymbolDailyResultMap.put(rtSymbol, rtAccountDailyResultDict);
 		}
 
-		for (TradeGatewaySetting gateway : gateways) {
-			Map<String, DailyResult> dailyResultDict = gatewayDailyResultDict.get(gateway.getGatewayID());
+		for (String rtAccountID : rtAccountIDSet) {
+			Map<String, DailyResult> dailyResultDict = rtAccountDailyResultDict.get(rtAccountID);
 			if (dailyResultDict.containsKey(date)) {
 				dailyResultDict.get(date).setClosePrice(lastPrice);
 			} else {
-				dailyResultDict.put(date, new DailyResult(date, lastPrice, rtSymbol, gateway.getGatewayID()));
+				dailyResultDict.put(date, new DailyResult(date, lastPrice, rtSymbol, rtAccountID));
 			}
 
 		}
@@ -533,7 +521,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				// 如果发生了成交
 				if (buyCross || sellCross) {
 					this.tradeCount += 1;
-					String tradeID = order.getGatewayID() + "." + tradeCount;
+					String tradeID = order.getRtAccountID() + "." + tradeCount;
 					Trade trade = new Trade();
 					trade.setRtSymbol(rtSymbol);
 					trade.setTradeID(tradeID);
@@ -543,6 +531,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					trade.setDirection(order.getDirection());
 					trade.setOffset(order.getOffset());
 					trade.setGatewayID(order.getGatewayID());
+					trade.setAccountID(order.getAccountID());
+					trade.setRtAccountID(order.getRtAccountID());
 					// 弃用最优价逻辑,实盘很难达成最优价条件
 					// if(buyCross) {
 					// trade.setPrice(Math.min(order.getPrice(), buyBestCrossPrice));
@@ -607,7 +597,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		if (syncStrategySettingSimulationDBMap.containsKey(strategySetting.getStrategyID())) {
 			simStrategySetting = syncStrategySettingSimulationDBMap.get(strategySetting.getStrategyID());
 		}
-		if (simStrategySetting==null) {
+		if (simStrategySetting == null) {
 			log.info("{}模拟数据库中StrategySetting为空", strategy.getLogStr());
 		} else {
 			strategySetting.setVarMap(simStrategySetting.getVarMap());
@@ -618,19 +608,12 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 		// 获取策略的持仓Map
 		Map<String, ContractPositionDetail> contractPositionMap = strategy.getContractPositionMap();
-		Set<String> contractGatewayKeySet = new HashSet<>(); // 用于后续判断数据库中读取的数据是否和配置匹配
 
 		for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
 			String rtSymbol = contractSetting.getRtSymbol();
 			if (!contractPositionMap.containsKey(rtSymbol)) {
 				contractPositionMap.put(rtSymbol, new ContractPositionDetail());
 			}
-
-			for (StrategySetting.TradeGatewaySetting gatewaySetting : contractSetting.getTradeGateways()) {
-				String contractGatewayKey = rtSymbol + gatewaySetting.getGatewayID();
-				contractGatewayKeySet.add(contractGatewayKey);
-			}
-
 		}
 
 		// 这里不需要检查当日,只需要直接读取前一个交易日
@@ -653,33 +636,28 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				List<PositionDetail> insertPositionDetailList = new ArrayList<>();
 				for (PositionDetail ydPositionDetail : ydPositionDetailList) {
 					String rtSymbol = ydPositionDetail.getRtSymbol();
-					String gatewayID = ydPositionDetail.getGatewayID();
+					String rtAccountID = ydPositionDetail.getRtAccountID();
 
 					if (contractPositionMap.containsKey(rtSymbol)) {
 						ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-						String tmpContractGatewayKey = rtSymbol + gatewayID;
 
-						if (contractGatewayKeySet.contains(tmpContractGatewayKey)) {
-
-							PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, gatewayID, preTradingDay,
-									strategy.getStrategySetting().getStrategyName(), strategy.getStrategySetting().getStrategyID(),
-									ydPositionDetail.getExchange(), ydPositionDetail.getContractSize());
-							tdPositionDetail.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
-							tdPositionDetail.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
-							tdPositionDetail.setLastPrice(ydPositionDetail.getLastPrice());
-							tdPositionDetail.setLongPrice(ydPositionDetail.getLongPrice());
-							tdPositionDetail.setShortPrice(ydPositionDetail.getShortPrice());
-							tdPositionDetail.setTradingDay(tradingDay);
-
-							tdPositionDetail.calculatePosition();
-							tdPositionDetail.calculatePnl();
-
-							contractPositionDetail.getPositionDetailMap().put(gatewayID, tdPositionDetail);
-							contractPositionDetail.calculatePosition();
-							insertPositionDetailList.add(tdPositionDetail);
-						} else {
-							log.error("{} 从数据库中读取到合约{}接口{}组合与配置不匹配", strategy.getLogStr(), rtSymbol, gatewayID);
-						}
+						PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, rtAccountID, preTradingDay,
+								strategy.getStrategySetting().getStrategyName(),
+								strategy.getStrategySetting().getStrategyID(), ydPositionDetail.getExchange(),
+								ydPositionDetail.getContractSize());
+						tdPositionDetail.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
+						tdPositionDetail.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
+						tdPositionDetail.setLastPrice(ydPositionDetail.getLastPrice());
+						tdPositionDetail.setLongPrice(ydPositionDetail.getLongPrice());
+						tdPositionDetail.setShortPrice(ydPositionDetail.getShortPrice());
+						tdPositionDetail.setTradingDay(tradingDay);
+	
+						tdPositionDetail.calculatePosition();
+						tdPositionDetail.calculatePnl();
+	
+						contractPositionDetail.getPositionDetailMap().put(rtAccountID, tdPositionDetail);
+						contractPositionDetail.calculatePosition();
+						insertPositionDetailList.add(tdPositionDetail);
 					} else {
 						log.error("{} 从数据库中读取到配置中不存在的合约{}", strategy.getLogStr(), rtSymbol);
 					}
@@ -698,14 +676,20 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	private void calculateBacktestingResult() {
 		rtSymbolResultMap = new HashMap<>();
 
-		for (Entry<String, List<String>> entry : rtSymbolMap.entrySet()) {
+		for (Trade trade : tradeMap.values()) {
+			Set<String> rtAccountIDSet = rtSymbolMap.get(trade.getRtSymbol());
+			rtAccountIDSet.add(trade.getRtAccountID());
+		}
+		
+		
+		for (Entry<String, Set<String>> entry : rtSymbolMap.entrySet()) {
 			String rtSymbol = entry.getKey();
-			List<String> gatewayList = entry.getValue();
+			Set<String> rtAccountIDSet = entry.getValue();
 
-			Map<String, BacktestingResult> gatewayResultMap = new HashMap<>();
-			// 按接口计算
+			Map<String, BacktestingResult> rtAccountResultMap = new HashMap<>();
+			// 按网关计算
 
-			for (String gatewayID : gatewayList) {
+			for (String rtAccountID : rtAccountIDSet) {
 
 				List<TradingResult> resultList = new LinkedList<>();
 				List<Trade> longTradeList = new LinkedList<>();
@@ -714,18 +698,17 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				List<Integer> posList = new LinkedList<>();
 
 				for (Trade trade : tradeMap.values()) {
-					// 不是同一个合约同一个接口的,跳过
-					if (!trade.getRtSymbol().equals(rtSymbol) || !trade.getGatewayID().equals(gatewayID)) {
+					// 不是同一个合约同一个网关的,跳过
+					if (!trade.getRtSymbol().equals(rtSymbol) || !trade.getRtAccountID().equals(rtAccountID)) {
 						continue;
 					}
-//					System.out.println("################");
-//					System.out.println(trade.getRtSymbol());
-//					System.out.println(trade.getGatewayID());
-//					System.out.println(trade.getDirection());
-//					System.out.println(trade.getDateTime().toString());
-//					System.out.println("################");
+					// System.out.println("################");
+					// System.out.println(trade.getRtSymbol());
+					// System.out.println(trade.getGatewayID());
+					// System.out.println(trade.getDirection());
+					// System.out.println(trade.getDateTime().toString());
+					// System.out.println("################");
 					Trade cpTrade = SerializationUtils.clone(trade);
-		
 
 					if (cpTrade.getDirection().equals(RtConstant.DIRECTION_LONG)) {
 						// 如果还没有空头交易
@@ -741,8 +724,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 								int closedVolume = Math.min(exitTrade.getVolume(), entryTrade.getVolume());
 								TradingResult tradingResult = new TradingResult(entryTrade.getPrice(),
 										entryTrade.getDateTime(), exitTrade.getPrice(), exitTrade.getDateTime(),
-										-closedVolume, rateMap.get(gatewayID + "." + rtSymbol),
-										slippageMap.get(rtSymbol), contractSizeMap.get(rtSymbol), rtSymbol, gatewayID);
+										-closedVolume, rateMap.get(rtSymbol),
+										slippageMap.get(rtSymbol), contractSizeMap.get(rtSymbol), rtSymbol, rtAccountID);
 								resultList.add(tradingResult);
 
 								posList.add(0);
@@ -791,8 +774,8 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 								int closedVolume = Math.min(exitTrade.getVolume(), entryTrade.getVolume());
 								TradingResult tradingResult = new TradingResult(entryTrade.getPrice(),
 										entryTrade.getDateTime(), exitTrade.getPrice(), exitTrade.getDateTime(),
-										closedVolume, rateMap.get(gatewayID + "." + rtSymbol),
-										slippageMap.get(rtSymbol), contractSizeMap.get(rtSymbol), rtSymbol, gatewayID);
+										closedVolume, rateMap.get(rtSymbol),
+										slippageMap.get(rtSymbol), contractSizeMap.get(rtSymbol), rtSymbol, rtAccountID);
 								resultList.add(tradingResult);
 
 								posList.add(1);
@@ -830,7 +813,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					}
 
 				}
-				
+
 				// 最后交易日尚未平仓的交易,以最后价格平仓
 				double endPrice;
 				String endTradingDay;
@@ -843,71 +826,74 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				}
 
 				for (Trade longTrade : longTradeList) {
-					
+
 					Trade settleTrade = new Trade();
 					settleTrade.setDirection(RtConstant.DIRECTION_SHORT);
 					settleTrade.setDateTime(lastDateTimeMap.get(rtSymbol));
 					settleTrade.setExchange(longTrade.getExchange());
 					settleTrade.setGatewayID(longTrade.getGatewayID());
+					settleTrade.setAccountID(longTrade.getAccountID());
+					settleTrade.setRtAccountID(longTrade.getRtAccountID());
 					settleTrade.setOffset(RtConstant.OFFSET_CLOSE);
-					settleTrade.setOrderID("Settle-"+longTrade.getOrderID());
+					settleTrade.setOrderID("Settle-" + longTrade.getOrderID());
 					settleTrade.setPrice(endPrice);
-					settleTrade.setRtOrderID("Settle-"+longTrade.getRtOrderID());
+					settleTrade.setRtOrderID("Settle-" + longTrade.getRtOrderID());
 					settleTrade.setRtSymbol(rtSymbol);
-					settleTrade.setRtTradeID("Settle-"+longTrade.getRtTradeID());
+					settleTrade.setRtTradeID("Settle-" + longTrade.getRtTradeID());
 					settleTrade.setSymbol(longTrade.getSymbol());
 					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_FORMATTER));
-					settleTrade.setTradeID("Settle-"+longTrade.getTradeID());
+					settleTrade.setTradeID("Settle-" + longTrade.getTradeID());
 					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_FORMATTER));
 					settleTrade.setTradingDay(endTradingDay);
 					settleTrade.setVolume(longTrade.getVolume());
-					
-					settleTradeMap.put(settleTrade.getRtTradeID(),settleTrade);
-					
+
+					settleTradeMap.put(settleTrade.getRtTradeID(), settleTrade);
+
 					TradingResult tradingResult = new TradingResult(longTrade.getPrice(), longTrade.getDateTime(),
 							endPrice, lastDateTimeMap.get(rtSymbol), longTrade.getVolume(),
-							rateMap.get(gatewayID + "." + rtSymbol), slippageMap.get(rtSymbol),
-							contractSizeMap.get(rtSymbol), rtSymbol, gatewayID);
+							rateMap.get(rtSymbol), slippageMap.get(rtSymbol),
+							contractSizeMap.get(rtSymbol), rtSymbol, rtAccountID);
 
 					resultList.add(tradingResult);
 
 				}
 
 				for (Trade shortTrade : shortTradeList) {
-					
+
 					Trade settleTrade = new Trade();
 					settleTrade.setDirection(RtConstant.DIRECTION_LONG);
 					settleTrade.setDateTime(lastDateTimeMap.get(rtSymbol));
 					settleTrade.setExchange(shortTrade.getExchange());
 					settleTrade.setGatewayID(shortTrade.getGatewayID());
+					settleTrade.setAccountID(shortTrade.getAccountID());
+					settleTrade.setRtAccountID(shortTrade.getRtAccountID());
 					settleTrade.setOffset(RtConstant.OFFSET_CLOSE);
-					settleTrade.setOrderID("Settle-"+shortTrade.getOrderID());
+					settleTrade.setOrderID("Settle-" + shortTrade.getOrderID());
 					settleTrade.setPrice(endPrice);
-					settleTrade.setRtOrderID("Settle-"+shortTrade.getRtOrderID());
+					settleTrade.setRtOrderID("Settle-" + shortTrade.getRtOrderID());
 					settleTrade.setRtSymbol(rtSymbol);
-					settleTrade.setRtTradeID("Settle-"+shortTrade.getRtTradeID());
+					settleTrade.setRtTradeID("Settle-" + shortTrade.getRtTradeID());
 					settleTrade.setSymbol(shortTrade.getSymbol());
 					settleTrade.setTradeDate(lastDateTimeMap.get(rtSymbol).toString(RtConstant.D_FORMAT_INT_FORMATTER));
-					settleTrade.setTradeID("Settle-"+shortTrade.getTradeID());
+					settleTrade.setTradeID("Settle-" + shortTrade.getTradeID());
 					settleTrade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT_FORMATTER));
 					settleTrade.setTradingDay(endTradingDay);
 					settleTrade.setVolume(shortTrade.getVolume());
-					
-					settleTradeMap.put(settleTrade.getRtTradeID(),settleTrade);
-					
+
+					settleTradeMap.put(settleTrade.getRtTradeID(), settleTrade);
+
 					TradingResult tradingResult = new TradingResult(shortTrade.getPrice(), shortTrade.getDateTime(),
 							endPrice, lastDateTimeMap.get(rtSymbol), -shortTrade.getVolume(),
-							rateMap.get(gatewayID + "." + rtSymbol), slippageMap.get(rtSymbol),
-							contractSizeMap.get(rtSymbol), rtSymbol, gatewayID);
+							rateMap.get(rtSymbol), slippageMap.get(rtSymbol),
+							contractSizeMap.get(rtSymbol), rtSymbol, rtAccountID);
 
 					resultList.add(tradingResult);
 
-
 				}
-				
+
 				// 检查是否存在交易结果
 				if (resultList.isEmpty()) {
-					log.warn("无交易结果,合约{}接口{}", rtSymbol, gatewayID);
+					log.warn("无交易结果,合约{}账户ID{}", rtSymbol, rtAccountID);
 					continue;
 				}
 				// 然后基于每笔交易的结果,我们可以计算具体的盈亏曲线和最大回撤等
@@ -931,13 +917,13 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				double totalLosing = 0; // 总亏损金额
 
 				for (TradingResult result : resultList) {
-//					System.out.println("=========================");
-//					System.out.println(result.getRtSymbol());
-//					System.out.println(result.getGatewayID());
-//					System.out.println(result.getEntryDateTime().toString());
-//					System.out.println(result.getExitDateTime().toString());
-//					System.out.println(result.getVolume());
-//					System.out.println("=========================");
+					// System.out.println("=========================");
+					// System.out.println(result.getRtSymbol());
+					// System.out.println(result.getGatewayID());
+					// System.out.println(result.getEntryDateTime().toString());
+					// System.out.println(result.getExitDateTime().toString());
+					// System.out.println(result.getVolume());
+					// System.out.println("=========================");
 					capital += result.getPnl();
 					maxCapital = Math.max(capital, maxCapital);
 					drawdown = capital - maxCapital;
@@ -986,9 +972,9 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 				header.add("rtSymbol");
 				line.add(rtSymbol);
 
-				backtestingResult.setGatewayID(gatewayID);
-				header.add("gatewayID");
-				line.add(gatewayID);
+				backtestingResult.setRtAccountID(rtAccountID);
+				header.add("rtAccountID");
+				line.add(rtAccountID);
 
 				backtestingResult.setCapital(capital);
 				header.add("capital");
@@ -1060,14 +1046,14 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 				backtestingResult.setResultList(resultList);
 
-				gatewayResultMap.put(gatewayID, backtestingResult);
+				rtAccountResultMap.put(rtAccountID, backtestingResult);
 
 				lines.add(header);
 				lines.add(line);
 
-				String filePath = backtestingOutputDir + File.separator + "BacktestingResult" + File.separator
-						+ "SN__" + strategy.getName() + File.separator + "SID__" + strategy.getID() + File.separator
-						+ "GID__" + gatewayID + "__C__" + rtSymbol + ".csv";
+				String filePath = backtestingOutputDir + File.separator + "逐笔回测结果" + File.separator + "策略名称__"
+						+ strategy.getName() + File.separator + "策略ID__" + strategy.getID() + File.separator + "账户ID__"
+						+ rtAccountID + "__合约__" + rtSymbol + "逐笔.csv";
 				try {
 					FileUtils.forceMkdirParent(new File(filePath));
 				} catch (IOException ioe) {
@@ -1082,7 +1068,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 			}
 
-			rtSymbolResultMap.put(rtSymbol, gatewayResultMap);
+			rtSymbolResultMap.put(rtSymbol, rtAccountResultMap);
 		}
 	}
 
@@ -1094,34 +1080,32 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		for (Trade trade : tradeMap.values()) {
 			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER);
 
-			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getGatewayID())
+			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getRtAccountID())
 					.get(date);
 			dailyResult.addTrade(trade);
 		}
 		for (Trade trade : settleTradeMap.values()) {
 			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER);
 
-			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getGatewayID())
+			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getRtAccountID())
 					.get(date);
 			dailyResult.addTrade(trade);
 		}
 
-		
-		
 		for (Entry<String, Map<String, Map<String, DailyResult>>> entry : rtSymbolDailyResultMap.entrySet()) {
 			String rtSymbol = entry.getKey();
-			Map<String, Map<String, DailyResult>> gatewayDailyResultMap = entry.getValue();
+			Map<String, Map<String, DailyResult>> rtAccountIDDailyResultMap = entry.getValue();
 
-			for (Entry<String, Map<String, DailyResult>> gatewayEntry : gatewayDailyResultMap.entrySet()) {
-				String gatewayID = gatewayEntry.getKey();
-				Map<String, DailyResult> dateDailyResultMap = gatewayEntry.getValue();
+			for (Entry<String, Map<String, DailyResult>> rtAccountIDEntry : rtAccountIDDailyResultMap.entrySet()) {
+				String rtAccountID = rtAccountIDEntry.getKey();
+				Map<String, DailyResult> dateDailyResultMap = rtAccountIDEntry.getValue();
 				// 遍历每日结果
 				double previousClose = 0;
 				int openPosition = 0;
 				List<Object> lines = new ArrayList<>();
 				List<Object> header = new ArrayList<>();
 				header.add("rtSymbol");
-				header.add("gatewayID");
+				header.add("rtAccountID");
 				header.add("date");
 				header.add("netPnl");
 				header.add("totalPnl");
@@ -1141,11 +1125,11 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 					previousClose = dailyResult.getClosePrice();
 
 					dailyResult.calculatePnl(openPosition, contractSizeMap.get(rtSymbol),
-							rateMap.get(gatewayID + "." + rtSymbol), slippageMap.get(rtSymbol));
+							rateMap.get(rtSymbol), slippageMap.get(rtSymbol));
 					openPosition = dailyResult.getClosePosition();
 					List<Object> line = new ArrayList<>();
 					line.add(dailyResult.getRtSymbol());
-					line.add(dailyResult.getGatewayID());
+					line.add(dailyResult.getRtAccountID());
 					line.add(dailyResult.getDate());
 					line.add(dailyResult.getNetPnl());
 					line.add(dailyResult.getTotalPnl());
@@ -1164,9 +1148,9 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 				}
 
-				String filePath = backtestingOutputDir + File.separator + "DailyResult" + File.separator + "SN__"
-						+ strategy.getName() + File.separator + "SID__" + strategy.getID() + File.separator + "GID__"
-						+ gatewayID + "__C__" + rtSymbol + ".csv";
+				String filePath = backtestingOutputDir + File.separator + "逐日回测结果" + File.separator + "策略名称__"
+						+ strategy.getName() + File.separator + "策略ID__" + strategy.getID() + File.separator + "账户ID__"
+						+ rtAccountID + "__合约__" + rtSymbol + "_逐日.csv";
 				try {
 					FileUtils.forceMkdirParent(new File(filePath));
 				} catch (IOException ioe) {
@@ -1182,83 +1166,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		}
 	}
 
-	@Override
-	public void emitErrorLog(String logContent) {
-		log.error("E_LOG|ZEUS--"+logContent);
-	}
-
-	@Override
-	public void emitWarnLog(String logContent) {
-		log.warn("E_LOG|ZEUS--"+logContent);
-	}
-
-	@Override
-	public void emitInfoLog(String logContent) {
-		log.info("E_LOG|ZEUS--"+logContent);
-	}
-
-	@Override
-	public void emitDebugLog(String logContent) {
-		log.debug("E_LOG|ZEUS--"+logContent);
-	}
-	
 	///////////////////////////// ↓↓↓↓↓↓↓回测不需要实现的方法↓↓↓↓↓↓↓////////////////////////////
-	@Override
-	public void onTick(Tick tick) {
-	}
-
-	@Override
-	public void onOrder(Order order) {
-	}
-
-	@Override
-	public void onTrade(Trade trade) {
-	}
-
-	@Override
-	public void createStrategyClassInstance(StrategySetting strategySetting) {
-	}
-
-	@Override
-	public void unloadStrategy(String strategyID) {
-	}
-
-	@Override
-	public void loadStartegy() {
-	}
-
-	@Override
-	public void loadStartegy(String strategyID) {
-	}
-
-	@Override
-	public void initStrategy(String strategyID) {
-	}
-
-	@Override
-	public void startStrategy(String strategyID) {
-	}
-
-	@Override
-	public void stopStrategy(String strategyID) {
-	}
-
-	@Override
-	public void initAllStrategy() {
-	}
-
-	@Override
-	public void startAllStrategy() {
-	}
-
-	@Override
-	public void stopAllStrategy() {
-	}
-
-	@Override
-	public List<Strategy> getStragetyList() {
-		return null;
-	}
 
 	@Override
 	public double getPriceTick(String rtSymbol, String gatewayID) {
@@ -1266,7 +1174,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	}
 
 	@Override
-	public Contract getContract(String rtSymbol) {
+	public Contract getContractByFuzzySymbol(String rtSymbol) {
 		return null;
 	}
 
@@ -1275,47 +1183,6 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		return null;
 	}
 
-	@Override
-	public void awaitShutdown() throws InterruptedException {
-	}
-
-	@Override
-	public void onEvent(FastEvent event, long sequence, boolean endOfBatch) throws Exception {
-		
-	}
-
-	@Override
-	public void onStart() {
-		
-	}
-
-	@Override
-	public void onShutdown() {
-		
-	}
-	@Override
-	public List<String> getSubscribedEventList() {
-		return null;
-	}
-
-	@Override
-	public Set<String> getSubscribedEventSet() {
-		return null;
-	}
-
-	@Override
-	public void subscribeEvent(String event) {
-		
-	}
-
-	@Override
-	public void unsubscribeEvent(String event) {
-		
-	}
-	
 	///////////////////////////// ↑↑↑↑↑↑↑回测不需要实现的方法↑↑↑↑↑↑↑////////////////////////////
-
-
-
 
 }

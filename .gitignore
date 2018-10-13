@@ -1,3 +1,30 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
 # Compiled class file
 *.class
 
@@ -11,7 +38,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.tar.gz
@@ -20,20 +46,20 @@
 .classpath
 .project
 
+# Python #
+*.pyc
+
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 target/
 
-#idea local config
-.idea/
 
 bin/
 
 *.bak
 
-.settings/
-.gradle/
+
 build/
 
 
@@ -43,5 +69,9 @@ hft/
 
 rt-api-pctp/
 rt-gateway-pctp/
+
+rt-strategy-prd/
+
+node_modules/
 
 

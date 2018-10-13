@@ -1,7 +1,11 @@
 package xyz.redtorch.gateway.ctp;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +24,8 @@ import xyz.redtorch.utils.CommonUtil;
 public class CtpGateway extends GatewayAbstract {
 
 	private static Logger log = LoggerFactory.getLogger(CtpGateway.class);
+	
+	private Timer timer = new Timer();
 
 	static {
 		try {
@@ -66,14 +72,17 @@ public class CtpGateway extends GatewayAbstract {
 
 	}
 
+	protected HashSet<String> subscribedSymbols = new HashSet<>();
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();
+	
 
 	private MdSpi mdSpi = new MdSpi(this);
 	private TdSpi tdSpi = new TdSpi(this);
 
 	public CtpGateway(FastEventEngineService fastEventEngineService,GatewaySetting gatewaySetting) {
 		super(fastEventEngineService, gatewaySetting);
+		timer.schedule(new QueryTimerTask(), new Date(), 1000);
 	}
 
 	public HashMap<String, String> getContractExchangeMap() {
@@ -82,6 +91,10 @@ public class CtpGateway extends GatewayAbstract {
 
 	public HashMap<String, Integer> getContractSizeMap() {
 		return contractSizeMap;
+	}
+	
+	public HashSet<String> getSubscribedSymbols() {
+		return subscribedSymbols;
 	}
 
 	@Override
@@ -94,9 +107,14 @@ public class CtpGateway extends GatewayAbstract {
 
 	@Override
 	public void unSubscribe(String rtSymbol) {
-		subscribedSymbols.remove(rtSymbol);
+		String[] rtSymbolArray = rtSymbol.split("\\.");
+		String symbol = rtSymbol;
+		if (rtSymbolArray.length > 1) {
+			symbol = rtSymbol.replace(("."+rtSymbolArray[rtSymbolArray.length-1]),"");
+		}
+		subscribedSymbols.remove(symbol);
 		if (mdSpi != null) {
-			mdSpi.unSubscribe(rtSymbol);
+			mdSpi.unSubscribe(symbol);
 		}
 	}
 
@@ -138,14 +156,12 @@ public class CtpGateway extends GatewayAbstract {
 		}
 	}
 
-	@Override
 	public void queryAccount() {
 		if (tdSpi != null) {
 			tdSpi.queryAccount();
 		}
 	}
 
-	@Override
 	public void queryPosition() {
 		if (tdSpi != null) {
 			tdSpi.queryPosition();
@@ -156,5 +172,25 @@ public class CtpGateway extends GatewayAbstract {
 	public boolean isConnected() {
 		return tdSpi != null && mdSpi != null && tdSpi.isConnected() && mdSpi.isConnected();
 	}
+	
+	class QueryTimerTask extends TimerTask{
+
+	    @Override
+	    public void run() {
+	    	try {
+		    	if(isConnected()) {
+			        queryAccount();
+		    	}
+			    Thread.sleep(1250);
+			    if(isConnected()) {
+				    queryPosition();
+			    }
+			    Thread.sleep(1250);
+	    	}catch (Exception e) {
+				log.error(gatewayLogInfo+"定时查询发生异常",e);
+			}
+	    }
+	}
+
 
 }

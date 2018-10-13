@@ -1,0 +1,10 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """IB网关"""
+
+dependencies {
+	compile project(':rt-common')
+	compile project(':rt-core')
+	compile project(':rt-api-ib')
+	//compile files('src/main/resources/libs/TwsApi.jar')
+}

@@ -18,17 +18,15 @@ public class SocketIOCommandLineRunner implements CommandLineRunner {
 
     private final SocketIOServer socketIOServer;  
     
-    
     @Autowired  
     public SocketIOCommandLineRunner(SocketIOServer socketIOServer) {  
         this.socketIOServer = socketIOServer;  
     }  
   
-  
     @Override  
     public void run(String... args) throws Exception {  
     	socketIOServer.start();  
-        log.info("SocketIO启动成功!");  
+        log.info("SocketIO服务启动成功!");  
     }  
 
 }

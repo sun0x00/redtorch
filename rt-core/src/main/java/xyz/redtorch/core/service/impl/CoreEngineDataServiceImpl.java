@@ -1,6 +1,5 @@
 package xyz.redtorch.core.service.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,68 +12,68 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+
 import xyz.redtorch.core.gateway.GatewaySetting;
 import xyz.redtorch.core.service.MongoDBService;
 import xyz.redtorch.core.service.CoreEngineDataService;
 import xyz.redtorch.utils.MongoDBClient;
-import xyz.redtorch.utils.MongoDBUtil;
+
 /**
  * @author sun0x00@gmail.com
  */
 @Service
-@PropertySource(value = {"classpath:rt-core.properties"})
-public class CoreEngineDataServiceImpl implements CoreEngineDataService,InitializingBean {
+@PropertySource(value = { "classpath:rt-core.properties" })
+public class CoreEngineDataServiceImpl implements CoreEngineDataService, InitializingBean {
 
 	private Logger log = LoggerFactory.getLogger(CoreEngineDataServiceImpl.class);
-	
+
 	private final String gatewaySettingCollection = "GatewaySetting";
-	
+
 	private MongoDBClient defaultDBClient;
-	
+
 	@Autowired
 	private MongoDBService mongoDBService;
-	
+
 	@Value("${rt.client.dbname}")
 	private String clientDBName;
-	
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		this.defaultDBClient = mongoDBService.getDefaultDBClient();
 	}
-	
+
 	@Override
 	public GatewaySetting queryGatewaySetting(String gatewayID) {
-		Document filter = new Document(); 
+		Document filter = new Document();
 		filter.append("gatewayID", gatewayID);
 		List<Document> documentList = defaultDBClient.find(clientDBName, gatewaySettingCollection, filter);
-		if(documentList == null || documentList.isEmpty()) {
+		if (documentList == null || documentList.isEmpty()) {
 			return null;
 		}
 		Document document = documentList.get(0);
 
-		GatewaySetting gatewaySetting = new GatewaySetting();
 		try {
-			gatewaySetting = MongoDBUtil.documentToBean(document, gatewaySetting);
-		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-			log.error("查询接口数据数据转换发生错误Document-",document.toJson(),e);
+			GatewaySetting gatewaySetting = JSON.parseObject(document.toJson(), GatewaySetting.class);
+			return gatewaySetting;
+		} catch (Exception e) {
+			log.error("查询网关数据数据转换发生错误Document-{}", document.toJson(), e);
 			return null;
 		}
-		
-		return gatewaySetting;
+
 	}
 
 	@Override
 	public List<GatewaySetting> queryGatewaySettings() {
 		List<Document> documentList = defaultDBClient.find(clientDBName, gatewaySettingCollection);
 		List<GatewaySetting> gatewaySettings = new ArrayList<>();
-		
-		for(Document document:documentList) {
-			GatewaySetting gatewaySetting = new GatewaySetting();
+
+		for (Document document : documentList) {
 			try {
-				gatewaySetting = MongoDBUtil.documentToBean(document, gatewaySetting);
+				GatewaySetting gatewaySetting = JSON.parseObject(document.toJson(), GatewaySetting.class);
 				gatewaySettings.add(gatewaySetting);
-			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				log.error("查询接口数据转换发生错误",e);
+			} catch (Exception e) {
+				log.error("查询网关数据转换发生错误", e);
 			}
 		}
 
@@ -83,7 +82,7 @@ public class CoreEngineDataServiceImpl implements CoreEngineDataService,Initiali
 
 	@Override
 	public void deleteGatewaySetting(String gatewayID) {
-		Document filter = new Document(); 
+		Document filter = new Document();
 		filter.append("gatewayID", gatewayID);
 		defaultDBClient.delete(clientDBName, gatewaySettingCollection, filter);
 	}
@@ -91,12 +90,12 @@ public class CoreEngineDataServiceImpl implements CoreEngineDataService,Initiali
 	@Override
 	public void saveGatewaySetting(GatewaySetting gatewaySetting) {
 		try {
-			Document document = MongoDBUtil.beanToDocument(gatewaySetting);
+			Document document = Document.parse(JSON.toJSONString(gatewaySetting));
 			defaultDBClient.insert(clientDBName, gatewaySettingCollection, document);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			log.error("保存接口设置到数据库发生错误",e);
+		} catch (IllegalArgumentException e) {
+			log.error("保存网关设置到数据库发生错误", e);
 		}
-		
+
 	}
 
 }

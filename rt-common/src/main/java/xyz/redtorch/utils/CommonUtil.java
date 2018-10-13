@@ -1,5 +1,6 @@
 package xyz.redtorch.utils;
 
+import org.apache.commons.codec.binary.Base64;
 import java.io.File;
 import java.net.URL;
 import java.util.Scanner;
@@ -10,10 +11,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.JarURLConnection;
 import java.net.URLDecoder;
+import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,9 +22,9 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.UUID;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -179,13 +180,13 @@ public class CommonUtil {
 				return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
 			}
 		});
-		if(dirfiles!=null) {
+		if (dirfiles != null) {
 			// 循环所有文件
 			for (File file : dirfiles) {
 				// 如果是目录 则继续扫描
 				if (file.isDirectory()) {
-					findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(), recursive,
-							classes);
+					findAndAddClassesInPackageByFile(packageName + "." + file.getName(), file.getAbsolutePath(),
+							recursive, classes);
 				} else {
 					// 如果是java类文件 去掉后面的.class 只留下类名
 					String className = file.getName().substring(0, file.getName().length() - 6);
@@ -193,8 +194,8 @@ public class CommonUtil {
 						// 添加到集合中去
 						// classes.add(Class.forName(packageName + '.' + className));
 						// 经过回复同学的提醒,这里用forName有一些不好,会触发static方法,没有使用classLoader的load干净
-						classes.add(
-								Thread.currentThread().getContextClassLoader().loadClass(packageName + '.' + className));
+						classes.add(Thread.currentThread().getContextClassLoader()
+								.loadClass(packageName + '.' + className));
 					} catch (ClassNotFoundException e) {
 						log.error("添加用户自定义视图类错误 找不到此类的.class文件");
 					}
@@ -304,49 +305,8 @@ public class CommonUtil {
 	}
 
 	/**
-	 * Adds a path to the java.library.path System property and updates the
-	 * ClassLoader. Uses reflection to allow update to private system members. Will
-	 * not work if JVM security policy gets in the way (like in an applet). Will not
-	 * work if Sun changes the private members. This really shouldn't be used at
-	 * all...
-	 */
-	public static void javaLibraryAdd(File path) throws Exception {
-		// Append the specified path to the
-		// existing java.library.path (if there is one already)
-		String newLibraryPath = System.getProperty("java.library.path");
-		if (newLibraryPath == null || newLibraryPath.length() < 1) {
-			newLibraryPath = path.getCanonicalPath();
-		} else {
-			newLibraryPath += File.pathSeparator + path.getCanonicalPath();
-		}
-
-		// Reflect into java.lang.System to get the
-		// static Properties reference
-		Field f = System.class.getDeclaredField("props");
-		f.setAccessible(true);
-		Properties props = (Properties) f.get(null);
-		// replace the java.library.path with our new one
-		props.put("java.library.path", newLibraryPath);
-
-		// The classLoader may have already been initialized,
-		// so it needs to be fixed up.
-		// Reflect into java.lang.ClassLoader to get the
-		// static String[] of user paths to native libraries
-		Field usr_pathsField = ClassLoader.class.getDeclaredField("usr_paths");
-		usr_pathsField.setAccessible(true);
-		String[] usr_paths = (String[]) usr_pathsField.get(null);
-		String[] newUsr_paths = new String[usr_paths == null ? 1 : usr_paths.length + 1];
-		if (usr_paths != null) {
-			System.arraycopy(usr_paths, 0, newUsr_paths, 0, usr_paths.length);
-		}
-		// Add the specified path to the end of a new String[]
-		// of user paths to native libraries
-		newUsr_paths[newUsr_paths.length - 1] = path.getAbsolutePath();
-		usr_pathsField.set(null, newUsr_paths);
-	}
-
-	/**
 	 * 复制文件到临时文件夹
+	 * 
 	 * @param targetDir
 	 * @param orginFilePath
 	 * @throws IOException
@@ -364,6 +324,7 @@ public class CommonUtil {
 
 	/**
 	 * 复制URL到临时文件夹,例如从war包中
+	 * 
 	 * @param targetDir
 	 * @param sourceURL
 	 * @throws IOException
@@ -377,5 +338,28 @@ public class CommonUtil {
 		FileUtils.copyURLToFile(sourceURL, targetFile);
 
 		targetFile.deleteOnExit();
+	}
+
+	public static String generateUuidAsBase64() {
+		UUID uuid = UUID.randomUUID();
+		ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+		bb.putLong(uuid.getMostSignificantBits());
+		bb.putLong(uuid.getLeastSignificantBits());
+		return Base64.encodeBase64URLSafeString(bb.array());
+	}
+
+	public static String uuidToBase64(String str) {
+		UUID uuid = UUID.fromString(str);
+		ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+		bb.putLong(uuid.getMostSignificantBits());
+		bb.putLong(uuid.getLeastSignificantBits());
+		return Base64.encodeBase64URLSafeString(bb.array());
+	}
+
+	public static String uuidFromBase64(String str) {
+		byte[] bytes = Base64.decodeBase64(str);
+		ByteBuffer bb = ByteBuffer.wrap(bytes);
+		UUID uuid = new UUID(bb.getLong(), bb.getLong());
+		return uuid.toString();
 	}
 }

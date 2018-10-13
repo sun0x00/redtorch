@@ -11,12 +11,10 @@ description = """SpringBoot承载的前端Web模块"""
 
 dependencies {
 	compile project(':rt-common')
-	compile project(':rt-api-jctp')
-	//compile project(':rt-api-pctp')
 	compile project(':rt-core')
 	compile project(':rt-gateway-jctp')
+	compile project(':rt-gateway-ib')
 	//compile project(':rt-gateway-pctp')
-	compile project(':rt-strategy')
 	
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:"${rootProject.springBootVersion}") {
 			exclude(module: 'spring-boot-starter-tomcat')

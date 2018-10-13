@@ -17,7 +17,7 @@ public class PositionDetail implements Serializable {
 
 	private String tradingDay;
 	private String rtSymbol;
-	private String gatewayID;
+	private String rtAccountID;
 	private String strategyName;
 	private String strategyID;
 
@@ -54,19 +54,20 @@ public class PositionDetail implements Serializable {
 
 	private HashMap<String, Order> workingOrderMap = new HashMap<>();
 
-	public PositionDetail(String rtSymbol, String gatewayID, String tradingDay, String strategyName,
-			String strategyID, String exchange, int contractSize) {
+	public PositionDetail(String rtSymbol, String rtAccountID, String tradingDay, String strategyName, String strategyID,
+			String exchange, int contractSize) {
 		this.rtSymbol = rtSymbol;
-		this.gatewayID = gatewayID;
+		this.rtAccountID = rtAccountID;
 		this.tradingDay = tradingDay;
 		this.strategyName = strategyName;
 		this.strategyID = strategyID;
 		this.exchange = exchange;
 		this.contractSize = contractSize;
 	}
-	
-	public PositionDetail() {}
-	
+
+	public PositionDetail() {
+	}
+
 	public String getTradingDay() {
 		return tradingDay;
 	}
@@ -83,12 +84,12 @@ public class PositionDetail implements Serializable {
 		this.rtSymbol = rtSymbol;
 	}
 
-	public String getGatewayID() {
-		return gatewayID;
+	public String getRtAccountID() {
+		return rtAccountID;
 	}
 
-	public void setGatewayID(String gatewayID) {
-		this.gatewayID = gatewayID;
+	public void setRtAccountID(String rtAccountID) {
+		this.rtAccountID = rtAccountID;
 	}
 
 	public String getStrategyName() {
@@ -325,7 +326,7 @@ public class PositionDetail implements Serializable {
 		if (RtConstant.DIRECTION_LONG.equals(trade.getDirection())) {// 多头
 			if (RtConstant.OFFSET_OPEN.equals(trade.getOffset())) {// 开仓
 				longTd += trade.getVolume();
-			}else if (RtConstant.OFFSET_CLOSETODAY.equals(trade.getOffset())) {// 平今
+			} else if (RtConstant.OFFSET_CLOSETODAY.equals(trade.getOffset())) {// 平今
 				shortTd -= trade.getVolume();
 			} else if (RtConstant.OFFSET_CLOSEYESTERDAY.equals(trade.getOffset())) {// 平昨
 				shortYd -= trade.getVolume();
@@ -346,7 +347,7 @@ public class PositionDetail implements Serializable {
 			// 开仓
 			if (RtConstant.OFFSET_OPEN.equals(trade.getOffset())) {
 				shortTd += trade.getVolume();
-			}else if (RtConstant.OFFSET_CLOSETODAY.equals(trade.getOffset())) {// 平今
+			} else if (RtConstant.OFFSET_CLOSETODAY.equals(trade.getOffset())) {// 平今
 				longTd -= trade.getVolume();
 			} else if (RtConstant.OFFSET_CLOSEYESTERDAY.equals(trade.getOffset())) {// 平昨
 				longYd -= trade.getVolume();
@@ -376,12 +377,12 @@ public class PositionDetail implements Serializable {
 	public void updateOrder(Order order) {
 		// 将活动委托缓存下来
 		if (RtConstant.STATUS_WORKING.contains(order.getStatus())) {
-			workingOrderMap.put(order.getRtOrderID(), order);
+			workingOrderMap.put(order.getOriginalOrderID(), order);
 
 			// 移除缓存中已经完成的委托
 		} else {
-			if (workingOrderMap.containsKey(order.getRtOrderID())) {
-				workingOrderMap.remove(order.getRtOrderID());
+			if (workingOrderMap.containsKey(order.getOriginalOrderID())) {
+				workingOrderMap.remove(order.getOriginalOrderID());
 			}
 		}
 
@@ -394,9 +395,9 @@ public class PositionDetail implements Serializable {
 	 * 
 	 * @param orderReq
 	 */
-	public void updateOrderReq(OrderReq orderReq, String rtOrderID) {
+	public void updateOrderReq(OrderReq orderReq) {
 		// orderReq如果存在则跳过
-		if(workingOrderMap.containsKey(rtOrderID)) {
+		if (workingOrderMap.containsKey(orderReq.getOriginalOrderID())) {
 			return;
 		}
 		// 基于请求创建委托对象
@@ -409,73 +410,77 @@ public class PositionDetail implements Serializable {
 		order.setTotalVolume(orderReq.getVolume());
 		order.setStatus(RtConstant.STATUS_UNKNOWN);
 		order.setGatewayID(orderReq.getGatewayID());
-		order.setRtOrderID(rtOrderID);
+		order.setRtAccountID(orderReq.getRtAccountID());
+		order.setAccountID(orderReq.getAccountID());
+		order.setOriginalOrderID(orderReq.getOriginalOrderID());
 
-		workingOrderMap.put(rtOrderID, order);
+		workingOrderMap.put(order.getOriginalOrderID(), order);
 
 		calculateFrozen();
 
 	}
-	
+
 	/**
 	 * 价格更新
+	 * 
 	 * @param lastPrice
 	 */
 	public void updateLastPrice(double lastPrice) {
-    	this.lastPrice = lastPrice;
-    	calculatePnl();
-    }
-	
+		this.lastPrice = lastPrice;
+		calculatePnl();
+	}
+
 	/**
 	 * 计算持仓盈亏
 	 */
-    public void calculatePnl() {
-        longPnl = longPos * (lastPrice - longPrice) * contractSize;
-        shortPnl = shortPos * (shortPrice - lastPrice) * contractSize;
-        pnl = longPnl + shortPnl;
+	public void calculatePnl() {
+		longPnl = longPos * (lastPrice - longPrice) * contractSize;
+		shortPnl = shortPos * (shortPrice - lastPrice) * contractSize;
+		pnl = longPnl + shortPnl;
 
-        longOpenContractValue = longPos * contractSize * longPrice;
-        shortOpenContractValue = shortPos * contractSize * shortPrice;
-        openContractValue = longOpenContractValue + shortOpenContractValue;
-    }
-	
+		longOpenContractValue = longPos * contractSize * longPrice;
+		shortOpenContractValue = shortPos * contractSize * shortPrice;
+		openContractValue = longOpenContractValue + shortOpenContractValue;
+	}
+
 	/**
 	 * 计算持仓均价（基于成交数据）
+	 * 
 	 * @param trade
 	 */
 	public void calculatePrice(Trade trade) {
-        // 只有开仓会影响持仓均价
-        if(RtConstant.OFFSET_OPEN.equals(trade.getOffset())) {
-        	double cost = 0;
-        	int newPos = 0;
-            if(RtConstant.DIRECTION_LONG.equals(trade.getDirection())) {
-            	cost =  longPrice *  longPos;
-                cost += trade.getVolume() * trade.getPrice();
-                newPos = longPos + trade.getVolume();
-                if(newPos>0) {
-                    longPrice = cost / newPos;
-                } else {
-                    longPrice = 0d;
-                }
-            }else {
-                cost = shortPrice * shortPos;
-                cost += trade.getVolume() * trade.getPrice();
-                newPos = shortPos + trade.getVolume();
-                if(newPos>0) {
-                    shortPrice = cost / newPos;
-                } else {
-                	shortPrice = 0;
-                }
-            }
-        }
+		// 只有开仓会影响持仓均价
+		if (RtConstant.OFFSET_OPEN.equals(trade.getOffset())) {
+			double cost = 0;
+			int newPos = 0;
+			if (RtConstant.DIRECTION_LONG.equals(trade.getDirection())) {
+				cost = longPrice * longPos;
+				cost += trade.getVolume() * trade.getPrice();
+				newPos = longPos + trade.getVolume();
+				if (newPos > 0) {
+					longPrice = cost / newPos;
+				} else {
+					longPrice = 0d;
+				}
+			} else {
+				cost = shortPrice * shortPos;
+				cost += trade.getVolume() * trade.getPrice();
+				newPos = shortPos + trade.getVolume();
+				if (newPos > 0) {
+					shortPrice = cost / newPos;
+				} else {
+					shortPrice = 0;
+				}
+			}
+		}
 
 	}
-	
 
 	public void calculatePosition() {
 		longPos = longTd + longYd;
 		shortPos = shortTd + shortYd;
 	}
+
 	/**
 	 * 计算冻结
 	 */
@@ -538,7 +543,7 @@ public class PositionDetail implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PositionDetail [tradingDay=" + tradingDay + ", rtSymbol=" + rtSymbol + ", gatewayID=" + gatewayID
+		return "PositionDetail [tradingDay=" + tradingDay + ", rtSymbol=" + rtSymbol + ", rtAccountID=" + rtAccountID
 				+ ", strategyName=" + strategyName + ", strategyID=" + strategyID + ", contractSize=" + contractSize
 				+ ", exchange=" + exchange + ", pnl=" + pnl + ", openContractValue=" + openContractValue + ", longPos="
 				+ longPos + ", longPnl=" + longPnl + ", longOpenContractValue=" + longOpenContractValue + ", longPrice="
@@ -550,5 +555,4 @@ public class PositionDetail implements Serializable {
 				+ ", shortTdFrozen=" + shortTdFrozen + ", shortOpenFrozen=" + shortOpenFrozen + ", lastPrice="
 				+ lastPrice + ", workingOrderMap=" + workingOrderMap + "]";
 	}
-
 }

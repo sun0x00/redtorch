@@ -3,6 +3,7 @@ package xyz.redtorch.core.service;
 import java.util.List;
 
 import xyz.redtorch.core.gateway.GatewaySetting;
+
 /**
  * @author sun0x00@gmail.com
  */

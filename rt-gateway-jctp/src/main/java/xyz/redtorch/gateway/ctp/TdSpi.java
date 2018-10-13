@@ -132,25 +132,26 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
-	// private String gatewayDisplayName;
+	 private String gatewayDisplayName;
 
 	private HashMap<String, Position> positionMap = new HashMap<>();
 
 	private HashMap<String, String> contractExchangeMap;
 	private HashMap<String, Integer> contractSizeMap;
+	private HashMap<String,String> originalOrderIDMap = new HashMap<>();
 
 	TdSpi(CtpGateway ctpGateway) {
 
 		this.ctpGateway = ctpGateway;
-		// this.mdAddress = ctpGateway.getGatewaySetting().getMdAddress();
-		this.tdAddress = ctpGateway.getGatewaySetting().getTdAddress();
-		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
-		this.userID = ctpGateway.getGatewaySetting().getUserID();
-		this.password = ctpGateway.getGatewaySetting().getPassword();
-		this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
+		// this.mdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getMdAddress();
+		this.tdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getTdAddress();
+		this.brokerID = ctpGateway.getGatewaySetting().getCtpSetting().getBrokerID();
+		this.userID = ctpGateway.getGatewaySetting().getCtpSetting().getUserID();
+		this.password = ctpGateway.getGatewaySetting().getCtpSetting().getPassword();
+		this.authCode = ctpGateway.getGatewaySetting().getCtpSetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
-		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
+		 this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
 
 		this.contractExchangeMap = ctpGateway.getContractExchangeMap();
 		this.contractSizeMap = ctpGateway.getContractSizeMap();
@@ -163,6 +164,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private boolean connectionStatus = false; // 前置机连接状态
 	private boolean loginStatus = false; // 登陆状态
 	private String tradingDayStr;
+	
+	private boolean instrumentQueried = false;
 
 	private AtomicInteger reqID = new AtomicInteger(0); // 操作请求编号
 	private AtomicInteger orderRef = new AtomicInteger(0); // 订单编号
@@ -270,6 +273,11 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			log.info("{}尚未初始化,无法查询持仓", gatewayLogInfo);
 			return;
 		}
+		
+		if (!instrumentQueried) {
+			log.info("{}尚未获取到合约信息,无法查询持仓", gatewayLogInfo);
+			return;
+		}
 
 		CThostFtdcQryInvestorPositionField cThostFtdcQryInvestorPositionField = new CThostFtdcQryInvestorPositionField();
 		// log.info("查询持仓");
@@ -335,6 +343,10 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		// }
 		String rtOrderID = gatewayID + "." + orderRef.get();
 
+		if(StringUtils.isNotBlank(orderReq.getOriginalOrderID())) {
+			originalOrderIDMap.put(rtOrderID,orderReq.getOriginalOrderID());
+		}
+		
 		return rtOrderID;
 	}
 
@@ -350,8 +362,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		cThostFtdcInputOrderActionField.setInstrumentID(cancelOrderReq.getSymbol());
 		cThostFtdcInputOrderActionField.setExchangeID(cancelOrderReq.getExchange());
 		cThostFtdcInputOrderActionField.setOrderRef(cancelOrderReq.getOrderID());
-		cThostFtdcInputOrderActionField.setFrontID(frontID);
-		cThostFtdcInputOrderActionField.setSessionID(sessionID);
+		cThostFtdcInputOrderActionField.setFrontID(cancelOrderReq.getFrontID());
+		cThostFtdcInputOrderActionField.setSessionID(cancelOrderReq.getSessionID());
 
 		cThostFtdcInputOrderActionField.setActionFlag(jctptraderapiv6v3v11x64Constants.THOST_FTDC_AF_Delete);
 		cThostFtdcInputOrderActionField.setBrokerID(brokerID);
@@ -487,6 +499,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo, int nRequestID,
 			boolean bIsLast) {
 
+		// 无法获取账户信息
+		//String accountID = pOrder.getAccountID();
+		String accountID = this.userID;
+		// 无法获取币种信息,留空
+		//String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		String rtAccountID = "";
+		
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());
 		String rtSymbol = symbol + "." + exchange;
@@ -507,9 +526,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String activeTime = null;
 		String updateTime = null;
 
-		ctpGateway.emitOrder(gatewayID, symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price,
-				totalVolume, tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime,
-				frontID, sessionID);
+		String originalOrderID = originalOrderIDMap.get(rtOrderID);
+		
+		ctpGateway.emitOrder(originalOrderID, gatewayID, gatewayDisplayName, accountID,
+				rtAccountID, symbol, exchange, rtSymbol, orderID, rtOrderID,
+				direction, offset, price, totalVolume, tradedVolume, status,
+				tradingDay, orderDate, orderTime, cancelTime, activeTime,
+				updateTime, frontID, sessionID);
 
 		// 发送委托事件
 		log.error("{}交易接口发单错误回报(柜台)! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
@@ -549,6 +572,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		// 查询所有合约
+		log.warn("{}交易接口开始查询合约信息!", gatewayLogInfo);
 		CThostFtdcQryInstrumentField cThostFtdcQryInstrumentField = new CThostFtdcQryInstrumentField();
 		cThostFtdcTraderApi.ReqQryInstrument(cThostFtdcQryInstrumentField, reqID.incrementAndGet());
 
@@ -620,7 +644,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		// 获取持仓缓存
-		String posName = gatewayID + symbol + pInvestorPosition.getPosiDirection();
+		String posName = gatewayID +"."+ rtSymbol +"."+ pInvestorPosition.getPosiDirection();
 
 		Position position;
 		if (positionMap.containsKey(posName)) {
@@ -630,10 +654,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			positionMap.put(posName, position);
 			position.setGatewayID(gatewayID);
 			position.setSymbol(symbol);
+			position.setExchange(contractExchangeMap.get(symbol));
 			position.setRtSymbol(rtSymbol);
 			position.setDirection(
 					CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), ""));
-			position.setRtPositionName(gatewayID + rtSymbol + pInvestorPosition.getPosiDirection());
+			position.setRtPositionID(gatewayID +"."+ rtSymbol +"."+ pInvestorPosition.getPosiDirection());
+			position.setAccountID(pInvestorPosition.getInvestorID());
+			// 无法获取币种,因此不填写
+			//position.setRtAccountID(pInvestorPosition.getInvestorID());
 		}
 		// 针对上期所持仓的今昨分条返回（有昨仓、无今仓）,读取昨仓数据
 		if (pInvestorPosition.getYdPosition() > 0 && pInvestorPosition.getTodayPosition() == 0) {
@@ -662,7 +690,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (bIsLast) {
 			for (Position tmpPosition : positionMap.values()) {
 				// 发送持仓事件
-				ctpGateway.emitPositon(tmpPosition);
+				tmpPosition.setGatewayDisplayName(gatewayDisplayName);
+				ctpGateway.emitPosition(tmpPosition);
 			}
 
 			// 清空缓存
@@ -676,6 +705,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			int nRequestID, boolean bIsLast) {
 		Account account = new Account();
 		account.setAccountID(pTradingAccount.getAccountID());
+		account.setCurrency(pTradingAccount.getCurrencyID());
 		account.setAvailable(pTradingAccount.getAvailable());
 		account.setCloseProfit(pTradingAccount.getCloseProfit());
 		account.setCommission(pTradingAccount.getCommission());
@@ -683,7 +713,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		account.setMargin(pTradingAccount.getCurrMargin());
 		account.setPositionProfit(pTradingAccount.getPositionProfit());
 		account.setPreBalance(pTradingAccount.getPreBalance());
-		account.setRtAccountID(gatewayID + pTradingAccount.getAccountID());
+		account.setRtAccountID(pTradingAccount.getAccountID()+"."+pTradingAccount.getCurrencyID()+"."+gatewayID);
 
 		double balance = pTradingAccount.getPreBalance() - pTradingAccount.getPreCredit()
 				- pTradingAccount.getPreMortgage() + pTradingAccount.getMortgage() - pTradingAccount.getWithdraw()
@@ -692,6 +722,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 		account.setBalance(balance);
 
+		account.setGatewayDisplayName(gatewayDisplayName);
 		ctpGateway.emitAccount(account);
 
 	}
@@ -728,6 +759,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		contract.setSymbol(pInstrument.getInstrumentID());
 		contract.setExchange(CtpConstant.exchangeMapReverse.get(pInstrument.getExchangeID()));
 		contract.setRtSymbol(contract.getSymbol() + "." + contract.getExchange());
+		contract.setRtContractID(contract.getSymbol()+"."+contract.getExchange()+"."+contract.getGatewayID());
 		contract.setName(pInstrument.getInstrumentName());
 
 		contract.setSize(pInstrument.getVolumeMultiple());
@@ -751,11 +783,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		contractExchangeMap.put(contract.getSymbol(), contract.getExchange());
 		contractSizeMap.put(contract.getSymbol(), contract.getSize());
 
+		contract.setGatewayDisplayName(gatewayDisplayName);
 		ctpGateway.emitContract(contract);
 
 		if (bIsLast) {
-			log.info(gatewayLogInfo + "交易接口合约信息获取完成!");
+			log.info("{}交易接口合约信息获取完成!共计{}条",gatewayLogInfo,contractExchangeMap.size());
 		}
+		
+		instrumentQueried = true;
 	}
 
 	public void OnRspQryDepthMarketData(CThostFtdcDepthMarketDataField pDepthMarketData,
@@ -903,6 +938,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		 * CTP的报单号一致性维护需要基于frontID, sessionID, orderID三个字段
 		 * 但在本接口设计中,已经考虑了CTP的OrderRef的自增性,避免重复 唯一可能出现OrderRef重复的情况是多处登录并在非常接近的时间内（几乎同时发单
 		 */
+		
+		// 无法获取账户信息
+		//String accountID = pOrder.getAccountID();
+		String accountID = this.userID;
+		// 无法获取币种信息,留空
+		//String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		String rtAccountID = "";
+		
 		String orderID = pOrder.getOrderRef();
 		String rtOrderID = gatewayID + "." + orderID;
 		String direction = CtpConstant.directionMapReverse.get(pOrder.getDirection());
@@ -917,10 +960,16 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String cancelTime = pOrder.getCancelTime();
 		String activeTime = pOrder.getActiveTime();
 		String updateTime = pOrder.getUpdateTime();
+		int frontID = pOrder.getFrontID();
+		int sessionID = pOrder.getSessionID();
 
-		ctpGateway.emitOrder(gatewayID, symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price,
-				totalVolume, tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime,
-				frontID, sessionID);
+		String originalOrderID = originalOrderIDMap.get(rtOrderID);
+		
+		ctpGateway.emitOrder(originalOrderID, gatewayID, gatewayDisplayName, accountID,
+				rtAccountID, symbol, exchange, rtSymbol, orderID, rtOrderID,
+				direction, offset, price, totalVolume, tradedVolume, status,
+				tradingDay, orderDate, orderTime, cancelTime, activeTime,
+				updateTime, frontID, sessionID);
 
 	}
 
@@ -964,15 +1013,31 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String tradingDay = tradingDayStr;
 		String tradeDate = pTrade.getTradeDate();
 		String tradeTime = pTrade.getTradeTime();
+		// 除回测外很少用到，因此不统一解析
 		DateTime dateTime = null;
-
-		ctpGateway.emitTrade(gatewayID, symbol, exchange, rtSymbol, tradeID, rtTradeID, orderID, rtOrderID, direction,
-				offset, price, volume, tradingDay, tradeDate, tradeTime, dateTime);
+		
+		String originalOrderID = originalOrderIDMap.get(rtOrderID);
+		
+		// 预留
+		String accountID = "";
+		String rtAccountID = "";
+		
+		ctpGateway.emitTrade(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol,
+				exchange, rtSymbol, tradeID, rtTradeID, orderID, rtOrderID,
+				originalOrderID, direction, offset, price, volume, tradingDay,
+				tradeDate, tradeTime, dateTime);
 	}
 
 	// 发单错误回报（交易所）
 	public void OnErrRtnOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo) {
 
+		// 无法获取账户信息
+		//String accountID = pOrder.getAccountID();
+		String accountID = this.userID;
+		// 无法获取币种信息,留空
+		//String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		String rtAccountID = "";
+		
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());
 		String rtSymbol = symbol + "." + exchange;
@@ -991,9 +1056,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String activeTime = null;
 		String updateTime = null;
 
-		ctpGateway.emitOrder(gatewayID, symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price,
-				totalVolume, tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime,
-				frontID, sessionID);
+		String originalOrderID = originalOrderIDMap.get(rtOrderID);
+		
+		ctpGateway.emitOrder(originalOrderID, gatewayID, gatewayDisplayName, accountID,
+				rtAccountID, symbol, exchange, rtSymbol, orderID, rtOrderID,
+				direction, offset, price, totalVolume, tradedVolume, status,
+				tradingDay, orderDate, orderTime, cancelTime, activeTime,
+				updateTime, frontID, sessionID);
+		
 		log.error("{}交易接口发单错误回报（交易所）! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 				pRspInfo.getErrorMsg());
 

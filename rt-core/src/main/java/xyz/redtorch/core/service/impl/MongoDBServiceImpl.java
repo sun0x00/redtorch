@@ -21,12 +21,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBObject;
+
 /**
  * @author sun0x00@gmail.com
  */
 @Service
-@PropertySource(value = {"classpath:rt-core.properties"})
-public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
+@PropertySource(value = { "classpath:rt-core.properties" })
+public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 
 	private static Logger log = LoggerFactory.getLogger(MongoDBServiceImpl.class);
 
@@ -34,12 +35,9 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 	private String minute_db_name;
 	@Value("${mongodb.instance.md.dbname.tick}")
 	private String tick_db_name;
-//	public final static String DAILY_DB_NAME = BaseConfig.rtConfig.getString("mongodb.instance.md.dbname.daily");
-//	public final static String DEFAULT_DB_NAME = RtConstant.RED_TORCH_DB_NAME+"_"+BaseConfig.rtConfig.getString("rt.client.id");
-	
 
-	private MongoDBClient mdDBClient;//行情数据库客户端
-	
+	private MongoDBClient mdDBClient;// 行情数据库客户端
+
 	@Value("${mongodb.instance.md.host}")
 	private String mdMongoHost;
 	@Value("${mongodb.instance.md.port}")
@@ -50,9 +48,9 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 	private String mdMongoPassword;
 	@Value("${mongodb.instance.md.authdb}")
 	private String mdMongoAuthDB;
-	
-	private MongoDBClient defaultDBClient;//默认数据库客户端
-	
+
+	private MongoDBClient defaultDBClient;// 默认数据库客户端
+
 	@Value("${mongodb.instance.default.host}")
 	String defaultMongoHost;
 	@Value("${mongodb.instance.default.port}")
@@ -63,7 +61,7 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 	String defaultMongoPassword;
 	@Value("${mongodb.instance.default.authdb}")
 	String defaultMongoAuthDB;
-	
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		try {
@@ -72,7 +70,6 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 			mdDBClient = null;
 			throw new Exception("行情MongoDB数据库连接失败", e);
 		}
-		
 
 		try {
 			defaultDBClient = new MongoDBClient(defaultMongoHost, defaultMongoPort, defaultMongoUsername,
@@ -81,9 +78,8 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 			defaultDBClient = null;
 			throw new Exception("默认MongoDB数据库连接失败", e);
 		}
-		
-	}
 
+	}
 
 	@Override
 	public MongoDBClient getMdDBClient() {
@@ -118,8 +114,8 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 			}
 			barList.add(bar);
 		}
-		
-		log.info("加载Bar数据完成,合约{},共{}条,耗时{}ms", rtSymbol, barList.size(),System.currentTimeMillis() - startTime);
+
+		log.info("加载Bar数据完成,合约{},共{}条,耗时{}ms", rtSymbol, barList.size(), System.currentTimeMillis() - startTime);
 		return barList;
 	}
 
@@ -146,7 +142,7 @@ public class MongoDBServiceImpl implements MongoDBService,InitializingBean{
 			}
 			tickList.add(tick);
 		}
-		log.info("加载Tick数据完成,合约{},共{}条,耗时{}ms", rtSymbol, tickList.size(),System.currentTimeMillis() - startTime);
+		log.info("加载Tick数据完成,合约{},共{}条,耗时{}ms", rtSymbol, tickList.size(), System.currentTimeMillis() - startTime);
 		return tickList;
 	}
 }

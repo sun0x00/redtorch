@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ZeusEngineWebService {
-	void loadStrategy();
 
 	List<Map<String, Object>> getStrategyInfos();
 	
@@ -13,12 +12,15 @@ public interface ZeusEngineWebService {
 	void sartStrategy(String strategyID);
 	
 	void stopStrategy(String strategyID);
+
+	void reloadStrategy(String strategyID);
 	
 	void initAllStrategy();
 
 	void startAllStrategy();
 	
 	void stopAllStrategy();
+	
+	void reloadAllStrategy();
 
-	void reloadStrategy(String strategyID);
 }

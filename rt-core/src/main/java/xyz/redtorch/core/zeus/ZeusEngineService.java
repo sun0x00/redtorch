@@ -6,19 +6,15 @@ import org.joda.time.DateTime;
 
 import xyz.redtorch.core.entity.Bar;
 import xyz.redtorch.core.entity.Contract;
-import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Tick;
-import xyz.redtorch.core.entity.Trade;
-import xyz.redtorch.core.service.extend.event.FastEventDynamicHandler;
 import xyz.redtorch.core.zeus.entity.PositionDetail;
-import xyz.redtorch.core.zeus.strategy.Strategy;
 import xyz.redtorch.core.zeus.strategy.StrategySetting;
 
 /**
  * @author sun0x00@gmail.com
  */
-public interface ZeusEngineService extends FastEventDynamicHandler {
+public interface ZeusEngineService {
 
 	/**
 	 * 获取引擎类型,区分实盘模拟盘
@@ -32,7 +28,7 @@ public interface ZeusEngineService extends FastEventDynamicHandler {
 	 * @param orderReq
 	 * @return
 	 */
-	String sendOrder(OrderReq orderReq,Strategy strategy);
+	void sendOrder(OrderReq orderReq);
 
 	/**
 	 * 撤单
@@ -40,88 +36,6 @@ public interface ZeusEngineService extends FastEventDynamicHandler {
 	 * @param rtOrderID
 	 */
 	void cancelOrder(String rtOrderID);
-
-	/**
-	 * Tick推送
-	 * 
-	 * @param tick
-	 */
-	void onTick(Tick tick);
-
-	/**
-	 * 委托回报
-	 * 
-	 * @param order
-	 */
-	void onOrder(Order order);
-
-	/**
-	 * 成交回报
-	 * 
-	 * @param trade
-	 */
-	void onTrade(Trade trade);
-	
-	/**
-	 * 创建策略实例
-	 * @param strategyID
-	 */
-	void createStrategyClassInstance(StrategySetting strategySetting);
-
-	/**
-	 * 卸载策略
-	 * 
-	 * @param strategyID
-	 */
-	void unloadStrategy(String strategyID);
-
-	/**
-	 * 加载所有策略
-	 */
-	void loadStartegy();
-	
-
-	/**
-	 * 加载指定策略
-	 * @param strategyID
-	 */
-	void loadStartegy(String strategyID);
-
-	/**
-	 * 初始化策略
-	 * 
-	 * @param strategyID
-	 */
-	void initStrategy(String strategyID);
-
-	/**
-	 * 启动策略
-	 * 
-	 * @param strategyID
-	 */
-	void startStrategy(String strategyID);
-
-	/**
-	 * 停止策略
-	 * 
-	 * @param strategyID
-	 */
-	void stopStrategy(String strategyID);
-
-	/**
-	 * 初始化所有策略
-	 */
-	void initAllStrategy();
-
-	/**
-	 * 启动所有策略
-	 */
-	void startAllStrategy();
-
-	/**
-	 * 停止所有策略
-	 */
-	void stopAllStrategy();
 
 	/**
 	 * 加载Tick数据,根据交易日向前推移,不包含交易日当天
@@ -159,74 +73,42 @@ public interface ZeusEngineService extends FastEventDynamicHandler {
 
 	/**
 	 * 保存配置到数据库
+	 * 
 	 * @param strategySetting
 	 */
 	void asyncSaveStrategySetting(StrategySetting strategySetting);
-	
+
 	/**
 	 * 保存持仓到数据库
+	 * 
 	 * @param insertPositionDetailList
 	 */
 	void asyncSavePositionDetail(List<PositionDetail> positionDetailList);
 
 	/**
-	 * 获取策略列表
-	 * @return
-	 */
-	List<Strategy> getStragetyList();
-
-	/**
 	 * 获取合约最小变动价位
+	 * 
 	 * @param rtSymbol
 	 * @param gatewayID
 	 * @return
 	 */
 	double getPriceTick(String rtSymbol, String gatewayID);
-	
+
 	/**
 	 * 获取合约
-	 * @param rtSymbol
+	 * 
+	 * @param fuzzySymbol
 	 * @return
 	 */
-	Contract getContract(String rtSymbol);
-	
+	Contract getContractByFuzzySymbol(String fuzzySymbol);
+
 	/**
 	 * 获取合约
+	 * 
 	 * @param rtSymbol
 	 * @param gatewayID
 	 * @return
 	 */
 	Contract getContract(String rtSymbol, String gatewayID);
 
-	/**
-	 * 发出debug日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	void emitDebugLog(String logContent);
-	
-	/**
-	 * 发出error日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	void emitErrorLog(String logContent);
-	
-	/**
-	 * 发出warn日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	void emitWarnLog(String logContent);
-	
-	/**
-	 * 发出info日志事件
-	 * 
-	 * @param eventEngine
-	 * @param logContent
-	 */
-	void emitInfoLog(String logContent);
 }

@@ -23,6 +23,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
@@ -76,10 +77,10 @@ public class MongoDBClient {
 
 		MongoClientOptions myOptions = build.build();
 		try {
-			if(StringUtils.isBlank(username)||StringUtils.isBlank(password)||StringUtils.isBlank(authdb)) {
+			if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || StringUtils.isBlank(authdb)) {
 				log.info("使用无认证方式连接MongoDB");
 				mongoClient = new MongoClient(new ServerAddress(host, port), myOptions);
-			}else {
+			} else {
 				log.info("使用认证方式连接MongoDB");
 				MongoCredential mongoCredential = MongoCredential.createScramSha1Credential(username, authdb,
 						password.toCharArray());
@@ -129,34 +130,36 @@ public class MongoDBClient {
 		}
 		return false;
 	}
-	
+
 	/**
-	 *  更新或插入数据
+	 * 更新或插入数据
+	 * 
 	 * @param dbName
 	 * @param collectionName
 	 * @param document
 	 * @param filter
 	 * @return
 	 */
-	public boolean upsert(String dbName, String collectionName, Document document,Document filter) {
+	public boolean upsert(String dbName, String collectionName, Document document, Document filter) {
 		if (document != null) {
-			UpdateOptions updateOptions = new UpdateOptions();
-			updateOptions.upsert(true);
-			mongoClient.getDatabase(dbName).getCollection(collectionName).replaceOne(filter, document, updateOptions);
+			ReplaceOptions replaceOptions = new ReplaceOptions();
+			replaceOptions.upsert(true);
+			mongoClient.getDatabase(dbName).getCollection(collectionName).replaceOne(filter, document, replaceOptions);
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 *  更新或插入数据集合
+	 * 更新或插入数据集合
+	 * 
 	 * @param dbName
 	 * @param collectionName
 	 * @param document
 	 * @param filter
 	 * @return
 	 */
-	public boolean upsertMany(String dbName, String collectionName, Document document,Document filter) {
+	public boolean upsertMany(String dbName, String collectionName, Document document, Document filter) {
 		if (document != null) {
 			UpdateOptions updateOptions = new UpdateOptions();
 			updateOptions.upsert(true);
@@ -165,7 +168,7 @@ public class MongoDBClient {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 插入数据集合
 	 * 
@@ -422,7 +425,7 @@ public class MongoDBClient {
 	 * @return
 	 */
 	public long getCount(String dbName, String collectionName) {
-		return getDatabase(dbName).getCollection(collectionName).count();
+		return getDatabase(dbName).getCollection(collectionName).countDocuments();
 	}
 
 	/**

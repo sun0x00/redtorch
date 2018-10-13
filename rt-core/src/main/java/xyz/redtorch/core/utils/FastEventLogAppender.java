@@ -10,13 +10,13 @@ public class FastEventLogAppender extends AppenderBase<ILoggingEvent> {
 	@Override
 	protected void append(ILoggingEvent le) {
 
-		if(le == null || le.getMessage() == null) {
+		if (le == null || le.getMessage() == null) {
 			return;
 		}
-		
+
 		String rtLevel = RtConstant.LOG_DEBUG;
 		Level leLevel = le.getLevel();
-		
+
 		switch (leLevel.levelInt) {
 		case Level.TRACE_INT:
 			rtLevel = RtConstant.LOG_DEBUG;
@@ -38,15 +38,16 @@ public class FastEventLogAppender extends AppenderBase<ILoggingEvent> {
 		}
 
 		// 出于前端性能考虑，只转发错误级别日志（强烈建议不要修改或者可以关闭日志转发）
-		if(RtConstant.LOG_ERROR.contains(rtLevel)) {
+		if (RtConstant.LOG_ERROR.contains(rtLevel)) {
 			String event = EventConstant.EVENT_LOG;
 			StringBuffer sb = new StringBuffer();
 			String loggerName = le.getLoggerName();
-			sb.append(le.getThreadName()).append("\t").append(loggerName.split("\\.")[loggerName.split("\\.").length-1])
-				.append("\t").append(le.getFormattedMessage()); 
+			sb.append(le.getThreadName()).append("\t")
+					.append(loggerName.split("\\.")[loggerName.split("\\.").length - 1]).append("\t")
+					.append(le.getFormattedMessage());
 			CoreUtil.emitLogBase(le.getTimeStamp(), event, rtLevel, sb.toString());
 		}
-		
+
 	}
 
 }

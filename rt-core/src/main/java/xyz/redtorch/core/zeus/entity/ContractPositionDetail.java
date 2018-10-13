@@ -10,7 +10,7 @@ import xyz.redtorch.core.entity.Trade;
 /**
  * @author sun0x00@gmail.com
  */
-public class ContractPositionDetail implements Serializable{
+public class ContractPositionDetail implements Serializable {
 
 	private static final long serialVersionUID = 7704834003824888658L;
 	private String tradingDay;
@@ -52,20 +52,21 @@ public class ContractPositionDetail implements Serializable{
 	private double shortPnl; // 空头收益
 	private double shortOpenContractValue; // 空头合约价值
 
-	private HashMap<String, PositionDetail> positionDetailMap = new HashMap<>(); // 各接口持仓详细
+	private HashMap<String, PositionDetail> positionDetailMap = new HashMap<>(); // 各网关持仓详细
 
 	/**
 	 * 有参构造方法,需要传入必要信息
+	 * 
 	 * @param rtSymbol
-	 * @param gatewayID
+	 * @param rtAccountID
 	 * @param tradeDay
 	 * @param strategyName
 	 * @param strategyID
 	 * @param exchange
 	 * @param contractSize
 	 */
-	public ContractPositionDetail(String rtSymbol, String tradingDay, String strategyName,
-			String strategyID, String exchange, int contractSize) {
+	public ContractPositionDetail(String rtSymbol, String tradingDay, String strategyName, String strategyID,
+			String exchange, int contractSize) {
 		this.rtSymbol = rtSymbol;
 		this.tradingDay = tradingDay;
 		this.strategyName = strategyName;
@@ -73,7 +74,7 @@ public class ContractPositionDetail implements Serializable{
 		this.exchange = exchange;
 		this.contractSize = contractSize;
 	}
-	
+
 	/**
 	 * 无参构造方法
 	 */
@@ -430,7 +431,7 @@ public class ContractPositionDetail implements Serializable{
 		pos = longPos - shortPos;
 
 		if (pos == 0 && longPos != 0) {
-			isLocked = false;
+			isLocked = true;
 		} else {
 			isLocked = false;
 		}
@@ -453,24 +454,26 @@ public class ContractPositionDetail implements Serializable{
 			mixLocked = false;
 		}
 	}
-	
+
 	/**
 	 * 更新委托请求
+	 * 
 	 * @param orderReq
 	 * @param rtOrderID
 	 */
-	public void updateOrderReq(OrderReq orderReq, String rtOrderID) {
-		String gatewayID = orderReq.getGatewayID();
+	public void updateOrderReq(OrderReq orderReq) {
+		// , String rtOrderID
+		String rtAccountID = orderReq.getRtAccountID();
 		PositionDetail positionDetail;
-		if (positionDetailMap.containsKey(gatewayID)) {
-			positionDetail = positionDetailMap.get(gatewayID);
+		if (positionDetailMap.containsKey(rtAccountID)) {
+			positionDetail = positionDetailMap.get(rtAccountID);
 		} else {
-			positionDetail = new PositionDetail(rtSymbol, gatewayID, tradingDay, strategyName, strategyID, exchange,
+			positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
 					contractSize);
-			positionDetailMap.put(gatewayID, positionDetail);
+			positionDetailMap.put(rtAccountID, positionDetail);
 		}
 
-		positionDetail.updateOrderReq(orderReq, rtOrderID);
+		positionDetail.updateOrderReq(orderReq);
 
 		calculatePosition();
 
@@ -478,17 +481,18 @@ public class ContractPositionDetail implements Serializable{
 
 	/**
 	 * 更新委托
+	 * 
 	 * @param order
 	 */
 	public void updateOrder(Order order) {
-		String gatewayID = order.getGatewayID();
+		String rtAccountID = order.getRtAccountID();
 		PositionDetail positionDetail;
-		if (positionDetailMap.containsKey(gatewayID)) {
-			positionDetail = positionDetailMap.get(gatewayID);
+		if (positionDetailMap.containsKey(rtAccountID)) {
+			positionDetail = positionDetailMap.get(rtAccountID);
 		} else {
-			positionDetail = new PositionDetail(rtSymbol, gatewayID, tradingDay, strategyName, strategyID, exchange,
+			positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
 					contractSize);
-			positionDetailMap.put(gatewayID, positionDetail);
+			positionDetailMap.put(rtAccountID, positionDetail);
 		}
 
 		positionDetail.updateOrder(order);
@@ -496,20 +500,21 @@ public class ContractPositionDetail implements Serializable{
 		calculatePosition();
 
 	}
-	
+
 	/**
 	 * 更新成交
+	 * 
 	 * @param trade
 	 */
 	public void updateTrade(Trade trade) {
-		String gatewayID = trade.getGatewayID();
+		String rtAccountID = trade.getRtAccountID();
 		PositionDetail positionDetail;
-		if (positionDetailMap.containsKey(gatewayID)) {
-			positionDetail = positionDetailMap.get(gatewayID);
+		if (positionDetailMap.containsKey(rtAccountID)) {
+			positionDetail = positionDetailMap.get(rtAccountID);
 		} else {
-			positionDetail = new PositionDetail(rtSymbol, gatewayID, tradingDay, strategyName, strategyID, exchange,
+			positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
 					contractSize);
-			positionDetailMap.put(gatewayID, positionDetail);
+			positionDetailMap.put(rtAccountID, positionDetail);
 		}
 
 		positionDetail.updateTrade(trade);
@@ -517,16 +522,17 @@ public class ContractPositionDetail implements Serializable{
 		calculatePosition();
 
 	}
-	
+
 	/**
 	 * 更新合约最后价格
+	 * 
 	 * @param lastPrice
 	 */
 	public void updateLastPrice(double lastPrice) {
-		for(PositionDetail positionDetail:positionDetailMap.values()) {
+		for (PositionDetail positionDetail : positionDetailMap.values()) {
 			positionDetail.updateLastPrice(lastPrice);
 		}
-		
+
 		calculatePosition();
 	}
 

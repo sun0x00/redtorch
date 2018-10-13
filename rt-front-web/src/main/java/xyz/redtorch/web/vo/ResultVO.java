@@ -7,15 +7,14 @@ public class ResultVO {
 	public static final String SUCCESS = "success";
 	public static final String ERROR = "error";
 	
-	private String resultCode = SUCCESS;
+	private String status = SUCCESS;
 	private Object data;
 	private String message;
-	
-	public String getResultCode() {
-		return resultCode;
+	public String getStatus() {
+		return status;
 	}
-	public void setResultCode(String resultCode) {
-		this.resultCode = resultCode;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public Object getData() {
 		return data;
@@ -28,8 +27,6 @@ public class ResultVO {
 	}
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	
-	
+	}	
 	
 }

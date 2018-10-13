@@ -18,24 +18,22 @@ import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.utils.CommonUtil;
 
-
 /**
  * @author sun0x00@gmail.com
  */
-public interface BacktestingEngine extends ZeusEngineService{
-	
-	final int DATA_MODE_TICK  = 0;
+public interface BacktestingEngine extends ZeusEngineService {
+
+	final int DATA_MODE_TICK = 0;
 	final int DATA_MODE_BAR = 1;
-	
 
 	/**
 	 * 运行回测
 	 */
 	void runBacktesting();
-	
 
 	/**
 	 * 加载回测Bar数据
+	 * 
 	 * @param startDate
 	 * @param endDate
 	 * @param subscribeRtSymbolList
@@ -45,6 +43,7 @@ public interface BacktestingEngine extends ZeusEngineService{
 
 	/**
 	 * 加载回测Tick数据
+	 * 
 	 * @param startDate
 	 * @param endDate
 	 * @param subscribeRtSymbolList
@@ -54,117 +53,125 @@ public interface BacktestingEngine extends ZeusEngineService{
 
 	/**
 	 * 优化设置
+	 * 
 	 * @author sun0x00@gmail.com
 	 *
 	 */
-	static class OptimizationSetting{
+	static class OptimizationSetting {
 		static Logger log = LoggerFactory.getLogger(BacktestingEngine.class);
-		private Map<String,List<String>> paramMap;
+		private Map<String, List<String>> paramMap;
+
 		public void addStrParameter(String parameterName, Set<String> parameterSet) {
-	        paramMap.put(parameterName, new ArrayList<String>(parameterSet));
+			paramMap.put(parameterName, new ArrayList<String>(parameterSet));
 		}
-	    public void addParameter(String parameterName, double start, double end, double step) {
 
-	        if(end < start) {
-	            log.error("参数起始点必须不大于终止点");
-	            return;
-	        }
-	        if(step <= 0) {
-	            log.error("参数步进必须大于0");
-	            return;
-	        }
+		public void addParameter(String parameterName, double start, double end, double step) {
 
-	        Set<String> parameterSet = new HashSet<>();
-	        Double param = start;
+			if (end < start) {
+				log.error("参数起始点必须不大于终止点");
+				return;
+			}
+			if (step <= 0) {
+				log.error("参数步进必须大于0");
+				return;
+			}
 
-	        while(param <= end) {
-	        	parameterSet.add(String.valueOf(param));
-	            param += step;
-	        }
-	        
-	        paramMap.put(parameterName, new ArrayList<String>(parameterSet));
-	    }
-	       
+			Set<String> parameterSet = new HashSet<>();
+			Double param = start;
 
-	    public List<Map<String,String>> generateSetting(){
-	
-	        List<String> paramNameList = new ArrayList<>(paramMap.keySet());
-	        List<List<String>> valuesList = new ArrayList<>(paramMap.values());
+			while (param <= end) {
+				parameterSet.add(String.valueOf(param));
+				param += step;
+			}
 
-	        // 使用迭代工具生产参数对组合
-	        List<List<String>> productList = CommonUtil.cartesianProduct(valuesList);
+			paramMap.put(parameterName, new ArrayList<String>(parameterSet));
+		}
 
-	        //把参数对组合打包到一个个字典组成的列表中
-	    	List<Map<String,String>> settingList = new ArrayList<>();
-	        for(List<String> paramValueList: productList) {
-	        	Map<String, String> paramterMap = IntStream.range(0, paramNameList.size())
-                        .collect(
-                             HashMap::new, 
-                             (m, i) -> m.put(paramNameList.get(i), paramValueList.get(i)), 
-                             Map::putAll
-                        );
-	        	
-	        	settingList.add(paramterMap);
-	        }
-	            
+		public List<Map<String, String>> generateSetting() {
 
-	        return settingList;
-	    }
-	    
+			List<String> paramNameList = new ArrayList<>(paramMap.keySet());
+			List<List<String>> valuesList = new ArrayList<>(paramMap.values());
+
+			// 使用迭代工具生产参数对组合
+			List<List<String>> productList = CommonUtil.cartesianProduct(valuesList);
+
+			// 把参数对组合打包到一个个字典组成的列表中
+			List<Map<String, String>> settingList = new ArrayList<>();
+			for (List<String> paramValueList : productList) {
+				Map<String, String> paramterMap = IntStream.range(0, paramNameList.size()).collect(HashMap::new,
+						(m, i) -> m.put(paramNameList.get(i), paramValueList.get(i)), Map::putAll);
+
+				settingList.add(paramterMap);
+			}
+
+			return settingList;
+		}
 
 	}
-	
+
 	/**
 	 * 回测片段
+	 * 
 	 * @author sun0x00@gmail.com
 	 *
 	 */
-	static class BacktestingSection{
+	static class BacktestingSection {
 		private String startDate;
 		private String endDate;
-		private Map<String,String> aliasMap = new HashMap<>();
-		private Map<String,List<String>> gatewaySubscribeRtSymbolsMap = new HashMap<>();
-		public void addAliasRtSymbol(String alias,String rtSymbol) {
+		private Map<String, String> aliasMap = new HashMap<>();
+		private Map<String, List<String>> gatewaySubscribeRtSymbolsMap = new HashMap<>();
+
+		public void addAliasRtSymbol(String alias, String rtSymbol) {
 			aliasMap.put(alias, rtSymbol);
 		}
-		public void addSubscribeRtSymbol(String gatewayID,String rtSymbol) {
+
+		public void addSubscribeRtSymbol(String gatewayID, String rtSymbol) {
 			List<String> subscribeRtSymbols;
-			if(gatewaySubscribeRtSymbolsMap.containsKey(gatewayID)) {
+			if (gatewaySubscribeRtSymbolsMap.containsKey(gatewayID)) {
 				subscribeRtSymbols = gatewaySubscribeRtSymbolsMap.get(gatewayID);
-			}else {
+			} else {
 				subscribeRtSymbols = new ArrayList<>();
-				gatewaySubscribeRtSymbolsMap.put(gatewayID,subscribeRtSymbols);
+				gatewaySubscribeRtSymbolsMap.put(gatewayID, subscribeRtSymbols);
 			}
 			subscribeRtSymbols.add(rtSymbol);
 		}
+
 		public String getStartDate() {
 			return startDate;
 		}
+
 		public void setStartDate(String startDate) {
 			this.startDate = startDate;
 		}
+
 		public String getEndDate() {
 			return endDate;
 		}
+
 		public void setEndDate(String endDate) {
 			this.endDate = endDate;
 		}
+
 		public Map<String, String> getAliasMap() {
 			return aliasMap;
 		}
+
 		public void setAliasMap(Map<String, String> aliasMap) {
 			this.aliasMap = aliasMap;
 		}
+
 		public Map<String, List<String>> getGatewaySubscribeRtSymbolsMap() {
 			return gatewaySubscribeRtSymbolsMap;
 		}
+
 		public void setGatewaySubscribeRtSymbolsMap(Map<String, List<String>> gatewaySubscribeRtSymbolsMap) {
 			this.gatewaySubscribeRtSymbolsMap = gatewaySubscribeRtSymbolsMap;
 		}
 	}
-	
+
 	/**
 	 * 回测交易清算结果
+	 * 
 	 * @author sun0x00@gmail.com
 	 *
 	 */
@@ -175,21 +182,21 @@ public interface BacktestingEngine extends ZeusEngineService{
 		private DateTime exitDateTime; // 平仓时间
 		private int volume; // 交易数量 +/- 代表方向
 		private String rtSymbol;
-		private String gatewayID;
+		private String rtAccountID;
 		private double turnover; // 成交金额
 		private double commission; // 手续费
 		private double slippge; // 滑点
 		private double pnl; // 净盈亏
 
 		public TradingResult(double entryPrice, DateTime entryDateTime, double exitPrice, DateTime exitDateTime,
-				int volume, double rate, double slippage, int contractSize, String rtSymbol, String gatewayID) {
+				int volume, double rate, double slippage, int contractSize, String rtSymbol, String rtAccountID) {
 			this.entryPrice = entryPrice;
 			this.exitPrice = exitPrice;
 			this.entryDateTime = entryDateTime;
 			this.exitDateTime = exitDateTime;
 			this.volume = volume;
 			this.rtSymbol = rtSymbol;
-			this.gatewayID = gatewayID;
+			this.rtAccountID = rtAccountID;
 
 			this.turnover = (entryPrice + exitPrice) * contractSize * Math.abs(volume);
 			this.commission = turnover * rate;
@@ -221,8 +228,8 @@ public interface BacktestingEngine extends ZeusEngineService{
 			return rtSymbol;
 		}
 
-		public String getGatewayID() {
-			return gatewayID;
+		public String getRtAccountID() {
+			return rtAccountID;
 		}
 
 		public double getTurnover() {
@@ -245,12 +252,13 @@ public interface BacktestingEngine extends ZeusEngineService{
 
 	/**
 	 * 回测结果
+	 * 
 	 * @author sun0x00@gmail.com
 	 *
 	 */
-	static class BacktestingResult{
+	static class BacktestingResult {
 		private String rtSymbol;
-		private String gatewayID;
+		private String rtAccountID;
 		private double capital;
 		private double maxCapital;
 		private double drawdown;
@@ -269,130 +277,171 @@ public interface BacktestingEngine extends ZeusEngineService{
 		private List<Integer> posList;
 		private List<DateTime> tradeTimeList;
 		private List<TradingResult> resultList;
+
 		public String getRtSymbol() {
 			return rtSymbol;
 		}
+
 		public void setRtSymbol(String rtSymbol) {
 			this.rtSymbol = rtSymbol;
 		}
-		public String getGatewayID() {
-			return gatewayID;
+
+		public String getRtAccountID() {
+			return rtAccountID;
 		}
-		public void setGatewayID(String gatewayID) {
-			this.gatewayID = gatewayID;
+
+		public void setRtAccountID(String rtAccountID) {
+			this.rtAccountID = rtAccountID;
 		}
+
 		public double getCapital() {
 			return capital;
 		}
+
 		public void setCapital(double capital) {
 			this.capital = capital;
 		}
+
 		public double getMaxCapital() {
 			return maxCapital;
 		}
+
 		public void setMaxCapital(double maxCapital) {
 			this.maxCapital = maxCapital;
 		}
+
 		public double getDrawdown() {
 			return drawdown;
 		}
+
 		public void setDrawdown(double drawdown) {
 			this.drawdown = drawdown;
 		}
+
 		public double getTotalResult() {
 			return totalResult;
 		}
+
 		public void setTotalResult(double totalResult) {
 			this.totalResult = totalResult;
 		}
+
 		public double getTotalTurnover() {
 			return totalTurnover;
 		}
+
 		public void setTotalTurnover(double totalTurnover) {
 			this.totalTurnover = totalTurnover;
 		}
+
 		public double getTotalCommission() {
 			return totalCommission;
 		}
+
 		public void setTotalCommission(double totalCommission) {
 			this.totalCommission = totalCommission;
 		}
+
 		public double getTotalSlippage() {
 			return totalSlippage;
 		}
+
 		public void setTotalSlippage(double totalSlippage) {
 			this.totalSlippage = totalSlippage;
 		}
+
 		public List<DateTime> getTimeList() {
 			return timeList;
 		}
+
 		public void setTimeList(List<DateTime> timeList) {
 			this.timeList = timeList;
 		}
+
 		public List<Double> getPnlList() {
 			return pnlList;
 		}
+
 		public void setPnlList(List<Double> pnlList) {
 			this.pnlList = pnlList;
 		}
+
 		public List<Double> getCapitalList() {
 			return capitalList;
 		}
+
 		public void setCapitalList(List<Double> capitalList) {
 			this.capitalList = capitalList;
 		}
+
 		public List<Double> getDrawdownList() {
 			return drawdownList;
 		}
+
 		public void setDrawdownList(List<Double> drawdownList) {
 			this.drawdownList = drawdownList;
 		}
+
 		public double getWinningRate() {
 			return winningRate;
 		}
+
 		public void setWinningRate(double winningRate) {
 			this.winningRate = winningRate;
 		}
+
 		public double getAverageWinning() {
 			return averageWinning;
 		}
+
 		public void setAverageWinning(double averageWinning) {
 			this.averageWinning = averageWinning;
 		}
+
 		public double getAverageLosing() {
 			return averageLosing;
 		}
+
 		public void setAverageLosing(double averageLosing) {
 			this.averageLosing = averageLosing;
 		}
+
 		public double getProfitLossRatio() {
 			return profitLossRatio;
 		}
+
 		public void setProfitLossRatio(double profitLossRatio) {
 			this.profitLossRatio = profitLossRatio;
 		}
+
 		public List<Integer> getPosList() {
 			return posList;
 		}
+
 		public void setPosList(List<Integer> posList) {
 			this.posList = posList;
 		}
+
 		public List<DateTime> getTradeTimeList() {
 			return tradeTimeList;
 		}
+
 		public void setTradeTimeList(List<DateTime> tradeTimeList) {
 			this.tradeTimeList = tradeTimeList;
 		}
+
 		public List<TradingResult> getResultList() {
 			return resultList;
 		}
+
 		public void setResultList(List<TradingResult> resultList) {
 			this.resultList = resultList;
 		}
 	}
-	
+
 	/**
 	 * 回测按日计算结果
+	 * 
 	 * @author sun0x00@gmail.com
 	 *
 	 */
@@ -418,13 +467,13 @@ public interface BacktestingEngine extends ZeusEngineService{
 		private double netPnl = 0; // 净盈亏
 
 		private String rtSymbol;
-		private String gatewayID;
+		private String rtAccountID;
 
-		public DailyResult(String date, double closePrice, String rtSymbol, String gatewayID) {
+		public DailyResult(String date, double closePrice, String rtSymbol, String rtAccountID) {
 			this.date = date;
 			this.closePrice = closePrice;
 			this.rtSymbol = rtSymbol;
-			this.gatewayID = gatewayID;
+			this.rtAccountID = rtAccountID;
 		}
 
 		public void addTrade(Trade trade) {
@@ -455,7 +504,7 @@ public interface BacktestingEngine extends ZeusEngineService{
 				commission += trade.getPrice() * trade.getVolume() * contractSize * rate;
 				totalSlippage += trade.getVolume() * contractSize * slippage;
 			}
-			
+
 			totalPnl = tradingPnl + positionPnl;
 			netPnl = totalPnl - commission - totalSlippage;
 		}
@@ -580,17 +629,14 @@ public interface BacktestingEngine extends ZeusEngineService{
 			this.rtSymbol = rtSymbol;
 		}
 
-		public String getGatewayID() {
-			return gatewayID;
+		public String getRtAccountID() {
+			return rtAccountID;
 		}
 
-		public void setGatewayID(String gatewayID) {
-			this.gatewayID = gatewayID;
+		public void setRtAccountID(String rtAccountID) {
+			this.rtAccountID = rtAccountID;
 		}
 
 	}
 
-	
 }
-
-

@@ -38,7 +38,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	// private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
-	// private String gatewayDisplayName;
+	 private String gatewayDisplayName;
 
 	private String tradingDayStr;
 
@@ -49,15 +49,15 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 		this.ctpGateway = ctpGateway;
 		this.ctpGateway = ctpGateway;
-		this.mdAddress = ctpGateway.getGatewaySetting().getMdAddress();
-		// this.tdAddress = ctpGateway.getGatewaySetting().getTdAddress();
-		this.brokerID = ctpGateway.getGatewaySetting().getBrokerID();
-		this.userID = ctpGateway.getGatewaySetting().getUserID();
-		this.password = ctpGateway.getGatewaySetting().getPassword();
-		// this.authCode = ctpGateway.getGatewaySetting().getAuthCode();
+		this.mdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getMdAddress();
+		// this.tdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getTdAddress();
+		this.brokerID = ctpGateway.getGatewaySetting().getCtpSetting().getBrokerID();
+		this.userID = ctpGateway.getGatewaySetting().getCtpSetting().getUserID();
+		this.password = ctpGateway.getGatewaySetting().getCtpSetting().getPassword();
+		// this.authCode = ctpGateway.getGatewaySetting().getCtpSetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
-		// this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
+		 this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
 
 		this.contractExchangeMap = ctpGateway.getContractExchangeMap();
 		// this.contractSizeMap = ctpGateway.getContractSizeMap();
@@ -166,11 +166,11 @@ public class MdSpi extends CThostFtdcMdSpi {
 	/**
 	 * 退订行情
 	 */
-	public void unSubscribe(String rtSymbol) {
+	public void unSubscribe(String symbol) {
 		if (isConnected()) {
-			String[] rtSymbolArray = new String[1];
-			rtSymbolArray[0] = rtSymbol;
-			cThostFtdcMdApi.UnSubscribeMarketData(rtSymbolArray, 1);
+			String[] symbolArray = new String[1];
+			symbolArray[0] = symbol;
+			cThostFtdcMdApi.UnSubscribeMarketData(symbolArray, 1);
 		} else {
 			log.warn(gatewayLogInfo + "退订无效,行情服务器尚未连接成功");
 		}
@@ -287,6 +287,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 			if (!contractExchangeMap.containsKey(symbol)) {
 				log.info(gatewayLogInfo + "收到合约" + symbol + "行情,但尚未获取到交易所信息,丢弃");
+				return;
 			}
 
 			// 上期所 郑商所正常,大商所错误
@@ -308,6 +309,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 			String exchange = contractExchangeMap.get(symbol);
 			String rtSymbol = symbol + "." + exchange;
+			String tickID = rtSymbol+"."+gatewayID;
 			String tradingDay = tradingDayStr;
 			String actionDayStr = pDepthMarketData.getActionDay();
 			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
@@ -365,7 +367,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 			Integer askVolume9 = 0;
 			Integer askVolume10 = 0;
 
-			ctpGateway.emitTick(gatewayID, symbol, exchange, rtSymbol, tradingDay, actionDayStr, actionTime, dateTime,
+			ctpGateway.emitTick(gatewayID,gatewayDisplayName, symbol, exchange, rtSymbol, tickID, tradingDay, actionDayStr, actionTime, dateTime,
 					status, lastPrice, lastVolume, volume, openInterest, preOpenInterest, preClosePrice, preSettlePrice,
 					openPrice, highPrice, lowPrice, upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4,
 					bidPrice5, bidPrice6, bidPrice7, bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3,

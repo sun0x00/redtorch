@@ -1,6 +1,13 @@
 RedTorch
 ^^^^^^^^
 
+
+！！！请注意，当前为DEV分支，可能无法正常运行！！！
+----------------------------------------------------
+
+！！！请注意，当前为DEV分支，此README文件与实际代码有偏差！！！
+----------------------------------------------------
+
 .. image:: https://github.com/sun0x00/RedTorch-Pages/raw/master/docs/images/RtSnapshort0x00.png
    :height: 992px
    :width: 1929px

@@ -76,8 +76,7 @@ public class MongoDBClientSingleton extends MongoDBClient {
 					MongoCredential mongoCredential = MongoCredential.createScramSha1Credential(username, authdb,
 							password.toCharArray());
 					// 数据库连接实例
-					mongoClient = new MongoClient(new ServerAddress(ip, port), mongoCredential,
-							myOptions);
+					mongoClient = new MongoClient(new ServerAddress(ip, port), mongoCredential, myOptions);
 				} catch (MongoException e) {
 					log.error("MongoDB连接失败", e);
 				}

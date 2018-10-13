@@ -30,8 +30,8 @@ import xyz.redtorch.utils.MongoDBUtil;
  * @author sun0x00@gmail.com
  */
 @Service
-@PropertySource(value = {"classpath:rt-core.properties"})
-public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
+@PropertySource(value = { "classpath:rt-core.properties" })
+public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 
 	private Logger log = LoggerFactory.getLogger(ZeusDataServiceImpl.class);
 
@@ -41,11 +41,9 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 	@Autowired
 	private MongoDBService mongoDBService;
 	private MongoDBClient defaultDBClient;
-	
+
 	@Value("${rt.client.dbname}")
 	private String clientDBName;
-
-	private String logStr = "ZEUS DataUtil:";
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -60,7 +58,7 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 			for (Document document : documentList) {
 				String strategyID = document.getString("strategyID");
 				if (StringUtils.isEmpty(strategyID)) {
-					log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到策略ID!");
+					log.error("查出的记录解析出错,未找到策略ID,跳过!");
 					continue;
 				}
 				StrategySetting strategySetting = coverDocumentToStrategySetting(strategyID, document);
@@ -69,7 +67,7 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 				}
 			}
 		} else {
-			log.warn(logStr + "未能查出任何策略配置记录!");
+			log.warn("未能查出任何策略配置记录!");
 		}
 		return strategySettingList;
 	}
@@ -81,8 +79,8 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 		List<Document> documentList = defaultDBClient.find(clientDBName, strategySettingCollection, filter);
 		if (!(documentList == null) && !documentList.isEmpty()) {
 
-			if (documentList.size() > 2) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出" + documentList.size() + "个配置记录,仅选取第一个");
+			if (documentList.size() > 1) {
+				log.error("根据策略ID[" + strategyID + "]查出" + documentList.size() + "个配置记录,仅选取第一个");
 			}
 			Document document = documentList.get(0);
 
@@ -91,7 +89,7 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 			return strategySetting;
 
 		} else {
-			log.warn(logStr + "根据策略ID[" + strategyID + "]未能查出配置记录!");
+			log.warn("根据策略ID[" + strategyID + "]未能查出配置记录!");
 			return null;
 		}
 	}
@@ -100,7 +98,7 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 		try {
 			StrategySetting strategySetting = JSON.parseObject(document.toJson(), StrategySetting.class);
 			if (strategySetting == null) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,JSON工具解析返回null!");
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,JSON工具解析返回null!");
 				return null;
 			}
 
@@ -111,48 +109,30 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 			// 对配置文件进行基本检查
 			////////////////////////////
 			if (StringUtils.isEmpty(strategySetting.getStrategyID())) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到策略ID!");
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到策略ID!");
 				return null;
 			}
 			if (StringUtils.isEmpty(strategySetting.getStrategyName())) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到策略名称!");
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到策略名称!");
 				return null;
 			}
 			if (StringUtils.isEmpty(strategySetting.getTradingDay())) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到tradingDay!");
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到tradingDay!");
 				return null;
 			}
 			if (strategySetting.getGateways() == null || strategySetting.getGateways().isEmpty()) {
-				log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到gateways!");
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到gateways!");
 				return null;
 			}
-			
-			// 允许不配置合约
+
 			if (strategySetting.getContracts() == null || strategySetting.getContracts().isEmpty()) {
-				log.warn(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到contracts!");
-			}
-
-			boolean error = false;
-			// 如果配置了合约，则不允许不配置交易接口
-			if(strategySetting.getContracts() != null) {
-				for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
-					if (contractSetting.getTradeGateways() == null || contractSetting.getTradeGateways().isEmpty()) {
-
-						log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错,未找到合约" + contractSetting.getRtSymbol()
-								+ "的tradeGateways配置");
-						error = true;
-						break;
-					}
-				}
-			}
-
-			if (error) {
+				log.warn("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到contracts!");
 				return null;
 			}
 
 			return strategySetting;
 		} catch (Exception e) {
-			log.error(logStr + "根据策略ID[" + strategyID + "]查出的记录解析出错!", e);
+			log.error("根据策略ID[" + strategyID + "]查出的记录解析出错!", e);
 			return null;
 		}
 
@@ -198,7 +178,7 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 		Document filter = new Document();
 		filter.put("strategyID", positionDetail.getStrategyID());
 		filter.put("rtSymbol", positionDetail.getRtSymbol());
-		filter.put("gatewayID", positionDetail.getGatewayID());
+		filter.put("rtAccountID", positionDetail.getRtAccountID());
 		filter.put("tradingDay", positionDetail.getTradingDay());
 
 		try {
@@ -206,7 +186,6 @@ public class ZeusDataServiceImpl implements ZeusDataService,InitializingBean {
 
 			document = MongoDBUtil.beanToDocument(positionDetail);
 			String strategyName = positionDetail.getStrategyName();
-			System.out.println(document.toJson());
 			defaultDBClient.upsert(clientDBName, positionCollection + strategyName, document, filter);
 		} catch (Exception e) {
 			log.error("保存持仓数据转换发生错误", e);

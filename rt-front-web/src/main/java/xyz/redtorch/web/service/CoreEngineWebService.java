@@ -7,7 +7,10 @@ import xyz.redtorch.core.entity.Contract;
 import xyz.redtorch.core.entity.LocalPositionDetail;
 import xyz.redtorch.core.entity.LogData;
 import xyz.redtorch.core.entity.Order;
+import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Position;
+import xyz.redtorch.core.entity.SubscribeReq;
+import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.core.gateway.GatewaySetting;
 
@@ -15,23 +18,16 @@ import xyz.redtorch.core.gateway.GatewaySetting;
  * @author sun0x00@gmail.com
  */
 public interface CoreEngineWebService {
-	boolean subscribe(String rtSymbol, String gatewayID);
-	
+
+	String sendOrder(OrderReq orderReq);
+
+	boolean subscribe(SubscribeReq subscribeReq);
+
 	boolean unsubscribe(String rtSymbol, String gatewayID);
 
-	List<Trade> getTrades();
+	void cancelOrder(String rtOrderID);
 
-	List<Order> getOrders();
-
-	List<LocalPositionDetail> getLocalPositionDetails();
-	
-	List<Position> getPositions();
-
-	List<Account> getAccounts();
-
-	List<Contract> getContracts();
-	
-	List<GatewaySetting> getGatewaySettings();
+	void cancelAllOrders();
 
 	void deleteGateway(String gatewayID);
 
@@ -39,14 +35,22 @@ public interface CoreEngineWebService {
 
 	void saveOrUpdateGatewaySetting(GatewaySetting gatewaySetting);
 
+	List<Trade> getTrades();
+
+	List<Order> getOrders();
+
+	List<LocalPositionDetail> getLocalPositionDetails();
+
+	List<Position> getPositions();
+
+	List<Account> getAccounts();
+
+	List<Contract> getContracts();
+
+	List<Tick> getTicks();
+
+	List<GatewaySetting> getGatewaySettings();
+
 	List<LogData> getLogDatas();
-
-	String sendOrder(String gatewayID, String rtSymbol, double price, int volume, String priceType, String direction,
-			String offset);
-
-	void cancelOrder(String rtOrderID);
-
-	void cancelAllOrders();
-
 
 }
