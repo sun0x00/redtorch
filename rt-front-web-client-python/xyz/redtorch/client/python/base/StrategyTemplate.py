@@ -231,6 +231,10 @@ class StrategyTemplate:
         if debug:
             log.info(trade)
 
+    def onEventTrades(self, trades):
+        if debug:
+            log.info(trades)
+
     def onEventOrder(self, order):
         if debug:
             log.info(order)
@@ -297,7 +301,7 @@ class StrategyTemplate:
         io.on(EVENT_TICKS_CHANGED, self.onEventTicksChanged)
         io.on(EVENT_TICKS, self.onEventTicks)
         io.on(EVENT_TRADE, self.onEventTrade)
-        io.on(EVENT_TRADES, self.onEventTrade)
+        io.on(EVENT_TRADES, self.onEventTrades)
         io.on(EVENT_ORDER, self.onEventOrder)
         io.on(EVENT_ORDERS, self.onEventOrders)
         io.on(EVENT_POSITION, self.onEventPosition)
