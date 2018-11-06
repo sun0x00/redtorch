@@ -3,7 +3,7 @@ version = "0.1"
 description = """Java开源量化交易开发框架 http://redtorch.io/"""
 
 ext {
-        springBootVersion = '2.1.0.RELEASE'
+        springBootVersion = '2.0.5.RELEASE'
         springTestVersion = '5.0.8.RELEASE'
         disruptorVersion = '3.4.2'
         mongoDriverVersion = '3.8.2'
@@ -16,6 +16,7 @@ subprojects {
 	apply plugin: 'eclipse'
 	//apply plugin: 'org.springframework.boot'
 	//apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'idea'
 	apply plugin: 'war'
 
 	sourceCompatibility = 1.8
