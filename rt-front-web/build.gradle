@@ -3,11 +3,24 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'idea'
+	id 'org.springframework.boot' version '2.1.0.RELEASE'
 }
 
 group = "${rootProject.group}"
 version = "${rootProject.version}"
 description = """SpringBoot承载的前端Web模块"""
+
+war{ 
+    rootSpec.exclude("**/static/ReactSPA/node_modules/") 
+}
+
+bootWar {
+    exclude("**/static/ReactSPA/node_modules/")
+}
+
+springBoot {
+	mainClassName = 'xyz.redtorch.RtApplication'
+}
 
 dependencies {
 	compile project(':rt-common')
