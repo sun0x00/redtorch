@@ -35,7 +35,7 @@ public interface RtConstant {
 	static final String STATUS_REJECTED = "REJECTED"; // 拒单
 	static final String STATUS_UNKNOWN = "UNKNOWN"; // 未知
 
-	static HashSet<String> STATUS_FINISHED = new HashSet<String>() {
+	static final HashSet<String> STATUS_FINISHED = new HashSet<String>() {
 		private static final long serialVersionUID = 8777691797309945190L;
 		{
 			add(RtConstant.STATUS_REJECTED);
@@ -44,7 +44,7 @@ public interface RtConstant {
 		}
 	};
 
-	static HashSet<String> STATUS_WORKING = new HashSet<String>() {
+	static final HashSet<String> STATUS_WORKING = new HashSet<String>() {
 		private static final long serialVersionUID = 909683985291870766L;
 		{
 			add(RtConstant.STATUS_UNKNOWN);
