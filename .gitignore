@@ -48,6 +48,7 @@
 
 # Python #
 *.pyc
+.pyc
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
@@ -68,8 +69,8 @@ pvt/
 hft/
 
 rt-api-pctp/
+rt-tools/
 rt-gateway-pctp/
-
 rt-strategy-prd/
 
 node_modules/
