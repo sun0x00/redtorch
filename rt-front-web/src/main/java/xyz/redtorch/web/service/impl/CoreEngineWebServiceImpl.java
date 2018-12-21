@@ -192,9 +192,6 @@ public class CoreEngineWebServiceImpl implements CoreEngineWebService {
 	@Override
 	public boolean unsubscribe(String rtSymbol, String gatewayID) {
 		log.info("取消订阅行情,合约代码-[{}],网关ID-[{}]", rtSymbol, gatewayID);
-		SubscribeReq subscribeReq = new SubscribeReq();
-		subscribeReq.setGatewayID(gatewayID);
-		subscribeReq.setRtSymbol(rtSymbol);
 		return coreEngineService.unsubscribe(rtSymbol, gatewayID, "WEB_API");
 	}
 

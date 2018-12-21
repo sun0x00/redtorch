@@ -367,9 +367,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 		Gateway gateway = getGateway(orderReq.getGatewayID());
 		if (gateway != null) {
 			String rtOrderID = gateway.sendOrder(orderReq);
-			if(StringUtils.isNotBlank(rtOrderID)&&StringUtils.isNotBlank(orderReq.getOriginalOrderID())){
-				originalOrderIDMap.put(rtOrderID, orderReq.getOriginalOrderID());
-			}
+			originalOrderIDMap.put(rtOrderID, orderReq.getOriginalOrderID());
 			Account account = getAccount(orderReq.getRtAccountID());
 			if (account == null) {
 				log.error("发单失败,未能查询到账户,账户ID-[{}]", orderReq.getRtAccountID());
@@ -380,9 +378,6 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 			}
 			
 			orderReq.setGatewayDisplayName(gateway.getGatewayDisplayName());
-			if (StringUtils.isNotBlank(rtOrderID) && StringUtils.isNotBlank(orderReq.getOriginalOrderID())) {
-				originalOrderIDMap.put(rtOrderID, orderReq.getOriginalOrderID());
-			}
 			if (StringUtils.isNotBlank(rtOrderID)) {
 				// 更新到本地持仓
 				updateOrderReq(orderReq, rtOrderID);

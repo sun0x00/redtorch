@@ -1,6 +1,7 @@
 package xyz.redtorch.core.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @author sun0x00@gmail.com
@@ -37,6 +38,10 @@ public class OrderReq implements Serializable {
 	private String optionType; // 期权类型
 	private String lastTradeDateOrContractMonth; // 合约月,IB专用
 	private String multiplier; // 乘数,IB专用
+	
+	public OrderReq() {
+		this.originalOrderID = UUID.randomUUID().toString();
+	}
 
 	public String getGatewayID() {
 		return gatewayID;
