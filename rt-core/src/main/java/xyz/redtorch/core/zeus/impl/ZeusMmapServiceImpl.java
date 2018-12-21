@@ -139,7 +139,9 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_INIT_STARTEGY).writeUtf8(strategyID));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_INIT_STARTEGY) //
+				.writeUtf8(strategyID));
 	}
 
 	@Override
@@ -148,7 +150,9 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_START_STARTEGY).writeUtf8(strategyID));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_START_STARTEGY) //
+				.writeUtf8(strategyID));
 	}
 
 	@Override
@@ -156,7 +160,9 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("停止策略,策略ID:" + strategyID);
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_STOP_STARTEGY).writeUtf8(strategyID));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_STOP_STARTEGY) //
+				.writeUtf8(strategyID));
 	}
 
 	@Override
@@ -164,7 +170,9 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("重新加载策略,策略ID:" + strategyID);
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_RELOAD_STARTEGY).writeUtf8(strategyID));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_RELOAD_STARTEGY) //
+				.writeUtf8(strategyID));
 	}
 
 	@Override
@@ -172,7 +180,8 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("初始化所有策略");
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_INIT_ALL_STARTEGY));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_INIT_ALL_STARTEGY));
 	}
 
 	@Override
@@ -180,7 +189,8 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("启动所有策略");
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_START_ALL_STARTEGY));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_START_ALL_STARTEGY));
 	}
 
 	@Override
@@ -188,7 +198,8 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("停止所有策略");
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_STOP_ALL_STARTEGY));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_STOP_ALL_STARTEGY));
 	}
 
 	@Override
@@ -196,7 +207,8 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		log.info("重新加载所有策略");
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_COMMAND).writeInt(COMMAND_RELOAD_ALL_STARTEGY));
+				.writeInt(DATA_COMMAND) //
+				.writeInt(COMMAND_RELOAD_ALL_STARTEGY));
 
 	}
 
@@ -206,43 +218,78 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				// 写入数据类型
 				.writeInt(DATA_TICK)
 
-				.writeUtf8(tick.getRtTickID()).writeUtf8(tick.getGatewayID()).writeUtf8(tick.getRtSymbol())
+				.writeUtf8(tick.getRtTickID()) //
+				.writeUtf8(tick.getGatewayID()) //
+				.writeUtf8(tick.getRtSymbol()) //
 
-				.writeUtf8(tick.getSymbol()).writeUtf8(tick.getExchange())
+				.writeUtf8(tick.getSymbol()) //
+				.writeUtf8(tick.getExchange()) //
 
-				.writeUtf8(tick.getTradingDay()).writeUtf8(tick.getActionDay()).writeUtf8(tick.getActionTime())
-				.writeLong(tick.getDateTime().getMillis())
+				.writeUtf8(tick.getTradingDay()) //
+				.writeUtf8(tick.getActionDay()) //
+				.writeUtf8(tick.getActionTime()) //
+				.writeLong(tick.getDateTime().getMillis()) //
 
-				.writeInt(tick.getStatus())
+				.writeInt(tick.getStatus()) //
 
-				.writeDouble(tick.getLastPrice()).writeInt(tick.getLastVolume()).writeInt(tick.getVolume())
-				.writeDouble(tick.getOpenInterest())
+				.writeDouble(tick.getLastPrice()) //
+				.writeInt(tick.getLastVolume()) //
+				.writeInt(tick.getVolume()) //
+				.writeDouble(tick.getOpenInterest()) //
 
-				.writeLong(tick.getPreOpenInterest()).writeDouble(tick.getPreClosePrice())
-				.writeDouble(tick.getPreSettlePrice())
+				.writeLong(tick.getPreOpenInterest()) //
+				.writeDouble(tick.getPreClosePrice()) //
+				.writeDouble(tick.getPreSettlePrice()) //
 
-				.writeDouble(tick.getOpenPrice()).writeDouble(tick.getHighPrice()).writeDouble(tick.getLowPrice())
+				.writeDouble(tick.getOpenPrice()) //
+				.writeDouble(tick.getHighPrice()) //
+				.writeDouble(tick.getLowPrice()) //
 
-				.writeDouble(tick.getUpperLimit()).writeDouble(tick.getLowerLimit())
+				.writeDouble(tick.getUpperLimit()) //
+				.writeDouble(tick.getLowerLimit()) //
 
-				.writeDouble(tick.getBidPrice1()).writeDouble(tick.getBidPrice2()).writeDouble(tick.getBidPrice3())
-				.writeDouble(tick.getBidPrice4()).writeDouble(tick.getBidPrice5()).writeDouble(tick.getBidPrice6())
-				.writeDouble(tick.getBidPrice7()).writeDouble(tick.getBidPrice8()).writeDouble(tick.getBidPrice9())
-				.writeDouble(tick.getBidPrice10())
+				.writeDouble(tick.getBidPrice1()) //
+				.writeDouble(tick.getBidPrice2()) //
+				.writeDouble(tick.getBidPrice3()) //
+				.writeDouble(tick.getBidPrice4()) //
+				.writeDouble(tick.getBidPrice5()) //
+				.writeDouble(tick.getBidPrice6()) //
+				.writeDouble(tick.getBidPrice7()) //
+				.writeDouble(tick.getBidPrice8()) //
+				.writeDouble(tick.getBidPrice9()) //
+				.writeDouble(tick.getBidPrice10()) //
 
-				.writeDouble(tick.getAskPrice1()).writeDouble(tick.getAskPrice2()).writeDouble(tick.getAskPrice3())
-				.writeDouble(tick.getAskPrice4()).writeDouble(tick.getAskPrice5()).writeDouble(tick.getAskPrice6())
-				.writeDouble(tick.getAskPrice7()).writeDouble(tick.getAskPrice8()).writeDouble(tick.getAskPrice9())
-				.writeDouble(tick.getAskPrice10())
+				.writeDouble(tick.getAskPrice1()) //
+				.writeDouble(tick.getAskPrice2()) //
+				.writeDouble(tick.getAskPrice3()) //
+				.writeDouble(tick.getAskPrice4()) //
+				.writeDouble(tick.getAskPrice5()) //
+				.writeDouble(tick.getAskPrice6()) //
+				.writeDouble(tick.getAskPrice7()) //
+				.writeDouble(tick.getAskPrice8()) //
+				.writeDouble(tick.getAskPrice9()) //
+				.writeDouble(tick.getAskPrice10()) //
 
-				.writeInt(tick.getBidVolume1()).writeInt(tick.getBidVolume2()).writeInt(tick.getBidVolume3())
-				.writeInt(tick.getBidVolume4()).writeInt(tick.getBidVolume5()).writeInt(tick.getBidVolume6())
-				.writeInt(tick.getBidVolume7()).writeInt(tick.getBidVolume8()).writeInt(tick.getBidVolume9())
-				.writeInt(tick.getBidVolume10())
+				.writeInt(tick.getBidVolume1()) //
+				.writeInt(tick.getBidVolume2()) //
+				.writeInt(tick.getBidVolume3()) //
+				.writeInt(tick.getBidVolume4()) //
+				.writeInt(tick.getBidVolume5()) //
+				.writeInt(tick.getBidVolume6()) //
+				.writeInt(tick.getBidVolume7()) //
+				.writeInt(tick.getBidVolume8()) //
+				.writeInt(tick.getBidVolume9()) //
+				.writeInt(tick.getBidVolume10()) //
 
-				.writeInt(tick.getAskVolume1()).writeInt(tick.getAskVolume2()).writeInt(tick.getAskVolume3())
-				.writeInt(tick.getAskVolume4()).writeInt(tick.getAskVolume5()).writeInt(tick.getAskVolume6())
-				.writeInt(tick.getAskVolume7()).writeInt(tick.getAskVolume8()).writeInt(tick.getAskVolume9())
+				.writeInt(tick.getAskVolume1()) //
+				.writeInt(tick.getAskVolume2()) //
+				.writeInt(tick.getAskVolume3()) //
+				.writeInt(tick.getAskVolume4()) //
+				.writeInt(tick.getAskVolume5()) //
+				.writeInt(tick.getAskVolume6()) //
+				.writeInt(tick.getAskVolume7()) //
+				.writeInt(tick.getAskVolume8()) //
+				.writeInt(tick.getAskVolume9()) //
 				.writeInt(tick.getAskVolume10()));
 	}
 
@@ -256,28 +303,39 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_ORDER)
+				.writeInt(DATA_ORDER) //
 
-				.writeUtf8(order.getOriginalOrderID())
-				
-				.writeUtf8(order.getAccountID())
-				.writeUtf8(order.getRtAccountID())
+				.writeUtf8(order.getOriginalOrderID()) //
 
-				.writeUtf8(order.getGatewayID())
+				.writeUtf8(order.getAccountID()) //
+				.writeUtf8(order.getRtAccountID()) //
 
-				.writeUtf8(order.getSymbol()).writeUtf8(order.getExchange()).writeUtf8(order.getRtSymbol())
+				.writeUtf8(order.getGatewayID()) //
 
-				.writeUtf8(order.getOrderID()).writeUtf8(order.getRtOrderID())
+				.writeUtf8(order.getSymbol()) //
+				.writeUtf8(order.getExchange()) //
+				.writeUtf8(order.getRtSymbol()) //
 
-				.writeUtf8(order.getDirection()).writeUtf8(order.getOffset()).writeDouble(order.getPrice())
-				.writeInt(order.getTotalVolume()).writeInt(order.getTradedVolume()).writeUtf8(order.getStatus())
+				.writeUtf8(order.getOrderID()) //
+				.writeUtf8(order.getRtOrderID()) //
 
-				.writeUtf8(order.getTradingDay())
+				.writeUtf8(order.getDirection()) //
+				.writeUtf8(order.getOffset()) //
+				.writeDouble(order.getPrice()) //
+				.writeInt(order.getTotalVolume()) //
+				.writeInt(order.getTradedVolume()) //
+				.writeUtf8(order.getStatus()) //
 
-				.writeUtf8(order.getOrderDate()).writeUtf8(order.getOrderTime()).writeUtf8(order.getCancelTime())
-				.writeUtf8(order.getActiveTime()).writeUtf8(order.getUpdateTime())
+				.writeUtf8(order.getTradingDay()) //
 
-				.writeInt(order.getFrontID()).writeInt(order.getSessionID()));
+				.writeUtf8(order.getOrderDate()) //
+				.writeUtf8(order.getOrderTime()) //
+				.writeUtf8(order.getCancelTime()) //
+				.writeUtf8(order.getActiveTime()) //
+				.writeUtf8(order.getUpdateTime()) //
+
+				.writeInt(order.getFrontID()) //
+				.writeInt(order.getSessionID()));
 	}
 
 	@Override
@@ -289,25 +347,30 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(DATA_TRADE)
+				.writeInt(DATA_TRADE) //
+				.writeUtf8(trade.getOriginalOrderID()) //
+				.writeUtf8(trade.getAccountID()) //
+				.writeUtf8(trade.getRtAccountID()) //
+				.writeUtf8(trade.getGatewayID()) //
 
-				.writeUtf8(trade.getOriginalOrderID())
+				.writeUtf8(trade.getSymbol()) //
+				.writeUtf8(trade.getExchange()) //
+				.writeUtf8(trade.getRtSymbol()) //
 
-				.writeUtf8(trade.getAccountID())
-				.writeUtf8(trade.getRtAccountID())
-				
-				.writeUtf8(trade.getGatewayID())
+				.writeUtf8(trade.getTradeID()) //
+				.writeUtf8(trade.getRtTradeID()) //
 
-				.writeUtf8(trade.getSymbol()).writeUtf8(trade.getExchange()).writeUtf8(trade.getRtSymbol())
+				.writeUtf8(trade.getOrderID()) //
+				.writeUtf8(trade.getRtOrderID()) //
 
-				.writeUtf8(trade.getTradeID()).writeUtf8(trade.getRtTradeID())
+				.writeUtf8(trade.getDirection()) //
+				.writeUtf8(trade.getOffset()) //
+				.writeDouble(trade.getPrice()) //
 
-				.writeUtf8(trade.getOrderID()).writeUtf8(trade.getRtOrderID())
-
-				.writeUtf8(trade.getDirection()).writeUtf8(trade.getOffset()).writeDouble(trade.getPrice())
-				.writeInt(trade.getVolume())
-
-				.writeUtf8(trade.getTradingDay()).writeUtf8(trade.getTradeDate()).writeUtf8(trade.getTradeTime()));
+				.writeInt(trade.getVolume()) //
+				.writeUtf8(trade.getTradingDay()) //
+				.writeUtf8(trade.getTradeDate()) //
+				.writeUtf8(trade.getTradeTime()));
 
 	}
 
@@ -337,6 +400,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 						orderReq.setPriceType(in.readUtf8());
 
 						orderReq.setOriginalOrderID(in.readUtf8());
+						orderReq.setOperatorID(in.readUtf8());
 
 						orderReq.setProductClass(in.readUtf8());
 						orderReq.setCurrency(in.readUtf8());
@@ -347,25 +411,31 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 						orderReq.setMultiplier(in.readUtf8());
 
 						Account account = coreEngineService.getAccount(orderReq.getRtAccountID());
-						if(account!=null) {
+						if (account != null) {
 							orderReq.setAccountID(account.getAccountID());
 							orderReq.setGatewayID(account.getGatewayID());
 							orderReq.setGatewayDisplayName(account.getGatewayDisplayName());
 							String rtOrderID = coreEngineService.sendOrder(orderReq);
 							zeusTradingBaseService.registerOriginalOrderID(rtOrderID, orderReq.getOriginalOrderID());
-						}else {
-							log.error("发单错误,无法找到账户信息,{}",orderReq.toString());
+						} else {
+							log.error("发单错误,无法找到账户,{}", orderReq.toString());
 						}
-						
 
 					} else if (DATA_CANCEL_ORDER == dataType) {
+
 						String originalOrderID = in.readUtf8();
+						String operatorID = in.readUtf8();
+
 						String rtOrderID = zeusTradingBaseService.getRtOrderID(originalOrderID);
-						if (StringUtils.isBlank(originalOrderID) || rtOrderID == null) {
-							log.error("未能找到rtOrderID,originalOrderID:" + originalOrderID);
+
+						if (StringUtils.isBlank(originalOrderID)) {
+							log.error("originalOrderID不可为空!");
+						} else if (StringUtils.isBlank(operatorID)) {
+							log.error("operatorID不可为空!");
+						} else if (rtOrderID == null) {
+							log.error("未能找到rtOrderID,originalOrderID:{}", originalOrderID);
 						} else {
-							Order order = coreEngineService
-									.getOrder(zeusTradingBaseService.getRtOrderID(originalOrderID));
+							Order order = coreEngineService.getOrder(rtOrderID);
 							if (order != null) {
 								if (!RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
 
@@ -376,16 +446,17 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 									cancelOrderReq.setFrontID(order.getFrontID());
 									cancelOrderReq.setSessionID(order.getSessionID());
+									cancelOrderReq.setOperatorID(operatorID);
 									cancelOrderReq.setOrderID(order.getOrderID());
 									cancelOrderReq.setGatewayID(order.getGatewayID());
 
 									coreEngineService.cancelOrder(cancelOrderReq);
 
 								} else {
-									log.warn("无法撤单,委托状态为完成,rtOrderID:" + rtOrderID);
+									log.warn("无法撤单,委托状态为完成,rtOrderID:{}", rtOrderID);
 								}
 							} else {
-								log.warn("无法撤单,委托不存在,rtOrderID:" + rtOrderID);
+								log.warn("无法撤单,委托不存在,rtOrderID:{}", rtOrderID);
 							}
 						}
 					}

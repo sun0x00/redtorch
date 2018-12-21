@@ -107,7 +107,7 @@ export default {
     },
   },
   manifest: {
-    name: 'RedTorch',
+    name: 'Red Torch',
     background_color: '#FFF',
     description: 'Java开源量化交易框架',
     display: 'standalone',

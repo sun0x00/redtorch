@@ -8,8 +8,8 @@ const FooterView = () => (
     <GlobalFooter
       links={[
         {
-          key: 'RedTorch',
-          title: 'RedTorch 首页',
+          key: 'Red Torch',
+          title: 'Red Torch 首页',
           href: 'http://redtorch.io',
           blankTarget: true,
         },

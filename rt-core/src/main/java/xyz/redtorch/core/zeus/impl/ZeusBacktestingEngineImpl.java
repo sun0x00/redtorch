@@ -32,7 +32,7 @@ import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
-import xyz.redtorch.core.zeus.BacktestingEngine;
+import xyz.redtorch.core.zeus.ZeusBacktestingEngine;
 import xyz.redtorch.core.zeus.ZeusConstant;
 import xyz.redtorch.core.zeus.ZeusDataService;
 import xyz.redtorch.core.zeus.ZeusEngineService;
@@ -47,9 +47,9 @@ import xyz.redtorch.utils.CommonUtil;
 /**
  * @author sun0x00@gmail.com
  */
-public class BacktestingEngineImpl implements BacktestingEngine {
+public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
-	private Logger log = LoggerFactory.getLogger(BacktestingEngineImpl.class);
+	private Logger log = LoggerFactory.getLogger(ZeusBacktestingEngineImpl.class);
 
 	private String backtestingOutputDir;
 
@@ -89,9 +89,9 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	// 计算对冲平仓Trade
 	private Map<String, Trade> settleTradeMap = new LinkedHashMap<>();
 
-	// 交易结果 rtSymbol--rtAccountID--BacktestingResult
+	// 交易结果 rtSymbol->rtAccountID->BacktestingResult
 	private Map<String, Map<String, BacktestingResult>> rtSymbolResultMap = new HashMap<>();
-	// 按日计算结果 rtSymbol--rtAccountID--date--DailyResult
+	// 按日计算结果 rtSymbol->rtAccountID->date->DailyResult
 	private Map<String, Map<String, Map<String, DailyResult>>> rtSymbolDailyResultMap = new LinkedHashMap<>();
 
 	private StrategySetting strategySetting;
@@ -100,7 +100,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 	private int backtestingDataMode = 0;
 	private Boolean reloadStrategyEveryday;
 
-	public BacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID,
+	public ZeusBacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID,
 			List<BacktestingSection> backestingSectionList, int backtestingDataMode, Boolean reloadStrategyEveryday,
 			String backtestingOutputDir) {
 		this.zeusDataService = zeusDataService;
@@ -125,6 +125,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 
 		limitOrderCount += 1;
 		String orderID = orderReq.getRtAccountID() + "." + limitOrderCount;
+		String originalOrderID = orderReq.getOriginalOrderID();
 
 		Order order = new Order();
 		order.setRtSymbol(orderReq.getRtSymbol());
@@ -132,6 +133,7 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		order.setTotalVolume(orderReq.getVolume());
 		order.setOrderID(orderID);
 		order.setRtOrderID(orderID);
+		order.setOriginalOrderID(originalOrderID);
 		order.setOrderTime(lastDateTime.toString(RtConstant.T_FORMAT_FORMATTER));
 		order.setGatewayID(orderReq.getGatewayID());
 		order.setAccountID(orderReq.getAccountID());
@@ -140,22 +142,22 @@ public class BacktestingEngineImpl implements BacktestingEngine {
 		order.setOffset(orderReq.getOffset());
 		order.setOriginalOrderID(orderReq.getOriginalOrderID());
 
-		workingLimitOrderMap.put(orderID, order);
-		limitOrderMap.put(orderID, order);
+		workingLimitOrderMap.put(originalOrderID, order);
+		limitOrderMap.put(originalOrderID, order);
 
 	}
 
 	@Override
-	public void cancelOrder(String rtOrderID) {
-		if (workingLimitOrderMap.containsKey(rtOrderID)) {
-			Order order = workingLimitOrderMap.get(rtOrderID);
+	public void cancelOrder(String originalOrderID,String operatorID) {
+		if (workingLimitOrderMap.containsKey(originalOrderID)) {
+			Order order = workingLimitOrderMap.get(originalOrderID);
 
 			order.setStatus(RtConstant.STATUS_CANCELLED);
 			order.setCancelTime(lastDateTime.toString(RtConstant.T_FORMAT_FORMATTER));
 
 			strategy.processOrder(order);
 
-			workingLimitOrderMap.remove(rtOrderID);
+			workingLimitOrderMap.remove(originalOrderID);
 		}
 
 	}

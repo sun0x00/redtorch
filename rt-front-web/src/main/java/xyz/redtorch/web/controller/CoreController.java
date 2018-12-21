@@ -35,6 +35,7 @@ public class CoreController {
 		String direction = jsonObject.getString("direction");
 		String offset = jsonObject.getString("offset");
 		String rtAccountID = jsonObject.getString("rtAccountID");
+		String token = jsonObject.getString("token");
 
 		if (StringUtils.isEmpty(rtSymbol) || StringUtils.isEmpty(priceType) || StringUtils.isEmpty(direction)
 				|| StringUtils.isEmpty(offset) || StringUtils.isEmpty(rtAccountID) || !jsonObject.containsKey("volume")) {
@@ -43,6 +44,8 @@ public class CoreController {
 			return result;
 		}
 		OrderReq orderReq = jsonObject.toJavaObject(OrderReq.class);
+		// Token作为OID
+		orderReq.setOperatorID(token);
 
 		String rtOrderID = coreEngineWebService.sendOrder(orderReq);
 
@@ -60,7 +63,8 @@ public class CoreController {
 		if (StringUtils.isEmpty(jsonObject.getString("rtOrderID"))) {
 			result.setStatus(ResultVO.ERROR);
 		} else {
-			coreEngineWebService.cancelOrder(jsonObject.getString("rtOrderID"));
+			// 使用Token作为OID
+			coreEngineWebService.cancelOrder(jsonObject.getString("rtOrderID"),jsonObject.getString("token"));
 		}
 
 		return result;

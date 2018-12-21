@@ -13,10 +13,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import xyz.redtorch.core.CoreRunConfiguration;
-import xyz.redtorch.core.zeus.BacktestingEngine;
+import xyz.redtorch.core.zeus.ZeusBacktestingEngine;
 import xyz.redtorch.core.zeus.ZeusDataService;
-import xyz.redtorch.core.zeus.BacktestingEngine.BacktestingSection;
-import xyz.redtorch.core.zeus.impl.BacktestingEngineImpl;
+import xyz.redtorch.core.zeus.ZeusBacktestingEngine.BacktestingSection;
+import xyz.redtorch.core.zeus.impl.ZeusBacktestingEngineImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CoreRunConfiguration.class)
@@ -39,7 +39,7 @@ public class StrategyDemoBacktesting {
 
 		String strategyID = "StrategyDemo01";
 		boolean reloadStrategyEveryday = false;
-		int backtestingDataMode = BacktestingEngine.DATA_MODE_BAR;
+		int backtestingDataMode = ZeusBacktestingEngine.DATA_MODE_BAR;
 		List<BacktestingSection> backestingSectionList = new ArrayList<>();
 		// 分段回测
 		BacktestingSection backtestingSection = new BacktestingSection();
@@ -62,7 +62,7 @@ public class StrategyDemoBacktesting {
 		// backtestingSection.addAliasRtSymbol("IH", "1804");
 		// backestingSectionList.add(backtestingSection);
 
-		BacktestingEngine backtestingEngine = new BacktestingEngineImpl(zeusDataService, strategyID,
+		ZeusBacktestingEngine backtestingEngine = new ZeusBacktestingEngineImpl(zeusDataService, strategyID,
 				backestingSectionList, backtestingDataMode, reloadStrategyEveryday, backtestingOutputDir);
 		backtestingEngine.runBacktesting();
 	}

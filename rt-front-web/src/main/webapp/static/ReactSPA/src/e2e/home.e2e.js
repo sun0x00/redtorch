@@ -7,7 +7,7 @@ describe('Homepage', () => {
     await page.goto('http://localhost:8000', { waitUntil: 'networkidle2' });
     await page.waitForSelector('#logo h1');
     const text = await page.evaluate(() => document.body.innerHTML);
-    expect(text).toContain('<h1>Ant Design Pro</h1>');
+    expect(text).toContain('<h1>Red Torch</h1>');
     await page.close();
     browser.close();
   });

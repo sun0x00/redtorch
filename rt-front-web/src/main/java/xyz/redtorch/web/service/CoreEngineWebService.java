@@ -25,7 +25,7 @@ public interface CoreEngineWebService {
 
 	boolean unsubscribe(String rtSymbol, String gatewayID);
 
-	void cancelOrder(String rtOrderID);
+	void cancelOrder(String rtOrderID,String operatorID);
 
 	void cancelAllOrders();
 

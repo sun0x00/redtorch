@@ -132,9 +132,9 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 
 		executor.execute(new ReportTask());
 
-		log.info("交易引擎服务已启动");
+		log.info("交易引擎服务已启动!");
 
-		log.info("策略重复加载检查,请等待");
+		log.info("策略重复加载检查,请等待!");
 		if (!zeusTradingBaseService.duplicationCheck(strategyID)) {
 			loadStrategy();
 		} else {
@@ -157,33 +157,36 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 				// 写入数据类型
 				.writeInt(ZeusMmapService.DATA_ORDERREQ)
 
-				.writeUtf8(orderReq.getRtAccountID())
-				.writeUtf8(orderReq.getSymbol())
-				.writeUtf8(orderReq.getExchange())
-				.writeUtf8(orderReq.getRtSymbol())
+				.writeUtf8(orderReq.getRtAccountID()) //
+				.writeUtf8(orderReq.getSymbol()) //
+				.writeUtf8(orderReq.getExchange()) //
+				.writeUtf8(orderReq.getRtSymbol()) //
 
-				.writeDouble(orderReq.getPrice())
-				.writeInt(orderReq.getVolume())
-				.writeUtf8(orderReq.getDirection())
-				.writeUtf8(orderReq.getOffset())
-				.writeUtf8(orderReq.getPriceType())
+				.writeDouble(orderReq.getPrice()) //
+				.writeInt(orderReq.getVolume()) //
+				.writeUtf8(orderReq.getDirection()) //
+				.writeUtf8(orderReq.getOffset()) //
+				.writeUtf8(orderReq.getPriceType()) //
 
-				.writeUtf8(orderReq.getOriginalOrderID())
+				.writeUtf8(orderReq.getOriginalOrderID()) //
+				.writeUtf8(orderReq.getOperatorID()) //
 
-				.writeUtf8(orderReq.getProductClass())
-				.writeUtf8(orderReq.getCurrency())
-				.writeUtf8(orderReq.getExpiry())
-				.writeDouble(orderReq.getStrikePrice())
-				.writeUtf8(orderReq.getOptionType())
-				.writeUtf8(orderReq.getLastTradeDateOrContractMonth())
+				.writeUtf8(orderReq.getProductClass()) //
+				.writeUtf8(orderReq.getCurrency()) //
+				.writeUtf8(orderReq.getExpiry()) //
+				.writeDouble(orderReq.getStrikePrice()) //
+				.writeUtf8(orderReq.getOptionType()) //
+				.writeUtf8(orderReq.getLastTradeDateOrContractMonth()) //
 				.writeUtf8(orderReq.getMultiplier()));
 	}
 
 	@Override
-	public void cancelOrder(String originalOrderID) {
+	public void cancelOrder(String originalOrderID,String operatorID) {
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
-				.writeInt(ZeusMmapService.DATA_CANCEL_ORDER).writeUtf8(originalOrderID));
+				.writeInt(ZeusMmapService.DATA_CANCEL_ORDER) //
+				.writeUtf8(originalOrderID) //
+				.writeUtf8(operatorID));
 
 	}
 

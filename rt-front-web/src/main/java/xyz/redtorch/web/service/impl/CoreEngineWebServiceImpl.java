@@ -83,7 +83,7 @@ public class CoreEngineWebServiceImpl implements CoreEngineWebService {
 	}
 
 	@Override
-	public void cancelOrder(String rtOrderID) {
+	public void cancelOrder(String rtOrderID,String operatorID) {
 		log.info("接收到撤单请求,委托ID-[{}]", rtOrderID);
 
 		Order order = coreEngineService.getOrder(rtOrderID);
@@ -99,6 +99,7 @@ public class CoreEngineWebServiceImpl implements CoreEngineWebService {
 				cancelOrderReq.setSessionID(order.getSessionID());
 				cancelOrderReq.setOrderID(order.getOrderID());
 				cancelOrderReq.setGatewayID(order.getGatewayID());
+				cancelOrderReq.setOperatorID(operatorID);
 
 				log.info("发送撤单请求,{}", cancelOrderReq.toString());
 				coreEngineService.cancelOrder(cancelOrderReq);

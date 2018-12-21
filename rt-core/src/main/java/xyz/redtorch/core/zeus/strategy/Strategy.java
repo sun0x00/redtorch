@@ -7,7 +7,6 @@ import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.core.zeus.entity.ContractPositionDetail;
-import xyz.redtorch.core.zeus.entity.StopOrder;
 
 /**
  * @author sun0x00@gmail.com
@@ -53,12 +52,10 @@ public interface Strategy {
 	void startTrading();
 
 	/**
-	 * 停止交易
 	 * 
-	 * @param isException
-	 *            是否因异常触发
+	 * @param finishedCorrectly 如果正常停止，为true，如果因异常导致停止，返回false
 	 */
-	void stopTrading(boolean isException);
+	void stopTrading(boolean finishedCorrectly);
 
 	/**
 	 * 销毁通知
@@ -96,10 +93,10 @@ public interface Strategy {
 	/**
 	 * 在停止交易时调用
 	 * 
-	 * @param isException
+	 * @param finishedCorrectly 如果正常停止，为true，如果因异常导致停止，返回false
 	 * @throws Exception
 	 */
-	void onStopTrading(boolean isException) throws Exception;
+	void onStopTrading(boolean finishedCorrectly) throws Exception;
 
 	/**
 	 * 在有Tick数据时调用 <br/>
@@ -125,14 +122,6 @@ public interface Strategy {
 	 * @throws Exception
 	 */
 	void onTrade(Trade trade) throws Exception;
-
-	/**
-	 * 在策略停止时调用
-	 * 
-	 * @param StopOrder
-	 * @throws Exception
-	 */
-	void onStopOrder(StopOrder StopOrder) throws Exception;
 
 	/**
 	 * 处理Order
@@ -170,13 +159,6 @@ public interface Strategy {
 	String getLogStr();
 
 	/**
-	 * 获取未完成的停止单字典
-	 * 
-	 * @return
-	 */
-	Map<String, StopOrder> getWorkingStopOrderMap();
-
-	/**
 	 * 获取策略设置
 	 * 
 	 * @return
@@ -212,28 +194,6 @@ public interface Strategy {
 	 * @return
 	 */
 	String sendOrder(String rtSymbol, String orderType, String priceType, double price, int volume, String gatewayID);
-
-	/**
-	 * 发送停止单
-	 * 
-	 * @param rtSymbol
-	 * @param orderType
-	 * @param priceType
-	 * @param price
-	 * @param volume
-	 * @param gatewayID
-	 * @param strategy
-	 * @return
-	 */
-	String sendStopOrder(String rtSymbol, String orderType, String priceType, double price, int volume,
-			String gatewayID, Strategy strategy);
-
-	/**
-	 * 撤销停止单
-	 * 
-	 * @param stopOrderID
-	 */
-	void cancelStopOrder(String stopOrderID);
 
 	/**
 	 * 撤单

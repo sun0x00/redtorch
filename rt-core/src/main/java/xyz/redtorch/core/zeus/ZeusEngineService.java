@@ -30,12 +30,12 @@ public interface ZeusEngineService {
 	 */
 	void sendOrder(OrderReq orderReq);
 
-	/**
+	/** 
 	 * 撤单
-	 * 
-	 * @param rtOrderID
+	 * @param originalOrderID
+	 * @param operatorID
 	 */
-	void cancelOrder(String rtOrderID);
+	void cancelOrder(String originalOrderID,String operatorID);
 
 	/**
 	 * 加载Tick数据,根据交易日向前推移,不包含交易日当天

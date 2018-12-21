@@ -646,12 +646,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		// 获取持仓缓存
 		String posName = gatewayID +"."+ rtSymbol +"."+ pInvestorPosition.getPosiDirection();
 
+		Integer size = contractSizeMap.get(symbol);
+		
 		Position position;
 		if (positionMap.containsKey(posName)) {
 			position = positionMap.get(posName);
 		} else {
 			position = new Position();
 			positionMap.put(posName, position);
+			position.setContractSize(size);
 			position.setGatewayID(gatewayID);
 			position.setSymbol(symbol);
 			position.setExchange(contractExchangeMap.get(symbol));
@@ -667,18 +670,23 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (pInvestorPosition.getYdPosition() > 0 && pInvestorPosition.getTodayPosition() == 0) {
 			position.setYdPosition(pInvestorPosition.getPosition());
 		}
+
 		// 计算成本
-		Integer size = contractSizeMap.get(symbol);
 		Double cost = position.getPrice() * position.getPosition() * size;
+		Double openCost = position.getOpenPrice()*position.getPosition()*size;
 
 		// 汇总总仓
 		position.setPosition(position.getPosition() + pInvestorPosition.getPosition());
 		position.setPositionProfit(position.getPositionProfit() + pInvestorPosition.getPositionProfit());
+		position.setUseMargin(position.getUseMargin()+pInvestorPosition.getUseMargin());
+		position.setExchangeMargin(position.getExchangeMargin()+pInvestorPosition.getExchangeMargin());
 
 		// 计算持仓均价
 		if (position.getPosition() != 0 && contractSizeMap.containsKey(symbol)) {
 			position.setPrice((cost + pInvestorPosition.getPositionCost()) / (position.getPosition() * size));
+			position.setOpenPrice((openCost + pInvestorPosition.getOpenCost()) / (position.getPosition() * size));
 		}
+		
 
 		if (RtConstant.DIRECTION_LONG.equals(position.getDirection())) {
 			position.setFrozen(pInvestorPosition.getLongFrozen());
@@ -714,7 +722,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		account.setPositionProfit(pTradingAccount.getPositionProfit());
 		account.setPreBalance(pTradingAccount.getPreBalance());
 		account.setRtAccountID(pTradingAccount.getAccountID()+"."+pTradingAccount.getCurrencyID()+"."+gatewayID);
-
+		account.setDeposit(pTradingAccount.getDeposit());
+		account.setWithdraw(pTradingAccount.getWithdraw());
 		double balance = pTradingAccount.getPreBalance() - pTradingAccount.getPreCredit()
 				- pTradingAccount.getPreMortgage() + pTradingAccount.getMortgage() - pTradingAccount.getWithdraw()
 				+ pTradingAccount.getDeposit() + pTradingAccount.getCloseProfit() + pTradingAccount.getPositionProfit()

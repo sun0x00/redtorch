@@ -21,7 +21,7 @@ import xyz.redtorch.utils.CommonUtil;
 /**
  * @author sun0x00@gmail.com
  */
-public interface BacktestingEngine extends ZeusEngineService {
+public interface ZeusBacktestingEngine extends ZeusEngineService {
 
 	final int DATA_MODE_TICK = 0;
 	final int DATA_MODE_BAR = 1;
@@ -58,7 +58,7 @@ public interface BacktestingEngine extends ZeusEngineService {
 	 *
 	 */
 	static class OptimizationSetting {
-		static Logger log = LoggerFactory.getLogger(BacktestingEngine.class);
+		static Logger log = LoggerFactory.getLogger(ZeusBacktestingEngine.class);
 		private Map<String, List<String>> paramMap;
 
 		public void addStrParameter(String parameterName, Set<String> parameterSet) {

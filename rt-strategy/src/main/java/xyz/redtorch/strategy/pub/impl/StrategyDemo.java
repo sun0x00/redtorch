@@ -7,7 +7,6 @@ import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.core.zeus.ZeusEngineService;
-import xyz.redtorch.core.zeus.entity.StopOrder;
 import xyz.redtorch.core.zeus.strategy.StrategyAbstract;
 import xyz.redtorch.core.zeus.strategy.StrategySetting;
 
@@ -93,11 +92,6 @@ public class StrategyDemo extends StrategyAbstract{
 
 	@Override
 	public void onTrade(Trade trade) throws Exception {
-		
-	}
-
-	@Override
-	public void onStopOrder(StopOrder StopOrder) throws Exception {
 		
 	}
 

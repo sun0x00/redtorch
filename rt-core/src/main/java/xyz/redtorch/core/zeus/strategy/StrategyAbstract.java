@@ -23,8 +23,6 @@ import xyz.redtorch.core.zeus.ZeusConstant;
 import xyz.redtorch.core.zeus.ZeusEngineService;
 import xyz.redtorch.core.zeus.entity.ContractPositionDetail;
 import xyz.redtorch.core.zeus.entity.PositionDetail;
-import xyz.redtorch.core.zeus.entity.StopOrder;
-//import xyz.redtorch.core.zeus.strategy.StrategySetting.TradeGatewaySetting;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -36,11 +34,9 @@ import xyz.redtorch.utils.CommonUtil;
 public abstract class StrategyAbstract implements Strategy {
 	private static final Logger log = LoggerFactory.getLogger(StrategyAbstract.class);
 
-	protected String id; // 策略ID
-	protected String name; // 策略名称
 	protected String logStr; // 日志拼接字符串
 	protected boolean initStatus = false; // 初始化状态
-	protected boolean trading = false; // 交易开关
+	protected boolean tradingStatus = false; // 交易开关
 
 	protected ZeusEngineService zeusEngineService; // 策略引擎
 
@@ -48,13 +44,9 @@ public abstract class StrategyAbstract implements Strategy {
 
 	protected Map<String, ContractPositionDetail> contractPositionMap = new HashMap<>(); // 合约仓位维护
 
-	protected Map<String, StopOrder> workingStopOrderMap = new HashMap<>(); // 本地停止单,停止单撤销后会被删除
-
 	protected Map<String, Order> workingOrderMap = new HashMap<>(); // 委托单
 
-	protected long stopOrderCount = 0L; // 停止单计数器
-
-	protected HashSet<String> rtTradeIDSet = new HashSet<String>(); // 用于过滤可能重复的Trade推送
+	protected HashSet<String> rtTradeIDSet = new HashSet<>(); // 用于过滤可能重复的Trade推送
 
 	/**
 	 * 必须使用有参构造方法
@@ -63,12 +55,11 @@ public abstract class StrategyAbstract implements Strategy {
 	 * @param strategySetting
 	 */
 	public StrategyAbstract(ZeusEngineService zeusEngineService, StrategySetting strategySetting) {
+		
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
 
-		this.id = strategySetting.getStrategyID();
-		this.name = strategySetting.getStrategyName();
-		this.logStr = "策略-[" + name + "] ID-[" + id + "] >>> ";
+		this.logStr = "策略-[" + strategySetting.getStrategyName() + "] ID-[" + strategySetting.getStrategyID() + "] >>> ";
 
 		this.zeusEngineService = zeusEngineService;
 
@@ -86,7 +77,7 @@ public abstract class StrategyAbstract implements Strategy {
 	 */
 	@Override
 	public String getID() {
-		return id;
+		return strategySetting.getStrategyID();
 	}
 
 	/**
@@ -96,7 +87,7 @@ public abstract class StrategyAbstract implements Strategy {
 	 */
 	@Override
 	public String getName() {
-		return name;
+		return strategySetting.getStrategyName();
 	}
 
 	/**
@@ -116,7 +107,7 @@ public abstract class StrategyAbstract implements Strategy {
 
 	@Override
 	public boolean isTrading() {
-		return trading;
+		return tradingStatus;
 	}
 
 	@Override
@@ -136,16 +127,16 @@ public abstract class StrategyAbstract implements Strategy {
 			return;
 		}
 
-		if (trading) {
+		if (tradingStatus) {
 			log.warn(logStr + "策略正在运行,请勿重复操作!");
 			return;
 		}
-		this.trading = true;
+		this.tradingStatus = true;
 		try {
 			onStartTrading();
 			log.info(logStr + "开始交易!");
 		} catch (Exception e) {
-			stopTrading(true);
+			stopTrading(false);
 			log.error(logStr + "调用onStartTrading发生异常,停止策略!!!", e);
 		}
 	}
@@ -154,8 +145,8 @@ public abstract class StrategyAbstract implements Strategy {
 	 * 停止交易
 	 */
 	@Override
-	public void stopTrading(boolean isException) {
-		if (!trading) {
+	public void stopTrading(boolean finishedCorrectly) {
+		if (!tradingStatus) {
 			log.warn(logStr + "策略已经停止,请勿重复操作!");
 			return;
 		}
@@ -164,9 +155,9 @@ public abstract class StrategyAbstract implements Strategy {
 		savePosition();
 		// 保存策略配置
 		saveStrategySetting();
-		this.trading = false;
+		this.tradingStatus = false;
 		try {
-			onStopTrading(isException);
+			onStopTrading(finishedCorrectly);
 		} catch (Exception e) {
 			log.error(logStr + "策略停止后调用onStopTrading发生异常!", e);
 		}
@@ -207,11 +198,6 @@ public abstract class StrategyAbstract implements Strategy {
 	public void setVarValue(String key, String value) {
 		strategySetting.getVarMap().put(key, value);
 		saveStrategySetting();
-	}
-
-	@Override
-	public Map<String, StopOrder> getWorkingStopOrderMap() {
-		return workingStopOrderMap;
 	}
 
 	@Override
@@ -300,102 +286,14 @@ public abstract class StrategyAbstract implements Strategy {
 	}
 
 	@Override
-	public String sendStopOrder(String rtSymbol, String orderType, String priceType, double price, int volume,
-			String gatewayID, Strategy strategy) {
-
-		String stopOrderID = ZeusConstant.STOPORDERPREFIX + stopOrderCount + "." + id + "." + gatewayID;
-
-		StopOrder stopOrder = new StopOrder();
-		stopOrder.setRtSymbol(rtSymbol);
-		stopOrder.setOrderType(orderType);
-		double priceTick = 0;
-
-		if (zeusEngineService.getEngineType() == ZeusConstant.ENGINE_TYPE_BACKTESTING) {
-			priceTick = strategySetting.getContractSetting(rtSymbol).getBacktestingPriceTick();
-		} else {
-			priceTick = zeusEngineService.getPriceTick(rtSymbol, gatewayID);
-		}
-		stopOrder.setPrice(CommonUtil.rountToPriceTick(priceTick, price));
-		stopOrder.setVolume(volume);
-		stopOrder.setStopOrderID(stopOrderID);
-		stopOrder.setStatus(ZeusConstant.STOPORDER_WAITING);
-		stopOrder.setGatewayID(gatewayID);
-		stopOrder.setPriceType(priceType);
-
-		if (ZeusConstant.ORDER_BUY.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_LONG);
-			stopOrder.setOffset(RtConstant.OFFSET_OPEN);
-
-		} else if (ZeusConstant.ORDER_SELL.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_SHORT);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSE);
-
-		} else if (ZeusConstant.ORDER_SHORT.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_SHORT);
-			stopOrder.setOffset(RtConstant.OFFSET_OPEN);
-
-		} else if (ZeusConstant.ORDER_COVER.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_LONG);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSE);
-
-		} else if (ZeusConstant.ORDER_SELLTODAY.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_SHORT);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSETODAY);
-
-		} else if (ZeusConstant.ORDER_SELLYESTERDAY.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_SHORT);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSEYESTERDAY);
-
-		} else if (ZeusConstant.ORDER_COVERTODAY.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_LONG);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSETODAY);
-
-		} else if (ZeusConstant.ORDER_COVERYESTERDAY.equals(orderType)) {
-
-			stopOrder.setDirection(RtConstant.DIRECTION_LONG);
-			stopOrder.setOffset(RtConstant.OFFSET_CLOSEYESTERDAY);
-		}
-
-		workingStopOrderMap.put(stopOrderID, stopOrder);
-
-		return stopOrderID;
-	}
-
-	@Override
-	public void cancelOrder(String rtOrderID) {
-		if (StringUtils.isEmpty(rtOrderID)) {
-			log.error(logStr + "无法撤单,RtOrderID为空");
+	public void cancelOrder(String originalOrderID) {
+		if (StringUtils.isEmpty(originalOrderID)) {
+			log.error(logStr + "无法撤单,originalOrderID为空");
 			return;
 		}
-		if (workingOrderMap.containsKey(rtOrderID)) {
-			zeusEngineService.cancelOrder(rtOrderID);
-			workingOrderMap.remove(rtOrderID);
-		}
-	}
-
-	@Override
-	public void cancelStopOrder(String stopOrderID) {
-		if (workingStopOrderMap.containsKey(stopOrderID)) {
-			StopOrder stopOrder = workingStopOrderMap.get(stopOrderID);
-
-			stopOrder.setStatus(ZeusConstant.STOPORDER_CANCELLED);
-
-			workingStopOrderMap.remove(stopOrderID);
-
-			try {
-				onStopOrder(stopOrder);
-			} catch (Exception e) {
-				log.error(logStr + "调用onStopOrder发生异常!", e);
-				stopTrading(true);
-			}
-
+		if (workingOrderMap.containsKey(originalOrderID)) {
+			zeusEngineService.cancelOrder(originalOrderID,getID());
+			workingOrderMap.remove(originalOrderID);
 		}
 	}
 
@@ -408,67 +306,7 @@ public abstract class StrategyAbstract implements Strategy {
 			if (!RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
 				cancelOrder(rtOrderID);
 			}
-
 		}
-
-		for (Entry<String, StopOrder> entry : workingStopOrderMap.entrySet()) {
-			String stopOrderID = entry.getKey();
-			StopOrder stopOrder = entry.getValue();
-			if (!ZeusConstant.STOPORDER_CANCELLED.equals(stopOrder.getStatus())) {
-				cancelStopOrder(stopOrderID);
-			}
-
-		}
-	}
-
-	/**
-	 * 处理停止单
-	 * 
-	 * @param tick
-	 */
-	protected void processStopOrder(Tick tick) {
-		if (!trading) {
-			return;
-		}
-		String rtSymbol = tick.getRtSymbol();
-
-		for (StopOrder stopOrder : workingStopOrderMap.values()) {
-
-			if (stopOrder.getRtSymbol().equals(rtSymbol)) {
-				// 多头停止单触发
-				boolean longTriggered = RtConstant.DIRECTION_LONG.equals(stopOrder.getDirection())
-						&& tick.getLastPrice() >= stopOrder.getPrice();
-				// 空头停止单触发
-				boolean shortTriggered = RtConstant.DIRECTION_SHORT.equals(stopOrder.getDirection())
-						&& tick.getLastPrice() <= stopOrder.getPrice();
-
-				if (longTriggered || shortTriggered) {
-					double price = 0;
-					// 涨跌停价格报单
-					if (RtConstant.DIRECTION_LONG.equals(stopOrder.getDirection())) {
-						price = tick.getUpperLimit();
-					} else {
-						price = tick.getLowerLimit();
-					}
-
-					sendOrder(rtSymbol, stopOrder.getOrderType(), stopOrder.getPriceType(), price,
-							stopOrder.getVolume(), stopOrder.getGatewayID());
-
-					stopOrder.setStatus(ZeusConstant.STOPORDER_TRIGGERED);
-
-					workingStopOrderMap.remove(stopOrder.getStopOrderID());
-
-					try {
-						onStopOrder(stopOrder);
-					} catch (Exception e) {
-						log.error(logStr + "调用onStopOrder发生异常!", e);
-						stopTrading(true);
-					}
-				}
-
-			}
-		}
-
 	}
 
 	@Override
@@ -560,13 +398,10 @@ public abstract class StrategyAbstract implements Strategy {
 	 */
 	@Override
 	public void resetStrategy(StrategySetting strategySetting) {
-		// 清空活动的停止单
-		this.workingStopOrderMap.clear();
 		// 清空委托ID过滤集合,避免影响下一个交易日回测
 		this.rtTradeIDSet.clear();
 		// 清空持仓信息
 		this.contractPositionMap.clear();
-
 		// 强制校正新的配置数据
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
@@ -610,397 +445,9 @@ public abstract class StrategyAbstract implements Strategy {
 		return contractPositionMap;
 	}
 
-//	/**
-//	 * 根据预设配置买开多
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void buyByPreset(String rtSymbol, double price) {
-//
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//
-//		ContractSetting contractSetting = strategySetting.getContractSetting(rtSymbol);
-//		if (contractSetting != null) {
-//			List<TradeGatewaySetting> tradeGateways = contractSetting.getTradeGateways();
-//			if (tradeGateways != null && !tradeGateways.isEmpty()) {
-//				if (contractPositionDetail != null) {
-//					int longPos = contractPositionDetail.getLongPos();
-//					int fixedPos = contractSetting.getTradeFixedPos();
-//					if (longPos == fixedPos) {
-//						log.warn("合约{}的多头总持仓量已经达到预设值,指令终止!", rtSymbol);
-//						return;
-//					} else if (longPos > fixedPos) {
-//						log.error("合约{}的多头总持仓量{}已经超过预设值{},指令终止!!", rtSymbol, longPos, fixedPos);
-//						stopTrading(true);
-//						return;
-//					}
-//				}
-//
-//				for (TradeGatewaySetting tradeGteway : tradeGateways) {
-//					String gatewayID = tradeGteway.getGatewayID();
-//					int gatewayFixedPos = tradeGteway.getTradeFixedPos();
-//					int tradePos = gatewayFixedPos;
-//					if (gatewayFixedPos > 0) {
-//						PositionDetail positionDetail = contractPositionDetail.getPositionDetailMap().get(gatewayID);
-//
-//						if (positionDetail != null) {
-//							int gatewayLongPos = positionDetail.getLongPos();
-//							int gatewayLongOpenFrozenPos = positionDetail.getLongOpenFrozen();
-//							if (gatewayLongPos + gatewayLongOpenFrozenPos == gatewayFixedPos) {
-//								log.warn("合约{}网关{}的多头持仓量加开仓冻结量已经达到预设值,指令忽略!", rtSymbol, gatewayID);
-//								continue;
-//							} else if (gatewayLongPos > gatewayFixedPos) {
-//								log.error("合约{}网关{}的多头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略!", rtSymbol, gatewayID,
-//										gatewayLongPos, gatewayLongOpenFrozenPos, gatewayFixedPos);
-//								stopTrading(true);
-//								continue;
-//							} else {
-//								tradePos = gatewayFixedPos - (gatewayLongPos + gatewayLongOpenFrozenPos);
-//							}
-//						}
-//
-//						buy(rtSymbol, tradePos, price, gatewayID);
-//					} else {
-//						log.error("合约{}网关{}配置中的仓位大小不正确", rtSymbol, gatewayID);
-//						stopTrading(true);
-//					}
-//				}
-//			} else {
-//				log.error("未找到合约{}配置中的网关配置", rtSymbol);
-//				stopTrading(true);
-//			}
-//		} else {
-//			log.error("未找到合约{}的配置", rtSymbol);
-//			stopTrading(true);
-//		}
-//
-//	}
-//
-//	/**
-//	 * 根据仓位通用卖平多逻辑
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 * @param offsetType
-//	 */
-//	private void commonSellByPosition(String rtSymbol, double price, int offsetType) {
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//
-//		if (contractPositionDetail != null) {
-//			int longPos = contractPositionDetail.getLongPos();
-//			if (longPos == 0) {
-//				log.warn("合约{}的多头总持仓量为0,指令终止!", rtSymbol);
-//				return;
-//			} else if (longPos < 0) {
-//				log.error("合约{}的多头总持仓量{}小于0!", rtSymbol, longPos);
-//				stopTrading(true);
-//				return;
-//			}
-//
-//			for (Entry<String, PositionDetail> entry : contractPositionDetail.getPositionDetailMap().entrySet()) {
-//				String gatewayID = entry.getKey();
-//				PositionDetail positionDetail = entry.getValue();
-//				if (positionDetail == null) {
-//					continue;
-//				}
-//
-//				if (positionDetail.getLongPos() > 0) {
-//					if (offsetType >= 0) {
-//						if (positionDetail.getLongOpenFrozen() > 0) {
-//							log.warn("合约{}网关{}多头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID,
-//									positionDetail.getLongOpenFrozen());
-//						}
-//						if (positionDetail.getLongTd() > 0) {
-//							sellTd(rtSymbol, positionDetail.getLongTd(), price, gatewayID);
-//						}
-//					}
-//					if (offsetType <= 0) {
-//						if (positionDetail.getLongYd() > 0) {
-//							sellYd(rtSymbol, positionDetail.getLongYd(), price, gatewayID);
-//						}
-//					}
-//				} else {
-//					log.error("合约{}网关{}多头持仓大小不正确", rtSymbol, gatewayID);
-//					stopTrading(true);
-//				}
-//			}
-//		} else {
-//			log.error("未找到合约{}的持仓信息", rtSymbol);
-//		}
-//	}
-//
-//	/**
-//	 * 根据仓位卖平多
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void sellByPosition(String rtSymbol, double price) {
-//		commonSellByPosition(rtSymbol, price, 0);
-//	}
-//
-//	/**
-//	 * 根据仓位卖平今多
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void sellTdByPosition(String rtSymbol, double price) {
-//		commonSellByPosition(rtSymbol, price, 1);
-//	}
-//
-//	/**
-//	 * 根据仓位卖平昨多
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void sellYdByPosition(String rtSymbol, double price) {
-//		commonSellByPosition(rtSymbol, price, -1);
-//	}
-//
-//	/**
-//	 * 根据预设配置卖开空
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void sellShortByPreset(String rtSymbol, double price) {
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//
-//		ContractSetting contractSetting = strategySetting.getContractSetting(rtSymbol);
-//		if (contractSetting != null) {
-//			List<TradeGatewaySetting> tradeGateways = contractSetting.getTradeGateways();
-//			if (tradeGateways != null && !tradeGateways.isEmpty()) {
-//
-//				if (contractPositionDetail != null) {
-//					int shortPos = contractPositionDetail.getShortPos();
-//					int fixedPos = contractSetting.getTradeFixedPos();
-//					if (shortPos == fixedPos) {
-//						log.warn("合约{}的空头总持仓量已经达到预设值,指令终止!", rtSymbol);
-//						return;
-//					} else if (shortPos > fixedPos) {
-//						log.error("合约{}的空头总持仓量{}已经超过预设值{},指令终止!", rtSymbol);
-//						stopTrading(true);
-//						return;
-//					}
-//				}
-//
-//				for (TradeGatewaySetting tradeGteway : tradeGateways) {
-//					String gatewayID = tradeGteway.getGatewayID();
-//					int gatewayFixedPos = tradeGteway.getTradeFixedPos();
-//					int tradePos = gatewayFixedPos;
-//					if (gatewayFixedPos > 0) {
-//						PositionDetail positionDetail = contractPositionDetail.getPositionDetailMap().get(gatewayID);
-//
-//						if (positionDetail != null) {
-//							int gatewayShortPos = positionDetail.getShortPos();
-//							int gatewayShortOpenFrozenPos = positionDetail.getShortOpenFrozen();
-//							if (gatewayShortPos + gatewayShortOpenFrozenPos == gatewayFixedPos) {
-//								log.warn("合约{}网关{}的空头持仓量加开仓冻结量已经达到预设值,指令忽略!", rtSymbol, gatewayID);
-//								continue;
-//							} else if (gatewayShortPos > gatewayFixedPos) {
-//								log.error("合约{}网关{}的空头持仓量{}加开仓冻结量{}已经超过预设值{},指令忽略!", rtSymbol, gatewayID,
-//										gatewayShortPos, gatewayShortOpenFrozenPos, gatewayFixedPos);
-//								stopTrading(true);
-//								continue;
-//							} else {
-//								tradePos = gatewayFixedPos - (gatewayShortPos + gatewayShortOpenFrozenPos);
-//							}
-//						}
-//
-//						sellShort(rtSymbol, tradePos, price, gatewayID);
-//					} else {
-//						log.error("合约{}网关{}配置中的仓位大小不正确", rtSymbol, gatewayID);
-//						stopTrading(true);
-//					}
-//				}
-//			} else {
-//				log.error("未找到合约{}配置中的网关配置", rtSymbol);
-//				stopTrading(true);
-//			}
-//		} else {
-//			log.error("未找到合约{}的配置", rtSymbol);
-//			stopTrading(true);
-//		}
-//
-//	}
-//
-//	/**
-//	 * 根据仓位通用买平空逻辑
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 * @param offsetType
-//	 */
-//	private void commonBuyToCoverByPosition(String rtSymbol, double price, int offsetType) {
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//		if (contractPositionDetail != null) {
-//			int shortPos = contractPositionDetail.getShortPos();
-//			if (shortPos == 0) {
-//				log.warn("合约{}的空头总持仓量为0,指令终止!", rtSymbol);
-//				return;
-//			} else if (shortPos < 0) {
-//				log.error("合约{}的空头总持仓量{}小于0!", rtSymbol, shortPos);
-//				stopTrading(true);
-//				return;
-//			}
-//
-//			for (Entry<String, PositionDetail> entry : contractPositionDetail.getPositionDetailMap().entrySet()) {
-//				String gatewayID = entry.getKey();
-//				PositionDetail positionDetail = entry.getValue();
-//				if (positionDetail == null) {
-//					continue;
-//				}
-//
-//				if (positionDetail.getShortPos() > 0) {
-//					if (offsetType >= 0) {
-//						if (positionDetail.getShortOpenFrozen() > 0) {
-//							log.warn("合约{}网关{}空头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID,
-//									positionDetail.getShortOpenFrozen());
-//						}
-//
-//						if (positionDetail.getShortTd() > 0) {
-//							buyToCoverTd(rtSymbol, positionDetail.getShortTd(), price, gatewayID);
-//						}
-//					}
-//					if (offsetType <= 0) {
-//						if (positionDetail.getShortYd() > 0) {
-//							buyToCoverYd(rtSymbol, positionDetail.getShortYd(), price, gatewayID);
-//						}
-//					}
-//
-//				} else {
-//					log.error("合约{}网关{}空头持仓大小不正确", rtSymbol, gatewayID);
-//					stopTrading(true);
-//				}
-//			}
-//		} else {
-//			log.error("未找到合约{}的持仓信息", rtSymbol);
-//		}
-//	}
-//
-//	/**
-//	 * 根据仓位买平空
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void buyToCoverByPosition(String rtSymbol, double price) {
-//		commonBuyToCoverByPosition(rtSymbol, price, 0);
-//
-//	}
-//
-//	/**
-//	 * 根据仓位买平今空
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void buyToCoverTdByPosition(String rtSymbol, double price) {
-//		commonBuyToCoverByPosition(rtSymbol, price, 1);
-//
-//	}
-//
-//	/**
-//	 * 根据仓位买平昨空
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void buyToCoverYdByPosition(String rtSymbol, double price) {
-//		commonBuyToCoverByPosition(rtSymbol, price, -1);
-//	}
-//
-//	/**
-//	 * 根据仓位买多锁空
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void buyToLockByPosition(String rtSymbol, double price) {
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//		if (contractPositionDetail != null) {
-//			int shortPos = contractPositionDetail.getShortPos();
-//			if (shortPos == 0) {
-//				log.warn("合约{}的空头总持仓量为0,指令终止!", rtSymbol);
-//				return;
-//			} else if (shortPos < 0) {
-//				log.error("合约{}的空头总持仓量{}小于0!", rtSymbol, shortPos);
-//				stopTrading(true);
-//				return;
-//			}
-//
-//			for (Entry<String, PositionDetail> entry : contractPositionDetail.getPositionDetailMap().entrySet()) {
-//				String gatewayID = entry.getKey();
-//				PositionDetail positionDetail = entry.getValue();
-//				if (positionDetail == null) {
-//					continue;
-//				}
-//				if (positionDetail.getShortOpenFrozen() > 0) {
-//					log.warn("合约{}网关{}空头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID, positionDetail.getShortOpenFrozen());
-//				}
-//				if (positionDetail.getShortPos() > 0) {
-//					buy(rtSymbol, positionDetail.getShortPos(), price, gatewayID);
-//				} else {
-//					log.error("合约{}网关{}空头持仓大小不正确", rtSymbol, gatewayID);
-//					stopTrading(true);
-//				}
-//			}
-//		} else {
-//			log.error("未找到合约{}的持仓信息", rtSymbol);
-//		}
-//	}
-//
-//	/**
-//	 * 根据仓位卖空锁多
-//	 * 
-//	 * @param rtSymbol
-//	 * @param price
-//	 */
-//	public void sellShortToLockByPosition(String rtSymbol, double price) {
-//		ContractPositionDetail contractPositionDetail = contractPositionMap.get(rtSymbol);
-//
-//		if (contractPositionDetail != null) {
-//			int longPos = contractPositionDetail.getLongPos();
-//			if (longPos == 0) {
-//				log.warn("合约{}的多头总持仓量为0,指令终止!", rtSymbol);
-//				return;
-//			} else if (longPos < 0) {
-//				log.error("合约{}的多头总持仓量{}小于0!", rtSymbol, longPos);
-//				stopTrading(true);
-//				return;
-//			}
-//
-//			for (Entry<String, PositionDetail> entry : contractPositionDetail.getPositionDetailMap().entrySet()) {
-//				String gatewayID = entry.getKey();
-//				PositionDetail positionDetail = entry.getValue();
-//				if (positionDetail == null) {
-//
-//					continue;
-//				}
-//
-//				if (positionDetail.getLongPos() > 0) {
-//					if (positionDetail.getLongOpenFrozen() > 0) {
-//						log.warn("合约{}网关{}多头开仓冻结为{},这部分不会被处理", rtSymbol, gatewayID, positionDetail.getLongOpenFrozen());
-//					}
-//					sellShort(rtSymbol, positionDetail.getLongPos(), price, gatewayID);
-//				} else {
-//					log.error("合约{}网关{}多头持仓大小不正确", rtSymbol, gatewayID);
-//					stopTrading(true);
-//				}
-//			}
-//		} else {
-//			log.error("未找到合约{}的持仓信息", rtSymbol);
-//		}
-//	}
-
 	@Override
 	public void processTick(Tick tick) {
 		try {
-			// 处理停止单
-			processStopOrder(tick);
 			onTick(tick);
 			// 基于合约的onBar和onMinBar
 			String bgKey = tick.getRtSymbol();
@@ -1051,9 +498,9 @@ public abstract class StrategyAbstract implements Strategy {
 	@Override
 	public void processOrder(Order order) {
 		try {
-			workingOrderMap.put(order.getRtOrderID(), order);
+			workingOrderMap.put(order.getOriginalOrderID(), order);
 			if (RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
-				workingOrderMap.remove(order.getRtOrderID());
+				workingOrderMap.remove(order.getOriginalOrderID());
 			}
 			if (contractPositionMap.containsKey(order.getRtSymbol())) {
 				ContractPositionDetail contractPositionDetail = contractPositionMap.get(order.getRtSymbol());
