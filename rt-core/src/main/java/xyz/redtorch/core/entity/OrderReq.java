@@ -26,7 +26,8 @@ public class OrderReq implements Serializable {
 	private String offset; // 报单开平仓
 	private String priceType; // 报单成交数量
 
-	private String originalOrderID;// 发起ID
+	private String originalOrderID;// 原始ID
+	private String operatorID;// 操作者ID
 
 	// IB预留
 	private String productClass; // 合约类型
@@ -141,6 +142,14 @@ public class OrderReq implements Serializable {
 		this.originalOrderID = originalOrderID;
 	}
 
+	public String getOperatorID() {
+		return operatorID;
+	}
+
+	public void setOperatorID(String operatorID) {
+		this.operatorID = operatorID;
+	}
+
 	public String getProductClass() {
 		return productClass;
 	}
@@ -212,6 +221,7 @@ public class OrderReq implements Serializable {
 				+ ((lastTradeDateOrContractMonth == null) ? 0 : lastTradeDateOrContractMonth.hashCode());
 		result = prime * result + ((multiplier == null) ? 0 : multiplier.hashCode());
 		result = prime * result + ((offset == null) ? 0 : offset.hashCode());
+		result = prime * result + ((operatorID == null) ? 0 : operatorID.hashCode());
 		result = prime * result + ((optionType == null) ? 0 : optionType.hashCode());
 		result = prime * result + ((originalOrderID == null) ? 0 : originalOrderID.hashCode());
 		long temp;
@@ -287,6 +297,11 @@ public class OrderReq implements Serializable {
 				return false;
 		} else if (!offset.equals(other.offset))
 			return false;
+		if (operatorID == null) {
+			if (other.operatorID != null)
+				return false;
+		} else if (!operatorID.equals(other.operatorID))
+			return false;
 		if (optionType == null) {
 			if (other.optionType != null)
 				return false;
@@ -337,9 +352,9 @@ public class OrderReq implements Serializable {
 				+ accountID + ", rtAccountID=" + rtAccountID + ", symbol=" + symbol + ", exchange=" + exchange
 				+ ", rtSymbol=" + rtSymbol + ", price=" + price + ", volume=" + volume + ", direction=" + direction
 				+ ", offset=" + offset + ", priceType=" + priceType + ", originalOrderID=" + originalOrderID
-				+ ", productClass=" + productClass + ", currency=" + currency + ", expiry=" + expiry + ", strikePrice="
-				+ strikePrice + ", optionType=" + optionType + ", lastTradeDateOrContractMonth="
-				+ lastTradeDateOrContractMonth + ", multiplier=" + multiplier + "]";
+				+ ", operatorID=" + operatorID + ", productClass=" + productClass + ", currency=" + currency
+				+ ", expiry=" + expiry + ", strikePrice=" + strikePrice + ", optionType=" + optionType
+				+ ", lastTradeDateOrContractMonth=" + lastTradeDateOrContractMonth + ", multiplier=" + multiplier + "]";
 	}
 
 }

@@ -25,103 +25,92 @@ public class Account implements Serializable {
 	private double margin; // 保证金占用
 	private double closeProfit; // 平仓盈亏
 	private double positionProfit; // 持仓盈亏
-
+	private double deposit; // 入金
+	private double withdraw; // 出金
 	public String getGatewayID() {
 		return gatewayID;
 	}
-
 	public void setGatewayID(String gatewayID) {
 		this.gatewayID = gatewayID;
 	}
-
 	public String getGatewayDisplayName() {
 		return gatewayDisplayName;
 	}
-
 	public void setGatewayDisplayName(String gatewayDisplayName) {
 		this.gatewayDisplayName = gatewayDisplayName;
 	}
-
 	public String getAccountID() {
 		return accountID;
 	}
-
 	public void setAccountID(String accountID) {
 		this.accountID = accountID;
 	}
-
 	public String getRtAccountID() {
 		return rtAccountID;
 	}
-
 	public void setRtAccountID(String rtAccountID) {
 		this.rtAccountID = rtAccountID;
 	}
-
 	public String getCurrency() {
 		return currency;
 	}
-
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-
 	public double getPreBalance() {
 		return preBalance;
 	}
-
 	public void setPreBalance(double preBalance) {
 		this.preBalance = preBalance;
 	}
-
 	public double getBalance() {
 		return balance;
 	}
-
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
 	public double getAvailable() {
 		return available;
 	}
-
 	public void setAvailable(double available) {
 		this.available = available;
 	}
-
 	public double getCommission() {
 		return commission;
 	}
-
 	public void setCommission(double commission) {
 		this.commission = commission;
 	}
-
 	public double getMargin() {
 		return margin;
 	}
-
 	public void setMargin(double margin) {
 		this.margin = margin;
 	}
-
 	public double getCloseProfit() {
 		return closeProfit;
 	}
-
 	public void setCloseProfit(double closeProfit) {
 		this.closeProfit = closeProfit;
 	}
-
 	public double getPositionProfit() {
 		return positionProfit;
 	}
-
 	public void setPositionProfit(double positionProfit) {
 		this.positionProfit = positionProfit;
 	}
-
+	public double getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(double deposit) {
+		this.deposit = deposit;
+	}
+	public double getWithdraw() {
+		return withdraw;
+	}
+	public void setWithdraw(double withdraw) {
+		this.withdraw = withdraw;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,6 +126,8 @@ public class Account implements Serializable {
 		temp = Double.doubleToLongBits(commission);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
+		temp = Double.doubleToLongBits(deposit);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((gatewayDisplayName == null) ? 0 : gatewayDisplayName.hashCode());
 		result = prime * result + ((gatewayID == null) ? 0 : gatewayID.hashCode());
 		temp = Double.doubleToLongBits(margin);
@@ -146,9 +137,10 @@ public class Account implements Serializable {
 		temp = Double.doubleToLongBits(preBalance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((rtAccountID == null) ? 0 : rtAccountID.hashCode());
+		temp = Double.doubleToLongBits(withdraw);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -176,6 +168,8 @@ public class Account implements Serializable {
 				return false;
 		} else if (!currency.equals(other.currency))
 			return false;
+		if (Double.doubleToLongBits(deposit) != Double.doubleToLongBits(other.deposit))
+			return false;
 		if (gatewayDisplayName == null) {
 			if (other.gatewayDisplayName != null)
 				return false;
@@ -197,14 +191,17 @@ public class Account implements Serializable {
 				return false;
 		} else if (!rtAccountID.equals(other.rtAccountID))
 			return false;
+		if (Double.doubleToLongBits(withdraw) != Double.doubleToLongBits(other.withdraw))
+			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "Account [gatewayID=" + gatewayID + ", gatewayDisplayName=" + gatewayDisplayName + ", accountID="
 				+ accountID + ", rtAccountID=" + rtAccountID + ", currency=" + currency + ", preBalance=" + preBalance
 				+ ", balance=" + balance + ", available=" + available + ", commission=" + commission + ", margin="
-				+ margin + ", closeProfit=" + closeProfit + ", positionProfit=" + positionProfit + "]";
+				+ margin + ", closeProfit=" + closeProfit + ", positionProfit=" + positionProfit + ", deposit="
+				+ deposit + ", withdraw=" + withdraw + "]";
 	}
+
 }
