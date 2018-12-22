@@ -24,8 +24,8 @@ public class ZeusTradingBaseServiceImpl implements ZeusTradingBaseService, Initi
 
 	private final static Logger log = LoggerFactory.getLogger(ZeusTradingBaseServiceImpl.class);
 
-	private Map<String, String> originalOrderIDMap = new HashMap<>();
-	private Map<String, String> rtOrderIDMap = new HashMap<>();
+	private Map<String, String> originalOrderIDMap = new HashMap<>(); // k-> rtOrderID, v-> originalOrderID
+	private Map<String, String> rtOrderIDMap = new HashMap<>(); // k-> originalOrderID, v-> rtOrderID
 	private Map<String, StrategyProcessReport> strategyProcessReportMap = new ConcurrentHashMap<>();
 
 	// 使用无大小限制的线程池,线程空闲60s会被释放
@@ -85,7 +85,7 @@ public class ZeusTradingBaseServiceImpl implements ZeusTradingBaseService, Initi
 		@Override
 		public void run() {
 
-			log.info("策略报告过期检查已启动");
+			log.info("策略报告过期检查线程已启动!");
 
 			while (!Thread.currentThread().isInterrupted()) {
 				Iterator<Map.Entry<String, StrategyProcessReport>> it = strategyProcessReportMap.entrySet().iterator();

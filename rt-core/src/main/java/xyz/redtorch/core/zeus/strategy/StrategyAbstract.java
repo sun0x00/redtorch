@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,11 +13,13 @@ import org.slf4j.LoggerFactory;
 
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Bar;
-import xyz.redtorch.core.entity.Contract;
 import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
+import xyz.redtorch.core.utils.BarGenerator;
+import xyz.redtorch.core.utils.BarGenerator.CommonBarCallBack;
+import xyz.redtorch.core.utils.BarGenerator.XMinBarGenerator;
 import xyz.redtorch.core.zeus.ZeusConstant;
 import xyz.redtorch.core.zeus.ZeusEngineService;
 import xyz.redtorch.core.zeus.entity.ContractPositionDetail;
@@ -62,11 +63,6 @@ public abstract class StrategyAbstract implements Strategy {
 		this.logStr = "策略-[" + strategySetting.getStrategyName() + "] ID-[" + strategySetting.getStrategyID() + "] >>> ";
 
 		this.zeusEngineService = zeusEngineService;
-
-//		/**
-//		 * 初始化基本的持仓数据结构
-//		 */
-//		initContractPositionMap();
 
 	}
 
@@ -202,34 +198,34 @@ public abstract class StrategyAbstract implements Strategy {
 
 	@Override
 	public String sendOrder(String rtSymbol, String orderType, String priceType, double price, int volume,
-			String gatewayID) {
+			String rtAccountID) {
 
-		String symbol;
-		String exchange;
-		double priceTick = 0;
+
+		OrderReq orderReq = new OrderReq();
+		
+		orderReq.setRtAccountID(rtAccountID);
+		orderReq.setRtSymbol(rtSymbol);
+		orderReq.setPrice(price);
+		orderReq.setVolume(volume);
+		// 使用策略ID作为OID
+		orderReq.setOperatorID(getID());
+
+		orderReq.setPriceType(priceType);
+		
 		if (zeusEngineService.getEngineType() == ZeusConstant.ENGINE_TYPE_BACKTESTING) {
+			String symbol;
+			String exchange;
+			double priceTick = 0;
 			String[] rtSymbolArray = rtSymbol.split("\\.");
 			symbol = rtSymbolArray[0];
 			exchange = rtSymbolArray[1];
 			priceTick = strategySetting.getContractSetting(rtSymbol).getBacktestingPriceTick();
-		} else {
-			Contract contract = zeusEngineService.getContract(rtSymbol, gatewayID);
-			symbol = contract.getSymbol();
-			exchange = contract.getExchange();
-			priceTick = contract.getPriceTick();
-
+			
+			orderReq.setSymbol(symbol);
+			orderReq.setExchange(exchange);
+			orderReq.setPrice(CommonUtil.rountToPriceTick(priceTick, price));
 		}
 
-		OrderReq orderReq = new OrderReq();
-
-		orderReq.setSymbol(symbol);
-		orderReq.setExchange(exchange);
-		orderReq.setRtSymbol(rtSymbol);
-		orderReq.setPrice(CommonUtil.rountToPriceTick(priceTick, price));
-		orderReq.setVolume(volume);
-		orderReq.setGatewayID(gatewayID);
-
-		orderReq.setPriceType(priceType);
 
 		if (ZeusConstant.ORDER_BUY.equals(orderType)) {
 
@@ -273,8 +269,7 @@ public abstract class StrategyAbstract implements Strategy {
 		}
 
 		// 这里可以考虑换为更快的唯一ID生成方式 TODO
-		String originalOrderID = UUID.randomUUID().toString();
-		orderReq.setOriginalOrderID(originalOrderID);
+		String originalOrderID = orderReq.getOriginalOrderID();
 
 		zeusEngineService.sendOrder(orderReq);
 
@@ -301,60 +296,60 @@ public abstract class StrategyAbstract implements Strategy {
 	public void cancelAll() {
 
 		for (Entry<String, Order> entry : workingOrderMap.entrySet()) {
-			String rtOrderID = entry.getKey();
+			String originalOrderID = entry.getKey();
 			Order order = entry.getValue();
 			if (!RtConstant.STATUS_FINISHED.contains(order.getStatus())) {
-				cancelOrder(rtOrderID);
+				cancelOrder(originalOrderID);
 			}
 		}
 	}
 
 	@Override
-	public String buy(String rtSymbol, int volume, double price, String gatewayID) {
+	public String buy(String rtSymbol, int volume, double price, String rtAccountID) {
 
-		return sendOrder(rtSymbol, ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_BUY, RtConstant.PRICETYPE_LIMITPRICE, price, volume, rtAccountID);
 
 	}
 
 	@Override
-	public String sell(String rtSymbol, int volume, double price, String gatewayID) {
-		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELL, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String sell(String rtSymbol, int volume, double price, String rtAccountID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELL, RtConstant.PRICETYPE_LIMITPRICE, price, volume, rtAccountID);
 	}
 
 	@Override
-	public String sellTd(String rtSymbol, int volume, double price, String gatewayID) {
+	public String sellTd(String rtSymbol, int volume, double price, String rtAccountID) {
 		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELLTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
-				gatewayID);
+				rtAccountID);
 	}
 
 	@Override
-	public String sellYd(String rtSymbol, int volume, double price, String gatewayID) {
+	public String sellYd(String rtSymbol, int volume, double price, String rtAccountID) {
 		return sendOrder(rtSymbol, ZeusConstant.ORDER_SELLYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
-				gatewayID);
+				rtAccountID);
 	}
 
 	@Override
-	public String sellShort(String rtSymbol, int volume, double price, String gatewayID) {
-		return sendOrder(rtSymbol, ZeusConstant.ORDER_SHORT, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String sellShort(String rtSymbol, int volume, double price, String rtAccountID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_SHORT, RtConstant.PRICETYPE_LIMITPRICE, price, volume, rtAccountID);
 	}
 
 	@Override
-	public String buyToCover(String rtSymbol, int volume, double price, String gatewayID) {
-		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVER, RtConstant.PRICETYPE_LIMITPRICE, price, volume, gatewayID);
+	public String buyToCover(String rtSymbol, int volume, double price, String rtAccountID) {
+		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVER, RtConstant.PRICETYPE_LIMITPRICE, price, volume, rtAccountID);
 
 	}
 
 	@Override
-	public String buyToCoverTd(String rtSymbol, int volume, double price, String gatewayID) {
+	public String buyToCoverTd(String rtSymbol, int volume, double price, String rtAccountID) {
 		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVERTODAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
-				gatewayID);
+				rtAccountID);
 
 	}
 
 	@Override
-	public String buyToCoverYd(String rtSymbol, int volume, double price, String gatewayID) {
+	public String buyToCoverYd(String rtSymbol, int volume, double price, String rtAccountID) {
 		return sendOrder(rtSymbol, ZeusConstant.ORDER_COVERYESTERDAY, RtConstant.PRICETYPE_LIMITPRICE, price, volume,
-				gatewayID);
+				rtAccountID);
 
 	}
 
@@ -364,7 +359,7 @@ public abstract class StrategyAbstract implements Strategy {
 
 	/**
 	 * 在一分钟Bar产生时调用 <br/>
-	 * 注意,此处默认<b>过滤</b>同一个策略使用多个网关订阅同一个品种导致的同一个品种重复调用
+	 * 注意,此处默认<b>过滤</b>同一个策略使用多个网关订阅同一个合约导致的同一个合约同一个时间的bar重复调用
 	 * 
 	 * @param bar
 	 * @throws Exception
@@ -373,7 +368,7 @@ public abstract class StrategyAbstract implements Strategy {
 
 	/**
 	 * 在X分钟Bar产生时调用 <br/>
-	 * 注意,此处默认<b>过滤</b>同一个策略使用多个网关订阅同一个品种导致的同一个品种重复调用
+	 * 注意,此处默认<b>过滤</b>同一个策略使用多个网关订阅同一个合约导致的同一个合约同一个时间的bar重复调用
 	 * 
 	 * @param bar
 	 * @throws Exception
@@ -405,38 +400,10 @@ public abstract class StrategyAbstract implements Strategy {
 		// 强制校正新的配置数据
 		strategySetting.fixSetting();
 		this.strategySetting = strategySetting;
-
-//		 //初始化持仓
-//		initContractPositionMap();
-
 	}
 
-//	/**
-//	 * 初始化持仓数据结构
-//	 */
-//	private void initContractPositionMap() {
-//
-//		String tradingDay = strategySetting.getTradingDay();
-//
-//		for (ContractSetting contractSetting : strategySetting.getContracts()) {
-//			String rtSymbol = contractSetting.getRtSymbol();
-//			String exchange = contractSetting.getExchange();
-//			int contractSize = contractSetting.getSize();
-//
-//			ContractPositionDetail contractPositionDetail = new ContractPositionDetail(rtSymbol, tradingDay, name, id,
-//					exchange, contractSize);
-//			for (TradeGatewaySetting tradeGatewaySetting : contractSetting.getTradeGateways()) {
-//				String gatewayID = tradeGatewaySetting.getGatewayID();
-//				PositionDetail positionDetail = new PositionDetail(rtSymbol, tradeGatewaySetting.getGatewayID(),
-//						tradingDay, name, id, exchange, contractSize);
-//				contractPositionDetail.getPositionDetailMap().put(gatewayID, positionDetail);
-//			}
-//			contractPositionMap.put(rtSymbol, contractPositionDetail);
-//		}
-//	}
-
 	/**
-	 * 获取持仓结构
+	 * 获取持仓Map
 	 * 
 	 * @return
 	 */
@@ -483,6 +450,8 @@ public abstract class StrategyAbstract implements Strategy {
 					ContractPositionDetail contractPositionDetail = contractPositionMap.get(trade.getRtSymbol());
 					contractPositionDetail.updateTrade(trade);
 					savePosition();
+				}else {
+					log.warn("{} 合约[{}]的预配置不存在,不会更新数据库持仓！", logStr, trade.getRtSymbol());
 				}
 				rtTradeIDSet.add(trade.getRtTradeID());
 
@@ -505,6 +474,8 @@ public abstract class StrategyAbstract implements Strategy {
 			if (contractPositionMap.containsKey(order.getRtSymbol())) {
 				ContractPositionDetail contractPositionDetail = contractPositionMap.get(order.getRtSymbol());
 				contractPositionDetail.updateOrder(order);
+			}else {
+				log.warn("{} 合约[{}]的预配置不存在,不会更新数据库持仓！", logStr, order.getRtSymbol());
 			}
 			onOrder(order);
 		} catch (Exception e) {
@@ -554,143 +525,5 @@ public abstract class StrategyAbstract implements Strategy {
 		}
 	}
 
-	// ##############################################################################
-
-	/**
-	 * CallBack接口,用于注册Bar生成器回调事件
-	 */
-	public static interface CommonBarCallBack {
-		void call(Bar bar);
-	}
-
-	/**
-	 * 1分钟Bar生成器
-	 */
-	public static class BarGenerator {
-
-		private Bar bar = null;
-		private Tick lastTick = null;
-		CommonBarCallBack commonBarCallBack;
-
-		BarGenerator(CommonBarCallBack commonBarCallBack) {
-			this.commonBarCallBack = commonBarCallBack;
-		}
-
-		/**
-		 * 更新Tick数据
-		 * 
-		 * @param tick
-		 */
-		public void updateTick(Tick tick) {
-
-			boolean newMinute = false;
-
-			if (lastTick != null) {
-				// 此处过滤用于一个策略在多个网关订阅了同一个合约的情况下,Tick到达顺序和实际产生顺序不一致或者重复的情况
-				if (tick.getDateTime().getMillis() <= lastTick.getDateTime().getMillis()) {
-					return;
-				}
-			}
-
-			if (bar == null) {
-				bar = new Bar();
-				newMinute = true;
-			} else if (bar.getDateTime().getMinuteOfDay() != tick.getDateTime().getMinuteOfDay()) {
-
-				bar.setDateTime(bar.getDateTime().withSecondOfMinute(0).withMillisOfSecond(0));
-				bar.setActionTime(bar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
-
-				// 回调OnBar方法
-				commonBarCallBack.call(bar);
-
-				bar = new Bar();
-				newMinute = true;
-			}
-
-			if (newMinute) {
-				bar.setGatewayID(tick.getGatewayID());
-				bar.setExchange(tick.getExchange());
-				bar.setRtSymbol(tick.getRtSymbol());
-				bar.setSymbol(tick.getSymbol());
-				bar.setRtBarID(tick.getRtTickID());
-
-				bar.setTradingDay(tick.getTradingDay());
-				;
-				bar.setActionDay(tick.getActionDay());
-
-				bar.setOpen(tick.getLastPrice());
-				bar.setHigh(tick.getLastPrice());
-				bar.setLow(tick.getLastPrice());
-
-				bar.setDateTime(tick.getDateTime());
-			} else {
-				bar.setHigh(Math.max(bar.getHigh(), tick.getLastPrice()));
-				bar.setLow(Math.min(bar.getLow(), tick.getLastPrice()));
-			}
-
-			bar.setClose(tick.getLastPrice());
-			bar.setOpenInterest(tick.getOpenInterest());
-			if (lastTick != null) {
-				bar.setVolume(bar.getVolume() + (tick.getVolume() - lastTick.getVolume()));
-			}
-
-			lastTick = tick;
-		}
-	}
-
-	/**
-	 * X分钟Bar生成器,xMin在策略初始化时指定,当值大于1小于时生效,建议此数值不要大于120
-	 */
-	public static class XMinBarGenerator {
-
-		private int xMin;
-		private Bar xMinBar = null;
-		CommonBarCallBack commonBarCallBack;
-
-		XMinBarGenerator(int xMin, CommonBarCallBack commonBarCallBack) {
-			this.commonBarCallBack = commonBarCallBack;
-			this.xMin = xMin;
-		}
-
-		public void updateBar(Bar bar) {
-
-			if (xMinBar == null) {
-				xMinBar = new Bar();
-				xMinBar.setGatewayID(bar.getGatewayID());
-				xMinBar.setExchange(bar.getExchange());
-				xMinBar.setRtSymbol(bar.getRtSymbol());
-				xMinBar.setSymbol(bar.getSymbol());
-				xMinBar.setRtBarID(bar.getRtBarID());
-
-				xMinBar.setTradingDay(bar.getTradingDay());
-				xMinBar.setActionDay(bar.getActionDay());
-
-				xMinBar.setOpen(bar.getOpen());
-				xMinBar.setHigh(bar.getHigh());
-				xMinBar.setLow(bar.getLow());
-
-			} else {
-				xMinBar.setHigh(Math.max(xMinBar.getHigh(), bar.getHigh()));
-				xMinBar.setLow(Math.min(xMinBar.getLow(), bar.getLow()));
-			}
-
-			xMinBar.setDateTime(bar.getDateTime());
-			xMinBar.setClose(bar.getClose());
-			xMinBar.setOpenInterest(bar.getOpenInterest());
-			xMinBar.setVolume(xMinBar.getVolume() + bar.getVolume());
-
-			if ((xMinBar.getDateTime().getMinuteOfDay() + 1) % xMin == 0) {
-
-				xMinBar.setDateTime(xMinBar.getDateTime().plusMinutes(1).withSecondOfMinute(0).withMillisOfSecond(0));
-				xMinBar.setActionTime(xMinBar.getDateTime().toString(RtConstant.T_FORMAT_WITH_MS_FORMATTER));
-
-				// 回调onXMinBar方法
-				commonBarCallBack.call(xMinBar);
-
-				xMinBar = null;
-			}
-
-		}
-	}
 
 }

@@ -1,0 +1,76 @@
+{ 
+    "className" : "xyz.redtorch.strategy.pub.impl.StrategyDemo", 
+    "contracts" : [
+        {
+            "alias" : "IH", 
+            "backtestingPriceTick" : 0.2, 
+            "backtestingRate" : 0.001, 
+            "backtestingSlippage" : 0.4, 
+            "exchange" : "CFFEX", 
+            "rtSymbol" : "IH1903.CFFEX", 
+            "size" : 300.0, 
+            "symbol" : "IH1903"
+        }, 
+        {
+            "alias" : "IC", 
+            "backtestingPriceTick" : 0.2, 
+            "backtestingRate" : 0.001, 
+            "backtestingSlippage" : 0.4, 
+            "exchange" : "CFFEX", 
+            "rtSymbol" : "IC1903.CFFEX", 
+            "size" : 200.0, 
+            "symbol" : "IC1903"
+        }, 
+        {
+            "alias" : "IF", 
+            "backtestingPriceTick" : 0.2, 
+            "backtestingRate" : 0.001, 
+            "backtestingSlippage" : 0.4, 
+            "exchange" : "CFFEX", 
+            "rtSymbol" : "IF1903.CFFEX", 
+            "size" : 300.0, 
+            "symbol" : "IF1903"
+        }
+    ], 
+    "lastTradingDay" : false, 
+    "paramMap" : {
+        "P0" : "0", 
+        "P1" : "1"
+    }, 
+    "preTradingDay" : "20180314", 
+    "strategyID" : "DEMO00", 
+    "strategyName" : "DEMO00", 
+    "subscribeReqList" : [
+        {
+            "exchange" : "CFFEX", 
+            "gatewayID" : "657552c83e33496e8d675edaae9acea9", 
+            "productClass" : "", 
+            "rtSymbol" : "IH1903.CFFEX", 
+            "strikePrice" : 0.0, 
+            "symbol" : "IH1903"
+        }, 
+        {
+            "exchange" : "CFFEX", 
+            "gatewayID" : "657552c83e33496e8d675edaae9acea9", 
+            "productClass" : "", 
+            "rtSymbol" : "IF1903.CFFEX", 
+            "strikePrice" : 0.0, 
+            "symbol" : "IF1903"
+        }, 
+        {
+            "exchange" : "CFFEX", 
+            "gatewayID" : "657552c83e33496e8d675edaae9acea9", 
+            "productClass" : "", 
+            "rtSymbol" : "IC1903.CFFEX", 
+            "strikePrice" : 0.0, 
+            "symbol" : "IC1903"
+        }
+    ], 
+    "tradingDay" : "20180315", 
+    "varMap" : {
+        "V0" : "0", 
+        "V1" : "1"
+    }, 
+    "version" : "a62c17309a8d4565a87b35792bbc1763", 
+    "xMin" : 15.0
+}

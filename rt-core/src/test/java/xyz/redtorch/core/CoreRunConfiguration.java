@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
-import xyz.redtorch.core.zeus.impl.TradingEngineServiceImpl;
+import xyz.redtorch.core.zeus.impl.ZeusTradingEngineServiceImpl;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"xyz.redtorch.core"}, excludeFilters={
-		  @ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=TradingEngineServiceImpl.class)})
+		  @ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=ZeusTradingEngineServiceImpl.class)})
 public class CoreRunConfiguration {
     public static void main(String[] args) {
         SpringApplication.run(CoreRunConfiguration.class, args);

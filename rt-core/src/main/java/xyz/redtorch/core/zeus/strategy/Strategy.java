@@ -166,7 +166,7 @@ public interface Strategy {
 	StrategySetting getStrategySetting();
 
 	/**
-	 * 获取持仓结构
+	 * 获取持仓Map
 	 * 
 	 * @return
 	 */

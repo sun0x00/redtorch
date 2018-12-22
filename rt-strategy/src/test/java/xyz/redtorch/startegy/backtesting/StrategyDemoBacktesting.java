@@ -37,7 +37,7 @@ public class StrategyDemoBacktesting {
 	@Test
 	public void testStrategy() throws Exception {
 
-		String strategyID = "StrategyDemo01";
+		String strategyID = "DEMO00";
 		boolean reloadStrategyEveryday = false;
 		int backtestingDataMode = ZeusBacktestingEngine.DATA_MODE_BAR;
 		List<BacktestingSection> backestingSectionList = new ArrayList<>();
@@ -48,22 +48,26 @@ public class StrategyDemoBacktesting {
 		backtestingSection.addAliasRtSymbol("IC", "IC1803.CFFEX");
 		backtestingSection.addAliasRtSymbol("IH", "IH1803.CFFEX");
 
-		backtestingSection.addSubscribeRtSymbol("9999.724SN02.187.10030", "IF1803.CFFEX");
-		backtestingSection.addSubscribeRtSymbol("9999.724SN01.187.10030", "IC1803.CFFEX");
-		backtestingSection.addSubscribeRtSymbol("9999.724SN01.187.10030", "IH1803.CFFEX");
+		backtestingSection.addSubscribeReq("7acc51e2434841eaa0970b4ce5cf89e8", "IF1803.CFFEX");
+		backtestingSection.addSubscribeReq("7acc51e2434841eaa0970b4ce5cf89e8", "IC1803.CFFEX");
+		backtestingSection.addSubscribeReq("e6527bd9ca074f48be400119e4f9a10c", "IH1803.CFFEX");
 
 		backestingSectionList.add(backtestingSection);
 
-		// backtestingSection= new BacktestingSection();
-		// backtestingSection.setStartDate("20180321");
-		// backtestingSection.setEndDate("20180323");
-		// backtestingSection.addAliasRtSymbol("IF", "1804");
-		// backtestingSection.addAliasRtSymbol("IC", "1804");
-		// backtestingSection.addAliasRtSymbol("IH", "1804");
-		// backestingSectionList.add(backtestingSection);
+		backtestingSection= new BacktestingSection();
+		backtestingSection.setStartDate("20180321");
+		backtestingSection.setEndDate("20180323");
+		backtestingSection.addAliasRtSymbol("IC", "IC1804.CFFEX");
+		backtestingSection.addAliasRtSymbol("IH", "IH1804.CFFEX");
+
+		backtestingSection.addSubscribeReq("7acc51e2434841eaa0970b4ce5cf89e8", "IF1804.CFFEX");
+		backtestingSection.addSubscribeReq("7acc51e2434841eaa0970b4ce5cf89e8", "IC1804.CFFEX");
+		backtestingSection.addSubscribeReq("e6527bd9ca074f48be400119e4f9a10c", "IH1804.CFFEX"); 
+		backestingSectionList.add(backtestingSection);
 
 		ZeusBacktestingEngine backtestingEngine = new ZeusBacktestingEngineImpl(zeusDataService, strategyID,
 				backestingSectionList, backtestingDataMode, reloadStrategyEveryday, backtestingOutputDir);
 		backtestingEngine.runBacktesting();
+		
 	}
 }

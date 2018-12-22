@@ -378,8 +378,8 @@ public class ContractPositionDetail implements Serializable {
 		float tmpShortPnl = 0;
 		float tmpShortOpenContractValue = 0;
 
-		for (String gatewayName : positionDetailMap.keySet()) {
-			PositionDetail positionDetail = positionDetailMap.get(gatewayName);
+		for (String rtAccountID : positionDetailMap.keySet()) {
+			PositionDetail positionDetail = positionDetailMap.get(rtAccountID);
 			positionDetail.calculatePosition();
 			positionDetail.calculatePnl();
 

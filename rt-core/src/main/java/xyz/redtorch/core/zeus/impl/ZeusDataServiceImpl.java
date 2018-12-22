@@ -120,8 +120,8 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到tradingDay!");
 				return null;
 			}
-			if (strategySetting.getGateways() == null || strategySetting.getGateways().isEmpty()) {
-				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到gateways!");
+			if (strategySetting.getSubscribeReqList() == null || strategySetting.getSubscribeReqList().isEmpty()) {
+				log.error("根据策略ID[" + strategyID + "]查出的记录解析出错,未找到订阅记录!");
 				return null;
 			}
 
@@ -167,7 +167,7 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 				MongoDBUtil.documentToBean(document, positionDetail);
 				positionDetailList.add(positionDetail);
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-				log.error("查询持仓数据转换发生错误,Document-", document.toJson(), e);
+				log.error("查询持仓数据转换发生错误,Document-[{}]", document.toJson(), e);
 			}
 		}
 		return positionDetailList;

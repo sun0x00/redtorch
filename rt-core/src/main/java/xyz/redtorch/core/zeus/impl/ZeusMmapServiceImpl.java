@@ -22,6 +22,7 @@ import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Account;
 import xyz.redtorch.core.entity.CancelOrderReq;
+import xyz.redtorch.core.entity.Contract;
 import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Tick;
@@ -33,6 +34,7 @@ import xyz.redtorch.core.service.extend.event.FastEvent;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandler;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandlerAbstract;
 import xyz.redtorch.core.zeus.ZeusTradingBaseService;
+import xyz.redtorch.utils.CommonUtil;
 import xyz.redtorch.core.zeus.ZeusMmapService;
 
 @Service
@@ -110,7 +112,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				log.error("onOrder发生异常!!!", e);
 			}
 		} else {
-			log.warn("未能识别的事件数据类型" + JSON.toJSONString(fastEvent.getEvent()));
+			log.warn("未能识别的事件数据类型:" + JSON.toJSONString(fastEvent.getEvent()));
 		}
 	}
 
@@ -410,13 +412,28 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 						orderReq.setLastTradeDateOrContractMonth(in.readUtf8());
 						orderReq.setMultiplier(in.readUtf8());
 
+						
 						Account account = coreEngineService.getAccount(orderReq.getRtAccountID());
 						if (account != null) {
 							orderReq.setAccountID(account.getAccountID());
 							orderReq.setGatewayID(account.getGatewayID());
 							orderReq.setGatewayDisplayName(account.getGatewayDisplayName());
-							String rtOrderID = coreEngineService.sendOrder(orderReq);
-							zeusTradingBaseService.registerOriginalOrderID(rtOrderID, orderReq.getOriginalOrderID());
+							
+							Contract contract = coreEngineService.getContract(orderReq.getRtSymbol(), account.getGatewayID());
+							if(contract != null) {
+								String symbol = contract.getSymbol();
+								String exchange = contract.getExchange();
+								orderReq.setSymbol(symbol);
+								orderReq.setExchange(exchange);
+								double priceTick = contract.getPriceTick();
+								orderReq.setPrice(CommonUtil.rountToPriceTick(priceTick, orderReq.getPrice()));
+								
+								String rtOrderID = coreEngineService.sendOrder(orderReq);
+								zeusTradingBaseService.registerOriginalOrderID(rtOrderID, orderReq.getOriginalOrderID());
+							}else {
+								log.error("发单错误,无法找到合约,{}", orderReq.toString());
+							}
+
 						} else {
 							log.error("发单错误,无法找到账户,{}", orderReq.toString());
 						}

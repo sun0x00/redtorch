@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Bar;
+import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.utils.CommonUtil;
@@ -119,21 +120,21 @@ public interface ZeusBacktestingEngine extends ZeusEngineService {
 		private String startDate;
 		private String endDate;
 		private Map<String, String> aliasMap = new HashMap<>();
-		private Map<String, List<String>> gatewaySubscribeRtSymbolsMap = new HashMap<>();
+		List<SubscribeReq> subscribeReqList = new ArrayList<>();
+		
+		public void addSubscribeReq(String gatewayID, String rtSymbol) {
+			SubscribeReq subscribeReq = new SubscribeReq();
+			subscribeReq.setGatewayID(gatewayID);
+			subscribeReq.setRtSymbol(rtSymbol);
+			subscribeReqList.add(subscribeReq);
+		}
 
 		public void addAliasRtSymbol(String alias, String rtSymbol) {
 			aliasMap.put(alias, rtSymbol);
 		}
 
-		public void addSubscribeRtSymbol(String gatewayID, String rtSymbol) {
-			List<String> subscribeRtSymbols;
-			if (gatewaySubscribeRtSymbolsMap.containsKey(gatewayID)) {
-				subscribeRtSymbols = gatewaySubscribeRtSymbolsMap.get(gatewayID);
-			} else {
-				subscribeRtSymbols = new ArrayList<>();
-				gatewaySubscribeRtSymbolsMap.put(gatewayID, subscribeRtSymbols);
-			}
-			subscribeRtSymbols.add(rtSymbol);
+		public void addSubscribeRtSymbol(SubscribeReq subscribeReq) {
+			subscribeReqList.add(subscribeReq);
 		}
 
 		public String getStartDate() {
@@ -160,13 +161,14 @@ public interface ZeusBacktestingEngine extends ZeusEngineService {
 			this.aliasMap = aliasMap;
 		}
 
-		public Map<String, List<String>> getGatewaySubscribeRtSymbolsMap() {
-			return gatewaySubscribeRtSymbolsMap;
+		public List<SubscribeReq> getSubscribeReqList() {
+			return subscribeReqList;
 		}
 
-		public void setGatewaySubscribeRtSymbolsMap(Map<String, List<String>> gatewaySubscribeRtSymbolsMap) {
-			this.gatewaySubscribeRtSymbolsMap = gatewaySubscribeRtSymbolsMap;
+		public void setSubscribeReqList(List<SubscribeReq> subscribeReqList) {
+			this.subscribeReqList = subscribeReqList;
 		}
+
 	}
 
 	/**

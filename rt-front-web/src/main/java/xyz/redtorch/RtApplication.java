@@ -19,7 +19,7 @@ import com.corundumstudio.socketio.HandshakeData;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 
-import xyz.redtorch.core.zeus.impl.TradingEngineServiceImpl;
+import xyz.redtorch.core.zeus.impl.ZeusTradingEngineServiceImpl;
 import xyz.redtorch.web.service.TokenService;
 
 /**
@@ -27,7 +27,7 @@ import xyz.redtorch.web.service.TokenService;
  */
 @ServletComponentScan(basePackages = { "xyz.redtorch.web.filter" })
 @ComponentScan(basePackages = { "xyz.redtorch" }, excludeFilters = {
-		@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = { TradingEngineServiceImpl.class }) })
+		@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = { ZeusTradingEngineServiceImpl.class }) })
 @RestController
 @SpringBootApplication(exclude = { MongoAutoConfiguration.class })
 public class RtApplication {

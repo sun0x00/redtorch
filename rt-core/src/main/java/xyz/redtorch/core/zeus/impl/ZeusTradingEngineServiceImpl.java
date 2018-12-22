@@ -52,9 +52,9 @@ import xyz.redtorch.core.zeus.strategy.StrategySetting;
  * @author sun0x00@gmail.com
  */
 // @Service // 在策略项目中使用@Import引入
-public class TradingEngineServiceImpl implements ZeusEngineService, InitializingBean {
+public class ZeusTradingEngineServiceImpl implements ZeusEngineService, InitializingBean {
 
-	private Logger log = LoggerFactory.getLogger(TradingEngineServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(ZeusTradingEngineServiceImpl.class);
 
 	@Autowired
 	@Qualifier("coreEngineServiceRmiProxyFactory")
@@ -74,6 +74,9 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 	private ZeusDataService zeusDataService;
 	@Autowired
 	private ZeusTradingBaseService zeusTradingBaseService;
+	
+	// 使用无大小限制的线程池,线程空闲60s会被释放
+	private ExecutorService executor = Executors.newCachedThreadPool();
 
 	private Set<String> originalOrderIDSet = new HashSet<>();
 	private Set<String> subscribedTickKeySet = new HashSet<>();
@@ -95,9 +98,6 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 	private SingleChronicleQueue queueRx;
 	private ExcerptAppender queueTxEa;
 	private ExcerptTailer queueRxEt;
-
-	// 使用无大小限制的线程池,线程空闲60s会被释放
-	private ExecutorService executor = Executors.newCachedThreadPool();
 
 	private synchronized ExcerptAppender getQueueTxEa() {
 		return queueTxEa;
@@ -139,6 +139,7 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 			loadStrategy();
 		} else {
 			log.error("策略加载失败，检查到重复启动,进程即将退出,策略ID:" + strategyID);
+			Thread.sleep(100);
 			System.exit(0);
 		}
 
@@ -220,7 +221,9 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 			for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
 				String rtSymbol = contractSetting.getRtSymbol();
 				if (!contractPositionMap.containsKey(rtSymbol)) {
-					contractPositionMap.put(rtSymbol, new ContractPositionDetail());
+					contractPositionMap.put(rtSymbol, new ContractPositionDetail(rtSymbol, strategySetting.getTradingDay(),
+							strategySetting.getStrategyName(), strategySetting.getStrategyID(),
+							contractSetting.getExchange(), contractSetting.getSize()));
 				}
 			}
 
@@ -252,12 +255,16 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 								PositionDetail tdPositionDetail = new PositionDetail(rtSymbol, rtAccountID,
 										preTradingDay, strategyName, strategyID, ydPositionDetail.getExchange(),
 										ydPositionDetail.getContractSize());
+								
+								// 合并昨日仓位为今日昨仓
 								tdPositionDetail
 										.setLongYd(ydPositionDetail.getLongYd() + ydPositionDetail.getLongTd());
 								tdPositionDetail
 										.setShortYd(ydPositionDetail.getShortYd() + ydPositionDetail.getShortTd());
+								
 								tdPositionDetail.setLastPrice(ydPositionDetail.getLastPrice());
 								tdPositionDetail.setLongPrice(ydPositionDetail.getLongPrice());
+								
 								tdPositionDetail.setShortPrice(ydPositionDetail.getShortPrice());
 								tdPositionDetail.setTradingDay(tradingDay);
 	
@@ -278,7 +285,6 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 					}
 				}
 			} else {
-				List<PositionDetail> insertPositionDetailList = new ArrayList<>();
 				for (PositionDetail positionDetail : tdPositionDetailList) {
 					String rtSymbol = positionDetail.getRtSymbol();
 					String rtAccountID = positionDetail.getRtAccountID();
@@ -289,7 +295,6 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 						positionDetail.setTradingDay(tradingDay);
 						contractPositionDetail.getPositionDetailMap().put(rtAccountID, positionDetail);
 						contractPositionDetail.calculatePosition();
-						insertPositionDetailList.add(positionDetail);
 			
 					} else {
 						log.error(strategy.getLogStr() + "从数据库中读取到配置中不存在的合约" + rtSymbol);
@@ -301,25 +306,18 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 			log.info(strategy.getLogStr() + "初始化持仓完成");
 			/////////////////////////// 订阅行情/////////////////
 			// 通过配置订阅合约注册事件
-			for (StrategySetting.GatewaySetting GatewaySetting : strategy.getStrategySetting().getGateways()) {
-				String gatewayID = GatewaySetting.getGatewayID();
 
-				for (String rtSymbol : GatewaySetting.getSubscribeRtSymbols()) {
-					// 为策略注册Tick数据监听事件
-					String subscribedTickKey = rtSymbol + "." + gatewayID;
-					subscribedTickKeySet.add(subscribedTickKey);
-
-					// 订阅合约
-					SubscribeReq subscribeReq = new SubscribeReq();
-					subscribeReq.setRtSymbol(rtSymbol);
-					subscribeReq.setGatewayID(gatewayID);
-					subscribeReqSet.add(subscribeReq);
-					coreEngineService.subscribe(subscribeReq, strategyID);
-
-					log.info(strategy.getLogStr() + "通过网关" + gatewayID + "订阅合约" + rtSymbol);
-				}
+			for (SubscribeReq subscribeReq : strategy.getStrategySetting().getSubscribeReqList()) {
+				// 为策略注册Tick数据监听事件
+				String subscribedTickKey = subscribeReq.getRtSymbol() + "." + subscribeReq.getGatewayID();
+				subscribedTickKeySet.add(subscribedTickKey);
+	
+				// 订阅合约
+				subscribeReqSet.add(subscribeReq);
+				coreEngineService.subscribe(subscribeReq, strategyID);
+	
+				log.info(strategy.getLogStr() + "通过网关" + subscribeReq.getGatewayID() + "订阅合约" + subscribeReq.getRtSymbol());
 			}
-			log.info(strategy.getLogStr() + "订阅行情完成");
 			//////////////////////////////////////////////
 			strategy.init();
 		}
@@ -692,6 +690,11 @@ public class TradingEngineServiceImpl implements ZeusEngineService, Initializing
 		return coreEngineService.getContract(rtSymbol, gatewayID);
 	}
 
+	/**
+	 * 使用反射创建策略实例
+	 * @param strategySetting
+	 * @return
+	 */
 	private Strategy createStrategyClassInstance(StrategySetting strategySetting) {
 
 		if (strategy != null) {

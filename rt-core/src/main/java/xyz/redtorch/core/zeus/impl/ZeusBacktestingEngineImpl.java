@@ -30,6 +30,7 @@ import xyz.redtorch.core.entity.Bar;
 import xyz.redtorch.core.entity.Contract;
 import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
+import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.entity.Trade;
 import xyz.redtorch.core.zeus.ZeusBacktestingEngine;
@@ -41,7 +42,6 @@ import xyz.redtorch.core.zeus.entity.PositionDetail;
 import xyz.redtorch.core.zeus.strategy.Strategy;
 import xyz.redtorch.core.zeus.strategy.StrategySetting;
 import xyz.redtorch.core.zeus.strategy.StrategySetting.ContractSetting;
-import xyz.redtorch.core.zeus.strategy.StrategySetting.GatewaySetting;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -84,7 +84,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 	private Map<String, Double> slippageMap = new HashMap<>();
 	// 合约大小
 	private Map<String, Integer> contractSizeMap = new HashMap<>();
-	// 合约网关信息
+	// 合约账户信息
 	private Map<String, Set<String>> rtSymbolMap = new LinkedHashMap<>();
 	// 计算对冲平仓Trade
 	private Map<String, Trade> settleTradeMap = new LinkedHashMap<>();
@@ -168,7 +168,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 
-		return this.loadTickData(startDateTime, endDateTime, rtSymbol);
+		return loadTickData(startDateTime, endDateTime, rtSymbol);
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 		DateTime endDateTime = tradingDateTime.minusDays(1);
 		DateTime startDateTime = endDateTime.minusDays(offsetDay);
 
-		return this.loadBarData(startDateTime, endDateTime, rtSymbol);
+		return loadBarData(startDateTime, endDateTime, rtSymbol);
 	}
 
 	@Override
@@ -300,13 +300,8 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 				strategySetting.getContractByAlias(alias).setRtSymbol(rtSymbol);
 			}
 
-			Map<String, List<String>> subscribeRtSymbolsMap = backtestingSection.getGatewaySubscribeRtSymbolsMap();
-			for (Entry<String, List<String>> entry : subscribeRtSymbolsMap.entrySet()) {
-				String gatewayID = entry.getKey();
-				List<String> rtSymbols = entry.getValue();
-				strategySetting.getGatewaySetting(gatewayID).setSubscribeRtSymbols(rtSymbols);
-			}
-
+			List<SubscribeReq> subscribeReqList = backtestingSection.getSubscribeReqList();
+			strategySetting.setSubscribeReqList(subscribeReqList);
 			strategySetting.fixSetting();
 
 			// 保存手续费率,滑点,合约大小等设置
@@ -320,8 +315,8 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 			List<String> subscribeRtSymbolList = new ArrayList<>();
 
-			for (GatewaySetting gateway : strategySetting.getGateways()) {
-				subscribeRtSymbolList.addAll(gateway.getSubscribeRtSymbols());
+			for (SubscribeReq subscribeReq : strategySetting.getSubscribeReqList()) {
+				subscribeRtSymbolList.add(subscribeReq.getRtSymbol());
 			}
 
 			Strategy strategy = null;
@@ -349,6 +344,8 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 						// 更新策略设置
 						strategySetting.setPreTradingDay(lastDay);
 						strategySetting.setTradingDay(tradingDay);
+
+						log.info("新交易日策略配置:"+JSON.toJSONString(strategySetting));
 
 						// 是否每个交易日都重新实例化
 						if (reloadStrategyEveryday) {
@@ -401,6 +398,9 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 						strategySetting.setPreTradingDay(lastDay);
 						strategySetting.setTradingDay(tradingDay);
+
+						log.info("新交易日策略配置:"+JSON.toJSONString(strategySetting));
+						
 						if (reloadStrategyEveryday) {
 							strategy = newInstance(strategyClass, strategySetting);
 							initStrategy(strategy);
@@ -452,24 +452,32 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 		}
 
 		Set<String> rtAccountIDSet = rtSymbolMap.get(rtSymbol);
-
-		Map<String, Map<String, DailyResult>> rtAccountDailyResultDict;
-		if (rtSymbolDailyResultMap.containsKey(rtSymbol)) {
-			rtAccountDailyResultDict = rtSymbolDailyResultMap.get(rtSymbol);
-		} else {
-			rtAccountDailyResultDict = new LinkedHashMap<>();
-			for (String rtAccountID : rtAccountIDSet) {
-				rtAccountDailyResultDict.put(rtAccountID, new LinkedHashMap<>());
+		for (Trade trade : tradeMap.values()) {
+			if(rtSymbol.equals(trade.getRtSymbol())) {
+				rtAccountIDSet.add(trade.getRtAccountID());
 			}
-			rtSymbolDailyResultMap.put(rtSymbol, rtAccountDailyResultDict);
 		}
-
+		
+		Map<String, Map<String, DailyResult>> rtAccountDailyResultMap;
+		if (rtSymbolDailyResultMap.containsKey(rtSymbol)) {
+			rtAccountDailyResultMap = rtSymbolDailyResultMap.get(rtSymbol);
+		} else {
+			rtAccountDailyResultMap = new LinkedHashMap<>();
+			rtSymbolDailyResultMap.put(rtSymbol, rtAccountDailyResultMap);
+		}
+		
 		for (String rtAccountID : rtAccountIDSet) {
-			Map<String, DailyResult> dailyResultDict = rtAccountDailyResultDict.get(rtAccountID);
-			if (dailyResultDict.containsKey(date)) {
-				dailyResultDict.get(date).setClosePrice(lastPrice);
+			if(!rtAccountDailyResultMap.containsKey(rtAccountID)) {
+				rtAccountDailyResultMap.put(rtAccountID, new LinkedHashMap<>());
+			}
+		}
+		
+		for (String rtAccountID : rtAccountIDSet) {
+			Map<String, DailyResult> dailyResultMap = rtAccountDailyResultMap.get(rtAccountID);
+			if (dailyResultMap.containsKey(date)) {
+				dailyResultMap.get(date).setClosePrice(lastPrice);
 			} else {
-				dailyResultDict.put(date, new DailyResult(date, lastPrice, rtSymbol, rtAccountID));
+				dailyResultMap.put(date, new DailyResult(date, lastPrice, rtSymbol, rtAccountID));
 			}
 
 		}
@@ -522,7 +530,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 				// 如果发生了成交
 				if (buyCross || sellCross) {
-					this.tradeCount += 1;
+					tradeCount += 1;
 					String tradeID = order.getRtAccountID() + "." + tradeCount;
 					Trade trade = new Trade();
 					trade.setRtSymbol(rtSymbol);
@@ -547,10 +555,9 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 					trade.setTradingDay(order.getTradingDay());
 					trade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT));
 					trade.setDateTime(lastDateTimeMap.get(rtSymbol));
-
+					
 					strategy.processTrade(trade);
-
-					this.tradeMap.put(tradeID, trade);
+					tradeMap.put(tradeID, trade);
 
 					order.setTradedVolume(order.getTotalVolume());
 					order.setStatus(RtConstant.STATUS_ALLTRADED);
@@ -614,7 +621,9 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 		for (StrategySetting.ContractSetting contractSetting : strategySetting.getContracts()) {
 			String rtSymbol = contractSetting.getRtSymbol();
 			if (!contractPositionMap.containsKey(rtSymbol)) {
-				contractPositionMap.put(rtSymbol, new ContractPositionDetail());
+				contractPositionMap.put(rtSymbol, new ContractPositionDetail(rtSymbol, tradingDay,
+						strategySetting.getStrategyName(), strategySetting.getStrategyID(),
+						contractSetting.getExchange(), contractSetting.getSize()));
 			}
 		}
 
@@ -634,6 +643,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 			if (ydPositionDetailList.isEmpty()) {
 				log.info("{} 前一日持仓数据记录为空", strategy.getLogStr());
 			} else {
+				log.info("{} 解析前一日持仓数据记录", strategy.getLogStr());
 
 				List<PositionDetail> insertPositionDetailList = new ArrayList<>();
 				for (PositionDetail ydPositionDetail : ydPositionDetailList) {
@@ -682,7 +692,6 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 			Set<String> rtAccountIDSet = rtSymbolMap.get(trade.getRtSymbol());
 			rtAccountIDSet.add(trade.getRtAccountID());
 		}
-		
 		
 		for (Entry<String, Set<String>> entry : rtSymbolMap.entrySet()) {
 			String rtSymbol = entry.getKey();
@@ -1055,7 +1064,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 				String filePath = backtestingOutputDir + File.separator + "逐笔回测结果" + File.separator + "策略名称__"
 						+ strategy.getName() + File.separator + "策略ID__" + strategy.getID() + File.separator + "账户ID__"
-						+ rtAccountID + "__合约__" + rtSymbol + "逐笔.csv";
+						+ rtAccountID + "__合约__" + rtSymbol + "__逐笔.csv";
 				try {
 					FileUtils.forceMkdirParent(new File(filePath));
 				} catch (IOException ioe) {
@@ -1081,7 +1090,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 		for (Trade trade : tradeMap.values()) {
 			String date = trade.getDateTime().toString(RtConstant.D_FORMAT_INT_FORMATTER);
-
+			
 			DailyResult dailyResult = rtSymbolDailyResultMap.get(trade.getRtSymbol()).get(trade.getRtAccountID())
 					.get(date);
 			dailyResult.addTrade(trade);
@@ -1152,7 +1161,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 
 				String filePath = backtestingOutputDir + File.separator + "逐日回测结果" + File.separator + "策略名称__"
 						+ strategy.getName() + File.separator + "策略ID__" + strategy.getID() + File.separator + "账户ID__"
-						+ rtAccountID + "__合约__" + rtSymbol + "_逐日.csv";
+						+ rtAccountID + "__合约__" + rtSymbol + "__逐日.csv";
 				try {
 					FileUtils.forceMkdirParent(new File(filePath));
 				} catch (IOException ioe) {

@@ -1,10 +1,13 @@
 package xyz.redtorch.core.zeus.strategy;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import xyz.redtorch.core.entity.SubscribeReq;
 
 /**
  * @author sun0x00@gmail.com
@@ -24,8 +27,8 @@ public class StrategySetting implements Serializable {
 	private Map<String, String> paramMap = new HashMap<>(); // 运行时不可变参数列表
 	private Map<String, String> varMap = new HashMap<>(); // 运行时可变参数字典
 
-	private List<GatewaySetting> gateways; // 网关设置,回测,订阅相关
-	private List<ContractSetting> contracts; // 合约设置,回测
+	private List<SubscribeReq> subscribeReqList = new ArrayList<>(); // 完整的合约List
+	private List<ContractSetting> contracts = new ArrayList<>(); // 合约设置,回测
 
 	private String version;
 
@@ -35,16 +38,6 @@ public class StrategySetting implements Serializable {
 	public void fixSetting() {
 		// 不允许修改(通过setParamMap仍可修改，但不建议这么做)
 		paramMap = Collections.unmodifiableMap(paramMap);
-	}
-
-	public GatewaySetting getGatewaySetting(String gatewayID) {
-		for (GatewaySetting GatewaySetting : gateways) {
-
-			if (GatewaySetting.getGatewayID().equals(gatewayID)) {
-				return GatewaySetting;
-			}
-		}
-		return null;
 	}
 
 	public ContractSetting getContractSetting(String rtSymbol) {
@@ -137,14 +130,6 @@ public class StrategySetting implements Serializable {
 		this.varMap = varMap;
 	}
 
-	public List<GatewaySetting> getGateways() {
-		return gateways;
-	}
-
-	public void setGateways(List<GatewaySetting> gateways) {
-		this.gateways = gateways;
-	}
-
 	public List<ContractSetting> getContracts() {
 		return contracts;
 	}
@@ -160,29 +145,17 @@ public class StrategySetting implements Serializable {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-
-	public static class GatewaySetting implements Serializable {
-
-		private static final long serialVersionUID = -8397027643670882941L;
-		private String gatewayID; // 网关ID
-		private List<String> subscribeRtSymbols; // 完整的合约List
-
-		public String getGatewayID() {
-			return gatewayID;
-		}
-
-		public void setGatewayID(String gatewayID) {
-			this.gatewayID = gatewayID;
-		}
-
-		public List<String> getSubscribeRtSymbols() {
-			return subscribeRtSymbols;
-		}
-
-		public void setSubscribeRtSymbols(List<String> subscribeRtSymbols) {
-			this.subscribeRtSymbols = subscribeRtSymbols;
-		}
+	
+	public List<SubscribeReq> getSubscribeReqList() {
+		return subscribeReqList;
 	}
+
+	public void setSubscribeReqList(List<SubscribeReq> subscribeReqList) {
+		this.subscribeReqList = subscribeReqList;
+	}
+
+
+
 
 	public static class ContractSetting implements Serializable {
 
@@ -190,7 +163,7 @@ public class StrategySetting implements Serializable {
 
 		private String alias; // 合约前缀
 		private String rtSymbol; // 合约唯一标识
-		private String symbol; // 合约唯一标识
+		private String symbol; // 合约标识
 		private String exchange; // 合约交易所
 		private int size; // 合约大小
 		private double backtestingSlippage; // 回测滑点设置

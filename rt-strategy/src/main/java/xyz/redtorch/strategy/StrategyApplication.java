@@ -9,13 +9,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.bind.annotation.RestController;
 
 import xyz.redtorch.core.rmi.configuration.RMIClientConfiguration;
-import xyz.redtorch.core.zeus.impl.TradingEngineServiceImpl;
+import xyz.redtorch.core.zeus.impl.ZeusTradingEngineServiceImpl;
 
 
 @SpringBootApplication(scanBasePackages = {"xyz.redtorch.strategy"})
 @RestController
 @EnableAutoConfiguration
-@Import({RMIClientConfiguration.class,TradingEngineServiceImpl.class})
+@Import({RMIClientConfiguration.class,ZeusTradingEngineServiceImpl.class})
 public class StrategyApplication {
     @Bean 
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
