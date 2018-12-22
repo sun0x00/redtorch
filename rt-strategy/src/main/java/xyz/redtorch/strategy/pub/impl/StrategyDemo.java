@@ -30,9 +30,12 @@ public class StrategyDemo extends StrategyAbstract{
 
 	@Override
 	public void onInit() throws Exception {
-		log.info("==============================================");
+		log.info("=================ParamMap=============================");
 		log.info(JSON.toJSONString(strategySetting.getParamMap()));
-		log.info("==============================================");
+		log.info("======================================================");
+		log.info("==================VarMap==============================");
+		log.info(JSON.toJSONString(strategySetting.getVarMap()));
+		log.info("======================================================");
 		
 		if(strategySetting.getVarMap().containsKey("tickCount")) {
 			tickCount = Long.valueOf(strategySetting.getVarMap().get("tickCount"));
