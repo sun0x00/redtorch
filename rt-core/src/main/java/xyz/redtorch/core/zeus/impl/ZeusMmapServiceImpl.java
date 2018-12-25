@@ -226,6 +226,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 				.writeUtf8(tick.getSymbol()) //
 				.writeUtf8(tick.getExchange()) //
+				.writeUtf8(tick.getContractName()) //
 
 				.writeUtf8(tick.getTradingDay()) //
 				.writeUtf8(tick.getActionDay()) //
@@ -317,6 +318,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				.writeUtf8(order.getSymbol()) //
 				.writeUtf8(order.getExchange()) //
 				.writeUtf8(order.getRtSymbol()) //
+				.writeUtf8(order.getContractName()) //
 
 				.writeUtf8(order.getOrderID()) //
 				.writeUtf8(order.getRtOrderID()) //
@@ -358,6 +360,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				.writeUtf8(trade.getSymbol()) //
 				.writeUtf8(trade.getExchange()) //
 				.writeUtf8(trade.getRtSymbol()) //
+				.writeUtf8(trade.getContractName()) //
 
 				.writeUtf8(trade.getTradeID()) //
 				.writeUtf8(trade.getRtTradeID()) //

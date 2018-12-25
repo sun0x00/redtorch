@@ -114,30 +114,30 @@ public abstract class GatewayAbstract implements Gateway {
 
 	@Override
 	public void emitTick(String gatewayID, String gatewayDisplayName, String symbol, String exchange, String rtSymbol,
-			String tickID, String tradingDay, String actionDay, String actionTime, DateTime dateTime, Integer status,
-			double lastPrice, Integer lastVolume, Integer volume, double openInterest, long preOpenInterest,
-			double preClosePrice, double preSettlePrice, double openPrice, double highPrice, double lowPrice,
-			double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2, double bidPrice3,
-			double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8, double bidPrice9,
-			double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4, double askPrice5,
-			double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10, int bidVolume1,
-			int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6, int bidVolume7,
-			int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2, int askVolume3,
-			int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8, int askVolume9,
-			int askVolume10) {
+			String contractName, String tickID, String tradingDay, String actionDay, String actionTime,
+			DateTime dateTime, Integer status, double lastPrice, Integer lastVolume, Integer volume,
+			double openInterest, long preOpenInterest, double preClosePrice, double preSettlePrice, double openPrice,
+			double highPrice, double lowPrice, double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2,
+			double bidPrice3, double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8,
+			double bidPrice9, double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4,
+			double askPrice5, double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10,
+			int bidVolume1, int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6,
+			int bidVolume7, int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2,
+			int askVolume3, int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8,
+			int askVolume9, int askVolume10) {
 
 		RingBuffer<FastEvent> ringBuffer = fastEventEngineService.getRingBuffer();
 		long sequence = ringBuffer.next(); // Grab the next sequence
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, tickID,
-					tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume, openInterest,
-					preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice, upperLimit,
-					lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7, bidPrice8,
-					bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6, askPrice7,
-					askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4, bidVolume5,
-					bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2, askVolume3,
-					askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
+			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName,
+					tickID, tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume,
+					openInterest, preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice,
+					upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7,
+					bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6,
+					askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4,
+					bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2,
+					askVolume3, askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
 			fastEvent.setEvent(EventConstant.EVENT_TICK);
 			fastEvent.setEventType(EventConstant.EVENT_TICK);
 
@@ -148,14 +148,14 @@ public abstract class GatewayAbstract implements Gateway {
 		sequence = ringBuffer.next(); // Grab the next sequence
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, tickID,
-					tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume, openInterest,
-					preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice, upperLimit,
-					lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7, bidPrice8,
-					bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6, askPrice7,
-					askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4, bidVolume5,
-					bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2, askVolume3,
-					askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
+			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName,
+					tickID, tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume,
+					openInterest, preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice,
+					upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7,
+					bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6,
+					askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4,
+					bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2,
+					askVolume3, askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
 			fastEvent.setEvent(EventConstant.EVENT_TICK + gatewayID + rtSymbol);
 			fastEvent.setEventType(EventConstant.EVENT_TICK);
 		} finally {
@@ -165,14 +165,14 @@ public abstract class GatewayAbstract implements Gateway {
 		sequence = ringBuffer.next(); // Grab the next sequence
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, tickID,
-					tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume, openInterest,
-					preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice, upperLimit,
-					lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7, bidPrice8,
-					bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6, askPrice7,
-					askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4, bidVolume5,
-					bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2, askVolume3,
-					askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
+			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName,
+					tickID, tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume,
+					openInterest, preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice,
+					upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7,
+					bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6,
+					askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4,
+					bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2,
+					askVolume3, askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
 			fastEvent.setEvent(EventConstant.EVENT_TICK + rtSymbol);
 			fastEvent.setEventType(EventConstant.EVENT_TICK);
 
@@ -222,9 +222,9 @@ public abstract class GatewayAbstract implements Gateway {
 
 	@Override
 	public void emitTrade(String gatewayID, String gatewayDisplayName, String accountID, String rtAccountID,
-			String symbol, String exchange, String rtSymbol, String tradeID, String rtTradeID, String orderID,
-			String rtOrderID, String originalOrderID, String direction, String offset, double price, int volume,
-			String tradingDay, String tradeDate, String tradeTime, DateTime dateTime) {
+			String symbol, String exchange, String rtSymbol, String contractName, String tradeID, String rtTradeID,
+			String orderID, String rtOrderID, String originalOrderID, String direction, String offset, double price,
+			int volume, String tradingDay, String tradeDate, String tradeTime, DateTime dateTime) {
 
 		// 发送特定合约成交事件
 		RingBuffer<FastEvent> ringBuffer = fastEventEngineService.getRingBuffer();
@@ -232,8 +232,8 @@ public abstract class GatewayAbstract implements Gateway {
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.getTrade().setAllValue(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol, exchange,
-					rtSymbol, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset, price, volume,
-					tradingDay, tradeDate, tradeTime, dateTime);
+					rtSymbol, contractName, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset,
+					price, volume, tradingDay, tradeDate, tradeTime, dateTime);
 			fastEvent.setEvent(EventConstant.EVENT_TRADE);
 			fastEvent.setEventType(EventConstant.EVENT_TRADE);
 
@@ -245,8 +245,8 @@ public abstract class GatewayAbstract implements Gateway {
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.getTrade().setAllValue(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol, exchange,
-					rtSymbol, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset, price, volume,
-					tradingDay, tradeDate, tradeTime, dateTime);
+					rtSymbol, contractName, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset,
+					price, volume, tradingDay, tradeDate, tradeTime, dateTime);
 			fastEvent.setEvent(EventConstant.EVENT_TRADE + originalOrderID);
 			fastEvent.setEventType(EventConstant.EVENT_TRADE);
 
@@ -287,9 +287,9 @@ public abstract class GatewayAbstract implements Gateway {
 
 	@Override
 	public void emitOrder(String originalOrderID, String gatewayID, String gatewayDisplayName, String accountID,
-			String rtAccountID, String symbol, String exchange, String rtSymbol, String orderID, String rtOrderID,
-			String direction, String offset, double price, int totalVolume, int tradedVolume, String status,
-			String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
+			String rtAccountID, String symbol, String exchange, String rtSymbol, String contractName, String orderID,
+			String rtOrderID, String direction, String offset, double price, int totalVolume, int tradedVolume,
+			String status, String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
 			String updateTime, int frontID, int sessionID) {
 
 		// 发送带委托ID的事件
@@ -299,8 +299,9 @@ public abstract class GatewayAbstract implements Gateway {
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.getOrder().setAllValue(originalOrderID, gatewayID, gatewayDisplayName, accountID, rtAccountID,
-					symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price, totalVolume, tradedVolume,
-					status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime, frontID, sessionID);
+					symbol, exchange, rtSymbol, contractName, orderID, rtOrderID, direction, offset, price, totalVolume,
+					tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime, frontID,
+					sessionID);
 			fastEvent.setEvent(EventConstant.EVENT_ORDER);
 			fastEvent.setEventType(EventConstant.EVENT_ORDER);
 
@@ -312,8 +313,9 @@ public abstract class GatewayAbstract implements Gateway {
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.getOrder().setAllValue(originalOrderID, gatewayID, gatewayDisplayName, accountID, rtAccountID,
-					symbol, exchange, rtSymbol, orderID, rtOrderID, direction, offset, price, totalVolume, tradedVolume,
-					status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime, frontID, sessionID);
+					symbol, exchange, rtSymbol, contractName, orderID, rtOrderID, direction, offset, price, totalVolume,
+					tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime, frontID,
+					sessionID);
 			fastEvent.setEvent(EventConstant.EVENT_ORDER + rtOrderID);
 			fastEvent.setEventType(EventConstant.EVENT_ORDER);
 

@@ -226,7 +226,7 @@ class Center extends PureComponent {
             enableFixedColumnScroll
             enableFixedRowScroll
             height={tableHeight}
-            rowHeight={25}
+            rowHeight={50}
             rowCount={rowCount}
             style={STYLE}
             styleBottomLeftGrid={STYLE_BOTTOM_LEFT_GRID}

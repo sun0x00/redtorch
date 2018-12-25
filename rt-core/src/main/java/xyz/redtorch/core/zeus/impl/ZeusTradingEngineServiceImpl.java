@@ -432,6 +432,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							order.setSymbol(in.readUtf8());
 							order.setExchange(in.readUtf8());
 							order.setRtSymbol(in.readUtf8());
+							order.setContractName(in.readUtf8());
 
 							order.setOrderID(in.readUtf8());
 							order.setRtOrderID(in.readUtf8());
@@ -475,6 +476,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							trade.setSymbol(in.readUtf8());
 							trade.setExchange(in.readUtf8());
 							trade.setRtSymbol(in.readUtf8());
+							trade.setContractName(in.readUtf8());
 
 							trade.setTradeID(in.readUtf8());
 							trade.setRtTradeID(in.readUtf8());
@@ -508,6 +510,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 
 							tick.setSymbol(in.readUtf8());
 							tick.setExchange(in.readUtf8());
+							tick.setContractName(in.readUtf8());
 
 							tick.setTradingDay(in.readUtf8());
 							tick.setActionDay(in.readUtf8());
