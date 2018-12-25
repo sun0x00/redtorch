@@ -27,9 +27,9 @@
 
 .cell {
   border-right: rgb(232, 232, 232) 1px solid;
-  border-bottom:rgb(232, 232, 232) 1px solid;
-  text-align: right;
-  padding-right: 4px;
+  border-bottom:rgb(222, 222, 222) 2px solid;
+  // text-align: right;
+  // padding-right: 4px;
   cursor: default;
   -moz-user-select:none; /*火狐*/
   -webkit-user-select:none; /*webkit浏览器*/
@@ -52,12 +52,29 @@
 
 .headerCell {
   border-left: rgb(232, 232, 232) 1px solid;
-  border-bottom:rgb(232, 232, 232) 1px solid;
+  border-bottom:rgb(222, 222, 222) 2px solid;
   // text-align: center;
   display: flex;
   justify-content:center;
   align-items:Center;
 }
+
+.displayRight {
+  text-align: right;
+  padding-right: 4px;
+}
+
+.displayLeft {
+  text-align: left;
+  padding-left: 4px;
+}
+
+.displayCenter {
+  display: flex;
+  justify-content:center;
+  align-items:Center;
+}
+
 
 .Table {
   width: 100%;

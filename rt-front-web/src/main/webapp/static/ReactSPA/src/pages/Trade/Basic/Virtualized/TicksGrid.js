@@ -24,6 +24,13 @@ const STYLE_TOP_RIGHT_GRID = {
   fontWeight: 'bold',
 };
 
+const INLINE_LABEL_STYLE={
+  display:'inline-block',
+  float:'left',
+  color:'#AAA',
+  paddingLeft:'2px'
+}
+
 @connect(({operation}) => ({
   operation
 }))
@@ -47,59 +54,36 @@ class Center extends PureComponent {
     let columnCount = 0;
     {
       const headerMap = new Map();
-      headerMap.set(columnCount,"代码"); // 0
-      headerMap.set(columnCount+=1,"最新价"); // 1
-      headerMap.set(columnCount+=1,"涨跌"); // 2
-      headerMap.set(columnCount+=1,"卖一量"); // 3
-      headerMap.set(columnCount+=1,"卖一价"); // 4
-      headerMap.set(columnCount+=1,"买一价"); // 5
-      headerMap.set(columnCount+=1,"买一量"); // 6
-      headerMap.set(columnCount+=1,"成交量"); // 7
-      headerMap.set(columnCount+=1,"持仓量"); // 8
-      headerMap.set(columnCount+=1,"时间"); // 9
-      headerMap.set(columnCount+=1,"开盘价"); // 10
-      headerMap.set(columnCount+=1,"最高价"); // 11
-      headerMap.set(columnCount+=1,"最低价"); // 12
-      headerMap.set(columnCount+=1,"昨收价"); // 13
-      headerMap.set(columnCount+=1,"网关"); // 14
+      headerMap.set(columnCount,"产品"); // 0
+      headerMap.set(columnCount+=1,"买卖价格"); // 1
+      headerMap.set(columnCount+=1,"买卖挂单"); // 2
+      headerMap.set(columnCount+=1,"最新价"); // 3
+      headerMap.set(columnCount+=1,"量"); // 4
+      headerMap.set(columnCount+=1,"持仓"); // 5
+      headerMap.set(columnCount+=1,"时间"); // 6
+      headerMap.set(columnCount+=1,"涨跌停"); // 7
+      headerMap.set(columnCount+=1,"开收价格"); // 8
+      headerMap.set(columnCount+=1,"高低价格"); // 9
+      headerMap.set(columnCount+=1,"昨结"); // 10
+      headerMap.set(columnCount+=1,"网关"); // 11
       tableList.push(headerMap)
       columnCount+=1
     }
 
-    const sortedList = list.sort(sortBySymbol)
+    list.sort(sortBySymbol).forEach(element => {
 
-    if(sortedList !== undefined){
-      sortedList.forEach(item=>{
-        let i = 0;
-        const dataMap = new Map();
-        dataMap.set(i,item.rtSymbol);
-        dataMap.set(i+=1,numberFormat(item.lastPrice,4));
-        let priceRatio = 0;
-        if(item.preClosePrice!==undefined&&item.preClosePrice!==0&&!Number.isNaN(item.preClosePrice)){
-          priceRatio = (item.lastPrice-item.preClosePrice)/item.preClosePrice
-        }
-        dataMap.set(i+=1,priceRatio);
-        dataMap.set(i+=1,item.askVolume1);
-        dataMap.set(i+=1,numberFormat(item.askPrice1,4));
-        dataMap.set(i+=1,numberFormat(item.bidPrice1,4));
-        dataMap.set(i+=1,item.bidVolume1);
-        dataMap.set(i+=1,item.volume);
-        dataMap.set(i+=1,item.openInterest);
-        dataMap.set(i+=1,timestampFormat(item.dateTime.millis,'HH:mm:ss.SSS'));
-        dataMap.set(i+=1,numberFormat(item.openPrice,4));
-        dataMap.set(i+=1,numberFormat(item.highPrice,4));
-        dataMap.set(i+=1,numberFormat(item.lowPrice,4));
-        dataMap.set(i+=1,numberFormat(item.preClosePrice,4));
-        dataMap.set(i+=1,item.gatewayDisplayName);
-        // =======不渲染的字段============
-        dataMap.set(1001,item.gatewayID); 
-        dataMap.set(1002,item.symbol); 
-        // ==============================
-    
-        tableList.push(dataMap)
-      })
-      
-    }
+      const newElement = element
+
+      newElement.priceRatio = 0;
+      if(element.preClosePrice!==undefined&&element.preClosePrice!==0&&!Number.isNaN(element.preClosePrice)){
+        newElement.priceRatio = (element.lastPrice-element.preClosePrice)/element.preClosePrice
+      }
+
+      newElement.dateTimeStr = timestampFormat(element.dateTime.millis,'HH:mm:ss.SSS')
+      tableList.push(newElement)
+
+    })
+
 
     const rowCount = tableList.length;
     
@@ -111,8 +95,8 @@ class Center extends PureComponent {
         dispatch({
           type: 'operation/unsubscribe',
           payload: {
-            rtSymbol:tableList[rowIndex].get(0),
-            gatewayID:tableList[rowIndex].get(1001),
+            rtSymbol:tableList[rowIndex].rtSymbol,
+            gatewayID:tableList[rowIndex].gatewayID,
           },
         });
       }
@@ -121,106 +105,212 @@ class Center extends PureComponent {
         const {updateTradeForm} = this.props
         if(updateTradeForm!==null&&updateTradeForm!==undefined){
           updateTradeForm({
-            symbol:tableList[rowIndex].get(1002)
+            symbol:tableList[rowIndex].symbol
           })
         }
       }
 
+
+      // 第0行 表头
       if(rowIndex === 0){
         return (
           <div className={styles.headerCell} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+            <div>{tableList[rowIndex].get(columnIndex)}</div>
           </div>
         );
 
       }
+
+      // 第0列 产品信息
       if(columnIndex === 0){
         return (
-          <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell} ${styles.colorYellow} ${styles.cursorPointer}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell}  ${styles.displayRight} ${styles.cursorPointer}`} key={key} style={style}>
+            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
+            <div>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
 
-      if(columnIndex === 1 || columnIndex === 2){
-        if(tableList[rowIndex].get(2)>0){
-          if(columnIndex === 2){
-            return (
-              <div className={`${styles.cell} ${styles.colorBuy}`} key={key} style={style}>
-                {numberFormat(tableList[rowIndex].get(columnIndex)*100,4)}%
-              </div>
-            );
-          }
-          return (
-            <div className={`${styles.cell} ${styles.colorBuy}`} key={key} style={style}>
-              {tableList[rowIndex].get(columnIndex)}
-            </div>
-          );
-        }if(tableList[rowIndex].get(2)<0){
-          if(columnIndex === 2){
-            return (
-              <div className={`${styles.cell} ${styles.colorSell}`} key={key} style={style}>
-                {numberFormat(tableList[rowIndex].get(columnIndex)*100,4)}%
-              </div>
-            );
-          }
-          return (
-            <div className={`${styles.cell} ${styles.colorSell}`} key={key} style={style}>
-              {tableList[rowIndex].get(columnIndex)}
-            </div>
-          );
-        }
-        if(columnIndex === 2){
-          return (
-            <div className={`${styles.cell} `} key={key} style={style}>
-              {numberFormat(tableList[rowIndex].get(columnIndex)*100,4)}%
-            </div>
-          );
-        }
+      // 第1列 买卖1价格
+      if(columnIndex === 1){
         return (
-          <div className={`${styles.cell} `} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>卖1：</span>{numberFormat(tableList[rowIndex].askPrice1,4)}</div>
+            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>买1：</span>{numberFormat(tableList[rowIndex].bidPrice1,4)}</div>
           </div>
-        );
+        )
+      }
+      
+      // 第2列 买卖1量
+      if(columnIndex === 2){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorCount}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>卖1量：</span>{tableList[rowIndex].askVolume1}</div>
+            <div><span style={INLINE_LABEL_STYLE}>买1量：</span>{tableList[rowIndex].bidVolume1}</div>
+          </div>
+        )
       }
 
-      if(columnIndex === 4){
+      // 第3列 最新价格
+      if(columnIndex === 3){
+        if(tableList[rowIndex].priceRatio>0){
           return (
-            <div className={`${styles.cell} ${styles.colorSell}`} key={key} style={style}>
-              {tableList[rowIndex].get(columnIndex)}
+            <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorBuy}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].lastPrice,4)}</div>
+              <div>{numberFormat(tableList[rowIndex].priceRatio*100,2)}%</div>
             </div>
-          );
+          )
+        }
+        
+        if(tableList[rowIndex].priceRatio<0){
+          return (
+            <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorSell}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].lastPrice,4)}</div>
+              <div>{numberFormat(tableList[rowIndex].priceRatio*100,2)}%</div>
+            </div>
+          )
+        }
+
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div>{numberFormat(tableList[rowIndex].lastPrice,4)}</div>
+            <div>{numberFormat(tableList[rowIndex].priceRatio*100,2)}%</div>
+          </div>
+        )
       }
+
+      // 第4列 量
+      if(columnIndex === 4){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>成交量：</span>{tableList[rowIndex].lastVolume}</div>
+            <div><span style={INLINE_LABEL_STYLE}>总成交：</span>{tableList[rowIndex].volume}</div>
+          </div>
+        )
+      }
+
+      // 第5列 持仓
       if(columnIndex === 5){
         return (
-          <div className={`${styles.cell} ${styles.colorBuy}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].openInterest}</div>
+            <div><span style={INLINE_LABEL_STYLE}>日增：</span>{tableList[rowIndex].openInterest-tableList[rowIndex].preOpenInterest}</div>
           </div>
-        );
+        )
       }
-      if(columnIndex === 3 || columnIndex === 6){
+
+      // 第6列 时间
+      if(columnIndex === 6){
         return (
-          <div className={`${styles.cell} ${styles.colorCount}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div className={`${styles.cell}  ${styles.displayCenter}`} key={key} style={style}>
+            {tableList[rowIndex].dateTimeStr}
           </div>
-        );
+        )
+      }
+
+      // 第7列 涨跌停
+      if(columnIndex === 7){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>涨停：</span>{numberFormat(tableList[rowIndex].upperLimit,4)}</div>
+            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>跌停：</span>{numberFormat(tableList[rowIndex].lowerLimit,4)}</div>
+          </div>
+        )
+      }
+
+      // 第8列 开收价格
+      if(columnIndex === 8){
+
+        if(tableList[rowIndex].openPrice>tableList[rowIndex].preSettlePrice){
+          return (
+            <div className={`${styles.cell} ${styles.displayRight}`} key={key} style={style}>
+              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+              <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+            </div>
+          )
+        }
+
+        if(tableList[rowIndex].openPrice<tableList[rowIndex].preSettlePrice){
+          return (
+            <div className={`${styles.cell} ${styles.displayRight}`} key={key} style={style}>
+              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+              <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+            </div>
+          )
+        }
+
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+          </div>
+        )
+
+      }
+
+      // 第9列 高低
+      if(columnIndex === 9){
+
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            { (tableList[rowIndex].highPrice>tableList[rowIndex].preSettlePrice) &&
+              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+            }
+            { (tableList[rowIndex].highPrice<tableList[rowIndex].preSettlePrice) &&
+              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+            }
+            { (tableList[rowIndex].highPrice === tableList[rowIndex].preSettlePrice) &&
+              <div><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+            }
+            { (tableList[rowIndex].lowPrice>tableList[rowIndex].preSettlePrice) &&
+              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+            }
+            { (tableList[rowIndex].lowPrice<tableList[rowIndex].preSettlePrice) &&
+              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+            }
+            { (tableList[rowIndex].lowPrice === tableList[rowIndex].preSettlePrice) &&
+              <div><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+            }
+          </div>
+        )
+
+      }
+
+      // 第10列 昨结价格
+      if(columnIndex === 10){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}`} key={key} style={style}>
+            {numberFormat(tableList[rowIndex].preSettlePrice,4)}
+          </div>
+        )
+      }
+
+      // 第11列 网关
+      if(columnIndex === 11){
+        return (
+          <div className={`${styles.cell}  ${styles.displayCenter}`} key={key} style={style}>
+            {tableList[rowIndex].gatewayDisplayName}
+          </div>
+        )
       }
 
       return (
-        <div className={`${styles.cell} `} key={key} style={style}>
-          {tableList[rowIndex].get(columnIndex)}
-        </div>
+        <div />
       );
     }
 
     const getColumnWidth=({index}) => {
       switch (index) {
         case 0:
-          return 130;
-        case 14:
+          return 150;
+        case 2:
           return 120;
-        default:
+        case 10:
           return 110;
+        case 11:
+          return 180;
+        default:
+          return 140;
       }
     }
     
@@ -238,7 +328,7 @@ class Center extends PureComponent {
             enableFixedColumnScroll
             enableFixedRowScroll
             height={tableHeight}
-            rowHeight={25}
+            rowHeight={50}
             rowCount={rowCount}
             style={STYLE}
             styleBottomLeftGrid={STYLE_BOTTOM_LEFT_GRID}

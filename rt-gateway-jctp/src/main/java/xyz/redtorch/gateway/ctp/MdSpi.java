@@ -45,6 +45,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	private HashMap<String, String> contractExchangeMap;
 	// private HashMap<String, Integer> contractSizeMap;
 	private HashMap<String, String> contractNameMap;
+	private HashMap<String,Integer> preTickVolumeMap = new HashMap<>();
 
 	MdSpi(CtpGateway ctpGateway) {
 
@@ -319,10 +320,16 @@ public class MdSpi extends CThostFtdcMdSpi {
 			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
 			Integer status = 0;
 			Double lastPrice = pDepthMarketData.getLastPrice();
-			Integer lastVolume = 0;
 			Integer volume = pDepthMarketData.getVolume();
+			Integer lastVolume = 0;
+			if(preTickVolumeMap.containsKey(tickID)) {
+				lastVolume = volume - preTickVolumeMap.get(tickID);
+			}else {
+				lastVolume = volume;
+			}
+			preTickVolumeMap.put(tickID, volume);
 			Double openInterest = pDepthMarketData.getOpenInterest();
-			Long preOpenInterest = 0L;
+			Long preOpenInterest = (long) pDepthMarketData.getPreOpenInterest();
 			Double preClosePrice = pDepthMarketData.getPreClosePrice();
 			Double preSettlePrice = pDepthMarketData.getPreSettlementPrice();
 			Double openPrice = pDepthMarketData.getOpenPrice();
