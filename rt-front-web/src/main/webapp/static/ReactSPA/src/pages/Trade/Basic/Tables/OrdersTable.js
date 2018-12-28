@@ -67,7 +67,7 @@ class Center extends PureComponent {
       tableList = list.sort(sortOrderByTimeAndID);
     }
     
-    let tableScroll= {y: 250,x:1000};;
+    let tableScroll= {y: 250,x:1020};;
     if(scroll!==undefined){
       tableScroll = {...tableScroll,...scroll};
     }
@@ -106,8 +106,8 @@ class Center extends PureComponent {
       render: (text, record) => (
         (
           <div className={`${styles.cell} ${styles.cursorPointer}`}>
-            <div className={`${styles.colorYellow}`}>{record.rtSymbol}</div>
-            <div>{record.contractName}</div>
+            <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{record.rtSymbol}</div>
+            <div style={{minWidth:60}}>{record.contractName}</div>
           </div>
         )
       )
@@ -119,30 +119,30 @@ class Center extends PureComponent {
       onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})` === value,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div>{ record.accountID}</div>
-          <div style={{color:"#BBB"}}>{ record.gatewayDisplayName}</div>
+          <div style={{minWidth:60}}>{ record.accountID}</div>
+          <div style={{color:"#BBB",minWidth:60}}>{ record.gatewayDisplayName}</div>
         </div>
       )
     },  {
       title: '方向',
       dataIndex: 'direction',
-      width: 80,
+      width: 100,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
           {
             record.direction === DIRECTION_LONG &&
-            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
           }
           
           {
             record.direction === DIRECTION_SHORT &&
-            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
           }
           {
             ( record.direction !== DIRECTION_LONG &&  record.direction !== DIRECTION_SHORT) &&
-            <div><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
           }
-          <div><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get( record.offset)}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get( record.offset)}</div>
         </div>
       )
     }, {
@@ -162,8 +162,8 @@ class Center extends PureComponent {
       width: 150,
       render:(text,record)=>(
         <div className={`${styles.displayRight} ${styles.colorCount}`}>
-          <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.totalVolume}</div>
-          <div><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradedVolume}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{record.totalVolume}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradedVolume}</div>
         </div>
       )
     },{
@@ -173,8 +173,8 @@ class Center extends PureComponent {
       width: 150,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(record.status)}</div>
-          <div><span style={INLINE_LABEL_STYLE}>编号：</span>{record.orderID}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(record.status)}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>编号：</span>{record.orderID}</div>
         </div>
       ),
       sorter: (a, b) => a.status > b.status,
@@ -189,8 +189,8 @@ class Center extends PureComponent {
       sorter: (a, b) => a.orderTime > b.orderTime,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.orderTime}</div>
-          <div><span style={INLINE_LABEL_STYLE}>更新：</span>{record.updateTime}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{record.orderTime}</div>
+          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>更新：</span>{record.updateTime}</div>
         </div>
       ),
     }];

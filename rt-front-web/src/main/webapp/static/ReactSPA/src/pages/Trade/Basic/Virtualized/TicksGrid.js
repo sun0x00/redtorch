@@ -38,9 +38,9 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-       // hoveredColumnIndex: null,
-      //  hoveredRowIndex: null,
-       clickedRowIndex: null
+      // hoveredColumnIndex: null,
+      // hoveredRowIndex: null,
+      clickedRowIndex: null
     }
  }
 
@@ -152,8 +152,8 @@ class Center extends PureComponent {
       if(columnIndex === 0){
         return (
           <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight} ${styles.cursorPointer}`} key={key} style={style}>
-            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
-            <div>{tableList[rowIndex].contractName}</div>
+            <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
+            <div style={{minWidth:60}}>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
@@ -162,8 +162,8 @@ class Center extends PureComponent {
       if(columnIndex === 1){
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
-            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>卖1：</span>{numberFormat(tableList[rowIndex].askPrice1,4)}</div>
-            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>买1：</span>{numberFormat(tableList[rowIndex].bidPrice1,4)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>卖1：</span>{numberFormat(tableList[rowIndex].askPrice1,4)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>买1：</span>{numberFormat(tableList[rowIndex].bidPrice1,4)}</div>
           </div>
         )
       }
@@ -172,8 +172,8 @@ class Center extends PureComponent {
       if(columnIndex === 2){
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight} ${styles.colorCount}`} key={key} style={style}>
-            <div><span style={INLINE_LABEL_STYLE}>卖1量：</span>{tableList[rowIndex].askVolume1}</div>
-            <div><span style={INLINE_LABEL_STYLE}>买1量：</span>{tableList[rowIndex].bidVolume1}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>卖1量：</span>{tableList[rowIndex].askVolume1}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>买1量：</span>{tableList[rowIndex].bidVolume1}</div>
           </div>
         )
       }
@@ -210,8 +210,8 @@ class Center extends PureComponent {
       if(columnIndex === 4){
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
-            <div className={`${styles.colorCount}`}><span style={INLINE_LABEL_STYLE}>成交量：</span>{tableList[rowIndex].lastVolume}</div>
-            <div><span style={INLINE_LABEL_STYLE}>总成交：</span>{tableList[rowIndex].volume}</div>
+            <div style={{minWidth:60}} className={`${styles.colorCount}`}><span style={INLINE_LABEL_STYLE}>成交量：</span>{tableList[rowIndex].lastVolume}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>总成交：</span>{tableList[rowIndex].volume}</div>
           </div>
         )
       }
@@ -220,8 +220,8 @@ class Center extends PureComponent {
       if(columnIndex === 5){
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
-            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].openInterest}</div>
-            <div><span style={INLINE_LABEL_STYLE}>日增：</span>{tableList[rowIndex].openInterest-tableList[rowIndex].preOpenInterest}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].openInterest}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>日增：</span>{tableList[rowIndex].openInterest-tableList[rowIndex].preOpenInterest}</div>
           </div>
         )
       }
@@ -239,8 +239,8 @@ class Center extends PureComponent {
       if(columnIndex === 7){
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
-            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>涨停：</span>{numberFormat(tableList[rowIndex].upperLimit,4)}</div>
-            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>跌停：</span>{numberFormat(tableList[rowIndex].lowerLimit,4)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>涨停：</span>{numberFormat(tableList[rowIndex].upperLimit,4)}</div>
+            <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>跌停：</span>{numberFormat(tableList[rowIndex].lowerLimit,4)}</div>
           </div>
         )
       }
@@ -251,8 +251,8 @@ class Center extends PureComponent {
         if(tableList[rowIndex].openPrice>tableList[rowIndex].preSettlePrice){
           return (
             <div className={`${styles.cell} ${hoveredCellClass} ${styles.displayRight}`} key={key} style={style}>
-              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
-              <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+              <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
             </div>
           )
         }
@@ -260,16 +260,16 @@ class Center extends PureComponent {
         if(tableList[rowIndex].openPrice<tableList[rowIndex].preSettlePrice){
           return (
             <div className={`${styles.cell} ${hoveredCellClass} ${styles.displayRight}`} key={key} style={style}>
-              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
-              <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+              <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
             </div>
           )
         }
 
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
-            <div><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
-            <div><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开盘：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>昨收：</span>{numberFormat(tableList[rowIndex].preClosePrice,4)}</div>
           </div>
         )
 
@@ -281,22 +281,22 @@ class Center extends PureComponent {
         return (
           <div className={`${styles.cell} ${hoveredCellClass}  ${styles.displayRight}`} key={key} style={style}>
             { (tableList[rowIndex].highPrice>tableList[rowIndex].preSettlePrice) &&
-              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
             }
             { (tableList[rowIndex].highPrice<tableList[rowIndex].preSettlePrice) &&
-              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
             }
             { (tableList[rowIndex].highPrice === tableList[rowIndex].preSettlePrice) &&
-              <div><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
+              <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>最高：</span>{numberFormat(tableList[rowIndex].highPrice,4)}</div>
             }
             { (tableList[rowIndex].lowPrice>tableList[rowIndex].preSettlePrice) &&
-              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
             }
             { (tableList[rowIndex].lowPrice<tableList[rowIndex].preSettlePrice) &&
-              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+              <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
             }
             { (tableList[rowIndex].lowPrice === tableList[rowIndex].preSettlePrice) &&
-              <div><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
+              <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>最低：</span>{numberFormat(tableList[rowIndex].lowPrice,4)}</div>
             }
           </div>
         )

@@ -64,7 +64,7 @@ class Center extends PureComponent {
     const {tableHeight} = this.state;
 
     return (
-      <PositionsTable updateTradeForm={this.updateTradeForm} scroll={{x: 1460,y:tableHeight}} pagination={{pageSize: 50}} list={position.positions} />
+      <PositionsTable updateTradeForm={this.updateTradeForm} scroll={{y:tableHeight}} pagination={{pageSize: 50}} list={position.positions} />
     );
   }
 }

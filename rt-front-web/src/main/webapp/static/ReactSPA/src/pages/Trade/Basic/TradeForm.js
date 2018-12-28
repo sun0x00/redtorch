@@ -281,7 +281,8 @@ class TradeForm extends PureComponent {
     }
 
     return (
-      <Card bordered={false} style={{height:cardHeight,overflowY:"auto"}} gutter={0}>
+      // <Card bordered={false} style={{height:cardHeight,overflowY:"auto"}} gutter={0}>
+      <Card bordered={false} gutter={0}>
         <Form onSubmit={this.handleSubmit} hideRequiredMark gutter={0}>
           <FormItem className={styles.formItem} {...formItemLayout} label='代码'>
             {getFieldDecorator('fuzzySymbol',{

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Card, Row, Col, Tag, Button, Table, Collapse} from 'antd';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import {sleep} from '../../../utils/RtUtils'
+import {sleep,uuidv4} from '../../../utils/RtUtils'
 import styles from './ZeusBoard.less';
 
 const ButtonGroup = Button.Group;
@@ -86,6 +86,50 @@ class Center extends PureComponent {
     const panelList = [];
     let i = 0;
     zeus.strategyInfos.forEach(strategyInfo => {
+
+      const paramColumns = [{
+          title: "参数名称",
+          dataIndex: "name",
+          key:  "name",
+        },{
+          title: "参数值",
+          dataIndex: "value",
+          key:  "value",
+      }]
+  
+      const varColumns = [{
+          title: "变量名称",
+          dataIndex: "name",
+          key:  "name",
+        },{
+          title: "变量值",
+          dataIndex: "value",
+          key:  "value",
+      }]
+  
+      const paramDataList = []
+      const paramKeys = Object.keys(strategyInfo.paramMap)
+      paramKeys.forEach(element=>{
+        paramDataList.push(
+          {
+            name: element,
+            value: strategyInfo.paramMap[element],
+          }
+        )
+      })
+
+      const varDataList = []
+      const varKeys = Object.keys(strategyInfo.varMap)
+      varKeys.forEach(element=>{
+        varDataList.push(
+          {
+            name: element,
+            value: strategyInfo.varMap[element],
+          }
+        )
+      })
+  
+      
       i+=1
       const panel = (
         <Panel 
@@ -127,10 +171,19 @@ class Center extends PureComponent {
               <Button type="danger" disabled={!strategyInfo.trading} onClick={()=>this.changeStrategyStatus({actionType:'stop',strategyID:strategyInfo.strategyID})} icon="stop">停止</Button>
               <Button type="danger" disabled={!strategyInfo.isLoaded} onClick={()=>this.changeStrategyStatus({actionType:'reload',strategyID:strategyInfo.strategyID})} icon="reload">重新加载</Button>
             </ButtonGroup>
-            <h3>参数</h3>
-            {this.renderTable(strategyInfo.paramMap)}
+            <Row>
+              <Col span={10}>
+                <h3>参数</h3>
+                <Table bordered size='small' rowKey={()=>(uuidv4())} dataSource={paramDataList} columns={paramColumns} pagination={false} />
+              </Col>
+              <Col span={10} offset={4}>
+                <h3>变量</h3>
+                <Table bordered size='small' rowKey={()=>(uuidv4())} dataSource={varDataList} columns={varColumns} pagination={false} />
+              </Col>
+            </Row>
+            {/* {this.renderTable(strategyInfo.paramMap)}
             <h3>变量</h3>
-            {this.renderTable(strategyInfo.varMap)}
+            {this.renderTable(strategyInfo.varMap)} */}
           </Card>
         </Panel>
       );
