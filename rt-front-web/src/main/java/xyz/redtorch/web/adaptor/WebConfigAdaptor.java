@@ -41,13 +41,13 @@ public class WebConfigAdaptor implements WebMvcConfigurer {
         		"/**/*.woff2"
         		)
         .setCachePeriod(0)
-        .addResourceLocations("classpath:/static/ReactSPA/dist/")
-        .addResourceLocations("/static/ReactSPA/dist/");
+        .addResourceLocations("classpath:/static/ReactSPA/distPRD/")
+        .addResourceLocations("/static/ReactSPA/distPRD/");
 
       registry.addResourceHandler("/", "/**")
         .setCachePeriod(0)
-        .addResourceLocations("classpath:/static/ReactSPA/dist/index.html")
-        .addResourceLocations("/static/ReactSPA/dist/index.html")
+        .addResourceLocations("classpath:/static/ReactSPA/distPRD/index.html")
+        .addResourceLocations("/static/ReactSPA/distPRD/index.html")
         .resourceChain(true)
         .addResolver(new PathResourceResolver() {
           @Override
