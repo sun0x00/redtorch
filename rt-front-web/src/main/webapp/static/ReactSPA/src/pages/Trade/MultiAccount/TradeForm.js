@@ -696,13 +696,9 @@ class TradeForm extends PureComponent {
             <Button htmlType="reset" onClick={this.resetForm} style={{ marginLeft: 5 }}>
               重置
             </Button>
-
-            <Popconfirm placement="topRight" title={text} onConfirm={confirm} okText="确认" cancelText="取消">
-              <Button type="primary" htmlType="submit" loading={submitting} style={{ marginLeft: 5 }}>
-                发单
-              </Button>
-            </Popconfirm>
-     
+            <Button type="primary" htmlType="submit" loading={submitting} style={{ marginLeft: 5 }}>
+              发单
+            </Button>
           </FormItem>
 
 
