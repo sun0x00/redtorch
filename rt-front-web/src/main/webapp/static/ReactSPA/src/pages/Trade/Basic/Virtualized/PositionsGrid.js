@@ -180,8 +180,8 @@ class Center extends PureComponent {
       if(columnIndex === 0){
         return (
           <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
-            <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
-            <div style={{minWidth:60}}>{tableList[rowIndex].contractName}</div>
+            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}<br /></div>
+            <div>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
@@ -191,8 +191,8 @@ class Center extends PureComponent {
       if(columnIndex === 1){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}>{tableList[rowIndex].accountID}</div>
-            <div style={{color:"#BBB",minWidth:60}}>{tableList[rowIndex].gatewayDisplayName}</div>
+            <div>{tableList[rowIndex].accountID}<br /></div>
+            <div style={{color:"#BBB"}}>{tableList[rowIndex].gatewayDisplayName}</div>
           </div>
         )
       }
@@ -225,8 +225,8 @@ class Center extends PureComponent {
       if(columnIndex === 3){
         return (
           <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].position}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].frozen}</div>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].position}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].frozen}</div>
           </div>
         )
       }
@@ -235,8 +235,8 @@ class Center extends PureComponent {
       if(columnIndex === 4){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].tdPosition}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].tdFrozen}</div>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].tdPosition}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].tdFrozen}</div>
           </div>
         )
       }
@@ -245,8 +245,8 @@ class Center extends PureComponent {
       if(columnIndex === 5){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].price,4)}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].price,4)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
           </div>
         )
       }
@@ -255,8 +255,8 @@ class Center extends PureComponent {
       if(columnIndex === 6){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].priceDiff,4)}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPriceDiff,4)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].priceDiff,4)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPriceDiff,4)}</div>
           </div>
         )
       }
@@ -266,8 +266,8 @@ class Center extends PureComponent {
         if(tableList[rowIndex].openProfit > 0){
           return(
             <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
+              <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
             </div>
           )
         }
@@ -275,16 +275,16 @@ class Center extends PureComponent {
         if(tableList[rowIndex].openProfit < 0){
           return(
             <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
+              <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
             </div>
           )
         }
 
         return(
           <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfit,4)}</div>
-            <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
+            <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+            <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
           </div>
         )
 
@@ -295,8 +295,8 @@ class Center extends PureComponent {
         if(tableList[rowIndex].positionProfit > 0){
           return(
             <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
+              <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
@@ -304,15 +304,15 @@ class Center extends PureComponent {
         if(tableList[rowIndex].positionProfit < 0){
           return(
             <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
+              <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
         return(
           <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfit,4)}</div>
-            <div style={{minWidth:60}}>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
+            <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+            <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
           </div>
         )
       }
@@ -321,8 +321,8 @@ class Center extends PureComponent {
       if(columnIndex === 9){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat(tableList[rowIndex].useMargin,2)}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat(tableList[rowIndex].exchangeMargin,2)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat(tableList[rowIndex].useMargin,2)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat(tableList[rowIndex].exchangeMargin,2)}</div>
           </div>
         )
       }

@@ -132,8 +132,8 @@ class Center extends PureComponent {
       if(columnIndex === 0){
         return (
           <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
-            <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
-            <div style={{minWidth:60}}>{tableList[rowIndex].contractName}</div>
+            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}<br /></div>
+            <div>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
@@ -143,8 +143,8 @@ class Center extends PureComponent {
       if(columnIndex === 1){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}>{tableList[rowIndex].accountID}</div>
-            <div style={{color:"#BBB", minWidth:60}}>{tableList[rowIndex].gatewayDisplayName}</div>
+            <div>{tableList[rowIndex].accountID}<br /></div>
+            <div style={{color:"#BBB"}}>{tableList[rowIndex].gatewayDisplayName}</div>
           </div>
         )
       }
@@ -155,18 +155,18 @@ class Center extends PureComponent {
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
             {
               tableList[rowIndex].direction === DIRECTION_LONG &&
-              <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}<br /></div>
             }
             
             {
               tableList[rowIndex].direction === DIRECTION_SHORT &&
-              <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}<br /></div>
             }
             {
               (tableList[rowIndex].direction !== DIRECTION_LONG && tableList[rowIndex].direction !== DIRECTION_SHORT) &&
-              <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+              <div><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}<br /></div>
             }
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get(tableList[rowIndex].offset)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get(tableList[rowIndex].offset)}</div>
           </div>
         )
       }
@@ -184,8 +184,8 @@ class Center extends PureComponent {
       if(columnIndex === 4){
         return (
           <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].totalVolume}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>成交：</span>{tableList[rowIndex].tradedVolume}</div>
+            <div><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].totalVolume}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>成交：</span>{tableList[rowIndex].tradedVolume}</div>
           </div>
         )
       }
@@ -193,8 +193,8 @@ class Center extends PureComponent {
       if(columnIndex === 5){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(tableList[rowIndex].status)}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>编号：</span>{tableList[rowIndex].orderID}</div>
+            <div><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(tableList[rowIndex].status)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>编号：</span>{tableList[rowIndex].orderID}</div>
           </div>
         )
       }
@@ -203,8 +203,8 @@ class Center extends PureComponent {
       if(columnIndex === 6){
         return (
           <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].orderTime}</div>
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>更新：</span>{tableList[rowIndex].updateTime}</div>
+            <div><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].orderTime}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>更新：</span>{tableList[rowIndex].updateTime}</div>
           </div>
         )
       }

@@ -106,8 +106,8 @@ class Center extends PureComponent {
       render: (text, record) => (
         (
           <div className={`${styles.cell} ${styles.cursorPointer}`}>
-            <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{record.rtSymbol}</div>
-            <div style={{minWidth:60}}>{record.contractName}</div>
+            <div className={`${styles.colorYellow}`}>{record.rtSymbol}<br /></div>
+            <div>{record.contractName}</div>
           </div>
         )
       )
@@ -119,8 +119,8 @@ class Center extends PureComponent {
       onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})` === value,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}>{ record.accountID}</div>
-          <div style={{color:"#BBB",minWidth:60}}>{ record.gatewayDisplayName}</div>
+          <div>{ record.accountID}<br /></div>
+          <div style={{color:"#BBB"}}>{ record.gatewayDisplayName}</div>
         </div>
       )
     },  {
@@ -131,18 +131,18 @@ class Center extends PureComponent {
         <div className={`${styles.displayRight}`}>
           {
             record.direction === DIRECTION_LONG &&
-            <div style={{minWidth:60}} className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}<br /></div>
           }
           
           {
             record.direction === DIRECTION_SHORT &&
-            <div style={{minWidth:60}} className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}<br /></div>
           }
           {
             ( record.direction !== DIRECTION_LONG &&  record.direction !== DIRECTION_SHORT) &&
-            <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}<br /></div>
           }
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get( record.offset)}</div>
+          <div><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get( record.offset)}</div>
         </div>
       )
     }, {
@@ -162,8 +162,8 @@ class Center extends PureComponent {
       width: 150,
       render:(text,record)=>(
         <div className={`${styles.displayRight} ${styles.colorCount}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{record.totalVolume}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradedVolume}</div>
+          <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.totalVolume}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradedVolume}</div>
         </div>
       )
     },{
@@ -173,8 +173,8 @@ class Center extends PureComponent {
       width: 150,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(record.status)}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>编号：</span>{record.orderID}</div>
+          <div><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(record.status)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>编号：</span>{record.orderID}</div>
         </div>
       ),
       sorter: (a, b) => a.status > b.status,
@@ -189,8 +189,8 @@ class Center extends PureComponent {
       sorter: (a, b) => a.orderTime > b.orderTime,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>委托：</span>{record.orderTime}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>更新：</span>{record.updateTime}</div>
+          <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.orderTime}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>更新：</span>{record.updateTime}</div>
         </div>
       ),
     }];

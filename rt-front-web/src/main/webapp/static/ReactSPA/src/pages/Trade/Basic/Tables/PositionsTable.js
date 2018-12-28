@@ -144,8 +144,8 @@ class Center extends PureComponent {
       onFilter: (value, record) =>record.rtSymbol === value,
       render: (text, record) => (
         <div className={`${styles.cursorPointer}`}>
-          <div style={{minWidth:60}} className={`${styles.colorYellow}`}>{record.rtSymbol}</div>
-          <div style={{minWidth:60}}>{record.contractName}</div>
+          <div className={`${styles.colorYellow}`}>{record.rtSymbol}<br /></div>
+          <div>{record.contractName}</div>
         </div>
       )
     }, {
@@ -156,8 +156,8 @@ class Center extends PureComponent {
       onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value,
       render: (text, record) => (
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}>{ record.accountID}</div>
-          <div style={{color:"#BBB", minWidth:60}}>{ record.gatewayDisplayName}</div>
+          <div>{ record.accountID}<br /></div>
+          <div style={{color:"#BBB"}}>{ record.gatewayDisplayName}</div>
         </div>
       )
     },  {
@@ -192,8 +192,8 @@ class Center extends PureComponent {
       align: 'right',
       render:(text,record) => (
         <div className={`${styles.displayRight} ${styles.colorCount}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.position}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.frozen}</div>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.position}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.frozen}</div>
         </div>
       )
     }, {
@@ -203,8 +203,8 @@ class Center extends PureComponent {
       align: 'right',
       render:(text,record) => (
         <div className={`${styles.displayRight} ${styles.colorCount}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.tdPosition}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.tdFrozen}</div>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.tdPosition}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.tdFrozen}</div>
         </div>
       )
     }, {
@@ -214,8 +214,8 @@ class Center extends PureComponent {
       align: 'right',
       render:(text,record)=>(
         <div className={` ${styles.displayRight}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.price,4)}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPrice,4)}</div>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.price,4)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPrice,4)}</div>
         </div>
       )
     }, {
@@ -225,8 +225,8 @@ class Center extends PureComponent {
       align: 'right',
       render:(text,record)=>(
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.priceDiff,4)}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPriceDiff,4)}</div>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.priceDiff,4)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPriceDiff,4)}</div>
         </div>
       )
     }, {
@@ -238,8 +238,8 @@ class Center extends PureComponent {
         if(record.openProfit > 0){
           return(
             <div className={`${styles.displayRight} ${styles.colorBuy}`}>
-              <div style={{minWidth:60}}>{numberFormat(record.openProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(record.openProfitRatio*100,2)}%</div>
+              <div>{numberFormat(record.openProfit,4)}<br /></div>
+              <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
             </div>
           )
         }
@@ -247,16 +247,16 @@ class Center extends PureComponent {
         if(record.openProfit < 0){
           return(
             <div className={`${styles.displayRight} ${styles.colorSell}`}>
-              <div style={{minWidth:60}}>{numberFormat(record.openProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat(record.openProfitRatio*100,2)}%</div>
+              <div>{numberFormat(record.openProfit,4)}<br /></div>
+              <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
             </div>
           )
         }
     
         return(
           <div className={`${styles.displayRight}`}>
-            <div style={{minWidth:60}}>{numberFormat(record.openProfit,4)}</div>
-            <div style={{minWidth:60}}>{numberFormat(record.openProfitRatio*100,2)}%</div>
+            <div>{numberFormat(record.openProfit,4)}<br /></div>
+            <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
           </div>
         )
       }
@@ -269,8 +269,8 @@ class Center extends PureComponent {
         if( record.positionProfit > 0){
           return(
             <div className={`${styles.displayRight} ${styles.colorBuy}`}>
-              <div style={{minWidth:60}}>{numberFormat( record.positionProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+              <div>{numberFormat( record.positionProfit,4)}<br /></div>
+              <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
@@ -278,15 +278,15 @@ class Center extends PureComponent {
         if( record.positionProfit < 0){
           return(
             <div className={`${styles.displayRight} ${styles.colorSell}`}>
-              <div style={{minWidth:60}}>{numberFormat( record.positionProfit,4)}</div>
-              <div style={{minWidth:60}}>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+              <div>{numberFormat( record.positionProfit,4)}<br /></div>
+              <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
         return(
           <div className={`${styles.displayRight}`}>
-            <div style={{minWidth:60}}>{numberFormat( record.positionProfit,4)}</div>
-            <div style={{minWidth:60}}>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+            <div>{numberFormat( record.positionProfit,4)}<br /></div>
+            <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
           </div>
         )
       }
@@ -297,8 +297,8 @@ class Center extends PureComponent {
       align: 'right',
       render:(text,record)=>(
         <div className={`${styles.displayRight}`}>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat( record.useMargin,2)}</div>
-          <div style={{minWidth:60}}><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat( record.exchangeMargin,2)}</div>
+          <div><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat( record.useMargin,2)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat( record.exchangeMargin,2)}</div>
         </div>
       )
     }, {
