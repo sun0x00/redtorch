@@ -41,7 +41,8 @@ class Center extends PureComponent {
     super(props);
     this.state={
        // hoveredColumnIndex: null,
-       hoveredRowIndex: null
+       hoveredRowIndex: null,
+       clickedRowIndex: null
     }
  }
 
@@ -52,7 +53,8 @@ class Center extends PureComponent {
       dispatch
     } = this.props;
     const {
-      hoveredRowIndex
+      // hoveredRowIndex,
+      clickedRowIndex
     } = this.state;
 
     let tableHeight;
@@ -92,7 +94,8 @@ class Center extends PureComponent {
 
     const cellRenderer=({columnIndex, key, rowIndex, style})=>{
 
-      const hoveredCellClass = rowIndex === hoveredRowIndex ? styles.hoveredCell : '';
+      // let hoveredCellClass = rowIndex === hoveredRowIndex ? styles.hoveredCell : '';
+      const hoveredCellClass = rowIndex === clickedRowIndex ? styles.hoveredCell : '';
 
       
       const handleDoubleClick=()=>{
@@ -109,6 +112,9 @@ class Center extends PureComponent {
           updateTradeForm({
             symbol:tableList[rowIndex].symbol
           })
+        }
+        if(rowIndex!==0){
+          this.setState({clickedRowIndex:rowIndex})
         }
       }
 
@@ -168,7 +174,7 @@ class Center extends PureComponent {
       // 第3列 价格
       if(columnIndex === 3){
         return (
-          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+          <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass}`} key={key} style={style}>
             {numberFormat(tableList[rowIndex].price,4)}
           </div>
         )
@@ -177,7 +183,7 @@ class Center extends PureComponent {
       // 第4列 量
       if(columnIndex === 4){
         return (
-          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+          <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
             <div><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].totalVolume}</div>
             <div><span style={INLINE_LABEL_STYLE}>成交：</span>{tableList[rowIndex].tradedVolume}</div>
           </div>

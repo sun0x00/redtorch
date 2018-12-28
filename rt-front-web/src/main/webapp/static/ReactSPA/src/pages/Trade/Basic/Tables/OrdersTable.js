@@ -161,7 +161,7 @@ class Center extends PureComponent {
       dataIndex: 'totalVolume',
       width: 150,
       render:(text,record)=>(
-        <div className={`${styles.displayRight}`}>
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
           <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.totalVolume}</div>
           <div><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradedVolume}</div>
         </div>

@@ -191,7 +191,7 @@ class Center extends PureComponent {
       width:  120,
       align: 'right',
       render:(text,record) => (
-        <div className={`${styles.displayRight}`}>
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
           <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.position}</div>
           <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.frozen}</div>
         </div>
@@ -202,7 +202,7 @@ class Center extends PureComponent {
       width:  120,
       align: 'right',
       render:(text,record) => (
-        <div className={`${styles.displayRight}`}>
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
           <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.tdPosition}</div>
           <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.tdFrozen}</div>
         </div>

@@ -145,7 +145,7 @@ class Center extends PureComponent {
       align: 'center',
       width: 80,
       render:(text,record)=>(
-        <div className={`${styles.displayRight}`}>
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
           {record.volume}
         </div>
       ),
