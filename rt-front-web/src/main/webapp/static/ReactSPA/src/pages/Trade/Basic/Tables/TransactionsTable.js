@@ -4,6 +4,13 @@ import styles from './Tables.less';
 import {DIRECTION_TRANSLATER, OFFSET_TRANSLATER, DIRECTION_LONG, DIRECTION_SHORT} from '../../../../utils/RtConstant'
 import {numberFormat,sortTradeByTimeAndID} from "../../../../utils/RtUtils"
 
+const INLINE_LABEL_STYLE={
+  display:'inline-block',
+  float:'left',
+  color:'#AAA',
+  // paddingLeft:'2px'
+}
+
 class Center extends PureComponent {
 
   handleClick = (record)=>{
@@ -44,11 +51,9 @@ class Center extends PureComponent {
       tableList = list.sort(sortTradeByTimeAndID);
     }
     
-    let tableScroll;
-    if(scroll === undefined){
-      tableScroll = {y: 250,x:1120};
-    }else{
-      tableScroll = scroll;
+    let tableScroll= {y: 250,x:900};
+    if(scroll !== undefined){
+      tableScroll ={...tableScroll,...scroll};
     }
     
     const rtSymbolSet = new Set();
@@ -56,8 +61,8 @@ class Center extends PureComponent {
     const rtOrderIDSet = new Set();
     tableList.forEach(record=>{  
       rtSymbolSet.add(record.rtSymbol)
-      gatewaySet.add(`${record.gatewayDisplayName}(${record.gatewayID})?`)
-      rtOrderIDSet.add(record.rtOrderID)
+      gatewaySet.add(`${record.gatewayDisplayName}(${record.gatewayID})`)
+      rtOrderIDSet.add(`委托编号[${record.orderID}]`)
     })
     const rtSymbolFilterArray = [];
     Array.from(rtSymbolSet).forEach(rtSymbol=>{
@@ -73,86 +78,102 @@ class Center extends PureComponent {
     })
 
     const columns = [ {
-      title: '代码',
+      title: '产品',
       dataIndex: 'rtSymbol',
-      width: 140,
+      width: 150,
       key:'rtSymbol',
       sorter: (a, b) => a.rtSymbol > b.rtSymbol,
       filters: rtSymbolFilterArray,
-      onFilter: (value, record) =>record.rtSymbol === value
+      onFilter: (value, record) =>record.rtSymbol === value,
+      render: (text, record) => (
+        (
+          <div className={`${styles.cell} ${styles.cursorPointer}`}>
+            <div className={`${styles.colorYellow}`}>{record.rtSymbol}</div>
+            <div>{record.contractName}</div>
+          </div>
+        )
+      )
     }, {
       title: '账户',
-      dataIndex: 'accountID',
-      width: 120,
+      dataIndex: 'gatewayDisplayName',
+      width: 180,
+      align: 'center',
+      filters:gatewayFilterArray,
+      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})` === value,
+      render: (text, record) => (
+        <div className={` ${styles.displayRight}`}>
+          <div>{ record.accountID}</div>
+          <div style={{color:"#BBB"}}>{ record.gatewayDisplayName}</div>
+        </div>
+      )
     }, {
       title: '方向',
       dataIndex: 'direction',
       width: 80,
-      render: (text, record) => {
-        if(DIRECTION_LONG === record.direction){
-          return(
-            <span className={styles.colorBuy}> 
-              {DIRECTION_TRANSLATER.get(record.direction)}
-            </span>
-          );
-        }
-        if(DIRECTION_SHORT === record.direction){
-          return (
-            <span className={styles.colorSell}> 
-              {DIRECTION_TRANSLATER.get(record.direction)}
-            </span>
-          );
-        }
-        return (
-          <span> 
-            {DIRECTION_TRANSLATER.get(record.direction)}
-          </span>
-        );
-      }
-    }, {
-      title: '开平',
-      dataIndex: 'offset',
-      width: 80,
+      align: 'center',
       render: (text, record) => (
-        <span> 
-          {OFFSET_TRANSLATER.get(record.offset)}
-        </span>
+        <div className={`${styles.displayRight}`}>
+          {
+            record.direction === DIRECTION_LONG &&
+            <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+          }
+          
+          {
+            record.direction === DIRECTION_SHORT &&
+            <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+          }
+          {
+            ( record.direction !== DIRECTION_LONG &&  record.direction !== DIRECTION_SHORT) &&
+            <div><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get( record.direction)}</div>
+          }
+          <div><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get( record.offset)}</div>
+        </div>
       )
     }, {
       title: '价格',
       dataIndex: 'price',
       width: 120,
+      align: 'center',
       render:(text,record)=>(
-        <span>
+        <div className={`${styles.displayRight}`}>
           {numberFormat(record.price,4)}
-        </span>
+        </div>
       ),
     }, {
       title: '数量',
       dataIndex: 'volume',
-      width: 100,
+      align: 'center',
+      width: 80,
+      render:(text,record)=>(
+        <div className={`${styles.displayRight}`}>
+          {record.volume}
+        </div>
+      ),
     }, {
       title: '成交时间',
       dataIndex: 'tradeTime',
-      width: 100,
-      key:'tradeTime',
-      sorter: (a, b) => a.tradeTime > b.tradeTime
-    },{
-      title: '成交编号',
-      dataIndex: 'tradeID',
-      width: 80,
-    }, {
-      title: '委托编号',
-      dataIndex: 'orderID',
-      width: 80,
-      filters: rtOrderIDFilterArray,
-      onFilter: (value, record) =>record.rtOrderID === value
-    },{
-      title: '网关',
-      dataIndex: 'gatewayDisplayName',
       width: 120,
-      filters: gatewayFilterArray,
-      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value
+      align: 'center',
+      key:'tradeTime',
+      sorter: (a, b) => a.tradeTime > b.tradeTime,
+      render:(text,record)=>(
+        <div className={`${styles.displayRight}`}>
+          {record.tradeTime}
+        </div>
+      ),
+    },{
+      title: '编号',
+      dataIndex: 'tradeID',
+      align: 'center',
+      width: 150,
+      filters: rtOrderIDFilterArray,
+      onFilter: (value, record) =>`委托编号[${record.orderID}]`=== value,
+      render:(text,record)=>(
+        <div className={`${styles.displayRight}`}>
+          <div><span style={INLINE_LABEL_STYLE}>成交：</span>{record.tradeID}</div>
+          <div><span style={INLINE_LABEL_STYLE}>委托：</span>{record.orderID}</div>
+        </div>
+      )
     }];
     
     return (

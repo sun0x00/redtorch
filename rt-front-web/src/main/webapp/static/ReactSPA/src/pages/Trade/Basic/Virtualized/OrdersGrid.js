@@ -25,6 +25,13 @@ const STYLE_TOP_RIGHT_GRID = {
   fontWeight: 'bold',
 };
 
+const INLINE_LABEL_STYLE={
+  display:'inline-block',
+  float:'left',
+  color:'#AAA',
+  paddingLeft:'2px'
+}
+
 
 @connect(({operation}) => ({
   operation
@@ -60,51 +67,23 @@ class Center extends PureComponent {
     let columnCount = 0;
     {
       const headerMap = new Map();
-      headerMap.set(columnCount,"代码"); // 0
+      headerMap.set(columnCount,"产品"); // 0 
       headerMap.set(columnCount+=1,"账户"); // 1
-      headerMap.set(columnCount+=1,"方向"); // 2
-      headerMap.set(columnCount+=1,"开平"); // 3
-      headerMap.set(columnCount+=1,"状态"); // 4
-      headerMap.set(columnCount+=1,"价格"); // 5
-      headerMap.set(columnCount+=1,"总量"); // 6
-      headerMap.set(columnCount+=1,"成交量"); // 7
-      headerMap.set(columnCount+=1,"委托时间"); // 8
-      headerMap.set(columnCount+=1,"更新时间"); // 9
-      headerMap.set(columnCount+=1,"委托编号"); // 10
-      headerMap.set(columnCount+=1,"网关"); // 11
+      headerMap.set(columnCount+=1,"方向"); // 2 
+      headerMap.set(columnCount+=1,"价格"); // 3
+      headerMap.set(columnCount+=1,"量"); // 4
+      headerMap.set(columnCount+=1,"状态"); // 5
+      headerMap.set(columnCount+=1,"时间"); // 6
       tableList.push(headerMap)
       columnCount+=1
     }
 
-    const sortedList = list.sort(sortOrderByTimeAndID)
 
-    if(sortedList !== undefined){
-      sortedList.forEach(item=>{
-        let i = 0;
-        const dataMap = new Map();
-        dataMap.set(i,item.rtSymbol);
-        dataMap.set(i+=1,item.accountID);
-        dataMap.set(i+=1,item.direction);
-        dataMap.set(i+=1,item.offset);
-        dataMap.set(i+=1,item.status);
-        dataMap.set(i+=1,numberFormat(item.price,4));
-        dataMap.set(i+=1,item.totalVolume);
-        dataMap.set(i+=1,item.tradedVolume);
-        dataMap.set(i+=1,item.orderTime);
-        dataMap.set(i+=1,item.updateTime);
-        dataMap.set(i+=1,item.orderID);
-        dataMap.set(i+=1,item.gatewayDisplayName);
-
-        // =======不渲染的字段============
-        dataMap.set(1001,item.gatewayID); 
-        dataMap.set(1002,item.rtOrderID); 
-        dataMap.set(1003,item.symbol); 
-        // ==============================
-
-        tableList.push(dataMap)
-      })
-      
-    }
+    list.sort(sortOrderByTimeAndID).forEach(element => {
+      const newElement = element
+      // 预留
+      tableList.push(newElement)
+    })
 
 
     const rowCount = tableList.length;
@@ -120,7 +99,7 @@ class Center extends PureComponent {
         dispatch({
           type: 'operation/cancelOrder',
           payload: {
-            rtOrderID:tableList[rowIndex].get(1002)
+            rtOrderID:tableList[rowIndex].rtOrderID
           },
         });
       }
@@ -128,87 +107,118 @@ class Center extends PureComponent {
         const {updateTradeForm} = this.props
         if(updateTradeForm!==null&&updateTradeForm!==undefined){
           updateTradeForm({
-            symbol:tableList[rowIndex].get(1003)
+            symbol:tableList[rowIndex].symbol
           })
         }
       }
 
+      // 第0行 表头
       if(rowIndex === 0){
         return (
           <div className={styles.headerCell} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+            <div>{tableList[rowIndex].get(columnIndex)}</div>
           </div>
         );
 
       }
+
+      // 第0列 产品信息
       if(columnIndex === 0){
         return (
-          <div onDoubleClick={handleDoubleClick} onClick={handleClick} onFocus={() => undefined} className={`${styles.cell} ${hoveredCellClass} ${styles.colorYellow} ${styles.cursorPointer}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
+            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}</div>
+            <div>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
+      
 
+      // 第1列 账户
+      if(columnIndex === 1){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div>{tableList[rowIndex].accountID}</div>
+            <div style={{color:"#BBB"}}>{tableList[rowIndex].gatewayDisplayName}</div>
+          </div>
+        )
+      }
+
+      // 第2列 方向
       if(columnIndex === 2){
-        if(tableList[rowIndex].get(columnIndex) === DIRECTION_LONG){
-          return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
-              {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
-            </div>
-          )
-        }
-        
-        if(tableList[rowIndex].get(columnIndex) === DIRECTION_SHORT){
-          return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
-              {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
-            </div>
-          )
-        }
         return(
-          <div className={`${styles.cell} ${hoveredCellClass}`} key={key} style={style}>
-            {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            {
+              tableList[rowIndex].direction === DIRECTION_LONG &&
+              <div className={`${styles.colorBuy}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+            }
+            
+            {
+              tableList[rowIndex].direction === DIRECTION_SHORT &&
+              <div className={`${styles.colorSell}`}><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+            }
+            {
+              (tableList[rowIndex].direction !== DIRECTION_LONG && tableList[rowIndex].direction !== DIRECTION_SHORT) &&
+              <div><span style={INLINE_LABEL_STYLE}>方向：</span>{DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}</div>
+            }
+            <div><span style={INLINE_LABEL_STYLE}>开平：</span>{OFFSET_TRANSLATER.get(tableList[rowIndex].offset)}</div>
           </div>
         )
-
       }
 
+      // 第3列 价格
       if(columnIndex === 3){
-        return(
-          <div className={`${styles.cell} ${hoveredCellClass}`} key={key} style={style}>
-            {OFFSET_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            {numberFormat(tableList[rowIndex].price,4)}
           </div>
         )
       }
 
+      // 第4列 量
       if(columnIndex === 4){
-        return(
-          <div className={`${styles.cell} ${hoveredCellClass}`} key={key} style={style}>
-            {STATUS_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].totalVolume}</div>
+            <div><span style={INLINE_LABEL_STYLE}>成交：</span>{tableList[rowIndex].tradedVolume}</div>
+          </div>
+        )
+      }
+      // 第5列 状态
+      if(columnIndex === 5){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>状态：</span>{STATUS_TRANSLATER.get(tableList[rowIndex].status)}</div>
+            <div><span style={INLINE_LABEL_STYLE}>编号：</span>{tableList[rowIndex].orderID}</div>
           </div>
         )
       }
       
+      // 第6列 时间
+      if(columnIndex === 6){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>委托：</span>{tableList[rowIndex].orderTime}</div>
+            <div><span style={INLINE_LABEL_STYLE}>更新：</span>{tableList[rowIndex].updateTime}</div>
+          </div>
+        )
+      }
 
       return (
-        <div className={`${styles.cell}  ${hoveredCellClass}`} key={key} style={style}>
-          {tableList[rowIndex].get(columnIndex)}
-        </div>
+        <div />
       )
+
     }
 
     const getColumnWidth=({index}) => {
       switch (index) {
         case 0:
-          return 130;
+          return 150;
+        case 1:
+          return 180;
         case 2:
-          return 60;
-        case 3:
-          return 60;
-        case 10:
-            return 120;
+          return 120;
         default:
-          return 110;
+          return 140;
       }
     }
     

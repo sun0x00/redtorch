@@ -47,7 +47,7 @@ class TradeForm extends PureComponent {
     super(props);
     this.state={
        // hoveredColumnIndex: null,
-       cardHeight: ((window.innerHeight - 120) > 650?(window.innerHeight - 120):650) || 650
+       cardHeight: ((window.innerHeight - 70) > 650?(window.innerHeight - 70):650) || 650
     }
   }
 
@@ -696,9 +696,13 @@ class TradeForm extends PureComponent {
             <Button htmlType="reset" onClick={this.resetForm} style={{ marginLeft: 5 }}>
               重置
             </Button>
-            <Button type="primary" htmlType="submit" loading={submitting} style={{ marginLeft: 5 }}>
-              发单
-            </Button>
+
+            <Popconfirm placement="topRight" title={text} onConfirm={confirm} okText="确认" cancelText="取消">
+              <Button type="primary" htmlType="submit" loading={submitting} style={{ marginLeft: 5 }}>
+                发单
+              </Button>
+            </Popconfirm>
+     
           </FormItem>
 
 

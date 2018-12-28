@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Tabs } from 'antd';
 import { connect } from 'dva';
 import PositionsGrid from './Virtualized/PositionsGrid';
 import OrdersGrid from './Virtualized/OrdersGrid';
 import TicksGrid from './Virtualized/TicksGrid';
+
+const {TabPane} = Tabs;
 
 
 @connect(({order,tick,position,basicTradeForm}) => ({
@@ -13,13 +15,13 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-       tableHeight: ((window.innerHeight - 290) / 3>180?(window.innerHeight - 290) / 3:180) || 180
+       tableHeight: ((window.innerHeight - 290) / 2>180?(window.innerHeight - 290) / 2:180) || 180
     }
   }
 
   onWindowResize=()=>{
     this.setState({
-      tableHeight: ((window.innerHeight - 290) / 3>180?(window.innerHeight - 290) / 3:180) || 180
+      tableHeight: ((window.innerHeight - 290) / 2>180?(window.innerHeight - 290) / 2:180) || 180
     })
   }
 
@@ -85,20 +87,27 @@ class Center extends PureComponent {
         <Col span={24}>
           <Row>
             <Col span={24}>
-              <h6>行情</h6>
               <TicksGrid updateTradeForm={this.updateTradeForm} list={tick.ticks} height={tableHeight} />
+              {/* <Tabs defaultActiveKey="1">
+                <TabPane tab="行情" key="1">
+                  <TicksGrid updateTradeForm={this.updateTradeForm} list={tick.ticks} height={tableHeight} />
+                </TabPane>
+                <TabPane tab="图" key="2">
+                  开发中
+                </TabPane>
+              </Tabs> */}
             </Col>
           </Row>
           <Row>
             <Col span={24}>
-              <h6>持仓</h6>
-              <PositionsGrid updateTradeForm={this.updateTradeForm} list={position.positions} height={tableHeight} />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <h6>可撤</h6>
-              <OrdersGrid updateTradeForm={this.updateTradeForm} list={order.workingOrders} height={tableHeight} />
+              <Tabs defaultActiveKey="1">
+                <TabPane tab="持仓" key="1">
+                  <PositionsGrid updateTradeForm={this.updateTradeForm} list={position.positions} height={tableHeight} />
+                </TabPane>
+                <TabPane tab="挂单" key="2">
+                  <OrdersGrid updateTradeForm={this.updateTradeForm} list={order.workingOrders} height={tableHeight} />
+                </TabPane>
+              </Tabs>
             </Col>
           </Row>
         </Col>

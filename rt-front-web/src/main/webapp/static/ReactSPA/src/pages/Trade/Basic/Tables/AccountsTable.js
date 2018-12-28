@@ -33,11 +33,9 @@ class Center extends PureComponent {
       tableList = list.sort(sortByRtAccountID);
     }
     
-    let tableScroll;
-    if(scroll === undefined){
-      tableScroll = {y: 250,x:1000};
-    }else{
-      tableScroll = scroll;
+    let tableScroll = {y: 250,x:1340};
+    if(scroll!==undefined){
+      tableScroll = {...tableScroll,...scroll};
     }
 
     const gatewaySet = new Set();
@@ -54,6 +52,12 @@ class Center extends PureComponent {
       title: '账户',
       dataIndex: 'accountID',
       width: 120,
+    },{
+      title: '网关',
+      dataIndex: 'gatewayDisplayName',
+      width: 180,
+      filters: gatewayFilterArray,
+      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value
     },
     {
       title: '币种',
@@ -179,13 +183,31 @@ class Center extends PureComponent {
           </span>
         );
       }
-    },{
-      title: '网关',
-      dataIndex: 'gatewayDisplayName',
+    }, {
+      title: '出金',
+      dataIndex: 'withdraw',
       width: 120,
-      filters: gatewayFilterArray,
-      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value
-    }];
+      key:'withdraw',
+      align: 'right',
+      sorter: (a, b) => a.withdraw > b.withdraw,
+      render:(text,record)=>(
+        <span>
+          {numberFormat(record.withdraw,4)}
+        </span>
+      )
+    }, {
+      title: '入金',
+      dataIndex: 'deposit',
+      width: 120,
+      key:'deposit',
+      align: 'right',
+      sorter: (a, b) => a.deposit > b.deposit,
+      render:(text,record)=>(
+        <span>
+          {numberFormat(record.deposit,4)}
+        </span>
+      )
+    },];
     
     return (
       <Table

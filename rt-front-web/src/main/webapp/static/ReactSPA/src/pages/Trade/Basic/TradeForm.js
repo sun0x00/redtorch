@@ -45,7 +45,7 @@ class TradeForm extends PureComponent {
     super(props);
     this.state={
        // hoveredColumnIndex: null,
-       cardHeight: ((window.innerHeight - 120) > 650?(window.innerHeight - 120):650) || 650
+       cardHeight: ((window.innerHeight - 70) > 650?(window.innerHeight - 70):650) || 650
     }
   }
 

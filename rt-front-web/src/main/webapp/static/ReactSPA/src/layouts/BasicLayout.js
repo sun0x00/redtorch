@@ -261,7 +261,8 @@ class BasicLayout extends React.PureComponent {
           <Content style={this.getContentStyle()}>
             {children}
           </Content>
-          <Footer />
+          {/* 屏蔽页脚 */}
+          {/* <Footer /> */}
         </Layout>
       </Layout>
     );

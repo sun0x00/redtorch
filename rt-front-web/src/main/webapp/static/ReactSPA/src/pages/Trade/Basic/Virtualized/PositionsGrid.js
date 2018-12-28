@@ -85,24 +85,31 @@ class Center extends PureComponent {
     
     list.sort(sortBySymbol).forEach(element => {
       const newElement = element
+      // 计算持仓价格与最新价格的差距
       newElement.priceDiff = element.positionProfit/element.contractSize/element.position
-
+      // 计算最新价格
       newElement.lastPrice = element.price+newElement.priceDiff
 
       if(newElement.direction === DIRECTION_LONG||(newElement.position >0 && newElement.direction === DIRECTION_NET)){
+        
+        // 计算最新价格
         newElement.lastPrice = newElement.price + newElement.priceDiff
-
+        // 计算开仓价格
         newElement.openPriceDiff = newElement.lastPrice-element.openPrice
+        // 计算开仓盈亏
         newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
       }else if(newElement.direction === DIRECTION_SHORT||(newElement.position <0 && newElement.direction === DIRECTION_NET)){
+        
+        // 计算最新价格
         newElement.lastPrice   =  newElement.price - newElement.priceDiff
-
+        // 计算开仓价格
         newElement.openPriceDiff = element.openPrice-newElement.lastPrice
+        // 计算开仓盈亏
         newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
       }
 
 
-
+      // 计算保最新合约价值
       newElement.contractValue = (newElement.openPrice+newElement.openPriceDiff)*element.contractSize*element.position
 
       if(element.useMargin!==0){
@@ -129,15 +136,18 @@ class Center extends PureComponent {
       const hoveredCellClass = rowIndex === hoveredRowIndex ? styles.hoveredCell : '';
 
       const handleDoubleClick=()=>{
+
+        const subscribeData = {
+          symbol:tableList[rowIndex].symbol,
+          exchange:tableList[rowIndex].exchange,
+          gatewayID:tableList[rowIndex].gatewayID
+        }
+  
         dispatch({
           type: 'operation/subscribe',
-          payload: {
-            subscribeReq:{
-              symbol:tableList[rowIndex].symbol,
-            },
-            gatewayIDs:[tableList[rowIndex].gatewayID],
-          },
+          payload: subscribeData
         });
+
       }
 
       const handleClick = ()=>{
