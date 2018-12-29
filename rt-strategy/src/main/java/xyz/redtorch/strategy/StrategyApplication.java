@@ -1,7 +1,6 @@
 package xyz.redtorch.strategy;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -14,7 +13,6 @@ import xyz.redtorch.core.zeus.impl.ZeusTradingEngineServiceImpl;
 
 @SpringBootApplication(scanBasePackages = {"xyz.redtorch.strategy"})
 @RestController
-@EnableAutoConfiguration
 @Import({RMIClientConfiguration.class,ZeusTradingEngineServiceImpl.class})
 public class StrategyApplication {
     @Bean 
