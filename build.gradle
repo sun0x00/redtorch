@@ -7,7 +7,7 @@ ext {
         springTestVersion = '5.0.8.RELEASE'
         disruptorVersion = '3.4.2'
         mongoDriverVersion = '3.8.2'
-        chronicleQueueVersion = '5.16.16'
+        chronicleQueueVersion = '5.17.3'
 }
 
 subprojects {
