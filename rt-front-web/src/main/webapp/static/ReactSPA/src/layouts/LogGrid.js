@@ -73,7 +73,7 @@ class Center extends PureComponent {
       columnCount+=1
     }
     tableList = tableList.concat(logDatas.reverse())
-    
+    // tableList = tableList.concat(logDatas.sort((a,b)=>b.timestamp - a.timestamp));
     const rowCount = tableList.length;
     
     const multiGridRef = React.createRef();

@@ -5,6 +5,7 @@ export default {
 
   state: {
     logDatas: [],
+    dataLength: 200
   },
 
   effects: {
@@ -29,8 +30,8 @@ export default {
     saveLogDatas(state, action) {
     
       let newLogDatas = action.payload
-      if(newLogDatas.length>200){
-        newLogDatas = newLogDatas.splice(newLogDatas.lenth-200,200);
+      if(newLogDatas.length>state.dataLength){
+        newLogDatas = newLogDatas.sort((a,b)=>a.timestamp-b.timestamp).splice(-state.dataLength,state.dataLength);
       }
 
       return {
@@ -41,8 +42,8 @@ export default {
     updateStateLogDatas(state,action){
       let newLogDatas = state.logDatas.concat(action.payload)
 
-      if(newLogDatas.length>200){
-        newLogDatas = newLogDatas.splice(newLogDatas.lenth-200,200);
+      if(newLogDatas.length>state.dataLength){
+        newLogDatas = newLogDatas.sort((a,b)=>a.timestamp-b.timestamp).splice(-state.dataLength,state.dataLength);
       }
 
       return {
