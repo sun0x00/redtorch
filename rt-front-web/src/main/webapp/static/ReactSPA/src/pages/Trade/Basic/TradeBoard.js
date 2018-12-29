@@ -7,7 +7,6 @@ import TicksGrid from './Virtualized/TicksGrid';
 
 const {TabPane} = Tabs;
 
-
 @connect(({order,tick,position,basicTradeForm}) => ({
   order,tick,position,basicTradeForm
 }))
@@ -15,13 +14,13 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-       tableHeight: ((window.innerHeight - 290) / 2>180?(window.innerHeight - 290) / 2:180) || 180
+       tableHeight: ((window.innerHeight - 140) / 2>220?(window.innerHeight - 140) / 2:220) || 220
     }
   }
 
   onWindowResize=()=>{
     this.setState({
-      tableHeight: ((window.innerHeight - 290) / 2>180?(window.innerHeight - 290) / 2:180) || 180
+      tableHeight: ((window.innerHeight - 140) / 2>220?(window.innerHeight - 140) / 2:220) || 220
     })
   }
 
@@ -100,7 +99,7 @@ class Center extends PureComponent {
           </Row>
           <Row>
             <Col span={24}>
-              <Tabs defaultActiveKey="1">
+              <Tabs defaultActiveKey="1" size='small'>
                 <TabPane tab="持仓" key="1">
                   <PositionsGrid updateTradeForm={this.updateTradeForm} list={position.positions} height={tableHeight} />
                 </TabPane>

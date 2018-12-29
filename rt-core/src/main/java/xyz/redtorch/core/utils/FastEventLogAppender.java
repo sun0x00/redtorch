@@ -36,17 +36,15 @@ public class FastEventLogAppender extends AppenderBase<ILoggingEvent> {
 		default:
 			break;
 		}
-
-		// 出于前端性能考虑，只转发错误级别日志（强烈建议不要修改或者可以关闭日志转发）
-		if (RtConstant.LOG_ERROR.contains(rtLevel)) {
+		
+		// if (RtConstant.LOG_ERROR.contains(rtLevel)) { // 可以考虑之转发高级别日志
 			String event = EventConstant.EVENT_LOG;
-			StringBuffer sb = new StringBuffer();
 			String loggerName = le.getLoggerName();
-			sb.append(le.getThreadName()).append("\t")
-					.append(loggerName.split("\\.")[loggerName.split("\\.").length - 1]).append("\t")
-					.append(le.getFormattedMessage());
-			CoreUtil.emitLogBase(le.getTimeStamp(), event, rtLevel, sb.toString());
-		}
+			String threadName = le.getThreadName();
+			String className = loggerName.split("\\.")[loggerName.split("\\.").length - 1];
+			String content = le.getFormattedMessage();
+			CoreUtil.emitLogBase(le.getTimeStamp(), event, rtLevel, threadName, className, content);
+		// }
 
 	}
 

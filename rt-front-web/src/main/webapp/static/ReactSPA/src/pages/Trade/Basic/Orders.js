@@ -9,14 +9,14 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-      tableHeight: ((window.innerHeight - 320) > 520?(window.innerHeight - 320):520) || 520
+      tableHeight: ((window.innerHeight - 200) > 480?(window.innerHeight - 200):480) || 480
     }
   }
 
 
   onWindowResize=()=>{
     this.setState({
-      tableHeight: ((window.innerHeight - 320) > 520?(window.innerHeight - 320):520) || 520
+      tableHeight: ((window.innerHeight - 200) > 480?(window.innerHeight - 200):480) || 480
     })
   }
 

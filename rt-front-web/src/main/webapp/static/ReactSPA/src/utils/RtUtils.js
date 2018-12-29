@@ -106,7 +106,7 @@ const timestampFormat = (timestamp, formatStr) => {
     if (formatStr) {
         return formatDate(date, formatStr)
     }
-    return formatDate(date, "yyyy-MM-dd HH:mm:ss.S")
+    return formatDate(date, "yyyy-MM-dd HH:mm:ss.SSS")
 };
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));

@@ -13,8 +13,10 @@ public class LogData implements Serializable {
 	private static final long serialVersionUID = 7122255887442856581L;
 
 	private long timestamp = System.currentTimeMillis(); // 日志创建时间
-	private String content; // 日志信息
 	private String level = RtConstant.LOG_INFO; // 日志级别
+	private String threadName; //　线程信息
+	private String className; // 类名
+	private String content; // 日志信息
 
 	public String getFormatDateTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat(RtConstant.DT_FORMAT_WITH_MS);
@@ -29,14 +31,6 @@ public class LogData implements Serializable {
 		this.timestamp = timestamp;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public String getLevel() {
 		return level;
 	}
@@ -45,9 +39,34 @@ public class LogData implements Serializable {
 		this.level = level;
 	}
 
+	public String getThreadName() {
+		return threadName;
+	}
+
+	public void setThreadName(String threadName) {
+		this.threadName = threadName;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	@Override
 	public String toString() {
-		return "LogData [timestamp=" + timestamp + ", content=" + content + ", level=" + level + "]";
+		return "LogData [timestamp=" + timestamp + ", level=" + level + ", threadName=" + threadName + ", className="
+				+ className + ", content=" + content + "]";
 	}
 
 }

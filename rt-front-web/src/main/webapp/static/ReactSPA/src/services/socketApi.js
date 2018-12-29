@@ -59,6 +59,12 @@ export function socketListen(action) {
                     payload: data
                 })
             });
+            socket.on("E_LOGS|",  (data) => {
+                action({
+                    type: 'E_LOGS|',
+                    payload: data
+                })
+            });
             
             socket.on("E_GATEWAY|",  (data) => {
                 action({

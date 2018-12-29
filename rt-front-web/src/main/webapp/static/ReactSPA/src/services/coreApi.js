@@ -47,7 +47,7 @@ export async function queryAccounts(params){
 }
 
 
-export async function queryLogs(params){
+export async function queryLogDatas(params){
   return request(`/api/core/logs?token=${params.token}`);
 }
 

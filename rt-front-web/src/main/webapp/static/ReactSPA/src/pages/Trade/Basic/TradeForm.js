@@ -19,13 +19,12 @@ const { Search } = Input;
 
 const formItemLayout = {
   labelCol: {
-    xs: { span: 24 },
-    sm: { span: 6 },
+    md : { span: 24 },
+    lg: { span: 8 }
   },
   wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-    md: { span: 14 },
+    md: { span: 24 },
+    lg: { span: 16 }
   },
 };
 
@@ -45,7 +44,7 @@ class TradeForm extends PureComponent {
     super(props);
     this.state={
        // hoveredColumnIndex: null,
-       cardHeight: ((window.innerHeight - 70) > 650?(window.innerHeight - 70):650) || 650
+       cardHeight: ((window.innerHeight - 70) > 550?(window.innerHeight - 70):550) || 550
     }
   }
 
@@ -224,7 +223,7 @@ class TradeForm extends PureComponent {
 
   onWindowResize=()=>{
     this.setState({
-      cardHeight: ((window.innerHeight - 120) > 650?(window.innerHeight - 120):650) || 650
+      cardHeight: ((window.innerHeight - 70) > 550?(window.innerHeight - 70):550) || 550
     })
   }
 
@@ -281,8 +280,7 @@ class TradeForm extends PureComponent {
     }
 
     return (
-      // <Card bordered={false} style={{height:cardHeight,overflowY:"auto"}} gutter={0}>
-      <Card bordered={false} gutter={0}>
+      <Card bordered style={{height:cardHeight,overflowY:"auto"}} gutter={0}>
         <Form onSubmit={this.handleSubmit} hideRequiredMark gutter={0}>
           <FormItem className={styles.formItem} {...formItemLayout} label='代码'>
             {getFieldDecorator('fuzzySymbol',{
@@ -293,7 +291,7 @@ class TradeForm extends PureComponent {
                   initialValue: basicTradeForm.fuzzySymbol
                 },
               ],
-            })(<Search placeholder='支持模糊查询' onChange={e=>this.handleFuzzySymbolChange(e)} onSearch={(value,event)=>this.handleSubscribe(value,event)} enterButton /> )}
+            })(<Search size='small' placeholder='支持模糊查询' onChange={e=>this.handleFuzzySymbolChange(e)} onSearch={(value,event)=>this.handleSubscribe(value,event)} enterButton /> )}
           </FormItem>
           <FormItem
             className={styles.formItem}
@@ -309,8 +307,8 @@ class TradeForm extends PureComponent {
               ]
             })(
               <RadioGroup size='small' onChange={this.handleDirectionChange} buttonStyle="solid">
-                <RadioButton size='small' value='LONG'>多</RadioButton>
-                <RadioButton size='small' value='SHORT'>空</RadioButton>
+                <RadioButton value='LONG'>多</RadioButton>
+                <RadioButton value='SHORT'>空</RadioButton>
               </RadioGroup>)}
           </FormItem>
           <FormItem
@@ -363,7 +361,7 @@ class TradeForm extends PureComponent {
             {getFieldDecorator('price',{
               // initialValue:formPriceInit
               initialValue: basicTradeForm.price
-            })(<InputNumber onChange={this.handlePriceChange} disabled={priceDisabled} style={{ width: "100%" }} min={0} max={999999999} step={basicTradeForm.step} />)}
+            })(<InputNumber size='small' onChange={this.handlePriceChange} disabled={priceDisabled} style={{ width: "100%" }} min={0} max={999999999} step={basicTradeForm.step} />)}
           </FormItem>
           <FormItem 
             className={styles.formItem}
@@ -393,7 +391,7 @@ class TradeForm extends PureComponent {
                   message: '请输入数量',
                 },
               ]
-            })(<InputNumber style={{ width: "100%" }} min={0} max={999999999} step={1} />)}
+            })(<InputNumber size='small' style={{ width: "100%" }} min={0} max={999999999} step={1} />)}
           </FormItem>
 
           <FormItem 
@@ -413,6 +411,7 @@ class TradeForm extends PureComponent {
                 []
             })(
               <Select
+                size='small'
                 mode="multiple"
                 showSearch
                 dropdownMatchSelectWidth={false}
@@ -452,6 +451,7 @@ class TradeForm extends PureComponent {
           >
             {getFieldDecorator('exchange')(
               <Select
+                size='small'
                 onChange={this.handleExchangeChange}
                 showSearch
                 placeholder='请选择交易所'
@@ -494,6 +494,7 @@ class TradeForm extends PureComponent {
           >
             {getFieldDecorator('currency')(
               <Select
+                size='small'
                 showSearch
                 placeholder='请选择币种'
                 optionFilterProp="children"
@@ -545,7 +546,7 @@ class TradeForm extends PureComponent {
           >
             {getFieldDecorator('productClass')(
               <Select
-               
+                size='small'
                 showSearch
                 placeholder='请选择产品类型'
                 optionFilterProp="children"
