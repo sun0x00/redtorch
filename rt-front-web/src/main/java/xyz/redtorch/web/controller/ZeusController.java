@@ -75,7 +75,7 @@ public class ZeusController {
 		} else if ("stopAll".equals(type)) {
 			zeusEngineWebService.stopAllStrategy();
 		} else if ("reloadAll".equals(type)) {
-			zeusEngineWebService.stopAllStrategy();
+			zeusEngineWebService.reloadAllStrategy();
 		}
 
 		return result;
