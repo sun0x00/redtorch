@@ -11,7 +11,7 @@ RedTorch
 ！！！请注意，当前为DEV分支，此README文件与实际代码有偏差！！！
 ----------------------------------------------------
 
-.. image:: https://github.com/sun0x00/RedTorch-Pages/raw/master/docs/images/RtSnapshort0x00.png
+.. image:: https://raw.githubusercontent.com/sun0x00/RedTorch-Pages/master/content/images/RedTorch20181230Snapshort.png
    :height: 992px
    :width: 1929px
    :scale: 50 %
