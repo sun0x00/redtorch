@@ -604,7 +604,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							String commandStrategyID = in.readUtf8();
 							if (strategyID.equals(commandStrategyID)) {
 								if (strategy != null || strategy.isTrading()) {
-									strategy.stopTrading(false);
+									strategy.stopTrading(true);
 								}
 							}
 
@@ -613,7 +613,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							if (strategyID.equals(commandStrategyID)) {
 								if (strategy != null) {
 									if (strategy.isTrading()) {
-										strategy.stopTrading(false);
+										strategy.stopTrading(true);
 									}
 
 									strategy.saveStrategySetting();
