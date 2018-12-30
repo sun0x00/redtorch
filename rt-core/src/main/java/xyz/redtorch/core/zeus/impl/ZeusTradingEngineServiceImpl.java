@@ -87,6 +87,9 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 
 	@Value("${strategyID}")
 	private String strategyID;
+	
+	@Value("${mmap.performance}")
+	private String mmapPerformance;
 
 	// 用于异步存储配置的队列(减少策略的IO等待时间,主要用于节省回测时间)
 	private Queue<StrategySetting> strategySettingSaveQueue = new ConcurrentLinkedQueue<>();
@@ -413,9 +416,19 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 	private class RxTask implements Runnable {
 		@Override
 		public void run() {
-			log.info("交易引擎MMAP RxTask已启动");
+			
+			boolean performance = false;
+			if("HIGH".equals(mmapPerformance)) {
+				performance = true;
+				log.info("交易引擎MMAP RxTask已启动,高性能模式");
+			}else {
+				log.info("交易引擎MMAP RxTask已启动,休眠模式");
+			}
+			int invalidReadCount = 0;
+			boolean effectiveRead;
+			
 			while (!Thread.currentThread().isInterrupted()) {
-				getQueueRxEt().readBytes(in -> {
+				effectiveRead = getQueueRxEt().readBytes(in -> {
 					int dataType = in.readInt();
 
 					if (ZeusMmapService.DATA_ORDER == dataType) {
@@ -672,6 +685,27 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 					}
 
 				});
+				
+				// 如果非性能模式
+				if(!performance) {
+					if(effectiveRead) {
+					// 有效读取
+						// 重置计数器
+						invalidReadCount = 0;
+					}else {
+					// 无效读取
+						// 计数器累加
+						invalidReadCount += 1;
+						// 如果超过连续没有读到数据
+						if(invalidReadCount>=3) {
+							try {
+								Thread.sleep(3);
+							} catch (InterruptedException e) {
+								// nop
+							}
+						}
+					}
+				}
 			}
 		}
 

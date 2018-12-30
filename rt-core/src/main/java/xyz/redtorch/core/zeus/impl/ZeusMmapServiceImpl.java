@@ -52,7 +52,10 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 	@Value("${chronicleQueueBasePath}")
 	private String chronicleQueueBasePath;
-
+	
+	@Value("${rt.core.zeus.mmap.performance}")
+	private String mmapPerformance;
+	
 	private SingleChronicleQueue queueTx;
 	private SingleChronicleQueue queueRx;
 	private ExcerptAppender queueTxEa;
@@ -383,11 +386,18 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 		@Override
 		public void run() {
-
-			log.info("MMAP RxTask已启动");
-
+			boolean performance = false;
+			if("HIGH".equals(mmapPerformance)) {
+				performance = true;
+				log.info("MMAP RxTask已启动,高性能模式");
+			}else {
+				log.info("MMAP RxTask已启动,休眠模式");
+			}
+			int invalidReadCount = 0;
+			boolean effectiveRead;
 			while (!Thread.currentThread().isInterrupted()) {
-				getQueueRxEt().readBytes(in -> {
+				effectiveRead = getQueueRxEt().readBytes(in -> {
+					
 					int dataType = in.readInt();
 
 					if (DATA_ORDERREQ == dataType) {
@@ -482,8 +492,29 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 					}
 
 				});
+				
+				// 如果非性能模式
+				if(!performance) {
+					if(effectiveRead) {
+					// 有效读取
+						// 重置计数器
+						invalidReadCount = 0;
+					}else {
+					// 无效读取
+						// 计数器累加
+						invalidReadCount += 1;
+						// 如果超过连续没有读到数据，休眠
+						if(invalidReadCount>=3) {
+							try {
+								Thread.sleep(3);
+							} catch (InterruptedException e) {
+								// nop
+							}
+						}
+					}
+				}
+				
 			}
-
 		}
 
 	}

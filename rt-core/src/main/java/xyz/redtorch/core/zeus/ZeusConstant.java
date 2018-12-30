@@ -19,10 +19,4 @@ public class ZeusConstant {
 	public static final String ORDER_COVER = "COVER"; // 买平
 	public static final String ORDER_COVERTODAY = "COVERTODAY"; // 买平今
 	public static final String ORDER_COVERYESTERDAY = "COVERYESTERDAY"; // 买平昨
-	// 本地停止单状态
-	public static final String STOPORDER_WAITING = "WAITING"; // 等待中
-	public static final String STOPORDER_CANCELLED = "CANCELLED"; // 已撤销
-	public static final String STOPORDER_TRIGGERED = "TRIGGERED"; // 已触发
-	// 本地停止单前缀
-	public static final String STOPORDERPREFIX = "Z_STOP_ORDER."; //
 }
