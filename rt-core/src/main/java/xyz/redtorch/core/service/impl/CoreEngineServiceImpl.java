@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -69,7 +70,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 	private Map<String, Account> accountMap = new HashMap<>();
 	private Map<String, LocalPositionDetail> localPositionDetailMap = new HashMap<>();
 	private Map<String, Position> positionMap = new HashMap<>();
-	private List<LogData> logDataList = new ArrayList<>();
+	private LinkedList<LogData> logDataList = new LinkedList<>();
 
 	private Map<String, Set<String>> subscriberRelationshipMap = new HashMap<>();
 
@@ -169,7 +170,13 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 	}
 
 	private void onLogData(LogData logData) {
-		logDataList.add(logData);
+		// 强制限制内存存储的日志数量小于等于1500
+		if(logDataList.size()<1500) {
+			logDataList.addLast(logData);
+		}else {
+			logDataList.removeFirst();
+			logDataList.addLast(logData);
+		}
 	}
 
 	private void onContract(Contract contract) {
