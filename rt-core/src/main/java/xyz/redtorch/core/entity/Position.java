@@ -13,7 +13,7 @@ public class Position implements Serializable {
 	private String gatewayDisplayName; // 网关
 	// 账号代码相关
 	private String accountID; // 账户代码
-	private String rtAccountID; // 账户在RedTorch中的唯一代码,通常 账户代码.网关
+	private String rtAccountID; // 账户在RedTorch中的唯一代码,通常 账户代码.币种.网关
 
 	// 代码编号相关
 	private String symbol; // 代码
