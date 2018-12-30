@@ -36,7 +36,7 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 	private Logger log = LoggerFactory.getLogger(ZeusDataServiceImpl.class);
 
 	private final String strategySettingCollection = "StrategySetting";
-	private final String positionCollection = "StrategyPos";
+	private final String positionCollection = "StrategyPos.";
 
 	@Autowired
 	private MongoDBService mongoDBService;
