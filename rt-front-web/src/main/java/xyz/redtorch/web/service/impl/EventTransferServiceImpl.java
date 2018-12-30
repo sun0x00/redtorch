@@ -301,6 +301,13 @@ public class EventTransferServiceImpl extends FastEventDynamicHandlerAbstract
 					} else {
 						log.warn("未能识别的事件数据类型{}", JSON.toJSONString(fastEvent.getEvent()));
 					}
+				}else {
+					// 没有新的消息时等待5毫秒，降低CPU使用率
+					try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						// nop
+					}
 				}
 
 				if (System.currentTimeMillis() - tickLastSendTime > tickMaxTimeInterval && tickMap.size() > 0) {
