@@ -21,6 +21,7 @@ public class Trade implements Serializable {
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
 	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
+	private String contractName; // 名称
 
 	private String tradeID; // 成交编号
 	private String rtTradeID; // 成交在rt系统中的唯一编号,通常是 Gateway名.成交编号
@@ -41,9 +42,9 @@ public class Trade implements Serializable {
 	private DateTime dateTime;
 
 	public Trade setAllValue(String gatewayID, String gatewayDisplayName, String accountID, String rtAccountID,
-			String symbol, String exchange, String rtSymbol, String tradeID, String rtTradeID, String orderID,
-			String rtOrderID, String originalOrderID, String direction, String offset, double price, int volume,
-			String tradingDay, String tradeDate, String tradeTime, DateTime dateTime) {
+			String symbol, String exchange, String rtSymbol, String contractName, String tradeID, String rtTradeID,
+			String orderID, String rtOrderID, String originalOrderID, String direction, String offset, double price,
+			int volume, String tradingDay, String tradeDate, String tradeTime, DateTime dateTime) {
 		this.gatewayID = gatewayID;
 		this.gatewayDisplayName = gatewayDisplayName;
 		this.accountID = accountID;
@@ -51,6 +52,7 @@ public class Trade implements Serializable {
 		this.symbol = symbol;
 		this.exchange = exchange;
 		this.rtSymbol = rtSymbol;
+		this.contractName = contractName;
 		this.tradeID = tradeID;
 		this.rtTradeID = rtTradeID;
 		this.orderID = orderID;
@@ -121,6 +123,14 @@ public class Trade implements Serializable {
 
 	public void setRtSymbol(String rtSymbol) {
 		this.rtSymbol = rtSymbol;
+	}
+
+	public String getContractName() {
+		return contractName;
+	}
+
+	public void setContractName(String contractName) {
+		this.contractName = contractName;
 	}
 
 	public String getTradeID() {
@@ -232,6 +242,7 @@ public class Trade implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((accountID == null) ? 0 : accountID.hashCode());
+		result = prime * result + ((contractName == null) ? 0 : contractName.hashCode());
 		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
@@ -269,6 +280,11 @@ public class Trade implements Serializable {
 			if (other.accountID != null)
 				return false;
 		} else if (!accountID.equals(other.accountID))
+			return false;
+		if (contractName == null) {
+			if (other.contractName != null)
+				return false;
+		} else if (!contractName.equals(other.contractName))
 			return false;
 		if (dateTime == null) {
 			if (other.dateTime != null)
@@ -366,10 +382,11 @@ public class Trade implements Serializable {
 	public String toString() {
 		return "Trade [gatewayID=" + gatewayID + ", gatewayDisplayName=" + gatewayDisplayName + ", accountID="
 				+ accountID + ", rtAccountID=" + rtAccountID + ", symbol=" + symbol + ", exchange=" + exchange
-				+ ", rtSymbol=" + rtSymbol + ", tradeID=" + tradeID + ", rtTradeID=" + rtTradeID + ", orderID="
-				+ orderID + ", rtOrderID=" + rtOrderID + ", originalOrderID=" + originalOrderID + ", direction="
-				+ direction + ", offset=" + offset + ", price=" + price + ", volume=" + volume + ", tradingDay="
-				+ tradingDay + ", tradeDate=" + tradeDate + ", tradeTime=" + tradeTime + ", dateTime=" + dateTime + "]";
+				+ ", rtSymbol=" + rtSymbol + ", contractName=" + contractName + ", tradeID=" + tradeID + ", rtTradeID="
+				+ rtTradeID + ", orderID=" + orderID + ", rtOrderID=" + rtOrderID + ", originalOrderID="
+				+ originalOrderID + ", direction=" + direction + ", offset=" + offset + ", price=" + price + ", volume="
+				+ volume + ", tradingDay=" + tradingDay + ", tradeDate=" + tradeDate + ", tradeTime=" + tradeTime
+				+ ", dateTime=" + dateTime + "]";
 	}
 
 }

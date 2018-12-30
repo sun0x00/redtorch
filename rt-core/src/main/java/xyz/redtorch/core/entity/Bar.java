@@ -18,6 +18,7 @@ public class Bar implements Serializable {
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
 	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
+	private String contractName; // 名称
 	private String rtBarID; // 系统中的唯一代码,通常是 合约代码.交易所代码.网关ID
 
 	private String tradingDay; // 交易日
@@ -71,6 +72,14 @@ public class Bar implements Serializable {
 
 	public void setRtSymbol(String rtSymbol) {
 		this.rtSymbol = rtSymbol;
+	}
+
+	public String getContractName() {
+		return contractName;
+	}
+
+	public void setContractName(String contractName) {
+		this.contractName = contractName;
 	}
 
 	public String getRtBarID() {
@@ -170,6 +179,7 @@ public class Bar implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(close);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((contractName == null) ? 0 : contractName.hashCode());
 		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + ((gatewayDisplayName == null) ? 0 : gatewayDisplayName.hashCode());
@@ -210,6 +220,11 @@ public class Bar implements Serializable {
 		} else if (!actionTime.equals(other.actionTime))
 			return false;
 		if (Double.doubleToLongBits(close) != Double.doubleToLongBits(other.close))
+			return false;
+		if (contractName == null) {
+			if (other.contractName != null)
+				return false;
+		} else if (!contractName.equals(other.contractName))
 			return false;
 		if (dateTime == null) {
 			if (other.dateTime != null)
@@ -267,10 +282,10 @@ public class Bar implements Serializable {
 	@Override
 	public String toString() {
 		return "Bar [gatewayID=" + gatewayID + ", gatewayDisplayName=" + gatewayDisplayName + ", symbol=" + symbol
-				+ ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", rtBarID=" + rtBarID + ", tradingDay="
-				+ tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime + ", dateTime=" + dateTime
-				+ ", open=" + open + ", high=" + high + ", low=" + low + ", close=" + close + ", volume=" + volume
-				+ ", openInterest=" + openInterest + "]";
+				+ ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", contractName=" + contractName + ", rtBarID="
+				+ rtBarID + ", tradingDay=" + tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime
+				+ ", dateTime=" + dateTime + ", open=" + open + ", high=" + high + ", low=" + low + ", close=" + close
+				+ ", volume=" + volume + ", openInterest=" + openInterest + "]";
 	}
 
 }

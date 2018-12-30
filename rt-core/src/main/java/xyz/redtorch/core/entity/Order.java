@@ -21,6 +21,7 @@ public class Order implements Serializable {
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
 	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
+	private String contractName; // 名称
 
 	private String orderID; // 订单编号
 	private String rtOrderID; // 订单在rt系统中的唯一编号,通常是 Gateway名.订单编号
@@ -46,9 +47,9 @@ public class Order implements Serializable {
 	private int sessionID; // 连接编号
 
 	public Order setAllValue(String originalOrderID, String gatewayID, String gatewayDisplayName, String accountID,
-			String rtAccountID, String symbol, String exchange, String rtSymbol, String orderID, String rtOrderID,
-			String direction, String offset, double price, int totalVolume, int tradedVolume, String status,
-			String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
+			String rtAccountID, String symbol, String exchange, String rtSymbol, String contractName, String orderID,
+			String rtOrderID, String direction, String offset, double price, int totalVolume, int tradedVolume,
+			String status, String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
 			String updateTime, int frontID, int sessionID) {
 		this.originalOrderID = originalOrderID;
 		this.gatewayID = gatewayID;
@@ -58,6 +59,7 @@ public class Order implements Serializable {
 		this.symbol = symbol;
 		this.exchange = exchange;
 		this.rtSymbol = rtSymbol;
+		this.contractName = contractName;
 		this.orderID = orderID;
 		this.rtOrderID = rtOrderID;
 		this.direction = direction;
@@ -139,6 +141,14 @@ public class Order implements Serializable {
 
 	public void setRtSymbol(String rtSymbol) {
 		this.rtSymbol = rtSymbol;
+	}
+
+	public String getContractName() {
+		return contractName;
+	}
+
+	public void setContractName(String contractName) {
+		this.contractName = contractName;
 	}
 
 	public String getOrderID() {
@@ -276,6 +286,7 @@ public class Order implements Serializable {
 		result = prime * result + ((accountID == null) ? 0 : accountID.hashCode());
 		result = prime * result + ((activeTime == null) ? 0 : activeTime.hashCode());
 		result = prime * result + ((cancelTime == null) ? 0 : cancelTime.hashCode());
+		result = prime * result + ((contractName == null) ? 0 : contractName.hashCode());
 		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + frontID;
@@ -325,6 +336,11 @@ public class Order implements Serializable {
 			if (other.cancelTime != null)
 				return false;
 		} else if (!cancelTime.equals(other.cancelTime))
+			return false;
+		if (contractName == null) {
+			if (other.contractName != null)
+				return false;
+		} else if (!contractName.equals(other.contractName))
 			return false;
 		if (direction == null) {
 			if (other.direction != null)
@@ -423,12 +439,12 @@ public class Order implements Serializable {
 	public String toString() {
 		return "Order [originalOrderID=" + originalOrderID + ", gatewayID=" + gatewayID + ", gatewayDisplayName="
 				+ gatewayDisplayName + ", accountID=" + accountID + ", rtAccountID=" + rtAccountID + ", symbol="
-				+ symbol + ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", orderID=" + orderID + ", rtOrderID="
-				+ rtOrderID + ", direction=" + direction + ", offset=" + offset + ", price=" + price + ", totalVolume="
-				+ totalVolume + ", tradedVolume=" + tradedVolume + ", status=" + status + ", tradingDay=" + tradingDay
-				+ ", orderDate=" + orderDate + ", orderTime=" + orderTime + ", cancelTime=" + cancelTime
-				+ ", activeTime=" + activeTime + ", updateTime=" + updateTime + ", frontID=" + frontID + ", sessionID="
-				+ sessionID + "]";
+				+ symbol + ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", contractName=" + contractName
+				+ ", orderID=" + orderID + ", rtOrderID=" + rtOrderID + ", direction=" + direction + ", offset="
+				+ offset + ", price=" + price + ", totalVolume=" + totalVolume + ", tradedVolume=" + tradedVolume
+				+ ", status=" + status + ", tradingDay=" + tradingDay + ", orderDate=" + orderDate + ", orderTime="
+				+ orderTime + ", cancelTime=" + cancelTime + ", activeTime=" + activeTime + ", updateTime=" + updateTime
+				+ ", frontID=" + frontID + ", sessionID=" + sessionID + "]";
 	}
 
 }

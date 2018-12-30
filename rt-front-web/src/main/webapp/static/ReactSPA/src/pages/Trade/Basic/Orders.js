@@ -9,14 +9,14 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-      tableHeight: ((window.innerHeight - 320) > 520?(window.innerHeight - 320):520) || 520
+      tableHeight: ((window.innerHeight - 200) > 480?(window.innerHeight - 200):480) || 480
     }
   }
 
 
   onWindowResize=()=>{
     this.setState({
-      tableHeight: ((window.innerHeight - 320) > 520?(window.innerHeight - 320):520) || 520
+      tableHeight: ((window.innerHeight - 200) > 480?(window.innerHeight - 200):480) || 480
     })
   }
 
@@ -67,7 +67,7 @@ class Center extends PureComponent {
     const {tableHeight} = this.state;
     
     return (
-      <OrdersTable updateTradeForm={this.updateTradeForm} scroll={{x: 1150,y:tableHeight}} pagination={{pageSize: 50}} list={order.orders} />
+      <OrdersTable updateTradeForm={this.updateTradeForm} scroll={{y:tableHeight}} pagination={{pageSize: 50}} list={order.orders} />
     );
   }
 }

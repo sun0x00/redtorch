@@ -2,8 +2,15 @@ import React, { PureComponent } from 'react';
 import {Table} from 'antd';
 import { connect } from 'dva';
 import styles from './Tables.less';
-import {DIRECTION_TRANSLATER,DIRECTION_LONG,DIRECTION_SHORT} from '../../../../utils/RtConstant'
+import {DIRECTION_TRANSLATER,DIRECTION_LONG,DIRECTION_SHORT,DIRECTION_NET} from '../../../../utils/RtConstant'
 import {numberFormat,sortBySymbol} from "../../../../utils/RtUtils"
+
+const INLINE_LABEL_STYLE={
+  display:'inline-block',
+  float:'left',
+  color:'#AAA',
+  // paddingLeft:'2px'
+}
 
 @connect(({operation}) => ({
   operation
@@ -13,14 +20,15 @@ class Center extends PureComponent {
   handleDblClick = (record)=>{
     const {dispatch} = this.props;
 
+    const subscribeData = {
+      symbol:record.symbol,
+      exchange:record.exchange,
+      gatewayID:record.gatewayID
+    }
+
     dispatch({
       type: 'operation/subscribe',
-      payload: {
-        subscribeReq:{
-          symbol:record.rtSymbol,
-        },
-        gatewayIDs:[record.gatewayID],
-      },
+      payload: subscribeData
     });
   }
 
@@ -56,18 +64,57 @@ class Center extends PureComponent {
       tableBordered = bordered;
     }
 
-    let tableList;
-    if(list === undefined){
-      tableList = [];
-    }else{
-      tableList = list.sort(sortBySymbol);
+    const tableList = [];
+    if(list !== undefined){
+      
+      list.sort(sortBySymbol).forEach(element => {
+        const newElement = element
+        // 计算持仓价格与最新价格的差距
+        newElement.priceDiff = element.positionProfit/element.contractSize/element.position
+        // 计算最新价格
+        newElement.lastPrice = element.price+newElement.priceDiff
+  
+        if(newElement.direction === DIRECTION_LONG||(newElement.position >0 && newElement.direction === DIRECTION_NET)){
+          
+          // 计算最新价格
+          newElement.lastPrice = newElement.price + newElement.priceDiff
+          // 计算开仓价格
+          newElement.openPriceDiff = newElement.lastPrice-element.openPrice
+          // 计算开仓盈亏
+          newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
+        }else if(newElement.direction === DIRECTION_SHORT||(newElement.position <0 && newElement.direction === DIRECTION_NET)){
+          
+          // 计算最新价格
+          newElement.lastPrice   =  newElement.price - newElement.priceDiff
+          // 计算开仓价格
+          newElement.openPriceDiff = element.openPrice-newElement.lastPrice
+          // 计算开仓盈亏
+          newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
+        }
+  
+  
+        // 计算保最新合约价值
+        newElement.contractValue = (newElement.openPrice+newElement.openPriceDiff)*element.contractSize*element.position
+  
+        if(element.useMargin!==0){
+          newElement.positionProfitRatio = newElement.positionProfit/ element.useMargin
+          newElement.openProfitRatio = newElement.openProfit/ element.useMargin
+          
+        }else{
+          newElement.positionProfitRatio = 0
+          newElement.openProfitRatio = 0
+        }
+      
+  
+        newElement.tdFrozen = element.frozen-element.ydFrozen
+        newElement.tdPosition = element.position-element.ydPosition
+        tableList.push(newElement)
+      })
     }
     
-    let tableScroll;
-    if(scroll === undefined){
-      tableScroll = {y: 250,x:1040};
-    }else{
-      tableScroll = scroll;
+    let tableScroll = {y: 250,x:1460};
+    if(scroll !== undefined){
+      tableScroll = {...tableScroll,...scroll};
     }
 
     const rtSymbolSet = new Set();
@@ -88,17 +135,31 @@ class Center extends PureComponent {
 
     // const pagination = this.props.pagination;
     const columns = [{
-      title: '代码',
+      title: '产品',
       dataIndex: 'rtSymbol',
-      width: 140,
+      width: 150,
       key:'rtSymbol',
       sorter: (a, b) => a.rtSymbol > b.rtSymbol,
       filters: rtSymbolFilterArray,
-      onFilter: (value, record) =>record.rtSymbol === value
+      onFilter: (value, record) =>record.rtSymbol === value,
+      render: (text, record) => (
+        <div className={`${styles.cursorPointer}`}>
+          <div className={`${styles.colorYellow}`}>{record.rtSymbol}<br /></div>
+          <div>{record.contractName}</div>
+        </div>
+      )
     }, {
       title: '账户',
-      dataIndex: 'accountID',
-      width: 120,
+      dataIndex: 'gatewayDisplayName',
+      width: 180,
+      filters:gatewayFilterArray,
+      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value,
+      render: (text, record) => (
+        <div className={`${styles.displayRight}`}>
+          <div>{ record.accountID}<br /></div>
+          <div style={{color:"#BBB"}}>{ record.gatewayDisplayName}</div>
+        </div>
+      )
     },  {
       title: '方向',
       dataIndex: 'direction',
@@ -106,20 +167,20 @@ class Center extends PureComponent {
       render: (text, record) => {
         if(DIRECTION_LONG === record.direction){
           return(
-            <span className={styles.colorBuy}> 
+            <span className={`${styles.colorBuy} ${styles.displayCenter}`}> 
               {DIRECTION_TRANSLATER.get(record.direction)}
             </span>
           );
         }
         if(DIRECTION_SHORT === record.direction){
           return (
-            <span className={styles.colorSell}> 
+            <span className={`${styles.colorSell} ${styles.displayCenter}`}> 
               {DIRECTION_TRANSLATER.get(record.direction)}
             </span>
           );
         }
         return (
-          <span> 
+          <span style={`${styles.displayCenter}`}> 
             {DIRECTION_TRANSLATER.get(record.direction)}
           </span>
         );
@@ -127,49 +188,131 @@ class Center extends PureComponent {
     }, {
       title: '持仓',
       dataIndex: 'position',
-      width:  100,
+      width:  120,
       align: 'right',
+      render:(text,record) => (
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.position}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.frozen}</div>
+        </div>
+      )
     }, {
-      title: '昨仓',
-      dataIndex: 'ydPosition',
-      width:  100,
+      title: '今仓',
+      dataIndex: 'tdPosition',
+      width:  120,
       align: 'right',
-    }, {
-      title: '冻结',
-      dataIndex: 'frozen',
-      width:  100,
-      align: 'right',
+      render:(text,record) => (
+        <div className={`${styles.displayRight} ${styles.colorCount}`}>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{record.tdPosition}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{record.tdFrozen}</div>
+        </div>
+      )
     }, {
       title: '均价',
       dataIndex: 'price',
+      width:  150,
+      align: 'right',
+      render:(text,record)=>(
+        <div className={` ${styles.displayRight}`}>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.price,4)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPrice,4)}</div>
+        </div>
+      )
+    }, {
+      title: '盈利价差',
+      dataIndex: 'priceDiff',
       width:  120,
       align: 'right',
       render:(text,record)=>(
-        <span>
-          {numberFormat(record.price,4)}
-        </span>
+        <div className={`${styles.displayRight}`}>
+          <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(record.priceDiff,4)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(record.openPriceDiff,4)}</div>
+        </div>
       )
     }, {
-      title: '持仓盈亏',
+      title: '逐笔浮盈',
+      dataIndex: 'openProfit',
+      width:  120,
+      align: 'right',
+      render:(text,record)=>{
+        if(record.openProfit > 0){
+          return(
+            <div className={`${styles.displayRight} ${styles.colorBuy}`}>
+              <div>{numberFormat(record.openProfit,4)}<br /></div>
+              <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+        
+        if(record.openProfit < 0){
+          return(
+            <div className={`${styles.displayRight} ${styles.colorSell}`}>
+              <div>{numberFormat(record.openProfit,4)}<br /></div>
+              <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+    
+        return(
+          <div className={`${styles.displayRight}`}>
+            <div>{numberFormat(record.openProfit,4)}<br /></div>
+            <div>{numberFormat(record.openProfitRatio*100,2)}%</div>
+          </div>
+        )
+      }
+    }, {
+      title: '盯市浮盈',
       dataIndex: 'positionProfit',
       width:  120,
       align: 'right',
+      render:(text,record)=>{
+        if( record.positionProfit > 0){
+          return(
+            <div className={`${styles.displayRight} ${styles.colorBuy}`}>
+              <div>{numberFormat( record.positionProfit,4)}<br /></div>
+              <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+        
+        if( record.positionProfit < 0){
+          return(
+            <div className={`${styles.displayRight} ${styles.colorSell}`}>
+              <div>{numberFormat( record.positionProfit,4)}<br /></div>
+              <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+        return(
+          <div className={`${styles.displayRight}`}>
+            <div>{numberFormat( record.positionProfit,4)}<br /></div>
+            <div>{numberFormat( record.positionProfitRatio*100,2)}%</div>
+          </div>
+        )
+      }
+    }, {
+      title: '保证金',
+      dataIndex: 'margin',
+      width:  150,
+      align: 'right',
       render:(text,record)=>(
-        <span>
-          {numberFormat(record.positionProfit,4)}
-        </span>
+        <div className={`${styles.displayRight}`}>
+          <div><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat( record.useMargin,2)}<br /></div>
+          <div><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat( record.exchangeMargin,2)}</div>
+        </div>
       )
-    },{
-      title: '名称',
-      dataIndex: 'contractName',
-      width: 120,
-    },{
-      title: '网关',
-      dataIndex: 'gatewayDisplayName',
-      width: 120,
-      filters: gatewayFilterArray,
-      onFilter: (value, record) => `${record.gatewayDisplayName}(${record.gatewayID})?` === value
+    }, {
+      title: '合约价值',
+      dataIndex: 'contractValue',
+      width:  150,
+      align: 'right',
+      render:(text,record)=>(    
+        <div className={`${styles.displayRight}`}>
+          {numberFormat(record.contractValue,2)}
+        </div>
+      )
     }];
+
 
 
 

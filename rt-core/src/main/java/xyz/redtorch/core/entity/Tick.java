@@ -18,6 +18,7 @@ public class Tick implements Serializable {
 	private String symbol; // 代码
 	private String exchange; // 交易所代码
 	private String rtSymbol; // 系统中的唯一代码,通常是 合约代码.交易所代码
+	private String contractName; // 名称
 	private String rtTickID; // 系统中的唯一代码,通常是 合约代码.交易所代码.网关ID
 
 	private String tradingDay; // 交易日
@@ -90,22 +91,23 @@ public class Tick implements Serializable {
 	private int askVolume10 = 0;
 
 	public Tick setAllValue(String gatewayID, String gatewayDisplayName, String symbol, String exchange,
-			String rtSymbol, String rtTickID, String tradingDay, String actionDay, String actionTime, DateTime dateTime,
-			int status, double lastPrice, int lastVolume, int volume, double openInterest, Long preOpenInterest,
-			double preClosePrice, double preSettlePrice, double openPrice, double highPrice, double lowPrice,
-			double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2, double bidPrice3,
-			double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8, double bidPrice9,
-			double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4, double askPrice5,
-			double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10, int bidVolume1,
-			int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6, int bidVolume7,
-			int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2, int askVolume3,
-			int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8, int askVolume9,
-			int askVolume10) {
+			String rtSymbol, String contractName, String rtTickID, String tradingDay, String actionDay,
+			String actionTime, DateTime dateTime, int status, double lastPrice, int lastVolume, int volume,
+			double openInterest, Long preOpenInterest, double preClosePrice, double preSettlePrice, double openPrice,
+			double highPrice, double lowPrice, double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2,
+			double bidPrice3, double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8,
+			double bidPrice9, double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4,
+			double askPrice5, double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10,
+			int bidVolume1, int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6,
+			int bidVolume7, int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2,
+			int askVolume3, int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8,
+			int askVolume9, int askVolume10) {
 		this.gatewayID = gatewayID;
 		this.gatewayDisplayName = gatewayDisplayName;
 		this.symbol = symbol;
 		this.exchange = exchange;
 		this.rtSymbol = rtSymbol;
+		this.contractName = contractName;
 		this.rtTickID = rtTickID;
 		this.tradingDay = tradingDay;
 		this.actionDay = actionDay;
@@ -206,6 +208,14 @@ public class Tick implements Serializable {
 
 	public void setRtSymbol(String rtSymbol) {
 		this.rtSymbol = rtSymbol;
+	}
+
+	public String getContractName() {
+		return contractName;
+	}
+
+	public void setContractName(String contractName) {
+		this.contractName = contractName;
 	}
 
 	public String getRtTickID() {
@@ -739,6 +749,7 @@ public class Tick implements Serializable {
 		result = prime * result + bidVolume7;
 		result = prime * result + bidVolume8;
 		result = prime * result + bidVolume9;
+		result = prime * result + ((contractName == null) ? 0 : contractName.hashCode());
 		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + ((gatewayDisplayName == null) ? 0 : gatewayDisplayName.hashCode());
@@ -762,9 +773,9 @@ public class Tick implements Serializable {
 		temp = Double.doubleToLongBits(preSettlePrice);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((rtSymbol == null) ? 0 : rtSymbol.hashCode());
+		result = prime * result + ((rtTickID == null) ? 0 : rtTickID.hashCode());
 		result = prime * result + status;
 		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
-		result = prime * result + ((rtTickID == null) ? 0 : rtTickID.hashCode());
 		result = prime * result + ((tradingDay == null) ? 0 : tradingDay.hashCode());
 		temp = Double.doubleToLongBits(upperLimit);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -871,6 +882,11 @@ public class Tick implements Serializable {
 			return false;
 		if (bidVolume9 != other.bidVolume9)
 			return false;
+		if (contractName == null) {
+			if (other.contractName != null)
+				return false;
+		} else if (!contractName.equals(other.contractName))
+			return false;
 		if (dateTime == null) {
 			if (other.dateTime != null)
 				return false;
@@ -919,17 +935,17 @@ public class Tick implements Serializable {
 				return false;
 		} else if (!rtSymbol.equals(other.rtSymbol))
 			return false;
+		if (rtTickID == null) {
+			if (other.rtTickID != null)
+				return false;
+		} else if (!rtTickID.equals(other.rtTickID))
+			return false;
 		if (status != other.status)
 			return false;
 		if (symbol == null) {
 			if (other.symbol != null)
 				return false;
 		} else if (!symbol.equals(other.symbol))
-			return false;
-		if (rtTickID == null) {
-			if (other.rtTickID != null)
-				return false;
-		} else if (!rtTickID.equals(other.rtTickID))
 			return false;
 		if (tradingDay == null) {
 			if (other.tradingDay != null)
@@ -946,24 +962,25 @@ public class Tick implements Serializable {
 	@Override
 	public String toString() {
 		return "Tick [gatewayID=" + gatewayID + ", gatewayDisplayName=" + gatewayDisplayName + ", symbol=" + symbol
-				+ ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", rtTickID=" + rtTickID + ", tradingDay="
-				+ tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime + ", dateTime=" + dateTime
-				+ ", status=" + status + ", lastPrice=" + lastPrice + ", lastVolume=" + lastVolume + ", volume="
-				+ volume + ", openInterest=" + openInterest + ", preOpenInterest=" + preOpenInterest
-				+ ", preClosePrice=" + preClosePrice + ", preSettlePrice=" + preSettlePrice + ", openPrice=" + openPrice
-				+ ", highPrice=" + highPrice + ", lowPrice=" + lowPrice + ", upperLimit=" + upperLimit + ", lowerLimit="
-				+ lowerLimit + ", bidPrice1=" + bidPrice1 + ", bidPrice2=" + bidPrice2 + ", bidPrice3=" + bidPrice3
-				+ ", bidPrice4=" + bidPrice4 + ", bidPrice5=" + bidPrice5 + ", bidPrice6=" + bidPrice6 + ", bidPrice7="
-				+ bidPrice7 + ", bidPrice8=" + bidPrice8 + ", bidPrice9=" + bidPrice9 + ", bidPrice10=" + bidPrice10
-				+ ", askPrice1=" + askPrice1 + ", askPrice2=" + askPrice2 + ", askPrice3=" + askPrice3 + ", askPrice4="
-				+ askPrice4 + ", askPrice5=" + askPrice5 + ", askPrice6=" + askPrice6 + ", askPrice7=" + askPrice7
-				+ ", askPrice8=" + askPrice8 + ", askPrice9=" + askPrice9 + ", askPrice10=" + askPrice10
-				+ ", bidVolume1=" + bidVolume1 + ", bidVolume2=" + bidVolume2 + ", bidVolume3=" + bidVolume3
-				+ ", bidVolume4=" + bidVolume4 + ", bidVolume5=" + bidVolume5 + ", bidVolume6=" + bidVolume6
-				+ ", bidVolume7=" + bidVolume7 + ", bidVolume8=" + bidVolume8 + ", bidVolume9=" + bidVolume9
-				+ ", bidVolume10=" + bidVolume10 + ", askVolume1=" + askVolume1 + ", askVolume2=" + askVolume2
-				+ ", askVolume3=" + askVolume3 + ", askVolume4=" + askVolume4 + ", askVolume5=" + askVolume5
-				+ ", askVolume6=" + askVolume6 + ", askVolume7=" + askVolume7 + ", askVolume8=" + askVolume8
-				+ ", askVolume9=" + askVolume9 + ", askVolume10=" + askVolume10 + "]";
+				+ ", exchange=" + exchange + ", rtSymbol=" + rtSymbol + ", contractName=" + contractName + ", rtTickID="
+				+ rtTickID + ", tradingDay=" + tradingDay + ", actionDay=" + actionDay + ", actionTime=" + actionTime
+				+ ", dateTime=" + dateTime + ", status=" + status + ", lastPrice=" + lastPrice + ", lastVolume="
+				+ lastVolume + ", volume=" + volume + ", openInterest=" + openInterest + ", preOpenInterest="
+				+ preOpenInterest + ", preClosePrice=" + preClosePrice + ", preSettlePrice=" + preSettlePrice
+				+ ", openPrice=" + openPrice + ", highPrice=" + highPrice + ", lowPrice=" + lowPrice + ", upperLimit="
+				+ upperLimit + ", lowerLimit=" + lowerLimit + ", bidPrice1=" + bidPrice1 + ", bidPrice2=" + bidPrice2
+				+ ", bidPrice3=" + bidPrice3 + ", bidPrice4=" + bidPrice4 + ", bidPrice5=" + bidPrice5 + ", bidPrice6="
+				+ bidPrice6 + ", bidPrice7=" + bidPrice7 + ", bidPrice8=" + bidPrice8 + ", bidPrice9=" + bidPrice9
+				+ ", bidPrice10=" + bidPrice10 + ", askPrice1=" + askPrice1 + ", askPrice2=" + askPrice2
+				+ ", askPrice3=" + askPrice3 + ", askPrice4=" + askPrice4 + ", askPrice5=" + askPrice5 + ", askPrice6="
+				+ askPrice6 + ", askPrice7=" + askPrice7 + ", askPrice8=" + askPrice8 + ", askPrice9=" + askPrice9
+				+ ", askPrice10=" + askPrice10 + ", bidVolume1=" + bidVolume1 + ", bidVolume2=" + bidVolume2
+				+ ", bidVolume3=" + bidVolume3 + ", bidVolume4=" + bidVolume4 + ", bidVolume5=" + bidVolume5
+				+ ", bidVolume6=" + bidVolume6 + ", bidVolume7=" + bidVolume7 + ", bidVolume8=" + bidVolume8
+				+ ", bidVolume9=" + bidVolume9 + ", bidVolume10=" + bidVolume10 + ", askVolume1=" + askVolume1
+				+ ", askVolume2=" + askVolume2 + ", askVolume3=" + askVolume3 + ", askVolume4=" + askVolume4
+				+ ", askVolume5=" + askVolume5 + ", askVolume6=" + askVolume6 + ", askVolume7=" + askVolume7
+				+ ", askVolume8=" + askVolume8 + ", askVolume9=" + askVolume9 + ", askVolume10=" + askVolume10 + "]";
 	}
+
 }

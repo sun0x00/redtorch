@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {MultiGrid,AutoSizer} from 'react-virtualized'
 import { connect } from 'dva';
 import {numberFormat,sortBySymbol} from '../../../../utils/RtUtils'
-import {DIRECTION_TRANSLATER,DIRECTION_LONG,DIRECTION_SHORT} from '../../../../utils/RtConstant'
+import {DIRECTION_TRANSLATER,DIRECTION_LONG,DIRECTION_SHORT, DIRECTION_NET} from '../../../../utils/RtConstant'
 import styles from './Grid.less';
 
 const STYLE = {
@@ -25,6 +25,13 @@ const STYLE_TOP_RIGHT_GRID = {
   fontWeight: 'bold',
 };
 
+const INLINE_LABEL_STYLE={
+  display:'inline-block',
+  float:'left',
+  color:'#AAA',
+  paddingLeft:'2px'
+}
+
 @connect(({operation}) => ({
   operation
 }))
@@ -32,8 +39,9 @@ class Center extends PureComponent {
   constructor(props) {
     super(props);
     this.state={
-       // hoveredColumnIndex: null,
-       hoveredRowIndex: null
+      // hoveredColumnIndex: null,
+      // hoveredRowIndex: null,
+      clickedRowIndex: null
     }
  }
 
@@ -44,7 +52,8 @@ class Center extends PureComponent {
       height,
     } = this.props;
     const {
-      hoveredRowIndex
+      // hoveredRowIndex,
+      clickedRowIndex
     } = this.state;
 
     let tableHeight;
@@ -54,53 +63,71 @@ class Center extends PureComponent {
       tableHeight = height;
     }
 
-    const tableList = []
+    const tableList =[]
 
     let columnCount = 0;
     {
       const headerMap = new Map();
-      headerMap.set(columnCount,"代码"); // 0
+      headerMap.set(columnCount,"产品"); // 0
       headerMap.set(columnCount+=1,"账户"); // 1
       headerMap.set(columnCount+=1,"方向"); // 2
       headerMap.set(columnCount+=1,"持仓"); // 3
-      headerMap.set(columnCount+=1,"昨仓"); // 4
-      headerMap.set(columnCount+=1,"冻结"); // 5
-      headerMap.set(columnCount+=1,"均价"); // 6
-      headerMap.set(columnCount+=1,"持仓盈亏"); // 7
-      headerMap.set(columnCount+=1,"名称"); // 8
-      headerMap.set(columnCount+=1,"网关"); // 9
+      headerMap.set(columnCount+=1,"今仓"); // 4
+      headerMap.set(columnCount+=1,"均价"); // 5
+      headerMap.set(columnCount+=1,"盈利价差"); // 6
+      headerMap.set(columnCount+=1,"逐笔浮盈"); // 7
+      headerMap.set(columnCount+=1,"盯市浮盈"); // 8
+      headerMap.set(columnCount+=1,"保证金"); // 9
+      headerMap.set(columnCount+=1,"合约价值"); // 10
       tableList.push(headerMap)
       columnCount+=1
     }
 
 
-    const sortedList = list.sort(sortBySymbol)
-
-    if(sortedList !== undefined){
-      sortedList.forEach(item=>{
-        let i = 0;
-        const dataMap = new Map();
-        dataMap.set(i,item.rtSymbol);
-        dataMap.set(i+=1,item.accountID);
-        dataMap.set(i+=1,item.direction);
-        dataMap.set(i+=1,item.position);
-        dataMap.set(i+=1,item.ydPosition);
-        dataMap.set(i+=1,item.frozen);
-        dataMap.set(i+=1,numberFormat(item.price,4));
-        dataMap.set(i+=1,numberFormat(item.positionProfit,4));
-        dataMap.set(i+=1,item.contractName);
-        dataMap.set(i+=1,item.gatewayDisplayName);
-
-        // =======不渲染的字段============
-        dataMap.set(1001,item.gatewayID); 
-        dataMap.set(1002,item.symbol); 
-        dataMap.set(1003,item.exchange); 
-        // ==============================
     
-        tableList.push(dataMap)
-      })
-      
-    }
+    list.sort(sortBySymbol).forEach(element => {
+      const newElement = element
+      // 计算持仓价格与最新价格的差距
+      newElement.priceDiff = element.positionProfit/element.contractSize/element.position
+      // 计算最新价格
+      newElement.lastPrice = element.price+newElement.priceDiff
+
+      if(newElement.direction === DIRECTION_LONG||(newElement.position >0 && newElement.direction === DIRECTION_NET)){
+        
+        // 计算最新价格
+        newElement.lastPrice = newElement.price + newElement.priceDiff
+        // 计算开仓价格
+        newElement.openPriceDiff = newElement.lastPrice-element.openPrice
+        // 计算开仓盈亏
+        newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
+      }else if(newElement.direction === DIRECTION_SHORT||(newElement.position <0 && newElement.direction === DIRECTION_NET)){
+        
+        // 计算最新价格
+        newElement.lastPrice   =  newElement.price - newElement.priceDiff
+        // 计算开仓价格
+        newElement.openPriceDiff = element.openPrice-newElement.lastPrice
+        // 计算开仓盈亏
+        newElement.openProfit = newElement.openPriceDiff * element.position * element.contractSize
+      }
+
+
+      // 计算保最新合约价值
+      newElement.contractValue = (newElement.openPrice+newElement.openPriceDiff)*element.contractSize*element.position
+
+      if(element.useMargin!==0){
+        newElement.positionProfitRatio = newElement.positionProfit/ element.useMargin
+        newElement.openProfitRatio = newElement.openProfit/ element.useMargin
+        
+      }else{
+        newElement.positionProfitRatio = 0
+        newElement.openProfitRatio = 0
+      }
+    
+
+      newElement.tdFrozen = element.frozen-element.ydFrozen
+      newElement.tdPosition = element.position-element.ydPosition
+      tableList.push(newElement)
+    });
 
     const rowCount = tableList.length;
     
@@ -108,115 +135,230 @@ class Center extends PureComponent {
 
     const cellRenderer=({columnIndex, key, rowIndex, style})=>{
 
-      const hoveredCellClass = rowIndex === hoveredRowIndex ? styles.hoveredCell : '';
+      // const hoveredCellClass = rowIndex === hoveredRowIndex ? styles.hoveredCell : '';
+      const hoveredCellClass = rowIndex === clickedRowIndex ? styles.hoveredCell : '';
+      
 
       const handleDoubleClick=()=>{
+
+        const subscribeData = {
+          symbol:tableList[rowIndex].symbol,
+          exchange:tableList[rowIndex].exchange,
+          gatewayID:tableList[rowIndex].gatewayID
+        }
+  
         dispatch({
           type: 'operation/subscribe',
-          payload: {
-            subscribeReq:{
-              symbol:tableList[rowIndex].get(0),
-            },
-            gatewayIDs:[tableList[rowIndex].get(1001)],
-          },
+          payload: subscribeData
         });
+
       }
 
       const handleClick = ()=>{
         const {updateTradeForm} = this.props
         if(updateTradeForm!==null&&updateTradeForm!==undefined){
           updateTradeForm({
-            symbol:tableList[rowIndex].get(1002)
+            symbol:tableList[rowIndex].symbol
           })
+        }
+        if(rowIndex!==0){
+          this.setState({clickedRowIndex:rowIndex})
         }
       }
       
+      // 第0行 表头
       if(rowIndex === 0){
         return (
           <div className={styles.headerCell} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+            <div>{tableList[rowIndex].get(columnIndex)}</div>
           </div>
         );
 
       }
+
+      // 第0列 产品信息
       if(columnIndex === 0){
         return (
-          <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell} ${styles.colorYellow} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div onClick={handleClick} onDoubleClick={handleDoubleClick} onFocus={() => undefined} className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
+            <div className={`${styles.colorYellow}`}>{tableList[rowIndex].rtSymbol}<br /></div>
+            <div>{tableList[rowIndex].contractName}</div>
           </div>
         );
       }
+      
 
+      // 第1列 账户
+      if(columnIndex === 1){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div>{tableList[rowIndex].accountID}<br /></div>
+            <div style={{color:"#BBB"}}>{tableList[rowIndex].gatewayDisplayName}</div>
+          </div>
+        )
+      }
 
+      // 第2列 方向
       if(columnIndex === 2){
-        if(tableList[rowIndex].get(columnIndex) === DIRECTION_LONG){
+        if(tableList[rowIndex].direction === DIRECTION_LONG){
           return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
-              {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+            <div className={`${styles.cell}  ${styles.displayCenter} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
+              {DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}
             </div>
           )
         }
         
-        if(tableList[rowIndex].get(columnIndex) === DIRECTION_SHORT){
+        if(tableList[rowIndex].direction === DIRECTION_SHORT){
           return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
-              {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+            <div className={`${styles.cell}  ${styles.displayCenter} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
+              {DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}
             </div>
           )
         }
         return(
-          <div className={`${styles.cell} ${hoveredCellClass}`} key={key} style={style}>
-            {DIRECTION_TRANSLATER.get(tableList[rowIndex].get(columnIndex))}
+          <div className={`${styles.cell}  ${styles.displayCenter} ${hoveredCellClass}`} key={key} style={style}>
+            {DIRECTION_TRANSLATER.get(tableList[rowIndex].direction)}
+          </div>
+        )
+
+      }
+      // 第3列 持仓
+      if(columnIndex === 3){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight} ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].position}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].frozen}</div>
+          </div>
+        )
+      }
+      
+      // 第4列 今仓
+      if(columnIndex === 4){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${styles.colorCount} ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{tableList[rowIndex].tdPosition}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>冻结：</span>{tableList[rowIndex].tdFrozen}</div>
+          </div>
+        )
+      }
+
+      // 第5列 均价
+      if(columnIndex === 5){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].price,4)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPrice,4)}</div>
+          </div>
+        )
+      }
+      
+      // 第6列 盈利价差
+      if(columnIndex === 6){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>持仓：</span>{numberFormat(tableList[rowIndex].priceDiff,4)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>开仓：</span>{numberFormat(tableList[rowIndex].openPriceDiff,4)}</div>
+          </div>
+        )
+      }
+
+      // 第6列 逐笔浮盈
+      if(columnIndex === 7){
+        if(tableList[rowIndex].openProfit > 0){
+          return(
+            <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+        
+        if(tableList[rowIndex].openProfit < 0){
+          return(
+            <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
+            </div>
+          )
+        }
+
+        return(
+          <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass}`} key={key} style={style}>
+            <div>{numberFormat(tableList[rowIndex].openProfit,4)}<br /></div>
+            <div>{numberFormat(tableList[rowIndex].openProfitRatio*100,2)}%</div>
           </div>
         )
 
       }
 
-      if(columnIndex === 7){
-        if(tableList[rowIndex].get(columnIndex) > 0){
+      // 第7列 盯市浮盈
+      if(columnIndex === 8){
+        if(tableList[rowIndex].positionProfit > 0){
           return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
-              {tableList[rowIndex].get(columnIndex)}
+            <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorBuy}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
         
-        if(tableList[rowIndex].get(columnIndex) < 0){
+        if(tableList[rowIndex].positionProfit < 0){
           return(
-            <div className={`${styles.cell} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
-              {tableList[rowIndex].get(columnIndex)}
+            <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass} ${styles.colorSell}`} key={key} style={style}>
+              <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+              <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
             </div>
           )
         }
+        return(
+          <div className={`${styles.cell}  ${styles.displayRight} ${hoveredCellClass}`} key={key} style={style}>
+            <div>{numberFormat(tableList[rowIndex].positionProfit,4)}<br /></div>
+            <div>{numberFormat(tableList[rowIndex].positionProfitRatio*100,2)}%</div>
+          </div>
+        )
       }
 
-      if(columnIndex === 8){
+      // 第8列 保证金
+      if(columnIndex === 9){
         return (
-          <div onDoubleClick={handleDoubleClick} onClick={handleClick} onFocus={() => undefined} className={`${styles.cell} ${hoveredCellClass} ${styles.cursorPointer}`} key={key} style={style}>
-            {tableList[rowIndex].get(columnIndex)}
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            <div><span style={INLINE_LABEL_STYLE}>经济商：</span>{numberFormat(tableList[rowIndex].useMargin,2)}<br /></div>
+            <div><span style={INLINE_LABEL_STYLE}>交易所：</span>{numberFormat(tableList[rowIndex].exchangeMargin,2)}</div>
           </div>
-        );
+        )
+      }
+
+      // 第9列 合约价值
+      if(columnIndex === 10){
+        return (
+          <div className={`${styles.cell}  ${styles.displayRight}  ${hoveredCellClass}`} key={key} style={style}>
+            {numberFormat(tableList[rowIndex].contractValue,2)}
+          </div>
+        )
       }
 
       return (
-        <div className={`${styles.cell}  ${hoveredCellClass}`} key={key} style={style}>
-          {tableList[rowIndex].get(columnIndex)}
-        </div>
+        <div />
       )
     }
 
     const getColumnWidth=({index}) => {
       switch (index) {
         case 0:
-            return 130;
+            return 150;
+        case 1:
+            return 180;
         case 2:
           return 60;
+        case 5:
+            return 150;
+        case 6:
+            return 150;
         case 8:
             return 150;
         case 9:
-            return 120;
+            return 180;
         default:
-          return 110;
+          return 120;
       }
     }
     
@@ -234,7 +376,7 @@ class Center extends PureComponent {
             enableFixedColumnScroll
             enableFixedRowScroll
             height={tableHeight}
-            rowHeight={25}
+            rowHeight={50}
             rowCount={rowCount}
             style={STYLE}
             styleBottomLeftGrid={STYLE_BOTTOM_LEFT_GRID}

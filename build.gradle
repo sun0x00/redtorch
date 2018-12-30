@@ -7,7 +7,7 @@ ext {
         springTestVersion = '5.0.8.RELEASE'
         disruptorVersion = '3.4.2'
         mongoDriverVersion = '3.8.2'
-        chronicleQueueVersion = '5.16.16'
+        chronicleQueueVersion = '5.17.3'
 }
 
 subprojects {
@@ -19,12 +19,12 @@ subprojects {
 	apply plugin: 'idea'
 	apply plugin: 'war'
 
-	sourceCompatibility = 11.0
-	targetCompatibility = 11.0
+	sourceCompatibility = 11
+	targetCompatibility = 11
 
 	tasks.withType(JavaCompile) {
-		sourceCompatibility = 11.0
-		targetCompatibility = 11.0
+		sourceCompatibility = 11
+		targetCompatibility = 11
 		options.encoding = "UTF-8"
 	}
 

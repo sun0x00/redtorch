@@ -436,7 +436,7 @@ public abstract class StrategyAbstract implements Strategy {
 			// 更新1分钟bar生成器
 			barGenerator.updateTick(tick);
 		} catch (Exception e) {
-			stopTrading(true);
+			stopTrading(false);
 			log.error("{} 调用onTick发生异常,停止策略!!!", logStr, e);
 		}
 	}
@@ -459,7 +459,7 @@ public abstract class StrategyAbstract implements Strategy {
 			}
 
 		} catch (Exception e) {
-			stopTrading(true);
+			stopTrading(false);
 			log.error("{} 调用onTrade发生异常,停止策略!!!", logStr, e);
 		}
 	}
@@ -479,7 +479,7 @@ public abstract class StrategyAbstract implements Strategy {
 			}
 			onOrder(order);
 		} catch (Exception e) {
-			stopTrading(true);
+			stopTrading(false);
 			log.error("{} 调用onOrder发生异常,停止策略!!!", logStr, e);
 		}
 	}
@@ -514,7 +514,7 @@ public abstract class StrategyAbstract implements Strategy {
 							// 此方法会在onTick->bg.updateTick->onBar->xbg.updateBar执行之后再执行
 							onXMinBar(bar);
 						} catch (Exception e) {
-							stopTrading(true);
+							stopTrading(false);
 							log.error("{} 调用onXMinBar发生异常,停止策略!!!", logStr, e);
 						}
 					}

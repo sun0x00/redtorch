@@ -32,6 +32,13 @@
             <MaxFileSize>10MB</MaxFileSize>
         </triggeringPolicy>
     </appender>
+    
+    <appender name="ASYNC_APPENDER" class="ch.qos.logback.classic.AsyncAppender">
+	    <discardingThreshold >0</discardingThreshold>
+	    <queueSize>1024</queueSize>
+        <appender-ref ref="FILE" />
+	</appender>
+  
   
     <logger name="org.mongodb.driver.cluster" level="ERROR" />
     <logger name="org.mongodb.driver.connection" level="ERROR" />
@@ -41,7 +48,7 @@
     <root level="INFO">
         <appender-ref ref="FastEvent" />
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+        <appender-ref ref="ASYNC_APPENDER" />
     </root>
     <!--日志异步到数据库 -->
     <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->

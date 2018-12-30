@@ -17,9 +17,9 @@ public class CoreUtil {
 	 * 发出日志事件
 	 * 
 	 * @param eventEngine
-	 * @param logContent
+	 * @param content
 	 */
-	public static void emitLogBase(long timestmap, String event, String logLevel, String logContent) {
+	public static void emitLogBase(long timestmap, String event, String level, String threadName, String className, String content) {
 		if (fastEventEngineService == null) {
 			// 事件服务可能尚未启动
 			// nop 丢弃
@@ -32,8 +32,10 @@ public class CoreUtil {
 			fastEvent.setEvent(event);
 			fastEvent.setEventType(EventConstant.EVENT_LOG);
 			fastEvent.getLogData().setTimestamp(timestmap);
-			fastEvent.getLogData().setLevel(logLevel);
-			fastEvent.getLogData().setContent(logContent);
+			fastEvent.getLogData().setLevel(level);
+			fastEvent.getLogData().setThreadName(threadName);
+			fastEvent.getLogData().setClassName(className);
+			fastEvent.getLogData().setContent(content);
 		} finally {
 			ringBuffer.publish(sequence);
 		}

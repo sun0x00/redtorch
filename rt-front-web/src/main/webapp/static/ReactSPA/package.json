@@ -27,7 +27,7 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@babel/runtime": "^7.1.2",
-    "antd": "^3.10.8",
+    "antd": "^3.11.6",
     "react-virtualized": "^9.20.1",
     "socket.io-client": "2.1.1",
     "bizcharts": "^3.2.2",

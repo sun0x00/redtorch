@@ -106,6 +106,8 @@ public interface Gateway {
 	 * @param symbol
 	 * @param exchange
 	 * @param rtSymbol
+	 * @param contractName
+	 * @param tickID
 	 * @param tradingDay
 	 * @param actionDay
 	 * @param actionTime
@@ -165,17 +167,17 @@ public interface Gateway {
 	 * @param askVolume10
 	 */
 	public void emitTick(String gatewayID, String gatewayDisplayName, String symbol, String exchange, String rtSymbol,
-			String tickID, String tradingDay, String actionDay, String actionTime, DateTime dateTime, Integer status,
-			double lastPrice, Integer lastVolume, Integer volume, double openInterest, long preOpenInterest,
-			double preClosePrice, double preSettlePrice, double openPrice, double highPrice, double lowPrice,
-			double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2, double bidPrice3,
-			double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8, double bidPrice9,
-			double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4, double askPrice5,
-			double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10, int bidVolume1,
-			int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6, int bidVolume7,
-			int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2, int askVolume3,
-			int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8, int askVolume9,
-			int askVolume10);
+			String contractName, String tickID, String tradingDay, String actionDay, String actionTime,
+			DateTime dateTime, Integer status, double lastPrice, Integer lastVolume, Integer volume,
+			double openInterest, long preOpenInterest, double preClosePrice, double preSettlePrice, double openPrice,
+			double highPrice, double lowPrice, double upperLimit, double lowerLimit, double bidPrice1, double bidPrice2,
+			double bidPrice3, double bidPrice4, double bidPrice5, double bidPrice6, double bidPrice7, double bidPrice8,
+			double bidPrice9, double bidPrice10, double askPrice1, double askPrice2, double askPrice3, double askPrice4,
+			double askPrice5, double askPrice6, double askPrice7, double askPrice8, double askPrice9, double askPrice10,
+			int bidVolume1, int bidVolume2, int bidVolume3, int bidVolume4, int bidVolume5, int bidVolume6,
+			int bidVolume7, int bidVolume8, int bidVolume9, int bidVolume10, int askVolume1, int askVolume2,
+			int askVolume3, int askVolume4, int askVolume5, int askVolume6, int askVolume7, int askVolume8,
+			int askVolume9, int askVolume10);
 
 	/**
 	 * 发送Tick事件
@@ -193,6 +195,7 @@ public interface Gateway {
 	 * @param symbol
 	 * @param exchange
 	 * @param rtSymbol
+	 * @param contractName
 	 * @param tradeID
 	 * @param rtTradeID
 	 * @param orderID
@@ -208,9 +211,9 @@ public interface Gateway {
 	 * @param dateTime
 	 */
 	void emitTrade(String gatewayID, String gatewayDisplayName, String accountID, String rtAccountID, String symbol,
-			String exchange, String rtSymbol, String tradeID, String rtTradeID, String orderID, String rtOrderID,
-			String originalOrderID, String direction, String offset, double price, int volume, String tradingDay,
-			String tradeDate, String tradeTime, DateTime dateTime);
+			String exchange, String rtSymbol, String contractName, String tradeID, String rtTradeID, String orderID,
+			String rtOrderID, String originalOrderID, String direction, String offset, double price, int volume,
+			String tradingDay, String tradeDate, String tradeTime, DateTime dateTime);
 
 	/**
 	 * 发送成交事件
@@ -229,6 +232,7 @@ public interface Gateway {
 	 * @param symbol
 	 * @param exchange
 	 * @param rtSymbol
+	 * @param contractName
 	 * @param orderID
 	 * @param rtOrderID
 	 * @param direction
@@ -247,9 +251,9 @@ public interface Gateway {
 	 * @param sessionID
 	 */
 	void emitOrder(String originalOrderID, String gatewayID, String gatewayDisplayName, String accountID,
-			String rtAccountID, String symbol, String exchange, String rtSymbol, String orderID, String rtOrderID,
-			String direction, String offset, double price, int totalVolume, int tradedVolume, String status,
-			String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
+			String rtAccountID, String symbol, String exchange, String rtSymbol, String contractName, String orderID,
+			String rtOrderID, String direction, String offset, double price, int totalVolume, int tradedVolume,
+			String status, String tradingDay, String orderDate, String orderTime, String cancelTime, String activeTime,
 			String updateTime, int frontID, int sessionID);
 
 	/**

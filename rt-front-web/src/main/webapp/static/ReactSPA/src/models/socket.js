@@ -14,7 +14,6 @@ export default {
       history.listen((location) => {
         if(!socketStatus()&&location.pathname.indexOf('user/login')<0&&sessionStorage.getItem('token') !== undefined&&sessionStorage.getItem('token') !==null){
           socketListen((data)=> {
-           
             switch (data.type) {
               case 'E_TICKS|':
                 dispatch({
@@ -56,6 +55,12 @@ export default {
                   payload: data.payload,
                 });
                 break;
+              case 'E_LOGS|':
+                dispatch({
+                  type: 'logData/updateLogDatas', 
+                  payload: data.payload,
+                });
+                break;
               case 'E_GATEWAY|':
                 dispatch({
                   type: 'gateway/fetchGateways', 
@@ -66,7 +71,6 @@ export default {
                   type: 'order/fetchOrders', 
                   payload: data.payload,
                 });
-
                 
                 dispatch({
                   type: 'position/fetchPositions', 

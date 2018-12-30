@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout,Button,Drawer } from 'antd';
 import DocumentTitle from 'react-document-title';
 import isEqual from 'lodash/isEqual';
 import memoizeOne from 'memoize-one';
@@ -15,6 +15,7 @@ import logo from '../assets/logo.svg';
 import Footer from './Footer';
 import Header from './Header';
 import Context from './MenuContext';
+import LogGrid from './LogGrid';
 
 const { Content } = Layout;
 
@@ -90,6 +91,7 @@ class BasicLayout extends React.PureComponent {
     rendering: true,
     isMobile: false,
     menuData: this.getMenuData(),
+    drawerVisible: false
   };
 
 
@@ -201,8 +203,8 @@ class BasicLayout extends React.PureComponent {
   getContentStyle = () => {
     const { fixedHeader } = this.props;
     return {
-      margin: '12px 24px 0',
-      paddingTop: fixedHeader ? 44 : 0,
+      margin: '12px 12px 12px 0',
+      paddingTop: fixedHeader ? 38 : 0,
     };
   };
 
@@ -213,6 +215,27 @@ class BasicLayout extends React.PureComponent {
       payload: collapsed,
     });
   };
+
+  showDrawer = () => {
+    this.setState({
+      drawerVisible: true,
+    });
+  };
+
+  drawerClose = () => {
+    this.setState({
+      drawerVisible: false,
+    });
+  };
+
+  handleLogButtunClick = () =>{
+    const {drawerVisible } = this.state
+    if(drawerVisible === true){
+      this.drawerClose()
+    }else{
+      this.showDrawer()
+    }
+  }
 
   renderSettingDrawer() {
     // Do not render SettingDrawer in production
@@ -231,7 +254,7 @@ class BasicLayout extends React.PureComponent {
       children,
       location: { pathname },
     } = this.props;
-    const { isMobile, menuData } = this.state;
+    const { isMobile, menuData, drawerVisible } = this.state;
     const isTop = PropsLayout === 'topmenu';
     const layout = (
       <Layout>
@@ -261,7 +284,22 @@ class BasicLayout extends React.PureComponent {
           <Content style={this.getContentStyle()}>
             {children}
           </Content>
-          <Footer />
+          {/* 屏蔽页脚 */}
+          {/* <Footer /> */}
+          <div style={{position:'fixed',zIndex:9999,right:5,top:5}}>
+            <Button icon="file-text" size="small" type="primary" onClick={this.handleLogButtunClick}>日志</Button>
+          </div>
+          <Drawer
+            // title="日志"
+            placement="bottom"
+            closable
+            mask={false}
+            height={400}
+            onClose={this.drawerClose}
+            visible={drawerVisible}
+          >
+            <LogGrid />
+          </Drawer>
         </Layout>
       </Layout>
     );

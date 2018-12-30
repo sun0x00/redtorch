@@ -38,29 +38,33 @@ public class MdSpi extends CThostFtdcMdSpi {
 	// private String userProductInfo;
 	private String gatewayLogInfo;
 	private String gatewayID;
-	 private String gatewayDisplayName;
+	private String gatewayDisplayName;
 
 	private String tradingDayStr;
 
 	private HashMap<String, String> contractExchangeMap;
 	// private HashMap<String, Integer> contractSizeMap;
+	private HashMap<String, String> contractNameMap;
+	private HashMap<String,Integer> preTickVolumeMap = new HashMap<>();
 
 	MdSpi(CtpGateway ctpGateway) {
 
 		this.ctpGateway = ctpGateway;
 		this.ctpGateway = ctpGateway;
 		this.mdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getMdAddress();
-		// this.tdAddress = ctpGateway.getGatewaySetting().getCtpSetting().getTdAddress();
+		// this.tdAddress =
+		// ctpGateway.getGatewaySetting().getCtpSetting().getTdAddress();
 		this.brokerID = ctpGateway.getGatewaySetting().getCtpSetting().getBrokerID();
 		this.userID = ctpGateway.getGatewaySetting().getCtpSetting().getUserID();
 		this.password = ctpGateway.getGatewaySetting().getCtpSetting().getPassword();
 		// this.authCode = ctpGateway.getGatewaySetting().getCtpSetting().getAuthCode();
 		this.gatewayLogInfo = ctpGateway.getGatewayLogInfo();
 		this.gatewayID = ctpGateway.getGatewayID();
-		 this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
+		this.gatewayDisplayName = ctpGateway.getGatewayDisplayName();
 
 		this.contractExchangeMap = ctpGateway.getContractExchangeMap();
 		// this.contractSizeMap = ctpGateway.getContractSizeMap();
+		this.contractNameMap = ctpGateway.getContractNameMap();
 
 	}
 
@@ -309,16 +313,23 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 			String exchange = contractExchangeMap.get(symbol);
 			String rtSymbol = symbol + "." + exchange;
-			String tickID = rtSymbol+"."+gatewayID;
+			String contractName = contractNameMap.get(symbol);
+			String tickID = rtSymbol + "." + gatewayID;
 			String tradingDay = tradingDayStr;
 			String actionDayStr = pDepthMarketData.getActionDay();
 			String actionTime = dateTime.toString(RtConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
 			Integer status = 0;
 			Double lastPrice = pDepthMarketData.getLastPrice();
-			Integer lastVolume = 0;
 			Integer volume = pDepthMarketData.getVolume();
+			Integer lastVolume = 0;
+			if(preTickVolumeMap.containsKey(tickID)) {
+				lastVolume = volume - preTickVolumeMap.get(tickID);
+			}else {
+				lastVolume = volume;
+			}
+			preTickVolumeMap.put(tickID, volume);
 			Double openInterest = pDepthMarketData.getOpenInterest();
-			Long preOpenInterest = 0L;
+			Long preOpenInterest = (long) pDepthMarketData.getPreOpenInterest();
 			Double preClosePrice = pDepthMarketData.getPreClosePrice();
 			Double preSettlePrice = pDepthMarketData.getPreSettlementPrice();
 			Double openPrice = pDepthMarketData.getOpenPrice();
@@ -367,14 +378,14 @@ public class MdSpi extends CThostFtdcMdSpi {
 			Integer askVolume9 = 0;
 			Integer askVolume10 = 0;
 
-			ctpGateway.emitTick(gatewayID,gatewayDisplayName, symbol, exchange, rtSymbol, tickID, tradingDay, actionDayStr, actionTime, dateTime,
-					status, lastPrice, lastVolume, volume, openInterest, preOpenInterest, preClosePrice, preSettlePrice,
-					openPrice, highPrice, lowPrice, upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4,
-					bidPrice5, bidPrice6, bidPrice7, bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3,
-					askPrice4, askPrice5, askPrice6, askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1,
-					bidVolume2, bidVolume3, bidVolume4, bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9,
-					bidVolume10, askVolume1, askVolume2, askVolume3, askVolume4, askVolume5, askVolume6, askVolume7,
-					askVolume8, askVolume9, askVolume10);
+			ctpGateway.emitTick(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName, tickID,
+					tradingDay, actionDayStr, actionTime, dateTime, status, lastPrice, lastVolume, volume, openInterest,
+					preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice, upperLimit,
+					lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7, bidPrice8,
+					bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6, askPrice7,
+					askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4, bidVolume5,
+					bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2, askVolume3,
+					askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
 
 		} else {
 			log.warn("{}OnRtnDepthMarketData! 收到行情信息为空", gatewayLogInfo);
