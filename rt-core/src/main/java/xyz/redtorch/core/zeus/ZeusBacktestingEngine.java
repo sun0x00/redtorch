@@ -58,7 +58,7 @@ public interface ZeusBacktestingEngine extends ZeusEngineService {
 	 * @author sun0x00@gmail.com
 	 *
 	 */
-	static class OptimizationSetting {
+	public static class OptimizationSetting {
 		static Logger log = LoggerFactory.getLogger(ZeusBacktestingEngine.class);
 		private Map<String, List<String>> paramMap;
 

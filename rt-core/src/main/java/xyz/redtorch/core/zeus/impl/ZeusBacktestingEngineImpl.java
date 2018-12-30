@@ -100,11 +100,11 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 	private int backtestingDataMode = 0;
 	private Boolean reloadStrategyEveryday;
 
-	public ZeusBacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID,
+	public ZeusBacktestingEngineImpl(ZeusDataService zeusDataService, StrategySetting strategySetting,
 			List<BacktestingSection> backestingSectionList, int backtestingDataMode, Boolean reloadStrategyEveryday,
 			String backtestingOutputDir) {
 		this.zeusDataService = zeusDataService;
-		this.strategySetting = zeusDataService.loadStrategySetting(strategyID);
+		this.strategySetting = strategySetting;
 		this.backestingSectionList = backestingSectionList;
 		this.backtestingDataMode = backtestingDataMode;
 		this.reloadStrategyEveryday = reloadStrategyEveryday;
