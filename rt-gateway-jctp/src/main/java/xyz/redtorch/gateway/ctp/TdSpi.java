@@ -509,10 +509,10 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		// 无法获取账户信息
 		// String accountID = pOrder.getAccountID();
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());
@@ -679,9 +679,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			position.setDirection(
 					CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), ""));
 			position.setRtPositionID(gatewayID + "." + rtSymbol + "." + pInvestorPosition.getPosiDirection());
-			position.setAccountID(pInvestorPosition.getInvestorID());
-			// 无法获取币种,因此不填写
-			// position.setRtAccountID(pInvestorPosition.getInvestorID());
+			
+			// 无法获取账户信息,使用userID作为账户ID
+			String accountID = userID;
+			// 无法获取币种信息
+			// 使用特定值
+			String rtAccountID = userID+".CNY."+gatewayID;
+			
+			position.setAccountID(accountID);
+			position.setRtAccountID(rtAccountID);
 		}
 
 		position.setUseMargin(position.getUseMargin() + pInvestorPosition.getUseMargin());
@@ -1031,13 +1037,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		 * 但在本接口设计中,已经考虑了CTP的OrderRef的自增性,避免重复 唯一可能出现OrderRef重复的情况是多处登录并在非常接近的时间内（几乎同时发单
 		 */
 
-		// 无法获取账户信息
+		// 无法获取账户信息,使用userID作为账户ID
 		// String accountID = pOrder.getAccountID();
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String orderID = pOrder.getOrderRef();
 		String rtOrderID = gatewayID + "." + orderID;
@@ -1095,10 +1101,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		DateTime dateTime = null;
 
 		String originalOrderID = originalOrderIDMap.get(rtOrderID);
-
+		
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
-		// 预留
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pTrade.getAccountID() + "." + pTrade.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
+		
 		if (instrumentQueried) {
 			ctpGateway.emitTrade(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol, exchange, rtSymbol,
 					contractName, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset, price,
@@ -1115,13 +1125,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	// 发单错误回报（交易所）
 	public void OnErrRtnOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo) {
 
-		// 无法获取账户信息
+		// 无法获取账户信息,使用userID作为账户ID
 		// String accountID = pOrder.getAccountID();
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());
