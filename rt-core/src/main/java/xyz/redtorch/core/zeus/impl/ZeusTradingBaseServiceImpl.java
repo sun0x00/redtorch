@@ -14,6 +14,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.service.CoreEngineService;
 import xyz.redtorch.core.zeus.ZeusTradingBaseService;
@@ -24,9 +25,10 @@ public class ZeusTradingBaseServiceImpl implements ZeusTradingBaseService, Initi
 
 	private final static Logger log = LoggerFactory.getLogger(ZeusTradingBaseServiceImpl.class);
 
-	private Map<String, String> originalOrderIDMap = new HashMap<>(); // k-> rtOrderID, v-> originalOrderID
-	private Map<String, String> rtOrderIDMap = new HashMap<>(); // k-> originalOrderID, v-> rtOrderID
+	private Map<String, String> rtOrderIDOriginalOrderIDMap = new HashMap<>(); // k-> rtOrderID, v-> originalOrderID
+	private Map<String, String> originalOrderIDRtOrderIDMap = new HashMap<>(); // k-> originalOrderID, v-> rtOrderID
 	private Map<String, StrategyProcessReport> strategyProcessReportMap = new ConcurrentHashMap<>();
+	private Map<String, OrderReq> originalOrderIDOrderReqMap = new HashMap<>();
 
 	// 使用无大小限制的线程池,线程空闲60s会被释放
 	private ExecutorService executor = Executors.newCachedThreadPool();
@@ -40,21 +42,34 @@ public class ZeusTradingBaseServiceImpl implements ZeusTradingBaseService, Initi
 	}
 
 	@Override
+	public void registerOrderReq(OrderReq orderReq) {
+		if(StringUtils.isNotBlank(orderReq.getOriginalOrderID())) {
+			originalOrderIDOrderReqMap.put(orderReq.getOriginalOrderID(), orderReq);
+		}
+		
+	}
+
+	@Override
+	public OrderReq getOrderReq(String originalOrderID) {
+		return originalOrderIDOrderReqMap.get(originalOrderID);
+	}
+	
+	@Override
 	public void registerOriginalOrderID(String rtOrderID, String originalOrderID) {
 		if (StringUtils.isNotBlank(rtOrderID) && StringUtils.isNotBlank(originalOrderID)) {
-			originalOrderIDMap.put(rtOrderID, originalOrderID);
-			rtOrderIDMap.put(originalOrderID, rtOrderID);
+			rtOrderIDOriginalOrderIDMap.put(rtOrderID, originalOrderID);
+			originalOrderIDRtOrderIDMap.put(originalOrderID, rtOrderID);
 		}
 	}
 
 	@Override
 	public String getOriginalOrderID(String rtOrderID) {
-		return originalOrderIDMap.get(rtOrderID);
+		return rtOrderIDOriginalOrderIDMap.get(rtOrderID);
 	}
 
 	@Override
 	public String getRtOrderID(String originalOrderID) {
-		return rtOrderIDMap.get(originalOrderID);
+		return originalOrderIDRtOrderIDMap.get(originalOrderID);
 	}
 
 	@Override
@@ -115,4 +130,5 @@ public class ZeusTradingBaseServiceImpl implements ZeusTradingBaseService, Initi
 	public Map<String, StrategyProcessReport> getReportMap() {
 		return strategyProcessReportMap;
 	}
+
 }

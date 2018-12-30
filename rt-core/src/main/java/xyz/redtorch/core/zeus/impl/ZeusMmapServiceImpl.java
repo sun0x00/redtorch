@@ -310,6 +310,11 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 			order.setOriginalOrderID(zeusTradingBaseService.getOriginalOrderID(order.getRtOrderID()));
 		}
 		
+		// 由于部分底层接口不能正确返回R他AccountID，因此在这里进行一次修正
+		if(zeusTradingBaseService.getOrderReq(order.getOriginalOrderID())!=null){
+			order.setRtAccountID(zeusTradingBaseService.getOrderReq(order.getOriginalOrderID()).getRtAccountID());
+		}
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(DATA_ORDER) //
@@ -354,6 +359,11 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 		if (StringUtils.isBlank(trade.getOriginalOrderID())
 				&& zeusTradingBaseService.getOriginalOrderID(trade.getRtOrderID()) != null) {
 			trade.setOriginalOrderID(zeusTradingBaseService.getOriginalOrderID(trade.getRtOrderID()));
+		}
+		
+		// 由于部分底层接口不能正确返回RtAccountID，因此在这里进行一次修正
+		if(zeusTradingBaseService.getOrderReq(trade.getOriginalOrderID())!=null){
+			trade.setRtAccountID(zeusTradingBaseService.getOrderReq(trade.getOriginalOrderID()).getRtAccountID());
 		}
 		
 		getQueueTxEa().writeBytes(b -> b
@@ -447,6 +457,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 								
 								String rtOrderID = coreEngineService.sendOrder(orderReq);
 								zeusTradingBaseService.registerOriginalOrderID(rtOrderID, orderReq.getOriginalOrderID());
+								zeusTradingBaseService.registerOrderReq(orderReq);
 							}else {
 								log.error("发单错误,无法找到合约,{}", orderReq.toString());
 							}
