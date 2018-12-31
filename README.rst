@@ -9,7 +9,8 @@
 
 
 RedTorch 
-^^^^^^^^
+----------
+
 2019-01
 #######
 
@@ -28,7 +29,7 @@ RedTorch
 项目是基于Java语言开发的开源量化交易程序开发框架。
 
 
-框架起始完全移植自 `vn.py <http://www.vnpy.org/>`_ 代码,在这里首先向vn.py项目作者致谢；项目经过数次迭代，架构已有较大区别，如果Java语言经验不足，建议移步使用 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。
+框架起始完全移植自vn.py,在这里首先向项目作者致谢；经过数次迭代，架构已有较大区别，如果Java语言经验不足，建议移步使用 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。
 
 
 
@@ -84,7 +85,7 @@ RedTorch
   - **rt-gateway-jctp** 适配rt-api-jctp的接口模块，实现了rt-core中的Gateway接口。
   - **rt-api-ib** 盈透证券（IB）官方提供的接口源码
   - **rt-gateway-ib** 适配rt-api-ib的接口模块，实现了rt-core中的Gateway接口。
-  - **rt-front-web** Spring Boot承载的Web模块，暴露HTTP、SocketIO接口，提供Web监控页面。
+  - **rt-front-web** Spring Boot承载的Web模块，提供HTTP、SocketIO接口，承载Web监控页面。
   - **rt-common** 通用模块
   - **rt-strategy** 策略模块，提供了策略示例以及回测示例。
     
@@ -93,7 +94,6 @@ RedTorch
   - 由React语言编写，采用  `Ant Design Pro <https://pro.ant.design/>`_ 框架
   - 采取用户名密码登陆的方式获取连接令牌
   - 数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合
-  - 由Spring Boot提供HTTP服务
 
 + Python接入
   
@@ -113,14 +113,44 @@ RedTorch
 
 数据流程简介
 -----------------
++ 接入
+  
+  - Web
+  
+    + 用户通过浏览器获取到SPA登录页面
+    + 用户请求登录并通过验证后，获取到令牌（Token）
+    + SPA页面使用令牌建立Web Socket连接
 
-+ 框架采用事件驱动架构,且利用多核。
+  - Python
+    
+    + 通过预置令牌发起http请求
+    + 通过预置令牌建立Web Socket连接
 
-    - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
++ 订阅行情
+
+  - Web页面或Python
     
-    - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngineService），并加入性能调节配置
+    + 通过http发起订阅请求,身份统一识别为 WEB_API ，并建立订阅关系
+    + 由于未区分订阅身份，客户端A接入订阅的行情有可能被客户端B取消订阅关系
+    + 订阅后接收为接受广播模式，客户端需要自行识别行情ID进行过滤
+
+  - 策略
     
-    - 请注意,性能仍然需要通过多核CPU体现
+    + 策略首先策略引擎发起订阅，策略引擎通过MMAP进行进程间通讯
+    + 通过策略引擎发起订阅，并根据策略ID进行身份区分，建立订阅关系
+    + 策略被重新加载或策略进程心跳消失后，会根据ID取消订阅关系
+
++ 发单
+
+  - Web页面或Python
+  - 策略
+
++ 数据推送
+
+  - 框架采用事件驱动架构,且利用多核。
+  - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
+  - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngineService），并加入性能调节配置
+  - 请注意,性能仍然需要通过多核CPU体现
 
 
 
