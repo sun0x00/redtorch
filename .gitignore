@@ -75,4 +75,7 @@ rt-strategy-prd/
 
 node_modules/
 
+## vscode
+.vscode
+
 
