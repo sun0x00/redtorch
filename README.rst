@@ -148,6 +148,7 @@ RedTorch
 
     + 在OrderReq中，以策略ID作为OperatorID
 
+
 + 数据推送
 
   - 基础架构使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 作为事件引擎，并加入性能调节配置
