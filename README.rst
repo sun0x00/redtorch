@@ -26,27 +26,21 @@ RedTorch
 简介
 -----
 
-项目是基于Java语言开发的开源量化交易程序开发框架。
+项目是基于Java语言开发的开源量化交易程序开发框架。  
 
-
-框架起始完全移植自vn.py,在这里首先向项目作者致谢；经过数次迭代，架构已有较大区别，如果Java语言经验不足，建议移步使用 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。
-
-
+框架起始完全移植自vn.py,在这里首先向项目作者致谢；经过数次迭代，架构已有较大区别，如果Java语言经验不足，建议移步使用 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。  
 
 使用Java的主要原因：
 
-
 + Python GIL带来的性能问题难以突破，不能有效使用多核CPU，利用Java能比较好的解决这一问题，在多账户多合约方面有一定便利。
 
-+ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但会在类型控制、重构方面会遇到一定的的障碍。
++ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但在数据类型控制、重构方面会遇到一定的的障碍。
 
-+ 曾考虑使用C++，但因工作量太大只能作罢，且已有大量此类开源工具。得益于JVM的良好设计，框架具备较好的扩展性和尚可接受的延迟。
-
-
++ 得益于JVM的良好设计，框架具备较好的扩展性和尚可接受的延迟，曾考虑使用C++，但因工作量太大只能作罢，且已有大量此类开源工具。。
 
 重要提示
 --------
-+ 项目尚处于开发预览阶段，因此使用前请务必严格测试。
++ 项目尚处于预览阶段，因此使用前请务必严格测试。
 
 + 欢迎star本项目，强烈建议watch，任何问题的最新修正都会第一时间在dev分支发布。
 
@@ -65,20 +59,22 @@ RedTorch
 
 + 程序内部内部T2T低延迟(相比于C/C++语言要慢，比动态语言快很多)
 
-+ 运行时异步线程存储数据，减少IO操作对延迟的影响
++ 策略支持支持多账户、多合约
 
 + 策略代码，同时适用于回测和实盘
 
-+ 支持分段回测、多合约回测、多线程回测
++ 策略运行时异步线程存储数据，减少IO操作对延迟的影响
 
-+ 策略实盘和回测均支持支持多账户、多合约
++ 策略支持分段回测、多合约回测、多线程回测
 
-+ 多进程架构,MMAP通讯
++ 多进程架构,采用RMI和MMAP通讯
 
-项目结构
++ 支持异构接入，采用http和WebSocket接入
+
+结构简介
 ---------
 
-+ 项目Java部分使用Gradle拆分、构建
++ Java组件,使用Gradle拆分、构建
 
   - **rt-core** 核心模块，包含了核心引擎，事件引擎，ZEUS交易引擎，ZEUS回测引擎，以及相关的通讯、数据服务。
   - **rt-api-jctp** Swig封装官方CTP的API模块，详见底部FAQ。
@@ -89,16 +85,17 @@ RedTorch
   - **rt-common** 通用模块
   - **rt-strategy** 策略模块，提供了策略示例以及回测示例。
     
-+ Web界面
++ Web SPA
 
   - 由React语言编写，采用  `Ant Design Pro <https://pro.ant.design/>`_ 框架
   - 采取用户名密码登陆的方式获取连接令牌
-  - 数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合
+  - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
 
-+ Python接入
-  
++ Python客户端
+
+  - **rt-front-web-client-python** Python接入模块
   - 使用预置令牌进行接入
-  - 数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合
+  - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
   
 
 项目已知问题
@@ -115,20 +112,21 @@ RedTorch
 -----------------
 + 接入
   
-  - Web
+  - Web SPA
   
     + 用户通过浏览器获取到SPA登录页面
-    + 用户请求登录并通过验证后，获取到令牌（Token）
-    + SPA页面使用令牌建立Web Socket连接
+    + 用户请求登录并通过验证后，获取到令牌（Token），存入浏览器sessionStorage
+    + 通过获取到的令牌发起http请求
+    + 通过获取到的令牌建立Web Socket连接
 
-  - Python
+  - Python客户端
     
     + 通过预置令牌发起http请求
     + 通过预置令牌建立Web Socket连接
 
 + 订阅行情
 
-  - Web页面或Python
+  - Web SPA、Python客户端或其它异构系统
     
     + 通过http发起订阅请求,身份统一识别为 WEB_API ，并建立订阅关系
     + 由于未区分订阅身份，客户端A接入订阅的行情有可能被客户端B取消订阅关系
@@ -142,17 +140,19 @@ RedTorch
 
 + 发单
 
-  - Web页面或Python
+  - Web SPA、Python客户端或其它异构系统
+    
+    + 在OrderReq中，以令牌作为OperatorID
+
   - 策略
+
+    + 在OrderReq中，以策略ID作为OperatorID
 
 + 数据推送
 
-  - 框架采用事件驱动架构,且利用多核。
-  - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
-  - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngineService），并加入性能调节配置
-  - 请注意,性能仍然需要通过多核CPU体现
-
-
+  - 基础架构使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 作为事件引擎，并加入性能调节配置
+  - Web SPA、Python客户端或其他异构系统通过WebSocket接收数据推送
+  - 策略进程通过MMAP接收数据推送
 
 项目文档
 -----------

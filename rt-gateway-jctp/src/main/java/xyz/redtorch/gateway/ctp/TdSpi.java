@@ -204,6 +204,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			loginStatus = false;
 
 		}
+
+		log.warn("{} 交易接口实例初始化",gatewayLogInfo);
 		String envTmpDir = System.getProperty("java.io.tmpdir");
 		String tempFilePath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
 				+ File.separator + "jctp" + File.separator + "TEMP_CTP" + File.separator + "TD_"
@@ -212,12 +214,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+				log.info("{} 创建临时文件夹 {}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath(), e);
+				log.error("{} 创建临时文件夹失败{}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath(), e);
 			}
 		}
-		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+		log.info("{} 使用临时文件夹{}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);
@@ -231,15 +233,22 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 */
 	public synchronized void close() {
 		if (cThostFtdcTraderApi != null) {
+			log.warn("{} 交易接口实例开始关闭并释放",gatewayLogInfo);
 			cThostFtdcTraderApi.RegisterSpi(null);
-			cThostFtdcTraderApi.Release();
+//			cThostFtdcTraderApi.Release(); // 经过测试无效
+			cThostFtdcTraderApi.delete();
+			cThostFtdcTraderApi = null;
 			connectionStatus = false;
 			instrumentQueried = false;
 			loginStatus = false;
 			connectProcessStatus = false;
-			cThostFtdcTraderApi = null;
+			log.warn("{} 交易接口实例关闭并释放",gatewayLogInfo);
+			// 通知停止其他关联实例
+			ctpGateway.close();
+		}else {
+			log.warn("{} 交易接口实例为null,无需关闭",gatewayLogInfo);
 		}
-		;
+		
 	}
 
 	/**
@@ -256,7 +265,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 * 
 	 * @return
 	 */
-	public String getTradingDayDay() {
+	public String getTradingDayStr() {
 		return tradingDayStr;
 	}
 
@@ -282,7 +291,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		if (!instrumentQueried) {
-			log.info("{}尚未获取到合约信息,无法查询持仓", gatewayLogInfo);
+			log.info("{}交易接口尚未获取到合约信息,无法查询持仓", gatewayLogInfo);
 			return;
 		}
 
@@ -341,13 +350,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcInputOrderField.setVolumeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_VC_CV);
 		}
 
-		// if("IH1805".equals(orderReq.getSymbol())) {
-		// System.out.println("T2T-OrderBefore-"+System.nanoTime());
-		// }
 		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID.incrementAndGet());
-		// if("IH1805".equals(orderReq.getSymbol())) {
-		// System.out.println("T2T-Order-"+System.nanoTime());
-		// }
 		String rtOrderID = gatewayID + "." + orderRef.get();
 
 		if (StringUtils.isNotBlank(orderReq.getOriginalOrderID())) {
@@ -382,6 +385,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private void login() {
 		if (loginFailed) {
 			log.warn(gatewayLogInfo + "交易接口登录曾发生错误,不再登录,以防被锁");
+			return;
+		}
+		
+		if(cThostFtdcTraderApi == null) {
+			log.warn("{} 交易接口实例已经释放", gatewayLogInfo);
+			return;
 		}
 
 		if (StringUtils.isEmpty(brokerID) || StringUtils.isEmpty(userID) || StringUtils.isEmpty(password)) {
@@ -409,7 +418,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机联机回报
 	public void OnFrontConnected() {
-		log.info(gatewayLogInfo + "交易接口前置机已连接");
+		log.info("{} 交易接口前置机已连接",gatewayLogInfo);
 		// 修改前置机连接状态为true
 		connectionStatus = true;
 		connectProcessStatus = false;
@@ -418,7 +427,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
-		log.info(gatewayLogInfo + "交易接口前置机已断开,Reason:" + nReason);
+		log.info("{} 交易接口前置机已断开, Reason:{}", gatewayLogInfo ,nReason);
 		close();
 	}
 
@@ -443,7 +452,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcTraderApi.ReqSettlementInfoConfirm(settlementInfoConfirmField, reqID.incrementAndGet());
 
 		} else {
-			log.warn("{}交易接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+			log.error("{}交易接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
 			loginFailed = true;
 		}
@@ -452,7 +461,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 心跳警告
 	public void OnHeartBeatWarning(int nTimeLapse) {
-		log.warn(gatewayLogInfo + "交易接口心跳警告 nTimeLapse:" + nTimeLapse);
+		log.warn("{} 交易接口心跳警告, Time Lapse:{}", gatewayLogInfo, nTimeLapse);
 	}
 
 	// 登出回报
@@ -487,7 +496,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			login();
 
 		} else {
-			log.warn("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+			log.error("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
 		}
 
@@ -506,8 +515,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo, int nRequestID,
 			boolean bIsLast) {
 
-		// 无法获取账户信息
-		// String accountID = pOrder.getAccountID();
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
 		// 无法获取币种信息
 		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
@@ -870,17 +878,17 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		ctpGateway.emitContract(contract);
 
 		if (bIsLast) {
-			log.info("{}交易接口合约信息获取完成!共计{}条", gatewayLogInfo, contractExchangeMap.size());
+			log.info("{} 交易接口合约信息获取完成!共计{}条", gatewayLogInfo, contractExchangeMap.size());
 			instrumentQueried = true;
 
-			log.info("开始推送缓存Order,共计{}条", orderCacheList.size());
+			log.info("{} 交易接口开始推送缓存Order,共计{}条", gatewayLogInfo, orderCacheList.size());
 			for (Order order : orderCacheList) {
 				order.setContractName(contractNameMap.get(order.getSymbol()));
 				ctpGateway.emitOrder(order);
 			}
 			orderCacheList.clear();
 
-			log.info("开始推送缓存Trade,共计{}条", tradeCacheList.size());
+			log.info("{} 交易接口开始推送缓存Trade,共计{}条", gatewayLogInfo, tradeCacheList.size());
 			for (Trade trade : tradeCacheList) {
 				trade.setContractName(contractNameMap.get(trade.getSymbol()));
 				ctpGateway.emitTrade(trade);
@@ -1038,7 +1046,6 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		 */
 
 		// 无法获取账户信息,使用userID作为账户ID
-		// String accountID = pOrder.getAccountID();
 		String accountID = userID;
 		// 无法获取币种信息
 		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
@@ -1097,11 +1104,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String tradingDay = tradingDayStr;
 		String tradeDate = pTrade.getTradeDate();
 		String tradeTime = pTrade.getTradeTime();
-		// 除回测外很少用到，因此不统一解析
+
+		// 除回测外很少用到，不统一解析
 		DateTime dateTime = null;
 
 		String originalOrderID = originalOrderIDMap.get(rtOrderID);
-		
+
 		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
 		// 无法获取币种信息
@@ -1126,7 +1134,6 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnErrRtnOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo) {
 
 		// 无法获取账户信息,使用userID作为账户ID
-		// String accountID = pOrder.getAccountID();
 		String accountID = userID;
 		// 无法获取币种信息
 		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;

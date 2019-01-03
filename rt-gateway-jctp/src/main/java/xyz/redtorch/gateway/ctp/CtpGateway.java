@@ -76,7 +76,6 @@ public class CtpGateway extends GatewayAbstract {
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();
 	private HashMap<String, String> contractNameMap = new HashMap<>();
-	
 
 	private MdSpi mdSpi = new MdSpi(this);
 	private TdSpi tdSpi = new TdSpi(this);
@@ -135,10 +134,11 @@ public class CtpGateway extends GatewayAbstract {
 
 	@Override
 	public void close() {
-		if (tdSpi != null) {
+		// 务必判断连接状态，防止死循环
+		if (tdSpi != null&&tdSpi.isConnected()) {
 			tdSpi.close();
 		}
-		if (mdSpi != null) {
+		if (mdSpi != null&&mdSpi.isConnected()) {
 			mdSpi.close();
 		}
 

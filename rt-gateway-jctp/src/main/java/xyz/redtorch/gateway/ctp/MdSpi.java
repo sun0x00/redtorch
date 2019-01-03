@@ -93,6 +93,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 			loginStatus = false;
 
 		}
+		
+		log.warn("{} 行情接口实例初始化",gatewayLogInfo);
+		
 		String envTmpDir = System.getProperty("java.io.tmpdir");
 		String tempFilePath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
 				+ File.separator + "jctp" + File.separator + "TEMP_CTP" + File.separator + "MD_"
@@ -101,12 +104,12 @@ public class MdSpi extends CThostFtdcMdSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+				log.info("{} 创建临时文件夹" , gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath());
+				log.error("{} 创建临时文件夹失败", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			}
 		}
-		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+		log.info("{} 使用临时文件夹", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 
 		cThostFtdcMdApi = CThostFtdcMdApi.CreateFtdcMdApi(tempFile.getAbsolutePath());
 		cThostFtdcMdApi.RegisterSpi(this);
@@ -120,18 +123,22 @@ public class MdSpi extends CThostFtdcMdSpi {
 	 * 关闭
 	 */
 	public synchronized void close() {
-		if (!isConnected()) {
-			return;
-		}
 
 		if (cThostFtdcMdApi != null) {
+			log.warn("{} 行情接口实例开始关闭并释放",gatewayLogInfo);
 			cThostFtdcMdApi.RegisterSpi(null);
-			cThostFtdcMdApi.Release();
+//			cThostFtdcMdApi.Release(); // 经过测试无效
+			cThostFtdcMdApi.delete();
+			cThostFtdcMdApi = null;
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;
+			log.warn("{} 行情接口实例关闭并释放",gatewayLogInfo);
+			// 通知停止其他关联实例
+			ctpGateway.close();
+		}else{
+			log.warn("{} 行情接口实例为null,无需关闭",gatewayLogInfo);
 		}
-
 	}
 
 	/**
@@ -205,7 +212,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
 		log.info(gatewayLogInfo + "行情接口前置机已断开,Reason:" + nReason);
-		this.connectionStatus = false;
+		close();
 	}
 
 	// 登录回报
@@ -261,10 +268,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			log.info(gatewayLogInfo + "OnRspSubMarketData! 订阅合约成功:" + pSpecificInstrument.getInstrumentID());
+			log.info("{} OnRspSubMarketData! 订阅合约成功:{}", gatewayLogInfo,pSpecificInstrument.getInstrumentID());
 		} else {
-			log.warn(gatewayLogInfo + "OnRspSubMarketData! 订阅合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
-					+ pRspInfo.getErrorMsg());
+			log.error("{} OnRspSubMarketData! 订阅合约失败,ErrorID:{} ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -272,10 +278,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			log.info(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约成功:" + pSpecificInstrument.getInstrumentID());
+			log.info("{} OnRspSubMarketData! 退订合约成功:{}", gatewayLogInfo,pSpecificInstrument.getInstrumentID());
 		} else {
-			log.warn(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
-					+ pRspInfo.getErrorMsg());
+			log.error("{} OnRspSubMarketData! 退订合约失败,ErrorID:{} ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -283,14 +288,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField pDepthMarketData) {
 		if (pDepthMarketData != null) {
 
-			// // T2T Test
-			// if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
-			// System.out.println("T2T-Tick-"+System.nanoTime());
-			// }
 			String symbol = pDepthMarketData.getInstrumentID();
 
 			if (!contractExchangeMap.containsKey(symbol)) {
-				log.info(gatewayLogInfo + "收到合约" + symbol + "行情,但尚未获取到交易所信息,丢弃");
+				log.warn("{} 收到合约 {}行情,但尚未获取到交易所信息,丢弃",gatewayLogInfo,symbol);
 				return;
 			}
 
