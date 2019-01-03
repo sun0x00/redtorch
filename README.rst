@@ -177,27 +177,34 @@ RedTorch
 
 + 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Gradle Projects导入本项目
 
-+ 修改application.properties文件
++ 修改 **rt-front-web** application.properties文件
 
     - 配置端口。默认为9099（web）、9098（SocketIO）
-    
-+ 修改RtConfig.properties
 
-    - 配置ClientDB请修修改rt-core.properties
-    
     - 配置Web认证口令（默认test test）
     
+    - 配置预置接入令牌（务必修改为复杂令牌）
+    
++ 修改rt-core.properties
+
+    - 配置端口9097（RMI）
+  
     - 配置数据库(用户名密码等可选,行情和ClientDB可以使用同一个MongoDB实例)
     
-    - 日志路径（默认D:\\log，不存在请创建）
+    - 日志路径（默认D:\\log，不存在请创建
     
     - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建或修改配置）
+  
++ 修改 **rt-strategy** application.properties文件
+  
+    - 配置策略ID
+
   
 + 如果部署在linux中，需要使用临时目录/tmp/xyz/redtorch/api/jctp/lib(rpath目录)和用户临时目录
 
 + 如果部署在windows中，需要使用用户临时目录
     
-+ 一切就绪后运行RtApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
++ 一切就绪后运行RtApplication,访问链接:http://IP:9099/,一般是:http://localhost:9099/
 
 FAQ
 ------
