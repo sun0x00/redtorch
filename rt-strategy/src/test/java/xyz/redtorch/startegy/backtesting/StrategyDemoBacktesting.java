@@ -92,7 +92,7 @@ public class StrategyDemoBacktesting {
 //		
 //		// ===========此处可修改为多线程=======================
 //		for(Map<String, String> paramMap:paramMapList) {
-//			String optimizationStrategyID = UUID.randomUUID().toString();
+//			String optimizationStrategyID = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 //			optimizationStrategyIDList.add(optimizationStrategyID);
 //			strategySetting.setParamMap(paramMap);
 //			strategySetting.setStrategyID(optimizationStrategyID);

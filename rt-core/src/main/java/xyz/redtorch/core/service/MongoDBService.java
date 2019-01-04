@@ -15,11 +15,17 @@ import xyz.redtorch.utils.MongoDBClient;
  */
 public interface MongoDBService {
 
+	String dailyMarketDataTickCollection = "DailyMarketDataTick";
+
 	List<Bar> loadBarDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
 
 	List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
-
+	
 	MongoDBClient getMdDBClient();
 
 	MongoDBClient getDefaultDBClient();
+
+	boolean saveTickToDailyDB(Tick tick);
+	
+	List<Tick> loadTickDataListFromDailyDB(String rtSymbol);
 }

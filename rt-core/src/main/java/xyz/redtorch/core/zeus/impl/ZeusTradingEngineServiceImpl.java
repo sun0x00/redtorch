@@ -180,8 +180,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 				.writeUtf8(orderReq.getExpiry()) //
 				.writeDouble(orderReq.getStrikePrice()) //
 				.writeUtf8(orderReq.getOptionType()) //
-				.writeUtf8(orderReq.getLastTradeDateOrContractMonth()) //
-				.writeUtf8(orderReq.getMultiplier()));
+				.writeUtf8(orderReq.getLastTradeDateOrContractMonth())); //
 	}
 
 	@Override

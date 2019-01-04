@@ -165,6 +165,7 @@ class Center extends PureComponent {
 
   deleteGateway(gateway){
     const { dispatch,login } = this.props;
+    const that = this;
     confirm({
       title: '确定要删除这个网关吗?',
       content: gateway.gatewayID,
@@ -178,8 +179,8 @@ class Center extends PureComponent {
         });
         
         sleep(100).then(()=>{
-          this.setState({ visible: false});
-          this.fetchGateways()
+          that.setState({ visible: false});
+          that.fetchGateways()
         })
       },
       onCancel() {

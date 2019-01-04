@@ -101,12 +101,12 @@ export default [
         icon: 'api',
         component: './Gateway/GatewayBoard',
       },
-      // {
-      //   path: '/dataRecord',
-      //   name: 'dataRecord',
-      //   icon: 'database',
-      //   component: './DataRecord/DataRecordBoard',
-      // },
+      {
+        path: '/dataRecord',
+        name: 'dataRecord',
+        icon: 'database',
+        component: './DataRecord/DataRecordBoard',
+      },
       // {
       //   path: '/riskControl',
       //   name: 'riskControl',

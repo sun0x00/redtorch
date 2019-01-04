@@ -203,4 +203,9 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 		return mongoDBService.loadTickDataList(startDateTime, endDateTime, rtSymbol);
 	}
 
+	@Override
+	public List<Tick> loadTickDataListFromDailyDB(String rtSymbol) {
+		return mongoDBService.loadTickDataListFromDailyDB(rtSymbol);
+	}
+
 }

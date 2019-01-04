@@ -74,9 +74,9 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 
 	private Map<String, Set<String>> subscriberRelationshipMap = new HashMap<>();
 
-	private Map<String, HashSet<SubscribeReq>> subscribeReqSetMap = new HashMap<>();
+	private Map<String, Set<SubscribeReq>> subscribeReqSetMap = new HashMap<>();
 	
-	private HashMap<String, String> originalOrderIDMap = new HashMap<>();
+	private Map<String, String> originalOrderIDMap = new HashMap<>();
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -429,6 +429,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 
 		log.warn("订阅行情,合约[{}]网关[{}]订阅者ID[{}],", subscribeReq.getRtSymbol(), subscribeReq.getGatewayID(), subscriberID);
 
+		// 记录订阅关系
 		if (subscriberID != null) {
 			String subscriberRelationshipKey = subscribeReq.getRtSymbol() + "." + subscribeReq.getGatewayID();
 
@@ -443,14 +444,14 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 		}
 
 		// 加入主引擎缓存,如果网关重连,会自动重新订阅
-		HashSet<SubscribeReq> subscribedSymbols = null;
+		Set<SubscribeReq> subscribedSubscribeReqSet = null;
 		if (subscribeReqSetMap.containsKey(gatewayID)) {
-			subscribedSymbols = subscribeReqSetMap.get(gatewayID);
+			subscribedSubscribeReqSet = subscribeReqSetMap.get(gatewayID);
 		} else {
-			subscribedSymbols = new HashSet<>();
-			subscribeReqSetMap.put(gatewayID, subscribedSymbols);
+			subscribedSubscribeReqSet = new HashSet<>();
+			subscribeReqSetMap.put(gatewayID, subscribedSubscribeReqSet);
 		}
-		subscribedSymbols.add(subscribeReq);
+		subscribedSubscribeReqSet.add(subscribeReq);
 
 		Gateway gateway = getGateway(gatewayID);
 		if (gateway != null) {
@@ -459,7 +460,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 					subscriberID);
 			return true;
 		} else {
-			log.error("订阅行情失败,未找到网关,网关ID-[{}],代码-[{}],订阅者ID-[{}]", subscribeReq.getGatewayID(),
+			log.error("订阅行情失败,网关ID-[{}],代码-[{}],订阅者ID-[{}],未找到网关,订阅请求已缓存", subscribeReq.getGatewayID(),
 					subscribeReq.getRtSymbol(), subscriberID);
 			return false;
 		}
@@ -467,10 +468,12 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 
 	@Override
 	public boolean unsubscribe(String rtSymbol, String gatewayID, String subscriberID) {
-		if (StringUtils.isEmpty(rtSymbol) || StringUtils.isEmpty(gatewayID)) {
+		if (StringUtils.isEmpty(rtSymbol) || StringUtils.isEmpty(gatewayID) || StringUtils.isEmpty(subscriberID)) {
 			log.error("无法取消订阅,参数不允许为空!");
 			return false;
 		}
+		
+		// 移除订阅关系
 		String subscriberRelationshipKey = rtSymbol + "." + gatewayID;
 
 		Set<String> subscriberIDSet = null;
@@ -490,6 +493,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 				Set<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
 				subscribeReqSet = subscribeReqSet.stream().filter(value -> !value.getRtSymbol().equals(rtSymbol))
 						.collect(Collectors.toSet());
+				subscribeReqSetMap.put(gatewayID,subscribeReqSet);
 			}
 
 			Gateway gateway = getGateway(gatewayID);
@@ -504,6 +508,8 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 				log.info("成功取消订阅行情,网关ID-[{}],代码-[{}],订阅者ID-[{}]", gatewayID, rtSymbol, subscriberID);
 
 				emitSimpleEvent(EventConstant.EVENT_TICKS_CHANGED, EventConstant.EVENT_TICKS_CHANGED);
+				
+				log.info("广播事件EVENT_TICKS_CHANGED");
 
 				return true;
 			} else {
@@ -511,7 +517,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 				return false;
 			}
 		} else {
-			log.error("取消订阅行情失败,存在其它订阅者,网关ID-[{}],代码-[{}],订阅者ID-[{}]", gatewayID, rtSymbol, subscriberID);
+			log.warn("取消订阅行情完成,存在其它订阅者,网关ID-[{}],代码-[{}],订阅者ID-[{}]", gatewayID, rtSymbol, subscriberID);
 			return false;
 		}
 	}
@@ -646,7 +652,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 			gateway.connect();
 			// 重新订阅之前的合约
 			if (subscribeReqSetMap.containsKey(gatewayID)) {
-				HashSet<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
+				Set<SubscribeReq> subscribeReqSet = subscribeReqSetMap.get(gatewayID);
 				for (SubscribeReq subscribeReq : subscribeReqSet) {
 					gateway.subscribe(subscribeReq);
 				}

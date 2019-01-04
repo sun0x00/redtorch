@@ -40,7 +40,7 @@ public class OrderReq implements Serializable {
 	private String multiplier; // 乘数,IB专用
 	
 	public OrderReq() {
-		this.originalOrderID = UUID.randomUUID().toString();
+		this.originalOrderID = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 	}
 
 	public String getGatewayID() {

@@ -94,7 +94,6 @@ export async function reqCancelAllOrders(params){
   });
 }
 
-
 export async function querySrategyInfos(params){
   return request(`/api/zeus/srategyInfos?token=${params.token}`);
 }
@@ -106,5 +105,22 @@ export async function reqChangeStrategyStatus(params){
   });
 }
 
+export async function querySubscribeReqs(params){
+  return request(`/api/dataRecord/subscribeReqs?token=${params.token}`);
+}
+
+export async function reqDeleteSubscribeReq(params){
+  return request(`/api/dataRecord/subscribeReq`,{
+    method: 'DELETE',
+    body: params,
+  });
+}
+
+export async function reqPutSubscribeReq(params){
+  return request(`/api/dataRecord/subscribeReq`,{
+    method: 'PUT',
+    body: params,
+  });
+}
 
 

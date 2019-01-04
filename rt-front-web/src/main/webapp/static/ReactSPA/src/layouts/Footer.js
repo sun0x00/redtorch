@@ -5,7 +5,7 @@ import GlobalFooter from '@/components/GlobalFooter';
 const { Footer } = Layout;
 const FooterView = () => (
   <Footer style={{ padding: 0 }}>
-    {/* <GlobalFooter
+    <GlobalFooter
       links={[
         {
           key: 'Red Torch',
@@ -31,7 +31,7 @@ const FooterView = () => (
           Copyright <Icon type="copyright" /> 2018 <a href='http://redtorch.io'>redtorch.io</a> & Powered by Ant Design Pro
         </Fragment>
       }
-    /> */}
+    />
   </Footer>
 );
 export default FooterView;

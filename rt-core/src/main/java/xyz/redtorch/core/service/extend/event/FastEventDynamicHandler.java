@@ -9,11 +9,11 @@ import com.lmax.disruptor.LifecycleAware;
 public interface FastEventDynamicHandler extends EventHandler<FastEvent>, LifecycleAware {
 	void awaitShutdown() throws InterruptedException;
 
-	public List<String> getSubscribedEventList();
+	List<String> getSubscribedEventList();
 
-	public Set<String> getSubscribedEventSet();
+	Set<String> getSubscribedEventSet();
 
-	public void subscribeEvent(String event);
+	void subscribeEvent(String event);
 
-	public void unsubscribeEvent(String event);
+	void unsubscribeEvent(String event);
 }

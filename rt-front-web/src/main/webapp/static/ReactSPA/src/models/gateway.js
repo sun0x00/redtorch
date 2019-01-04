@@ -11,7 +11,7 @@ export default {
     *fetchGateways({ payload }, { call, put }) {
       const response = yield call(queryGateways,{...payload,token:sessionStorage.getItem('token')});
       yield put({
-        type: 'saveGateways',
+        type: 'saveStateGateways',
         payload: response&&response.data&&Array.isArray(response.data) ? response.data : [],
       });
     },
@@ -28,7 +28,7 @@ export default {
   },
 
   reducers: {
-    saveGateways(state, action) {
+    saveStateGateways(state, action) {
       return {
         ...state,
         gateways: action.payload,

@@ -35,6 +35,8 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 	private String minute_db_name;
 	@Value("${mongodb.instance.md.dbname.tick}")
 	private String tick_db_name;
+	@Value("${mongodb.instance.md.dbname.daily}")
+	private String daily_db_name;
 
 	private MongoDBClient mdDBClient;// 行情数据库客户端
 
@@ -131,6 +133,47 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
 		List<Document> documentList = mdDBClient.find(tick_db_name, rtSymbol, filter, sort);
+
+		List<Tick> tickList = new ArrayList<>();
+		for (Document document : documentList) {
+			Tick tick = new Tick();
+			try {
+				tick = MongoDBUtil.documentToBean(document, tick);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				log.error("查询Tick数据转换发生错误,Document-", document.toJson(), e);
+			}
+			tickList.add(tick);
+		}
+		log.info("加载Tick数据完成,合约{},共{}条,耗时{}ms", rtSymbol, tickList.size(), System.currentTimeMillis() - startTime);
+		return tickList;
+	}
+	
+	@Override
+	public boolean saveTickToDailyDB(Tick tick) {
+		Document filter = new Document();
+		filter.append("dateTime", tick.getDateTime().toDate()).append("rtSymbol", tick.getRtSymbol());
+		
+		try {
+			Document document = MongoDBUtil.beanToDocument(tick);
+			return mdDBClient.upsert(daily_db_name,  MongoDBService.dailyMarketDataTickCollection, document, filter);
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			log.error("行情记录存储Tick行情发生异常", e);
+			return false;
+		}
+	}
+	
+	@Override
+	public List<Tick> loadTickDataListFromDailyDB(String rtSymbol) {
+		log.info("加载Tick数据,合约{}", rtSymbol);
+		
+		long startTime = System.currentTimeMillis();
+		
+		Document filter = new Document();
+		filter.append("rtSymbol", rtSymbol);
+		
+		BasicDBObject sort = new BasicDBObject();
+		sort.append("dateTime", 1);
+		List<Document> documentList = mdDBClient.find(daily_db_name, dailyMarketDataTickCollection, filter, sort);
 
 		List<Tick> tickList = new ArrayList<>();
 		for (Document document : documentList) {
