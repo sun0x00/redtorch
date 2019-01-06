@@ -223,7 +223,21 @@ FAQ
 + 订阅也是通过RtAccountID区分吗
     
     不是，订阅是通过GatewayID，Web页面采用RtAccountID进行区分主要是为了方便展示
+    
++ 如何部署
 
+    - 对于web可以使用gradle打包成bootWar
+    - 对于策略可以使用gradle打包成bootJar
+    - 上述两条可以使用java -jar 打包后的文件名  运行，war jar都用这个命令，例如使用命令 ./gradlew :rt-front-web:bootWar打包，在build目录使用命令java -jar rt-front-web-0.1.war 运行
+    
++ 每多写一个策略都需要增加一个策略模块打包吗
+
+    - 不需要，可以通过外部application.properties覆盖这一方式解决。当已经打成jar包后，无需修jar包内的application.properties文件，在运行jar的同级目录放置application.properties可以覆盖内部配置。因此只需要使用同一个jar包但使用外部配置文件指定不同策略ID即可
+
++ 页面如何修改
+    - 页面请先安装node.js,推荐使用vscode打开ReactSPA目录。
+    - 常用命令 【npm run build】，将会编译至dist目录，请手动复制到distPRD目录
+    - 常用命令 【npm run start:no-mock】，进入开发模式，不使用mock数据。早期项目使用mock数据，后期因工作量过大采用直接联调，前端不再使用mock模拟数据。
 
 + CTP封装源码在哪里
 
