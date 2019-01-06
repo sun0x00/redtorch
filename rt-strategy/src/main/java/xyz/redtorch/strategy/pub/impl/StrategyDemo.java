@@ -30,6 +30,7 @@ public class StrategyDemo extends StrategyAbstract{
 
 	@Override
 	public void onInit() throws Exception {
+		log.info("初始化！");
 		log.info("=================ParamMap=============================");
 		log.info(JSON.toJSONString(strategySetting.getParamMap()));
 		log.info("======================================================");
@@ -48,25 +49,35 @@ public class StrategyDemo extends StrategyAbstract{
 
 	@Override
 	public void onStartTrading() throws Exception {
-		
+		log.info("开始交易！");
 	}
 
 	@Override
-	public void onStopTrading(boolean isException) throws Exception {
-		
+	public void onStopTrading(boolean finishedCorrectly) throws Exception {
+		log.info("停止交易！是否正常停止-[{}]",finishedCorrectly);
 	}
 
 	@Override
 	public void onTick(Tick tick) throws Exception {
 		tickCount++;
 		setVarValue("tickCount", tickCount+"");
+//		
+//		log.info("################## TICK #########################");
+//		log.info(JSON.toJSONString(tick));
 	}
 
 	@Override
 	public void onBar(Bar bar) throws Exception {
 		
+//		log.info("################## BAR #########################");
+//		log.info(JSON.toJSONString(bar));
+		
 		barCount++;
 		setVarValue("barCount", barCount+"");
+		
+//		if(tradingStatus) {
+//			sellTd("IF1903.CFFEX", 1, bar.getClose()-1, "095076.CNY.657552c83e33496e8d675edaae9acea9");
+//		}
 		
 		int tradeTime = bar.getDateTime().getMinuteOfHour() + bar.getDateTime().getHourOfDay()*100;
 		
@@ -205,15 +216,20 @@ public class StrategyDemo extends StrategyAbstract{
 
 	@Override
 	public void onXMinBar(Bar bar) throws Exception {
-		
+		log.info("################## X Min BAR #########################");
+		log.info(JSON.toJSONString(bar));
 	}
 
 	@Override
 	public void onOrder(Order order) throws Exception {
+		log.info("################## ORDER #########################");
+		log.info(JSON.toJSONString(order));
 	}
 
 	@Override
 	public void onTrade(Trade trade) throws Exception {
+		log.info("################## Trade #########################");
+		log.info(JSON.toJSONString(trade));
 		
 	}
 
