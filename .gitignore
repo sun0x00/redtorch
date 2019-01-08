@@ -59,7 +59,9 @@ target/
 bin/
 
 *.bak
+bak/
 
+.pydevproject
 
 build/
 

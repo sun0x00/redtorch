@@ -15,7 +15,10 @@ war{
 }
 
 bootWar {
-    exclude("**/static/ReactSPA/node_modules/")
+    excludes = [
+    	"**/static/ReactSPA/node_modules/",
+    	"**/WEB-INF/classes/bak/"
+    ]
 }
 
 springBoot {
