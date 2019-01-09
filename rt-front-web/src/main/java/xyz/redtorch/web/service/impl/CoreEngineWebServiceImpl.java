@@ -226,9 +226,16 @@ public class CoreEngineWebServiceImpl implements CoreEngineWebService {
 		log.info("变更网关连接状态,网关ID-[{}]", gatewayID);
 		Gateway gateway = coreEngineService.getGateway(gatewayID);
 		if (gateway != null) {
-			log.info("断开网关,网关ID-[{}]", gatewayID);
-			coreEngineService.disconnectGateway(gatewayID);
+			log.info("变更网关连接状态,网关已实例化,网关ID-[{}]", gatewayID);
+			if(gateway.isConnected()) {
+				log.info("断开网关,网关ID-[{}]", gatewayID);
+				coreEngineService.disconnectGateway(gatewayID);
+			}else {
+				log.info("连接网关,网关ID-[{}]", gatewayID);
+				coreEngineService.connectGateway(gatewayID);
+			}
 		} else {
+			log.info("变更网关连接状态,网关未实例化,网关ID-[{}]", gatewayID);
 			log.info("连接网关,网关ID-[{}]", gatewayID);
 			coreEngineService.connectGateway(gatewayID);
 		}
