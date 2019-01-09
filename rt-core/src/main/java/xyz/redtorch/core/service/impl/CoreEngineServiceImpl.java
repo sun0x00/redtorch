@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.lmax.disruptor.RingBuffer;
 
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Account;
@@ -507,7 +506,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 
 				log.info("成功取消订阅行情,网关ID-[{}],代码-[{}],订阅者ID-[{}]", gatewayID, rtSymbol, subscriberID);
 
-				emitSimpleEvent(EventConstant.EVENT_TICKS_CHANGED, EventConstant.EVENT_TICKS_CHANGED);
+				fastEventEngineService.emitSimpleEvent(EventConstant.EVENT_TICKS_CHANGED, EventConstant.EVENT_TICKS_CHANGED,null);
 				
 				log.info("广播事件EVENT_TICKS_CHANGED");
 
@@ -602,7 +601,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 			} catch (InterruptedException e) {
 				// nop
 			}
-			emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY);
+			fastEventEngineService.emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY,null);
 		} else {
 			log.error("网关{}不存在,无法断开!", gatewayID);
 		}
@@ -664,7 +663,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 			} catch (InterruptedException e) {
 				// nop
 			}
-			emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY);
+			fastEventEngineService.emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY,null);
 
 		} catch (Exception e) {
 			log.error("创建网关实例发生异常,网关ID-[{}],Java实现类-[{}],GatewaySetting-{}", gatewayID, gatewayClassName,
@@ -725,17 +724,6 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 		return logDataList;
 	}
 
-	private void emitSimpleEvent(String eventType, String event) {
-		RingBuffer<FastEvent> ringBuffer = fastEventEngineService.getRingBuffer();
-		long sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.setEventType(eventType);
-			fastEvent.setEvent(event);
 
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-	}
 
 }

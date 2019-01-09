@@ -14,4 +14,6 @@ public interface FastEventEngineService {
 
 	RingBuffer<FastEvent> getRingBuffer();
 
+	void emitSimpleEvent(String eventType, String event, Object commonObj);
+
 }

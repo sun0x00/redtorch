@@ -16,6 +16,7 @@ import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.gateway.GatewayAbstract;
 import xyz.redtorch.core.gateway.GatewaySetting;
 import xyz.redtorch.core.service.FastEventEngineService;
+import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -150,7 +151,9 @@ public class CtpGateway extends GatewayAbstract {
 		if (mdSpi != null&&mdSpi.isConnected()) {
 			mdSpi.close();
 		}
-
+		
+		// 在这里发送事件主要是由于接口可能自动断开，需要广播通知
+		fastEventEngineService.emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY,null);
 	}
 
 	@Override
