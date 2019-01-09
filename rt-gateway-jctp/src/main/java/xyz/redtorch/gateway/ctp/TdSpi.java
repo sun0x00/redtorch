@@ -13,103 +13,103 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CThostFtdcAccountregisterField;
-import xyz.redtorch.api.jctp.CThostFtdcBatchOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingAlgosField;
-import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingParamsField;
-import xyz.redtorch.api.jctp.CThostFtdcBulletinField;
-import xyz.redtorch.api.jctp.CThostFtdcCFMMCTradingAccountKeyField;
-import xyz.redtorch.api.jctp.CThostFtdcCFMMCTradingAccountTokenField;
-import xyz.redtorch.api.jctp.CThostFtdcCancelAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcChangeAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcCombActionField;
-import xyz.redtorch.api.jctp.CThostFtdcCombInstrumentGuardField;
-import xyz.redtorch.api.jctp.CThostFtdcContractBankField;
-import xyz.redtorch.api.jctp.CThostFtdcDepthMarketDataField;
-import xyz.redtorch.api.jctp.CThostFtdcEWarrantOffsetField;
-import xyz.redtorch.api.jctp.CThostFtdcErrorConditionalOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeMarginRateAdjustField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeMarginRateField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeRateField;
-import xyz.redtorch.api.jctp.CThostFtdcExecOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcExecOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteRspField;
-import xyz.redtorch.api.jctp.CThostFtdcInputBatchOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputCombActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputExecOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputExecOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcInputForQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOptionSelfCloseActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOptionSelfCloseField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcInputQuoteActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentCommissionRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentMarginRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentOrderCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentStatusField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestUnitField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionCombineDetailField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionDetailField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorProductGroupMarginField;
-import xyz.redtorch.api.jctp.CThostFtdcMMInstrumentCommissionRateField;
-import xyz.redtorch.api.jctp.CThostFtdcMMOptionInstrCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcNoticeField;
-import xyz.redtorch.api.jctp.CThostFtdcNotifyQueryAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcOpenAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionInstrCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionInstrTradeCostField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionSelfCloseActionField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionSelfCloseField;
-import xyz.redtorch.api.jctp.CThostFtdcOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcParkedOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcParkedOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcProductExchRateField;
-import xyz.redtorch.api.jctp.CThostFtdcProductField;
-import xyz.redtorch.api.jctp.CThostFtdcProductGroupField;
-import xyz.redtorch.api.jctp.CThostFtdcQryInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcQryInvestorPositionField;
-import xyz.redtorch.api.jctp.CThostFtdcQryTradingAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcQueryCFMMCTradingAccountTokenField;
-import xyz.redtorch.api.jctp.CThostFtdcQueryMaxOrderVolumeField;
-import xyz.redtorch.api.jctp.CThostFtdcQuoteActionField;
-import xyz.redtorch.api.jctp.CThostFtdcQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcRemoveParkedOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcRemoveParkedOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcReqAuthenticateField;
-import xyz.redtorch.api.jctp.CThostFtdcReqQueryAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcReqRepealField;
-import xyz.redtorch.api.jctp.CThostFtdcReqTransferField;
-import xyz.redtorch.api.jctp.CThostFtdcReqUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcRspAuthenticateField;
-import xyz.redtorch.api.jctp.CThostFtdcRspInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcRspRepealField;
-import xyz.redtorch.api.jctp.CThostFtdcRspTransferField;
-import xyz.redtorch.api.jctp.CThostFtdcRspUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcSecAgentACIDMapField;
-import xyz.redtorch.api.jctp.CThostFtdcSecAgentCheckModeField;
-import xyz.redtorch.api.jctp.CThostFtdcSettlementInfoConfirmField;
-import xyz.redtorch.api.jctp.CThostFtdcSettlementInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcTradeField;
-import xyz.redtorch.api.jctp.CThostFtdcTraderApi;
-import xyz.redtorch.api.jctp.CThostFtdcTraderSpi;
-import xyz.redtorch.api.jctp.CThostFtdcTradingAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingAccountPasswordUpdateField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingCodeField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingNoticeField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingNoticeInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcTransferBankField;
-import xyz.redtorch.api.jctp.CThostFtdcTransferSerialField;
-import xyz.redtorch.api.jctp.CThostFtdcUserLogoutField;
-import xyz.redtorch.api.jctp.CThostFtdcUserPasswordUpdateField;
-import xyz.redtorch.api.jctp.jctptraderapiv6v3v11x64Constants;
+import xyz.redtorch.api.jctp.td.CThostFtdcAccountregisterField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBatchOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBrokerTradingAlgosField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBrokerTradingParamsField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBulletinField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCFMMCTradingAccountKeyField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCFMMCTradingAccountTokenField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCancelAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcChangeAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCombActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCombInstrumentGuardField;
+import xyz.redtorch.api.jctp.td.CThostFtdcContractBankField;
+import xyz.redtorch.api.jctp.td.CThostFtdcDepthMarketDataField;
+import xyz.redtorch.api.jctp.td.CThostFtdcEWarrantOffsetField;
+import xyz.redtorch.api.jctp.td.CThostFtdcErrorConditionalOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeMarginRateAdjustField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeMarginRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExecOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExecOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcForQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcForQuoteRspField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputBatchOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputCombActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputExecOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputExecOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputForQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOptionSelfCloseActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOptionSelfCloseField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputQuoteActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentCommissionRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentMarginRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentOrderCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentStatusField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestUnitField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionCombineDetailField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionDetailField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorProductGroupMarginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcMMInstrumentCommissionRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcMMOptionInstrCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcNoticeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcNotifyQueryAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOpenAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionInstrCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionInstrTradeCostField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionSelfCloseActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionSelfCloseField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcParkedOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcParkedOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductExchRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductGroupField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryInstrumentField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryInvestorPositionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryTradingAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQueryCFMMCTradingAccountTokenField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQueryMaxOrderVolumeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQuoteActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRemoveParkedOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRemoveParkedOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqAuthenticateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqQueryAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqRepealField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqTransferField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqUserLoginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspAuthenticateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspRepealField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspTransferField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspUserLoginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSecAgentACIDMapField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSecAgentCheckModeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSettlementInfoConfirmField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSettlementInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTraderApi;
+import xyz.redtorch.api.jctp.td.CThostFtdcTraderSpi;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingAccountPasswordUpdateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingCodeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingNoticeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingNoticeInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTransferBankField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTransferSerialField;
+import xyz.redtorch.api.jctp.td.CThostFtdcUserLogoutField;
+import xyz.redtorch.api.jctp.td.CThostFtdcUserPasswordUpdateField;
+import xyz.redtorch.api.jctp.td.jctptraderapiv6v3v11x64Constants;
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Account;
 import xyz.redtorch.core.entity.CancelOrderReq;
@@ -199,7 +199,27 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 		if (cThostFtdcTraderApi != null) {
 			cThostFtdcTraderApi.RegisterSpi(null);
-			cThostFtdcTraderApi.Release();
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"交易接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("{} 交易接口异步释放启动！", gatewayLogInfo);
+						cThostFtdcTraderApi.Release();
+					} catch (Exception e) {
+						log.error("{} 交易接口异步释放发生异常！", gatewayLogInfo, e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -233,16 +253,38 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 */
 	public synchronized void close() {
 		if (cThostFtdcTraderApi != null) {
-			log.warn("{} 交易接口实例开始关闭并释放",gatewayLogInfo);
+			log.warn("{} 交易接口实例开始关闭并释放", gatewayLogInfo);
 			cThostFtdcTraderApi.RegisterSpi(null);
-//			cThostFtdcTraderApi.Release(); // 经过测试无效
-			cThostFtdcTraderApi.delete();
+			
+			// 避免异步线程找不到引用
+			CThostFtdcTraderApi cThostFtdcTraderApiForRelease = cThostFtdcTraderApi;
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"交易接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("{} 交易接口异步释放启动！", gatewayLogInfo);
+					    cThostFtdcTraderApiForRelease.Release();
+					} catch (Exception e) {
+						log.error("{} 交易接口异步释放发生异常！", gatewayLogInfo, e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
 			cThostFtdcTraderApi = null;
 			connectionStatus = false;
 			instrumentQueried = false;
 			loginStatus = false;
 			connectProcessStatus = false;
-			log.warn("{} 交易接口实例关闭并释放",gatewayLogInfo);
+			log.warn("{} 交易接口实例关闭并异步释放", gatewayLogInfo);
 			// 通知停止其他关联实例
 			ctpGateway.close();
 		}else {

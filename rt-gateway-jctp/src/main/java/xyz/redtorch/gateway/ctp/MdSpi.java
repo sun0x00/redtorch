@@ -10,15 +10,15 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CThostFtdcDepthMarketDataField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteRspField;
-import xyz.redtorch.api.jctp.CThostFtdcMdApi;
-import xyz.redtorch.api.jctp.CThostFtdcMdSpi;
-import xyz.redtorch.api.jctp.CThostFtdcReqUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcRspInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcRspUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcSpecificInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcUserLogoutField;
+import xyz.redtorch.api.jctp.md.CThostFtdcDepthMarketDataField;
+import xyz.redtorch.api.jctp.md.CThostFtdcForQuoteRspField;
+import xyz.redtorch.api.jctp.md.CThostFtdcMdApi;
+import xyz.redtorch.api.jctp.md.CThostFtdcMdSpi;
+import xyz.redtorch.api.jctp.md.CThostFtdcReqUserLoginField;
+import xyz.redtorch.api.jctp.md.CThostFtdcRspInfoField;
+import xyz.redtorch.api.jctp.md.CThostFtdcRspUserLoginField;
+import xyz.redtorch.api.jctp.md.CThostFtdcSpecificInstrumentField;
+import xyz.redtorch.api.jctp.md.CThostFtdcUserLogoutField;
 import xyz.redtorch.core.base.RtConstant;
 
 /**
@@ -88,7 +88,27 @@ public class MdSpi extends CThostFtdcMdSpi {
 		}
 		if (cThostFtdcMdApi != null) {
 			cThostFtdcMdApi.RegisterSpi(null);
-			cThostFtdcMdApi.Release();
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("{} 行情接口异步释放启动！", gatewayLogInfo);
+						cThostFtdcMdApi.Release();
+					} catch (Exception e) {
+						log.error("{} 行情接口异步释放发生异常！", gatewayLogInfo, e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
 			connectionStatus = false;
 			loginStatus = false;
 
@@ -127,8 +147,29 @@ public class MdSpi extends CThostFtdcMdSpi {
 		if (cThostFtdcMdApi != null) {
 			log.warn("{} 行情接口实例开始关闭并释放",gatewayLogInfo);
 			cThostFtdcMdApi.RegisterSpi(null);
-//			cThostFtdcMdApi.Release(); // 经过测试无效
-			cThostFtdcMdApi.delete();
+			
+			// 避免异步线程找不到引用
+			CThostFtdcMdApi cThostFtdcMdApiForRelease = cThostFtdcMdApi;
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+					
+					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("{} 行情接口异步释放启动！", gatewayLogInfo);
+						cThostFtdcMdApiForRelease.Release();
+					} catch (Exception e) {
+						log.error("{} 行情接口异步释放发生异常！", gatewayLogInfo, e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
 			cThostFtdcMdApi = null;
 			connectionStatus = false;
 			loginStatus = false;
