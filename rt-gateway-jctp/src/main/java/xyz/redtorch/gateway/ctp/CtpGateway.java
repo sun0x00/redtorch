@@ -81,7 +81,7 @@ public class CtpGateway extends GatewayAbstract {
 
 	}
 
-	protected HashSet<String> subscribedSymbols = new HashSet<>();
+	private HashSet<String> subscribedSymbols = new HashSet<>();
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();
 	private HashMap<String, String> contractNameMap = new HashMap<>();
