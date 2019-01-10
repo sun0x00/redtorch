@@ -819,8 +819,54 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		// 回报结束
 		if (bIsLast) {
 			for (Position tmpPosition : positionMap.values()) {
+				
+				if(tmpPosition.getPosition()!=0) {
+				
+					tmpPosition.setGatewayDisplayName(gatewayDisplayName);
+	
+					tmpPosition.setPriceDiff(tmpPosition.getPositionProfit() / tmpPosition.getContractSize()
+							/ tmpPosition.getPosition());
+	
+					if (RtConstant.DIRECTION_LONG.equals(tmpPosition.getDirection()) || (tmpPosition.getPosition() > 0
+							&& RtConstant.DIRECTION_NET.equals(tmpPosition.getDirection()))) {
+	
+						// 计算最新价格
+						tmpPosition.setLastPrice(tmpPosition.getPrice() + tmpPosition.getPriceDiff());
+						// 计算开仓价格差距
+						tmpPosition.setOpenPriceDiff( tmpPosition.getLastPrice() - tmpPosition.getOpenPrice());
+						// 计算开仓盈亏
+						tmpPosition.setOpenPositionProfit(
+								tmpPosition.getOpenPriceDiff() * tmpPosition.getPosition() * tmpPosition.getContractSize());
+	
+					} else if (RtConstant.DIRECTION_SHORT.equals(tmpPosition.getDirection())
+							|| (tmpPosition.getPosition() < 0
+									&& RtConstant.DIRECTION_NET.equals(tmpPosition.getDirection()))) {
+	
+						// 计算最新价格
+						tmpPosition.setLastPrice(tmpPosition.getPrice() - tmpPosition.getPriceDiff());
+						// 计算开仓价格差距
+						tmpPosition.setOpenPriceDiff( tmpPosition.getLastPrice() - tmpPosition.getOpenPrice());
+						// 计算开仓盈亏
+						tmpPosition.setOpenPositionProfit(
+								tmpPosition.getOpenPriceDiff() * tmpPosition.getPosition() * tmpPosition.getContractSize());
+	
+					}else {
+						log.error("{} 计算持仓时发现未处理方向，持仓详情{}",gatewayLogInfo,tmpPosition.toString());
+					}
+					
+					// 计算保最新合约价值
+					tmpPosition.setContractValue((tmpPosition.getOpenPrice() + tmpPosition.getOpenPriceDiff())
+							* tmpPosition.getContractSize() * tmpPosition.getPosition());
+	
+					if (tmpPosition.getUseMargin() != 0) {
+						tmpPosition.setPositionProfitRatio(tmpPosition.getPositionProfit() / tmpPosition.getUseMargin());
+						tmpPosition.setOpenPositionProfitRatio(
+								tmpPosition.getOpenPositionProfit() / tmpPosition.getUseMargin());
+	
+					}
+				}
+
 				// 发送持仓事件
-				tmpPosition.setGatewayDisplayName(gatewayDisplayName);
 				ctpGateway.emitPosition(tmpPosition);
 			}
 
