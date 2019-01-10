@@ -2,6 +2,11 @@ group = "${rootProject.group}"
 version = "${rootProject.version}"
 description = """Swig封装CTP官方API"""
 
+jar{ 
+    exclude("**.bak","**/assembly/CentOS 7.6.1810/*.so","**/assembly/Ubuntu 18.04.1 LTS/*.so","**/assembly/Visual Studio 2015 (v140)/*.dll")
+}
+
+
 dependencies {
 	compile project(':rt-common')
 }
