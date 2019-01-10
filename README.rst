@@ -79,13 +79,14 @@ Version: 2019-01 Preview
     
 + Web SPA
 
+  - 访问 `RedTorch-Web-React <https://github.com/sun0x00/RedTorch-Web-React>`_
   - 由React语言编写，采用  `Ant Design Pro <https://pro.ant.design/>`_ 框架
   - 采取用户名密码登陆的方式获取连接令牌
   - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
 
 + Python客户端
 
-  - **rt-front-web-client-python** Python接入客户端
+  - 访问 `RedTorch-Python-Client <https://github.com/sun0x00/RedTorch-Python-Client>`_
   - 使用预置令牌进行接入
   - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
   
@@ -235,6 +236,7 @@ FAQ
     - 不需要，可以通过外部application.properties覆盖这一方式解决。当已经打成jar包后，无需修jar包内的application.properties文件，在运行jar的同级目录放置application.properties可以覆盖内部配置。因此只需要使用同一个jar包但使用外部配置文件指定不同策略ID即可
 
 + 页面如何修改
+
     - 页面请先安装node.js,推荐使用vscode打开ReactSPA目录。
     - 常用命令 【npm run build】，将会编译至dist目录，请手动复制到distPRD目录
     - 常用命令 【npm run start:no-mock】，进入开发模式，不使用mock数据。早期项目使用mock数据，后期因工作量过大采用直接联调，前端不再使用mock模拟数据。
