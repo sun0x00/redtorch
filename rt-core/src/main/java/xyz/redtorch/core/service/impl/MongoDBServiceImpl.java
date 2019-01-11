@@ -32,11 +32,11 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 	private static Logger log = LoggerFactory.getLogger(MongoDBServiceImpl.class);
 
 	@Value("${mongodb.instance.md.dbname.minute}")
-	private String minute_db_name;
+	private String minuteDbName;
 	@Value("${mongodb.instance.md.dbname.tick}")
-	private String tick_db_name;
-	@Value("${mongodb.instance.md.dbname.daily}")
-	private String daily_db_name;
+	private String tickDbName;
+	@Value("${mongodb.instance.md.dbname.tick.daily}")
+	private String tickDailyDbName;
 
 	private MongoDBClient mdDBClient;// 行情数据库客户端
 
@@ -104,7 +104,7 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
-		List<Document> documentList = mdDBClient.find(minute_db_name, rtSymbol, filter, sort);
+		List<Document> documentList = mdDBClient.find(minuteDbName, rtSymbol, filter, sort);
 
 		List<Bar> barList = new ArrayList<>();
 		for (Document document : documentList) {
@@ -132,7 +132,7 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
-		List<Document> documentList = mdDBClient.find(tick_db_name, rtSymbol, filter, sort);
+		List<Document> documentList = mdDBClient.find(tickDbName, rtSymbol, filter, sort);
 
 		List<Tick> tickList = new ArrayList<>();
 		for (Document document : documentList) {
@@ -155,7 +155,7 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 		
 		try {
 			Document document = MongoDBUtil.beanToDocument(tick);
-			return mdDBClient.upsert(daily_db_name,  MongoDBService.dailyMarketDataTickCollection, document, filter);
+			return mdDBClient.upsert(tickDailyDbName,  MongoDBService.dailyMarketDataTickCollection, document, filter);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			log.error("行情记录存储Tick行情发生异常", e);
 			return false;
@@ -173,7 +173,7 @@ public class MongoDBServiceImpl implements MongoDBService, InitializingBean {
 		
 		BasicDBObject sort = new BasicDBObject();
 		sort.append("dateTime", 1);
-		List<Document> documentList = mdDBClient.find(daily_db_name, dailyMarketDataTickCollection, filter, sort);
+		List<Document> documentList = mdDBClient.find(tickDailyDbName, dailyMarketDataTickCollection, filter, sort);
 
 		List<Tick> tickList = new ArrayList<>();
 		for (Document document : documentList) {
