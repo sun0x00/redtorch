@@ -630,7 +630,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 
 	@Override
 	public synchronized void connectGateway(String gatewayID) {
-		if (gatewayMap.containsKey(gatewayID)) {
+		if (gatewayMap.containsKey(gatewayID)&&!gatewayMap.get(gatewayID).isConnected()) {
 			log.warn("网关已在缓存中存在,网关ID-[{}]", gatewayID);
 			return;
 		}
