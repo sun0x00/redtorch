@@ -95,10 +95,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
 					
 					try {
-						log.warn("{} 行情接口异步释放启动！", gatewayLogInfo);
+						log.warn("行情接口异步释放启动！");
 						cThostFtdcMdApi.Release();
 					} catch (Exception e) {
-						log.error("{} 行情接口异步释放发生异常！", gatewayLogInfo, e);
+						log.error("行情接口异步释放发生异常！", e);
 					}
 				}
 			}.start();
@@ -157,10 +157,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
 					
 					try {
-						log.warn("{} 行情接口异步释放启动！", gatewayLogInfo);
+						log.warn("行情接口异步释放启动！");
 						cThostFtdcMdApiForRelease.Release();
 					} catch (Exception e) {
-						log.error("{} 行情接口异步释放发生异常！", gatewayLogInfo, e);
+						log.error("行情接口异步释放发生异常！", e);
 					}
 				}
 			}.start();
