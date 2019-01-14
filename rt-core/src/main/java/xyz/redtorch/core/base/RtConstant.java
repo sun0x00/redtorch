@@ -91,6 +91,7 @@ public interface RtConstant {
 	static final String EXCHANGE_NONE = ""; // 空交易所
 	static final String EXCHANGE_SEHK = "SEHK"; // 港交所
 	static final String EXCHANGE_HKFE = "HKFE"; // 香港期货交易所
+	static final String EXCHANGE_SGX = "SGX"; // 新加坡交易所
 
 	static final String EXCHANGE_SMART = "SMART"; // IB智能路由（股票、期权）
 	static final String EXCHANGE_NYMEX = "NYMEX"; // IB 期货
@@ -99,19 +100,11 @@ public interface RtConstant {
 
 	static final String EXCHANGE_CME = "CME"; // 芝商所
 	static final String EXCHANGE_ICE = "ICE"; // 洲际交易所
+	static final String EXCHANGE_IPE = "IPE"; // 洲际交易所
 	static final String EXCHANGE_LME = "LME"; // 伦敦金属交易所
 
 	static final String EXCHANGE_OANDA = "OANDA"; // OANDA外汇做市商
 	static final String EXCHANGE_FXCM = "FXCM"; // FXCM外汇做市商
-
-	static final String EXCHANGE_OKCOIN = "OKCOIN"; // OKCOIN比特币交易所
-	static final String EXCHANGE_HUOBI = "HUOBI"; // 火币比特币交易所
-	static final String EXCHANGE_LBANK = "LBANK"; // LBANK比特币交易所
-	static final String EXCHANGE_KORBIT = "KORBIT"; // KORBIT韩国交易所
-	static final String EXCHANGE_ZB = "ZB"; // 比特币中国比特币交易所
-	static final String EXCHANGE_OKEX = "OKEX"; // OKEX比特币交易所
-	static final String EXCHANGE_ZAIF = "ZAIF"; // ZAIF日本比特币交易所
-	static final String EXCHANGE_COINCHECK = "COINCHECK"; // COINCHECK日本比特币交易所
 
 	// 货币类型
 	static final String CURRENCY_USD = "USD"; // 美元
