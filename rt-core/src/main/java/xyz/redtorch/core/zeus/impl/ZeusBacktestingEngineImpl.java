@@ -555,6 +555,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 					trade.setTradingDay(order.getTradingDay());
 					trade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT));
 					trade.setDateTime(lastDateTimeMap.get(rtSymbol));
+					trade.setOriginalOrderID(order.getOriginalOrderID());
 					
 					strategy.processTrade(trade);
 					tradeMap.put(tradeID, trade);
