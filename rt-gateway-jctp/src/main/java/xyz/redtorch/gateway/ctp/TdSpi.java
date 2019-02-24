@@ -13,103 +13,103 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CThostFtdcAccountregisterField;
-import xyz.redtorch.api.jctp.CThostFtdcBatchOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingAlgosField;
-import xyz.redtorch.api.jctp.CThostFtdcBrokerTradingParamsField;
-import xyz.redtorch.api.jctp.CThostFtdcBulletinField;
-import xyz.redtorch.api.jctp.CThostFtdcCFMMCTradingAccountKeyField;
-import xyz.redtorch.api.jctp.CThostFtdcCFMMCTradingAccountTokenField;
-import xyz.redtorch.api.jctp.CThostFtdcCancelAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcChangeAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcCombActionField;
-import xyz.redtorch.api.jctp.CThostFtdcCombInstrumentGuardField;
-import xyz.redtorch.api.jctp.CThostFtdcContractBankField;
-import xyz.redtorch.api.jctp.CThostFtdcDepthMarketDataField;
-import xyz.redtorch.api.jctp.CThostFtdcEWarrantOffsetField;
-import xyz.redtorch.api.jctp.CThostFtdcErrorConditionalOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeMarginRateAdjustField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeMarginRateField;
-import xyz.redtorch.api.jctp.CThostFtdcExchangeRateField;
-import xyz.redtorch.api.jctp.CThostFtdcExecOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcExecOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteRspField;
-import xyz.redtorch.api.jctp.CThostFtdcInputBatchOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputCombActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputExecOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputExecOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcInputForQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOptionSelfCloseActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOptionSelfCloseField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcInputQuoteActionField;
-import xyz.redtorch.api.jctp.CThostFtdcInputQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentCommissionRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentMarginRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentOrderCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcInstrumentStatusField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestUnitField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionCombineDetailField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionDetailField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorPositionField;
-import xyz.redtorch.api.jctp.CThostFtdcInvestorProductGroupMarginField;
-import xyz.redtorch.api.jctp.CThostFtdcMMInstrumentCommissionRateField;
-import xyz.redtorch.api.jctp.CThostFtdcMMOptionInstrCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcNoticeField;
-import xyz.redtorch.api.jctp.CThostFtdcNotifyQueryAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcOpenAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionInstrCommRateField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionInstrTradeCostField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionSelfCloseActionField;
-import xyz.redtorch.api.jctp.CThostFtdcOptionSelfCloseField;
-import xyz.redtorch.api.jctp.CThostFtdcOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcParkedOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcParkedOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcProductExchRateField;
-import xyz.redtorch.api.jctp.CThostFtdcProductField;
-import xyz.redtorch.api.jctp.CThostFtdcProductGroupField;
-import xyz.redtorch.api.jctp.CThostFtdcQryInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcQryInvestorPositionField;
-import xyz.redtorch.api.jctp.CThostFtdcQryTradingAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcQueryCFMMCTradingAccountTokenField;
-import xyz.redtorch.api.jctp.CThostFtdcQueryMaxOrderVolumeField;
-import xyz.redtorch.api.jctp.CThostFtdcQuoteActionField;
-import xyz.redtorch.api.jctp.CThostFtdcQuoteField;
-import xyz.redtorch.api.jctp.CThostFtdcRemoveParkedOrderActionField;
-import xyz.redtorch.api.jctp.CThostFtdcRemoveParkedOrderField;
-import xyz.redtorch.api.jctp.CThostFtdcReqAuthenticateField;
-import xyz.redtorch.api.jctp.CThostFtdcReqQueryAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcReqRepealField;
-import xyz.redtorch.api.jctp.CThostFtdcReqTransferField;
-import xyz.redtorch.api.jctp.CThostFtdcReqUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcRspAuthenticateField;
-import xyz.redtorch.api.jctp.CThostFtdcRspInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcRspRepealField;
-import xyz.redtorch.api.jctp.CThostFtdcRspTransferField;
-import xyz.redtorch.api.jctp.CThostFtdcRspUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcSecAgentACIDMapField;
-import xyz.redtorch.api.jctp.CThostFtdcSecAgentCheckModeField;
-import xyz.redtorch.api.jctp.CThostFtdcSettlementInfoConfirmField;
-import xyz.redtorch.api.jctp.CThostFtdcSettlementInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcTradeField;
-import xyz.redtorch.api.jctp.CThostFtdcTraderApi;
-import xyz.redtorch.api.jctp.CThostFtdcTraderSpi;
-import xyz.redtorch.api.jctp.CThostFtdcTradingAccountField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingAccountPasswordUpdateField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingCodeField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingNoticeField;
-import xyz.redtorch.api.jctp.CThostFtdcTradingNoticeInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcTransferBankField;
-import xyz.redtorch.api.jctp.CThostFtdcTransferSerialField;
-import xyz.redtorch.api.jctp.CThostFtdcUserLogoutField;
-import xyz.redtorch.api.jctp.CThostFtdcUserPasswordUpdateField;
-import xyz.redtorch.api.jctp.jctptraderapiv6v3v11x64Constants;
+import xyz.redtorch.api.jctp.td.CThostFtdcAccountregisterField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBatchOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBrokerTradingAlgosField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBrokerTradingParamsField;
+import xyz.redtorch.api.jctp.td.CThostFtdcBulletinField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCFMMCTradingAccountKeyField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCFMMCTradingAccountTokenField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCancelAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcChangeAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCombActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcCombInstrumentGuardField;
+import xyz.redtorch.api.jctp.td.CThostFtdcContractBankField;
+import xyz.redtorch.api.jctp.td.CThostFtdcDepthMarketDataField;
+import xyz.redtorch.api.jctp.td.CThostFtdcEWarrantOffsetField;
+import xyz.redtorch.api.jctp.td.CThostFtdcErrorConditionalOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeMarginRateAdjustField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeMarginRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExchangeRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExecOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcExecOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcForQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcForQuoteRspField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputBatchOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputCombActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputExecOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputExecOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputForQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOptionSelfCloseActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOptionSelfCloseField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputQuoteActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInputQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentCommissionRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentMarginRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentOrderCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInstrumentStatusField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestUnitField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionCombineDetailField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionDetailField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorPositionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcInvestorProductGroupMarginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcMMInstrumentCommissionRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcMMOptionInstrCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcNoticeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcNotifyQueryAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOpenAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionInstrCommRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionInstrTradeCostField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionSelfCloseActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOptionSelfCloseField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcParkedOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcParkedOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductExchRateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductField;
+import xyz.redtorch.api.jctp.td.CThostFtdcProductGroupField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryInstrumentField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryInvestorPositionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQryTradingAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQueryCFMMCTradingAccountTokenField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQueryMaxOrderVolumeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQuoteActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcQuoteField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRemoveParkedOrderActionField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRemoveParkedOrderField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqAuthenticateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqQueryAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqRepealField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqTransferField;
+import xyz.redtorch.api.jctp.td.CThostFtdcReqUserLoginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspAuthenticateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspRepealField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspTransferField;
+import xyz.redtorch.api.jctp.td.CThostFtdcRspUserLoginField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSecAgentACIDMapField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSecAgentCheckModeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSettlementInfoConfirmField;
+import xyz.redtorch.api.jctp.td.CThostFtdcSettlementInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTraderApi;
+import xyz.redtorch.api.jctp.td.CThostFtdcTraderSpi;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingAccountField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingAccountPasswordUpdateField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingCodeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingNoticeField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTradingNoticeInfoField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTransferBankField;
+import xyz.redtorch.api.jctp.td.CThostFtdcTransferSerialField;
+import xyz.redtorch.api.jctp.td.CThostFtdcUserLogoutField;
+import xyz.redtorch.api.jctp.td.CThostFtdcUserPasswordUpdateField;
+import xyz.redtorch.api.jctp.td.jctptraderapiv6v3v11x64Constants;
 import xyz.redtorch.core.base.RtConstant;
 import xyz.redtorch.core.entity.Account;
 import xyz.redtorch.core.entity.CancelOrderReq;
@@ -199,11 +199,33 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 		if (cThostFtdcTraderApi != null) {
 			cThostFtdcTraderApi.RegisterSpi(null);
-			cThostFtdcTraderApi.Release();
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"交易接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("交易接口异步释放启动！");
+						cThostFtdcTraderApi.Release();
+					} catch (Exception e) {
+						log.error("交易接口异步释放发生异常！", e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
 			connectionStatus = false;
 			loginStatus = false;
 
 		}
+
+		log.warn("{} 交易接口实例初始化",gatewayLogInfo);
 		String envTmpDir = System.getProperty("java.io.tmpdir");
 		String tempFilePath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
 				+ File.separator + "jctp" + File.separator + "TEMP_CTP" + File.separator + "TD_"
@@ -212,12 +234,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+				log.info("{} 创建临时文件夹 {}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath(), e);
+				log.error("{} 创建临时文件夹失败{}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath(), e);
 			}
 		}
-		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+		log.info("{} 使用临时文件夹{}", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 		cThostFtdcTraderApi = CThostFtdcTraderApi.CreateFtdcTraderApi(tempFile.getAbsolutePath());
 		cThostFtdcTraderApi.RegisterSpi(this);
 		cThostFtdcTraderApi.RegisterFront(tdAddress);
@@ -231,15 +253,44 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 */
 	public synchronized void close() {
 		if (cThostFtdcTraderApi != null) {
+			log.warn("{} 交易接口实例开始关闭并释放", gatewayLogInfo);
 			cThostFtdcTraderApi.RegisterSpi(null);
-			cThostFtdcTraderApi.Release();
+			
+			// 避免异步线程找不到引用
+			CThostFtdcTraderApi cThostFtdcTraderApiForRelease = cThostFtdcTraderApi;
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"交易接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("交易接口异步释放启动！");
+					    cThostFtdcTraderApiForRelease.Release();
+					} catch (Exception e) {
+						log.error("交易接口异步释放发生异常！", e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
+			cThostFtdcTraderApi = null;
 			connectionStatus = false;
 			instrumentQueried = false;
 			loginStatus = false;
 			connectProcessStatus = false;
-			cThostFtdcTraderApi = null;
+			log.warn("{} 交易接口实例关闭并异步释放", gatewayLogInfo);
+			// 通知停止其他关联实例
+			ctpGateway.close();
+		}else {
+			log.warn("{} 交易接口实例为null,无需关闭",gatewayLogInfo);
 		}
-		;
+		
 	}
 
 	/**
@@ -256,7 +307,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	 * 
 	 * @return
 	 */
-	public String getTradingDayDay() {
+	public String getTradingDayStr() {
 		return tradingDayStr;
 	}
 
@@ -282,7 +333,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		}
 
 		if (!instrumentQueried) {
-			log.info("{}尚未获取到合约信息,无法查询持仓", gatewayLogInfo);
+			log.info("{}交易接口尚未获取到合约信息,无法查询持仓", gatewayLogInfo);
 			return;
 		}
 
@@ -341,13 +392,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcInputOrderField.setVolumeCondition(jctptraderapiv6v3v11x64Constants.THOST_FTDC_VC_CV);
 		}
 
-		// if("IH1805".equals(orderReq.getSymbol())) {
-		// System.out.println("T2T-OrderBefore-"+System.nanoTime());
-		// }
 		cThostFtdcTraderApi.ReqOrderInsert(cThostFtdcInputOrderField, reqID.incrementAndGet());
-		// if("IH1805".equals(orderReq.getSymbol())) {
-		// System.out.println("T2T-Order-"+System.nanoTime());
-		// }
 		String rtOrderID = gatewayID + "." + orderRef.get();
 
 		if (StringUtils.isNotBlank(orderReq.getOriginalOrderID())) {
@@ -382,6 +427,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private void login() {
 		if (loginFailed) {
 			log.warn(gatewayLogInfo + "交易接口登录曾发生错误,不再登录,以防被锁");
+			return;
+		}
+		
+		if(cThostFtdcTraderApi == null) {
+			log.warn("{} 交易接口实例已经释放", gatewayLogInfo);
+			return;
 		}
 
 		if (StringUtils.isEmpty(brokerID) || StringUtils.isEmpty(userID) || StringUtils.isEmpty(password)) {
@@ -409,7 +460,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机联机回报
 	public void OnFrontConnected() {
-		log.info(gatewayLogInfo + "交易接口前置机已连接");
+		log.info("{} 交易接口前置机已连接",gatewayLogInfo);
 		// 修改前置机连接状态为true
 		connectionStatus = true;
 		connectProcessStatus = false;
@@ -418,7 +469,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
-		log.info(gatewayLogInfo + "交易接口前置机已断开,Reason:" + nReason);
+		log.info("{} 交易接口前置机已断开, Reason:{}", gatewayLogInfo ,nReason);
 		close();
 	}
 
@@ -443,7 +494,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			cThostFtdcTraderApi.ReqSettlementInfoConfirm(settlementInfoConfirmField, reqID.incrementAndGet());
 
 		} else {
-			log.warn("{}交易接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+			log.error("{}交易接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
 			loginFailed = true;
 		}
@@ -452,7 +503,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 	// 心跳警告
 	public void OnHeartBeatWarning(int nTimeLapse) {
-		log.warn(gatewayLogInfo + "交易接口心跳警告 nTimeLapse:" + nTimeLapse);
+		log.warn("{} 交易接口心跳警告, Time Lapse:{}", gatewayLogInfo, nTimeLapse);
 	}
 
 	// 登出回报
@@ -487,7 +538,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			login();
 
 		} else {
-			log.warn("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
+			log.error("{}交易接口客户端验证失败! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
 		}
 
@@ -506,13 +557,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo, int nRequestID,
 			boolean bIsLast) {
 
-		// 无法获取账户信息
-		// String accountID = pOrder.getAccountID();
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());
@@ -679,9 +729,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			position.setDirection(
 					CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), ""));
 			position.setRtPositionID(gatewayID + "." + rtSymbol + "." + pInvestorPosition.getPosiDirection());
-			position.setAccountID(pInvestorPosition.getInvestorID());
-			// 无法获取币种,因此不填写
-			// position.setRtAccountID(pInvestorPosition.getInvestorID());
+			
+			// 无法获取账户信息,使用userID作为账户ID
+			String accountID = userID;
+			// 无法获取币种信息
+			// 使用特定值
+			String rtAccountID = userID+".CNY."+gatewayID;
+			
+			position.setAccountID(accountID);
+			position.setRtAccountID(rtAccountID);
 		}
 
 		position.setUseMargin(position.getUseMargin() + pInvestorPosition.getUseMargin());
@@ -763,8 +819,54 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		// 回报结束
 		if (bIsLast) {
 			for (Position tmpPosition : positionMap.values()) {
+				
+				if(tmpPosition.getPosition()!=0) {
+				
+					tmpPosition.setGatewayDisplayName(gatewayDisplayName);
+	
+					tmpPosition.setPriceDiff(tmpPosition.getPositionProfit() / tmpPosition.getContractSize()
+							/ tmpPosition.getPosition());
+	
+					if (RtConstant.DIRECTION_LONG.equals(tmpPosition.getDirection()) || (tmpPosition.getPosition() > 0
+							&& RtConstant.DIRECTION_NET.equals(tmpPosition.getDirection()))) {
+	
+						// 计算最新价格
+						tmpPosition.setLastPrice(tmpPosition.getPrice() + tmpPosition.getPriceDiff());
+						// 计算开仓价格差距
+						tmpPosition.setOpenPriceDiff( tmpPosition.getLastPrice() - tmpPosition.getOpenPrice());
+						// 计算开仓盈亏
+						tmpPosition.setOpenPositionProfit(
+								tmpPosition.getOpenPriceDiff() * tmpPosition.getPosition() * tmpPosition.getContractSize());
+	
+					} else if (RtConstant.DIRECTION_SHORT.equals(tmpPosition.getDirection())
+							|| (tmpPosition.getPosition() < 0
+									&& RtConstant.DIRECTION_NET.equals(tmpPosition.getDirection()))) {
+	
+						// 计算最新价格
+						tmpPosition.setLastPrice(tmpPosition.getPrice() - tmpPosition.getPriceDiff());
+						// 计算开仓价格差距
+						tmpPosition.setOpenPriceDiff( tmpPosition.getLastPrice() - tmpPosition.getOpenPrice());
+						// 计算开仓盈亏
+						tmpPosition.setOpenPositionProfit(
+								tmpPosition.getOpenPriceDiff() * tmpPosition.getPosition() * tmpPosition.getContractSize());
+	
+					}else {
+						log.error("{} 计算持仓时发现未处理方向，持仓详情{}",gatewayLogInfo,tmpPosition.toString());
+					}
+					
+					// 计算保最新合约价值
+					tmpPosition.setContractValue((tmpPosition.getOpenPrice() + tmpPosition.getOpenPriceDiff())
+							* tmpPosition.getContractSize() * tmpPosition.getPosition());
+	
+					if (tmpPosition.getUseMargin() != 0) {
+						tmpPosition.setPositionProfitRatio(tmpPosition.getPositionProfit() / tmpPosition.getUseMargin());
+						tmpPosition.setOpenPositionProfitRatio(
+								tmpPosition.getOpenPositionProfit() / tmpPosition.getUseMargin());
+	
+					}
+				}
+
 				// 发送持仓事件
-				tmpPosition.setGatewayDisplayName(gatewayDisplayName);
 				ctpGateway.emitPosition(tmpPosition);
 			}
 
@@ -864,17 +966,17 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		ctpGateway.emitContract(contract);
 
 		if (bIsLast) {
-			log.info("{}交易接口合约信息获取完成!共计{}条", gatewayLogInfo, contractExchangeMap.size());
+			log.info("{} 交易接口合约信息获取完成!共计{}条", gatewayLogInfo, contractExchangeMap.size());
 			instrumentQueried = true;
 
-			log.info("开始推送缓存Order,共计{}条", orderCacheList.size());
+			log.info("{} 交易接口开始推送缓存Order,共计{}条", gatewayLogInfo, orderCacheList.size());
 			for (Order order : orderCacheList) {
 				order.setContractName(contractNameMap.get(order.getSymbol()));
 				ctpGateway.emitOrder(order);
 			}
 			orderCacheList.clear();
 
-			log.info("开始推送缓存Trade,共计{}条", tradeCacheList.size());
+			log.info("{} 交易接口开始推送缓存Trade,共计{}条", gatewayLogInfo, tradeCacheList.size());
 			for (Trade trade : tradeCacheList) {
 				trade.setContractName(contractNameMap.get(trade.getSymbol()));
 				ctpGateway.emitTrade(trade);
@@ -1031,13 +1133,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		 * 但在本接口设计中,已经考虑了CTP的OrderRef的自增性,避免重复 唯一可能出现OrderRef重复的情况是多处登录并在非常接近的时间内（几乎同时发单
 		 */
 
-		// 无法获取账户信息
-		// String accountID = pOrder.getAccountID();
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String orderID = pOrder.getOrderRef();
 		String rtOrderID = gatewayID + "." + orderID;
@@ -1091,14 +1192,19 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		String tradingDay = tradingDayStr;
 		String tradeDate = pTrade.getTradeDate();
 		String tradeTime = pTrade.getTradeTime();
-		// 除回测外很少用到，因此不统一解析
+
+		// 除回测外很少用到，不统一解析
 		DateTime dateTime = null;
 
 		String originalOrderID = originalOrderIDMap.get(rtOrderID);
 
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
-		// 预留
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pTrade.getAccountID() + "." + pTrade.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
+		
 		if (instrumentQueried) {
 			ctpGateway.emitTrade(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol, exchange, rtSymbol,
 					contractName, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset, price,
@@ -1115,13 +1221,12 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	// 发单错误回报（交易所）
 	public void OnErrRtnOrderInsert(CThostFtdcInputOrderField pInputOrder, CThostFtdcRspInfoField pRspInfo) {
 
-		// 无法获取账户信息
-		// String accountID = pOrder.getAccountID();
+		// 无法获取账户信息,使用userID作为账户ID
 		String accountID = userID;
-		// 无法获取币种信息,留空
-		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID()
-		// +"."+ gatewayID;
-		String rtAccountID = "";
+		// 无法获取币种信息
+		// String rtAccountID = pOrder.getAccountID() + "." + pOrder.getCurrencyID() +"."+ gatewayID;
+		// 使用特定值
+		String rtAccountID = userID+".CNY."+gatewayID;
 
 		String symbol = pInputOrder.getInstrumentID();
 		String exchange = CtpConstant.exchangeMapReverse.get(pInputOrder.getExchangeID());

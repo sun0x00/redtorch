@@ -59,7 +59,9 @@ target/
 bin/
 
 *.bak
+bak/
 
+.pydevproject
 
 build/
 
@@ -74,5 +76,8 @@ rt-gateway-pctp/
 rt-strategy-prd/
 
 node_modules/
+
+## vscode
+.vscode
 
 

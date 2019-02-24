@@ -2,6 +2,8 @@ package xyz.redtorch.startegy.backtesting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +18,9 @@ import xyz.redtorch.core.CoreRunConfiguration;
 import xyz.redtorch.core.zeus.ZeusBacktestingEngine;
 import xyz.redtorch.core.zeus.ZeusDataService;
 import xyz.redtorch.core.zeus.ZeusBacktestingEngine.BacktestingSection;
+import xyz.redtorch.core.zeus.ZeusBacktestingEngine.OptimizationSetting;
 import xyz.redtorch.core.zeus.impl.ZeusBacktestingEngineImpl;
+import xyz.redtorch.core.zeus.strategy.StrategySetting;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CoreRunConfiguration.class)
@@ -64,10 +68,43 @@ public class StrategyDemoBacktesting {
 		backtestingSection.addSubscribeReq("7acc51e2434841eaa0970b4ce5cf89e8", "IC1804.CFFEX");
 		backtestingSection.addSubscribeReq("e6527bd9ca074f48be400119e4f9a10c", "IH1804.CFFEX"); 
 		backestingSectionList.add(backtestingSection);
-
-		ZeusBacktestingEngine backtestingEngine = new ZeusBacktestingEngineImpl(zeusDataService, strategyID,
+		
+		/////////////////////////////普通回测/////////////////////////////////////////////
+		StrategySetting strategySetting = zeusDataService.loadStrategySetting(strategyID);
+		ZeusBacktestingEngine backtestingEngine = new ZeusBacktestingEngineImpl(zeusDataService, strategySetting,
 				backestingSectionList, backtestingDataMode, reloadStrategyEveryday, backtestingOutputDir);
 		backtestingEngine.runBacktesting();
+		///////////////////////////////////////////////////////////////////////////////
+		
+		
+//		//////////////////////////////尝试寻参的回测///////////////////////////////////////
+//		// 创建参数生成器
+//		OptimizationSetting optimizationSetting = new OptimizationSetting();
+//		// 加入参数生成规则
+//		optimizationSetting.addParameter(parameterName, start, end, step);
+//		optimizationSetting.addStrParameter(parameterName, parameterSet);
+//		//生成参数集合
+//		List<Map<String, String>> paramMapList = optimizationSetting.generateSetting();
+//		 
+//		// 记录ID列表（可以根据这个列表去输出文件夹定位结果文件）
+//		List<String> optimizationStrategyIDList = new ArrayList<>();
+//		 
+//		
+//		// ===========此处可修改为多线程=======================
+//		for(Map<String, String> paramMap:paramMapList) {
+//			String optimizationStrategyID = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+//			optimizationStrategyIDList.add(optimizationStrategyID);
+//			strategySetting.setParamMap(paramMap);
+//			strategySetting.setStrategyID(optimizationStrategyID);
+//			
+//			ZeusBacktestingEngine backtestingEngine = new ZeusBacktestingEngineImpl(zeusDataService, strategySetting,
+//					backestingSectionList, backtestingDataMode, reloadStrategyEveryday, backtestingOutputDir);
+//			backtestingEngine.runBacktesting();
+//		}
+//		// ==============================================
+//		/////////////////////////////////////////////////////////////////////////////
+
+
 		
 	}
 }

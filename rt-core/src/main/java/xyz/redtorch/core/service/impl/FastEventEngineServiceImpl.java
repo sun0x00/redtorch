@@ -105,4 +105,19 @@ public class FastEventEngineServiceImpl implements FastEventEngineService, Initi
 		return ringBuffer;
 	}
 
+	@Override
+	public void emitSimpleEvent(String eventType, String event, Object commonObj) {
+		RingBuffer<FastEvent> ringBuffer = getRingBuffer();
+		long sequence = ringBuffer.next(); // Grab the next sequence
+		try {
+			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
+			fastEvent.setEventType(eventType);
+			fastEvent.setEvent(event);
+			fastEvent.setCommonObj(commonObj);
+
+		} finally {
+			ringBuffer.publish(sequence);
+		}
+	}
+
 }

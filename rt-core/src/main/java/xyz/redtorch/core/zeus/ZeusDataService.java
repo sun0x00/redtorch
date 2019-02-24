@@ -17,6 +17,8 @@ public interface ZeusDataService {
 	List<Bar> loadBarDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
 
 	List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol);
+	
+	List<Tick> loadTickDataListFromDailyDB(String rtSymbol);
 
 	List<PositionDetail> loadStrategyPositionDetails(String tradingDay, String strategyID, String strategyName);
 

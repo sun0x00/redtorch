@@ -145,41 +145,6 @@ public abstract class GatewayAbstract implements Gateway {
 			ringBuffer.publish(sequence);
 		}
 
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName,
-					tickID, tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume,
-					openInterest, preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice,
-					upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7,
-					bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6,
-					askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4,
-					bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2,
-					askVolume3, askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
-			fastEvent.setEvent(EventConstant.EVENT_TICK + gatewayID + rtSymbol);
-			fastEvent.setEventType(EventConstant.EVENT_TICK);
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTick().setAllValue(gatewayID, gatewayDisplayName, symbol, exchange, rtSymbol, contractName,
-					tickID, tradingDay, actionDay, actionTime, dateTime, status, lastPrice, lastVolume, volume,
-					openInterest, preOpenInterest, preClosePrice, preSettlePrice, openPrice, highPrice, lowPrice,
-					upperLimit, lowerLimit, bidPrice1, bidPrice2, bidPrice3, bidPrice4, bidPrice5, bidPrice6, bidPrice7,
-					bidPrice8, bidPrice9, bidPrice10, askPrice1, askPrice2, askPrice3, askPrice4, askPrice5, askPrice6,
-					askPrice7, askPrice8, askPrice9, askPrice10, bidVolume1, bidVolume2, bidVolume3, bidVolume4,
-					bidVolume5, bidVolume6, bidVolume7, bidVolume8, bidVolume9, bidVolume10, askVolume1, askVolume2,
-					askVolume3, askVolume4, askVolume5, askVolume6, askVolume7, askVolume8, askVolume9, askVolume10);
-			fastEvent.setEvent(EventConstant.EVENT_TICK + rtSymbol);
-			fastEvent.setEventType(EventConstant.EVENT_TICK);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
 	}
 
 	@Override
@@ -191,27 +156,6 @@ public abstract class GatewayAbstract implements Gateway {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setTick(tick);
 			fastEvent.setEvent(EventConstant.EVENT_TICK);
-			fastEvent.setEventType(EventConstant.EVENT_TICK);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.setTick(tick);
-			fastEvent.setEvent(EventConstant.EVENT_TICK + gatewayID + tick.getRtSymbol());
-			fastEvent.setEventType(EventConstant.EVENT_TICK);
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.setTick(tick);
-			fastEvent.setEvent(EventConstant.EVENT_TICK + tick.getRtSymbol());
 			fastEvent.setEventType(EventConstant.EVENT_TICK);
 
 		} finally {
@@ -240,20 +184,6 @@ public abstract class GatewayAbstract implements Gateway {
 		} finally {
 			ringBuffer.publish(sequence);
 		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getTrade().setAllValue(gatewayID, gatewayDisplayName, accountID, rtAccountID, symbol, exchange,
-					rtSymbol, contractName, tradeID, rtTradeID, orderID, rtOrderID, originalOrderID, direction, offset,
-					price, volume, tradingDay, tradeDate, tradeTime, dateTime);
-			fastEvent.setEvent(EventConstant.EVENT_TRADE + originalOrderID);
-			fastEvent.setEventType(EventConstant.EVENT_TRADE);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
 	}
 
 	@Override
@@ -266,17 +196,6 @@ public abstract class GatewayAbstract implements Gateway {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setTrade(trade);
 			fastEvent.setEvent(EventConstant.EVENT_TRADE);
-			fastEvent.setEventType(EventConstant.EVENT_TRADE);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.setTrade(trade);
-			fastEvent.setEvent(EventConstant.EVENT_TRADE + trade.getOriginalOrderID());
 			fastEvent.setEventType(EventConstant.EVENT_TRADE);
 
 		} finally {
@@ -309,20 +228,6 @@ public abstract class GatewayAbstract implements Gateway {
 			ringBuffer.publish(sequence);
 		}
 
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.getOrder().setAllValue(originalOrderID, gatewayID, gatewayDisplayName, accountID, rtAccountID,
-					symbol, exchange, rtSymbol, contractName, orderID, rtOrderID, direction, offset, price, totalVolume,
-					tradedVolume, status, tradingDay, orderDate, orderTime, cancelTime, activeTime, updateTime, frontID,
-					sessionID);
-			fastEvent.setEvent(EventConstant.EVENT_ORDER + rtOrderID);
-			fastEvent.setEventType(EventConstant.EVENT_ORDER);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
 	}
 
 	@Override
@@ -336,17 +241,6 @@ public abstract class GatewayAbstract implements Gateway {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setOrder(order);
 			fastEvent.setEvent(EventConstant.EVENT_ORDER);
-			fastEvent.setEventType(EventConstant.EVENT_ORDER);
-
-		} finally {
-			ringBuffer.publish(sequence);
-		}
-
-		sequence = ringBuffer.next(); // Grab the next sequence
-		try {
-			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
-			fastEvent.setOrder(order);
-			fastEvent.setEvent(EventConstant.EVENT_ORDER + order.getRtOrderID());
 			fastEvent.setEventType(EventConstant.EVENT_ORDER);
 
 		} finally {

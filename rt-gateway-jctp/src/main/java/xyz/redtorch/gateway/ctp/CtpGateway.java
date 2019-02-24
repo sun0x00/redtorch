@@ -16,6 +16,7 @@ import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.gateway.GatewayAbstract;
 import xyz.redtorch.core.gateway.GatewaySetting;
 import xyz.redtorch.core.service.FastEventEngineService;
+import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.utils.CommonUtil;
 
 /**
@@ -29,54 +30,62 @@ public class CtpGateway extends GatewayAbstract {
 
 	static {
 		try {
-			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			String envTmpDir = "";
+			String tempLibPath = "";
+			try {
+				if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+	
+					envTmpDir = System.getProperty("java.io.tmpdir");
+					tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
+							+ File.separator + "jctp" + File.separator + "lib";
+					
+					CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.dll"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/thostmduserapi.dll"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath,
+							CtpGateway.class.getResource("/assembly/jctpmdapiv6v3v11x64.dll"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/thosttraderapi.dll"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath,
+							CtpGateway.class.getResource("/assembly/jctptraderapiv6v3v11x64.dll"));
+				} else {
+	
+					envTmpDir = "/tmp";
+					tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
+							+ File.separator + "jctp" + File.separator + "lib";
+					
+					CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libthostmduserapi.so"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libthosttraderapi.so"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath,
+							CtpGateway.class.getResource("/assembly/libjctpmdapiv6v3v11x64.so"));
+					CommonUtil.copyURLToFileForTmp(tempLibPath,
+							CtpGateway.class.getResource("/assembly/libjctptraderapiv6v3v11x64.so"));
+				}
+			}catch (Exception e) {
+				log.warn("复制库文件到临时目录失败", e);
+			}
+			
 
-				String envTmpDir = System.getProperty("java.io.tmpdir");
-				String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
-						+ File.separator + "jctp" + File.separator + "lib";
-				
-				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libiconv.dll"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/thostmduserapi.dll"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath,
-						CtpGateway.class.getResource("/assembly/jctpmdapiv6v3v11x64.dll"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/thosttraderapi.dll"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath,
-						CtpGateway.class.getResource("/assembly/jctptraderapiv6v3v11x64.dll"));
-				
+			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
 				System.load(tempLibPath + File.separator + "libiconv.dll");
 				System.load(tempLibPath + File.separator + "thostmduserapi.dll");
 				System.load(tempLibPath + File.separator + "jctpmdapiv6v3v11x64.dll");
 				System.load(tempLibPath + File.separator + "thosttraderapi.dll");
 				System.load(tempLibPath + File.separator + "jctptraderapiv6v3v11x64.dll");
 			} else {
-
-				String envTmpDir = "/tmp";
-				String tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
-						+ File.separator + "jctp" + File.separator + "lib";
-				
-				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libthostmduserapi.so"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath, CtpGateway.class.getResource("/assembly/libthosttraderapi.so"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath,
-						CtpGateway.class.getResource("/assembly/libjctpmdapiv6v3v11x64.so"));
-				CommonUtil.copyURLToFileForTmp(tempLibPath,
-						CtpGateway.class.getResource("/assembly/libjctptraderapiv6v3v11x64.so"));
-
 				System.load(tempLibPath + File.separator + "libthostmduserapi.so");
 				System.load(tempLibPath + File.separator + "libjctpmdapiv6v3v11x64.so");
 				System.load(tempLibPath + File.separator + "libthosttraderapi.so");
 				System.load(tempLibPath + File.separator + "libjctptraderapiv6v3v11x64.so");
 			}
 		} catch (Exception e) {
-			log.error("复制库失败!", e);
+			log.error("加载库失败!", e);
 		}
 
 	}
 
-	protected HashSet<String> subscribedSymbols = new HashSet<>();
+	private HashSet<String> subscribedSymbols = new HashSet<>();
 	private HashMap<String, String> contractExchangeMap = new HashMap<>();
 	private HashMap<String, Integer> contractSizeMap = new HashMap<>();
 	private HashMap<String, String> contractNameMap = new HashMap<>();
-	
 
 	private MdSpi mdSpi = new MdSpi(this);
 	private TdSpi tdSpi = new TdSpi(this);
@@ -135,13 +144,16 @@ public class CtpGateway extends GatewayAbstract {
 
 	@Override
 	public void close() {
-		if (tdSpi != null) {
+		// 务必判断连接状态，防止死循环
+		if (tdSpi != null&&tdSpi.isConnected()) {
 			tdSpi.close();
 		}
-		if (mdSpi != null) {
+		if (mdSpi != null&&mdSpi.isConnected()) {
 			mdSpi.close();
 		}
-
+		
+		// 在这里发送事件主要是由于接口可能自动断开，需要广播通知
+		fastEventEngineService.emitSimpleEvent(EventConstant.EVENT_GATEWAY, EventConstant.EVENT_GATEWAY,null);
 	}
 
 	@Override

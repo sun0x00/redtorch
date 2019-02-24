@@ -1,6 +1,7 @@
 package xyz.redtorch.core.entity;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @author sun0x00@gmail.com
@@ -22,6 +23,12 @@ public class SubscribeReq implements Serializable {
 	private String expiry; // 到期日
 	private double strikePrice; // 行权价
 	private String optionType; // 期权类型
+	
+	private String id; // 存入数据库使用
+	
+	public SubscribeReq() {
+		this.id = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+	}
 
 	public String getGatewayID() {
 		return gatewayID;
@@ -95,11 +102,12 @@ public class SubscribeReq implements Serializable {
 		this.optionType = optionType;
 	}
 
-	@Override
-	public String toString() {
-		return "SubscribeReq [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
-				+ rtSymbol + ", productClass=" + productClass + ", currency=" + currency + ", expiry=" + expiry
-				+ ", strikePrice=" + strikePrice + ", optionType=" + optionType + "]";
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	@Override
@@ -110,6 +118,7 @@ public class SubscribeReq implements Serializable {
 		result = prime * result + ((exchange == null) ? 0 : exchange.hashCode());
 		result = prime * result + ((expiry == null) ? 0 : expiry.hashCode());
 		result = prime * result + ((gatewayID == null) ? 0 : gatewayID.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((optionType == null) ? 0 : optionType.hashCode());
 		result = prime * result + ((productClass == null) ? 0 : productClass.hashCode());
 		result = prime * result + ((rtSymbol == null) ? 0 : rtSymbol.hashCode());
@@ -149,6 +158,11 @@ public class SubscribeReq implements Serializable {
 				return false;
 		} else if (!gatewayID.equals(other.gatewayID))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (optionType == null) {
 			if (other.optionType != null)
 				return false;
@@ -172,6 +186,13 @@ public class SubscribeReq implements Serializable {
 		} else if (!symbol.equals(other.symbol))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "SubscribeReq [gatewayID=" + gatewayID + ", symbol=" + symbol + ", exchange=" + exchange + ", rtSymbol="
+				+ rtSymbol + ", productClass=" + productClass + ", currency=" + currency + ", expiry=" + expiry
+				+ ", strikePrice=" + strikePrice + ", optionType=" + optionType + ", id=" + id + "]";
 	}
 
 }

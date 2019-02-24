@@ -15,7 +15,7 @@ public class Order implements Serializable {
 	private String gatewayDisplayName; // 网关显示名称
 	// 账号代码相关
 	private String accountID; // 账户代码
-	private String rtAccountID; // 账户在RedTorch中的唯一代码,通常 账户代码.网关
+	private String rtAccountID; // 账户在RedTorch中的唯一代码,通常   账户代码.币种.网关
 
 	// 代码编号相关
 	private String symbol; // 代码
@@ -24,7 +24,7 @@ public class Order implements Serializable {
 	private String contractName; // 名称
 
 	private String orderID; // 订单编号
-	private String rtOrderID; // 订单在rt系统中的唯一编号,通常是 Gateway名.订单编号
+	private String rtOrderID; // 订单在rt系统中的唯一编号,通常是 网关.订单编号
 
 	// 报单相关
 	private String direction; // 报单方向

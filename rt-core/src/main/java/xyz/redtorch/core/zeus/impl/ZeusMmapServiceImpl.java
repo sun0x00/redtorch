@@ -219,6 +219,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 	@Override
 	public void onTick(Tick tick) {
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(DATA_TICK)
@@ -227,6 +228,8 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				.writeUtf8(tick.getGatewayID()) //
 				.writeUtf8(tick.getRtSymbol()) //
 
+				.writeUtf8(tick.getGatewayDisplayName()) //
+		
 				.writeUtf8(tick.getSymbol()) //
 				.writeUtf8(tick.getExchange()) //
 				.writeUtf8(tick.getContractName()) //
@@ -301,12 +304,17 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 	@Override
 	public void onOrder(Order order) {
-
+		
 		if (StringUtils.isBlank(order.getOriginalOrderID())
 				&& zeusTradingBaseService.getOriginalOrderID(order.getRtOrderID()) != null) {
 			order.setOriginalOrderID(zeusTradingBaseService.getOriginalOrderID(order.getRtOrderID()));
 		}
-
+		
+		// 由于部分底层接口不能正确返回R他AccountID，因此在这里进行一次修正
+		if(zeusTradingBaseService.getOrderReq(order.getOriginalOrderID())!=null){
+			order.setRtAccountID(zeusTradingBaseService.getOrderReq(order.getOriginalOrderID()).getRtAccountID());
+		}
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(DATA_ORDER) //
@@ -317,6 +325,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				.writeUtf8(order.getRtAccountID()) //
 
 				.writeUtf8(order.getGatewayID()) //
+				.writeUtf8(order.getGatewayDisplayName()) //
 
 				.writeUtf8(order.getSymbol()) //
 				.writeUtf8(order.getExchange()) //
@@ -351,7 +360,12 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				&& zeusTradingBaseService.getOriginalOrderID(trade.getRtOrderID()) != null) {
 			trade.setOriginalOrderID(zeusTradingBaseService.getOriginalOrderID(trade.getRtOrderID()));
 		}
-
+		
+		// 由于部分底层接口不能正确返回RtAccountID，因此在这里进行一次修正
+		if(zeusTradingBaseService.getOrderReq(trade.getOriginalOrderID())!=null){
+			trade.setRtAccountID(zeusTradingBaseService.getOrderReq(trade.getOriginalOrderID()).getRtAccountID());
+		}
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(DATA_TRADE) //
@@ -359,6 +373,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 				.writeUtf8(trade.getAccountID()) //
 				.writeUtf8(trade.getRtAccountID()) //
 				.writeUtf8(trade.getGatewayID()) //
+				.writeUtf8(trade.getGatewayDisplayName()) //
 
 				.writeUtf8(trade.getSymbol()) //
 				.writeUtf8(trade.getExchange()) //
@@ -424,7 +439,6 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 						orderReq.setOptionType(in.readUtf8());
 						orderReq.setLastTradeDateOrContractMonth(in.readUtf8());
 						orderReq.setMultiplier(in.readUtf8());
-
 						
 						Account account = coreEngineService.getAccount(orderReq.getRtAccountID());
 						if (account != null) {
@@ -443,6 +457,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 								
 								String rtOrderID = coreEngineService.sendOrder(orderReq);
 								zeusTradingBaseService.registerOriginalOrderID(rtOrderID, orderReq.getOriginalOrderID());
+								zeusTradingBaseService.registerOrderReq(orderReq);
 							}else {
 								log.error("发单错误,无法找到合约,{}", orderReq.toString());
 							}
@@ -455,7 +470,7 @@ public class ZeusMmapServiceImpl extends FastEventDynamicHandlerAbstract
 
 						String originalOrderID = in.readUtf8();
 						String operatorID = in.readUtf8();
-
+						
 						String rtOrderID = zeusTradingBaseService.getRtOrderID(originalOrderID);
 
 						if (StringUtils.isBlank(originalOrderID)) {

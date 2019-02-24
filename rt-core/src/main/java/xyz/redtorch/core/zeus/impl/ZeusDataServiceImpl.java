@@ -36,7 +36,7 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 	private Logger log = LoggerFactory.getLogger(ZeusDataServiceImpl.class);
 
 	private final String strategySettingCollection = "StrategySetting";
-	private final String positionCollection = "StrategyPos";
+	private final String positionCollection = "StrategyPos.";
 
 	@Autowired
 	private MongoDBService mongoDBService;
@@ -201,6 +201,11 @@ public class ZeusDataServiceImpl implements ZeusDataService, InitializingBean {
 	@Override
 	public List<Tick> loadTickDataList(DateTime startDateTime, DateTime endDateTime, String rtSymbol) {
 		return mongoDBService.loadTickDataList(startDateTime, endDateTime, rtSymbol);
+	}
+
+	@Override
+	public List<Tick> loadTickDataListFromDailyDB(String rtSymbol) {
+		return mongoDBService.loadTickDataListFromDailyDB(rtSymbol);
 	}
 
 }

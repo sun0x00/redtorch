@@ -100,11 +100,11 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 	private int backtestingDataMode = 0;
 	private Boolean reloadStrategyEveryday;
 
-	public ZeusBacktestingEngineImpl(ZeusDataService zeusDataService, String strategyID,
+	public ZeusBacktestingEngineImpl(ZeusDataService zeusDataService, StrategySetting strategySetting,
 			List<BacktestingSection> backestingSectionList, int backtestingDataMode, Boolean reloadStrategyEveryday,
 			String backtestingOutputDir) {
 		this.zeusDataService = zeusDataService;
-		this.strategySetting = zeusDataService.loadStrategySetting(strategyID);
+		this.strategySetting = strategySetting;
 		this.backestingSectionList = backestingSectionList;
 		this.backtestingDataMode = backtestingDataMode;
 		this.reloadStrategyEveryday = reloadStrategyEveryday;
@@ -555,6 +555,7 @@ public class ZeusBacktestingEngineImpl implements ZeusBacktestingEngine {
 					trade.setTradingDay(order.getTradingDay());
 					trade.setTradeTime(lastDateTimeMap.get(rtSymbol).toString(RtConstant.T_FORMAT));
 					trade.setDateTime(lastDateTimeMap.get(rtSymbol));
+					trade.setOriginalOrderID(order.getOriginalOrderID());
 					
 					strategy.processTrade(trade);
 					tradeMap.put(tradeID, trade);

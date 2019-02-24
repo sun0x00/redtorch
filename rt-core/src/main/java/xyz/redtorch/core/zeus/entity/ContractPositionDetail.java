@@ -3,6 +3,8 @@ package xyz.redtorch.core.zeus.entity;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import org.apache.commons.lang3.StringUtils;
+
 import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Trade;
@@ -53,6 +55,8 @@ public class ContractPositionDetail implements Serializable {
 	private double shortOpenContractValue; // 空头合约价值
 
 	private HashMap<String, PositionDetail> positionDetailMap = new HashMap<>(); // 各网关持仓详细
+	
+	private HashMap<String, OrderReq> originalOrderIDOrderReqMap = new HashMap<>(); // 原始委托ID和委托对象额对应关系
 
 	/**
 	 * 有参构造方法,需要传入必要信息
@@ -464,6 +468,9 @@ public class ContractPositionDetail implements Serializable {
 	public void updateOrderReq(OrderReq orderReq) {
 		// , String rtOrderID
 		String rtAccountID = orderReq.getRtAccountID();
+		
+		originalOrderIDOrderReqMap.put(orderReq.getOriginalOrderID(),orderReq);
+		
 		PositionDetail positionDetail;
 		if (positionDetailMap.containsKey(rtAccountID)) {
 			positionDetail = positionDetailMap.get(rtAccountID);
@@ -485,19 +492,23 @@ public class ContractPositionDetail implements Serializable {
 	 * @param order
 	 */
 	public void updateOrder(Order order) {
-		String rtAccountID = order.getRtAccountID();
-		PositionDetail positionDetail;
-		if (positionDetailMap.containsKey(rtAccountID)) {
-			positionDetail = positionDetailMap.get(rtAccountID);
-		} else {
-			positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
-					contractSize);
-			positionDetailMap.put(rtAccountID, positionDetail);
+		String originalOrderID = order.getOriginalOrderID();
+		if(StringUtils.isNotBlank(originalOrderID)&& originalOrderIDOrderReqMap.containsKey(originalOrderID)) {
+			String rtAccountID = originalOrderIDOrderReqMap.get(originalOrderID).getRtAccountID();
+			PositionDetail positionDetail;
+			if (positionDetailMap.containsKey(rtAccountID)) {
+				positionDetail = positionDetailMap.get(rtAccountID);
+			} else {
+				positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
+						contractSize);
+				positionDetailMap.put(rtAccountID, positionDetail);
+			}
+
+			positionDetail.updateOrder(order);
+
+			calculatePosition();
 		}
-
-		positionDetail.updateOrder(order);
-
-		calculatePosition();
+		
 
 	}
 
@@ -507,20 +518,22 @@ public class ContractPositionDetail implements Serializable {
 	 * @param trade
 	 */
 	public void updateTrade(Trade trade) {
-		String rtAccountID = trade.getRtAccountID();
-		PositionDetail positionDetail;
-		if (positionDetailMap.containsKey(rtAccountID)) {
-			positionDetail = positionDetailMap.get(rtAccountID);
-		} else {
-			positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
-					contractSize);
-			positionDetailMap.put(rtAccountID, positionDetail);
+		String originalOrderID = trade.getOriginalOrderID();
+		if(StringUtils.isNotBlank(originalOrderID)&& originalOrderIDOrderReqMap.containsKey(originalOrderID)) {
+			String rtAccountID = originalOrderIDOrderReqMap.get(originalOrderID).getRtAccountID();
+			PositionDetail positionDetail;
+			if (positionDetailMap.containsKey(rtAccountID)) {
+				positionDetail = positionDetailMap.get(rtAccountID);
+			} else {
+				positionDetail = new PositionDetail(rtSymbol, rtAccountID, tradingDay, strategyName, strategyID, exchange,
+						contractSize);
+				positionDetailMap.put(rtAccountID, positionDetail);
+			}
+	
+			positionDetail.updateTrade(trade);
+	
+			calculatePosition();
 		}
-
-		positionDetail.updateTrade(trade);
-
-		calculatePosition();
-
 	}
 
 	/**

@@ -156,7 +156,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 	@Override
 	public void sendOrder(OrderReq orderReq) {
 		originalOrderIDSet.add(orderReq.getOriginalOrderID());
-
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(ZeusMmapService.DATA_ORDERREQ)
@@ -180,12 +180,12 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 				.writeUtf8(orderReq.getExpiry()) //
 				.writeDouble(orderReq.getStrikePrice()) //
 				.writeUtf8(orderReq.getOptionType()) //
-				.writeUtf8(orderReq.getLastTradeDateOrContractMonth()) //
-				.writeUtf8(orderReq.getMultiplier()));
+				.writeUtf8(orderReq.getLastTradeDateOrContractMonth())); //
 	}
 
 	@Override
 	public void cancelOrder(String originalOrderID,String operatorID) {
+		
 		getQueueTxEa().writeBytes(b -> b
 				// 写入数据类型
 				.writeInt(ZeusMmapService.DATA_CANCEL_ORDER) //
@@ -441,6 +441,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							order.setRtAccountID(in.readUtf8());
 							
 							order.setGatewayID(in.readUtf8());
+							order.setGatewayDisplayName(in.readUtf8());
 
 							order.setSymbol(in.readUtf8());
 							order.setExchange(in.readUtf8());
@@ -467,6 +468,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 
 							order.setFrontID(in.readInt());
 							order.setSessionID(in.readInt());
+							
 							if (strategy != null) {
 								strategy.processOrder(order);
 							}
@@ -485,6 +487,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							trade.setRtAccountID(in.readUtf8());
 							
 							trade.setGatewayID(in.readUtf8());
+							trade.setGatewayDisplayName(in.readUtf8());
 
 							trade.setSymbol(in.readUtf8());
 							trade.setExchange(in.readUtf8());
@@ -505,6 +508,7 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							trade.setTradingDay(in.readUtf8());
 							trade.setTradeDate(in.readUtf8());
 							trade.setTradeTime(in.readUtf8());
+							
 							if (strategy != null) {
 								strategy.processTrade(trade);
 							}
@@ -520,6 +524,8 @@ public class ZeusTradingEngineServiceImpl implements ZeusEngineService, Initiali
 							tick.setGatewayID(gatewayID);
 							tick.setRtSymbol(rtSymbol);
 							tick.setRtTickID(rtTickID);
+							
+							tick.setGatewayDisplayName(in.readUtf8());
 
 							tick.setSymbol(in.readUtf8());
 							tick.setExchange(in.readUtf8());

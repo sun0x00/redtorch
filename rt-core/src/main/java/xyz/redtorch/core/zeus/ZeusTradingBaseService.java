@@ -2,9 +2,23 @@ package xyz.redtorch.core.zeus;
 
 import java.util.Map;
 
+import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.zeus.entity.StrategyProcessReport;
 
 public interface ZeusTradingBaseService {
+	/**
+	 * 注册原始委托
+	 * @param orderReq
+	 */
+	void registerOrderReq(OrderReq orderReq);
+	
+	/**
+	 * 获取原始委托
+	 * @param originalOrderID
+	 * @return
+	 */
+	OrderReq getOrderReq(String originalOrderID);
+	
 	/**
 	 * 注册原始OrderID
 	 * 

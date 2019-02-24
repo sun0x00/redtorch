@@ -13,7 +13,7 @@ public class OrderReq implements Serializable {
 	private String gatewayID; // 网关
 	private String gatewayDisplayName; // 网关
 	private String accountID; // 账户代码
-	private String rtAccountID; // 系统中的唯一账户代码
+	private String rtAccountID; // 系统中的唯一账户代码,通常是   账户代码.币种.网关
 
 	// 代码编号相关
 	private String symbol; // 代码
@@ -40,7 +40,7 @@ public class OrderReq implements Serializable {
 	private String multiplier; // 乘数,IB专用
 	
 	public OrderReq() {
-		this.originalOrderID = UUID.randomUUID().toString();
+		this.originalOrderID = UUID.randomUUID().toString().replace("-", "").toLowerCase();
 	}
 
 	public String getGatewayID() {

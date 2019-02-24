@@ -10,12 +10,13 @@ group = "${rootProject.group}"
 version = "${rootProject.version}"
 description = """SpringBoot承载的前端Web模块"""
 
-war{ 
-    rootSpec.exclude("**/static/ReactSPA/node_modules/") 
-}
-
-bootWar {
-    exclude("**/static/ReactSPA/node_modules/")
+sourceSets {
+    main {
+        resources {
+            exclude '**/static/ReactSPA/node_modules/*'
+            exclude '**/bak/*'
+        }
+    }
 }
 
 springBoot {

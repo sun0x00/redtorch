@@ -1,15 +1,9 @@
-RedTorch
-^^^^^^^^
+RedTorch 
+----------
 
+Version: 2019-01 Preview
+==============================
 
-！！！请暂时不要下载和使用此分支代码，开发中！！！
-----------------------------------------------------
-
-！！！请注意，当前为DEV分支，可能无法正常运行！！！
-----------------------------------------------------
-
-！！！请注意，当前为DEV分支，此README文件与实际代码有偏差！！！
-----------------------------------------------------
 
 .. image:: https://raw.githubusercontent.com/sun0x00/RedTorch-Pages/master/content/images/RedTorch20181230Snapshort.png
    :height: 992px
@@ -22,78 +16,80 @@ RedTorch
 简介
 -----
 
-项目是基于Java语言开发的开源量化交易程序开发框架，主要架构思想来自开源项目 `vn.py <http://www.vnpy.org/>`_，其中大约有60%的逻辑是直接移植过来的，因此在这里首先向vn.py项目作者致谢。
+项目是基于Java语言开发的开源量化交易程序开发框架。  
 
-本框架需要有Java语言使用经验，因此Java编程经验少于两年的朋友请审慎使用，建议移步 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。
+框架起始完全移植自vn.py,在这里首先向项目作者致谢；经过数次迭代，架构已与vn.py有较大区别，如果Java语言经验不足，建议移步使用 `vn.py <http://www.vnpy.org/>`_，Python语言的学习成本要远低于Java。  
 
-使用Java重构的主要原因：
+使用Java的主要原因：
 
-+ Python GIL带来的性能问题难以突破，不能有效使用多核CPU。对于绝大部分策略可能对实盘T2T延迟并没有太高的要求，使用vn.py便捷可靠，但当策略回测时需要使用Tick级别或多合约回测，控制性能问题带来的时间成本就显得格外重要。
++ Python GIL带来的性能问题难以突破，不能有效使用多核CPU，利用Java能比较好的解决这一问题，在多账户多合约方面有一定便利。
 
-+ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但"动态语言一时爽，生产Bug火葬场"，原生Python没有编译期检查，这是一把双刃剑。个人亲历了一次因官方解释器None与0比较不报异常，且None无限小的问题，导致交易中30秒亏损数万元。虽然Java也有令人诟病的 NullPointerException，但还是可以暴露一些潜在的问题。
++ 作为便捷的动态语言，Python在数据分析等领域有着天生的优势，但在数据类型控制、重构方面会遇到一定的的障碍。
 
-+ 曾考虑使用C++，但因工作量太大只能作罢，且已有大量此类开源工具。得益于JVM的良好设计，框架在多核利用和内部T2T延迟方面表现良好，绝大部分时候内部T2T延迟控制在70μs~200μs。vn.py创始前辈对vn.py早期的T2T测试结果是ms级别（这只是vnpy早期数据，现在应该更快了）。
-
++ 得益于JVM的良好设计，框架具备较好的扩展性和尚可接受的延迟，曾考虑使用C++，但因工作量太大只能作罢，且已有大量此类开源工具。。
 
 重要提示
 --------
-+ 项目尚处于开发预览阶段，测试覆盖率不足，因此使用前请务必严格测试。
++ 项目尚处于预览阶段，因此使用前请务必严格测试。
 
-+ 强烈建议watch或star本项目，任何问题的最新修正都会在第一时间发布。
++ 欢迎Star本项目，强烈建议Watch，任何问题的最新修正都会第一时间在dev分支发布。
 
-+ 从决定移植到本项目第一次发布，大概用了20个工作日，时间仓促，难免有错误之处，还望不吝赐教随手指正，相关问题请发issues，在此先表示感谢。
++ 还望不吝赐教随手指正，相关问题请发issues，在此先表示感谢。
 
-+ 欢迎发起 Pull Request
++ 欢迎发起 Pull Request。
+
++ 据热心人士反馈，Linux下在盘后有崩溃的情况，此问题仍在查证中。
 
 + 永久免费开源，但请遵循协议。
 
 主要特性
 --------
 
-+ Web界面管理
++ Web监控界面
 
 + 支持CPU多核运行
 
-+ 支持分段回测，多合约回测
++ 程序内部内部T2T低延迟(相比于C/C++语言要慢，比动态语言快很多)
 
-+ 异步线程存储数据，几乎无延迟
++ 策略支持支持多账户、多合约
 
-+ 内部T2T低延迟(相比于C/C++语言要慢，但比动态语言快很多)
++ 策略代码，同时适用于回测和实盘
 
-+ 一套策略代码，同时适用于回测和实盘
++ 策略运行时异步线程存储数据，减少IO操作对延迟的影响
 
-+ 支持策略多账户（审慎使用，严禁违规操作）
++ 策略支持分段回测、多合约回测、多线程回测
 
-项目结构
++ 多进程架构,采用RMI和MMAP通讯
+
++ 支持异构接入，采用HTTP和WebSocket接入
+
+结构简介
 ---------
-+ 项目使用Gradle构建，并做了适当的拆分
-   
-   - **rt-core** 核心模块，包含了核心引擎，高速事件引擎，Zeus实盘交易引擎，Zeus回测引擎，以及相关的数据服务。相关服务实例使用Spring框架托管。
-   - **rt-api-jctp** Swig封装官方CTP的API模块，由于JNI对底层字符编码转换不可逆转，因此在编译时对CTP的用到的相关中文接口进行了批量转码处理，相关的C++代码已作为单独项目发布，详见底部FAQ。
-   - **rt-gateway-jctp** 适配rt-api-jctp的接口模块，实现了rt-core中的Gateway接口。
-   - **rt-front-web** Spring Boot承载的Web模块，暴露HTTP接口，提供SPA页面静态资源访问。
-   - **rt-common** 通用模块
-   - **rt-strategy** 策略模块，提供了策略示例以及回测示例。请注意，回测需要在test环境中进行。
 
-+ 框架采用事件驱动架构,且利用多核。
++ Java组件。使用Gradle拆分、构建。
 
-    - 项目已经弃用早期采用的观察者模式，不再使用阻塞队列（LinkedBlockingQueue）
+  - **rt-core** 核心模块。包含核心引擎，事件引擎，ZEUS交易引擎，ZEUS回测引擎，以及相关的通讯、数据服务。
+  - **rt-api-jctp** Swig封装官方CTP的API模块。详见底部FAQ。
+  - **rt-gateway-jctp** 适配rt-api-jctp的接口模块。实现了rt-core中的Gateway接口。
+  - **rt-api-ib** 盈透证券（IB）官方提供的接口源码
+  - **rt-gateway-ib** 适配rt-api-ib的接口模块。实现了rt-core中的Gateway接口。
+  - **rt-front-web** 的Web模块。由Spring Boot实现，提供HTTP、SocketIO接口，承载Web监控页面。
+  - **rt-common** 通用模块。一些常见的Java工具类
+  - **rt-strategy** 策略模块。提供了策略示例以及回测示例。
     
-    - 使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 重新设计了高速事件引擎（FastEventEngineService），并加入性能调节配置
-    
-    - 请注意,性能仍然需要通过多核CPU体现
-    
-+ Web界面部分采用SPA架构，使用VUE编写，数据交换采用HTTP被动获取和SocketIO主动推送两种方式结合。承载Web的核心框架为Spring Boot，得益于Java对多核CPU的优化，Web部分对交易部分的性能影响完全可以忽略不计，而且提供了一个便利的应急操纵的交互接口。
++ Web SPA
 
+  - 访问 `RedTorch-Web-React <https://github.com/sun0x00/RedTorch-Web-React>`_
+  - 由React语言编写，采用  `Ant Design Pro <https://pro.ant.design/>`_ 框架
+  - 采取用户名密码登陆的方式获取连接令牌
+  - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
 
++ Python客户端
 
-
-项目文档
------------
-还在写，文档没有deadline，文档deadline不可能有的，这辈子不可能有deadline。
-
-先看一下这个 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 吧。
-
+  - 访问 `RedTorch-Python-Client <https://github.com/sun0x00/RedTorch-Python-Client>`_
+  - 使用预置令牌进行接入
+  - 数据交换采用HTTP被动获取和WebSocket主动推送两种方式结合
+  
 
 项目已知问题
 -----------------
@@ -103,6 +99,59 @@ RedTorch
 + 使用Python将行情数据导入MongoDB的模版已经完成，但尚未整理发布。
 
 + 部分linux不能直接使用编译后的动态链接库，访问 `RedTorch-Resources <https://github.com/sun0x00/RedTorch-Resources>`_ 自行下载编译
+   
+
+数据流程简介
+-----------------
++ 接入
+  
+  - Web SPA
+  
+    + 用户通过浏览器获取到SPA登录页面
+    + 用户请求登录并通过验证后，获取到令牌（Token），存入浏览器sessionStorage
+    + 通过获取到的令牌发起HTTP请求
+    + 通过获取到的令牌建立Web Socket连接
+
+  - Python客户端
+    
+    + 通过预置令牌发起HTTP请求
+    + 通过预置令牌建立Web Socket连接
+
++ 订阅行情
+
+  - Web SPA、Python客户端或其它异构系统
+    
+    + 通过HTTP发起订阅请求,身份统一识别为 WEB_API ，并建立订阅关系
+    + 由于未区分订阅身份，客户端A接入订阅的行情有可能被客户端B取消订阅关系
+    + 订阅后接收为广播模式，客户端需要自行识别行情ID进行过滤
+
+  - 策略
+    
+    + 策略首先策略引擎发起订阅，策略引擎通过MMAP进行进程间通讯
+    + 通过策略引擎发起订阅，并根据策略ID进行身份区分，建立订阅关系
+    + 策略被重新加载或策略进程心跳消失后，会根据ID取消订阅关系
+
++ 发单
+
+  - Web SPA、Python客户端或其它异构系统
+    
+    + 在OrderReq中，以令牌作为OperatorID
+
+  - 策略
+
+    + 在OrderReq中，以策略ID作为OperatorID
+
+
++ 数据推送
+
+  - 基础架构使用 `LMAX Disruptor <https://github.com/LMAX-Exchange/disruptor/>`_ 作为引擎推送事件，性能可根据实际硬件情况调节配置
+  - Web SPA、Python客户端或其他异构系统通过WebSocket接收数据推送
+  - 策略进程通过MMAP接收数据推送
+
+项目文档
+-----------
+还在写，文档没有deadline，文档deadline不可能有的，这辈子不可能有deadline。
+
 
 预览环境准备
 --------------------
@@ -111,46 +160,86 @@ RedTorch
 
 + 安装vs2013x64运行库 、 vs2015x64运行库（Linux跳过）
 
-+ 安装JDK8+x64并设置环境变量（JAVA_HOME,PATH必须），最低要求JDK8，JDK9 JDK10尚未测试
++ 安装JDK11 x64并设置环境变量（JAVA_HOME,PATH必须），兼容Java 8,请自行修改Gradle文件修改版本
 
-+ IDE推荐使用最新版Eclipse IDE for Java EE Developers x64
-
-+ 安装Gradle(可选,最新版Eclipse已经集成)
++ IDE推荐使用最新版Eclipse IDE for Java EE Developers x64, (IntelliJ IDEA 和 Spring Boot存在兼容问题，请自行查询页面访问不到的解决方案)
 
 + 使Git克隆本项目或直接下载zip，在Eclipse中使用File->Import->Existing Gradle Projects导入本项目
 
-+ 修改application.properties文件
++ 修改 **rt-front-web** application.properties文件
 
-    - 配置端口。默认为9099（web）、9098（SocketIO）
+    - 注意：务必 配置修改Web认证口令（默认test test）
     
-+ 修改RtConfig.properties
-
-    - 配置ClientDB修改rt-core
+    - 注意：务必配置修改预置接入令牌，此令牌具有很高的访问权限
     
-    - 配置Web认证口令（默认test test）
++ 修改rt-core.properties
+  
+    - 提示：数据库用户名密码等可选,行情和ClientDB可以使用同一个MongoDB实例
     
-    - 配置数据库(用户名密码等可选,行情和ClientDB可以使用同一个MongoDB实例)
-    
-    - 日志路径（默认D:\\log，不存在请创建）
+    - 日志路径（默认D:\\log，不存在请创建
     
     - ZEUS引擎缓存路径（module.zeus.backtesting.output.dir默认D:\\redtorch_zeus_backtesting_output，不存在请创建或修改配置）
+
+    - 修改MMAP路径chronicleQueueBasePath，请注意，策略中也需要配置此路径 
+  
++ 修改 **rt-strategy** application.properties文件
+  
+    - 配置策略ID，请注意，数据库中应存在此ID对应的配置记录，一个策略进程只允许一个策略，如有需要，可自行修改支持多策略，但不建议这么做。
+  
+    - 将Resource中的策略配置示例导入数据库中
+
   
 + 如果部署在linux中，需要使用临时目录/tmp/xyz/redtorch/api/jctp/lib(rpath目录)和用户临时目录
 
 + 如果部署在windows中，需要使用用户临时目录
     
-+ 一切就绪后运行RtApplication,访问链接:http://IP:9099/static/html/index.html,一般是:http://localhost:9099/static/html/index.html
++ 一切就绪后运行web项目中的RtApplication,访问链接:http://IP:9099/,一般是:http://localhost:9099/
+
++ 随后运行StrategyApplication，在web界面中可看到已经加载的绿色提示
 
 FAQ
 ------
-+ 策略如何配置
 
-   请访问 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
++ 有没有群
 
+    木有，有个不错的QQ交流群，群号在此  MTAxNDQxODU1
 
-+ 如何运行回测（请等待简要文档发布）
++ 是否考虑商业化支持
 
-   请访问 `概要视频(注意选择分辨率) <https://v.youku.com/v_show/id_XMzc1ODY5OTk2NA==.html?spm=a2h3j.8428770.3416059.1>`_ 
+    不考虑
+    
++ 是否支持OS X
+
+    框架支持，但是接口底层API运行库几乎都不支持OS X，因此无法交易
+
++ 策略配置中的RtAccountID是什么
+
+    一般是 账户ID.币种.网关ID ，因此配置前请先确定相关ID
+    
++ 为何不通过GatewayID下单
+
+    常见接口都是一个网关实例对应一个账户，部分小众接口存在一个网关下存在多个子账户的情况，因此需要加以区分
+ 
+    
++ 订阅也是通过RtAccountID区分吗
+    
+    不是，订阅是通过GatewayID，Web页面采用RtAccountID进行区分主要是为了方便展示
+    
++ 如何部署
+
+    - 对于web可以使用gradle打包成bootWar
+    - 对于策略可以使用gradle打包成bootJar
+    - 上述两条可以使用java -jar 打包后的文件名  运行，war jar都用这个命令，例如使用命令 ./gradlew :rt-front-web:bootWar打包，在build目录使用命令java -jar rt-front-web-0.1.war 运行
+    
++ 每多写一个策略都需要增加一个策略模块打包吗
+
+    - 不需要，可以通过外部application.properties覆盖这一方式解决。当已经打成jar包后，无需修jar包内的application.properties文件，在运行jar的同级目录放置application.properties可以覆盖内部配置。因此只需要使用同一个jar包但使用外部配置文件指定不同策略ID即可
+
++ 页面如何修改
+
+    - 页面请先安装node.js,推荐使用vscode打开ReactSPA目录。
+    - 常用命令 【npm run build】，将会编译至dist目录，请手动复制到distPRD目录
+    - 常用命令 【npm run start:no-mock】，进入开发模式，不使用mock数据。早期项目使用mock数据，后期因工作量过大采用直接联调，前端不再使用mock模拟数据。
 
 + CTP封装源码在哪里
 
@@ -162,8 +251,8 @@ sun0x00@gmail.com
 
 QQ:1055532121
 
-License
----------
+License（使用协议）
+--------------------
 MIT
 
 用户在遵循本项目协议的同时，如果用户下载、安装、使用本项目中所提供的软件，软件作者对任何原因在使用本项目中提供的软件时可能对用户自己或他人造成的任何形式的损失和伤害不承担任何责任。作者有权根据有关法律、法规的变化修改本项目协议。修改后的协议会随附于本项目的新版本中。当发生有关争议时，以最新的协议文本为准。如果用户不同意改动的内容，用户可以自行删除本项目。如果用户继续使用本项目，则视为您接受本协议的变动。

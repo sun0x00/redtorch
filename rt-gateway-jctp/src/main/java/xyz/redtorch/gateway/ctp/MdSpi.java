@@ -10,15 +10,15 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.redtorch.api.jctp.CThostFtdcDepthMarketDataField;
-import xyz.redtorch.api.jctp.CThostFtdcForQuoteRspField;
-import xyz.redtorch.api.jctp.CThostFtdcMdApi;
-import xyz.redtorch.api.jctp.CThostFtdcMdSpi;
-import xyz.redtorch.api.jctp.CThostFtdcReqUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcRspInfoField;
-import xyz.redtorch.api.jctp.CThostFtdcRspUserLoginField;
-import xyz.redtorch.api.jctp.CThostFtdcSpecificInstrumentField;
-import xyz.redtorch.api.jctp.CThostFtdcUserLogoutField;
+import xyz.redtorch.api.jctp.md.CThostFtdcDepthMarketDataField;
+import xyz.redtorch.api.jctp.md.CThostFtdcForQuoteRspField;
+import xyz.redtorch.api.jctp.md.CThostFtdcMdApi;
+import xyz.redtorch.api.jctp.md.CThostFtdcMdSpi;
+import xyz.redtorch.api.jctp.md.CThostFtdcReqUserLoginField;
+import xyz.redtorch.api.jctp.md.CThostFtdcRspInfoField;
+import xyz.redtorch.api.jctp.md.CThostFtdcRspUserLoginField;
+import xyz.redtorch.api.jctp.md.CThostFtdcSpecificInstrumentField;
+import xyz.redtorch.api.jctp.md.CThostFtdcUserLogoutField;
 import xyz.redtorch.core.base.RtConstant;
 
 /**
@@ -88,11 +88,34 @@ public class MdSpi extends CThostFtdcMdSpi {
 		}
 		if (cThostFtdcMdApi != null) {
 			cThostFtdcMdApi.RegisterSpi(null);
-			cThostFtdcMdApi.Release();
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+
+					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("行情接口异步释放启动！");
+						cThostFtdcMdApi.Release();
+					} catch (Exception e) {
+						log.error("行情接口异步释放发生异常！", e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			
 			connectionStatus = false;
 			loginStatus = false;
 
 		}
+		
+		log.warn("{} 行情接口实例初始化",gatewayLogInfo);
+		
 		String envTmpDir = System.getProperty("java.io.tmpdir");
 		String tempFilePath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api"
 				+ File.separator + "jctp" + File.separator + "TEMP_CTP" + File.separator + "MD_"
@@ -101,12 +124,12 @@ public class MdSpi extends CThostFtdcMdSpi {
 		if (!tempFile.getParentFile().exists()) {
 			try {
 				FileUtils.forceMkdirParent(tempFile);
-				log.info(gatewayLogInfo + "创建临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+				log.info("{} 创建临时文件夹" , gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			} catch (IOException e) {
-				log.error(gatewayLogInfo + "创建临时文件夹失败" + tempFile.getParentFile().getAbsolutePath());
+				log.error("{} 创建临时文件夹失败", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 			}
 		}
-		log.info(gatewayLogInfo + "使用临时文件夹" + tempFile.getParentFile().getAbsolutePath());
+		log.info("{} 使用临时文件夹", gatewayLogInfo, tempFile.getParentFile().getAbsolutePath());
 
 		cThostFtdcMdApi = CThostFtdcMdApi.CreateFtdcMdApi(tempFile.getAbsolutePath());
 		cThostFtdcMdApi.RegisterSpi(this);
@@ -120,18 +143,43 @@ public class MdSpi extends CThostFtdcMdSpi {
 	 * 关闭
 	 */
 	public synchronized void close() {
-		if (!isConnected()) {
-			return;
-		}
 
 		if (cThostFtdcMdApi != null) {
+			log.warn("{} 行情接口实例开始关闭并释放",gatewayLogInfo);
 			cThostFtdcMdApi.RegisterSpi(null);
-			cThostFtdcMdApi.Release();
+			
+			// 避免异步线程找不到引用
+			CThostFtdcMdApi cThostFtdcMdApiForRelease = cThostFtdcMdApi;
+			// 由于CTP底层原因，部分情况下不能正确执行Release
+			new Thread() {
+				public void run() {
+					
+					Thread.currentThread().setName("网关ID-"+gatewayID+"行情接口异步释放线程"+new DateTime().toString(RtConstant.DT_FORMAT_WITH_MS_FORMATTER));
+					
+					try {
+						log.warn("行情接口异步释放启动！");
+						cThostFtdcMdApiForRelease.Release();
+					} catch (Exception e) {
+						log.error("行情接口异步释放发生异常！", e);
+					}
+				}
+			}.start();
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// nop
+			}
+			cThostFtdcMdApi = null;
 			connectionStatus = false;
 			loginStatus = false;
 			connectProcessStatus = false;
+			log.warn("{} 行情接口实例关闭并释放",gatewayLogInfo);
+			// 通知停止其他关联实例
+			ctpGateway.close();
+		}else{
+			log.warn("{} 行情接口实例为null,无需关闭",gatewayLogInfo);
 		}
-
 	}
 
 	/**
@@ -205,7 +253,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 	// 前置机断开回报
 	public void OnFrontDisconnected(int nReason) {
 		log.info(gatewayLogInfo + "行情接口前置机已断开,Reason:" + nReason);
-		this.connectionStatus = false;
+		close();
 	}
 
 	// 登录回报
@@ -261,10 +309,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			log.info(gatewayLogInfo + "OnRspSubMarketData! 订阅合约成功:" + pSpecificInstrument.getInstrumentID());
+			log.info("{} OnRspSubMarketData! 订阅合约成功:{}", gatewayLogInfo,pSpecificInstrument.getInstrumentID());
 		} else {
-			log.warn(gatewayLogInfo + "OnRspSubMarketData! 订阅合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
-					+ pRspInfo.getErrorMsg());
+			log.error("{} OnRspSubMarketData! 订阅合约失败,ErrorID:{} ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -272,10 +319,9 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField pSpecificInstrument,
 			CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		if (pRspInfo.getErrorID() == 0) {
-			log.info(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约成功:" + pSpecificInstrument.getInstrumentID());
+			log.info("{} OnRspSubMarketData! 退订合约成功:{}", gatewayLogInfo,pSpecificInstrument.getInstrumentID());
 		} else {
-			log.warn(gatewayLogInfo + "OnRspUnSubMarketData! 退订合约失败,ErrorID：" + pRspInfo.getErrorID() + "ErrorMsg:"
-					+ pRspInfo.getErrorMsg());
+			log.error("{} OnRspSubMarketData! 退订合约失败,ErrorID:{} ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
 		}
 	}
 
@@ -283,14 +329,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 	public void OnRtnDepthMarketData(CThostFtdcDepthMarketDataField pDepthMarketData) {
 		if (pDepthMarketData != null) {
 
-			// // T2T Test
-			// if("IH1805".equals(pDepthMarketData.getInstrumentID())) {
-			// System.out.println("T2T-Tick-"+System.nanoTime());
-			// }
 			String symbol = pDepthMarketData.getInstrumentID();
 
 			if (!contractExchangeMap.containsKey(symbol)) {
-				log.info(gatewayLogInfo + "收到合约" + symbol + "行情,但尚未获取到交易所信息,丢弃");
+				log.warn("{} 收到合约 {}行情,但尚未获取到交易所信息,丢弃",gatewayLogInfo,symbol);
 				return;
 			}
 
