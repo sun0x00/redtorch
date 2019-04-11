@@ -12,4 +12,5 @@ tasks.withType(JavaCompile) {
 }
 dependencies {
     compile group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoDriverVersion}"
+	compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.6'
 }
