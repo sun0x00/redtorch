@@ -6,10 +6,10 @@ public class SimpleMessage {
 	
 	private String content;
 	
-	SimpleMessage(){
+	public SimpleMessage(){
 	}
 
-	SimpleMessage(String subject, String content){
+	public SimpleMessage(String subject, String content){
 		this.subject = subject;
 		this.content = content;
 	}

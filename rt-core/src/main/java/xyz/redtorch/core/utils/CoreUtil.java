@@ -2,6 +2,7 @@ package xyz.redtorch.core.utils;
 
 import com.lmax.disruptor.RingBuffer;
 
+import xyz.redtorch.core.entity.Notice;
 import xyz.redtorch.core.service.FastEventEngineService;
 import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.core.service.extend.event.FastEvent;
@@ -36,6 +37,19 @@ public class CoreUtil {
 			fastEvent.getLogData().setThreadName(threadName);
 			fastEvent.getLogData().setClassName(className);
 			fastEvent.getLogData().setContent(content);
+		} finally {
+			ringBuffer.publish(sequence);
+		}
+	}
+	
+	public static void emitNotice(Notice notice) {
+		RingBuffer<FastEvent> ringBuffer = fastEventEngineService.getRingBuffer();
+		long sequence = ringBuffer.next(); // Grab the next sequence
+		try {
+			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
+			fastEvent.setCommonObj(notice);
+			fastEvent.setEvent(EventConstant.EVENT_NOTICE);
+			fastEvent.setEventType(EventConstant.EVENT_NOTICE);
 		} finally {
 			ringBuffer.publish(sequence);
 		}

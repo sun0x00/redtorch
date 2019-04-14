@@ -25,6 +25,7 @@ import xyz.redtorch.core.entity.CancelOrderReq;
 import xyz.redtorch.core.entity.Contract;
 import xyz.redtorch.core.entity.LocalPositionDetail;
 import xyz.redtorch.core.entity.LogData;
+import xyz.redtorch.core.entity.Notice;
 import xyz.redtorch.core.entity.Order;
 import xyz.redtorch.core.entity.OrderReq;
 import xyz.redtorch.core.entity.Position;
@@ -38,6 +39,8 @@ import xyz.redtorch.core.service.CoreEngineDataService;
 import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.core.service.extend.event.FastEvent;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandlerAbstract;
+import xyz.redtorch.mail.MailSender;
+import xyz.redtorch.mail.SimpleMessage;
 import xyz.redtorch.core.service.CoreEngineService;
 import xyz.redtorch.core.service.FastEventEngineService;
 import xyz.redtorch.utils.CommonUtil;
@@ -92,6 +95,7 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 		subscribeEvent(EventConstant.EVENT_GATEWAY);
 		subscribeEvent(EventConstant.EVENT_LOG);
 		subscribeEvent(EventConstant.EVENT_LOG + "ZEUS|");
+		subscribeEvent(EventConstant.EVENT_NOTICE);
 	}
 
 	@Override
@@ -153,6 +157,12 @@ public class CoreEngineServiceImpl extends FastEventDynamicHandlerAbstract
 			}
 		} else if (EventConstant.EVENT_GATEWAY.equals(fastEvent.getEventType())) {
 			// nop
+		} else if (EventConstant.EVENT_NOTICE.equals(fastEvent.getEventType())){
+			Notice notice = (Notice) fastEvent.getCommonObj();
+			SimpleMessage msg = new SimpleMessage();
+			msg.setSubject(String.format("【%s】-%s-%s", notice.getType().getName(), notice.getGatewayName(), notice.getUserID()));
+			msg.setContent(String.format("%s\n%s", notice.getTime(), notice.getMessage()));
+			MailSender.sendMail(msg);
 		} else {
 			log.warn("未能识别的事件数据类型{}", JSON.toJSONString(fastEvent.getEvent()));
 		}

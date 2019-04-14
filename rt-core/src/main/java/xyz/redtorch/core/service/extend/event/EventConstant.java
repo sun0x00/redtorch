@@ -24,4 +24,5 @@ public interface EventConstant {
 	public final static String EVENT_LOG = "E_LOG|";
 	public final static String EVENT_LOGS = "E_LOGS|";
 	public final static String EVENT_THREAD_STOP = "E_THREAD_STOP|";
+	public final static String EVENT_NOTICE = "E_NOTICE|";
 }

@@ -2,6 +2,7 @@ package xyz.redtorch.gateway.ctp;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
@@ -20,6 +21,8 @@ import xyz.redtorch.api.jctp.md.CThostFtdcRspUserLoginField;
 import xyz.redtorch.api.jctp.md.CThostFtdcSpecificInstrumentField;
 import xyz.redtorch.api.jctp.md.CThostFtdcUserLogoutField;
 import xyz.redtorch.core.base.RtConstant;
+import xyz.redtorch.core.entity.Notice;
+import xyz.redtorch.core.utils.CoreUtil;
 
 /**
  * @author sun0x00@gmail.com
@@ -143,7 +146,6 @@ public class MdSpi extends CThostFtdcMdSpi {
 	 * 关闭
 	 */
 	public synchronized void close() {
-
 		if (cThostFtdcMdApi != null) {
 			log.warn("{} 行情接口实例开始关闭并释放",gatewayLogInfo);
 			cThostFtdcMdApi.RegisterSpi(null);
@@ -177,6 +179,14 @@ public class MdSpi extends CThostFtdcMdSpi {
 			log.warn("{} 行情接口实例关闭并释放",gatewayLogInfo);
 			// 通知停止其他关联实例
 			ctpGateway.close();
+			
+			//发送通知事件
+			Notice notice = new Notice();
+			notice.setTime(LocalTime.now());
+			notice.setGatewayName(gatewayDisplayName);
+			notice.setType(Notice.Type.MarketDataDisconnected);
+			notice.setUserID(userID);
+			CoreUtil.emitNotice(notice);
 		}else{
 			log.warn("{} 行情接口实例为null,无需关闭",gatewayLogInfo);
 		}
@@ -273,6 +283,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 						.toArray(new String[ctpGateway.getSubscribedSymbols().size()]);
 				cThostFtdcMdApi.SubscribeMarketData(subscribedSymbolsArray, subscribedSymbolsArray.length + 1);
 			}
+			//发送通知事件
+			Notice notice = new Notice();
+			notice.setTime(LocalTime.now());
+			notice.setGatewayName(gatewayDisplayName);
+			notice.setType(Notice.Type.MarketDataConnected);
+			notice.setUserID(userID);
+			CoreUtil.emitNotice(notice);
 		} else {
 			log.warn("{}行情接口登录回报错误! ErrorID:{},ErrorMsg:{}", gatewayLogInfo, pRspInfo.getErrorID(),
 					pRspInfo.getErrorMsg());
@@ -294,7 +311,6 @@ public class MdSpi extends CThostFtdcMdSpi {
 		} else {
 			log.info("{}OnRspUserLogout!BrokerID:{},UserID:{}", gatewayLogInfo, pUserLogout.getBrokerID(),
 					pUserLogout.getUserID());
-
 		}
 		this.loginStatus = false;
 	}
