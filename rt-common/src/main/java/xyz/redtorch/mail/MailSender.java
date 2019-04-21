@@ -5,9 +5,11 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -31,6 +33,14 @@ public class MailSender {
 	
 	private static Properties props;
 	
+	private static Session session;
+	
+	private static Address addr; 
+	
+	private static MimeMessage message;
+	
+	private static Date d = new Date();
+	
 	static {
 		props = new Properties();
         
@@ -40,8 +50,13 @@ public class MailSender {
 			from = props.getProperty("mail.username");
 			to = props.getProperty("mail.to");
 			authCode = props.getProperty("mail.authCode");
+			// 创建Session实例对象
+			session = Session.getDefaultInstance(props);
+			addr = new InternetAddress(from);
+			// 创建MimeMessage实例对象
+	        message = new MimeMessage(session);
 		} catch (IOException e) {
-			log.error("需要在resources目录增加mail.properties文件");
+			log.error("需要在resources目录增加mail.properties文件", e);
 			log.warn("以下为配置样例：");
 			log.warn("mail.to=（目标邮箱名）@126.com\r\n" + 
 					"mail.username= （邮箱名）@qq.com（）\r\n" + 
@@ -49,21 +64,21 @@ public class MailSender {
 					"mail.transport.protocol=smtp\r\n" + 
 					"mail.smtp.auth=true\r\n" + 
 					"mail.smtp.host=smtp.qq.com");
+		} catch (AddressException e) {
+			log.error("地址异常", e);
 		}
 	}
 	
 
+	//为了最大限度地降低FullGC的可能，邮件的所有对象的创建都与发送方法无关
 	public static void sendMail(SimpleMessage msg) throws Exception {
-        // 创建Session实例对象
-        Session session = Session.getDefaultInstance(props);
-        // 创建MimeMessage实例对象
-        MimeMessage message = new MimeMessage(session);
         // 设置发件人
-        message.setFrom(new InternetAddress(from));
+        message.setFrom(addr);
         // 设置收件人
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
         // 设置发送日期
-        message.setSentDate(new Date());
+        d.setTime(System.currentTimeMillis());
+        message.setSentDate(d);
         // 设置邮件主题
         message.setSubject(msg.getSubject());
         // 设置纯文本内容的邮件正文
