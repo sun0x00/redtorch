@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 
+import xyz.redtorch.core.entity.Bar;
 import xyz.redtorch.core.entity.SubscribeReq;
 import xyz.redtorch.core.entity.Tick;
 import xyz.redtorch.core.service.CoreEngineService;
@@ -29,33 +30,34 @@ import xyz.redtorch.core.service.extend.event.EventConstant;
 import xyz.redtorch.core.service.extend.event.FastEvent;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandler;
 import xyz.redtorch.core.service.extend.event.FastEventDynamicHandlerAbstract;
+import xyz.redtorch.core.utils.BarGenerator.CommonBarCallBack;
 
-@Service
+
 public class DataRecordServiceImpl  extends FastEventDynamicHandlerAbstract implements 
 FastEventDynamicHandler,DataRecordService,InitializingBean{
 	private Logger log = LoggerFactory.getLogger(DataRecordServiceImpl.class);
 	
 	@Autowired
-	private MongoDBService mongoDBService;
+	protected MongoDBService mongoDBService;
 	
 	@Autowired
-	private CoreEngineService coreEngineService;
+	protected CoreEngineService coreEngineService;
 
 	@Value("${rt.client.dbname}")
 	private String clientDBName;
 	
-	private Set<String> recordRtTickIDSet = new HashSet<>();
+	protected Set<String> recordRtTickIDSet = new HashSet<>();
 	
-	private String dataRecordSettingCollection = "DataRecordSetting";
+	protected String dataRecordSettingCollection = "DataRecordSetting";
 	
-	private String subscriberID = "DATA_RECORD";
+	protected String subscriberID = "DATA_RECORD";
 	
 	@Autowired
-	private FastEventEngineService fastEventEngineService;
+	protected FastEventEngineService fastEventEngineService;
 	
-	private Queue<FastEvent> eventQueue = new ConcurrentLinkedQueue<>();
+	protected Queue<FastEvent> eventQueue = new ConcurrentLinkedQueue<>();
 
-	private ExecutorService executor = Executors.newCachedThreadPool();
+	protected ExecutorService executor = Executors.newCachedThreadPool();
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -186,5 +188,5 @@ FastEventDynamicHandler,DataRecordService,InitializingBean{
 			}
 		}
 	}
-
+	
 }
