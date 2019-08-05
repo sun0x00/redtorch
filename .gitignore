@@ -1,0 +1,86 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+###
+rt-node-slave.pid
+rt-node-slave.lock
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+*.tar.gz
+*.rar
+*.con
+.classpath
+.project
+
+# Python #
+*.pyc
+.pyc
+
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+target/
+
+
+bin/
+
+*.bak
+bak/
+
+.pydevproject
+
+build/
+
+
+# private
+pvt/
+hft/
+
+rt-api-pctp/
+rt-tools/
+rt-gateway-pctp/
+rt-strategy-prd/
+
+node_modules/
+
+## vscode
+.vscode
+
+

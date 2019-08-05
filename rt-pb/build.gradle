@@ -1,0 +1,32 @@
+plugins {
+  	id "com.google.protobuf" version "0.8.8"
+}
+
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """PB模块"""
+
+//sourceSets {
+//    main {
+//        resources {
+//            exclude '**/static/ReactSPA/node_modules/*'
+//            exclude '**/bak/*'
+//        }
+//    }
+//}
+
+dependencies {
+	
+	compile 'com.google.protobuf:protobuf-java:3.6.1'
+	compile 'com.google.protobuf:protobuf-java-util:3.6.1'
+	compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
+	
+}
+
+protobuf {
+	  protoc {
+		// Download from repositories
+		artifact = 'com.google.protobuf:protoc:3.6.1'
+	  }
+	generatedFilesBaseDir = "$projectDir/src/"
+}

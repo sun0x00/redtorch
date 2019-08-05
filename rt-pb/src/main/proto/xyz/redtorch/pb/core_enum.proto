@@ -1,0 +1,195 @@
+syntax = "proto3";
+
+package xyz.redtorch.pb;
+
+// 货币
+enum CurrencyEnum {
+	UNKNOWN_CURRENCY = 0;  // 未知
+	USD = 1;  // 美元
+	CNY = 2;  // 人民币
+	CNH = 3;  // 离岸人民币
+	HKD = 4;  // 港币
+	JPY = 5;  // 日元
+	EUR = 6;  // 欧元
+	GBP = 7;  // 英镑
+	DEM = 8;  // 德国马克
+	CHF = 9;  // 瑞士法郎
+	FRF = 10;  // 法国法郎
+	CAD = 11;  // 加拿大元
+	AUD = 12;  // 澳大利亚元
+	ATS = 13;  // 奥地利先令
+	FIM = 14;  // 芬兰马克
+	BEF = 15;  // 比利时法郎
+	THB = 16;  // 泰铢
+	IEP = 17;  // 爱尔兰镑
+	ITL = 18;  // 意大利里拉
+	LUF = 19;  // 卢森堡法郎
+	NLG = 20;  // 荷兰盾
+	PTE = 21;  // 葡萄牙埃斯库多
+	ESP = 22;  // 西班牙比塞塔
+	IDR = 23;  // 印尼盾
+	MYR = 24;  // 马来西亚林吉特
+	NZD = 25;  // 新西兰元
+	PHP = 26;  // 菲律宾比索
+	SUR = 27;  // 俄罗斯卢布
+	SGD = 28;  // 新加坡元
+	KRW = 29;  // 韩国元
+}
+
+// 交易所
+enum ExchangeEnum {
+	UNKNOWN_EXCHANGE = 0;  // 未知
+	SSE = 1;  // 上海证券交易所
+	SZSE = 2;  // 深圳证券交易所
+	CFFEX = 3;  // 中国金融期货交易所
+	SHFE = 4;  // 上海期货交易所
+	CZCE = 5;  // 郑州商品交易所
+	DCE = 6;  // 大连商品交易所
+	SGE = 7;  // 上海黄金交易所
+	INE = 8;  // 上海国际能源交易中心
+	SEHK = 9;  // 香港联合交易所
+	HKFE = 10;  // 香港期货交易所
+	SGX = 11;  // 新加坡证券交易所
+	NYBOT = 12;  //纽约期货交易所
+	NYMEX = 13;  // 纽约商业交易所
+	COMEX = 14;  // 纽约金属交易所
+	CME = 15;  // 芝加哥商业交易所
+	CFE = 16;  // 芝加哥期权交易所期货交易分所
+	GLOBEX = 17;  // CME Globex
+	ICE = 18;  // 美国洲际交易所
+	IPE = 19;  // 伦敦国际石油交易所
+	LME = 20;  // 伦敦金属交易所
+	IDEALPRO = 21;  // IDEALPRO（IB外汇）
+	OANDA = 22;  // OANDA外汇做市商
+	FXCM = 23;  // FXCM外汇做市商
+	SMART = 24;  // IB智能路由
+}
+
+// 产品类型
+enum ProductTypeEnum {
+	UNKNOWN_PRODUCT_TYPE = 0;  // 未知
+	EQUITY = 1;  // 股票
+	FUTURES = 2;  // 期货
+	OPTION = 3;  // 期权
+	INDEX = 4;  // 指数
+	COMBINATION = 5;  // 组合
+	BOND = 6;  // 债券
+	FOREX = 7;  // 外汇
+	SPOT = 8;  // 现货
+	DEFER = 9;  // 延期
+	ETF = 10;  // ETF
+	WARRANT = 11;  // 权证
+    SPREAD = 12;  // 价差
+    FUND = 13;  // 基金
+    EFP = 14;  // 期转现
+	SPOT_OPTION = 15;  // 现货期权
+}
+
+// 期权类型
+enum OptionTypeEnum {
+	UNKNOWN_OPTION_TYPE = 0;  // 未知
+	CALL = 1;  // 看涨期权
+	PUT = 2;  // 看跌期权
+}
+
+// 方向
+enum DirectionEnum {
+	UNKNOWN_DIRECTION = 0;  // 未知
+	LONG = 1;  // 多
+	SHORT = 2;  // 空
+	NET = 3;  // 净
+}
+
+// 开平
+enum OffsetEnum {
+	UNKNOWN_OFFSET = 0;  // 未知
+	OFFSET_NONE = 1;  // 无
+	OPEN = 2;  // 开
+	CLOSE = 3;  // 平
+	CLOSE_TODAY = 4;  // 平今
+	CLOSE_YESTERDAY = 5;  // 平昨
+}
+
+// 委托类型
+enum OrderTypeEnum {
+	UNKNOWN_ORDER_TYPE = 0;
+	SELL_ORDER = 1;
+	BUY_ORDER = 2;
+	SHORT_ORDER = 3;
+	COVER_ORDER = 4;
+	SELL_TD_ORDER = 5;
+	SELL_YD_ORDER = 6;
+	COVER_TD_ORDER = 7;
+	COVER_YD_ORDER = 8;
+}
+
+// 策略引擎类型
+enum StrategyEngineTypeEnum {
+	TREADING = 0;
+	BACKTESTING = 1;
+}
+
+// 价格类型
+enum PriceTypeEnum {
+	UNKNOWN_PRICE_TYPE = 0;  // 未知
+	LIMIT = 1;  // 限价
+	MARKET = 2;  // 市价
+	FAK = 3;  // FAK
+	FOK = 4;  // FOK
+}
+
+// 网关类型
+enum  GatewayTypeEnum {
+	TRADE_AND_MARKET_DATA = 0;  // 交易和行情数据
+	MARKET_DATA = 1;  // 行情数据
+	TRADE_ONLY = 2;  // 交易
+}
+
+// 网关适配器类型
+enum GatewayAdapterTypeEnum {
+	CTP = 0;  // CTP
+	IB = 1;  // IB
+}
+
+// 连接状态
+enum ConnectStatusEnum {
+	DISCONNECTED = 0; // 已经断开
+	CONNECTED = 1;  // 已经连接
+	DISCONNECTING = 2; // 断开中
+	CONNECTING = 3; // 连接中
+}
+
+// 定单状态
+enum OrderStatusEnum {
+	UNKNOWN_ORDER_STATUS = 0;  // 未知
+	NOT_TRADED = 1;  // 未成交
+	PART_TRADED = 2;  // 部分成交
+	ALL_TRADED = 3;  // 全部成交
+	CANCELLED = 4;  // 已撤销
+	REJECTED = 5;  // 拒单
+	SUBMITTING = 6;  // 提交中
+}
+
+// 时效
+enum TimeConditionTypeEnum {
+	UNKNOWN_TIME_CONDITION_TYPE = 0;  // 未知
+	GTC = 1;  // 撤销前有效
+	GFD = 2;  // 当日有效
+}
+
+// 通用状态
+enum CommonStatusEnum {
+	SUCCESS = 0;  // 成功
+	INFO = 1;  // 信息
+	WARN = 2;  // 警告
+	ERROR = 3;  // 错误
+}
+
+enum LogLevelEnum {
+    ALL_LOG_LEVEL = 0;
+    ERROR_LOG_LEVEL = 40000;
+    WARN_LOG_LEVEL = 30000;
+    INFO_LOG_LEVEL = 20000;
+    DEBUG_LOG_LEVEL = 10000;
+    TRACE_LOG_LEVEL = 5000;
+}

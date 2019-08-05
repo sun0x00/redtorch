@@ -1,0 +1,55 @@
+group = 'xyz.redtorch'
+version = '0.2.0'
+description = """Java开源量化交易开发框架 http://redtorch.io/"""
+
+ext {
+        springBootVersion = '2.1.5.RELEASE'
+        springTestVersion = '5.1.6.RELEASE'
+        disruptorVersion = '3.4.2'
+        chronicleQueueVersion = '5.17.12'
+        mongoJavaDriverVersion = '3.10.2'
+}
+
+subprojects {
+
+	tasks.withType(JavaCompile) {
+		sourceCompatibility = 11
+		targetCompatibility = 11
+		options.encoding = "UTF-8"
+	}
+	
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+
+	eclipse {
+	    classpath {
+	        downloadJavadoc = true
+	        downloadSources = true
+	    }
+	}
+	
+	idea {
+	    module {
+	        downloadJavadoc = true
+	        downloadSources = true
+	    }
+	}
+	
+	test.onlyIf {Boolean.getBoolean('skip.tests')}
+
+	repositories {
+		mavenLocal()
+		maven {
+			url "http://maven.aliyun.com/nexus/content/groups/public/"
+		}
+		jcenter()
+		mavenCentral()
+	}
+	
+	dependencies {  
+  		compile 'org.slf4j:slf4j-api:1.7.26'
+	    compile 'ch.qos.logback:logback-core:1.2.3'
+	    compile 'ch.qos.logback:logback-classic:1.2.3'
+	}
+}

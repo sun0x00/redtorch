@@ -1,0 +1,292 @@
+syntax = "proto3";
+
+import "xyz/redtorch/pb/core_enum.proto";
+
+package xyz.redtorch.pb;
+
+// 网关
+message GatewayField {
+	string gatewayId = 1;  // 唯一标识
+	string name = 2;  // 名称
+	string description = 3;  // 描述
+	GatewayTypeEnum gatewayType = 4;  // 网关类型
+	GatewayAdapterTypeEnum gatewayAdapterType = 5;  // 网关适配器类型
+	ConnectStatusEnum status = 6;  // 网关状态
+}
+
+// 合约
+message ContractField {
+	string contractId = 1;  // ID，通常是  <合约代码@交易所代码@产品类型@网关ID>
+	string shortName = 2;  // 简称
+	string fullName = 3;  // 全称
+	string thirdPartyId = 4;  // 第三方ID
+	string unifiedSymbol = 7;  // 统一ID，通常是 <合约代码@交易所代码@产品类型>
+	string symbol = 8;  // 代码
+	ExchangeEnum exchange = 9;  // 交易所
+	ProductTypeEnum productType = 10;  // 产品类型
+	CurrencyEnum currency = 11;  // 币种
+	double multiplier = 12;  // 合约乘数
+	double priceTick = 13;  // 最小变动价位
+	double longMarginRatio = 14;  // 多头保证金率
+	double shortMarginRatio = 15;  // 空头保证金率
+	bool maxMarginSideAlgorithm = 16;  // 最大单边保证金算法
+	string underlyingSymbol = 17;  // 基础商品代码
+	double strikePrice = 18;  // 执行价
+	OptionTypeEnum optionType = 19;  // 期权类型
+	double underlyingMultiplier = 20;  // 合约基础商品乘数
+	string lastTradeDateOrContractMonth = 21;  // 最后交易日或合约月
+	fixed32 maxMarketOrderVolume = 22;  // 市价单最大下单量
+	fixed32 minMarketOrderVolume = 23;  // 市价单最小下单量
+	fixed32 maxLimitOrderVolume = 24;  // 限价单最大下单量
+	fixed32 minLimitOrderVolume = 25;  // 限价单最小下单量
+	GatewayField gateway = 26;  // 网关
+}
+
+// 账户
+message AccountField {
+	string accountId = 1;  // ID，通常是 <账户代码@币种@网关>
+	string code = 2;  // 代码
+	string name = 3;  // 名称
+	string holder = 4;  // 持有人
+	CurrencyEnum currency = 5;  // 币种
+	double preBalance = 6;  // 昨日权益
+	double balance = 7;  // 权益
+	double available = 8;  // 可用资金
+	double commission = 9;  // 手续费
+	double margin = 10;  // 保证金占用
+	double closeProfit = 11;  // 平仓盈亏
+	double positionProfit = 12;  // 持仓盈亏
+	double deposit = 13;  // 入金
+	double withdraw = 14;  // 出金
+	GatewayField gateway = 15;  // 网关
+}
+
+// 定单
+message OrderField {
+	string originOrderId = 1;  // 原始定单ID
+	string orderId = 2;  // 定单ID,通常是<网关ID@定单ID>
+	string adapterOrderId = 3;  // 适配器层定单ID
+	string accountId = 4;  // 账户ID
+	DirectionEnum direction = 5;  // 方向
+	OffsetEnum offset = 6;  // 开平
+	OrderStatusEnum orderStatus = 7;  // 状态
+	double price = 8;  // 价格
+	fixed32 totalVolume = 9;  // 数量
+	fixed32 tradedVolume = 10;  // 已成交数量
+	string tradingDay = 12;  // 交易日
+	string orderDate = 13;  // 定单日期
+	string orderTime = 14;  // 定单时间
+	string cancelTime = 15;  // 撤单时间
+	string activeTime = 16;  // 激活时间
+	string updateTime = 17;  // 最后修改时间
+	string statusInfo = 18;  // 状态信息
+	TimeConditionTypeEnum timeConditionType = 19;  // 时效
+	fixed32 frontId = 20;  // 前置机编号(CTP/LTS)
+	fixed32 sessionId = 21;  // 连接编号(CTP/LTS)
+    ContractField contract = 22;  // 合约
+	GatewayField gateway = 23;  // 网关
+}
+
+// 成交
+message TradeField {
+	string tradeId = 1;  // 成交ID,通常是<网关ID@方向@成交编号>，加入方向是因为部分交易所发生违规自成交后,成交ID相同
+	string adapterTradeId = 2;  // 适配器层成交ID
+	string originOrderId = 3;  // 原始定单ID
+	string orderId = 4;  // 定单ID,通常是<网关ID@定单ID>
+	string adapterOrderId = 5;  // 适配器层定单ID
+	string accountId = 6;  // 账户ID
+	DirectionEnum direction = 7;  // 方向
+	OffsetEnum offset = 8;  // 开平
+	double price = 9;  // 价格
+	fixed32 volume = 10;  // 数量
+	string tradingDay = 11;  // 交易日
+	string tradeDate = 12;  // 成交日期
+	string tradeTime = 13;  // 成交时间(HHmmssSSS)
+	fixed64 tradeTimestamp = 14;  // 成交时间戳
+    ContractField contract = 15;  // 合约
+	GatewayField gateway = 16;  // 网关
+}
+
+// 持仓
+message PositionField {
+	string positionId = 1;  // 持仓在系统中的唯一代码,通常是<合约代码@交易所代码@产品类型@方向@账户@网关>
+	string accountId = 2;  // 账户ID
+	DirectionEnum direction = 3;  // 持仓方向
+	fixed32 position = 4;  // 持仓量
+	fixed32 frozen = 5;  // 冻结数量
+	fixed32 ydPosition = 6;  // 昨持仓
+	fixed32 ydFrozen = 7;  // 冻结数量
+	fixed32 tdPosition = 8;  // 今持仓
+	fixed32 tdFrozen = 9;  // 冻结数量
+	double lastPrice = 10;  // 计算盈亏使用的行情最后价格
+	double price = 11;  // 持仓均价
+	double priceDiff = 12;  // 持仓价格差
+	double openPrice = 13;  // 开仓均价
+	double openPriceDiff = 14;  // 开仓价格差
+	double positionProfit = 15;  // 持仓盈亏
+	double positionProfitRatio = 16;  // 持仓盈亏率
+	double openPositionProfit = 17;  // 开仓盈亏
+	double openPositionProfitRatio = 18;  // 开仓盈亏率
+	double useMargin = 19;  // 占用的保证金
+	double exchangeMargin = 20;  // 交易所的保证金
+	double contractValue = 21;  // 最新合约价值
+    ContractField contract = 22;  // 合约
+	GatewayField gateway = 23;  // 网关
+}
+
+// Tick
+message TickField {
+	string dataSourceId = 1;  // 数据源ID <合约代码@交易所代码@产品类型@网关ID>
+	string tradingDay = 2;  // 交易日
+	string actionDay = 3;  // 业务发生日
+	string actionTime = 4;  // 时间(HHmmssSSS)
+	fixed64 actionTimestamp = 5;  // 时间戳
+	fixed32 status = 6;  // 状态
+	double lastPrice = 7;  // 最新成交价
+	double avgPrice = 8;  // 均价
+	fixed64 totalBidVol = 9;  // 定单买入总量
+	fixed64 totalAskVol = 10;  // 定单卖出总量
+	double weightedAvgBidPrice = 11;  // 加权平均委买价格
+	double weightedAvgAskPrice = 12;  // 加权平均卖价格
+	double iopv = 13;  // 净值估值
+	double yieldToMaturity = 14;   // 到期收益率
+	fixed32 volumeChange = 15;  // 成交量变化
+	fixed64 volume = 16;  // 总成交量
+	double turnover = 17;  // 成交总额
+	double turnoverChange = 18;  // 成交总额变化
+	fixed64 numTrades = 19;  // 成交笔数
+	fixed64 numTradesChange = 20;  // 成交笔数
+	double openInterest = 21;  // 持仓量
+	fixed32 openInterestChange = 22;  // 持仓量变化
+	double preOpenInterest = 23;// 昨持仓
+	double preClosePrice = 25;  // 前收盘价
+	double settlePrice = 26;  // 结算价
+	double preSettlePrice = 27;  // 昨结算价
+	double openPrice = 28;  // 开盘价
+	double highPrice = 29;  // 最高价
+	double lowPrice = 30;  // 最低价
+	double upperLimit = 31;  // 涨停价
+	double lowerLimit = 32;  // 跌停价
+	repeated double bidPrice = 33;  // 买价
+	repeated double askPrice = 34;  // 卖价
+	repeated fixed32 bidVolume = 35;  // 买量
+	repeated fixed32 askVolume = 36;  // 卖量
+	ContractField contract = 37;  // 合约
+	GatewayField gateway = 38;  // 网关
+}
+
+// Bar
+message BarField {
+	string dataSourceId = 1;  // 数据源ID <合约代码@交易所代码@产品类型@网关ID>
+	string tradingDay = 2;  // 交易日
+	string actionDay = 3;  // 业务发生日
+	string actionTime = 4;  // 时间(HHmmssSSS)
+	fixed64 actionTimestamp = 5;  // 时间戳
+	double openPrice = 6;  // 开
+	double highPrice = 7;  // 高
+	double lowPrice = 8;  // 低
+	double closePrice = 9;  // 收
+	double openInterest = 10;  // 最后持仓量
+	double openInterestChange = 11;  // 持仓量（Bar）
+	fixed64 volume = 12;  // 最后总成交量
+	fixed64 volumeChange = 13;  // 成交量（Bar）
+	double turnover = 14;  // 最后成交总额
+	double turnoverChange = 15;  // 成交总额（Bar）
+	fixed64 numTrades = 16;  // 最新成交笔数
+	fixed64 numTradesChange = 17;  // 成交笔数（Bar）
+	ContractField contract = 18;  // 合约
+	GatewayField gateway = 19;  // 网关
+}
+
+// 通用请求
+message CommonReqField {
+	string reqId = 1;  // 请求ID
+	string operatorId = 2;  //  操作者ID
+	fixed32 targetNodeId = 3; // 目标节点ID
+	fixed32 sourceNodeId = 4; // 来源节点ID
+}
+
+// 通用推送回报
+message CommonRtnField {
+	string reqId = 1;  // 请求ID
+	fixed32 targetNodeId = 2;  // 目标节点ID
+	fixed32 sourceNodeId = 3;  // 来源节点ID
+}
+
+// 通用回报
+message CommonRspField {
+	string reqId = 1;  // 请求ID
+	CommonStatusEnum requestStatus = 2;  // 请求状态
+	string info = 3;  // 信息
+	fixed32 targetNodeId = 4;  // 目标节点ID
+	fixed32 sourceNodeId = 5;  // 来源节点ID
+}
+
+// 提交定单请求
+message SubmitOrderReqField {
+	string originOrderId = 1;  //  原始定单ID
+	string accountCode = 2;  // 账户代码
+	CurrencyEnum currency = 3;  // 币种
+	ContractField contract = 4;  //  合约
+	string gatewayId = 5; // 网关ID
+ 	double price = 6;  // 价格
+	fixed32 volume = 7;  // 数量
+	DirectionEnum direction = 8;  // 方向
+	OffsetEnum offset = 9;  // 开平
+	PriceTypeEnum priceType = 10;  // 价格类型
+	TimeConditionTypeEnum timeConditionType = 11;  // 时效
+}
+
+// 撤单请求
+message CancelOrderReqField {
+	string originOrderId = 1;  // 原始定单ID
+	string orderId = 2;  // 定单ID
+}
+
+// 网关设置
+message GatewaySettingField {
+	message CtpApiSettingField {
+		string userId = 1;
+		string password = 2;
+		string brokerId = 3;
+		string tdHost = 4;
+		string tdPort = 5;
+		string mdHost = 6;
+		string mdPort = 7;
+		string authCode = 8;
+		string userProductInfo = 9; 
+		string appId = 10; 
+	}
+
+	message IbApiSettingField {
+		string host = 1;
+		fixed32 port = 2;
+		fixed32 clientId = 3;
+	}
+	
+	string gatewayId = 1;  // 网关ID
+	string gatewayName = 2;  // 网关名称
+	string gatewayDescription = 4;  // 网关描述
+	string implementClassName = 5;  // 实现类
+	
+	GatewayTypeEnum gatewayType = 6;  // 网关类型
+	GatewayAdapterTypeEnum gatewayAdapterType = 7;  // 网关适配器类型
+	CtpApiSettingField ctpApiSetting = 8;
+	IbApiSettingField ibApiSetting = 9;
+	ConnectStatusEnum status = 10;
+	fixed64 version = 11;
+	
+}
+
+message LogField {
+	LogLevelEnum logLevel = 1;
+	fixed64 timestamp = 2;
+	string content = 3;
+}
+
+message NoticeField {
+	CommonStatusEnum status = 1;
+	fixed64 timestamp = 2;
+	string content = 3;
+}
+

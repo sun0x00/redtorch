@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.0.RELEASE'
+}
+
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """子节点模块"""
+
+springBoot {
+	mainClassName = 'xyz.redtorch.RtNodeSlaveApplication'
+}
+
+dependencies {
+	compile project(':rt-common')
+	compile project(':rt-gateway-api')
+	compile project(':rt-gateway-impl-ctp')
+   	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
+			exclude(module: 'spring-boot-starter-tomcat')
+			// exclude(module: 'spring-boot-starter-logging')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+    // compile group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version:"${rootProject.springBootVersion}"
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
+	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
+}

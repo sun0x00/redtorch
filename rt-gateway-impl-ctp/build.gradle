@@ -1,0 +1,7 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """CTP网关接口模块"""
+
+dependencies {
+	compile project(':rt-gateway-api')
+}
