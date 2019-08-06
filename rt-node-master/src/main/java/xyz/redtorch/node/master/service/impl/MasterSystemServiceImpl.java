@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -41,9 +42,12 @@ public class MasterSystemServiceImpl implements MasterSystemService {
 	@Autowired
 	private GatewayService gatewayService;
 
+	@Value("${rt.node.slave.operatorId}")
+	private String slaveOperatorId;
 	private Map<String, Integer> gatewayIdNodeIdMap = new HashMap<>();
 
 	private Lock gatewayIdNodeIdMapLock = new ReentrantLock();
+	
 
 	@Override
 	public Integer getSlaveNodeIdByGatewayId(String gatewayId) {
@@ -78,7 +82,15 @@ public class MasterSystemServiceImpl implements MasterSystemService {
 
 	@Override
 	public List<GatewaySettingField> queryGatewaySettingList(CommonReqField commonReq, List<GatewayField> gatewayList) {
+		
 
+		List<GatewaySettingField> gatewaySettingList = new ArrayList<>();
+
+		if(!slaveOperatorId.equals(commonReq.getOperatorId())) {
+			logger.error("查询网关设置列表错误,从节点操作员ID验证失败");
+			return gatewaySettingList;
+		}
+		
 		Map<String, GatewayField> gatewayMap = new HashMap<>();
 		// 处理节点报送过来的网关状态信息
 		if (gatewayList != null) {
@@ -129,7 +141,6 @@ public class MasterSystemServiceImpl implements MasterSystemService {
 			}
 		}
 
-		List<GatewaySettingField> gatewaySettingList = new ArrayList<>();
 		gatewayPoList = gatewayService.getGatewayList();
 		for (GatewayPo gatewayPo : gatewayPoList) {
 			if (gatewayPo.getTargetNodeId() == commonReq.getSourceNodeId()) {
