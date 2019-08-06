@@ -133,7 +133,7 @@ public class GatewayServiceImpl implements GatewayService, InitializingBean {
 				if (RtConstant.SECURITY_MASK.equals(gateway.getCtpSetting().getAuthCode())) {
 					gateway.getCtpSetting().setAuthCode(dbGateway.getCtpSetting().getAuthCode());
 				}
-				if (RtConstant.SECURITY_MASK.equals(gateway.getCtpSetting().getAuthCode())) {
+				if (RtConstant.SECURITY_MASK.equals(gateway.getCtpSetting().getPassword())) {
 					gateway.getCtpSetting().setPassword(dbGateway.getCtpSetting().getPassword());
 				}
 			}
