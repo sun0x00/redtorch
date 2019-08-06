@@ -97,7 +97,7 @@ public class NodeServiceImpl implements NodeService, InitializingBean {
 			// 二是不允许自动生成[0,10000]之间的ID，预留
 			// 三是不允许自动生成[60000000,90000000]之间的ID,这段ID将用于用户登录自动生成ID
 			while (nodeIdSet.contains(newNodeId) || (newNodeId >= 0 && newNodeId <= 10000)
-					|| (newNodeId >= 6660000 && newNodeId <= 6669999)) {
+					|| (newNodeId >= 60000000 && newNodeId <= 90000000)) {
 				newNodeId++;
 			}
 			node.setNodeId(newNodeId);
