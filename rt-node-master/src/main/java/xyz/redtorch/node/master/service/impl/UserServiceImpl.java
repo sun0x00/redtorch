@@ -2,6 +2,7 @@ package xyz.redtorch.node.master.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
 	 * 预设的取值范围是[60000000,90000000] 从理论上，有3000万次登录之后才有很小的几率出现错误， 数字会不断累加直到下次重启
 	 */
 	private volatile int nodeId = 60000000;
+	private ReentrantLock userAuthLock = new ReentrantLock();
 
 	@Override
 	public UserPo userAuth(UserPo user) {
@@ -63,63 +65,68 @@ public class UserServiceImpl implements UserService {
 
 		// 获取密码的SHA-256散列值
 		String passwoedSha256hex = DigestUtils.sha256Hex(user.getPassword());
-
-		if (user.getUsername().equals("admin")) {
-			// 对admin用户使用配置文件密码校验
-			if (adminPasswordSha256.equals(passwoedSha256hex)) {
-				UserPo resUser = new UserPo();
-				resUser.setUsername("admin");
-				do {
-					nodeId++;
-				} while (webSocketServerHandler.containsNodeId(nodeId));
-				logger.error("用户审核通过,用户名:{},分配节点ID:{}", user.getUsername(), nodeId);
-				resUser.setRecentlyNodeId(nodeId);
-				resUser.setOperatorId(operatorId);
-				// 全部授权
-				resUser.setCanChangeGatewayStatus(true);
-				resUser.setCanChangeNodeToken(true);
-				resUser.setCanChangeOperatorStatus(true);
-				resUser.setCanReadGateway(true);
-				resUser.setCanReadLog(true);
-				resUser.setCanReadMarketDataRecording(true);
-				resUser.setCanReadNode(true);
-				resUser.setCanReadOperator(true);
-				resUser.setCanReadUser(true);
-				resUser.setCanWriteGateway(true);
-				resUser.setCanWriteMarketDataRecording(true);
-				resUser.setCanWriteNode(true);
-				resUser.setCanWriteOperator(true);
-				resUser.setCanWriteUser(true);
-				return resUser;
-			}
-			return null;
-		} else {
-			// 非admin用户查询数据库
-			UserPo queriedUser = userDao.queryUserByUsername(user.getUsername());
-			if (queriedUser == null || StringUtils.isBlank(queriedUser.getPassword())) {
-				return null;
-			} else {
-				if (queriedUser.getPassword().equals(passwoedSha256hex)) {
+		
+		userAuthLock.lock();
+		try {
+			if (user.getUsername().equals("admin")) {
+				// 对admin用户使用配置文件密码校验
+				if (adminPasswordSha256.equals(passwoedSha256hex)) {
+					UserPo resUser = new UserPo();
+					resUser.setUsername("admin");
 					do {
 						nodeId++;
 					} while (webSocketServerHandler.containsNodeId(nodeId));
-					queriedUser.setRecentlyIpAddress(user.getRecentlyIpAddress());
-					queriedUser.setRecentlyPort(user.getRecentlyPort());
-					queriedUser.setRecentlySessionId(user.getRecentlySessionId());
-					queriedUser.setRecentlyNodeId(nodeId);
-					queriedUser
-							.setRecentlyLoginTime(CommonUtils.DT_FORMAT_WITH_MS_FORMATTER.format(LocalDateTime.now()));
-					if (queriedUser.getLoginTimes() == null) {
-						queriedUser.setLoginTimes(1);
-					} else {
-						queriedUser.setLoginTimes(queriedUser.getLoginTimes() + 1);
-					}
-					userDao.upsertUserByUsername(queriedUser);
-					queriedUser.setPassword(RtConstant.SECURITY_MASK);
-					return queriedUser;
+					logger.error("用户审核通过,用户名:{},分配节点ID:{}", user.getUsername(), nodeId);
+					resUser.setRecentlyNodeId(nodeId);
+					resUser.setOperatorId(operatorId);
+					// 全部授权
+					resUser.setCanChangeGatewayStatus(true);
+					resUser.setCanChangeNodeToken(true);
+					resUser.setCanChangeOperatorStatus(true);
+					resUser.setCanReadGateway(true);
+					resUser.setCanReadLog(true);
+					resUser.setCanReadMarketDataRecording(true);
+					resUser.setCanReadNode(true);
+					resUser.setCanReadOperator(true);
+					resUser.setCanReadUser(true);
+					resUser.setCanWriteGateway(true);
+					resUser.setCanWriteMarketDataRecording(true);
+					resUser.setCanWriteNode(true);
+					resUser.setCanWriteOperator(true);
+					resUser.setCanWriteUser(true);
+					return resUser;
 				}
 				return null;
+			} else {
+				// 非admin用户查询数据库
+				UserPo queriedUser = userDao.queryUserByUsername(user.getUsername());
+				if (queriedUser == null || StringUtils.isBlank(queriedUser.getPassword())) {
+					return null;
+				} else {
+					if (queriedUser.getPassword().equals(passwoedSha256hex)) {
+						do {
+							nodeId++;
+						} while (webSocketServerHandler.containsNodeId(nodeId));
+						queriedUser.setRecentlyIpAddress(user.getRecentlyIpAddress());
+						queriedUser.setRecentlyPort(user.getRecentlyPort());
+						queriedUser.setRecentlySessionId(user.getRecentlySessionId());
+						queriedUser.setRecentlyNodeId(nodeId);
+						queriedUser
+								.setRecentlyLoginTime(CommonUtils.DT_FORMAT_WITH_MS_FORMATTER.format(LocalDateTime.now()));
+						if (queriedUser.getLoginTimes() == null) {
+							queriedUser.setLoginTimes(1);
+						} else {
+							queriedUser.setLoginTimes(queriedUser.getLoginTimes() + 1);
+						}
+						userDao.upsertUserByUsername(queriedUser);
+						queriedUser.setPassword(RtConstant.SECURITY_MASK);
+						return queriedUser;
+					}
+					return null;
+				}
 			}
+		} finally {
+			userAuthLock.unlock();
 		}
 	}
 

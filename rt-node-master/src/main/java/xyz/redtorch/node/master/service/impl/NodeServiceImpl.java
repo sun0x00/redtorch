@@ -64,7 +64,7 @@ public class NodeServiceImpl implements NodeService, InitializingBean {
 	}
 
 	@Override
-	public NodePo createNode() {
+	public synchronized NodePo createNode() {
 		List<NodePo> nodeList = nodeDao.queryNodeList();
 		NodePo node = new NodePo();
 		node.setStatus(NodePo.NODE_STATUS_DISCONNECTED);
