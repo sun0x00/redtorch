@@ -121,7 +121,7 @@ public class MasterSystemServiceImpl implements MasterSystemService {
 					}
 				} else {
 					if (gatewayPo.getStatus() == ConnectStatusEnum.CS_Disconnecting_VALUE) {
-						gatewayPo.setStatus(ConnectStatusEnum.CS_Disconnecting_VALUE);
+						gatewayPo.setStatus(ConnectStatusEnum.CS_Disconnected_VALUE);
 						gatewayService.upsertGatewayByGatewayId(gatewayPo);
 					}
 
