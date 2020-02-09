@@ -1,0 +1,392 @@
+syntax = "proto3";
+
+package xyz.redtorch.pb;
+
+// 策略引擎类型
+enum StrategyEngineTypeEnum {
+	SET_Treading = 0;
+	SET_Backtesting = 1;
+}
+
+// 网关类型
+enum  GatewayTypeEnum {
+	GTE_TradeAndMarketData = 0;  // 交易和行情数据
+	GTE_MarketData = 1;  // 行情数据
+	GTE_Trade = 2;  // 交易
+}
+
+// 网关适配器类型
+enum GatewayAdapterTypeEnum {
+	GAT_CTP = 0;  // CTP
+	GAT_IB = 1;  // IB
+}
+
+// 通用状态
+enum CommonStatusEnum {
+	COMS_SUCCESS = 0;  // 成功
+	COMS_INFO = 1;  // 信息
+	COMS_WARN = 2;  // 警告
+	COMS_ERROR = 3;  // 错误
+}
+
+enum LogLevelEnum {
+    LL_All = 0;
+    LL_Error = 40000;
+    LL_Warn = 30000;
+    LL_Info = 20000;
+    LL_Debug = 10000;
+    LL_Trace = 5000;
+}
+
+// 行情数据库类型
+enum MarketDataDBTypeEnum {
+	MDDT_MIX = 0;
+	MDDT_TD = 1;
+	MDDT_HIST = 2;
+}
+
+// Bar周期
+enum BarCycleEnum {
+	B_5Sec = 0;
+	B_1Min = 1;
+	B_3Min = 2;
+	B_5Min = 3;
+	B_15Min = 4;
+	B_1Day = 5;
+}
+
+// 连接状态
+enum ConnectStatusEnum {
+	CS_Unkonwn = 0; // 未知
+	CS_Disconnected = 1; // 已经断开
+	CS_Connected = 2;  // 已经连接
+	CS_Disconnecting = 3; // 断开中
+	CS_Connecting = 4; // 连接中
+}
+
+// OrderActionStatusEnum是一个报单操作状态类型
+enum OrderActionStatusTyp {
+	OAS_Unkonwn = 0; // 未知
+	OAS_Submitted = 1; // 已经提交
+	OAS_Accepted = 2; // 已经接受
+	OAS_Rejected = 3; // 已经被拒绝
+}
+
+// OrderStatusEnum是一个报单状态类型
+enum OrderStatusEnum {
+	OS_Unknown = 0; // 未知
+	OS_AllTraded = 1; // 全部成交
+	OS_PartTradedQueueing = 2; // 部分成交还在队列中
+	OS_PartTradedNotQueueing = 3; // 部分成交不在队列中
+	OS_NoTradeQueueing = 4; // 未成交还在队列中
+	OS_NoTradeNotQueueing = 5; // 未成交不在队列中
+	OS_Canceled = 6; // 撤单
+	OS_NotTouched = 7; // 尚未触发
+	OS_Touched = 8; // 已触发
+	OS_Rejected = 9; // 已拒绝
+}
+
+// OrderSubmitStatusEnum是一个报单提交状态类型
+enum OrderSubmitStatusEnum {
+	OSS_Unknown = 0; // 未知
+	OSS_InsertSubmitted = 1; // 已经提交
+	OSS_CancelSubmitted = 2; // 撤单已经提交
+	OSS_ModifySubmitted = 3; // 修改已经提交
+	OSS_Accepted = 4; // 已经接受
+	OSS_InsertRejected = 5; // 报单已经被拒绝
+	OSS_CancelRejected = 6; // 撤单已经被拒绝
+	OSS_ModifyRejected = 7; // 改单已经被拒绝
+}
+
+// ProductClassEnum是一个产品类型类型
+enum ProductClassEnum {
+	UnknownProductClass = 0; // 未知
+	EQUITY = 1;  // 股票
+	FUTURES = 2;  // 期货
+	OPTION = 3;  // 期权
+	INDEX = 4;  // 指数
+	COMBINATION = 5;  // 组合
+	BOND = 6;  // 债券
+	FOREX = 7;  // 外汇
+	SPOT = 8;  // 现货
+	DEFER = 9;  // 展期
+	ETF = 10;  // ETF
+	WARRANTS = 11;  // 权证
+    SPREAD = 12;  // 价差
+    FUND = 13;  // 基金
+    EFP = 14;  // 期转现
+	SPOTOPTION = 15;  // 现货期权
+}
+
+enum DirectionEnum{
+	D_Unknown = 0;  // 未知
+	D_Buy = 1; // 买 
+	D_Sell =2; // 卖
+
+}
+
+// PositionTypeEnum是一个持仓类型类型
+enum PositionTypeEnum {
+	PT_Unknown = 0;  // 未知
+	PT_Net = 1; // 净持仓
+	PT_Gross = 2; // 综合持仓
+}
+
+// PositionDirectionEnum是一个持仓多空方向类型
+enum PositionDirectionEnum {
+	PD_Unknown = 0;  // 未知
+	PD_Net = 1; // 净
+	PD_Long = 2;  // 多
+	PD_Short = 3;  // 空
+}
+
+
+// HedgeFlagEnum是一个投机套保标志类型
+enum HedgeFlagEnum {
+	HF_Unknown = 0; // 未知
+	HF_Speculation = 1; // 投机
+	HF_Arbitrage = 2; // 套利
+	HF_Hedge = 3; // 套保
+	HF_MarketMaker = 4; // 做市商
+	HF_SpecHedge = 5; // 第一腿投机第二腿套保 大商所专用
+	HF_HedgeSpec = 6; // 第一腿套保第二腿投机  大商所专用
+}
+
+// OrderPriceTypeEnum是一个报单价格条件类型
+enum OrderPriceTypeEnum {
+	OPT_Unknown = 0; // 未知
+	OPT_AnyPrice = 1; // 任意价
+	OPT_LimitPrice = 2; // 限价
+	OPT_BestPrice = 3; // 最优价
+	OPT_LastPrice = 4; // 最新价
+	OPT_LastPricePlusOneTicks = 5; // 最新价浮动上浮1个ticks
+	OPT_LastPricePlusTwoTicks = 6; // 最新价浮动上浮2个ticks
+	OPT_LastPricePlusThreeTicks = 7; // 最新价浮动上浮3个ticks
+	OPT_AskPrice1 = 8; // 卖一价
+	OPT_AskPrice1PlusOneTicks = 9; // 卖一价浮动上浮1个ticks
+	OPT_AskPrice1PlusTwoTicks = 10; // 卖一价浮动上浮2个ticks
+	OPT_AskPrice1PlusThreeTicks = 11; //  卖一价浮动上浮3个ticks
+	OPT_BidPrice1 = 12; // 买一价
+	OPT_BidPrice1PlusOneTicks = 13; // 买一价浮动上浮1个ticks
+	OPT_BidPrice1PlusTwoTicks = 14; // 买一价浮动上浮2个ticks
+	OPT_BidPrice1PlusThreeTicks = 15; // 买一价浮动上浮3个ticks
+	OPT_FiveLevelPrice = 16; // 五档价
+}
+
+// OffsetFlagEnum是一个开平标志类型
+enum OffsetFlagEnum {
+	OF_Unkonwn = 0; // 未知
+	OF_Open = 1; // 开仓
+	OF_Close = 2; // 平仓
+	OF_ForceClose = 3; // 强平
+	OF_CloseToday = 4; // 平今
+	OF_CloseYesterday = 5; // 平昨
+	OF_ForceOff = 6; // 强减
+	OF_LocalForceClose = 7; // 本地强平
+}
+
+// ForceCloseReasonEnum是一个强平原因类型
+enum ForceCloseReasonEnum {
+	FCR_Unkonwn = 0; // 未知
+	FCR_NotForceClose = 1; // 非强平
+	FCR_LackDeposit = 2; // 资金不足
+	FCR_ClientOverPositionLimit = 3; // 客户超仓
+	FCR_MemberOverPositionLimit = 4; // 会员超仓
+	FCR_NotMultiple = 5; // 持仓非整数倍
+	FCR_Violation = 6; // 违规
+	FCR_Other = 7; // 其它
+	FCR_PersonDeliver = 8; // 自然人临近交割
+}
+
+// OrderTypeEnum是一个报单类型类型
+enum OrderTypeEnum {
+	OT_Unkonwn = 0; // 未知
+	OT_Normal = 1; // 正常
+	OT_DeriveFromQuote = 2; // 报价衍生
+	OT_DeriveFromCombination = 3; // 组合衍生
+	OT_Combination = 4; // 组合报单
+	OT_ConditionalOrder = 5; // 条件单
+	OT_Swap = 6; // 互换单
+}
+
+// TimeConditionEnum是一个有效期类型类型
+enum TimeConditionEnum {
+	TC_Unkonwn = 0; // 未知
+	TC_IOC = 1; // 立即完成，否则撤销
+	TC_GFS = 2; // 本节有效
+	TC_GFD = 3; // 当日有效
+	TC_GTD = 4; // 指定日期前有效
+	TC_GTC = 5; // 撤销前有效
+	TC_GFA = 6; // 集合竞价有效
+}
+
+
+// VolumeConditionEnum是一个成交量类型类型
+enum VolumeConditionEnum {
+	VC_Unkonwn = 0; // 未知
+	VC_AV = 1; // 任何数量
+	VC_MV = 2; // 最小数量
+	VC_CV = 3; // 全部数量
+}
+
+// ContingentConditionEnum是一个触发条件类型
+enum ContingentConditionEnum {
+	CC_Unkonwn = 0; // 未知
+	CC_Immediately = 1; // 立即
+	CC_Touch = 2; // 止损
+	CC_TouchProfit = 3; // 止赢
+	CC_ParkedOrder = 4; // 预埋单
+	CC_LastPriceGreaterThanStopPrice = 5; // 最新价大于条件价
+	CC_LastPriceGreaterEqualStopPrice = 6; // 最新价大于等于条件价
+	CC_LastPriceLesserThanStopPrice = 7; // 最新价小于条件价
+	CC_LastPriceLesserEqualStopPrice = 8; // 最新价小于等于条件价
+	CC_AskPriceGreaterThanStopPrice = 9; // 卖一价大于条件价
+	CC_AskPriceGreaterEqualStopPrice = 10; // 卖一价大于等于条件价 
+	CC_AskPriceLesserThanStopPrice = 11; // 卖一价小于条件价
+	CC_AskPriceLesserEqualStopPrice = 12; // 卖一价小于等于条件价
+	CC_BidPriceGreaterThanStopPrice = 13; // 买一价大于条件价
+	CC_BidPriceGreaterEqualStopPrice = 14; // 买一价大于等于条件价
+	CC_BidPriceLesserThanStopPrice = 15; // 买一价小于条件价
+	CC_BidPriceLesserEqualStopPrice = 16; // 买一价小于等于条件价
+	CC_LocalLastPriceLesserEqualStopPrice = 17; // (本地)最新价小于等于条件价
+	CC_LocalLastPriceGreaterEqualStopPrice = 18; // (本地)最新价大于等于条件价
+}
+
+// ActionFlagEnum是一个操作标志类型
+enum ActionFlagEnum {
+	AF_Unkonwn = 0; // 未知
+	AF_Delete = 1; // 删除
+	AF_Modify = 2; // 修改
+}
+
+// TradingRightEnum是一个交易权限类型
+enum TradingRightEnum {
+	TR_Unkonwn = 0; // 未知
+	TR_Allow = 1; // 可以交易
+	TR_CloseOnly = 2; // 只能平仓
+	TR_Forbidden = 3; // 不能交易
+}
+
+// OrderSourceEnum是一个报单来源类型
+enum OrderSourceEnum {
+	ODS_Unkonwn = 0; // 未知
+	ODS_Participant = 1; // 来自参与者
+	ODS_Administrator = 2; // 来自管理员
+}
+
+// TradeTypeEnum是一个成交类型类型
+enum TradeTypeEnum {
+	TT_Unkonwn = 0; // 未知
+	TT_SplitCombination = 1; // 组合持仓拆分为单一持仓,初始化不应包含该类型的持仓
+	TT_Common = 2; // 普通成交
+	TT_OptionsExecution = 3; // 期权执行
+	TT_OTC = 4; // OTC成交 
+	TT_EFPDerived = 5; // 期转现衍生成交
+	TT_CombinationDerived = 6; // 组合衍生成交
+	TT_BlockTrade = 7; // 大宗交易成交
+}
+
+// PriceSourceEnum是一个成交价来源类型
+enum PriceSourceEnum {
+	PSRC_Unkonwn = 0; // 未知
+	PSRC_LastPrice = 1; // 前成交价
+	PSRC_Buy = 2; // 买委托价 
+	PSRC_Sell = 3; // 卖委托价
+	PSRC_OTC = 4; // 场外成交价
+}
+
+// CurrencyEnum是一个货币类型
+enum CurrencyEnum {
+	UnknownCurrency = 0;  // 未知
+	USD = 1;  // 美元
+	CNY = 2;  // 人民币
+	CNH = 3;  // 离岸人民币
+	HKD = 4;  // 港币
+	JPY = 5;  // 日元
+	EUR = 6;  // 欧元
+	GBP = 7;  // 英镑
+	DEM = 8;  // 德国马克
+	CHF = 9;  // 瑞士法郎
+	FRF = 10;  // 法国法郎
+	CAD = 11;  // 加拿大元
+	AUD = 12;  // 澳大利亚元
+	ATS = 13;  // 奥地利先令
+	FIM = 14;  // 芬兰马克
+	BEF = 15;  // 比利时法郎
+	THB = 16;  // 泰铢
+	IEP = 17;  // 爱尔兰镑
+	ITL = 18;  // 意大利里拉
+	LUF = 19;  // 卢森堡法郎
+	NLG = 20;  // 荷兰盾
+	PTE = 21;  // 葡萄牙埃斯库多
+	ESP = 22;  // 西班牙比塞塔
+	IDR = 23;  // 印尼盾
+	MYR = 24;  // 马来西亚林吉特
+	NZD = 25;  // 新西兰元
+	PHP = 26;  // 菲律宾比索
+	SUR = 27;  // 俄罗斯卢布
+	SGD = 28;  // 新加坡元
+	KRW = 29;  // 韩国元
+}
+
+// ExchangeEnum是一个交易所类型
+enum ExchangeEnum {
+	UnknownExchange = 0;  // 未知
+	SSE = 1;  // 上海证券交易所
+	SZSE = 2;  // 深圳证券交易所
+	CFFEX = 3;  // 中国金融期货交易所
+	SHFE = 4;  // 上海期货交易所
+	CZCE = 5;  // 郑州商品交易所
+	DCE = 6;  // 大连商品交易所
+	SGE = 7;  // 上海黄金交易所
+	INE = 8;  // 上海国际能源交易中心
+	SEHK = 9;  // 香港联合交易所
+	HKFE = 10;  // 香港期货交易所
+	SGX = 11;  // 新加坡证券交易所
+	NYBOT = 12;  //纽约期货交易所
+	NYMEX = 13;  // 纽约商业交易所
+	COMEX = 14;  // 纽约金属交易所
+	CME = 15;  // 芝加哥商业交易所
+	CFE = 16;  // 芝加哥期权交易所期货交易分所
+	GLOBEX = 17;  // CME Globex
+	ICE = 18;  // 美国洲际交易所
+	IPE = 19;  // 伦敦国际石油交易所
+	LME = 20;  // 伦敦金属交易所
+	IDEALPRO = 21;  // IDEALPRO（IB外汇）
+	OANDA = 22;  // OANDA外汇做市商
+	FXCM = 23;  // FXCM外汇做市商
+	SMART = 24;  // IB智能路由
+}
+
+// OptionsTypeEnum是一个期权类型类型
+enum OptionsTypeEnum {
+	O_Unknown = 0;  // 未知
+	O_CallOptions = 1; // 看涨
+	O_PutOptions = 2; // 看跌
+}
+
+// StrikeModeEnum是一个执行方式类型
+enum StrikeModeEnum {
+	STM_Unknown = 0;  // 未知
+	STM_Continental = 1; // 欧式
+	STM_American = 2; // 美式
+	STM_Bermuda = 3; // 百慕大
+}
+
+// CombinationTypeEnum是一个组合类型类型
+enum CombinationTypeEnum {
+	COMBT_Unknown = 0;  // 未知
+	COMBT_Future = 1; // 期货组合
+	COMBT_BUL = 2; // 垂直价差BUL
+	COMBT_BER = 3; // 垂直价差BER
+	COMBT_STD = 4; // 跨式组合
+	COMBT_STG = 5; // 宽跨式组合
+	COMBT_PRT = 6; // 备兑组合
+	COMBT_CLD = 7; // 时间价差组合
+}
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+plugins {
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'application'
+	id 'org.springframework.boot' version '2.1.0.RELEASE'
+}
+
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """桌面客户端"""
+
+
+javafx {
+    version = '11.0.2'
+    modules = [ 
+    	'javafx.controls', 
+    	'javafx.fxml',
+    	'javafx.base',
+    	'javafx.controls',
+    	'javafx.media',
+    	'javafx.swing',
+    	'javafx.web',
+    ]
+}
+
+springBoot {
+	mainClassName = 'xyz.redtorch.desktop.RedTorchApp'
+}
+
+dependencies {
+	compile project(':rt-common')
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
+			exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+	compile group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
+	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
+}
+
+mainClassName = 'xyz.redtorch.desktop.RedTorchApp'

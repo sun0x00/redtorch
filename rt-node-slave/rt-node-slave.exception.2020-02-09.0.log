@@ -1,0 +1,66 @@
+2020-02-09 14:18:16.501 [main                ] [WARN ]  [RtWebSocketClient.java:231] RtWebSocketClient >>> 自动重连服务器已启用 
+2020-02-09 14:18:27.008 [pool-4-thread-1     ] [WARN ]  [TdSpi.java:212] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口实例初始化 
+2020-02-09 14:18:27.009 [pool-4-thread-1     ] [WARN ]  [TdSpi.java:226] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口使用临时文件夹C:\Users\ADMINI~1\AppData\Local\Temp\2\xyz\redtorch\gateway\ctp\jctpv6v3v15x64api\CTP_FLOW_TEMP 
+2020-02-09 14:18:27.011 [pool-4-thread-1     ] [WARN ]  [MdSpi.java:111] MdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 行情接口实例初始化 
+2020-02-09 14:18:27.012 [pool-4-thread-1     ] [WARN ]  [MdSpi.java:126] MdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 行情接口使用临时文件夹:C:\Users\ADMINI~1\AppData\Local\Temp\2\xyz\redtorch\gateway\ctp\jctpv6v3v15x64api\CTP_FLOW_TEMP 
+2020-02-09 14:18:27.014 [pool-4-thread-1     ] [WARN ]  [SlaveSystemServiceImpl.java:151] SlaveSystemServiceImpl >>> 连接网关完成,网关ID:52a91f77-c3a7-42ac-a4fe-7a605b99ff4a,网关名称:094948SIM10130 
+2020-02-09 14:18:27.015 [pool-4-thread-1     ] [WARN ]  [TdSpi.java:212] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口实例初始化 
+2020-02-09 14:18:27.016 [pool-4-thread-1     ] [WARN ]  [TdSpi.java:226] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口使用临时文件夹C:\Users\ADMINI~1\AppData\Local\Temp\2\xyz\redtorch\gateway\ctp\jctpv6v3v15x64api\CTP_FLOW_TEMP 
+2020-02-09 14:18:27.017 [pool-4-thread-1     ] [WARN ]  [MdSpi.java:111] MdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 行情接口实例初始化 
+2020-02-09 14:18:27.017 [pool-4-thread-1     ] [WARN ]  [MdSpi.java:126] MdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 行情接口使用临时文件夹:C:\Users\ADMINI~1\AppData\Local\Temp\2\xyz\redtorch\gateway\ctp\jctpv6v3v15x64api\CTP_FLOW_TEMP 
+2020-02-09 14:18:27.018 [pool-4-thread-1     ] [WARN ]  [SlaveSystemServiceImpl.java:151] SlaveSystemServiceImpl >>> 连接网关完成,网关ID:8980aad4-7299-4615-93fa-cdcb95b76e14,网关名称:095076SIM10130 
+2020-02-09 14:18:27.127 [Thread-7            ] [WARN ]  [TdSpi.java:593] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口前置机已连接 
+2020-02-09 14:18:27.137 [Thread-8            ] [WARN ]  [MdSpi.java:261] MdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 行情接口前置机已连接 
+2020-02-09 14:18:27.139 [Thread-9            ] [WARN ]  [MdSpi.java:261] MdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 行情接口前置机已连接 
+2020-02-09 14:18:27.141 [Thread-10           ] [WARN ]  [TdSpi.java:593] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口前置机已连接 
+2020-02-09 14:18:27.173 [Thread-11           ] [WARN ]  [MdSpi.java:289] MdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 行情接口获取到的交易日为20200207 
+2020-02-09 14:18:27.176 [Thread-12           ] [WARN ]  [MdSpi.java:289] MdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 行情接口获取到的交易日为20200207 
+2020-02-09 14:18:27.199 [Thread-13           ] [WARN ]  [TdSpi.java:704] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口客户端验证成功 
+2020-02-09 14:18:27.214 [Thread-14           ] [WARN ]  [TdSpi.java:704] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口客户端验证成功 
+2020-02-09 14:18:27.531 [Thread-15           ] [WARN ]  [TdSpi.java:616] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口登录成功 TradingDay:20200207,SessionID:-1539958046,BrokerID:9999,UserID:095076 
+2020-02-09 14:18:27.531 [Thread-15           ] [WARN ]  [TdSpi.java:623] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口获取到的交易日为20200207 
+2020-02-09 14:18:27.535 [Thread-16           ] [WARN ]  [TdSpi.java:616] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口登录成功 TradingDay:20200207,SessionID:-1539958047,BrokerID:9999,UserID:094948 
+2020-02-09 14:18:27.535 [Thread-16           ] [WARN ]  [TdSpi.java:623] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口获取到的交易日为20200207 
+2020-02-09 14:18:27.808 [Thread-716          ] [WARN ]  [TdSpi.java:876] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口结算信息确认完成 
+2020-02-09 14:18:27.812 [Thread-762          ] [WARN ]  [TdSpi.java:876] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口结算信息确认完成 
+2020-02-09 14:18:28.809 [Thread-716          ] [WARN ]  [TdSpi.java:886] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口开始查询投资者信息 
+2020-02-09 14:18:28.814 [Thread-762          ] [WARN ]  [TdSpi.java:886] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口开始查询投资者信息 
+2020-02-09 14:18:28.845 [Thread-763          ] [WARN ]  [TdSpi.java:1156] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口获取到的投资者名为:leosun1 
+2020-02-09 14:18:28.850 [Thread-764          ] [WARN ]  [TdSpi.java:1156] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口获取到的投资者名为:leosun 
+2020-02-09 14:18:29.847 [Thread-763          ] [WARN ]  [TdSpi.java:1171] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口开始查询合约信息 
+2020-02-09 14:18:29.851 [Thread-764          ] [WARN ]  [TdSpi.java:1171] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口开始查询合约信息 
+2020-02-09 14:18:30.326 [Thread-1810         ] [WARN ]  [TdSpi.java:1243] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口合约信息获取完成!共计542条 
+2020-02-09 14:18:30.327 [Thread-1810         ] [WARN ]  [TdSpi.java:1247] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口开始推送缓存Order,共计0条 
+2020-02-09 14:18:30.328 [Thread-1810         ] [WARN ]  [TdSpi.java:1260] TdSpi >>> 网关ID-[8980aad4-7299-4615-93fa-cdcb95b76e14] 名称-[095076SIM10130] [→] 交易接口开始推送缓存Trade,共计0条 
+2020-02-09 14:18:30.330 [Thread-1849         ] [WARN ]  [TdSpi.java:1243] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口合约信息获取完成!共计542条 
+2020-02-09 14:18:30.331 [Thread-1849         ] [WARN ]  [TdSpi.java:1247] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口开始推送缓存Order,共计0条 
+2020-02-09 14:18:30.331 [Thread-1849         ] [WARN ]  [TdSpi.java:1260] TdSpi >>> 网关ID-[52a91f77-c3a7-42ac-a4fe-7a605b99ff4a] 名称-[094948SIM10130] [→] 交易接口开始推送缓存Trade,共计0条 
+2020-02-09 14:23:08.910 [XNIO-1 I/O-1        ] [ERROR]  [RtWebSocketClient.java:173] RtWebSocketClient >>> 传输错误,会话ID:5906645c-7a8b-cac7-d2f5-f55c24fb4fa7 
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at java.base/sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43)
+	at java.base/sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:276)
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:245)
+	at java.base/sun.nio.ch.IOUtil.read(IOUtil.java:223)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:358)
+	at org.xnio.nio.NioSocketConduit.read(NioSocketConduit.java:319)
+	at io.undertow.conduits.IdleTimeoutConduit.read(IdleTimeoutConduit.java:202)
+	at org.xnio.conduits.ConduitStreamSourceChannel.read(ConduitStreamSourceChannel.java:127)
+	at io.undertow.server.protocol.framed.AbstractFramedChannel.receive(AbstractFramedChannel.java:373)
+	at io.undertow.websockets.core.AbstractReceiveListener.handleEvent(AbstractReceiveListener.java:38)
+	at io.undertow.websockets.core.AbstractReceiveListener.handleEvent(AbstractReceiveListener.java:33)
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92)
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameReadListener.handleEvent(AbstractFramedChannel.java:948)
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameReadListener.handleEvent(AbstractFramedChannel.java:929)
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92)
+	at org.xnio.conduits.ReadReadyHandler$ChannelListenerHandler.readReady(ReadReadyHandler.java:66)
+	at org.xnio.nio.NioSocketConduit.handleReady(NioSocketConduit.java:88)
+	at org.xnio.nio.WorkerThread.run(WorkerThread.java:561)
+2020-02-09 14:23:09.112 [pool-3-thread-2     ] [ERROR]  [RtWebSocketClient.java:310] RtWebSocketClient >>> 发送二进制数据错误,未能找到会话 
+2020-02-09 14:23:09.112 [pool-3-thread-2     ] [ERROR]  [RpcClientProcessServiceImpl.java:430] RpcClientProcessServiceImpl >>> 发送RPC错误,目标节点ID:0,请求ID:,RPC:POSITION_LIST_RTN 
+2020-02-09 14:23:09.214 [pool-3-thread-2     ] [ERROR]  [RtWebSocketClient.java:310] RtWebSocketClient >>> 发送二进制数据错误,未能找到会话 
+2020-02-09 14:23:09.214 [pool-3-thread-2     ] [ERROR]  [RpcClientProcessServiceImpl.java:430] RpcClientProcessServiceImpl >>> 发送RPC错误,目标节点ID:0,请求ID:,RPC:POSITION_LIST_RTN 
+2020-02-09 14:23:10.358 [Thread-1            ] [ERROR]  [RtWebSocketClient.java:310] RtWebSocketClient >>> 发送二进制数据错误,未能找到会话 
+2020-02-09 14:23:10.359 [Thread-1            ] [ERROR]  [RpcClientProcessServiceImpl.java:430] RpcClientProcessServiceImpl >>> 发送RPC错误,目标节点ID:0,请求ID:,RPC:ACCOUNT_RTN 
+2020-02-09 14:23:10.360 [Thread-1            ] [ERROR]  [RtWebSocketClient.java:310] RtWebSocketClient >>> 发送二进制数据错误,未能找到会话 
+2020-02-09 14:23:10.360 [Thread-1            ] [ERROR]  [RpcClientProcessServiceImpl.java:430] RpcClientProcessServiceImpl >>> 发送RPC错误,目标节点ID:0,请求ID:,RPC:ACCOUNT_RTN 

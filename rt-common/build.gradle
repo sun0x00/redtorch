@@ -1,0 +1,15 @@
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """通用模块"""
+
+dependencies {
+	compile project(':rt-pb')
+	compile group: 'com.alibaba', name: 'fastjson', version: "${rootProject.fastjsonVersion}"
+	compile group: 'commons-codec', name: 'commons-codec', version: "${rootProject.commonsCodecVersion}"
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: "${rootProject.commonsLang3Version}"
+	compile group: 'commons-io', name: 'commons-io', version: "${rootProject.commonsIOVersion}"
+    compile group: 'org.lz4', name: 'lz4-java', version:"${rootProject.lz4JavaVersion}"
+	compileOnly group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
+   	compileOnly group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoJavaDriverVersion}"
+	compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}"
+}

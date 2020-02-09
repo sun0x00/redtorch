@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package xyz.redtorch.pb;
+
+// 数据交换协议
+message DataExchangeProtocol {
+	enum RpcType {
+		CORE_RPC = 0;
+	}
+	
+	// 报文类型
+	enum ContentType {
+		ROUTINE = 0;  // 常规
+		COMPRESSED_LZ4 = 1;  // LZ4压缩
+	}
+	
+	ContentType contentType = 1;  // 报文类型
+	RpcType rpcType = 2; 
+	fixed64 timestamp = 3;  // 时间戳
+	fixed32 sourceNodeId = 4;  // 来源节点ID
+	fixed32 targetNodeId = 5;  // 目标节点ID
+	fixed32 rpcId = 6;  // 业务ID
+	string reqId = 7; // 请求ID
+	bytes contentBytes = 8;  // 数据内容
+}

@@ -1,0 +1,2 @@
+非root用户运行可能有帮助的命令
+	sudo chmod a+s /usr/sbin/dmidecode

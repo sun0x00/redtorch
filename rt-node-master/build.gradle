@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.0.RELEASE'
+}
+
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = """主节点模块"""
+
+//sourceSets {
+//    main {
+//        resources {
+//            exclude '**/static/ReactSPA/node_modules/*'
+//            exclude '**/bak/*'
+//        }
+//    }
+//}
+
+springBoot {
+	mainClassName = 'xyz.redtorch.RtNodeMasterApplication'
+}
+
+dependencies {
+	compile project(':rt-common')
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoJavaDriverVersion}"
+   	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
+			exclude(module: 'spring-boot-starter-tomcat')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+	compile group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
+	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
+	
+}
