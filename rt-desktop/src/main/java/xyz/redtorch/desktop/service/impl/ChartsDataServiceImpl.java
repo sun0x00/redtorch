@@ -3,7 +3,6 @@ package xyz.redtorch.desktop.service.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -180,70 +179,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 			@Override
 			public void run() {
 				try {
-					RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
-
-					JSONObject erchartsOptionData = new JSONObject();
-
-					List<Long> volumeDeltaValueList = new ArrayList<>();
-					List<Double> opiDeltaValueList = new ArrayList<>();
-					List<String> categoryList = new ArrayList<>();
-
-					if (rpcQueryDBTickListRsp != null) {
-						List<TickField> tickList = rpcQueryDBTickListRsp.getTickList();
-						logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), unifiedSymbol, key);
-
-						if (!tickList.isEmpty()) {
-							Map<Double, Map<String, Object>> dataMap = new HashMap<>();
-							for (int i = 0; i < tickList.size(); i++) {
-
-								TickField tick = tickList.get(i);
-
-								Double price = tick.getLastPrice();
-								Long volumeDelta = tick.getVolumeDelta();
-								Double opiDelta = tick.getOpenInterestDelta();
-
-								if (volumeDelta > 0) {
-									Map<String, Object> data;
-									if (dataMap.containsKey(price)) {
-										data = dataMap.get(price);
-										data.put("volumeDeltaSum", (Long) data.get("volumeDeltaSum") + volumeDelta);
-										data.put("opiDeltaSum", (Double) data.get("opiDeltaSum") + opiDelta);
-									} else {
-										data = new HashMap<>();
-										data.put("volumeDeltaSum", volumeDelta);
-										data.put("opiDeltaSum", opiDelta);
-										data.put("price", price);
-
-										dataMap.put(price, data);
-									}
-								}
-							}
-
-							List<Map<String, Object>> dataMapList = new ArrayList<>(dataMap.values());
-
-//							Collections.sort(dataMapList , (Map<String,Object> d1, Map<String,Object> d2) -> (Double)d1.get(price).compareTo((Double)d2.get(price)));
-							Collections.sort(dataMapList, (Map<String, Object> d1, Map<String, Object> d2) -> Double.compare((Double) d1.get("price"), (Double) d2.get("price")));
-
-							for (Map<String, Object> tmpDataMap : dataMapList) {
-								categoryList.add(tmpDataMap.get("price") + "");
-								volumeDeltaValueList.add((Long) tmpDataMap.get("volumeDeltaSum"));
-								opiDeltaValueList.add((Double) tmpDataMap.get("opiDeltaSum"));
-							}
-
-						}
-					}
-
-					erchartsOptionData.put("volumeDeltaValueList", volumeDeltaValueList);
-					erchartsOptionData.put("opiDeltaValueList", opiDeltaValueList);
-					erchartsOptionData.put("categoryList", categoryList);
-
-					JSONObject resData = new JSONObject();
-					resData.put("data", erchartsOptionData);
-					resData.put("chartType", "volOPIchangeHistogram");
-
-					if (processingKeySet.contains(key)) {
-						chartDataMap.put(key, resData);
-					}
+					// PRIVATE CODE
 				} catch (Exception e) {
 					logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
 				} finally {
