@@ -159,7 +159,7 @@ function setOptionTick(chart,data,notMerge){
                 type: 'bar',
                 xAxisIndex: 1,
                 yAxisIndex: 1,
-                data: data.volumeChangeList
+                data: data.volumeDeltaList
             },
             {
                 name: '持仓量',

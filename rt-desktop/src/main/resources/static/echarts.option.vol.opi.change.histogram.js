@@ -60,7 +60,7 @@ function setOptionVolOPIchangeHistogram(chart,data,notMerge){
                 type: 'bar',
                 xAxisIndex: 0,
                 yAxisIndex: 0,
-                data: data.volumeChangeValueList,
+                data: data.volumeDeltaValueList,
             },{
                 name: '开平',
                 type: 'bar',
