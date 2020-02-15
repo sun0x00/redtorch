@@ -27,7 +27,7 @@ public class UUIDStringPoolUtils {
 		}
 		if (uuidStringQueue.size() < 10000) {
 			isCharging = true;
-			new Thread(new ChargeTask());
+			new Thread(new ChargeTask()).start();
 		}
 		return uuidString;
 	}
