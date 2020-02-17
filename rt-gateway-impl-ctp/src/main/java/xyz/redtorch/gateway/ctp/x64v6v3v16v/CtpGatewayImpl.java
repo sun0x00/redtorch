@@ -31,8 +31,8 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 						+ "jctpv6v3v16x64api" + File.separator;
 
 				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/libiconv.dll"));
-				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/thostmduserapi_se.dll"));
-				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/thosttraderapi_se.dll"));
+				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/thostmduserapi.dll"));
+				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/thosttraderapi.dll"));
 				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/jctpv6v3v16x64api.dll"));
 			} else {
 
@@ -40,8 +40,8 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 				tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api" + File.separator + "jctp" + File.separator + "lib" + File.separator
 						+ "jctpv6v3v16x64api" + File.separator;
 
-				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/libthostmduserapi_se.so"));
-				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/libthosttraderapi_se.so"));
+				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/libthostmduserapi.so"));
+				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/libthosttraderapi.so"));
 				CommonUtils.copyURLToFileForTmp(tempLibPath, CtpGatewayImpl.class.getResource("/assembly/jctpv6v3v16x64api/libjctpv6v3v16x64api.so"));
 			}
 		} catch (Exception e) {
@@ -51,12 +51,12 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 		try {
 			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
 				System.load(tempLibPath + File.separator + "libiconv.dll");
-				System.load(tempLibPath + File.separator + "thostmduserapi_se.dll");
-				System.load(tempLibPath + File.separator + "thosttraderapi_se.dll");
+				System.load(tempLibPath + File.separator + "thostmduserapi.dll");
+				System.load(tempLibPath + File.separator + "thosttraderapi.dll");
 				System.load(tempLibPath + File.separator + "jctpv6v3v16x64api.dll");
 			} else {
-				System.load(tempLibPath + File.separator + "libthostmduserapi_se.so");
-				System.load(tempLibPath + File.separator + "libthosttraderapi_se.so");
+				System.load(tempLibPath + File.separator + "libthostmduserapi.so");
+				System.load(tempLibPath + File.separator + "libthosttraderapi.so");
 				System.load(tempLibPath + File.separator + "libjctpv6v3v16x64api.so");
 			}
 		} catch (Exception e) {
