@@ -30,27 +30,37 @@ public class SystemController {
 	public ResponseVo<UserPo> login(HttpServletRequest request, @RequestBody UserPo user) {
 		ResponseVo<UserPo> responseVo = new ResponseVo<>();
 		try {
-			if (user == null) {
-				responseVo.setStatus(false);
-				responseVo.setMessage("登录验证失败,未找到请求体");
-			} else {
-				logger.info("用户{}尝试登录,地址{}:{}", user.getUsername(), request.getRemoteAddr(), request.getRemotePort());
-				user.setRecentlyIpAddress(request.getRemoteHost());
-				user.setRecentlyPort(request.getRemotePort());
-				user.setRecentlySessionId(request.getSession().getId());
-				UserPo loggedinUser = userService.userAuth(user);
 
-				if (loggedinUser != null) {
-					loggedinUser.setPassword(RtConstant.SECURITY_MASK);
-					responseVo.setVoData(loggedinUser);
-					responseVo.setMessage("登陆验证成功");
-					logger.info("用户{}登录成功", user.getUsername());
-					request.getSession().setAttribute(RtConstant.KEY_USER_PO, loggedinUser);
-				} else {
+			if (request.getSession().getAttribute(RtConstant.KEY_USER_PO) != null) {
+				UserPo sessionUser = (UserPo) request.getSession().getAttribute(RtConstant.KEY_USER_PO);
+				logger.info("SESSION重复登录,提交用户{},已登录用户{},地址{}:{}", user.getUsername(), sessionUser.getUsername(), request.getRemoteAddr(), request.getRemotePort());
+				responseVo.setVoData(sessionUser);
+				responseVo.setMessage("SESSION重复登录,提交用户" + user.getUsername() + ",已登录用户" + sessionUser.getUsername());
+				request.getSession().removeAttribute(RtConstant.KEY_USER_PO);
+			} else {
+				if (user == null) {
 					responseVo.setStatus(false);
-					responseVo.setMessage("验证失败");
-					logger.info("用户{}登录验证失败", user.getUsername());
+					responseVo.setMessage("登录验证失败,未找到请求体");
+				} else {
+					logger.info("用户{}尝试登录,地址{}:{}", user.getUsername(), request.getRemoteAddr(), request.getRemotePort());
+					user.setRecentlyIpAddress(request.getRemoteHost());
+					user.setRecentlyPort(request.getRemotePort());
+					user.setRecentlySessionId(request.getSession().getId());
+					UserPo loggedinUser = userService.userAuth(user);
+
+					if (loggedinUser != null) {
+						loggedinUser.setPassword(RtConstant.SECURITY_MASK);
+						responseVo.setVoData(loggedinUser);
+						responseVo.setMessage("登陆验证成功");
+						logger.info("用户{}登录成功", user.getUsername());
+						request.getSession().setAttribute(RtConstant.KEY_USER_PO, loggedinUser);
+					} else {
+						responseVo.setStatus(false);
+						responseVo.setMessage("验证失败");
+						logger.info("用户{}登录验证失败", user.getUsername());
+					}
 				}
+
 			}
 		} catch (Exception e) {
 			logger.error("登录异常", e);
