@@ -70,7 +70,7 @@ public class DynamicCompileEngineTest
             long time1 = System.currentTimeMillis();
             DynamicCompileEngine dynamicCompileEngine = DynamicCompileEngine.getInstance();
             try {
-                Class<?> clazz = dynamicCompileEngine.javaCodeToClass(name,code.replaceAll("V_NUMBER_I",""+i));
+                Class<?> clazz = dynamicCompileEngine.javaCodeToClass(name,code.replaceAll("V_NUMBER_I",""+i),"");
                 RpcClientProcessService rcps = (RpcClientProcessService)clazz.getDeclaredConstructor().newInstance();
                 Map<String,Object> param = new HashMap<>();
                 param.put("key",i);

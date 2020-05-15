@@ -49,7 +49,7 @@ public class NodeDaoImpl implements NodeDao, InitializingBean {
 				logger.error("查询节点列表,数据转换发生错误Document-{}", document.toJson(), e);
 			}
 		}
-		
+
 		return nodeList;
 	}
 

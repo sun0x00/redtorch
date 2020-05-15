@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import xyz.redtorch.node.master.service.MasterTradeCachesService;
 import xyz.redtorch.common.service.MarketDataService;
+import xyz.redtorch.common.util.bar.BarUtils;
 import xyz.redtorch.node.master.rpc.service.RpcServerProcessService;
 import xyz.redtorch.node.master.rpc.service.RpcServerReqHandlerService;
+import xyz.redtorch.node.master.service.MarketDataRecordingService;
 import xyz.redtorch.node.master.service.MasterSystemService;
 import xyz.redtorch.node.master.service.MasterTradeExecuteService;
 import xyz.redtorch.pb.CoreEnum.BarCycleEnum;
@@ -76,6 +78,8 @@ public class RpcServerReqHandlerServiceImpl implements RpcServerReqHandlerServic
 	private MasterSystemService masterSystemService;
 	@Autowired
 	private MarketDataService marketDataService;
+	@Autowired
+	private MarketDataRecordingService marketDataRecordingService;
 
 	@Override
 	public void subscribe(CommonReqField commonReq, ContractField contract) {
@@ -753,6 +757,12 @@ public class RpcServerReqHandlerServiceImpl implements RpcServerReqHandlerServic
 		List<ContractField> contractList = masterTradeExecuteService.getSubscribedContract();
 		if (contractList == null) {
 			contractList = new ArrayList<>();
+		}
+		
+		List<ContractField> mdrContractList =  marketDataRecordingService.getSubscribedContractFieldList();
+		
+		if (contractList != null) {
+			contractList.addAll(mdrContractList);
 		}
 
 		RpcSyncSlaveNodeRuntimeDataRsp.Builder rpcQueryGatewaySettingListRspBuilder = RpcSyncSlaveNodeRuntimeDataRsp.newBuilder() //

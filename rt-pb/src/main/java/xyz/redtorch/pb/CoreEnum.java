@@ -276,6 +276,14 @@ public final class CoreEnum {
      * <code>GAT_IB = 1;</code>
      */
     GAT_IB(1),
+    /**
+     * <pre>
+     * IB
+     * </pre>
+     *
+     * <code>GAT_COMMON = 2;</code>
+     */
+    GAT_COMMON(2),
     UNRECOGNIZED(-1),
     ;
 
@@ -295,6 +303,14 @@ public final class CoreEnum {
      * <code>GAT_IB = 1;</code>
      */
     public static final int GAT_IB_VALUE = 1;
+    /**
+     * <pre>
+     * IB
+     * </pre>
+     *
+     * <code>GAT_COMMON = 2;</code>
+     */
+    public static final int GAT_COMMON_VALUE = 2;
 
 
     public final int getNumber() {
@@ -317,6 +333,7 @@ public final class CoreEnum {
       switch (value) {
         case 0: return GAT_CTP;
         case 1: return GAT_IB;
+        case 2: return GAT_COMMON;
         default: return null;
       }
     }
@@ -5895,7 +5912,7 @@ public final class CoreEnum {
     UnknownExchange(0),
     /**
      * <pre>
-     * 上海证券交易所
+     * 上海证券交易所	www.sse.com.cn
      * </pre>
      *
      * <code>SSE = 1;</code>
@@ -5903,7 +5920,7 @@ public final class CoreEnum {
     SSE(1),
     /**
      * <pre>
-     * 深圳证券交易所
+     *深圳证券交易所	www.szse.cn
      * </pre>
      *
      * <code>SZSE = 2;</code>
@@ -5911,7 +5928,7 @@ public final class CoreEnum {
     SZSE(2),
     /**
      * <pre>
-     * 中国金融期货交易所
+     * 中国金融期货交易所	www.cffex.com.cn
      * </pre>
      *
      * <code>CFFEX = 3;</code>
@@ -5919,7 +5936,7 @@ public final class CoreEnum {
     CFFEX(3),
     /**
      * <pre>
-     * 上海期货交易所
+     * 上海期货交易所	www.shfe.com.cn
      * </pre>
      *
      * <code>SHFE = 4;</code>
@@ -5927,7 +5944,7 @@ public final class CoreEnum {
     SHFE(4),
     /**
      * <pre>
-     * 郑州商品交易所
+     * 郑州商品交易所	www.czce.com.cn
      * </pre>
      *
      * <code>CZCE = 5;</code>
@@ -5935,7 +5952,7 @@ public final class CoreEnum {
     CZCE(5),
     /**
      * <pre>
-     * 大连商品交易所
+     * 大连商品交易所	www.dce.com.cn
      * </pre>
      *
      * <code>DCE = 6;</code>
@@ -5943,7 +5960,7 @@ public final class CoreEnum {
     DCE(6),
     /**
      * <pre>
-     * 上海黄金交易所
+     * 上海黄金交易所	www.sge.com.cn
      * </pre>
      *
      * <code>SGE = 7;</code>
@@ -5951,7 +5968,7 @@ public final class CoreEnum {
     SGE(7),
     /**
      * <pre>
-     * 上海国际能源交易中心
+     * 上海国际能源交易中心	www.ine.cn
      * </pre>
      *
      * <code>INE = 8;</code>
@@ -5959,7 +5976,7 @@ public final class CoreEnum {
     INE(8),
     /**
      * <pre>
-     * 香港联合交易所
+     * Hong Kong Stock Exchange (SEHK)	www.hkex.com.hk
      * </pre>
      *
      * <code>SEHK = 9;</code>
@@ -5967,7 +5984,7 @@ public final class CoreEnum {
     SEHK(9),
     /**
      * <pre>
-     * 香港期货交易所
+     * Hong Kong Futures Exchange (HKFE)	www.hkex.com.hk
      * </pre>
      *
      * <code>HKFE = 10;</code>
@@ -5975,7 +5992,7 @@ public final class CoreEnum {
     HKFE(10),
     /**
      * <pre>
-     * 新加坡证券交易所
+     * 新加坡交易所(Singapore Exchange (SGX))	www.sgx.com
      * </pre>
      *
      * <code>SGX = 11;</code>
@@ -5983,7 +6000,7 @@ public final class CoreEnum {
     SGX(11),
     /**
      * <pre>
-     *纽约期货交易所
+     * ICE Futures U.S. (NYBOT)	www.theice.com
      * </pre>
      *
      * <code>NYBOT = 12;</code>
@@ -5991,7 +6008,7 @@ public final class CoreEnum {
     NYBOT(12),
     /**
      * <pre>
-     * 纽约商业交易所
+     * 纽约商业交易所(New York Mercantile Exchange (NYMEX))	www.nymex.com
      * </pre>
      *
      * <code>NYMEX = 13;</code>
@@ -5999,92 +6016,172 @@ public final class CoreEnum {
     NYMEX(13),
     /**
      * <pre>
-     * 纽约金属交易所
+     * 芝加哥期权交易所期货交易分所(CBOE Futures Exchange (CFE))	www.cboe.com/cfe
      * </pre>
      *
-     * <code>COMEX = 14;</code>
+     * <code>CFE = 14;</code>
      */
-    COMEX(14),
+    CFE(14),
     /**
      * <pre>
-     * 芝加哥商业交易所
+     * CME (GLOBEX)	www.cmegroup.com
      * </pre>
      *
-     * <code>CME = 15;</code>
+     * <code>GLOBEX = 15;</code>
      */
-    CME(15),
+    GLOBEX(15),
     /**
      * <pre>
-     * 芝加哥期权交易所期货交易分所
+     * CME Cryptocurrencies	www.cmegroup.com/trading/equity-index/us-index/bitcoin_contract_specifications.html
      * </pre>
      *
-     * <code>CFE = 16;</code>
+     * <code>CMECRYPTO = 16;</code>
      */
-    CFE(16),
+    CMECRYPTO(16),
     /**
      * <pre>
-     * CME Globex
+     * Intercontinental Exchange (ICEEU)	www.theice.com
      * </pre>
      *
-     * <code>GLOBEX = 17;</code>
+     * <code>ICEEU = 17;</code>
      */
-    GLOBEX(17),
+    ICEEU(17),
     /**
      * <pre>
-     * 美国洲际交易所
+     * Intercontinental Exchange (ICEEUSOFT)	www.theice.com
      * </pre>
      *
-     * <code>ICE = 18;</code>
+     * <code>ICEEUSOFT = 18;</code>
      */
-    ICE(18),
+    ICEEUSOFT(18),
     /**
      * <pre>
-     * 伦敦国际石油交易所
+     *  ICE 期货 US (ICEUS)	www.theice.com/futures_us.jhtml
      * </pre>
      *
-     * <code>IPE = 19;</code>
+     * <code>ICEUS = 19;</code>
      */
-    IPE(19),
+    ICEUS(19),
     /**
      * <pre>
-     * 伦敦金属交易所
+     * 洲际交易所(Intercontinental Exchange (ICE/IPE))	www.theice.com
      * </pre>
      *
-     * <code>LME = 20;</code>
+     * <code>IPE = 20;</code>
      */
-    LME(20),
+    IPE(20),
     /**
      * <pre>
-     * IDEALPRO（IB外汇）
+     * LMEOTC	伦敦金属交易所场外期货Lookalike平台
      * </pre>
      *
-     * <code>IDEALPRO = 21;</code>
+     * <code>LMEOTC = 21;</code>
      */
-    IDEALPRO(21),
+    LMEOTC(21),
     /**
      * <pre>
-     * OANDA外汇做市商
+     * 芝加哥期货交易所（电子平台芝加哥期货交易所）(CBOT (ECBOT))	www.cmegroup.com
      * </pre>
      *
-     * <code>OANDA = 22;</code>
+     * <code>ECBOT = 22;</code>
      */
-    OANDA(22),
+    ECBOT(22),
     /**
      * <pre>
-     * FXCM外汇做市商
+     * 新加坡亚太交易所	www.asiapacificex.com
      * </pre>
      *
-     * <code>FXCM = 23;</code>
+     * <code>APEX = 23;</code>
      */
-    FXCM(23),
+    APEX(23),
+    /**
+     * <pre>
+     * 马来西亚衍生产品交易所	www.bursamalaysia.com
+     * </pre>
+     *
+     * <code>BMD = 24;</code>
+     */
+    BMD(24),
+    /**
+     * <pre>
+     * Euronext France (MONEP)	www.euronext.com
+     * </pre>
+     *
+     * <code>MONEP = 25;</code>
+     */
+    MONEP(25),
+    /**
+     * <pre>
+     * EUREX (DTB)	www.eurexchange.com
+     * </pre>
+     *
+     * <code>DTB = 26;</code>
+     */
+    DTB(26),
+    /**
+     * <pre>
+     * 东京工业品交易所	www.tocom.or.jp
+     * </pre>
+     *
+     * <code>TOCOM = 27;</code>
+     */
+    TOCOM(27),
+    /**
+     * <pre>
+     * 台湾期货交易所	www.taifex.com.tw
+     * </pre>
+     *
+     * <code>TAIFEX = 28;</code>
+     */
+    TAIFEX(28),
+    /**
+     * <pre>
+     * Shenzhen-Hong Kong Stock Connect (SEHKSZSE)	www.hkex.com.hk/eng/csm/index.htm
+     * </pre>
+     *
+     * <code>SEHKSZSE = 29;</code>
+     */
+    SEHKSZSE(29),
+    /**
+     * <pre>
+     * Shanghai-Hong Kong Stock Connect (SEHKNTL)	www.hkex.com.hk/eng/csm/index.htm 
+     * </pre>
+     *
+     * <code>SEHKNTL = 30;</code>
+     */
+    SEHKNTL(30),
+    /**
+     * <pre>
+     * Korea Stock Exchange (KSE)	eng.krx.co.kr
+     * </pre>
+     *
+     * <code>KSE = 31;</code>
+     */
+    KSE(31),
+    /**
+     * <pre>
+     * Osaka Exchange (OSE.JPN)	www.jpx.co.jp
+     * </pre>
+     *
+     * <code>OSE = 32;</code>
+     */
+    OSE(32),
+    /**
+     * <pre>
+     * IDEALPRO
+     * </pre>
+     *
+     * <code>IB_IDEALPRO = 33;</code>
+     */
+    IB_IDEALPRO(33),
     /**
      * <pre>
      * IB智能路由
      * </pre>
      *
-     * <code>SMART = 24;</code>
+     * <code>IB_SMART = 34;</code>
      */
-    SMART(24),
+    IB_SMART(34),
     UNRECOGNIZED(-1),
     ;
 
@@ -6098,7 +6195,7 @@ public final class CoreEnum {
     public static final int UnknownExchange_VALUE = 0;
     /**
      * <pre>
-     * 上海证券交易所
+     * 上海证券交易所	www.sse.com.cn
      * </pre>
      *
      * <code>SSE = 1;</code>
@@ -6106,7 +6203,7 @@ public final class CoreEnum {
     public static final int SSE_VALUE = 1;
     /**
      * <pre>
-     * 深圳证券交易所
+     *深圳证券交易所	www.szse.cn
      * </pre>
      *
      * <code>SZSE = 2;</code>
@@ -6114,7 +6211,7 @@ public final class CoreEnum {
     public static final int SZSE_VALUE = 2;
     /**
      * <pre>
-     * 中国金融期货交易所
+     * 中国金融期货交易所	www.cffex.com.cn
      * </pre>
      *
      * <code>CFFEX = 3;</code>
@@ -6122,7 +6219,7 @@ public final class CoreEnum {
     public static final int CFFEX_VALUE = 3;
     /**
      * <pre>
-     * 上海期货交易所
+     * 上海期货交易所	www.shfe.com.cn
      * </pre>
      *
      * <code>SHFE = 4;</code>
@@ -6130,7 +6227,7 @@ public final class CoreEnum {
     public static final int SHFE_VALUE = 4;
     /**
      * <pre>
-     * 郑州商品交易所
+     * 郑州商品交易所	www.czce.com.cn
      * </pre>
      *
      * <code>CZCE = 5;</code>
@@ -6138,7 +6235,7 @@ public final class CoreEnum {
     public static final int CZCE_VALUE = 5;
     /**
      * <pre>
-     * 大连商品交易所
+     * 大连商品交易所	www.dce.com.cn
      * </pre>
      *
      * <code>DCE = 6;</code>
@@ -6146,7 +6243,7 @@ public final class CoreEnum {
     public static final int DCE_VALUE = 6;
     /**
      * <pre>
-     * 上海黄金交易所
+     * 上海黄金交易所	www.sge.com.cn
      * </pre>
      *
      * <code>SGE = 7;</code>
@@ -6154,7 +6251,7 @@ public final class CoreEnum {
     public static final int SGE_VALUE = 7;
     /**
      * <pre>
-     * 上海国际能源交易中心
+     * 上海国际能源交易中心	www.ine.cn
      * </pre>
      *
      * <code>INE = 8;</code>
@@ -6162,7 +6259,7 @@ public final class CoreEnum {
     public static final int INE_VALUE = 8;
     /**
      * <pre>
-     * 香港联合交易所
+     * Hong Kong Stock Exchange (SEHK)	www.hkex.com.hk
      * </pre>
      *
      * <code>SEHK = 9;</code>
@@ -6170,7 +6267,7 @@ public final class CoreEnum {
     public static final int SEHK_VALUE = 9;
     /**
      * <pre>
-     * 香港期货交易所
+     * Hong Kong Futures Exchange (HKFE)	www.hkex.com.hk
      * </pre>
      *
      * <code>HKFE = 10;</code>
@@ -6178,7 +6275,7 @@ public final class CoreEnum {
     public static final int HKFE_VALUE = 10;
     /**
      * <pre>
-     * 新加坡证券交易所
+     * 新加坡交易所(Singapore Exchange (SGX))	www.sgx.com
      * </pre>
      *
      * <code>SGX = 11;</code>
@@ -6186,7 +6283,7 @@ public final class CoreEnum {
     public static final int SGX_VALUE = 11;
     /**
      * <pre>
-     *纽约期货交易所
+     * ICE Futures U.S. (NYBOT)	www.theice.com
      * </pre>
      *
      * <code>NYBOT = 12;</code>
@@ -6194,7 +6291,7 @@ public final class CoreEnum {
     public static final int NYBOT_VALUE = 12;
     /**
      * <pre>
-     * 纽约商业交易所
+     * 纽约商业交易所(New York Mercantile Exchange (NYMEX))	www.nymex.com
      * </pre>
      *
      * <code>NYMEX = 13;</code>
@@ -6202,92 +6299,172 @@ public final class CoreEnum {
     public static final int NYMEX_VALUE = 13;
     /**
      * <pre>
-     * 纽约金属交易所
+     * 芝加哥期权交易所期货交易分所(CBOE Futures Exchange (CFE))	www.cboe.com/cfe
      * </pre>
      *
-     * <code>COMEX = 14;</code>
+     * <code>CFE = 14;</code>
      */
-    public static final int COMEX_VALUE = 14;
+    public static final int CFE_VALUE = 14;
     /**
      * <pre>
-     * 芝加哥商业交易所
+     * CME (GLOBEX)	www.cmegroup.com
      * </pre>
      *
-     * <code>CME = 15;</code>
+     * <code>GLOBEX = 15;</code>
      */
-    public static final int CME_VALUE = 15;
+    public static final int GLOBEX_VALUE = 15;
     /**
      * <pre>
-     * 芝加哥期权交易所期货交易分所
+     * CME Cryptocurrencies	www.cmegroup.com/trading/equity-index/us-index/bitcoin_contract_specifications.html
      * </pre>
      *
-     * <code>CFE = 16;</code>
+     * <code>CMECRYPTO = 16;</code>
      */
-    public static final int CFE_VALUE = 16;
+    public static final int CMECRYPTO_VALUE = 16;
     /**
      * <pre>
-     * CME Globex
+     * Intercontinental Exchange (ICEEU)	www.theice.com
      * </pre>
      *
-     * <code>GLOBEX = 17;</code>
+     * <code>ICEEU = 17;</code>
      */
-    public static final int GLOBEX_VALUE = 17;
+    public static final int ICEEU_VALUE = 17;
     /**
      * <pre>
-     * 美国洲际交易所
+     * Intercontinental Exchange (ICEEUSOFT)	www.theice.com
      * </pre>
      *
-     * <code>ICE = 18;</code>
+     * <code>ICEEUSOFT = 18;</code>
      */
-    public static final int ICE_VALUE = 18;
+    public static final int ICEEUSOFT_VALUE = 18;
     /**
      * <pre>
-     * 伦敦国际石油交易所
+     *  ICE 期货 US (ICEUS)	www.theice.com/futures_us.jhtml
      * </pre>
      *
-     * <code>IPE = 19;</code>
+     * <code>ICEUS = 19;</code>
      */
-    public static final int IPE_VALUE = 19;
+    public static final int ICEUS_VALUE = 19;
     /**
      * <pre>
-     * 伦敦金属交易所
+     * 洲际交易所(Intercontinental Exchange (ICE/IPE))	www.theice.com
      * </pre>
      *
-     * <code>LME = 20;</code>
+     * <code>IPE = 20;</code>
      */
-    public static final int LME_VALUE = 20;
+    public static final int IPE_VALUE = 20;
     /**
      * <pre>
-     * IDEALPRO（IB外汇）
+     * LMEOTC	伦敦金属交易所场外期货Lookalike平台
      * </pre>
      *
-     * <code>IDEALPRO = 21;</code>
+     * <code>LMEOTC = 21;</code>
      */
-    public static final int IDEALPRO_VALUE = 21;
+    public static final int LMEOTC_VALUE = 21;
     /**
      * <pre>
-     * OANDA外汇做市商
+     * 芝加哥期货交易所（电子平台芝加哥期货交易所）(CBOT (ECBOT))	www.cmegroup.com
      * </pre>
      *
-     * <code>OANDA = 22;</code>
+     * <code>ECBOT = 22;</code>
      */
-    public static final int OANDA_VALUE = 22;
+    public static final int ECBOT_VALUE = 22;
     /**
      * <pre>
-     * FXCM外汇做市商
+     * 新加坡亚太交易所	www.asiapacificex.com
      * </pre>
      *
-     * <code>FXCM = 23;</code>
+     * <code>APEX = 23;</code>
      */
-    public static final int FXCM_VALUE = 23;
+    public static final int APEX_VALUE = 23;
+    /**
+     * <pre>
+     * 马来西亚衍生产品交易所	www.bursamalaysia.com
+     * </pre>
+     *
+     * <code>BMD = 24;</code>
+     */
+    public static final int BMD_VALUE = 24;
+    /**
+     * <pre>
+     * Euronext France (MONEP)	www.euronext.com
+     * </pre>
+     *
+     * <code>MONEP = 25;</code>
+     */
+    public static final int MONEP_VALUE = 25;
+    /**
+     * <pre>
+     * EUREX (DTB)	www.eurexchange.com
+     * </pre>
+     *
+     * <code>DTB = 26;</code>
+     */
+    public static final int DTB_VALUE = 26;
+    /**
+     * <pre>
+     * 东京工业品交易所	www.tocom.or.jp
+     * </pre>
+     *
+     * <code>TOCOM = 27;</code>
+     */
+    public static final int TOCOM_VALUE = 27;
+    /**
+     * <pre>
+     * 台湾期货交易所	www.taifex.com.tw
+     * </pre>
+     *
+     * <code>TAIFEX = 28;</code>
+     */
+    public static final int TAIFEX_VALUE = 28;
+    /**
+     * <pre>
+     * Shenzhen-Hong Kong Stock Connect (SEHKSZSE)	www.hkex.com.hk/eng/csm/index.htm
+     * </pre>
+     *
+     * <code>SEHKSZSE = 29;</code>
+     */
+    public static final int SEHKSZSE_VALUE = 29;
+    /**
+     * <pre>
+     * Shanghai-Hong Kong Stock Connect (SEHKNTL)	www.hkex.com.hk/eng/csm/index.htm 
+     * </pre>
+     *
+     * <code>SEHKNTL = 30;</code>
+     */
+    public static final int SEHKNTL_VALUE = 30;
+    /**
+     * <pre>
+     * Korea Stock Exchange (KSE)	eng.krx.co.kr
+     * </pre>
+     *
+     * <code>KSE = 31;</code>
+     */
+    public static final int KSE_VALUE = 31;
+    /**
+     * <pre>
+     * Osaka Exchange (OSE.JPN)	www.jpx.co.jp
+     * </pre>
+     *
+     * <code>OSE = 32;</code>
+     */
+    public static final int OSE_VALUE = 32;
+    /**
+     * <pre>
+     * IDEALPRO
+     * </pre>
+     *
+     * <code>IB_IDEALPRO = 33;</code>
+     */
+    public static final int IB_IDEALPRO_VALUE = 33;
     /**
      * <pre>
      * IB智能路由
      * </pre>
      *
-     * <code>SMART = 24;</code>
+     * <code>IB_SMART = 34;</code>
      */
-    public static final int SMART_VALUE = 24;
+    public static final int IB_SMART_VALUE = 34;
 
 
     public final int getNumber() {
@@ -6322,17 +6499,27 @@ public final class CoreEnum {
         case 11: return SGX;
         case 12: return NYBOT;
         case 13: return NYMEX;
-        case 14: return COMEX;
-        case 15: return CME;
-        case 16: return CFE;
-        case 17: return GLOBEX;
-        case 18: return ICE;
-        case 19: return IPE;
-        case 20: return LME;
-        case 21: return IDEALPRO;
-        case 22: return OANDA;
-        case 23: return FXCM;
-        case 24: return SMART;
+        case 14: return CFE;
+        case 15: return GLOBEX;
+        case 16: return CMECRYPTO;
+        case 17: return ICEEU;
+        case 18: return ICEEUSOFT;
+        case 19: return ICEUS;
+        case 20: return IPE;
+        case 21: return LMEOTC;
+        case 22: return ECBOT;
+        case 23: return APEX;
+        case 24: return BMD;
+        case 25: return MONEP;
+        case 26: return DTB;
+        case 27: return TOCOM;
+        case 28: return TAIFEX;
+        case 29: return SEHKSZSE;
+        case 30: return SEHKNTL;
+        case 31: return KSE;
+        case 32: return OSE;
+        case 33: return IB_IDEALPRO;
+        case 34: return IB_SMART;
         default: return null;
       }
     }
@@ -6905,129 +7092,133 @@ public final class CoreEnum {
       "edtorch.pb*?\n\026StrategyEngineTypeEnum\022\020\n\014" +
       "SET_Treading\020\000\022\023\n\017SET_Backtesting\020\001*P\n\017G" +
       "atewayTypeEnum\022\032\n\026GTE_TradeAndMarketData" +
-      "\020\000\022\022\n\016GTE_MarketData\020\001\022\r\n\tGTE_Trade\020\002*1\n" +
+      "\020\000\022\022\n\016GTE_MarketData\020\001\022\r\n\tGTE_Trade\020\002*A\n" +
       "\026GatewayAdapterTypeEnum\022\013\n\007GAT_CTP\020\000\022\n\n\006" +
-      "GAT_IB\020\001*R\n\020CommonStatusEnum\022\020\n\014COMS_SUC" +
-      "CESS\020\000\022\r\n\tCOMS_INFO\020\001\022\r\n\tCOMS_WARN\020\002\022\016\n\n" +
-      "COMS_ERROR\020\003*f\n\014LogLevelEnum\022\n\n\006LL_All\020\000" +
-      "\022\016\n\010LL_Error\020\300\270\002\022\r\n\007LL_Warn\020\260\352\001\022\r\n\007LL_In" +
-      "fo\020\240\234\001\022\r\n\010LL_Debug\020\220N\022\r\n\010LL_Trace\020\210\'*@\n\024" +
-      "MarketDataDBTypeEnum\022\014\n\010MDDT_MIX\020\000\022\013\n\007MD" +
-      "DT_TD\020\001\022\r\n\tMDDT_HIST\020\002*W\n\014BarCycleEnum\022\n" +
-      "\n\006B_5Sec\020\000\022\n\n\006B_1Min\020\001\022\n\n\006B_3Min\020\002\022\n\n\006B_" +
-      "5Min\020\003\022\013\n\007B_15Min\020\004\022\n\n\006B_1Day\020\005*s\n\021Conne" +
-      "ctStatusEnum\022\016\n\nCS_Unkonwn\020\000\022\023\n\017CS_Disco" +
-      "nnected\020\001\022\020\n\014CS_Connected\020\002\022\024\n\020CS_Discon" +
-      "necting\020\003\022\021\n\rCS_Connecting\020\004*^\n\024OrderAct" +
-      "ionStatusTyp\022\017\n\013OAS_Unkonwn\020\000\022\021\n\rOAS_Sub" +
-      "mitted\020\001\022\020\n\014OAS_Accepted\020\002\022\020\n\014OAS_Reject" +
-      "ed\020\003*\344\001\n\017OrderStatusEnum\022\016\n\nOS_Unknown\020\000" +
-      "\022\020\n\014OS_AllTraded\020\001\022\031\n\025OS_PartTradedQueue" +
-      "ing\020\002\022\034\n\030OS_PartTradedNotQueueing\020\003\022\026\n\022O" +
-      "S_NoTradeQueueing\020\004\022\031\n\025OS_NoTradeNotQueu" +
-      "eing\020\005\022\017\n\013OS_Canceled\020\006\022\021\n\rOS_NotTouched" +
-      "\020\007\022\016\n\nOS_Touched\020\010\022\017\n\013OS_Rejected\020\t*\315\001\n\025" +
-      "OrderSubmitStatusEnum\022\017\n\013OSS_Unknown\020\000\022\027" +
-      "\n\023OSS_InsertSubmitted\020\001\022\027\n\023OSS_CancelSub" +
-      "mitted\020\002\022\027\n\023OSS_ModifySubmitted\020\003\022\020\n\014OSS" +
-      "_Accepted\020\004\022\026\n\022OSS_InsertRejected\020\005\022\026\n\022O" +
-      "SS_CancelRejected\020\006\022\026\n\022OSS_ModifyRejecte" +
-      "d\020\007*\334\001\n\020ProductClassEnum\022\027\n\023UnknownProdu" +
-      "ctClass\020\000\022\n\n\006EQUITY\020\001\022\013\n\007FUTURES\020\002\022\n\n\006OP" +
-      "TION\020\003\022\t\n\005INDEX\020\004\022\017\n\013COMBINATION\020\005\022\010\n\004BO" +
-      "ND\020\006\022\t\n\005FOREX\020\007\022\010\n\004SPOT\020\010\022\t\n\005DEFER\020\t\022\007\n\003" +
-      "ETF\020\n\022\014\n\010WARRANTS\020\013\022\n\n\006SPREAD\020\014\022\010\n\004FUND\020" +
-      "\r\022\007\n\003EFP\020\016\022\016\n\nSPOTOPTION\020\017*5\n\rDirectionE" +
-      "num\022\r\n\tD_Unknown\020\000\022\t\n\005D_Buy\020\001\022\n\n\006D_Sell\020" +
-      "\002*<\n\020PositionTypeEnum\022\016\n\nPT_Unknown\020\000\022\n\n" +
-      "\006PT_Net\020\001\022\014\n\010PT_Gross\020\002*N\n\025PositionDirec" +
-      "tionEnum\022\016\n\nPD_Unknown\020\000\022\n\n\006PD_Net\020\001\022\013\n\007" +
-      "PD_Long\020\002\022\014\n\010PD_Short\020\003*\213\001\n\rHedgeFlagEnu" +
-      "m\022\016\n\nHF_Unknown\020\000\022\022\n\016HF_Speculation\020\001\022\020\n" +
-      "\014HF_Arbitrage\020\002\022\014\n\010HF_Hedge\020\003\022\022\n\016HF_Mark" +
-      "etMaker\020\004\022\020\n\014HF_SpecHedge\020\005\022\020\n\014HF_HedgeS" +
-      "pec\020\006*\314\003\n\022OrderPriceTypeEnum\022\017\n\013OPT_Unkn" +
-      "own\020\000\022\020\n\014OPT_AnyPrice\020\001\022\022\n\016OPT_LimitPric" +
-      "e\020\002\022\021\n\rOPT_BestPrice\020\003\022\021\n\rOPT_LastPrice\020" +
-      "\004\022\035\n\031OPT_LastPricePlusOneTicks\020\005\022\035\n\031OPT_" +
-      "LastPricePlusTwoTicks\020\006\022\037\n\033OPT_LastPrice" +
-      "PlusThreeTicks\020\007\022\021\n\rOPT_AskPrice1\020\010\022\035\n\031O" +
-      "PT_AskPrice1PlusOneTicks\020\t\022\035\n\031OPT_AskPri" +
-      "ce1PlusTwoTicks\020\n\022\037\n\033OPT_AskPrice1PlusTh" +
-      "reeTicks\020\013\022\021\n\rOPT_BidPrice1\020\014\022\035\n\031OPT_Bid" +
-      "Price1PlusOneTicks\020\r\022\035\n\031OPT_BidPrice1Plu" +
-      "sTwoTicks\020\016\022\037\n\033OPT_BidPrice1PlusThreeTic" +
-      "ks\020\017\022\026\n\022OPT_FiveLevelPrice\020\020*\241\001\n\016OffsetF" +
-      "lagEnum\022\016\n\nOF_Unkonwn\020\000\022\013\n\007OF_Open\020\001\022\014\n\010" +
-      "OF_Close\020\002\022\021\n\rOF_ForceClose\020\003\022\021\n\rOF_Clos" +
-      "eToday\020\004\022\025\n\021OF_CloseYesterday\020\005\022\017\n\013OF_Fo" +
-      "rceOff\020\006\022\026\n\022OF_LocalForceClose\020\007*\343\001\n\024For" +
-      "ceCloseReasonEnum\022\017\n\013FCR_Unkonwn\020\000\022\025\n\021FC" +
-      "R_NotForceClose\020\001\022\023\n\017FCR_LackDeposit\020\002\022\037" +
-      "\n\033FCR_ClientOverPositionLimit\020\003\022\037\n\033FCR_M" +
-      "emberOverPositionLimit\020\004\022\023\n\017FCR_NotMulti" +
-      "ple\020\005\022\021\n\rFCR_Violation\020\006\022\r\n\tFCR_Other\020\007\022" +
-      "\025\n\021FCR_PersonDeliver\020\010*\236\001\n\rOrderTypeEnum" +
-      "\022\016\n\nOT_Unkonwn\020\000\022\r\n\tOT_Normal\020\001\022\026\n\022OT_De" +
-      "riveFromQuote\020\002\022\034\n\030OT_DeriveFromCombinat" +
-      "ion\020\003\022\022\n\016OT_Combination\020\004\022\027\n\023OT_Conditio" +
-      "nalOrder\020\005\022\013\n\007OT_Swap\020\006*k\n\021TimeCondition" +
-      "Enum\022\016\n\nTC_Unkonwn\020\000\022\n\n\006TC_IOC\020\001\022\n\n\006TC_G" +
-      "FS\020\002\022\n\n\006TC_GFD\020\003\022\n\n\006TC_GTD\020\004\022\n\n\006TC_GTC\020\005" +
-      "\022\n\n\006TC_GFA\020\006*F\n\023VolumeConditionEnum\022\016\n\nV" +
-      "C_Unkonwn\020\000\022\t\n\005VC_AV\020\001\022\t\n\005VC_MV\020\002\022\t\n\005VC_" +
-      "CV\020\003*\212\005\n\027ContingentConditionEnum\022\016\n\nCC_U" +
-      "nkonwn\020\000\022\022\n\016CC_Immediately\020\001\022\014\n\010CC_Touch" +
-      "\020\002\022\022\n\016CC_TouchProfit\020\003\022\022\n\016CC_ParkedOrder" +
-      "\020\004\022$\n CC_LastPriceGreaterThanStopPrice\020\005" +
-      "\022%\n!CC_LastPriceGreaterEqualStopPrice\020\006\022" +
-      "#\n\037CC_LastPriceLesserThanStopPrice\020\007\022$\n " +
-      "CC_LastPriceLesserEqualStopPrice\020\010\022#\n\037CC" +
-      "_AskPriceGreaterThanStopPrice\020\t\022$\n CC_As" +
-      "kPriceGreaterEqualStopPrice\020\n\022\"\n\036CC_AskP" +
-      "riceLesserThanStopPrice\020\013\022#\n\037CC_AskPrice" +
-      "LesserEqualStopPrice\020\014\022#\n\037CC_BidPriceGre" +
-      "aterThanStopPrice\020\r\022$\n CC_BidPriceGreate" +
-      "rEqualStopPrice\020\016\022\"\n\036CC_BidPriceLesserTh" +
-      "anStopPrice\020\017\022#\n\037CC_BidPriceLesserEqualS" +
-      "topPrice\020\020\022)\n%CC_LocalLastPriceLesserEqu" +
-      "alStopPrice\020\021\022*\n&CC_LocalLastPriceGreate" +
-      "rEqualStopPrice\020\022*>\n\016ActionFlagEnum\022\016\n\nA" +
-      "F_Unkonwn\020\000\022\r\n\tAF_Delete\020\001\022\r\n\tAF_Modify\020" +
-      "\002*T\n\020TradingRightEnum\022\016\n\nTR_Unkonwn\020\000\022\014\n" +
-      "\010TR_Allow\020\001\022\020\n\014TR_CloseOnly\020\002\022\020\n\014TR_Forb" +
-      "idden\020\003*N\n\017OrderSourceEnum\022\017\n\013ODS_Unkonw" +
-      "n\020\000\022\023\n\017ODS_Participant\020\001\022\025\n\021ODS_Administ" +
-      "rator\020\002*\255\001\n\rTradeTypeEnum\022\016\n\nTT_Unkonwn\020" +
-      "\000\022\027\n\023TT_SplitCombination\020\001\022\r\n\tTT_Common\020" +
-      "\002\022\027\n\023TT_OptionsExecution\020\003\022\n\n\006TT_OTC\020\004\022\021" +
-      "\n\rTT_EFPDerived\020\005\022\031\n\025TT_CombinationDeriv" +
-      "ed\020\006\022\021\n\rTT_BlockTrade\020\007*b\n\017PriceSourceEn" +
-      "um\022\020\n\014PSRC_Unkonwn\020\000\022\022\n\016PSRC_LastPrice\020\001" +
-      "\022\014\n\010PSRC_Buy\020\002\022\r\n\tPSRC_Sell\020\003\022\014\n\010PSRC_OT" +
-      "C\020\004*\250\002\n\014CurrencyEnum\022\023\n\017UnknownCurrency\020" +
-      "\000\022\007\n\003USD\020\001\022\007\n\003CNY\020\002\022\007\n\003CNH\020\003\022\007\n\003HKD\020\004\022\007\n" +
-      "\003JPY\020\005\022\007\n\003EUR\020\006\022\007\n\003GBP\020\007\022\007\n\003DEM\020\010\022\007\n\003CHF" +
-      "\020\t\022\007\n\003FRF\020\n\022\007\n\003CAD\020\013\022\007\n\003AUD\020\014\022\007\n\003ATS\020\r\022\007" +
-      "\n\003FIM\020\016\022\007\n\003BEF\020\017\022\007\n\003THB\020\020\022\007\n\003IEP\020\021\022\007\n\003IT" +
-      "L\020\022\022\007\n\003LUF\020\023\022\007\n\003NLG\020\024\022\007\n\003PTE\020\025\022\007\n\003ESP\020\026\022" +
-      "\007\n\003IDR\020\027\022\007\n\003MYR\020\030\022\007\n\003NZD\020\031\022\007\n\003PHP\020\032\022\007\n\003S" +
-      "UR\020\033\022\007\n\003SGD\020\034\022\007\n\003KRW\020\035*\225\002\n\014ExchangeEnum\022" +
-      "\023\n\017UnknownExchange\020\000\022\007\n\003SSE\020\001\022\010\n\004SZSE\020\002\022" +
-      "\t\n\005CFFEX\020\003\022\010\n\004SHFE\020\004\022\010\n\004CZCE\020\005\022\007\n\003DCE\020\006\022" +
-      "\007\n\003SGE\020\007\022\007\n\003INE\020\010\022\010\n\004SEHK\020\t\022\010\n\004HKFE\020\n\022\007\n" +
-      "\003SGX\020\013\022\t\n\005NYBOT\020\014\022\t\n\005NYMEX\020\r\022\t\n\005COMEX\020\016\022" +
-      "\007\n\003CME\020\017\022\007\n\003CFE\020\020\022\n\n\006GLOBEX\020\021\022\007\n\003ICE\020\022\022\007" +
-      "\n\003IPE\020\023\022\007\n\003LME\020\024\022\014\n\010IDEALPRO\020\025\022\t\n\005OANDA\020" +
-      "\026\022\010\n\004FXCM\020\027\022\t\n\005SMART\020\030*E\n\017OptionsTypeEnu" +
-      "m\022\r\n\tO_Unknown\020\000\022\021\n\rO_CallOptions\020\001\022\020\n\014O" +
-      "_PutOptions\020\002*Y\n\016StrikeModeEnum\022\017\n\013STM_U" +
-      "nknown\020\000\022\023\n\017STM_Continental\020\001\022\020\n\014STM_Ame" +
-      "rican\020\002\022\017\n\013STM_Bermuda\020\003*\224\001\n\023Combination" +
-      "TypeEnum\022\021\n\rCOMBT_Unknown\020\000\022\020\n\014COMBT_Fut" +
-      "ure\020\001\022\r\n\tCOMBT_BUL\020\002\022\r\n\tCOMBT_BER\020\003\022\r\n\tC" +
-      "OMBT_STD\020\004\022\r\n\tCOMBT_STG\020\005\022\r\n\tCOMBT_PRT\020\006" +
-      "\022\r\n\tCOMBT_CLD\020\007b\006proto3"
+      "GAT_IB\020\001\022\016\n\nGAT_COMMON\020\002*R\n\020CommonStatus" +
+      "Enum\022\020\n\014COMS_SUCCESS\020\000\022\r\n\tCOMS_INFO\020\001\022\r\n" +
+      "\tCOMS_WARN\020\002\022\016\n\nCOMS_ERROR\020\003*f\n\014LogLevel" +
+      "Enum\022\n\n\006LL_All\020\000\022\016\n\010LL_Error\020\300\270\002\022\r\n\007LL_W" +
+      "arn\020\260\352\001\022\r\n\007LL_Info\020\240\234\001\022\r\n\010LL_Debug\020\220N\022\r\n" +
+      "\010LL_Trace\020\210\'*@\n\024MarketDataDBTypeEnum\022\014\n\010" +
+      "MDDT_MIX\020\000\022\013\n\007MDDT_TD\020\001\022\r\n\tMDDT_HIST\020\002*W" +
+      "\n\014BarCycleEnum\022\n\n\006B_5Sec\020\000\022\n\n\006B_1Min\020\001\022\n" +
+      "\n\006B_3Min\020\002\022\n\n\006B_5Min\020\003\022\013\n\007B_15Min\020\004\022\n\n\006B" +
+      "_1Day\020\005*s\n\021ConnectStatusEnum\022\016\n\nCS_Unkon" +
+      "wn\020\000\022\023\n\017CS_Disconnected\020\001\022\020\n\014CS_Connecte" +
+      "d\020\002\022\024\n\020CS_Disconnecting\020\003\022\021\n\rCS_Connecti" +
+      "ng\020\004*^\n\024OrderActionStatusTyp\022\017\n\013OAS_Unko" +
+      "nwn\020\000\022\021\n\rOAS_Submitted\020\001\022\020\n\014OAS_Accepted" +
+      "\020\002\022\020\n\014OAS_Rejected\020\003*\344\001\n\017OrderStatusEnum" +
+      "\022\016\n\nOS_Unknown\020\000\022\020\n\014OS_AllTraded\020\001\022\031\n\025OS" +
+      "_PartTradedQueueing\020\002\022\034\n\030OS_PartTradedNo" +
+      "tQueueing\020\003\022\026\n\022OS_NoTradeQueueing\020\004\022\031\n\025O" +
+      "S_NoTradeNotQueueing\020\005\022\017\n\013OS_Canceled\020\006\022" +
+      "\021\n\rOS_NotTouched\020\007\022\016\n\nOS_Touched\020\010\022\017\n\013OS" +
+      "_Rejected\020\t*\315\001\n\025OrderSubmitStatusEnum\022\017\n" +
+      "\013OSS_Unknown\020\000\022\027\n\023OSS_InsertSubmitted\020\001\022" +
+      "\027\n\023OSS_CancelSubmitted\020\002\022\027\n\023OSS_ModifySu" +
+      "bmitted\020\003\022\020\n\014OSS_Accepted\020\004\022\026\n\022OSS_Inser" +
+      "tRejected\020\005\022\026\n\022OSS_CancelRejected\020\006\022\026\n\022O" +
+      "SS_ModifyRejected\020\007*\334\001\n\020ProductClassEnum" +
+      "\022\027\n\023UnknownProductClass\020\000\022\n\n\006EQUITY\020\001\022\013\n" +
+      "\007FUTURES\020\002\022\n\n\006OPTION\020\003\022\t\n\005INDEX\020\004\022\017\n\013COM" +
+      "BINATION\020\005\022\010\n\004BOND\020\006\022\t\n\005FOREX\020\007\022\010\n\004SPOT\020" +
+      "\010\022\t\n\005DEFER\020\t\022\007\n\003ETF\020\n\022\014\n\010WARRANTS\020\013\022\n\n\006S" +
+      "PREAD\020\014\022\010\n\004FUND\020\r\022\007\n\003EFP\020\016\022\016\n\nSPOTOPTION" +
+      "\020\017*5\n\rDirectionEnum\022\r\n\tD_Unknown\020\000\022\t\n\005D_" +
+      "Buy\020\001\022\n\n\006D_Sell\020\002*<\n\020PositionTypeEnum\022\016\n" +
+      "\nPT_Unknown\020\000\022\n\n\006PT_Net\020\001\022\014\n\010PT_Gross\020\002*" +
+      "N\n\025PositionDirectionEnum\022\016\n\nPD_Unknown\020\000" +
+      "\022\n\n\006PD_Net\020\001\022\013\n\007PD_Long\020\002\022\014\n\010PD_Short\020\003*" +
+      "\213\001\n\rHedgeFlagEnum\022\016\n\nHF_Unknown\020\000\022\022\n\016HF_" +
+      "Speculation\020\001\022\020\n\014HF_Arbitrage\020\002\022\014\n\010HF_He" +
+      "dge\020\003\022\022\n\016HF_MarketMaker\020\004\022\020\n\014HF_SpecHedg" +
+      "e\020\005\022\020\n\014HF_HedgeSpec\020\006*\314\003\n\022OrderPriceType" +
+      "Enum\022\017\n\013OPT_Unknown\020\000\022\020\n\014OPT_AnyPrice\020\001\022" +
+      "\022\n\016OPT_LimitPrice\020\002\022\021\n\rOPT_BestPrice\020\003\022\021" +
+      "\n\rOPT_LastPrice\020\004\022\035\n\031OPT_LastPricePlusOn" +
+      "eTicks\020\005\022\035\n\031OPT_LastPricePlusTwoTicks\020\006\022" +
+      "\037\n\033OPT_LastPricePlusThreeTicks\020\007\022\021\n\rOPT_" +
+      "AskPrice1\020\010\022\035\n\031OPT_AskPrice1PlusOneTicks" +
+      "\020\t\022\035\n\031OPT_AskPrice1PlusTwoTicks\020\n\022\037\n\033OPT" +
+      "_AskPrice1PlusThreeTicks\020\013\022\021\n\rOPT_BidPri" +
+      "ce1\020\014\022\035\n\031OPT_BidPrice1PlusOneTicks\020\r\022\035\n\031" +
+      "OPT_BidPrice1PlusTwoTicks\020\016\022\037\n\033OPT_BidPr" +
+      "ice1PlusThreeTicks\020\017\022\026\n\022OPT_FiveLevelPri" +
+      "ce\020\020*\241\001\n\016OffsetFlagEnum\022\016\n\nOF_Unkonwn\020\000\022" +
+      "\013\n\007OF_Open\020\001\022\014\n\010OF_Close\020\002\022\021\n\rOF_ForceCl" +
+      "ose\020\003\022\021\n\rOF_CloseToday\020\004\022\025\n\021OF_CloseYest" +
+      "erday\020\005\022\017\n\013OF_ForceOff\020\006\022\026\n\022OF_LocalForc" +
+      "eClose\020\007*\343\001\n\024ForceCloseReasonEnum\022\017\n\013FCR" +
+      "_Unkonwn\020\000\022\025\n\021FCR_NotForceClose\020\001\022\023\n\017FCR" +
+      "_LackDeposit\020\002\022\037\n\033FCR_ClientOverPosition" +
+      "Limit\020\003\022\037\n\033FCR_MemberOverPositionLimit\020\004" +
+      "\022\023\n\017FCR_NotMultiple\020\005\022\021\n\rFCR_Violation\020\006" +
+      "\022\r\n\tFCR_Other\020\007\022\025\n\021FCR_PersonDeliver\020\010*\236" +
+      "\001\n\rOrderTypeEnum\022\016\n\nOT_Unkonwn\020\000\022\r\n\tOT_N" +
+      "ormal\020\001\022\026\n\022OT_DeriveFromQuote\020\002\022\034\n\030OT_De" +
+      "riveFromCombination\020\003\022\022\n\016OT_Combination\020" +
+      "\004\022\027\n\023OT_ConditionalOrder\020\005\022\013\n\007OT_Swap\020\006*" +
+      "k\n\021TimeConditionEnum\022\016\n\nTC_Unkonwn\020\000\022\n\n\006" +
+      "TC_IOC\020\001\022\n\n\006TC_GFS\020\002\022\n\n\006TC_GFD\020\003\022\n\n\006TC_G" +
+      "TD\020\004\022\n\n\006TC_GTC\020\005\022\n\n\006TC_GFA\020\006*F\n\023VolumeCo" +
+      "nditionEnum\022\016\n\nVC_Unkonwn\020\000\022\t\n\005VC_AV\020\001\022\t" +
+      "\n\005VC_MV\020\002\022\t\n\005VC_CV\020\003*\212\005\n\027ContingentCondi" +
+      "tionEnum\022\016\n\nCC_Unkonwn\020\000\022\022\n\016CC_Immediate" +
+      "ly\020\001\022\014\n\010CC_Touch\020\002\022\022\n\016CC_TouchProfit\020\003\022\022" +
+      "\n\016CC_ParkedOrder\020\004\022$\n CC_LastPriceGreate" +
+      "rThanStopPrice\020\005\022%\n!CC_LastPriceGreaterE" +
+      "qualStopPrice\020\006\022#\n\037CC_LastPriceLesserTha" +
+      "nStopPrice\020\007\022$\n CC_LastPriceLesserEqualS" +
+      "topPrice\020\010\022#\n\037CC_AskPriceGreaterThanStop" +
+      "Price\020\t\022$\n CC_AskPriceGreaterEqualStopPr" +
+      "ice\020\n\022\"\n\036CC_AskPriceLesserThanStopPrice\020" +
+      "\013\022#\n\037CC_AskPriceLesserEqualStopPrice\020\014\022#" +
+      "\n\037CC_BidPriceGreaterThanStopPrice\020\r\022$\n C" +
+      "C_BidPriceGreaterEqualStopPrice\020\016\022\"\n\036CC_" +
+      "BidPriceLesserThanStopPrice\020\017\022#\n\037CC_BidP" +
+      "riceLesserEqualStopPrice\020\020\022)\n%CC_LocalLa" +
+      "stPriceLesserEqualStopPrice\020\021\022*\n&CC_Loca" +
+      "lLastPriceGreaterEqualStopPrice\020\022*>\n\016Act" +
+      "ionFlagEnum\022\016\n\nAF_Unkonwn\020\000\022\r\n\tAF_Delete" +
+      "\020\001\022\r\n\tAF_Modify\020\002*T\n\020TradingRightEnum\022\016\n" +
+      "\nTR_Unkonwn\020\000\022\014\n\010TR_Allow\020\001\022\020\n\014TR_CloseO" +
+      "nly\020\002\022\020\n\014TR_Forbidden\020\003*N\n\017OrderSourceEn" +
+      "um\022\017\n\013ODS_Unkonwn\020\000\022\023\n\017ODS_Participant\020\001" +
+      "\022\025\n\021ODS_Administrator\020\002*\255\001\n\rTradeTypeEnu" +
+      "m\022\016\n\nTT_Unkonwn\020\000\022\027\n\023TT_SplitCombination" +
+      "\020\001\022\r\n\tTT_Common\020\002\022\027\n\023TT_OptionsExecution" +
+      "\020\003\022\n\n\006TT_OTC\020\004\022\021\n\rTT_EFPDerived\020\005\022\031\n\025TT_" +
+      "CombinationDerived\020\006\022\021\n\rTT_BlockTrade\020\007*" +
+      "b\n\017PriceSourceEnum\022\020\n\014PSRC_Unkonwn\020\000\022\022\n\016" +
+      "PSRC_LastPrice\020\001\022\014\n\010PSRC_Buy\020\002\022\r\n\tPSRC_S" +
+      "ell\020\003\022\014\n\010PSRC_OTC\020\004*\250\002\n\014CurrencyEnum\022\023\n\017" +
+      "UnknownCurrency\020\000\022\007\n\003USD\020\001\022\007\n\003CNY\020\002\022\007\n\003C" +
+      "NH\020\003\022\007\n\003HKD\020\004\022\007\n\003JPY\020\005\022\007\n\003EUR\020\006\022\007\n\003GBP\020\007" +
+      "\022\007\n\003DEM\020\010\022\007\n\003CHF\020\t\022\007\n\003FRF\020\n\022\007\n\003CAD\020\013\022\007\n\003" +
+      "AUD\020\014\022\007\n\003ATS\020\r\022\007\n\003FIM\020\016\022\007\n\003BEF\020\017\022\007\n\003THB\020" +
+      "\020\022\007\n\003IEP\020\021\022\007\n\003ITL\020\022\022\007\n\003LUF\020\023\022\007\n\003NLG\020\024\022\007\n" +
+      "\003PTE\020\025\022\007\n\003ESP\020\026\022\007\n\003IDR\020\027\022\007\n\003MYR\020\030\022\007\n\003NZD" +
+      "\020\031\022\007\n\003PHP\020\032\022\007\n\003SUR\020\033\022\007\n\003SGD\020\034\022\007\n\003KRW\020\035*\226" +
+      "\003\n\014ExchangeEnum\022\023\n\017UnknownExchange\020\000\022\007\n\003" +
+      "SSE\020\001\022\010\n\004SZSE\020\002\022\t\n\005CFFEX\020\003\022\010\n\004SHFE\020\004\022\010\n\004" +
+      "CZCE\020\005\022\007\n\003DCE\020\006\022\007\n\003SGE\020\007\022\007\n\003INE\020\010\022\010\n\004SEH" +
+      "K\020\t\022\010\n\004HKFE\020\n\022\007\n\003SGX\020\013\022\t\n\005NYBOT\020\014\022\t\n\005NYM" +
+      "EX\020\r\022\007\n\003CFE\020\016\022\n\n\006GLOBEX\020\017\022\r\n\tCMECRYPTO\020\020" +
+      "\022\t\n\005ICEEU\020\021\022\r\n\tICEEUSOFT\020\022\022\t\n\005ICEUS\020\023\022\007\n" +
+      "\003IPE\020\024\022\n\n\006LMEOTC\020\025\022\t\n\005ECBOT\020\026\022\010\n\004APEX\020\027\022" +
+      "\007\n\003BMD\020\030\022\t\n\005MONEP\020\031\022\007\n\003DTB\020\032\022\t\n\005TOCOM\020\033\022" +
+      "\n\n\006TAIFEX\020\034\022\014\n\010SEHKSZSE\020\035\022\013\n\007SEHKNTL\020\036\022\007" +
+      "\n\003KSE\020\037\022\007\n\003OSE\020 \022\017\n\013IB_IDEALPRO\020!\022\014\n\010IB_" +
+      "SMART\020\"*E\n\017OptionsTypeEnum\022\r\n\tO_Unknown\020" +
+      "\000\022\021\n\rO_CallOptions\020\001\022\020\n\014O_PutOptions\020\002*Y" +
+      "\n\016StrikeModeEnum\022\017\n\013STM_Unknown\020\000\022\023\n\017STM" +
+      "_Continental\020\001\022\020\n\014STM_American\020\002\022\017\n\013STM_" +
+      "Bermuda\020\003*\224\001\n\023CombinationTypeEnum\022\021\n\rCOM" +
+      "BT_Unknown\020\000\022\020\n\014COMBT_Future\020\001\022\r\n\tCOMBT_" +
+      "BUL\020\002\022\r\n\tCOMBT_BER\020\003\022\r\n\tCOMBT_STD\020\004\022\r\n\tC" +
+      "OMBT_STG\020\005\022\r\n\tCOMBT_PRT\020\006\022\r\n\tCOMBT_CLD\020\007" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

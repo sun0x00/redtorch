@@ -8,7 +8,7 @@ import xyz.redtorch.pb.CoreField.TickField;
 
 public interface MarketDataService {
 
-	final String COLLECTION_NAME_PREFIX_TICK = "tick_";
+	final String COLLECTION_NAME_TICK = "tick";
 	final String COLLECTION_NAME_BAR_1_MIN = "bar_1_min";
 	final String COLLECTION_NAME_BAR_3_MIN = "bar_3_min";
 	final String COLLECTION_NAME_BAR_5_MIN = "bar_5_min";
@@ -124,7 +124,7 @@ public interface MarketDataService {
 
 	boolean upsertBar1DayListToHistDB( List<BarField> barList);
 
-	boolean upsertTickListToHistDB( List<TickField> tickList,String unifiedSymbol);
+	boolean upsertTickListToHistDB( List<TickField> tickList);
 	
 
 	boolean upsertBar5SecListToTodayDB( List<BarField> barList);
@@ -137,7 +137,7 @@ public interface MarketDataService {
 
 	boolean upsertBar15MinListToTodayDB( List<BarField> barList);
 
-	boolean upsertTickListToTodayDB( List<TickField> tickList,String unifiedSymbol);
+	boolean upsertTickListToTodayDB( List<TickField> tickList);
 	
 	
 	boolean upsertBar5SecToTodayDB(BarField bar);

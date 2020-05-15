@@ -2,8 +2,10 @@ package xyz.redtorch.common.compile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.ToolProvider;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,26 +37,45 @@ public class DynamicCompileEngine {
 		// 获取类加载器
 		this.parentClassLoader = this.getClass().getClassLoader();
 		// 创建classpath
-		this.buildClassPath();
+		try {
+			this.buildClassPath();
+		} catch (IOException e) {
+			logger.error("建立ClassPath错误",e);
+		}
 	}
 
-	private void buildClassPath() {
+
+	private void buildClassPath() throws IOException {
 		this.classpath = null;
 		if (this.parentClassLoader instanceof URLClassLoader) {
+			
+			ClassLoader cl = parentClassLoader;
+			List<String> paths = new ArrayList<String>();
+			while (cl instanceof URLClassLoader) {
+				for (URL url : ((URLClassLoader) cl).getURLs()) {
+					if (url.openConnection() instanceof JarURLConnection) {
+						// extract the file URL from the jar URL
+						JarURLConnection connection = (JarURLConnection) url.openConnection();
+						url = connection.getJarFileURL();
+					}
+					String decodedPath = URLDecoder.decode(url.getPath(), "UTF-8");
+					paths.add(new File(decodedPath).getAbsolutePath());
+				}
+				cl = cl.getParent();
+			}
 			StringBuilder sb = new StringBuilder();
-			for (URL url : ((URLClassLoader) this.parentClassLoader).getURLs()) {
-				String p = url.getFile();
-				sb.append(p).append(File.pathSeparator);
+			for (String path : paths) {
+				if(StringUtils.isNoneBlank(path)) {
+					sb.append(path).append(File.pathSeparator);
+				}
 			}
 			this.classpath = sb.toString();
 		} else {
 			this.classpath = System.getProperty("java.class.path");
 		}
-
 	}
 
-	public Class<?> javaCodeToClass(String fullClassName, String javaCode)
-			throws IllegalAccessException, InstantiationException {
+	public Class<?> javaCodeToClass(String fullClassName, String javaCode, String classPath) throws IllegalAccessException, InstantiationException {
 		// 获取系统编译器
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		// 建立DiagnosticCollector对象
@@ -61,8 +83,7 @@ public class DynamicCompileEngine {
 
 		// 建立用于保存被编译文件名的对象
 		// 每个文件被保存在一个从JavaFileObject继承的类中
-		ClassFileManager fileManager = new ClassFileManager(
-				compiler.getStandardFileManager(diagnosticCollector, null, null));
+		ClassFileManager fileManager = new ClassFileManager(compiler.getStandardFileManager(diagnosticCollector, null, null));
 
 		List<JavaFileObject> jfiles = new ArrayList<>();
 		jfiles.add(new CharSequenceJavaFileObject(fullClassName, javaCode));
@@ -72,12 +93,15 @@ public class DynamicCompileEngine {
 		options.add("-encoding");
 		options.add("UTF-8");
 		options.add("-classpath");
-		options.add(this.classpath);
+		if(StringUtils.isBlank(classPath)) {
+			options.add(this.classpath);
+		}else {
+			options.add(this.classpath+File.pathSeparator+classPath+File.pathSeparator);
+		}
 		// 不使用SharedNameTable （jdk1.7自带的软引用，会影响GC的回收，jdk1.9已经解决）
 		options.add("-XDuseUnsharedTable");
 
-		JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnosticCollector, options,
-				null, jfiles);
+		JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnosticCollector, options, null, jfiles);
 
 		// 编译源程序
 		boolean success = compilationTask.call();

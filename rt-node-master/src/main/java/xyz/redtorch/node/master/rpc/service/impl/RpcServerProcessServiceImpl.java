@@ -1373,7 +1373,7 @@ public class RpcServerProcessServiceImpl implements RpcServerProcessService, Ini
 				.setContentBytes(contentByteString);
 
 		if (!webSocketServerHandler.sendDataByNodeId(targetNodeId, depBuilder.build().toByteArray())) {
-			logger.error("发送RPC错误,目标节点ID:{},请求ID:{},RPC:{}", targetNodeId, rpcId.getValueDescriptor().getName(), rpcId);
+			logger.error("发送RPC错误,目标节点ID:{},请求ID:{},RPC:{}", targetNodeId, reqId, rpcId.getValueDescriptor().getName());
 			return false;
 		}
 		return true;

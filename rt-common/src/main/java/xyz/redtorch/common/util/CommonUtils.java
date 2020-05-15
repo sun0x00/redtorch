@@ -6,10 +6,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.net.URL;
-import java.util.Scanner;
 import java.io.FileFilter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Modifier;
@@ -70,49 +67,6 @@ public class CommonUtils {
 	public static final DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT_INT);
 	public static final DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT);
 
-	/**
-	 * 读取文件到字符串
-	 * 
-	 * @param file
-	 * @return
-	 */
-	public static String readFileToString(String filePath) {
-		File tmpFile = new File(filePath);
-		if (tmpFile.isDirectory() || !tmpFile.exists()) {
-			logger.error("读取发生异常,文件不存在{}", filePath);
-			return null;
-		}
-		StringBuilder buffer = new StringBuilder();
-		try (FileReader fileReader = new FileReader(filePath); Scanner scanner = new Scanner(fileReader);) {
-
-			while (scanner.hasNextLine()) {
-				buffer.append(scanner.nextLine());
-			}
-			return buffer.toString();
-		} catch (Exception e) {
-			logger.error("读取发生异常", e);
-		}
-
-		return null;
-	}
-	
-	/**
-	 * 写入字符串到文件
-	 * @param filePath
-	 * @param content
-	 * @return
-	 */
-	public static boolean writeStringToFile(String filePath,String content) {
-	      
-	    try(FileWriter fileWriter = new FileWriter(filePath);){
-	      fileWriter.write(content);
-	      fileWriter.flush();
-	      return true;
-	    } catch (IOException e) {
-	      logger.error("写入文件错误",e);
-	      return false;
-	    }
-	}
 
 	/**
 	 * 从包package中获取所有的Class

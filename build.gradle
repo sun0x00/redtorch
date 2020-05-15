@@ -16,6 +16,7 @@ ext {
 		slf4jApiVersion = '1.7.26'
 		logbackVersion = '1.2.3'
 		commonsCsvVersion = '1.7'
+		junrarVersion = '4.0.0'
 }
 
 subprojects {

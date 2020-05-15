@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import xyz.redtorch.node.master.rpc.service.RpcServerProcessService;
+import xyz.redtorch.node.master.service.MarketDataRecordingService;
 import xyz.redtorch.node.master.service.MasterTradeExecuteService;
 import xyz.redtorch.node.master.service.MasterTradeRtnRelayService;
 import xyz.redtorch.node.master.service.OperatorService;
@@ -52,6 +53,8 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
 	private MasterTradeExecuteService masterTradeExecuteService;
 	@Autowired
 	private OperatorService operatorService;
+	@Autowired
+	private MarketDataRecordingService marketDataRecordingService;
 
 	private Map<String, Long> tickTimestampFilterMap = new ConcurrentHashMap<>();
 	private Map<String, Long> tickLastLocalTimestampFilterMap = new ConcurrentHashMap<>();
@@ -330,6 +333,12 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
 		}
 
 		tickTimestampFilterMap.put(unifiedSymbol, actionTimestamp);
+		
+		Set<String> mdrSubscribedUnifiedSymbol = marketDataRecordingService.getSubscribedUnifiedSymbolSet();
+		if(mdrSubscribedUnifiedSymbol.contains(tick.getUnifiedSymbol())) {
+			marketDataRecordingService.processTick(tick);
+		}
+		
 
 		// --------------------------先根据unfiedSymbol进行转发--------------------------
 		Set<Integer> unfiedSymbolSubscribedNodeIdSet = masterTradeExecuteService.getSubscribedNodeIdSet(tick.getUnifiedSymbol());

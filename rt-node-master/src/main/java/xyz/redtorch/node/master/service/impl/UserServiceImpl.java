@@ -295,6 +295,8 @@ public class UserServiceImpl implements UserService {
 			queriedUser.setCanWriteNode(user.isCanWriteNode());
 			queriedUser.setCanWriteOperator(user.isCanWriteOperator());
 			queriedUser.setCanWriteUser(user.isCanWriteUser());
+			queriedUser.setCanWriteMarketDataRecording(user.isCanWriteMarketDataRecording());
+			queriedUser.setCanReadMarketDataRecording(user.isCanReadMarketDataRecording());
 			userDao.upsertUserByUsername(queriedUser);
 		} else {
 			logger.warn("根据用户名更新权限警告,未查出用户,用户名:{}", username);

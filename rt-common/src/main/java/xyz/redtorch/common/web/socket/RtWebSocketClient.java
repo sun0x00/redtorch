@@ -116,6 +116,8 @@ public class RtWebSocketClient {
 	private ThreadSafeWebSocketSession webSocketSession;
 
 	private LinkedBlockingQueue<byte[]> dataQueue = new LinkedBlockingQueue<>();
+	
+	private Long pingStartTimestamp = null;
 
 	public RtWebSocketClient(RpcClientProcessService rpcClientProcessService) {
 		this.rpcClientProcessService = rpcClientProcessService;
@@ -166,6 +168,7 @@ public class RtWebSocketClient {
 					}
 				});
 				logger.info("收到PONG,延时{}ms", delay);
+				pingStartTimestamp = null;
 			}
 
 			@Override
@@ -235,12 +238,25 @@ public class RtWebSocketClient {
 
 			scheduledExecutorService.scheduleAtFixedRate(() -> {
 				try {
+					
+					if(pingStartTimestamp!=null) {
+						if(System.currentTimeMillis()-pingStartTimestamp>21000) {
+							logger.error("PING服务器超时,主动断开");
+							WebSocketSession closeWebSocketSession = webSocketSession;
+							webSocketSession = null;
+							closeWebSocketSession.close();
+							pingStartTimestamp = null;
+						}
+					}
+					
 					if (webSocketSession != null && webSocketSession.isOpen()) {
 						logger.info("PING服务器");
 						ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(System.currentTimeMillis()).flip();
 						PingMessage message = new PingMessage(byteBuffer);
 						webSocketSession.sendMessage(message);
-
+						if(pingStartTimestamp==null) {
+							pingStartTimestamp = System.currentTimeMillis();
+						}
 					}
 				} catch (Exception e) {
 					if (rpcClientProcessService != null) {

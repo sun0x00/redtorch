@@ -55,6 +55,8 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
 	private Set<Integer> skipTradeEventsNodeIdSet = ConcurrentHashMap.newKeySet();
 
 	private ExecutorService executor = Executors.newCachedThreadPool();
+	
+	private Map<String,Long> sessionIdPingStartTimeMap = new ConcurrentHashMap<>();
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -66,13 +68,29 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
 						Thread.sleep(10000);
 
 						for (ThreadSafeWebSocketSession threadSafeWebSocketSession : sessionIdSessionMap.values()) {
+							if(sessionIdPingStartTimeMap.containsKey(threadSafeWebSocketSession.getId())) {
+								Long startPingTimestamp = sessionIdPingStartTimeMap.get(threadSafeWebSocketSession.getId());
+								if(System.currentTimeMillis()-startPingTimestamp>21000) {
+									logger.error("PING超时,会话ID:{}",threadSafeWebSocketSession.getId());
+									try {
+										threadSafeWebSocketSession.close(CloseStatus.NORMAL.withReason("管理服务主动关闭!"));
+									} catch (IOException e) {
+										logger.error("PING超时后关闭会话警告", e);
+									}
+									sessionIdPingStartTimeMap.remove(threadSafeWebSocketSession.getId());
+								}	 
+							}
+
 							if (threadSafeWebSocketSession.isOpen()) {
+								Long pingStartTime = System.currentTimeMillis();
 								ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(System.currentTimeMillis()).flip();
 								PingMessage message = new PingMessage(byteBuffer);
 								threadSafeWebSocketSession.sendMessage(message);
+								if(!sessionIdPingStartTimeMap.containsKey(threadSafeWebSocketSession.getId())) {
+									sessionIdPingStartTimeMap.put(threadSafeWebSocketSession.getId(), pingStartTime);
+								}
 							}
 						}
-
 					} catch (Exception e) {
 						logger.error("定时PING线程异常", e);
 					}
@@ -211,6 +229,7 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
 			return;
 		}
 		Long pingTimestamp = message.getPayload().asLongBuffer().get();
+		sessionIdPingStartTimeMap.remove(session.getId());
 		logger.info("收到PONG,节点ID:{},会话ID:{},延时{}ms", nodeId, session.getId(), System.currentTimeMillis() - pingTimestamp);
 	}
 

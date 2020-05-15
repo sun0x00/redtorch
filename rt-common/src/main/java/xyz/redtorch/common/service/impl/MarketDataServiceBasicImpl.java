@@ -494,7 +494,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar5SecListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_5_SEC, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, barList);
 
 		}
 		return false;
@@ -503,7 +503,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar1MinListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_1_MIN, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, barList);
 		}
 		return false;
 	}
@@ -511,7 +511,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar3MinListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_3_MIN, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, barList);
 		}
 		return false;
 	}
@@ -519,7 +519,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar5MinListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_5_MIN, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, barList);
 		}
 		return false;
 	}
@@ -527,7 +527,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar15MinListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_15_MIN, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, barList);
 		}
 		return false;
 	}
@@ -535,15 +535,15 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar1DayListToHistDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(histMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_1_DAY, barList);
+			return upsertBar(histMarketDataDBName, COLLECTION_NAME_BAR_1_DAY, barList);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean upsertTickListToHistDB(List<TickField> tickList, String unifiedSymbol) {
+	public boolean upsertTickListToHistDB(List<TickField> tickList) {
 		if (!tickList.isEmpty()) {
-			return upsertTick(histMarketDataDBName, MarketDataService.COLLECTION_NAME_PREFIX_TICK + unifiedSymbol, tickList);
+			return upsertTick(histMarketDataDBName, COLLECTION_NAME_TICK, tickList);
 		}
 		return false;
 	}
@@ -551,7 +551,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar5SecListToTodayDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_5_SEC, barList);
+			return upsertBar(todayMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, barList);
 		}
 		return false;
 	}
@@ -559,7 +559,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar1MinListToTodayDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_1_MIN, barList);
+			return upsertBar(todayMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, barList);
 		}
 		return false;
 	}
@@ -567,7 +567,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar3MinListToTodayDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_3_MIN, barList);
+			return upsertBar(todayMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, barList);
 		}
 		return false;
 	}
@@ -575,7 +575,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar5MinListToTodayDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_5_MIN, barList);
+			return upsertBar(todayMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, barList);
 		}
 		return false;
 	}
@@ -583,15 +583,15 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	@Override
 	public boolean upsertBar15MinListToTodayDB(List<BarField> barList) {
 		if (!barList.isEmpty()) {
-			return upsertBar(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_BAR_15_MIN, barList);
+			return upsertBar(todayMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, barList);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean upsertTickListToTodayDB(List<TickField> tickList, String unifiedSymbol) {
+	public boolean upsertTickListToTodayDB(List<TickField> tickList) {
 		if (!tickList.isEmpty()) {
-			return upsertTick(todayMarketDataDBName, MarketDataService.COLLECTION_NAME_PREFIX_TICK + unifiedSymbol, tickList);
+			return upsertTick(todayMarketDataDBName, COLLECTION_NAME_TICK, tickList);
 		}
 		return false;
 	}
@@ -623,7 +623,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 
 	@Override
 	public boolean upsertTickToTodayDB(TickField tick) {
-		return upsertTick(todayMarketDataDBName, COLLECTION_NAME_PREFIX_TICK + tick.getUnifiedSymbol(), tick);
+		return upsertTick(todayMarketDataDBName, COLLECTION_NAME_TICK, tick);
 	}
 
 	@Override
@@ -819,7 +819,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			String collectionName = COLLECTION_NAME_PREFIX_TICK + unifiedSymbol;
+			String collectionName = COLLECTION_NAME_TICK;
 			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, collectionName, filter, sortBO);
 			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
@@ -952,7 +952,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			String collectionName = COLLECTION_NAME_PREFIX_TICK + unifiedSymbol;
+			String collectionName = COLLECTION_NAME_TICK;
 			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, collectionName, filter, sortBO);
 			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
@@ -979,7 +979,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			pipeline.add(new Document("$limit", limit));
 			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
 			
-			String collectionName = COLLECTION_NAME_PREFIX_TICK + unifiedSymbol;
+			String collectionName = COLLECTION_NAME_TICK;
 			
 			AggregateIterable<Document> doc = this.histMarketDataDBClient.getDatabase(histMarketDataDBName).getCollection(collectionName).aggregate(pipeline);
 			MongoCursor<Document> mongoCursor = doc.iterator();
@@ -1009,7 +1009,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			pipeline.add(new Document("$limit", limit));
 			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
 			
-			String collectionName = COLLECTION_NAME_PREFIX_TICK + unifiedSymbol;
+			String collectionName = COLLECTION_NAME_TICK;
 			
 			AggregateIterable<Document> doc = this.todayMarketDataDBClient.getDatabase(todayMarketDataDBName).getCollection(collectionName).aggregate(pipeline);
 			MongoCursor<Document> mongoCursor = doc.iterator();
