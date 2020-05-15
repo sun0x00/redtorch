@@ -142,6 +142,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 							logger.warn("{}尚未登陆,跳过查询", logInfo);
 						}
 
+						ctpGatewayImpl.updateApproximateTimestamp();
 					} catch (InterruptedException e) {
 						logger.warn("{}定时查询线程睡眠时检测到中断,退出线程", logInfo, e);
 						break;
@@ -945,21 +946,20 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			if (!(instrumentQueried && ctpGatewayImpl.contractMap.containsKey(symbol))) {
 				logger.warn("{}尚未获取到合约信息,暂时不处理持仓数据,代码{}", logInfo, symbol);
 			}else {
-				
 				ContractField contract = ctpGatewayImpl.contractMap.get(symbol);
-	
-				String uniqueSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
-	
+
+				String unifiedSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
+
 				// 无法获取账户信息,使用userId作为账户ID
 				String accountCode = userId;
 				// 无法获取币种信息使用特定值
 				String accountId = accountCode + "@CNY@" + gatewayId;
-	
+
 				PositionDirectionEnum direction = CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown);
 				HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.get(String.valueOf(pInvestorPosition.getHedgeFlag()));
 				// 获取持仓缓存
-				String positionId = uniqueSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
-	
+				String positionId = unifiedSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
+
 				PositionField.Builder positionBuilder;
 				if (positionBuilderMap.containsKey(positionId)) {
 					positionBuilder = positionBuilderMap.get(positionId);
@@ -969,30 +969,30 @@ public class TdSpi extends CThostFtdcTraderSpi {
 					positionBuilder.setContract(ctpGatewayImpl.contractMap.get(symbol));
 					positionBuilder.setPositionDirection(CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown));
 					positionBuilder.setPositionId(positionId);
-	
+
 					positionBuilder.setAccountId(accountId);
 					positionBuilder.setGatewayId(gatewayId);
 					positionBuilder.setHedgeFlag(hedgeFlag);
-	
+
 				}
-	
+
 				positionBuilder.setUseMargin(positionBuilder.getUseMargin() + pInvestorPosition.getUseMargin());
 				positionBuilder.setExchangeMargin(positionBuilder.getExchangeMargin() + pInvestorPosition.getExchangeMargin());
-	
+
 				positionBuilder.setPosition(positionBuilder.getPosition() + pInvestorPosition.getPosition());
-	
+
 				if (positionBuilder.getPositionDirection() == PositionDirectionEnum.PD_Long) {
 					positionBuilder.setFrozen(pInvestorPosition.getShortFrozen());
 				} else {
 					positionBuilder.setFrozen(pInvestorPosition.getLongFrozen());
 				}
-	
+
 				if (ExchangeEnum.INE == positionBuilder.getContract().getExchange() || ExchangeEnum.SHFE == positionBuilder.getContract().getExchange()) {
 					// 针对上期所、上期能源持仓的今昨分条返回（有昨仓、无今仓）,读取昨仓数据
 					if (pInvestorPosition.getYdPosition() > 0 && pInvestorPosition.getTodayPosition() == 0) {
-	
+
 						positionBuilder.setYdPosition(positionBuilder.getYdPosition() + pInvestorPosition.getPosition());
-	
+
 						if (positionBuilder.getPositionDirection() == PositionDirectionEnum.PD_Long) {
 							positionBuilder.setYdFrozen(positionBuilder.getYdFrozen() + pInvestorPosition.getShortFrozen());
 						} else {
@@ -1000,7 +1000,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 						}
 					} else {
 						positionBuilder.setTdPosition(positionBuilder.getTdPosition() + pInvestorPosition.getPosition());
-	
+
 						if (positionBuilder.getPositionDirection() == PositionDirectionEnum.PD_Long) {
 							positionBuilder.setTdFrozen(positionBuilder.getTdFrozen() + pInvestorPosition.getShortFrozen());
 						} else {
@@ -1010,7 +1010,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				} else {
 					positionBuilder.setTdPosition(positionBuilder.getTdPosition() + pInvestorPosition.getTodayPosition());
 					positionBuilder.setYdPosition(positionBuilder.getPosition() - positionBuilder.getTdPosition());
-	
+
 					// 中金所优先平今
 					if (ExchangeEnum.CFFEX == positionBuilder.getContract().getExchange()) {
 						if (positionBuilder.getTdPosition() > 0) {
@@ -1036,16 +1036,16 @@ public class TdSpi extends CThostFtdcTraderSpi {
 							positionBuilder.setTdFrozen(positionBuilder.getFrozen());
 						}
 					}
-	
+
 				}
-	
+
 				// 计算成本
 				double cost = positionBuilder.getPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
 				double openCost = positionBuilder.getOpenPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
-	
+
 				// 汇总总仓
 				positionBuilder.setPositionProfit(positionBuilder.getPositionProfit() + pInvestorPosition.getPositionProfit());
-	
+
 				// 计算持仓均价
 				if (positionBuilder.getPosition() != 0) {
 					positionBuilder.setPrice((cost + pInvestorPosition.getPositionCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));

@@ -411,6 +411,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 					logger.error("{}解析日期发生异常", logInfo, e);
 					return;
 				}
+				
+				long actionTimestamp = CommonUtils.localDateTimeToMills(dateTime);
+				
+				if(Math.abs(actionTimestamp-ctpGatewayImpl.getApproximateTimestamp())>5*60*1000) {
+					logger.error("接收到与本地时间戳相差较大的行情数据,疑似错误,合约{},发生时间{}",symbol,actionTimestamp);
+					return;
+				}
 
 				String contractId = contract.getContractId();
 				String actionTime = dateTime.format(CommonConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
@@ -478,7 +485,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 				tickBuilder.setUnifiedSymbol(contract.getUnifiedSymbol());
 				tickBuilder.setActionDay(actionDay);
 				tickBuilder.setActionTime(actionTime);
-				tickBuilder.setActionTimestamp(CommonUtils.localDateTimeToMills(dateTime));
+				tickBuilder.setActionTimestamp(actionTimestamp);
 				tickBuilder.setAvgPrice(averagePrice);
 
 				tickBuilder.setHighPrice(highPrice);

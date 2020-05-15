@@ -142,6 +142,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 							logger.warn("{}尚未登陆,跳过查询", logInfo);
 						}
 
+						ctpGatewayImpl.updateApproximateTimestamp();
 					} catch (InterruptedException e) {
 						logger.warn("{}定时查询线程睡眠时检测到中断,退出线程", logInfo, e);
 						break;
@@ -945,9 +946,10 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			if (!(instrumentQueried && ctpGatewayImpl.contractMap.containsKey(symbol))) {
 				logger.warn("{}尚未获取到合约信息,暂时不处理持仓数据,代码{}", logInfo, symbol);
 			}else {
+
 				ContractField contract = ctpGatewayImpl.contractMap.get(symbol);
 	
-				String uniqueSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
+				String unifiedSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
 	
 				// 无法获取账户信息,使用userId作为账户ID
 				String accountCode = userId;
@@ -957,7 +959,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				PositionDirectionEnum direction = CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown);
 				HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.get(String.valueOf(pInvestorPosition.getHedgeFlag()));
 				// 获取持仓缓存
-				String positionId = uniqueSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
+				String positionId = unifiedSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
 	
 				PositionField.Builder positionBuilder;
 				if (positionBuilderMap.containsKey(positionId)) {
@@ -1051,7 +1053,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 					positionBuilder.setOpenPrice((openCost + pInvestorPosition.getOpenCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));
 				}
 			}
-			
+
 			// 回报结束
 			if (bIsLast) {
 				for (PositionField.Builder tmpPositionBuilder : positionBuilderMap.values()) {

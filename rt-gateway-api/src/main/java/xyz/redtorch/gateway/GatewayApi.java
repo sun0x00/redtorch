@@ -173,4 +173,15 @@ public interface GatewayApi {
 	 */
 	long getLastConnectBeginTimestamp();
 
+	/**
+	 * 更新近似时间戳
+	 */
+	void updateApproximateTimestamp();
+
+	/**
+	 * 获取近似时间戳
+	 * @return
+	 */
+	long getApproximateTimestamp();
+
 }

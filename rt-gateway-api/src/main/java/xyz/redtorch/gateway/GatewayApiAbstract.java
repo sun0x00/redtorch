@@ -22,7 +22,7 @@ public abstract class GatewayApiAbstract implements GatewayApi {
 	protected String gatewayId;
 	protected String gatewayName;
 	protected String logInfo;
-	private boolean autoErrorFlag = false;
+	private boolean authErrorFlag = false;
 	protected long lastConnectBeginTimestamp = 0;
 
 	protected GatewaySettingField gatewaySetting;
@@ -30,6 +30,8 @@ public abstract class GatewayApiAbstract implements GatewayApi {
 	private FastEventService fastEventService;
 
 	private GatewayField gateway;
+	
+	private long approximateTimestamp = System.currentTimeMillis();
 
 	public GatewayApiAbstract(FastEventService fastEventService, GatewaySettingField gatewaySetting) {
 		this.fastEventService = fastEventService;
@@ -51,13 +53,23 @@ public abstract class GatewayApiAbstract implements GatewayApi {
 	}
 
 	@Override
+	public long getApproximateTimestamp() {
+		return approximateTimestamp;
+	}
+	
+	@Override
+	public void updateApproximateTimestamp() {
+		this.approximateTimestamp = System.currentTimeMillis();
+	}
+
+	@Override
 	public boolean getAuthErrorFlag() {
-		return autoErrorFlag;
+		return authErrorFlag;
 	}
 
 	@Override
 	public void setAuthErrorFlag(boolean authErrorFlag) {
-		this.autoErrorFlag = authErrorFlag;
+		this.authErrorFlag = authErrorFlag;
 	}
 
 	@Override
