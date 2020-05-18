@@ -61,6 +61,7 @@ message AccountField {
 	double deposit = 13;  // 入金
 	double withdraw = 14;  // 出金
 	string gatewayId = 15;  // 网关ID
+	fixed64 localCreatedTime = 16; // 本地创建时间
 }
 
 // 定单
@@ -159,6 +160,7 @@ message PositionField {
 	HedgeFlagEnum hedgeFlag = 22; // 投机套保标识
     ContractField contract = 23;  // 合约
 	string gatewayId = 24;  // 网关ID
+	fixed64 localCreatedTime = 25; // 本地创建时间
 }
 
 // Tick
