@@ -1113,33 +1113,34 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspQryTradingAccount(CThostFtdcTradingAccountField pTradingAccount, CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 
 		try {
-			String accountCode = pTradingAccount.getAccountID();
-			String currency = pTradingAccount.getCurrencyID();
+			if(pTradingAccount!=null) {
+				String accountCode = pTradingAccount.getAccountID();
+				String currency = pTradingAccount.getCurrencyID();
 
-			if (StringUtils.isBlank(currency)) {
-				currency = "CNY";
+				if (StringUtils.isBlank(currency)) {
+					currency = "CNY";
+				}
+
+				String accountId = accountCode + "@" + currency + "@" + gatewayId;
+
+				AccountField.Builder accountBuilder = AccountField.newBuilder();
+				accountBuilder.setCode(accountCode);
+				accountBuilder.setCurrency(CurrencyEnum.valueOf(currency));
+				accountBuilder.setAvailable(pTradingAccount.getAvailable());
+				accountBuilder.setCloseProfit(pTradingAccount.getCloseProfit());
+				accountBuilder.setCommission(pTradingAccount.getCommission());
+				accountBuilder.setGatewayId(gatewayId);
+				accountBuilder.setMargin(pTradingAccount.getCurrMargin());
+				accountBuilder.setPositionProfit(pTradingAccount.getPositionProfit());
+				accountBuilder.setPreBalance(pTradingAccount.getPreBalance());
+				accountBuilder.setAccountId(accountId);
+				accountBuilder.setDeposit(pTradingAccount.getDeposit());
+				accountBuilder.setWithdraw(pTradingAccount.getWithdraw());
+				accountBuilder.setHolder(investorName);
+				accountBuilder.setBalance(pTradingAccount.getBalance());
+
+				ctpGatewayImpl.emitAccount(accountBuilder.build());
 			}
-
-			String accountId = accountCode + "@" + currency + "@" + gatewayId;
-
-			AccountField.Builder accountBuilder = AccountField.newBuilder();
-			accountBuilder.setCode(accountCode);
-			accountBuilder.setCurrency(CurrencyEnum.valueOf(currency));
-			accountBuilder.setAvailable(pTradingAccount.getAvailable());
-			accountBuilder.setCloseProfit(pTradingAccount.getCloseProfit());
-			accountBuilder.setCommission(pTradingAccount.getCommission());
-			accountBuilder.setGatewayId(gatewayId);
-			accountBuilder.setMargin(pTradingAccount.getCurrMargin());
-			accountBuilder.setPositionProfit(pTradingAccount.getPositionProfit());
-			accountBuilder.setPreBalance(pTradingAccount.getPreBalance());
-			accountBuilder.setAccountId(accountId);
-			accountBuilder.setDeposit(pTradingAccount.getDeposit());
-			accountBuilder.setWithdraw(pTradingAccount.getWithdraw());
-			accountBuilder.setHolder(investorName);
-
-			accountBuilder.setBalance(pTradingAccount.getBalance());
-
-			ctpGatewayImpl.emitAccount(accountBuilder.build());
 		} catch (Throwable t) {
 			logger.error("{}处理查询账户回报异常", logInfo, t);
 			ctpGatewayImpl.disconnect();
@@ -1198,44 +1199,46 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	// 合约查询回报
 	public void OnRspQryInstrument(CThostFtdcInstrumentField pInstrument, CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		try {
-			ContractField.Builder contractBuilder = ContractField.newBuilder();
-			contractBuilder.setGatewayId(gatewayId);
-			contractBuilder.setSymbol(pInstrument.getInstrumentID());
-			contractBuilder.setExchange(CtpConstant.exchangeMapReverse.getOrDefault(pInstrument.getExchangeID(), ExchangeEnum.UnknownExchange));
-			contractBuilder.setProductClass(CtpConstant.productTypeMapReverse.getOrDefault(pInstrument.getProductClass(), ProductClassEnum.UnknownProductClass));
-			contractBuilder.setUnifiedSymbol(contractBuilder.getSymbol() + "@" + contractBuilder.getExchange() + "@" + contractBuilder.getProductClass());
-			contractBuilder.setContractId(contractBuilder.getUnifiedSymbol() + "@" + gatewayId);
-			contractBuilder.setName(pInstrument.getInstrumentName());
-			contractBuilder.setFullName(pInstrument.getInstrumentName());
-			contractBuilder.setThirdPartyId(contractBuilder.getSymbol());
+			if(pInstrument!=null) {
+				ContractField.Builder contractBuilder = ContractField.newBuilder();
+				contractBuilder.setGatewayId(gatewayId);
+				contractBuilder.setSymbol(pInstrument.getInstrumentID());
+				contractBuilder.setExchange(CtpConstant.exchangeMapReverse.getOrDefault(pInstrument.getExchangeID(), ExchangeEnum.UnknownExchange));
+				contractBuilder.setProductClass(CtpConstant.productTypeMapReverse.getOrDefault(pInstrument.getProductClass(), ProductClassEnum.UnknownProductClass));
+				contractBuilder.setUnifiedSymbol(contractBuilder.getSymbol() + "@" + contractBuilder.getExchange() + "@" + contractBuilder.getProductClass());
+				contractBuilder.setContractId(contractBuilder.getUnifiedSymbol() + "@" + gatewayId);
+				contractBuilder.setName(pInstrument.getInstrumentName());
+				contractBuilder.setFullName(pInstrument.getInstrumentName());
+				contractBuilder.setThirdPartyId(contractBuilder.getSymbol());
 
-			if (pInstrument.getVolumeMultiple() <= 0) {
-				contractBuilder.setMultiplier(1);
-			} else {
-				contractBuilder.setMultiplier(pInstrument.getVolumeMultiple());
+				if (pInstrument.getVolumeMultiple() <= 0) {
+					contractBuilder.setMultiplier(1);
+				} else {
+					contractBuilder.setMultiplier(pInstrument.getVolumeMultiple());
+				}
+
+				contractBuilder.setPriceTick(pInstrument.getPriceTick());
+				contractBuilder.setCurrency(CurrencyEnum.CNY); // 默认人民币
+				contractBuilder.setLastTradeDateOrContractMonth(pInstrument.getExpireDate());
+				contractBuilder.setStrikePrice(pInstrument.getStrikePrice());
+				contractBuilder.setOptionsType(CtpConstant.optionTypeMapReverse.getOrDefault(pInstrument.getOptionsType(), OptionsTypeEnum.O_Unknown));
+
+				if (pInstrument.getUnderlyingInstrID() != null) {
+					contractBuilder.setUnderlyingSymbol(pInstrument.getUnderlyingInstrID());
+				}
+
+				contractBuilder.setUnderlyingMultiplier(pInstrument.getUnderlyingMultiple());
+				contractBuilder.setMaxLimitOrderVolume(pInstrument.getMaxLimitOrderVolume());
+				contractBuilder.setMaxMarketOrderVolume(pInstrument.getMaxMarketOrderVolume());
+				contractBuilder.setMinLimitOrderVolume(pInstrument.getMinLimitOrderVolume());
+				contractBuilder.setMinMarketOrderVolume(pInstrument.getMinMarketOrderVolume());
+				contractBuilder.setMaxMarginSideAlgorithm(pInstrument.getMaxMarginSideAlgorithm() == '1');
+				contractBuilder.setLongMarginRatio(pInstrument.getLongMarginRatio());
+				contractBuilder.setShortMarginRatio(pInstrument.getShortMarginRatio());
+				ContractField contract = contractBuilder.build();
+				
+				ctpGatewayImpl.contractMap.put(contractBuilder.getSymbol(), contract);
 			}
-
-			contractBuilder.setPriceTick(pInstrument.getPriceTick());
-			contractBuilder.setCurrency(CurrencyEnum.CNY); // 默认人民币
-			contractBuilder.setLastTradeDateOrContractMonth(pInstrument.getExpireDate());
-			contractBuilder.setStrikePrice(pInstrument.getStrikePrice());
-			contractBuilder.setOptionsType(CtpConstant.optionTypeMapReverse.getOrDefault(pInstrument.getOptionsType(), OptionsTypeEnum.O_Unknown));
-
-			if (pInstrument.getUnderlyingInstrID() != null) {
-				contractBuilder.setUnderlyingSymbol(pInstrument.getUnderlyingInstrID());
-			}
-
-			contractBuilder.setUnderlyingMultiplier(pInstrument.getUnderlyingMultiple());
-			contractBuilder.setMaxLimitOrderVolume(pInstrument.getMaxLimitOrderVolume());
-			contractBuilder.setMaxMarketOrderVolume(pInstrument.getMaxMarketOrderVolume());
-			contractBuilder.setMinLimitOrderVolume(pInstrument.getMinLimitOrderVolume());
-			contractBuilder.setMinMarketOrderVolume(pInstrument.getMinMarketOrderVolume());
-			contractBuilder.setMaxMarginSideAlgorithm(pInstrument.getMaxMarginSideAlgorithm() == '1');
-			contractBuilder.setLongMarginRatio(pInstrument.getLongMarginRatio());
-			contractBuilder.setShortMarginRatio(pInstrument.getShortMarginRatio());
-
-			ContractField contract = contractBuilder.build();
-			ctpGatewayImpl.contractMap.put(contractBuilder.getSymbol(), contract);
 
 			if (bIsLast) {
 				for (ContractField tmpContract : ctpGatewayImpl.contractMap.values()) {
