@@ -1095,7 +1095,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 						}
 					}
 					// 发送持仓事件
-					tmpPositionBuilder.setLocalCreatedTime(System.currentTimeMillis());
+					tmpPositionBuilder.setLocalCreatedTimestamp(System.currentTimeMillis());
 					ctpGatewayImpl.emitPosition(tmpPositionBuilder.build());
 				}
 				// 清空缓存
@@ -1137,7 +1137,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				accountBuilder.setWithdraw(pTradingAccount.getWithdraw());
 				accountBuilder.setHolder(investorName);
 				accountBuilder.setBalance(pTradingAccount.getBalance());
-				accountBuilder.setLocalCreatedTime(System.currentTimeMillis());
+				accountBuilder.setLocalCreatedTimestamp(System.currentTimeMillis());
 
 				ctpGatewayImpl.emitAccount(accountBuilder.build());
 			}
