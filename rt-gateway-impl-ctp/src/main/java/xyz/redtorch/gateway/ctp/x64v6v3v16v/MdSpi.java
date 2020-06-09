@@ -439,7 +439,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 				double openInterest = pDepthMarketData.getOpenInterest();
 				int openInterestDelta = 0;
 				if (preTickMap.containsKey(contractId)) {
-					openInterestDelta = (int) (openInterest - preTickMap.get(contractId).getOpenInterestDelta());
+					openInterestDelta = (int) (openInterest - preTickMap.get(contractId).getOpenInterest());
 				}
 
 				Double preClosePrice = pDepthMarketData.getPreClosePrice();
