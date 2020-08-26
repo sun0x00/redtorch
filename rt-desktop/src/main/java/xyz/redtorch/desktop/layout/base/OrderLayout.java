@@ -104,7 +104,8 @@ public class OrderLayout {
 
 		List<OrderField> newOrderList = new ArrayList<>();
 		for (OrderField order : this.orderList) {
-			if (guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(order.getAccountId())) {
+			if (guiMainService.getSelectedAccountIdSet().isEmpty()
+					|| guiMainService.getSelectedAccountIdSet().contains(order.getAccountId())) {
 				if (showRadioValue == SHOW_ALL) {
 					if (showRejectedChecked) {
 						newOrderList.add(order);
@@ -151,7 +152,8 @@ public class OrderLayout {
 				vBox.getChildren().add(unifiedSymbolText);
 				vBox.getChildren().add(shortNameText);
 
-				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract().getUnifiedSymbol().equals(order.getContract().getUnifiedSymbol())) {
+				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract()
+						.getUnifiedSymbol().equals(order.getContract().getUnifiedSymbol())) {
 					unifiedSymbolText.getStyleClass().add("trade-remind-color");
 				}
 
@@ -166,7 +168,8 @@ public class OrderLayout {
 			try {
 				OrderField order1 = (OrderField) p1.getUserData();
 				OrderField order2 = (OrderField) p2.getUserData();
-				return StringUtils.compare(order1.getContract().getUnifiedSymbol(), order2.getContract().getUnifiedSymbol());
+				return StringUtils.compare(order1.getContract().getUnifiedSymbol(),
+						order2.getContract().getUnifiedSymbol());
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}
@@ -505,7 +508,8 @@ public class OrderLayout {
 			try {
 				OrderField order1 = (OrderField) p1.getUserData();
 				OrderField order2 = (OrderField) p2.getUserData();
-				return StringUtils.compare(order1.getOrderDate()+order1.getOrderTime(), order2.getOrderDate()+order2.getOrderTime());
+				return StringUtils.compare(order1.getOrderDate() + order1.getOrderTime(),
+						order2.getOrderDate() + order2.getOrderTime());
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}
@@ -602,11 +606,14 @@ public class OrderLayout {
 
 				if (order.getContingentCondition() == ContingentConditionEnum.CC_Immediately) {
 					contingentCondition = "立即";
-				} else if (order.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceGreaterEqualStopPrice) {
+				} else if (order
+						.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceGreaterEqualStopPrice) {
 					contingentCondition = "(本地)最新价大于等于条件价";
-				} else if (order.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceLesserEqualStopPrice) {
+				} else if (order
+						.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceLesserEqualStopPrice) {
 					contingentCondition = "(本地)最新价小于等于条件价";
-				} else if (order.getContingentCondition() == ContingentConditionEnum.CC_LastPriceGreaterEqualStopPrice) {
+				} else if (order
+						.getContingentCondition() == ContingentConditionEnum.CC_LastPriceGreaterEqualStopPrice) {
 					contingentCondition = "最新价大于等于条件价";
 				} else if (order.getContingentCondition() == ContingentConditionEnum.CC_LastPriceLesserEqualStopPrice) {
 					contingentCondition = "最新价小于等于条件价";
@@ -731,7 +738,8 @@ public class OrderLayout {
 					CancelOrderReqField.Builder cancelOrderReqFieldBuilder = CancelOrderReqField.newBuilder();
 					cancelOrderReqFieldBuilder.setOrderId(row.getItem().getOrderId());
 					cancelOrderReqFieldBuilder.setOriginOrderId(row.getItem().getOriginOrderId());
-					rpcClientApiService.asyncCancelOrder(cancelOrderReqFieldBuilder.build(), UUIDStringPoolUtils.getUUIDString());
+					rpcClientApiService.asyncCancelOrder(cancelOrderReqFieldBuilder.build(),
+							UUIDStringPoolUtils.getUUIDString());
 				}
 			});
 			return row;

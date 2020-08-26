@@ -1,5 +1,7 @@
 package xyz.redtorch.desktop.layout.base;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +24,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import xyz.redtorch.desktop.layout.charts.BasicMarketDataChartLayout;
 import xyz.redtorch.desktop.service.GuiMainService;
 
 @Component
 public class MainLayout {
+
+	private Logger logger = LoggerFactory.getLogger(MainLayout.class);
 
 	private VBox vBox = new VBox();
 
@@ -215,6 +220,28 @@ public class MainLayout {
 		});
 		sessionMenu.getItems().add(reloadDataMenuItem);
 
+		Menu accountGroupMenu = new Menu("账户组合");
+
+		MenuItem accountGroupFileWriterMenuItem = new MenuItem("账户数据写入文件");
+		accountGroupFileWriterMenuItem.setOnAction(event -> {
+
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+
+						guiMainService.writeAccountsDataToFile();
+
+					} catch (Exception e) {
+						logger.error("账户数据写入文件错误", e);
+					}
+				}
+			}).start();
+
+		});
+
+		accountGroupMenu.getItems().addAll(accountGroupFileWriterMenuItem);
+
 		Menu chartsGroupMenu = new Menu("图表");
 		MenuItem basicMarketDataChartItem = new MenuItem("新建通用图表");
 		basicMarketDataChartItem.setOnAction(event -> {
@@ -224,6 +251,7 @@ public class MainLayout {
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().add(sessionMenu);
+		menuBar.getMenus().add(accountGroupMenu);
 		menuBar.getMenus().add(chartsGroupMenu);
 
 		return menuBar;

@@ -3,6 +3,7 @@ package xyz.redtorch.desktop.service.impl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +49,8 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 	private ExecutorService executor = Executors.newCachedThreadPool();
 
 	@Override
-	public void generateCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle, String key) {
+	public void generateCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			BarCycleEnum barCycle, String key) {
 		chartDataMap.remove(key);
 		processingKeySet.add(key);
 		executor.execute(new Runnable() {
@@ -56,7 +58,8 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 			@Override
 			public void run() {
 				try {
-					RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientApiService.queryDBBarList(startTimestamp, endTimestamp, unifiedSymbol, barCycle, MarketDataDBTypeEnum.MDDT_MIX, null, 120);
+					RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientApiService.queryDBBarList(startTimestamp,
+							endTimestamp, unifiedSymbol, barCycle, MarketDataDBTypeEnum.MDDT_MIX, null, 120);
 
 					JSONObject erchartsOptionData = new JSONObject();
 
@@ -79,8 +82,10 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 							for (int i = 0; i < barList.size(); i++) {
 								BarField bar = barList.get(i);
 								JSONArray value = new JSONArray();
-								LocalDateTime barLocalDateTime = CommonUtils.millsToLocalDateTime(bar.getActionTimestamp());
-								String barDateTimeStr = barLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+								LocalDateTime barLocalDateTime = CommonUtils
+										.millsToLocalDateTime(bar.getActionTimestamp());
+								String barDateTimeStr = barLocalDateTime
+										.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
 								value.add(bar.getOpenPrice());
 								value.add(bar.getClosePrice());
 								value.add(bar.getLowPrice());
@@ -171,7 +176,8 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 	}
 
 	@Override
-	public void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String unifiedSymbol, String key) {
+	public void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			String key) {
 
 		chartDataMap.remove(key);
 		processingKeySet.add(key);
@@ -179,7 +185,72 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 			@Override
 			public void run() {
 				try {
-					// PRIVATE CODE
+					RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp,
+							endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
+
+					JSONObject erchartsOptionData = new JSONObject();
+
+					List<Long> volumeDeltaValueList = new ArrayList<>();
+					List<Double> opiDeltaValueList = new ArrayList<>();
+					List<String> categoryList = new ArrayList<>();
+
+					if (rpcQueryDBTickListRsp != null) {
+						List<TickField> tickList = rpcQueryDBTickListRsp.getTickList();
+						logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), unifiedSymbol, key);
+
+						if (!tickList.isEmpty()) {
+							Map<Long, Map<String, Object>> dataMap = new HashMap<>();
+							for (int i = 0; i < tickList.size(); i++) {
+
+								TickField tick = tickList.get(i);
+
+								Long priceLong = Math.round(tick.getLastPrice() * 10000);
+								Long volumeDelta = tick.getVolumeDelta();
+								Double opiDelta = tick.getOpenInterestDelta();
+
+								if (volumeDelta > 0) {
+									Map<String, Object> data;
+									if (dataMap.containsKey(priceLong)) {
+										data = dataMap.get(priceLong);
+										data.put("volumeDeltaSum", (Long) data.get("volumeDeltaSum") + volumeDelta);
+										data.put("opiDeltaSum", (Double) data.get("opiDeltaSum") + opiDelta);
+									} else {
+										data = new HashMap<>();
+										data.put("volumeDeltaSum", volumeDelta);
+										data.put("opiDeltaSum", opiDelta);
+										data.put("priceLong", priceLong);
+
+										dataMap.put(priceLong, data);
+									}
+								}
+							}
+
+							List<Map<String, Object>> dataMapList = new ArrayList<>(dataMap.values());
+
+//							Collections.sort(dataMapList , (Map<String,Object> d1, Map<String,Object> d2) -> (Double)d1.get(price).compareTo((Double)d2.get(price)));
+							Collections.sort(dataMapList, (Map<String, Object> d1, Map<String, Object> d2) -> Long
+									.compare((Long) d1.get("priceLong"), (Long) d2.get("priceLong")));
+
+							for (Map<String, Object> tmpDataMap : dataMapList) {
+								categoryList.add(Double.valueOf((Long) tmpDataMap.get("priceLong")) / 10000 + "");
+								volumeDeltaValueList.add((Long) tmpDataMap.get("volumeDeltaSum"));
+								opiDeltaValueList.add((Double) tmpDataMap.get("opiDeltaSum"));
+							}
+
+						}
+					}
+
+					erchartsOptionData.put("volumeDeltaValueList", volumeDeltaValueList);
+					erchartsOptionData.put("opiDeltaValueList", opiDeltaValueList);
+					erchartsOptionData.put("categoryList", categoryList);
+
+					JSONObject resData = new JSONObject();
+					resData.put("data", erchartsOptionData);
+					resData.put("chartType", "volOPIDeltaHistogram");
+
+					if (processingKeySet.contains(key)) {
+						chartDataMap.put(key, resData);
+					}
 				} catch (Exception e) {
 					logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
 				} finally {
@@ -199,7 +270,8 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 			@Override
 			public void run() {
 				try {
-					RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
+					RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp,
+							endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
 
 					JSONObject erchartsOptionData = new JSONObject();
 
@@ -215,8 +287,10 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 						if (tickList.size() > 0) {
 							for (int i = 0; i < tickList.size(); i++) {
 								TickField tick = tickList.get(i);
-								LocalDateTime tickLocalDateTime = CommonUtils.millsToLocalDateTime(tick.getActionTimestamp());
-								String tickDateTimeStr = tickLocalDateTime.format(CommonConstant.DT_FORMAT_WITH_MS_FORMATTER);
+								LocalDateTime tickLocalDateTime = CommonUtils
+										.millsToLocalDateTime(tick.getActionTimestamp());
+								String tickDateTimeStr = tickLocalDateTime
+										.format(CommonConstant.DT_FORMAT_WITH_MS_FORMATTER);
 								categoryList.add(tickDateTimeStr);
 								volumeDeltaList.add(tick.getVolumeDelta());
 								openInterestList.add(tick.getOpenInterest());
@@ -250,14 +324,16 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 	}
 
 	@Override
-	public void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, int volumeBarSize, String key) {
+	public void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			int volumeBarSize, String key) {
 		chartDataMap.remove(key);
 		processingKeySet.add(key);
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientApiService.queryVolumeBarList(startTimestamp, endTimestamp, unifiedSymbol, volumeBarSize, null, 120);
+					RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientApiService
+							.queryVolumeBarList(startTimestamp, endTimestamp, unifiedSymbol, volumeBarSize, null, 120);
 
 					JSONObject erchartsOptionData = new JSONObject();
 
@@ -280,8 +356,10 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 							for (int i = 0; i < barList.size(); i++) {
 								BarField bar = barList.get(i);
 								JSONArray value = new JSONArray();
-								LocalDateTime barLocalDateTime = CommonUtils.millsToLocalDateTime(bar.getActionTimestamp());
-								String barDateTimeStr = barLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+								LocalDateTime barLocalDateTime = CommonUtils
+										.millsToLocalDateTime(bar.getActionTimestamp());
+								String barDateTimeStr = barLocalDateTime
+										.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
 								value.add(bar.getOpenPrice());
 								value.add(bar.getClosePrice());
 								value.add(bar.getLowPrice());
@@ -344,6 +422,11 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 			}
 		});
 
+	}
+
+	@Override
+	public void setCharData(JSONObject charData, String key) {
+		chartDataMap.put(key, charData);
 	}
 
 }

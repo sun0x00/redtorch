@@ -86,7 +86,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setCommonReq(commonReqBuilder) //
 					.setContract(contract);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcSubscribeReqBuilder.build().toByteString(), reqId, RpcId.SUBSCRIBE_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcSubscribeReqBuilder.build().toByteString(), reqId,
+					RpcId.SUBSCRIBE_REQ);
 		}
 
 	}
@@ -167,7 +168,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setCommonReq(commonReqBuilder) //
 					.setContract(contract);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcUnsubscribeReqBuilder.build().toByteString(), reqId, RpcId.UNSUBSCRIBE_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcUnsubscribeReqBuilder.build().toByteString(), reqId,
+					RpcId.UNSUBSCRIBE_REQ);
 
 		}
 
@@ -250,7 +252,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setCommonReq(commonReqBuilder) //
 					.setSubmitOrderReq(submitOrderReq); //
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcSubmitOrderReqBuilder.build().toByteString(), reqId, RpcId.SUBMIT_ORDER_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcSubmitOrderReqBuilder.build().toByteString(), reqId,
+					RpcId.SUBMIT_ORDER_REQ);
 
 		}
 	}
@@ -330,7 +333,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setCommonReq(commonReqBuilder) //
 					.setCancelOrderReq(cancelOrderReq);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcCancelOrderReqBuilder.build().toByteString(), reqId, RpcId.CANCEL_ORDER_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcCancelOrderReqBuilder.build().toByteString(), reqId,
+					RpcId.CANCEL_ORDER_REQ);
 
 		}
 	}
@@ -409,7 +413,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setCommonReq(commonReqBuilder) //
 					.setContract(contract);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcSearchContractReqBuilder.build().toByteString(), reqId, RpcId.SEARCH_CONTRACT_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcSearchContractReqBuilder.build().toByteString(), reqId,
+					RpcId.SEARCH_CONTRACT_REQ);
 
 		}
 	}
@@ -485,7 +490,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetContractListReq.Builder rpcGetContractListReqBuilder = RpcGetContractListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetContractListReqBuilder.build().toByteString(), reqId, RpcId.GET_CONTRACT_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetContractListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_CONTRACT_LIST_REQ);
 
 		}
 	}
@@ -511,7 +517,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetContractListRsp rpcGetContractListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetContractListRsp(reqId);
+				RpcGetContractListRsp rpcGetContractListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetContractListRsp(reqId);
 				if (rpcGetContractListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -530,7 +537,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询合约列表完成");
 						return rpcGetContractListRsp;
 					} else {
-						logger.error("查询合约列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询合约列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -560,7 +568,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetMixContractListReq.Builder rpcGetMixContractListReqBuilder = RpcGetMixContractListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetMixContractListReqBuilder.build().toByteString(), reqId, RpcId.GET_MIX_CONTRACT_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetMixContractListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_MIX_CONTRACT_LIST_REQ);
 
 		}
 	}
@@ -586,7 +595,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetMixContractListRsp rpcGetMixContractListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetMixContractListRsp(reqId);
+				RpcGetMixContractListRsp rpcGetMixContractListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetMixContractListRsp(reqId);
 				if (rpcGetMixContractListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -604,7 +614,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询混合合约列表完成");
 						return rpcGetMixContractListRsp;
 					} else {
-						logger.error("查询混合合约列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询混合合约列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -634,7 +645,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetTickListReq.Builder rpcGetTickListReqBuilder = RpcGetTickListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetTickListReqBuilder.build().toByteString(), reqId, RpcId.GET_TICK_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetTickListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_TICK_LIST_REQ);
 
 		}
 	}
@@ -678,7 +690,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询Tick列表完成");
 						return rpcGetTickListRsp;
 					} else {
-						logger.error("查询Tick列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询Tick列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -708,7 +721,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetOrderListReq.Builder rpcGetOrderListReqBuilder = RpcGetOrderListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetOrderListReqBuilder.build().toByteString(), reqId, RpcId.GET_ORDER_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetOrderListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_ORDER_LIST_REQ);
 
 		}
 	}
@@ -734,7 +748,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetOrderListRsp rpcGetOrderListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetOrderListRsp(reqId);
+				RpcGetOrderListRsp rpcGetOrderListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetOrderListRsp(reqId);
 				if (rpcGetOrderListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -752,7 +767,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询定单列表完成");
 						return rpcGetOrderListRsp;
 					} else {
-						logger.error("查询定单列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询定单列表完成,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -782,7 +798,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetPositionListReq.Builder rpcGetPositionListReqBuilder = RpcGetPositionListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetPositionListReqBuilder.build().toByteString(), reqId, RpcId.GET_POSITION_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetPositionListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_POSITION_LIST_REQ);
 
 		}
 	}
@@ -808,7 +825,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetPositionListRsp rpcGetPositionListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetPositionListRsp(reqId);
+				RpcGetPositionListRsp rpcGetPositionListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetPositionListRsp(reqId);
 				if (rpcGetPositionListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -826,7 +844,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询持仓列表完成");
 						return rpcGetPositionListRsp;
 					} else {
-						logger.error("查询持仓列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询持仓列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -856,7 +875,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetTradeListReq.Builder rpcGetTradeListReqBuilder = RpcGetTradeListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetTradeListReqBuilder.build().toByteString(), reqId, RpcId.GET_TRADE_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetTradeListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_TRADE_LIST_REQ);
 		}
 	}
 
@@ -881,7 +901,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetTradeListRsp rpcGetTradeListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetTradeListRsp(reqId);
+				RpcGetTradeListRsp rpcGetTradeListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetTradeListRsp(reqId);
 				if (rpcGetTradeListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -899,7 +920,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询成交列表完成");
 						return rpcGetTradeListRsp;
 					} else {
-						logger.error("查询成交列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询成交列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -929,7 +951,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 			RpcGetAccountListReq.Builder rpcGetAccountListReqBuilder = RpcGetAccountListReq.newBuilder() //
 					.setCommonReq(commonReqBuilder);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcGetAccountListReqBuilder.build().toByteString(), reqId, RpcId.GET_ACCOUNT_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcGetAccountListReqBuilder.build().toByteString(), reqId,
+					RpcId.GET_ACCOUNT_LIST_REQ);
 		}
 	}
 
@@ -954,7 +977,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcGetAccountListRsp rpcGetAccountListRsp = rpcClientRspHandlerService.getAndRemoveRpcGetAccountListRsp(reqId);
+				RpcGetAccountListRsp rpcGetAccountListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcGetAccountListRsp(reqId);
 				if (rpcGetAccountListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -972,7 +996,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询账户列表完成");
 						return rpcGetAccountListRsp;
 					} else {
-						logger.error("查询账户列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询账户列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -987,7 +1012,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 	}
 
 	@Override
-	public boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId) {
+	public boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId) {
 		if (StringUtils.isBlank(reqId)) {
 			logger.error("查询历史Bar列表错误,参数reqId缺失");
 			return false;
@@ -1000,17 +1026,18 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setReqId(reqId);
 
 			RpcQueryDBBarListReq.Builder rpcQueryDBBarListReqBuilder = RpcQueryDBBarListReq.newBuilder() //
-					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setBarCycle(barCycle)
-					.setMarketDataDBType(marketDataDBType);
+					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp)
+					.setUnifiedSymbol(unifiedSymbol).setBarCycle(barCycle).setMarketDataDBType(marketDataDBType);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcQueryDBBarListReqBuilder.build().toByteString(), reqId, RpcId.QUERY_DB_BAR_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcQueryDBBarListReqBuilder.build().toByteString(), reqId,
+					RpcId.QUERY_DB_BAR_LIST_REQ);
 
 		}
 	}
 
 	@Override
-	public RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId,
-			Integer timeoutSeconds) {
+	public RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds) {
 		Integer rpcTimeoutSeconds = timeoutSeconds;
 		if (timeoutSeconds == null || timeoutSeconds < 1 || timeoutSeconds > 300) {
 			rpcTimeoutSeconds = defaultRpcTimeoutSeconds;
@@ -1030,7 +1057,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientRspHandlerService.getAndRemoveRpcQueryDBBarListRsp(reqId);
+				RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcQueryDBBarListRsp(reqId);
 				if (rpcQueryDBBarListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -1048,7 +1076,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询历史Bar列表完成");
 						return rpcQueryDBBarListRsp;
 					} else {
-						logger.error("查询历史Bar列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询历史Bar列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -1063,7 +1092,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 	}
 
 	@Override
-	public boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String reqId) {
+	public boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			MarketDataDBTypeEnum marketDataDBType, String reqId) {
 		if (StringUtils.isBlank(reqId)) {
 			logger.error("查询历史Tick列表错误,参数reqId缺失");
 			return false;
@@ -1076,15 +1106,18 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setReqId(reqId);
 
 			RpcQueryDBTickListReq.Builder rpcQueryDBTickListReqBuilder = RpcQueryDBTickListReq.newBuilder() //
-					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setMarketDataDBType(marketDataDBType);
+					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp)
+					.setUnifiedSymbol(unifiedSymbol).setMarketDataDBType(marketDataDBType);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcQueryDBTickListReqBuilder.build().toByteString(), reqId, RpcId.QUERY_DB_TICK_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcQueryDBTickListReqBuilder.build().toByteString(), reqId,
+					RpcId.QUERY_DB_TICK_LIST_REQ);
 
 		}
 	}
 
 	@Override
-	public RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds) {
+	public RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds) {
 		Integer rpcTimeoutSeconds = timeoutSeconds;
 		if (timeoutSeconds == null || timeoutSeconds < 1 || timeoutSeconds > 300) {
 			rpcTimeoutSeconds = defaultRpcTimeoutSeconds;
@@ -1104,7 +1137,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientRspHandlerService.getAndRemoveRpcQueryDBTickListRsp(reqId);
+				RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcQueryDBTickListRsp(reqId);
 				if (rpcQueryDBTickListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -1122,7 +1156,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询历史Tick列表完成");
 						return rpcQueryDBTickListRsp;
 					} else {
-						logger.error("查询历史Tick列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询历史Tick列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}
@@ -1137,7 +1172,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 	}
 
 	@Override
-	public boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String reqId) {
+	public boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume,
+			String reqId) {
 		if (StringUtils.isBlank(reqId)) {
 			logger.error("查询历史Bar列表错误,参数reqId缺失");
 			return false;
@@ -1150,15 +1186,18 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 					.setReqId(reqId);
 
 			RpcQueryVolumeBarListReq.Builder rpcQueryVolumeBarListReqBuilder = RpcQueryVolumeBarListReq.newBuilder() //
-					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setVolume(volume);
+					.setCommonReq(commonReqBuilder).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp)
+					.setUnifiedSymbol(unifiedSymbol).setVolume(volume);
 
-			return rpcClientProcessService.sendCoreRpc(0, rpcQueryVolumeBarListReqBuilder.build().toByteString(), reqId, RpcId.QUERY_VOLUME_BAR_LIST_REQ);
+			return rpcClientProcessService.sendCoreRpc(0, rpcQueryVolumeBarListReqBuilder.build().toByteString(), reqId,
+					RpcId.QUERY_VOLUME_BAR_LIST_REQ);
 
 		}
 	}
 
 	@Override
-	public RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String reqId, Integer timeoutSeconds) {
+	public RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			int volume, String reqId, Integer timeoutSeconds) {
 		Integer rpcTimeoutSeconds = timeoutSeconds;
 		if (timeoutSeconds == null || timeoutSeconds < 1 || timeoutSeconds > 300) {
 			rpcTimeoutSeconds = defaultRpcTimeoutSeconds;
@@ -1178,7 +1217,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 		while (true) {
 			if ((System.currentTimeMillis() - startTime) <= rpcTimeoutSeconds * 1000) {
-				RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientRspHandlerService.getAndRemoveRpcQueryVolumeBarListRsp(reqId);
+				RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientRspHandlerService
+						.getAndRemoveRpcQueryVolumeBarListRsp(reqId);
 				if (rpcQueryVolumeBarListRsp == null) {
 					RpcExceptionRsp exceptionRsp = rpcClientRspHandlerService.getAndRemoveRpcExceptionRsp(reqId);
 					if (exceptionRsp != null) {
@@ -1196,7 +1236,8 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 						logger.info("查询VolBar列表完成");
 						return rpcQueryVolumeBarListRsp;
 					} else {
-						logger.error("查询VolBar列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(), commonRsp.getErrorMsg());
+						logger.error("查询VolBar列表错误,请求ID:{},错误ID:{},错误信息{}", commonRsp.getErrorId(),
+								commonRsp.getErrorMsg());
 						return null;
 					}
 				}

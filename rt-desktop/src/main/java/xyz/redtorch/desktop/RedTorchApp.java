@@ -34,8 +34,8 @@ public class RedTorchApp extends Application {
 
 			Scene scene = new Scene((Parent) mainLayout.getNode());
 			scene.getStylesheets().add("main.css");
-			stage.setHeight(1040);
-			stage.setWidth(1920);
+			stage.setHeight(1366);
+			stage.setWidth(740);
 			stage.setTitle("RedTorch");
 			stage.setScene(scene);
 			stage.show();
@@ -52,7 +52,8 @@ public class RedTorchApp extends Application {
 	}
 
 	public static void main(String[] args) {
-		System.setProperty("program.start.timestamp", LocalDateTime.now().format(CommonConstant.DT_FORMAT_WITH_MS_INT_FORMATTER));
+		System.setProperty("program.start.timestamp",
+				LocalDateTime.now().format(CommonConstant.DT_FORMAT_WITH_MS_INT_FORMATTER));
 		launch();
 	}
 

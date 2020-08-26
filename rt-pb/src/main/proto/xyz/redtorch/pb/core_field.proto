@@ -104,6 +104,7 @@ message OrderField {
 	fixed32 sessionId = 36;  // 连接编号(CTP/LTS)
     ContractField contract = 37;  // 合约
 	string gatewayId = 38;  // 网关ID
+	OrderSubmitStatusEnum orderSubmitStatus = 39; // 定单委托状态
 }
 
 // 成交

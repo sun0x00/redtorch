@@ -180,6 +180,7 @@ public interface GatewayApi {
 
 	/**
 	 * 获取近似时间戳
+	 * 
 	 * @return
 	 */
 	long getApproximateTimestamp();

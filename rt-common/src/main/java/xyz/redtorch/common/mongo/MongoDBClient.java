@@ -71,7 +71,8 @@ public class MongoDBClient {
 		build.maxConnectionIdleTime(0);
 		build.retryWrites(true);
 		build.connectionsPerHost(300); // 连接池设置为300个连接,默认为100
-		build.threadsAllowedToBlockForConnectionMultiplier(1000);// 线程队列数,如果连接线程排满了队列就会抛出“Out of semaphores to get db" 错误
+		build.threadsAllowedToBlockForConnectionMultiplier(1000);// 线程队列数,如果连接线程排满了队列就会抛出“Out of semaphores to get db"
+																	// 错误
 		build.writeConcern(WriteConcern.ACKNOWLEDGED); // 写操作需要得到确认
 
 		MongoClientOptions myOptions = build.build();

@@ -44,7 +44,8 @@ public class CombinationLayout {
 	private GuiMainService guiMainService;
 
 	public void updateData(List<PositionField> positionList, List<AccountField> accountList) {
-		if (!new HashSet<>(this.positionList).equals(new HashSet<>(positionList)) || !new HashSet<>(this.accountList).equals(new HashSet<>(accountList))) {
+		if (!new HashSet<>(this.positionList).equals(new HashSet<>(positionList))
+				|| !new HashSet<>(this.accountList).equals(new HashSet<>(accountList))) {
 			this.positionList = positionList;
 			this.accountList = accountList;
 			fillingData();
@@ -69,7 +70,8 @@ public class CombinationLayout {
 
 		if (accountList != null) {
 			for (AccountField account : accountList) {
-				if (guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(account.getAccountId())) {
+				if (guiMainService.getSelectedAccountIdSet().isEmpty()
+						|| guiMainService.getSelectedAccountIdSet().contains(account.getAccountId())) {
 					allTodayProfit = allTodayProfit == null ? 0 : allTodayProfit;
 					allBalance = allBalance == null ? 0 : allBalance;
 					allPositionProfit = allPositionProfit == null ? 0 : allPositionProfit;
@@ -107,10 +109,12 @@ public class CombinationLayout {
 		if (positionList != null) {
 
 			for (PositionField position : positionList) {
-				if (guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(position.getAccountId())) {
+				if (guiMainService.getSelectedAccountIdSet().isEmpty()
+						|| guiMainService.getSelectedAccountIdSet().contains(position.getAccountId())) {
 					allOpenPositionProfit = (allOpenPositionProfit == null ? 0 : allOpenPositionProfit);
 					allContractValue = (allContractValue == null ? 0 : allContractValue);
-					allOpenPositionProfit += (Double.isNaN(position.getOpenPositionProfit()) ? 0d : position.getOpenPositionProfit());
+					allOpenPositionProfit += (Double.isNaN(position.getOpenPositionProfit()) ? 0d
+							: position.getOpenPositionProfit());
 					allContractValue += (Double.isNaN(position.getContractValue()) ? 0d : position.getContractValue());
 				}
 			}

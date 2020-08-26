@@ -448,7 +448,8 @@ public class MarketDetailsLayout {
 			if (tick.getOpenInterest() == Double.MAX_VALUE || tick.getPreOpenInterest() == Double.MAX_VALUE) {
 				this.dayOpenInterestDeltaText.setText("-");
 			} else {
-				this.dayOpenInterestDeltaText.setText(String.format("%,.0f", tick.getOpenInterest() - tick.getPreOpenInterest()));
+				this.dayOpenInterestDeltaText
+						.setText(String.format("%,.0f", tick.getOpenInterest() - tick.getPreOpenInterest()));
 			}
 
 			Double lowPrice = tick.getLowPrice();
@@ -494,7 +495,8 @@ public class MarketDetailsLayout {
 				this.settlePriceText.setText(String.format(priceStringFormat, tick.getSettlePrice()));
 			}
 
-			this.timeText.setText(CommonUtils.millsToLocalDateTime(tick.getActionTimestamp()).format(CommonUtils.T_FORMAT_WITH_MS_FORMATTER));
+			this.timeText.setText(CommonUtils.millsToLocalDateTime(tick.getActionTimestamp())
+					.format(CommonUtils.T_FORMAT_WITH_MS_FORMATTER));
 
 		}
 	}
@@ -733,7 +735,8 @@ public class MarketDetailsLayout {
 		lowPriceLabel.setPrefWidth(labelWidth);
 		lowPriceText.setWrappingWidth(valueWidth);
 		lowPriceText.setTextAlignment(TextAlignment.RIGHT);
-		line5Hbox.getChildren().addAll(dayOpenInterestDeltaLabel, dayOpenInterestDeltaText, lowPriceLabel, lowPriceText);
+		line5Hbox.getChildren().addAll(dayOpenInterestDeltaLabel, dayOpenInterestDeltaText, lowPriceLabel,
+				lowPriceText);
 		HBox.setMargin(dayOpenInterestDeltaText, rightInsets);
 		HBox.setMargin(dayOpenInterestDeltaLabel, leftInsets);
 		vBox.getChildren().add(line5Hbox);
@@ -751,7 +754,8 @@ public class MarketDetailsLayout {
 		upperLimitPriceText.setWrappingWidth(valueWidth);
 		upperLimitPriceText.setTextAlignment(TextAlignment.RIGHT);
 		upperLimitPriceText.getStyleClass().add("trade-long-color");
-		line6Hbox.getChildren().addAll(preClosePriceLabel, preClosePriceText, upperLimitPriceLabel, upperLimitPriceText);
+		line6Hbox.getChildren().addAll(preClosePriceLabel, preClosePriceText, upperLimitPriceLabel,
+				upperLimitPriceText);
 		HBox.setMargin(preClosePriceText, rightInsets);
 		HBox.setMargin(preClosePriceLabel, leftInsets);
 		vBox.getChildren().add(line6Hbox);
@@ -769,7 +773,8 @@ public class MarketDetailsLayout {
 		lowerLimitPriceText.setWrappingWidth(valueWidth);
 		lowerLimitPriceText.setTextAlignment(TextAlignment.RIGHT);
 		lowerLimitPriceText.getStyleClass().add("trade-short-color");
-		line7Hbox.getChildren().addAll(preSettlePriceLabel, preSettlePriceText, lowerLimitPriceLabel, lowerLimitPriceText);
+		line7Hbox.getChildren().addAll(preSettlePriceLabel, preSettlePriceText, lowerLimitPriceLabel,
+				lowerLimitPriceText);
 		HBox.setMargin(preSettlePriceText, rightInsets);
 		HBox.setMargin(preSettlePriceLabel, leftInsets);
 		vBox.getChildren().add(line7Hbox);

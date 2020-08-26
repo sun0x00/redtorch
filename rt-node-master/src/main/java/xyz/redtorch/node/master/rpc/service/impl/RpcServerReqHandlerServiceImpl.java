@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import xyz.redtorch.node.master.service.MasterTradeCachesService;
 import xyz.redtorch.common.service.MarketDataService;
-import xyz.redtorch.common.util.bar.BarUtils;
 import xyz.redtorch.node.master.rpc.service.RpcServerProcessService;
 import xyz.redtorch.node.master.rpc.service.RpcServerReqHandlerService;
 import xyz.redtorch.node.master.service.MarketDataRecordingService;
@@ -910,12 +909,9 @@ public class RpcServerReqHandlerServiceImpl implements RpcServerReqHandlerServic
 				.setErrorId(0);
 
 		List<BarField> barList = null;
-		List<TickField> tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, unifiedSymbol);
 
-		if (tickList != null && !tickList.isEmpty()) {
-			/* PRIVATE */
-			// barList = BarUtils.generateVolBar(volume, tickList);
-		}
+		// XXX PRIVATE CODE
+		
 		if (barList == null) {
 			barList = new ArrayList<>();
 		}

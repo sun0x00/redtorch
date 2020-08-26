@@ -84,7 +84,8 @@ public class PositionLayout {
 	public void fillingData() {
 		List<PositionField> newPositionList = new ArrayList<>();
 		for (PositionField position : positionList) {
-			if (guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(position.getAccountId())) {
+			if (guiMainService.getSelectedAccountIdSet().isEmpty()
+					|| guiMainService.getSelectedAccountIdSet().contains(position.getAccountId())) {
 				if (!showEmptyPosition) {
 					if (position.getPosition() != 0) {
 						newPositionList.add(position);
@@ -104,7 +105,8 @@ public class PositionLayout {
 
 			for (PositionField position : newPositionList) {
 
-				if (!(guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(position.getAccountId()))) {
+				if (!(guiMainService.getSelectedAccountIdSet().isEmpty()
+						|| guiMainService.getSelectedAccountIdSet().contains(position.getAccountId()))) {
 					continue;
 				}
 
@@ -116,10 +118,12 @@ public class PositionLayout {
 
 					int positionInt = positionFieldBuilder.getPosition() + position.getPosition();
 					if (positionInt != 0) {
-						double openPrice = (positionFieldBuilder.getOpenPrice() * positionFieldBuilder.getPosition() + position.getOpenPrice() * position.getPosition()) / positionInt;
+						double openPrice = (positionFieldBuilder.getOpenPrice() * positionFieldBuilder.getPosition()
+								+ position.getOpenPrice() * position.getPosition()) / positionInt;
 						positionFieldBuilder.setOpenPrice(openPrice);
 
-						double price = (positionFieldBuilder.getPrice() * positionFieldBuilder.getPosition() + position.getPrice() * position.getPosition()) / positionInt;
+						double price = (positionFieldBuilder.getPrice() * positionFieldBuilder.getPosition()
+								+ position.getPrice() * position.getPosition()) / positionInt;
 						positionFieldBuilder.setPrice(price);
 					}
 
@@ -131,11 +135,15 @@ public class PositionLayout {
 					positionFieldBuilder.setYdPosition(positionFieldBuilder.getYdPosition() + position.getYdPosition());
 					positionFieldBuilder.setYdFrozen(positionFieldBuilder.getYdFrozen() + position.getYdFrozen());
 
-					positionFieldBuilder.setContractValue(positionFieldBuilder.getContractValue() + position.getContractValue());
-					positionFieldBuilder.setExchangeMargin(positionFieldBuilder.getExchangeMargin() + position.getExchangeMargin());
+					positionFieldBuilder
+							.setContractValue(positionFieldBuilder.getContractValue() + position.getContractValue());
+					positionFieldBuilder
+							.setExchangeMargin(positionFieldBuilder.getExchangeMargin() + position.getExchangeMargin());
 					positionFieldBuilder.setUseMargin(positionFieldBuilder.getUseMargin() + position.getUseMargin());
-					positionFieldBuilder.setOpenPositionProfit(positionFieldBuilder.getOpenPositionProfit() + position.getOpenPositionProfit());
-					positionFieldBuilder.setPositionProfit(positionFieldBuilder.getPositionProfit() + position.getPositionProfit());
+					positionFieldBuilder.setOpenPositionProfit(
+							positionFieldBuilder.getOpenPositionProfit() + position.getOpenPositionProfit());
+					positionFieldBuilder
+							.setPositionProfit(positionFieldBuilder.getPositionProfit() + position.getPositionProfit());
 
 				} else {
 					positionFieldBuilder = PositionField.newBuilder();
@@ -165,8 +173,10 @@ public class PositionLayout {
 
 			for (PositionField.Builder positionFieldBuilder : mergedPositionFieldBuilderMap.values()) {
 				if (positionFieldBuilder.getUseMargin() != 0) {
-					positionFieldBuilder.setOpenPositionProfitRatio(positionFieldBuilder.getOpenPositionProfit() / positionFieldBuilder.getUseMargin());
-					positionFieldBuilder.setPositionProfitRatio(positionFieldBuilder.getPositionProfit() / positionFieldBuilder.getUseMargin());
+					positionFieldBuilder.setOpenPositionProfitRatio(
+							positionFieldBuilder.getOpenPositionProfit() / positionFieldBuilder.getUseMargin());
+					positionFieldBuilder.setPositionProfitRatio(
+							positionFieldBuilder.getPositionProfit() / positionFieldBuilder.getUseMargin());
 				}
 				mergedPositionFieldList.add(positionFieldBuilder.build());
 			}
@@ -200,7 +210,8 @@ public class PositionLayout {
 				vBox.getChildren().add(unifiedSymbolText);
 				vBox.getChildren().add(shortNameText);
 
-				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract().getUnifiedSymbol().equals(position.getContract().getUnifiedSymbol())) {
+				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract()
+						.getUnifiedSymbol().equals(position.getContract().getUnifiedSymbol())) {
 					unifiedSymbolText.getStyleClass().add("trade-remind-color");
 				}
 
@@ -215,7 +226,8 @@ public class PositionLayout {
 			try {
 				PositionField position1 = (PositionField) p1.getUserData();
 				PositionField position2 = (PositionField) p2.getUserData();
-				return StringUtils.compare(position1.getContract().getUnifiedSymbol(), position2.getContract().getUnifiedSymbol());
+				return StringUtils.compare(position1.getContract().getUnifiedSymbol(),
+						position2.getContract().getUnifiedSymbol());
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}
@@ -258,7 +270,8 @@ public class PositionLayout {
 			try {
 				PositionField position1 = (PositionField) t1.getUserData();
 				PositionField position2 = (PositionField) t2.getUserData();
-				return Integer.compare(position1.getPositionDirection().getNumber(), position2.getPositionDirection().getNumber());
+				return Integer.compare(position1.getPositionDirection().getNumber(),
+						position2.getPositionDirection().getNumber());
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}
@@ -420,7 +433,8 @@ public class PositionLayout {
 			try {
 				PositionField position = feature.getValue();
 				Text openPositionProfitText = new Text(String.format("%,.2f", position.getOpenPositionProfit()));
-				Text openPositionProfitRatioText = new Text(String.format("%.2f%%", position.getOpenPositionProfitRatio() * 100));
+				Text openPositionProfitRatioText = new Text(
+						String.format("%.2f%%", position.getOpenPositionProfitRatio() * 100));
 				if (position.getOpenPositionProfit() > 0) {
 					openPositionProfitText.getStyleClass().add("trade-long-color");
 					openPositionProfitRatioText.getStyleClass().add("trade-long-color");
@@ -457,7 +471,8 @@ public class PositionLayout {
 			try {
 				PositionField position = feature.getValue();
 				Text positionProfitText = new Text(String.format("%,.2f", position.getPositionProfit()));
-				Text positionProfitRatioText = new Text(String.format("%.2f%%", position.getPositionProfitRatio() * 100));
+				Text positionProfitRatioText = new Text(
+						String.format("%.2f%%", position.getPositionProfitRatio() * 100));
 				if (position.getPositionProfit() > 0) {
 					positionProfitText.getStyleClass().add("trade-long-color");
 					positionProfitRatioText.getStyleClass().add("trade-long-color");
@@ -649,7 +664,8 @@ public class PositionLayout {
 						marginRatioStr = "NA";
 					} else {
 						for (AccountField account : accountList) {
-							if (selectedAccountIdSet.contains(account.getAccountId())) {
+							if (selectedAccountIdSet.contains(account.getAccountId())
+									|| selectedAccountIdSet.isEmpty()) {
 								allBalance += account.getBalance();
 							}
 						}
@@ -741,7 +757,8 @@ public class PositionLayout {
 			TableRow<PositionField> row = new TableRow<>();
 			row.setOnMousePressed(event -> {
 				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
-					ObservableList<PositionField> selectedItems = positionTableView.getSelectionModel().getSelectedItems();
+					ObservableList<PositionField> selectedItems = positionTableView.getSelectionModel()
+							.getSelectedItems();
 					selectedPositionIdSet.clear();
 					for (PositionField position : selectedItems) {
 						selectedPositionIdSet.add(position.getPositionId());

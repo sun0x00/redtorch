@@ -2,6 +2,7 @@ package xyz.redtorch.common.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bson.Document;
@@ -9,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Indexes;
 import com.mongodb.client.model.ReplaceOneModel;
@@ -35,7 +36,8 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	private String todayMarketDataDBName;
 	private String histMarketDataDBName;
 
-	public void initSetting(MongoDBClient todayMarketDataDBClient, String todayMarketDataDBName, MongoDBClient histMarketDataDBClient, String histMarketDataDBName) {
+	public void initSetting(MongoDBClient todayMarketDataDBClient, String todayMarketDataDBName,
+			MongoDBClient histMarketDataDBClient, String histMarketDataDBName) {
 		this.todayMarketDataDBClient = todayMarketDataDBClient;
 		this.todayMarketDataDBName = todayMarketDataDBName;
 		this.histMarketDataDBClient = histMarketDataDBClient;
@@ -43,133 +45,152 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistBar1DayList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryHistTickList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
 		return queryTodayTickList(startTimestamp, endTimestamp, unifiedSymbol);
 	}
 
 	@Override
-	public List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar5SecList(startDateTime, endDateTime, unifiedSymbol);
 		barList.addAll(this.queryTodayBar5SecList(startDateTime, endDateTime, unifiedSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar1MinList(startDateTime, endDateTime, unifiedSymbol);
 		barList.addAll(this.queryTodayBar1MinList(startDateTime, endDateTime, unifiedSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar3MinList(startDateTime, endDateTime, unifiedSymbol);
 		barList.addAll(this.queryTodayBar3MinList(startDateTime, endDateTime, unifiedSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar5MinList(startDateTime, endDateTime, unifiedSymbol);
 		barList.addAll(this.queryTodayBar5MinList(startDateTime, endDateTime, unifiedSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar15MinList(startDateTime, endDateTime, unifiedSymbol);
 		barList.addAll(this.queryTodayBar15MinList(startDateTime, endDateTime, unifiedSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime,
+			String unifiedSymbol) {
 		List<BarField> barList = this.queryHistBar1DayList(startDateTime, endDateTime, unifiedSymbol);
 		return barList;
 	}
@@ -190,7 +211,8 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		filterDocument.put("unifiedSymbol", bar.getUnifiedSymbol());
 		filterDocument.put("actionTimestamp", bar.getActionTimestamp());
 
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName)
+				.createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
 		return todayMarketDataDBClient.upsert(dbName, collectionName, barDocument, filterDocument);
 	}
 
@@ -214,14 +236,18 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			ReplaceOptions replaceOptions = new ReplaceOptions();
 			replaceOptions.upsert(true);
 
-			ReplaceOneModel<Document> replaceOneModel = new ReplaceOneModel<Document>(filterDocument, barDocument, replaceOptions);
+			ReplaceOneModel<Document> replaceOneModel = new ReplaceOneModel<Document>(filterDocument, barDocument,
+					replaceOptions);
 			writeModelList.add(replaceOneModel);
 		}
-		logger.info("更新插入Bar集合,数据库{},集合{},数据转换耗时{}ms,共{}条数据", dbName, collectionName, (System.currentTimeMillis() - beginTime), barList.size());
+		logger.info("更新插入Bar集合,数据库{},集合{},数据转换耗时{}ms,共{}条数据", dbName, collectionName,
+				(System.currentTimeMillis() - beginTime), barList.size());
 		beginTime = System.currentTimeMillis();
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName)
+				.createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
 		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).bulkWrite(writeModelList);
-		logger.info("更新插入Bar集合,数据库{},集合{},数据库操作耗时{}ms,共{}条操作", dbName, collectionName, (System.currentTimeMillis() - beginTime), writeModelList.size());
+		logger.info("更新插入Bar集合,数据库{},集合{},数据库操作耗时{}ms,共{}条操作", dbName, collectionName,
+				(System.currentTimeMillis() - beginTime), writeModelList.size());
 		return true;
 	}
 
@@ -232,7 +258,8 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		filterDocument.put("unifiedSymbol", tick.getUnifiedSymbol());
 		filterDocument.put("actionTimestamp", tick.getActionTimestamp());
 
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName)
+				.createIndex(Indexes.ascending("actionTimestamp"));
 		return todayMarketDataDBClient.upsert(dbName, collectionName, tickDocument, filterDocument);
 	}
 
@@ -256,14 +283,18 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			ReplaceOptions replaceOptions = new ReplaceOptions();
 			replaceOptions.upsert(true);
 
-			ReplaceOneModel<Document> replaceOneModel = new ReplaceOneModel<Document>(filterDocument, tickDocument, replaceOptions);
+			ReplaceOneModel<Document> replaceOneModel = new ReplaceOneModel<Document>(filterDocument, tickDocument,
+					replaceOptions);
 			writeModelList.add(replaceOneModel);
 		}
-		logger.info("更新插入Tick集合,数据库{},集合{},数据转换耗时{}ms,共{}条数据", dbName, collectionName, (System.currentTimeMillis() - beginTime), tickList.size());
+		logger.info("更新插入Tick集合,数据库{},集合{},数据转换耗时{}ms,共{}条数据", dbName, collectionName,
+				(System.currentTimeMillis() - beginTime), tickList.size());
 		beginTime = System.currentTimeMillis();
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName)
+				.createIndex(Indexes.ascending("actionTimestamp"));
 		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).bulkWrite(writeModelList);
-		logger.info("更新插入Tick集合,数据库{},集合{},数据库操作耗时{}ms,共{}条操作", dbName, collectionName, (System.currentTimeMillis() - beginTime), writeModelList.size());
+		logger.info("更新插入Tick集合,数据库{},集合{},数据库操作耗时{}ms,共{}条操作", dbName, collectionName,
+				(System.currentTimeMillis() - beginTime), writeModelList.size());
 		return true;
 	}
 
@@ -400,7 +431,8 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 					logger.error("数据转换错误", e);
 				}
 			}
-			logger.info("MongoDB文档集合转为Tick对象集合耗时{}ms,共{}条数据", (System.currentTimeMillis() - beginTime), tickList.size());
+			logger.info("MongoDB文档集合转为Tick对象集合耗时{}ms,共{}条数据", (System.currentTimeMillis() - beginTime),
+					tickList.size());
 		} else {
 			logger.warn("MongoDB文档集合转为Tick对象集合时传入的文档集合为空");
 		}
@@ -687,8 +719,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_5_SEC, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_5_SEC,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史5秒钟数据发生错误", e);
@@ -709,8 +743,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_1_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_1_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史1分钟数据发生错误", e);
@@ -731,8 +767,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_3_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_3_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史3分钟数据发生错误", e);
@@ -753,8 +791,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_5_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_5_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史5分钟数据发生错误", e);
@@ -775,8 +815,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_15_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_15_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史15分钟数据发生错误", e);
@@ -797,8 +839,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, COLLECTION_NAME_BAR_1_DAY, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_1_DAY, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName,
+					COLLECTION_NAME_BAR_1_DAY, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_1_DAY,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史1日Bar数据发生错误", e);
@@ -820,8 +864,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
 			String collectionName = COLLECTION_NAME_TICK;
-			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, collectionName, filter, sortBO);
-			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.histMarketDataDBClient.find(histMarketDataDBName, collectionName, filter,
+					sortBO);
+			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史Tick数据发生错误", e);
@@ -842,8 +888,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_5_SEC, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName,
+					COLLECTION_NAME_BAR_5_SEC, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_5_SEC,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询历史5秒钟数据发生错误", e);
@@ -864,8 +912,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName,
+					COLLECTION_NAME_BAR_1_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_1_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询当日1分钟数据发生错误", e);
@@ -886,8 +936,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_3_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName,
+					COLLECTION_NAME_BAR_3_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_3_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询当日3分钟数据发生错误", e);
@@ -908,8 +960,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_5_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName,
+					COLLECTION_NAME_BAR_5_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_5_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询当日5分钟数据发生错误", e);
@@ -930,8 +984,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, filter, sortBO);
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_15_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName,
+					COLLECTION_NAME_BAR_15_MIN, filter, sortBO);
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_15_MIN,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询当日15分钟数据发生错误", e);
@@ -953,8 +1009,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			sortBO.put("actionTimestamp", 1);
 			long beginTime = System.currentTimeMillis();
 			String collectionName = COLLECTION_NAME_TICK;
-			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, collectionName, filter, sortBO);
-			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
+			List<Document> documentList = this.todayMarketDataDBClient.find(todayMarketDataDBName, collectionName,
+					filter, sortBO);
+			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
 			return documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("查询当日Tick数据发生错误", e);
@@ -967,68 +1025,62 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		List<TickField> tickList = new ArrayList<>();
 		try {
 			long beginTime = System.currentTimeMillis();
-			
-			List<Document> pipeline = new ArrayList<>();
-			
+
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
 			filter.put("unifiedSymbol", unifiedSymbol);
-			
-			pipeline.add(new Document("$match",filter));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",-1)));
-			pipeline.add(new Document("$limit", limit));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
-			
+
 			String collectionName = COLLECTION_NAME_TICK;
-			
-			AggregateIterable<Document> doc = this.histMarketDataDBClient.getDatabase(histMarketDataDBName).getCollection(collectionName).aggregate(pipeline);
-			MongoCursor<Document> mongoCursor = doc.iterator();
-			
+
+			FindIterable<Document> docs = this.histMarketDataDBClient.getDatabase(histMarketDataDBName)
+					.getCollection(collectionName).find(filter).sort(new Document("actionTimestamp", -1)).limit(limit);
+			MongoCursor<Document> mongoCursor = docs.iterator();
+
 			List<Document> documentList = new ArrayList<Document>();
 			while (mongoCursor.hasNext()) {
 				documentList.add(mongoCursor.next());
 			}
-			
-			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
-			tickList = documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
+			Collections.reverse(documentList);
+
+			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
+			tickList = documentListToTickList(documentList,
+					MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName());
 		} catch (Exception e) {
 			logger.error("根据最后日期和数量限制查询历史Tick数据发生错误", e);
 		}
-		
+
 		try {
 			long beginTime = System.currentTimeMillis();
-			
-			List<Document> pipeline = new ArrayList<>();
-			
+
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
 			filter.put("unifiedSymbol", unifiedSymbol);
-			
-			pipeline.add(new Document("$match",filter));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",-1)));
-			pipeline.add(new Document("$limit", limit));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
-			
+
 			String collectionName = COLLECTION_NAME_TICK;
-			
-			AggregateIterable<Document> doc = this.todayMarketDataDBClient.getDatabase(todayMarketDataDBName).getCollection(collectionName).aggregate(pipeline);
-			MongoCursor<Document> mongoCursor = doc.iterator();
-			
+
+			FindIterable<Document> docs = this.histMarketDataDBClient.getDatabase(todayMarketDataDBName)
+					.getCollection(collectionName).find(filter).sort(new Document("actionTimestamp", -1)).limit(limit);
+			MongoCursor<Document> mongoCursor = docs.iterator();
+
 			List<Document> documentList = new ArrayList<Document>();
 			while (mongoCursor.hasNext()) {
 				documentList.add(mongoCursor.next());
 			}
-			
-			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName, (System.currentTimeMillis() - beginTime), documentList.size());
-			tickList.addAll(documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName()));
+			Collections.reverse(documentList);
+
+			logger.info("查询Tick数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
+			tickList.addAll(
+					documentListToTickList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName()));
 		} catch (Exception e) {
 			logger.error("根据最后日期和数量限制查询当日Tick数据发生错误", e);
 		}
-		
-		if(tickList.size()>limit) {
-			tickList = tickList.subList(tickList.size()-limit, tickList.size());
+
+		if (tickList.size() > limit) {
+			tickList = tickList.subList(tickList.size() - limit, tickList.size());
 		}
-		
+
 		return tickList;
 	}
 
@@ -1037,62 +1089,60 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		List<BarField> barList = new ArrayList<>();
 		try {
 			long beginTime = System.currentTimeMillis();
-			
-			List<Document> pipeline = new ArrayList<>();
-			
+
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
 			filter.put("unifiedSymbol", unifiedSymbol);
-			
-			pipeline.add(new Document("$match",filter));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",-1)));
-			pipeline.add(new Document("$limit", limit));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
-			
-			AggregateIterable<Document> doc = this.histMarketDataDBClient.getDatabase(histMarketDataDBName).getCollection(COLLECTION_NAME_BAR_1_MIN).aggregate(pipeline);
-			MongoCursor<Document> mongoCursor = doc.iterator();
-			
+
+			String collectionName = COLLECTION_NAME_BAR_1_MIN;
+
+			FindIterable<Document> docs = this.histMarketDataDBClient.getDatabase(histMarketDataDBName)
+					.getCollection(collectionName).find(filter).sort(new Document("actionTimestamp", -1)).limit(limit);
+			MongoCursor<Document> mongoCursor = docs.iterator();
+
 			List<Document> documentList = new ArrayList<Document>();
 			while (mongoCursor.hasNext()) {
 				documentList.add(mongoCursor.next());
 			}
-			
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
-			barList.addAll(documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName()));
+			Collections.reverse(documentList);
+
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", histMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
+			barList.addAll(
+					documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_HIST.getValueDescriptor().getName()));
 		} catch (Exception e) {
 			logger.error("根据最后日期和数量限制查询历史1分钟数据发生错误", e);
 		}
-		
+
 		try {
 			long beginTime = System.currentTimeMillis();
-			
-			List<Document> pipeline = new ArrayList<>();
-			
+
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
 			filter.put("unifiedSymbol", unifiedSymbol);
-			
-			pipeline.add(new Document("$match",filter));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",-1)));
-			pipeline.add(new Document("$limit", limit));
-			pipeline.add(new Document("$sort", new Document("actionTimestamp",1)));
-			
-			AggregateIterable<Document> doc = this.todayMarketDataDBClient.getDatabase(todayMarketDataDBName).getCollection(COLLECTION_NAME_BAR_1_MIN).aggregate(pipeline);
-			MongoCursor<Document> mongoCursor = doc.iterator();
-			
+
+			String collectionName = COLLECTION_NAME_BAR_1_MIN;
+
+			FindIterable<Document> docs = this.histMarketDataDBClient.getDatabase(todayMarketDataDBName)
+					.getCollection(collectionName).find(filter).sort(new Document("actionTimestamp", -1)).limit(limit);
+			MongoCursor<Document> mongoCursor = docs.iterator();
+
 			List<Document> documentList = new ArrayList<Document>();
 			while (mongoCursor.hasNext()) {
 				documentList.add(mongoCursor.next());
 			}
-			
-			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, COLLECTION_NAME_BAR_1_MIN, (System.currentTimeMillis() - beginTime), documentList.size());
-			barList.addAll(documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName()));
+			Collections.reverse(documentList);
+
+			logger.info("查询Bar数据,数据库{},集合{},操作耗时{}ms,共{}条数据", todayMarketDataDBName, collectionName,
+					(System.currentTimeMillis() - beginTime), documentList.size());
+			barList.addAll(
+					documentListToBarList(documentList, MarketDataDBTypeEnum.MDDT_TD.getValueDescriptor().getName()));
 		} catch (Exception e) {
 			logger.error("根据最后日期和数量限制查询当日1分钟数据发生错误", e);
 		}
-		
-		if(barList.size()>limit) {
-			barList = barList.subList(barList.size()-limit, barList.size());
+
+		if (barList.size() > limit) {
+			barList = barList.subList(barList.size() - limit, barList.size());
 		}
 		return barList;
 	}

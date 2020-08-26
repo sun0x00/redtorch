@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CommonFileUtils {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CommonFileUtils.class);
 
 	public static List<String> getFileAbsolutePathList(String path, boolean includeSubfolders) {
@@ -33,7 +33,7 @@ public class CommonFileUtils {
 				}
 			}
 		} else {
-			logger.warn("文件列表为空，路径{}",path);
+			logger.warn("文件列表为空，路径{}", path);
 		}
 		return fileAbsolutePathList;
 	}
@@ -54,7 +54,8 @@ public class CommonFileUtils {
 		if (tmpFileList != null) {
 			for (File tmpFile : tmpFileList) {
 				if (tmpFile.isDirectory() && includeSubfolders) {
-					fileAbsolutePathList.addAll(getFileAbsolutePathList(tmpFile.getAbsolutePath(), includeSubfolders, suffixes));
+					fileAbsolutePathList
+							.addAll(getFileAbsolutePathList(tmpFile.getAbsolutePath(), includeSubfolders, suffixes));
 				} else {
 					String tmpAbsolutePath = tmpFile.getAbsolutePath();
 					for (String suffix : suffixSet) {
@@ -66,11 +67,11 @@ public class CommonFileUtils {
 				}
 			}
 		} else {
-			logger.warn("文件列表为空，路径{}",path);
+			logger.warn("文件列表为空，路径{}", path);
 		}
 		return fileAbsolutePathList;
 	}
-	
+
 	/**
 	 * 读取文件到字符串
 	 * 

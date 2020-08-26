@@ -35,7 +35,6 @@ import java.util.jar.JarFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class CommonUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
@@ -66,7 +65,6 @@ public class CommonUtils {
 
 	public static final DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT_INT);
 	public static final DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT);
-
 
 	/**
 	 * 从包package中获取所有的Class
@@ -405,30 +403,31 @@ public class CommonUtils {
 			return true;
 		}
 	}
+
 	public static int getNumberDecimalDigits(Double value) {
-		
-		if(isInteger(value)) {
+
+		if (isInteger(value)) {
 			return 0;
 		}
-		
-		int dcimalDigits = 0; 
-		String valueStr = Double.toString(value); 
-		int indexOf = valueStr.indexOf("."); 
-		if(indexOf > 0){ 
-			dcimalDigits = valueStr.length() - 1 - indexOf; 
-		} 
-		return dcimalDigits; 
+
+		int dcimalDigits = 0;
+		String valueStr = Double.toString(value);
+		int indexOf = valueStr.indexOf(".");
+		if (indexOf > 0) {
+			dcimalDigits = valueStr.length() - 1 - indexOf;
+		}
+		return dcimalDigits;
 	}
-	
-	public static boolean isInteger(double obj) {  
-	    double eps = 1e-10;  // 精度范围  
-	    return obj-Math.floor(obj) < eps;  
+
+	public static boolean isInteger(double obj) {
+		double eps = 1e-10; // 精度范围
+		return obj - Math.floor(obj) < eps;
 	}
-	
-	public static boolean isEquals(double d1,double d2) {
-		double eps=1e-6;
-		if(Math.abs(d1-d2)<eps){
-		 return true;
+
+	public static boolean isEquals(double d1, double d2) {
+		double eps = 1e-6;
+		if (Math.abs(d1 - d2) < eps) {
+			return true;
 		}
 		return false;
 	}

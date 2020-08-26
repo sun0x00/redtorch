@@ -310,7 +310,7 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
 									if (gatewayApi == null) {
 										shouldConnectFlag = true;
 									} else if (!gatewayApi.isConnected()) {
-										if (System.currentTimeMillis() - gatewayApi.getLastConnectBeginTimestamp() > 20 * 1000) {
+										if (System.currentTimeMillis() - gatewayApi.getLastConnectBeginTimestamp() > 60 * 1000) {
 											shouldConnectFlag = true;
 										} else {
 											logger.info("网关{}上次连接尚未超时,上次开始连接时间戳{}", gatewayApi.getGatewayId(), gatewayApi.getLastConnectBeginTimestamp());

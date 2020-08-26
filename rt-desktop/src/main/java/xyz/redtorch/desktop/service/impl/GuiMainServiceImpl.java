@@ -1,5 +1,7 @@
 package xyz.redtorch.desktop.service.impl;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -95,7 +97,8 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
 							accountLayout.updateData(accountList);
 
 							if (selectedContract != null) {
-								TickField tick = desktopTradeCachesService.queryTickByUnifiedSymbol(selectedContract.getUnifiedSymbol());
+								TickField tick = desktopTradeCachesService
+										.queryTickByUnifiedSymbol(selectedContract.getUnifiedSymbol());
 								marketDetailsLayout.updateData(tick);
 								orderPanelLayout.updateData(tick);
 							} else {
@@ -128,14 +131,17 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
 	@Override
 	public void updateSelectedContarct(ContractField contract) {
 
-		if (!(this.selectedContract != null && contract != null && this.selectedContract.getUnifiedSymbol().equals(contract.getUnifiedSymbol()))) {
+		if (!(this.selectedContract != null && contract != null
+				&& this.selectedContract.getUnifiedSymbol().equals(contract.getUnifiedSymbol()))) {
 			this.selectedContract = contract;
 			if (contract != null) {
 				// 订阅合约
 				rpcClientApiService.subscribe(contract, UUIDStringPoolUtils.getUUIDString(), null);
 				// 更新缓存
-				RpcGetTickListRsp rpcGetTickListRsp = rpcClientApiService.getTickList(UUIDStringPoolUtils.getUUIDString(), null);
-				if (rpcGetTickListRsp != null && rpcGetTickListRsp.getCommonRsp() != null && rpcGetTickListRsp.getCommonRsp().getErrorId() == 0) {
+				RpcGetTickListRsp rpcGetTickListRsp = rpcClientApiService
+						.getTickList(UUIDStringPoolUtils.getUUIDString(), null);
+				if (rpcGetTickListRsp != null && rpcGetTickListRsp.getCommonRsp() != null
+						&& rpcGetTickListRsp.getCommonRsp().getErrorId() == 0) {
 					List<TickField> tickList = rpcGetTickListRsp.getTickList();
 					if (tickList != null) {
 						desktopTradeCachesService.cacheTickList(tickList);
@@ -199,5 +205,32 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
 		} catch (Exception e) {
 			logger.error("更新数据错误", e);
 		}
+	}
+
+	@Override
+	public void writeAccountsDataToFile() {
+		List<AccountField> accountList = desktopTradeCachesService.getAccountList();
+
+		StringBuilder csvString = new StringBuilder();
+
+		csvString.append("账户代码").append(",");
+		csvString.append("持有人").append(",");
+		csvString.append("权益");
+		csvString.append("\r\n");
+
+		for (AccountField account : accountList) {
+			csvString.append(account.getCode()).append(",");
+			csvString.append(account.getHolder()).append(",");
+			csvString.append(account.getBalance());
+			csvString.append("\r\n");
+		}
+
+		try (FileWriter fw = new FileWriter("rt-accounts.csv")) {
+			fw.write(csvString.toString());
+			fw.close();
+		} catch (IOException e) {
+			logger.error("写入账户数据到文件发生错误,", e);
+		}
+
 	}
 }

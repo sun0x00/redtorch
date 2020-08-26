@@ -14,6 +14,7 @@ import xyz.redtorch.pb.CoreEnum.OffsetFlagEnum;
 import xyz.redtorch.pb.CoreEnum.OptionsTypeEnum;
 import xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum;
 import xyz.redtorch.pb.CoreEnum.OrderStatusEnum;
+import xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum;
 import xyz.redtorch.pb.CoreEnum.PositionDirectionEnum;
 import xyz.redtorch.pb.CoreEnum.PriceSourceEnum;
 import xyz.redtorch.pb.CoreEnum.ProductClassEnum;
@@ -67,6 +68,9 @@ public class CtpConstant {
 
 	public static Map<TradeTypeEnum, Character> tradeTypeMap = new HashMap<>();
 	public static Map<Character, TradeTypeEnum> tradeTypeMapReverse = new HashMap<>();
+
+	public static Map<OrderSubmitStatusEnum, Character> orderSubmitStatusMap = new HashMap<>();
+	public static Map<Character, OrderSubmitStatusEnum> orderSubmitStatusMapReverse = new HashMap<>();
 
 	static {
 
@@ -211,6 +215,15 @@ public class CtpConstant {
 		tradeTypeMap.put(TradeTypeEnum.TT_SplitCombination, jctpv6v3v15x64apiConstants.THOST_FTDC_TRDT_SplitCombination);
 		tradeTypeMap.put(TradeTypeEnum.TT_BlockTrade, jctpv6v3v15x64apiConstants.THOST_FTDC_TRDT_BlockTrade);
 		tradeTypeMapReverse = tradeTypeMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+		
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_Accepted, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_Accepted);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_CancelRejected, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_CancelRejected);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_CancelSubmitted, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_CancelSubmitted);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_InsertRejected, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_InsertRejected);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_InsertSubmitted, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_InsertSubmitted);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_ModifyRejected, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_ModifyRejected);
+		orderSubmitStatusMap.put(OrderSubmitStatusEnum.OSS_ModifySubmitted, jctpv6v3v15x64apiConstants.THOST_FTDC_OSS_ModifySubmitted);
+		orderSubmitStatusMapReverse = orderSubmitStatusMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
 	}
 }

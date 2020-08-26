@@ -16,4 +16,6 @@ public interface GuiMainService {
 	ContractField getSelectedContract();
 
 	void refreshContractData();
+
+	void writeAccountsDataToFile();
 }

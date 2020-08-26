@@ -88,29 +88,39 @@ public class ContractLayout {
 
 		List<ContractField> newContractList = new ArrayList<>();
 
-		if ((this.filterCurrency.equals("全部")) && (this.filterExchange.equals("全部")) && (this.filterProductType.equals("全部")) && (this.filterFuzzySymbol.equals(""))
-				&& (this.filterLastTradeDateOrContractMonth.isEmpty()) && (this.filterThirdPartyId.isEmpty()) && (this.filterName.isEmpty()) && (this.filterUnderlyingSymbol.isEmpty())) {
+		if ((this.filterCurrency.equals("全部")) && (this.filterExchange.equals("全部"))
+				&& (this.filterProductType.equals("全部")) && (this.filterFuzzySymbol.equals(""))
+				&& (this.filterLastTradeDateOrContractMonth.isEmpty()) && (this.filterThirdPartyId.isEmpty())
+				&& (this.filterName.isEmpty()) && (this.filterUnderlyingSymbol.isEmpty())) {
 			newContractList = contractList;
 		} else {
 
 			for (ContractField contract : this.contractList) {
 
 				boolean flag = false;
-				flag = this.filterCurrency.equals("全部") || contract.getCurrency().getValueDescriptor().getName().equals(filterCurrency);
+				flag = this.filterCurrency.equals("全部")
+						|| contract.getCurrency().getValueDescriptor().getName().equals(filterCurrency);
 
-				flag = flag && (this.filterExchange.equals("全部") || contract.getExchange().getValueDescriptor().getName().equals(filterExchange));
+				flag = flag && (this.filterExchange.equals("全部")
+						|| contract.getExchange().getValueDescriptor().getName().equals(filterExchange));
 
-				flag = flag && (this.filterProductType.equals("全部") || contract.getProductClass().getValueDescriptor().getName().equals(filterProductType));
+				flag = flag && (this.filterProductType.equals("全部")
+						|| contract.getProductClass().getValueDescriptor().getName().equals(filterProductType));
 
-				flag = flag && (this.filterFuzzySymbol.isEmpty() || contract.getSymbol().toLowerCase().contains(this.filterFuzzySymbol.toLowerCase()));
+				flag = flag && (this.filterFuzzySymbol.isEmpty()
+						|| contract.getSymbol().toLowerCase().contains(this.filterFuzzySymbol.toLowerCase()));
 
-				flag = flag && (this.filterLastTradeDateOrContractMonth.isEmpty() || contract.getLastTradeDateOrContractMonth().contains(this.filterLastTradeDateOrContractMonth));
+				flag = flag && (this.filterLastTradeDateOrContractMonth.isEmpty() || contract
+						.getLastTradeDateOrContractMonth().contains(this.filterLastTradeDateOrContractMonth));
 
-				flag = flag && (this.filterUnderlyingSymbol.isEmpty() || contract.getUnderlyingSymbol().toLowerCase().contains(this.filterUnderlyingSymbol.toLowerCase()));
+				flag = flag && (this.filterUnderlyingSymbol.isEmpty() || contract.getUnderlyingSymbol().toLowerCase()
+						.contains(this.filterUnderlyingSymbol.toLowerCase()));
 
-				flag = flag && (this.filterThirdPartyId.isEmpty() || contract.getThirdPartyId().toLowerCase().contains(this.filterThirdPartyId.toLowerCase()));
+				flag = flag && (this.filterThirdPartyId.isEmpty()
+						|| contract.getThirdPartyId().toLowerCase().contains(this.filterThirdPartyId.toLowerCase()));
 
-				flag = flag && (this.filterName.isEmpty() || contract.getFullName().toLowerCase().contains(this.filterName.toLowerCase())
+				flag = flag && (this.filterName.isEmpty()
+						|| contract.getFullName().toLowerCase().contains(this.filterName.toLowerCase())
 						|| contract.getName().toLowerCase().contains(this.filterName.toLowerCase()));
 
 				if (flag) {
@@ -370,7 +380,8 @@ public class ContractLayout {
 			TableRow<ContractField> row = new TableRow<>();
 			row.setOnMousePressed(event -> {
 				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
-					ObservableList<ContractField> selectedItems = contractTableView.getSelectionModel().getSelectedItems();
+					ObservableList<ContractField> selectedItems = contractTableView.getSelectionModel()
+							.getSelectedItems();
 					selectedContractUnifiedSymbolSet.clear();
 					for (ContractField contract : selectedItems) {
 						selectedContractUnifiedSymbolSet.add(contract.getUnifiedSymbol());

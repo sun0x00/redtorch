@@ -26,7 +26,8 @@ public class WebConfigAdaptor implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/", apiBasePath + "/login", apiBasePath + "/logout");
+		registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/",
+				apiBasePath + "/login", apiBasePath + "/logout");
 	}
 
 	/**
@@ -55,7 +56,8 @@ public class WebConfigAdaptor implements WebMvcConfigurer {
 				"/**/*.woff2" //
 		).setCachePeriod(0).addResourceLocations("classpath:/static/");
 
-		registry.addResourceHandler("/", "/**").setCachePeriod(0).addResourceLocations("classpath:/static/index.html").addResourceLocations("/static/ReactSPA/index.html").resourceChain(true)
+		registry.addResourceHandler("/", "/**").setCachePeriod(0).addResourceLocations("classpath:/static/index.html")
+				.addResourceLocations("/static/ReactSPA/index.html").resourceChain(true)
 				.addResolver(new PathResourceResolver() {
 					@Override
 					protected Resource getResource(String resourcePath, Resource location) throws IOException {

@@ -29,6 +29,7 @@ import xyz.redtorch.pb.CoreEnum.OffsetFlagEnum;
 import xyz.redtorch.pb.CoreEnum.OptionsTypeEnum;
 import xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum;
 import xyz.redtorch.pb.CoreEnum.OrderStatusEnum;
+import xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum;
 import xyz.redtorch.pb.CoreEnum.PositionDirectionEnum;
 import xyz.redtorch.pb.CoreEnum.PriceSourceEnum;
 import xyz.redtorch.pb.CoreEnum.ProductClassEnum;
@@ -238,7 +239,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(15 * 1000);
+					Thread.sleep(60 * 1000);
 					if (!(isConnected() && investorNameQueried && instrumentQueried)) {
 						logger.error("{}交易接口连接超时,尝试断开", logInfo);
 						ctpGatewayImpl.disconnect();
@@ -629,12 +630,13 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				settlementInfoConfirmField.setInvestorID(userId);
 				cThostFtdcTraderApi.ReqSettlementInfoConfirm(settlementInfoConfirmField, reqId.incrementAndGet());
 
+			} else {
+
 				// 不合法的登录
 				if (pRspInfo.getErrorID() == 3) {
 					ctpGatewayImpl.setAuthErrorFlag(true);
 				}
-
-			} else {
+				
 				logger.error("{}交易接口登录回报错误 错误ID:{},错误信息:{}", logInfo, pRspInfo.getErrorID(), pRspInfo.getErrorMsg());
 				loginFailed = true;
 			}
@@ -1140,7 +1142,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				accountBuilder.setHolder(investorName);
 				accountBuilder.setBalance(pTradingAccount.getBalance());
 				accountBuilder.setLocalCreatedTimestamp(System.currentTimeMillis());
-				
+
 				ctpGatewayImpl.emitAccount(accountBuilder.build());
 			}
 		} catch (Throwable t) {
@@ -1440,6 +1442,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			String brokerOrderSeq = pOrder.getBrokerOrderSeq() + "";
 
 			String originalOrderId = orderIdToOriginalOrderIdMap.getOrDefault(orderId, "");
+			
+			OrderSubmitStatusEnum orderSubmitStatus = CtpConstant.orderSubmitStatusMapReverse.getOrDefault(pOrder.getOrderSubmitStatus(), OrderSubmitStatusEnum.OSS_Unknown);
 
 			OrderField.Builder orderBuilder = OrderField.newBuilder();
 			orderBuilder.setAccountId(accountId);
@@ -1479,6 +1483,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			orderBuilder.setSequenceNo(sequenceNo);
 			orderBuilder.setBrokerOrderSeq(brokerOrderSeq);
 			orderBuilder.setOrderPriceType(orderPriceType);
+			orderBuilder.setOrderSubmitStatus(orderSubmitStatus);
 
 			if (instrumentQueried) {
 				if (ctpGatewayImpl.contractMap.containsKey(symbol)) {

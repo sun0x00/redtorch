@@ -55,7 +55,8 @@ public class AuthServiceImpl implements AuthService {
 		responseHttpHeaders = null;
 		this.username = "";
 		try {
-			ResponseEntity<String> responseEntity = rest.exchange(loginUri, HttpMethod.POST, requestEntity, String.class);
+			ResponseEntity<String> responseEntity = rest.exchange(loginUri, HttpMethod.POST, requestEntity,
+					String.class);
 			System.out.println(responseEntity.toString());
 			if (responseEntity.getStatusCode().is2xxSuccessful()) {
 				JSONObject resultJSONObject = JSON.parseObject(responseEntity.getBody());

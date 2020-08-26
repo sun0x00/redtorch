@@ -98,7 +98,8 @@ public class AccountLayout {
 		accountTableView.setTableMenuButtonVisible(true);
 
 		TableColumn<AccountField, Boolean> checkCol = new TableColumn<>("选择");
-		checkCol.setCellValueFactory(feature -> new SimpleBooleanProperty(selectedAccountIdSet.contains(feature.getValue().getAccountId())));
+		checkCol.setCellValueFactory(
+				feature -> new SimpleBooleanProperty(selectedAccountIdSet.contains(feature.getValue().getAccountId())));
 		checkCol.setCellFactory(CheckBoxTableCell.forTableColumn(checkCol));
 		checkCol.setEditable(true);
 		checkCol.setMaxWidth(50);
@@ -214,7 +215,8 @@ public class AccountLayout {
 		utilizationRateCol.setCellValueFactory(feature -> {
 			String utilizationString = "";
 			try {
-				utilizationString = String.format("%,.2f%%", 100 - feature.getValue().getAvailable() / feature.getValue().getBalance() * 100);
+				utilizationString = String.format("%,.2f%%",
+						feature.getValue().getMargin() / feature.getValue().getBalance() * 100);
 			} catch (Exception e) {
 				logger.error("渲染错误", e);
 			}
@@ -222,7 +224,8 @@ public class AccountLayout {
 		});
 		utilizationRateCol.setComparator((String s1, String s2) -> {
 			try {
-				return Double.compare(Double.valueOf(s1.replaceAll(",", "").replaceAll("%", "")), Double.valueOf(s2.replaceAll(",", "").replaceAll("%", "")));
+				return Double.compare(Double.valueOf(s1.replaceAll(",", "").replaceAll("%", "")),
+						Double.valueOf(s2.replaceAll(",", "").replaceAll("%", "")));
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}
@@ -501,7 +504,8 @@ public class AccountLayout {
 				if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
 					AccountField clickedItem = row.getItem();
 
-					ObservableList<AccountField> selectedItems = accountTableView.getSelectionModel().getSelectedItems();
+					ObservableList<AccountField> selectedItems = accountTableView.getSelectionModel()
+							.getSelectedItems();
 
 					boolean selectedItemReverse = false;
 					if (selectedAccountIdSet.contains(clickedItem.getAccountId())) {

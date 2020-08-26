@@ -66,16 +66,21 @@ public interface RpcClientApiService {
 
 	RpcGetAccountListRsp getAccountList(String reqId, Integer timeoutSeconds);
 
-	boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId);
+	boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle,
+			MarketDataDBTypeEnum marketDataDBType, String reqId);
 
-	RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId,
-			Integer timeoutSeconds);
+	RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			BarCycleEnum barCycle, MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds);
 
-	boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String reqId);
+	boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			MarketDataDBTypeEnum marketDataDBType, String reqId);
 
-	RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds);
+	RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			MarketDataDBTypeEnum marketDataDBType, String reqId, Integer timeoutSeconds);
 
-	boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String reqId);
+	boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume,
+			String reqId);
 
-	RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String reqId, Integer timeoutSeconds);
+	RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol,
+			int volume, String reqId, Integer timeoutSeconds);
 }

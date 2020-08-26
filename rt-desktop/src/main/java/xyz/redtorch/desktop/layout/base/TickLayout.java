@@ -98,7 +98,8 @@ public class TickLayout {
 			try {
 
 				TickField tick = feature.getValue();
-				ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+				ContractField contract = desktopTradeCachesService
+						.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
 
 				String contractName = tick.getUnifiedSymbol();
 				if (contract != null) {
@@ -109,7 +110,8 @@ public class TickLayout {
 				vBox.getChildren().add(unifiedSymbolText);
 				vBox.getChildren().add(nameText);
 
-				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract().getUnifiedSymbol().equals(tick.getUnifiedSymbol())) {
+				if (guiMainService.getSelectedContract() != null
+						&& guiMainService.getSelectedContract().getUnifiedSymbol().equals(tick.getUnifiedSymbol())) {
 					unifiedSymbolText.getStyleClass().add("trade-remind-color");
 				}
 
@@ -142,7 +144,8 @@ public class TickLayout {
 			try {
 				TickField tick = feature.getValue();
 
-				ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+				ContractField contract = desktopTradeCachesService
+						.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
 
 				int dcimalDigits = 4;
 				if (contract != null) {
@@ -237,7 +240,8 @@ public class TickLayout {
 			try {
 				TickField tick = feature.getValue();
 
-				ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+				ContractField contract = desktopTradeCachesService
+						.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
 
 				int dcimalDigits = 4;
 				if (contract != null) {
@@ -340,7 +344,8 @@ public class TickLayout {
 			try {
 				TickField tick = feature.getValue();
 
-				ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+				ContractField contract = desktopTradeCachesService
+						.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
 
 				int dcimalDigits = 4;
 				if (contract != null) {
@@ -411,7 +416,8 @@ public class TickLayout {
 					}
 					TickField clickedItem = row.getItem();
 
-					ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(clickedItem.getUnifiedSymbol());
+					ContractField contract = desktopTradeCachesService
+							.queryContractByUnifiedSymbol(clickedItem.getUnifiedSymbol());
 
 					guiMainService.updateSelectedContarct(contract);
 				}

@@ -91,7 +91,8 @@ public class TradeLayout {
 	public void fillingData() {
 		List<TradeField> newTradeList = new ArrayList<>();
 		for (TradeField trade : this.tradeList) {
-			if (guiMainService.getSelectedAccountIdSet().isEmpty() || guiMainService.getSelectedAccountIdSet().contains(trade.getAccountId())) {
+			if (guiMainService.getSelectedAccountIdSet().isEmpty()
+					|| guiMainService.getSelectedAccountIdSet().contains(trade.getAccountId())) {
 				if (showRadioValue == SHOW_ALL) {
 					newTradeList.add(trade);
 				} else if (showRadioValue == SHOW_LONG) {
@@ -113,7 +114,8 @@ public class TradeLayout {
 			Map<String, TradeField.Builder> mergedTradeFieldBuilderMap = new HashMap<>();
 
 			for (TradeField trade : newTradeList) {
-				String key = trade.getContract().getUnifiedSymbol() + "#" + trade.getDirectionValue() + "#" + trade.getOffsetFlagValue();
+				String key = trade.getContract().getUnifiedSymbol() + "#" + trade.getDirectionValue() + "#"
+						+ trade.getOffsetFlagValue();
 
 				TradeField.Builder tradeFieldBuilder;
 				if (mergedTradeFieldBuilderMap.containsKey(key)) {
@@ -165,7 +167,8 @@ public class TradeLayout {
 				vBox.getChildren().add(unifiedSymbolText);
 				vBox.getChildren().add(shortNameText);
 
-				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract().getUnifiedSymbol().equals(trade.getContract().getUnifiedSymbol())) {
+				if (guiMainService.getSelectedContract() != null && guiMainService.getSelectedContract()
+						.getUnifiedSymbol().equals(trade.getContract().getUnifiedSymbol())) {
 					unifiedSymbolText.getStyleClass().add("trade-remind-color");
 				}
 
@@ -180,7 +183,8 @@ public class TradeLayout {
 			try {
 				TradeField trade1 = (TradeField) p1.getUserData();
 				TradeField trade2 = (TradeField) p2.getUserData();
-				return StringUtils.compare(trade1.getContract().getUnifiedSymbol(), trade2.getContract().getUnifiedSymbol());
+				return StringUtils.compare(trade1.getContract().getUnifiedSymbol(),
+						trade2.getContract().getUnifiedSymbol());
 			} catch (Exception e) {
 				logger.error("排序错误", e);
 			}

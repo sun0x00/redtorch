@@ -116,7 +116,7 @@ public class RtWebSocketClient {
 	private ThreadSafeWebSocketSession webSocketSession;
 
 	private LinkedBlockingQueue<byte[]> dataQueue = new LinkedBlockingQueue<>();
-	
+
 	private Long pingStartTimestamp = null;
 
 	public RtWebSocketClient(RpcClientProcessService rpcClientProcessService) {
@@ -140,7 +140,8 @@ public class RtWebSocketClient {
 			}
 
 			@Override
-			public void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
+			public void handleTextMessage(WebSocketSession session, TextMessage message)
+					throws InterruptedException, IOException {
 				logger.warn("接收到文本消息,会话ID:{}", session.getId());
 				session.close(CloseStatus.NOT_ACCEPTABLE.withReason("Text messages not supported"));
 			}
@@ -238,9 +239,9 @@ public class RtWebSocketClient {
 
 			scheduledExecutorService.scheduleAtFixedRate(() -> {
 				try {
-					
-					if(pingStartTimestamp!=null) {
-						if(System.currentTimeMillis()-pingStartTimestamp>21000) {
+
+					if (pingStartTimestamp != null) {
+						if (System.currentTimeMillis() - pingStartTimestamp > 21000) {
 							logger.error("PING服务器超时,主动断开");
 							WebSocketSession closeWebSocketSession = webSocketSession;
 							webSocketSession = null;
@@ -248,13 +249,14 @@ public class RtWebSocketClient {
 							pingStartTimestamp = null;
 						}
 					}
-					
+
 					if (webSocketSession != null && webSocketSession.isOpen()) {
 						logger.info("PING服务器");
-						ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(System.currentTimeMillis()).flip();
+						ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(System.currentTimeMillis())
+								.flip();
 						PingMessage message = new PingMessage(byteBuffer);
 						webSocketSession.sendMessage(message);
-						if(pingStartTimestamp==null) {
+						if (pingStartTimestamp == null) {
 							pingStartTimestamp = System.currentTimeMillis();
 						}
 					}
@@ -296,12 +298,16 @@ public class RtWebSocketClient {
 	public void connect() {
 		try {
 			if (usingHttpSession) {
-				webSocketClient.doHandshake(webSocketHandler, new WebSocketHttpHeaders(httpHeaders), URI.create(masterServerUri + "?nodeId="
-						+ URLEncoder.encode(nodeId + "", "utf-8") + "&skipTradeEvents=" + URLEncoder.encode(skipTradeEvents + "", "utf-8"))).get();
+				webSocketClient
+						.doHandshake(webSocketHandler, new WebSocketHttpHeaders(httpHeaders),
+								URI.create(masterServerUri + "?nodeId=" + URLEncoder.encode(nodeId + "", "utf-8")
+										+ "&skipTradeEvents=" + URLEncoder.encode(skipTradeEvents + "", "utf-8")))
+						.get();
 			} else {
 				webSocketClient.doHandshake(webSocketHandler, new WebSocketHttpHeaders(),
-						URI.create(masterServerUri + "?nodeId=" + URLEncoder.encode(nodeId + "", "utf-8") + "&token=" + URLEncoder.encode(token, "utf-8")
-								+ "&skipTradeEvents=" + URLEncoder.encode(skipTradeEvents + "", "utf-8") + "&operatorId="
+						URI.create(masterServerUri + "?nodeId=" + URLEncoder.encode(nodeId + "", "utf-8") + "&token="
+								+ URLEncoder.encode(token, "utf-8") + "&skipTradeEvents="
+								+ URLEncoder.encode(skipTradeEvents + "", "utf-8") + "&operatorId="
 								+ URLEncoder.encode(operatorId, "utf-8")))
 						.get();
 			}

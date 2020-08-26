@@ -109,7 +109,9 @@ public class OrderPanelLayout {
 
 		Set<String> selectedAccountIdSet = guiMainService.getSelectedAccountIdSet();
 
-		accountVolumeMap = accountVolumeMap.entrySet().stream().filter(map -> selectedAccountIdSet.contains(map.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+		accountVolumeMap = accountVolumeMap.entrySet().stream()
+				.filter(map -> selectedAccountIdSet.contains(map.getKey()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 		accountVolumeVBox.getChildren().clear();
 		for (String selectedAccountId : selectedAccountIdSet) {
@@ -191,7 +193,8 @@ public class OrderPanelLayout {
 
 			VBox lineVbox = new VBox();
 			lineVbox.setPadding(commonInsets);
-			lineVbox.getChildren().addAll(holderTextField, accountIdTextField, accountVolumeTextField, accountVolumeButtonHBox);
+			lineVbox.getChildren().addAll(holderTextField, accountIdTextField, accountVolumeTextField,
+					accountVolumeButtonHBox);
 
 			accountVolumeVBox.getChildren().add(lineVbox);
 		}
@@ -224,7 +227,8 @@ public class OrderPanelLayout {
 			this.tick = tick;
 
 			if (tick != null) {
-				ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+				ContractField contract = desktopTradeCachesService
+						.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
 				if (contract != null) {
 					dcimalDigits = CommonUtils.getNumberDecimalDigits(contract.getPriceTick());
 					if (dcimalDigits < 0) {
@@ -269,7 +273,8 @@ public class OrderPanelLayout {
 			VBox leftVBox = new VBox();
 			leftVBox.setPrefWidth(220);
 			leftVBox.setMinWidth(220);
-			leftVBox.setStyle("-fx-border-color: rgb(220, 220, 220);-fx-border-style: dashed;-fx-border-width: 0 1 0 0;");
+			leftVBox.setStyle(
+					"-fx-border-color: rgb(220, 220, 220);-fx-border-style: dashed;-fx-border-width: 0 1 0 0;");
 
 			ScrollPane leftVBoxScrollPane = new ScrollPane();
 			leftVBoxScrollPane.setPadding(new Insets(2, 0, 2, 2));
@@ -298,7 +303,8 @@ public class OrderPanelLayout {
 			orderPriceTypeLastPricePlusOneTicksRadioButton.setUserData(OrderPriceTypeEnum.OPT_LastPricePlusOneTicks);
 			orderPriceTypeLastPricePlusOneTicksRadioButton.setPrefWidth(200);
 			RadioButton orderPriceTypeLastPricePlusThreeTicksRadioButton = new RadioButton("最新价浮动上浮3个ticks");
-			orderPriceTypeLastPricePlusThreeTicksRadioButton.setUserData(OrderPriceTypeEnum.OPT_LastPricePlusThreeTicks);
+			orderPriceTypeLastPricePlusThreeTicksRadioButton
+					.setUserData(OrderPriceTypeEnum.OPT_LastPricePlusThreeTicks);
 			orderPriceTypeLastPricePlusThreeTicksRadioButton.setPrefWidth(200);
 
 			orderPriceTypeLimitRadioButton.setToggleGroup(orderPriceTypeToggleGroup);
@@ -318,7 +324,8 @@ public class OrderPanelLayout {
 
 			HBox orderPriceTypeLine1HBox = new HBox();
 			orderPriceTypeLine1HBox.setPadding(commonInsets);
-			orderPriceTypeLine1HBox.getChildren().addAll(orderPriceTypeLimitRadioButton, orderPriceTypeAnyRadioButton, orderPriceTypeFiveLevelRadioButton);
+			orderPriceTypeLine1HBox.getChildren().addAll(orderPriceTypeLimitRadioButton, orderPriceTypeAnyRadioButton,
+					orderPriceTypeFiveLevelRadioButton);
 
 			HBox orderPriceTypeLine2HBox = new HBox();
 			orderPriceTypeLine2HBox.setPadding(commonInsets);
@@ -329,8 +336,8 @@ public class OrderPanelLayout {
 
 			Label orderPriceTypeLabel = new Label("价格类型");
 			orderPriceTypeLabel.setPadding(commonInsets);
-			leftVBox.getChildren().addAll(orderPriceTypeLabel, orderPriceTypeLine1HBox, orderPriceTypeLine2HBox, orderPriceTypeLastPricePlusOneTicksRadioButton,
-					orderPriceTypeLastPricePlusThreeTicksRadioButton);
+			leftVBox.getChildren().addAll(orderPriceTypeLabel, orderPriceTypeLine1HBox, orderPriceTypeLine2HBox,
+					orderPriceTypeLastPricePlusOneTicksRadioButton, orderPriceTypeLastPricePlusThreeTicksRadioButton);
 
 			RadioButton priceFillMethodBestRadioButton = new RadioButton("排队价");
 			priceFillMethodBestRadioButton.setUserData(PFM_Best);
@@ -399,10 +406,12 @@ public class OrderPanelLayout {
 
 			HBox priceFillMethodLine1HBox = new HBox();
 			priceFillMethodLine1HBox.setPadding(commonInsets);
-			priceFillMethodLine1HBox.getChildren().addAll(priceFillMethodBestRadioButton, priceFillMethodLastRadioButton, priceFillMethodCounterpartyBestRadioButton);
+			priceFillMethodLine1HBox.getChildren().addAll(priceFillMethodBestRadioButton,
+					priceFillMethodLastRadioButton, priceFillMethodCounterpartyBestRadioButton);
 			HBox priceFillMethodLine2HBox = new HBox();
 			priceFillMethodLine2HBox.setPadding(commonInsets);
-			priceFillMethodLine2HBox.getChildren().addAll(priceFillMethodUpperOrLowerLimitRadioButton, priceFillMethodManualRadioButton);
+			priceFillMethodLine2HBox.getChildren().addAll(priceFillMethodUpperOrLowerLimitRadioButton,
+					priceFillMethodManualRadioButton);
 
 			Label priceFillMethodLabel = new Label("填价方式");
 			priceFillMethodLabel.setPadding(commonInsets);
@@ -414,11 +423,13 @@ public class OrderPanelLayout {
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					Pattern pattern = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
 
-					if (!(newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue) || pattern.matcher(newValue).matches() || "涨跌停".equals(newValue)
-							|| "对手价".equals(newValue) || "排队价".equals(newValue))) {
+					if (!(newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue)
+							|| pattern.matcher(newValue).matches() || "涨跌停".equals(newValue) || "对手价".equals(newValue)
+							|| "排队价".equals(newValue))) {
 						priceTextField.setText(oldValue);
 					} else {
-						if (newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue) || "涨跌停".equals(newValue) || "对手价".equals(newValue) || "排队价".equals(newValue)) {
+						if (newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue)
+								|| "涨跌停".equals(newValue) || "对手价".equals(newValue) || "排队价".equals(newValue)) {
 							price = null;
 						} else if (pattern.matcher(newValue).matches()) {
 							price = Double.valueOf(newValue);
@@ -589,7 +600,8 @@ public class OrderPanelLayout {
 			minVolumeLabel.setPadding(commonInsets);
 			leftVBox.getChildren().addAll(minVolumeLabel, minVolumeTextField);
 
-			ObservableList<ContingentConditionEnum> contingentConditionObservableList = FXCollections.observableArrayList();
+			ObservableList<ContingentConditionEnum> contingentConditionObservableList = FXCollections
+					.observableArrayList();
 			contingentConditionObservableList.add(ContingentConditionEnum.CC_Immediately);
 			contingentConditionObservableList.add(ContingentConditionEnum.CC_LastPriceGreaterEqualStopPrice);
 			contingentConditionObservableList.add(ContingentConditionEnum.CC_LastPriceLesserEqualStopPrice);
@@ -608,10 +620,12 @@ public class OrderPanelLayout {
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					Pattern pattern = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
 
-					if (!(newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue) || pattern.matcher(newValue).matches())) {
+					if (!(newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue)
+							|| pattern.matcher(newValue).matches())) {
 						stopPriceTextField.setText(oldValue);
 					} else {
-						if (newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue) || "-.".equals(newValue)) {
+						if (newValue.isEmpty() || "-".equals(newValue) || ".".equals(newValue)
+								|| "-.".equals(newValue)) {
 							stopPrice = null;
 						} else if (pattern.matcher(newValue).matches()) {
 							stopPrice = Double.valueOf(newValue);
@@ -634,7 +648,8 @@ public class OrderPanelLayout {
 			VBox accountVolumeWrapVBox = new VBox();
 			rightVBox.getChildren().add(accountVolumeWrapVBox);
 			VBox.setVgrow(accountVolumeWrapVBox, Priority.ALWAYS);
-			accountVolumeWrapVBox.setStyle("-fx-border-color: rgb(220, 220, 220);-fx-border-style: dashed;-fx-border-width: 0 1 0 0;");
+			accountVolumeWrapVBox.setStyle(
+					"-fx-border-color: rgb(220, 220, 220);-fx-border-style: dashed;-fx-border-width: 0 1 0 0;");
 			accountVolumeWrapVBox.setPadding(new Insets(5, 0, 0, 0));
 
 			ScrollPane accountVolumeScrollPane = new ScrollPane();
@@ -942,11 +957,13 @@ public class OrderPanelLayout {
 				if (accountVolumeMap.containsKey(accountId) && accountVolumeMap.get(accountId) != 0) {
 					submitOrderReqFieldBuilder.setVolume(accountVolumeMap.get(accountId));
 					submitOrderReqFieldBuilder.setOriginOrderId(UUIDStringPoolUtils.getUUIDString());
-					rpcClientApiService.asyncSubmitOrder(submitOrderReqFieldBuilder.build(), UUIDStringPoolUtils.getUUIDString());
+					rpcClientApiService.asyncSubmitOrder(submitOrderReqFieldBuilder.build(),
+							UUIDStringPoolUtils.getUUIDString());
 				} else if (volume != 0) {
 					submitOrderReqFieldBuilder.setVolume(volume);
 					submitOrderReqFieldBuilder.setOriginOrderId(UUIDStringPoolUtils.getUUIDString());
-					rpcClientApiService.asyncSubmitOrder(submitOrderReqFieldBuilder.build(), UUIDStringPoolUtils.getUUIDString());
+					rpcClientApiService.asyncSubmitOrder(submitOrderReqFieldBuilder.build(),
+							UUIDStringPoolUtils.getUUIDString());
 				}
 
 			}

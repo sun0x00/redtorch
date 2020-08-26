@@ -254,7 +254,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
 		List<TradeField> tradeList = new ArrayList<>();
 		tradeMapLock.lock();
 		try {
-			tradeList = tradeMap.values().stream().filter(trade -> trade.getAccountId().equals(accountId)).collect(Collectors.toList());
+			tradeList = tradeMap.values().stream().filter(trade -> trade.getAccountId().equals(accountId))
+					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据账户ID获取成交列表异常", e);
 		} finally {
@@ -449,7 +450,9 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
 		List<ContractField> contractList = new ArrayList<>();
 		contractMapLock.lock();
 		try {
-			contractList = contractMap.values().stream().filter(contractField -> contractField.getUnifiedSymbol().equals(unifiedSymbol)).collect(Collectors.toList());
+			contractList = contractMap.values().stream()
+					.filter(contractField -> contractField.getUnifiedSymbol().equals(unifiedSymbol))
+					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据统一标识获取合约列表异常", e);
 		} finally {
@@ -463,7 +466,9 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
 		List<ContractField> contractList = new ArrayList<>();
 		contractMapLock.lock();
 		try {
-			contractList = contractMap.values().stream().filter(contractField -> contractField.getGatewayId().equals(gatewayId)).collect(Collectors.toList());
+			contractList = contractMap.values().stream()
+					.filter(contractField -> contractField.getGatewayId().equals(gatewayId))
+					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据网关ID获取合约列表异常", e);
 		} finally {
@@ -477,7 +482,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
 		orderMapLock.lock();
 		try {
 			String orderId = order.getOrderId();
-			if (!orderMap.containsKey(orderId) || !CommonConstant.ORDER_STATUS_FINISHED_SET.contains(orderMap.get(orderId).getOrderStatus())) {
+			if (!orderMap.containsKey(orderId)
+					|| !CommonConstant.ORDER_STATUS_FINISHED_SET.contains(orderMap.get(orderId).getOrderStatus())) {
 
 				orderMap.put(order.getOrderId(), order);
 			}

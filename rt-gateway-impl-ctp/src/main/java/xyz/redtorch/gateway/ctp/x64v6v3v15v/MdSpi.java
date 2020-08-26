@@ -137,7 +137,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 		new Thread() {
 			public void run() {
 				try {
-					Thread.sleep(15 * 1000);
+					Thread.sleep(60 * 1000);
 					if (!isConnected()) {
 						logger.error("{}行情接口连接超时,尝试断开", logInfo);
 						ctpGatewayImpl.disconnect();
