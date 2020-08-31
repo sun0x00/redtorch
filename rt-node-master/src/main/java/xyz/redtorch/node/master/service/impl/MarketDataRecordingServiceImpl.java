@@ -135,7 +135,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 						subscribedContractFieldMap = newSubscribedContractFieldMap;
 
 					} catch (Exception e) {
-						logger.error("行情记录同步错误");
+						logger.error("行情记录同步错误",e);
 					}
 
 					try {
@@ -155,148 +155,195 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 			public void run() {
 
 				while (!Thread.currentThread().isInterrupted()) {
-					TickField tick = tickQueue.poll();
-
-					if (tick != null) {
-						// 有可能会过慢
-
-						tickInsertList.add(tick);
+					try {
 						
-						String bgKey = tick.getUnifiedSymbol();
-						// 基于合约+网关的onBar和onMinBar,使用这个key会多次触发同一策略下同一品种的相同时间bar的事件
-						// String bgKey = tick.getUniqueSymbol()+tick.getGatewayID();
-						BarGenerator barGenerator;
-						if (barGeneratorMap.containsKey(bgKey)) {
-							barGenerator = barGeneratorMap.get(bgKey);
-						} else {
-							barGenerator = new BarGenerator(new CommonBarCallBack() {
-								@Override
-								public void call(BarField bar) {
-
-									bar1MinInsertList.add(bar);
-
-									XMinBarGenerator xMin3BarGenerator;
-									if (xMin3BarGeneratorMap.containsKey(bgKey)) {
-										xMin3BarGenerator = xMin3BarGeneratorMap.get(bgKey);
-									} else {
-										xMin3BarGenerator = new XMinBarGenerator(3, new CommonBarCallBack() {
-											@Override
-											public void call(BarField bar) {
-												bar3MinInsertList.add(bar);
-											}
-										});
-										xMin3BarGeneratorMap.put(bgKey, xMin3BarGenerator);
+					
+						TickField tick = tickQueue.poll();
+	
+						if (tick != null) {
+							// 有可能会过慢
+	
+							tickInsertList.add(tick);
+							
+							String bgKey = tick.getUnifiedSymbol();
+							// 基于合约+网关的onBar和onMinBar,使用这个key会多次触发同一策略下同一品种的相同时间bar的事件
+							// String bgKey = tick.getUniqueSymbol()+tick.getGatewayID();
+							BarGenerator barGenerator;
+							if (barGeneratorMap.containsKey(bgKey)) {
+								barGenerator = barGeneratorMap.get(bgKey);
+							} else {
+								barGenerator = new BarGenerator(new CommonBarCallBack() {
+									@Override
+									public void call(BarField bar) {
+	
+										bar1MinInsertList.add(bar);
+	
+										XMinBarGenerator xMin3BarGenerator;
+										if (xMin3BarGeneratorMap.containsKey(bgKey)) {
+											xMin3BarGenerator = xMin3BarGeneratorMap.get(bgKey);
+										} else {
+											xMin3BarGenerator = new XMinBarGenerator(3, new CommonBarCallBack() {
+												@Override
+												public void call(BarField bar) {
+													bar3MinInsertList.add(bar);
+												}
+											});
+											xMin3BarGeneratorMap.put(bgKey, xMin3BarGenerator);
+										}
+										xMin3BarGenerator.updateBar(bar);
+	
+										XMinBarGenerator xMin5BarGenerator;
+										if (xMin5BarGeneratorMap.containsKey(bgKey)) {
+											xMin5BarGenerator = xMin5BarGeneratorMap.get(bgKey);
+										} else {
+											xMin5BarGenerator = new XMinBarGenerator(5, new CommonBarCallBack() {
+												@Override
+												public void call(BarField bar) {
+													bar5MinInsertList.add(bar);
+												}
+											});
+											xMin5BarGeneratorMap.put(bgKey, xMin5BarGenerator);
+										}
+										xMin5BarGenerator.updateBar(bar);
+	
+										XMinBarGenerator xMin15BarGenerator;
+										if (xMin15BarGeneratorMap.containsKey(bgKey)) {
+											xMin15BarGenerator = xMin15BarGeneratorMap.get(bgKey);
+										} else {
+											xMin15BarGenerator = new XMinBarGenerator(15, new CommonBarCallBack() {
+												@Override
+												public void call(BarField bar) {
+													bar15MinInsertList.add(bar);
+												}
+											});
+											xMin15BarGeneratorMap.put(bgKey, xMin15BarGenerator);
+										}
+										xMin15BarGenerator.updateBar(bar);
+	
 									}
-									xMin3BarGenerator.updateBar(bar);
-
-									XMinBarGenerator xMin5BarGenerator;
-									if (xMin5BarGeneratorMap.containsKey(bgKey)) {
-										xMin5BarGenerator = xMin5BarGeneratorMap.get(bgKey);
-									} else {
-										xMin5BarGenerator = new XMinBarGenerator(5, new CommonBarCallBack() {
-											@Override
-											public void call(BarField bar) {
-												bar5MinInsertList.add(bar);
-											}
-										});
-										xMin5BarGeneratorMap.put(bgKey, xMin5BarGenerator);
-									}
-									xMin5BarGenerator.updateBar(bar);
-
-									XMinBarGenerator xMin15BarGenerator;
-									if (xMin15BarGeneratorMap.containsKey(bgKey)) {
-										xMin15BarGenerator = xMin15BarGeneratorMap.get(bgKey);
-									} else {
-										xMin15BarGenerator = new XMinBarGenerator(15, new CommonBarCallBack() {
-											@Override
-											public void call(BarField bar) {
-												bar15MinInsertList.add(bar);
-											}
-										});
-										xMin15BarGeneratorMap.put(bgKey, xMin15BarGenerator);
-									}
-									xMin15BarGenerator.updateBar(bar);
-
+								});
+								barGeneratorMap.put(bgKey, barGenerator);
+							}
+	
+							// 更新1分钟bar生成器
+							barGenerator.updateTick(tick);
+							
+							long currentTimestamp = System.currentTimeMillis();
+							
+							if(tickInsertList.size()>100 || (currentTimestamp-tickLastInsertTimestamp>1000&& !tickInsertList.isEmpty())) {
+								try {
+									marketDataService.upsertTickListToTodayDB(tickInsertList);
+									tickInsertList = new ArrayList<>();
+									tickLastInsertTimestamp = currentTimestamp;
+								} catch (Exception e) {
+									logger.error("插入数据错误",e);
 								}
-							});
-							barGeneratorMap.put(bgKey, barGenerator);
+				
+							}
+							
+							if(bar1MinInsertList.size()>100 || (currentTimestamp-bar1MinLastInsertTimestamp>1000&& !bar1MinInsertList.isEmpty())) {
+								try {
+									marketDataService.upsertBar1MinListToTodayDB(bar1MinInsertList);
+									bar1MinInsertList = new ArrayList<>();
+									bar1MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar3MinInsertList.size()>100 || (currentTimestamp-bar3MinLastInsertTimestamp>1000&& !bar3MinInsertList.isEmpty())) {
+								try {
+									marketDataService.upsertBar3MinListToTodayDB(bar3MinInsertList);
+									bar3MinInsertList = new ArrayList<>();
+									bar3MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar5MinInsertList.size()>100 || (currentTimestamp-bar5MinLastInsertTimestamp>1000&& !bar5MinInsertList.isEmpty())) {
+								try {
+									marketDataService.upsertBar5MinListToTodayDB(bar5MinInsertList);
+									bar5MinInsertList = new ArrayList<>();
+									bar5MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar15MinInsertList.size()>100 || (currentTimestamp-bar15MinLastInsertTimestamp>1000&& !bar15MinInsertList.isEmpty())) {
+								try {
+									marketDataService.upsertBar15MinListToTodayDB(bar15MinInsertList);
+									bar15MinInsertList = new ArrayList<>();
+									bar15MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+	
+						}else {
+							
+							
+							long currentTimestamp = System.currentTimeMillis();
+							
+							if(!tickInsertList.isEmpty()) {
+								try {
+									marketDataService.upsertTickListToTodayDB(tickInsertList);
+									tickInsertList = new ArrayList<>();
+									tickLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar1MinInsertList.isEmpty()) {
+								try {
+									marketDataService.upsertBar1MinListToTodayDB(bar1MinInsertList);
+									bar1MinInsertList = new ArrayList<>();
+									bar1MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar3MinInsertList.isEmpty()) {
+								try {
+									marketDataService.upsertBar3MinListToTodayDB(bar3MinInsertList);
+									bar3MinInsertList = new ArrayList<>();
+									bar3MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar5MinInsertList.isEmpty()) {
+								try {
+									marketDataService.upsertBar5MinListToTodayDB(bar5MinInsertList);
+									bar5MinInsertList = new ArrayList<>();
+									bar5MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							if(bar15MinInsertList.isEmpty()) {
+								try {
+									marketDataService.upsertBar15MinListToTodayDB(bar15MinInsertList);
+									bar15MinInsertList = new ArrayList<>();
+									bar15MinLastInsertTimestamp = currentTimestamp;
+								}  catch (Exception e) {
+									logger.error("插入数据错误",e);
+								}
+							}
+							
+							try {
+								Thread.sleep(50);
+							} catch (InterruptedException e) {
+								// NOP
+							}
 						}
-
-						// 更新1分钟bar生成器
-						barGenerator.updateTick(tick);
-						
-						long currentTimestamp = System.currentTimeMillis();
-						
-						if(tickInsertList.size()>100 || (currentTimestamp-tickLastInsertTimestamp>1000&& !tickInsertList.isEmpty())) {
-							marketDataService.upsertTickListToTodayDB(tickInsertList);
-							tickInsertList = new ArrayList<>();
-							tickLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar1MinInsertList.size()>100 || (currentTimestamp-bar1MinLastInsertTimestamp>1000&& !bar1MinInsertList.isEmpty())) {
-							marketDataService.upsertBar1MinListToTodayDB(bar1MinInsertList);
-							bar1MinInsertList = new ArrayList<>();
-							bar1MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar3MinInsertList.size()>100 || (currentTimestamp-bar3MinLastInsertTimestamp>1000&& !bar3MinInsertList.isEmpty())) {
-							marketDataService.upsertBar3MinListToTodayDB(bar3MinInsertList);
-							bar3MinInsertList = new ArrayList<>();
-							bar3MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar5MinInsertList.size()>100 || (currentTimestamp-bar5MinLastInsertTimestamp>1000&& !bar5MinInsertList.isEmpty())) {
-							marketDataService.upsertBar5MinListToTodayDB(bar5MinInsertList);
-							bar5MinInsertList = new ArrayList<>();
-							bar5MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar15MinInsertList.size()>100 || (currentTimestamp-bar15MinLastInsertTimestamp>1000&& !bar15MinInsertList.isEmpty())) {
-							marketDataService.upsertBar15MinListToTodayDB(bar15MinInsertList);
-							bar15MinInsertList = new ArrayList<>();
-							bar15MinLastInsertTimestamp = currentTimestamp;
-						}
-
-					}else {
-						
-						
-						long currentTimestamp = System.currentTimeMillis();
-						
-						if(!tickInsertList.isEmpty()) {
-							marketDataService.upsertTickListToTodayDB(tickInsertList);
-							tickInsertList = new ArrayList<>();
-							tickLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar1MinInsertList.isEmpty()) {
-							marketDataService.upsertBar1MinListToTodayDB(bar1MinInsertList);
-							bar1MinInsertList = new ArrayList<>();
-							bar1MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar3MinInsertList.isEmpty()) {
-							marketDataService.upsertBar3MinListToTodayDB(bar3MinInsertList);
-							bar3MinInsertList = new ArrayList<>();
-							bar3MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar5MinInsertList.isEmpty()) {
-							marketDataService.upsertBar5MinListToTodayDB(bar5MinInsertList);
-							bar5MinInsertList = new ArrayList<>();
-							bar5MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						if(bar15MinInsertList.isEmpty()) {
-							marketDataService.upsertBar15MinListToTodayDB(bar15MinInsertList);
-							bar15MinInsertList = new ArrayList<>();
-							bar15MinLastInsertTimestamp = currentTimestamp;
-						}
-						
-						try {
-							Thread.sleep(50);
-						} catch (InterruptedException e) {
-							// NOP
-						}
+					} catch (Exception e) {
+						logger.error("行情记录错误",e);
 					}
 
 				}
