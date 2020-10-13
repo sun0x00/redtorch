@@ -109,7 +109,7 @@ enum ProductClassEnum {
 	COMBINATION = 5;  // 组合
 	BOND = 6;  // 债券
 	FOREX = 7;  // 外汇
-	SPOT = 8;  // 现货
+	SPOT = 8;  // 即期
 	DEFER = 9;  // 展期
 	ETF = 10;  // ETF
 	WARRANTS = 11;  // 权证
@@ -117,6 +117,8 @@ enum ProductClassEnum {
     FUND = 13;  // 基金
     EFP = 14;  // 期转现
 	SPOTOPTION = 15;  // 现货期权
+	TAS = 16;  // TAS
+	MI = 17; // 金属指数
 }
 
 enum DirectionEnum{

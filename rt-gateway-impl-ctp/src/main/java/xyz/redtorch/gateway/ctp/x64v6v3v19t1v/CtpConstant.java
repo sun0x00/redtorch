@@ -132,6 +132,8 @@ public class CtpConstant {
 		productTypeMap.put(ProductClassEnum.SPOT, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_Spot);
 		productTypeMap.put(ProductClassEnum.EFP, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_EFP);
 		productTypeMap.put(ProductClassEnum.SPOTOPTION, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_SpotOption);
+		productTypeMap.put(ProductClassEnum.TAS, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_TAS);
+		productTypeMap.put(ProductClassEnum.MI, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_MI);
 		productTypeMapReverse = productTypeMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
 		// 委托状态映射
