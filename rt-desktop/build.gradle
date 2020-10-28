@@ -1,7 +1,7 @@
 plugins {
-    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'application'
-	id 'org.springframework.boot' version '2.1.0.RELEASE'
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
 }
 
 group = "${rootProject.group}"
@@ -13,11 +13,11 @@ javafx {
     version = '11.0.2'
     modules = [ 
     	'javafx.controls', 
-    	'javafx.fxml',
+    	//'javafx.fxml',
     	'javafx.base',
     	'javafx.controls',
-    	'javafx.media',
-    	'javafx.swing',
+    	//'javafx.media',
+    	//'javafx.swing',
     	'javafx.web',
     ]
 }
@@ -34,7 +34,6 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
 	compile group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
-	testCompile group: 'org.springframework', name: 'spring-test', version: "${rootProject.springTestVersion}"
 }
 
 mainClassName = 'xyz.redtorch.desktop.RedTorchApp'

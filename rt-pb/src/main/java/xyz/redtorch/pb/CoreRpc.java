@@ -705,6 +705,8 @@ public final class CoreRpc {
     }
 
     /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
@@ -712,6 +714,10 @@ public final class CoreRpc {
       return forNumber(value);
     }
 
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
     public static RpcId forNumber(int value) {
       switch (value) {
         case 0: return UNKNOWN_RPC_ID;
@@ -815,6 +821,10 @@ public final class CoreRpc {
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
       return getDescriptor().getValues().get(ordinal());
     }
     public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -855,10 +865,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -868,10 +880,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -886,7 +900,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSubscribeReq}
    */
-  public  static final class RpcSubscribeReq extends
+  public static final class RpcSubscribeReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSubscribeReq)
       RpcSubscribeReqOrBuilder {
@@ -896,6 +910,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcSubscribeReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSubscribeReq();
     }
 
     @java.lang.Override
@@ -911,7 +932,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -949,7 +969,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -984,19 +1004,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -1005,19 +1030,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.ContractField contract_;
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -1074,19 +1104,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSubscribeReq other = (xyz.redtorch.pb.CoreRpc.RpcSubscribeReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (hasContract() == other.hasContract());
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -1295,35 +1324,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1372,17 +1401,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -1489,17 +1520,19 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -1608,7 +1641,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1664,10 +1697,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -1678,7 +1713,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcSubscribeRsp}
    */
-  public  static final class RpcSubscribeRsp extends
+  public static final class RpcSubscribeRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSubscribeRsp)
       RpcSubscribeRspOrBuilder {
@@ -1688,6 +1723,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcSubscribeRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSubscribeRsp();
     }
 
     @java.lang.Override
@@ -1703,7 +1745,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1728,7 +1769,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1763,19 +1804,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -1825,14 +1871,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSubscribeRsp other = (xyz.redtorch.pb.CoreRpc.RpcSubscribeRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2022,35 +2067,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2096,17 +2141,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -2215,7 +2262,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -2271,10 +2318,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -2284,10 +2333,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -2297,10 +2348,12 @@ public final class CoreRpc {
 
     /**
      * <code>string gatewayId = 3;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
      * <code>string gatewayId = 3;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -2312,7 +2365,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcUnsubscribeReq}
    */
-  public  static final class RpcUnsubscribeReq extends
+  public static final class RpcUnsubscribeReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcUnsubscribeReq)
       RpcUnsubscribeReqOrBuilder {
@@ -2323,6 +2376,13 @@ public final class CoreRpc {
     }
     private RpcUnsubscribeReq() {
       gatewayId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcUnsubscribeReq();
     }
 
     @java.lang.Override
@@ -2338,7 +2398,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2382,7 +2441,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2417,19 +2476,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -2438,19 +2502,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.ContractField contract_;
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -2459,7 +2528,9 @@ public final class CoreRpc {
     private volatile java.lang.Object gatewayId_;
     /**
      * <code>string gatewayId = 3;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -2474,7 +2545,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string gatewayId = 3;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -2547,21 +2620,20 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcUnsubscribeReq other = (xyz.redtorch.pb.CoreRpc.RpcUnsubscribeReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (hasContract() == other.hasContract());
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -2775,35 +2847,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2856,17 +2928,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -2973,17 +3047,19 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -3093,6 +3169,7 @@ public final class CoreRpc {
       private java.lang.Object gatewayId_ = "";
       /**
        * <code>string gatewayId = 3;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -3108,6 +3185,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 3;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -3124,6 +3202,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 3;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -3137,6 +3217,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -3146,6 +3227,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 3;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -3161,7 +3244,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3217,10 +3300,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -3231,7 +3316,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcUnsubscribeRsp}
    */
-  public  static final class RpcUnsubscribeRsp extends
+  public static final class RpcUnsubscribeRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcUnsubscribeRsp)
       RpcUnsubscribeRspOrBuilder {
@@ -3241,6 +3326,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcUnsubscribeRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcUnsubscribeRsp();
     }
 
     @java.lang.Override
@@ -3256,7 +3348,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3281,7 +3372,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3316,19 +3407,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -3378,14 +3474,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcUnsubscribeRsp other = (xyz.redtorch.pb.CoreRpc.RpcUnsubscribeRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3575,35 +3670,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3649,17 +3744,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -3768,7 +3865,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -3824,10 +3921,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -3837,10 +3936,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+     * @return Whether the submitOrderReq field is set.
      */
     boolean hasSubmitOrderReq();
     /**
      * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+     * @return The submitOrderReq.
      */
     xyz.redtorch.pb.CoreField.SubmitOrderReqField getSubmitOrderReq();
     /**
@@ -3855,7 +3956,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSubmitOrderReq}
    */
-  public  static final class RpcSubmitOrderReq extends
+  public static final class RpcSubmitOrderReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSubmitOrderReq)
       RpcSubmitOrderReqOrBuilder {
@@ -3865,6 +3966,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcSubmitOrderReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSubmitOrderReq();
     }
 
     @java.lang.Override
@@ -3880,7 +3988,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -3918,7 +4025,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3953,19 +4060,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -3974,19 +4086,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.SubmitOrderReqField submitOrderReq_;
     /**
      * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+     * @return Whether the submitOrderReq field is set.
      */
+    @java.lang.Override
     public boolean hasSubmitOrderReq() {
       return submitOrderReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+     * @return The submitOrderReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.SubmitOrderReqField getSubmitOrderReq() {
       return submitOrderReq_ == null ? xyz.redtorch.pb.CoreField.SubmitOrderReqField.getDefaultInstance() : submitOrderReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.SubmitOrderReqFieldOrBuilder getSubmitOrderReqOrBuilder() {
       return getSubmitOrderReq();
     }
@@ -4043,19 +4160,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSubmitOrderReq other = (xyz.redtorch.pb.CoreRpc.RpcSubmitOrderReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (hasSubmitOrderReq() == other.hasSubmitOrderReq());
+      if (hasSubmitOrderReq() != other.hasSubmitOrderReq()) return false;
       if (hasSubmitOrderReq()) {
-        result = result && getSubmitOrderReq()
-            .equals(other.getSubmitOrderReq());
+        if (!getSubmitOrderReq()
+            .equals(other.getSubmitOrderReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -4264,35 +4380,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4341,17 +4457,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -4458,17 +4576,19 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.SubmitOrderReqField submitOrderReq_ = null;
+      private xyz.redtorch.pb.CoreField.SubmitOrderReqField submitOrderReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.SubmitOrderReqField, xyz.redtorch.pb.CoreField.SubmitOrderReqField.Builder, xyz.redtorch.pb.CoreField.SubmitOrderReqFieldOrBuilder> submitOrderReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+       * @return Whether the submitOrderReq field is set.
        */
       public boolean hasSubmitOrderReq() {
         return submitOrderReqBuilder_ != null || submitOrderReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.SubmitOrderReqField submitOrderReq = 2;</code>
+       * @return The submitOrderReq.
        */
       public xyz.redtorch.pb.CoreField.SubmitOrderReqField getSubmitOrderReq() {
         if (submitOrderReqBuilder_ == null) {
@@ -4577,7 +4697,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -4633,10 +4753,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -4646,10 +4768,12 @@ public final class CoreRpc {
 
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -4657,7 +4781,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcSubmitOrderRsp}
    */
-  public  static final class RpcSubmitOrderRsp extends
+  public static final class RpcSubmitOrderRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSubmitOrderRsp)
       RpcSubmitOrderRspOrBuilder {
@@ -4668,6 +4792,13 @@ public final class CoreRpc {
     }
     private RpcSubmitOrderRsp() {
       orderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSubmitOrderRsp();
     }
 
     @java.lang.Override
@@ -4683,7 +4814,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4714,7 +4844,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4749,19 +4879,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -4770,7 +4905,9 @@ public final class CoreRpc {
     private volatile java.lang.Object orderId_;
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -4785,7 +4922,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -4851,16 +4990,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSubmitOrderRsp other = (xyz.redtorch.pb.CoreRpc.RpcSubmitOrderRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5055,35 +5193,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5133,17 +5271,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -5253,6 +5393,7 @@ public final class CoreRpc {
       private java.lang.Object orderId_ = "";
       /**
        * <code>string orderId = 2;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -5268,6 +5409,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -5284,6 +5426,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -5297,6 +5441,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -5306,6 +5451,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -5321,7 +5468,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -5377,10 +5524,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -5390,10 +5539,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+     * @return Whether the cancelOrderReq field is set.
      */
     boolean hasCancelOrderReq();
     /**
      * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+     * @return The cancelOrderReq.
      */
     xyz.redtorch.pb.CoreField.CancelOrderReqField getCancelOrderReq();
     /**
@@ -5408,7 +5559,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcCancelOrderReq}
    */
-  public  static final class RpcCancelOrderReq extends
+  public static final class RpcCancelOrderReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcCancelOrderReq)
       RpcCancelOrderReqOrBuilder {
@@ -5418,6 +5569,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcCancelOrderReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcCancelOrderReq();
     }
 
     @java.lang.Override
@@ -5433,7 +5591,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5471,7 +5628,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -5506,19 +5663,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -5527,19 +5689,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CancelOrderReqField cancelOrderReq_;
     /**
      * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+     * @return Whether the cancelOrderReq field is set.
      */
+    @java.lang.Override
     public boolean hasCancelOrderReq() {
       return cancelOrderReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+     * @return The cancelOrderReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CancelOrderReqField getCancelOrderReq() {
       return cancelOrderReq_ == null ? xyz.redtorch.pb.CoreField.CancelOrderReqField.getDefaultInstance() : cancelOrderReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CancelOrderReqFieldOrBuilder getCancelOrderReqOrBuilder() {
       return getCancelOrderReq();
     }
@@ -5596,19 +5763,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcCancelOrderReq other = (xyz.redtorch.pb.CoreRpc.RpcCancelOrderReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (hasCancelOrderReq() == other.hasCancelOrderReq());
+      if (hasCancelOrderReq() != other.hasCancelOrderReq()) return false;
       if (hasCancelOrderReq()) {
-        result = result && getCancelOrderReq()
-            .equals(other.getCancelOrderReq());
+        if (!getCancelOrderReq()
+            .equals(other.getCancelOrderReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -5817,35 +5983,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5894,17 +6060,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -6011,17 +6179,19 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.CancelOrderReqField cancelOrderReq_ = null;
+      private xyz.redtorch.pb.CoreField.CancelOrderReqField cancelOrderReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CancelOrderReqField, xyz.redtorch.pb.CoreField.CancelOrderReqField.Builder, xyz.redtorch.pb.CoreField.CancelOrderReqFieldOrBuilder> cancelOrderReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+       * @return Whether the cancelOrderReq field is set.
        */
       public boolean hasCancelOrderReq() {
         return cancelOrderReqBuilder_ != null || cancelOrderReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CancelOrderReqField cancelOrderReq = 2;</code>
+       * @return The cancelOrderReq.
        */
       public xyz.redtorch.pb.CoreField.CancelOrderReqField getCancelOrderReq() {
         if (cancelOrderReqBuilder_ == null) {
@@ -6130,7 +6300,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -6186,10 +6356,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -6200,7 +6372,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcCancelOrderRsp}
    */
-  public  static final class RpcCancelOrderRsp extends
+  public static final class RpcCancelOrderRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcCancelOrderRsp)
       RpcCancelOrderRspOrBuilder {
@@ -6210,6 +6382,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcCancelOrderRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcCancelOrderRsp();
     }
 
     @java.lang.Override
@@ -6225,7 +6404,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6250,7 +6428,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -6285,19 +6463,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -6347,14 +6530,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcCancelOrderRsp other = (xyz.redtorch.pb.CoreRpc.RpcCancelOrderRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6544,35 +6726,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6618,17 +6800,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -6737,7 +6921,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -6793,10 +6977,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -6806,10 +6992,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -6824,7 +7012,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSearchContractReq}
    */
-  public  static final class RpcSearchContractReq extends
+  public static final class RpcSearchContractReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSearchContractReq)
       RpcSearchContractReqOrBuilder {
@@ -6834,6 +7022,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcSearchContractReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSearchContractReq();
     }
 
     @java.lang.Override
@@ -6849,7 +7044,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -6887,7 +7081,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -6922,19 +7116,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -6943,19 +7142,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.ContractField contract_;
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -7012,19 +7216,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSearchContractReq other = (xyz.redtorch.pb.CoreRpc.RpcSearchContractReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (hasContract() == other.hasContract());
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7233,35 +7436,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -7310,17 +7513,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -7427,17 +7632,19 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -7546,7 +7753,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -7602,10 +7809,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -7616,7 +7825,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcSearchContractRsp}
    */
-  public  static final class RpcSearchContractRsp extends
+  public static final class RpcSearchContractRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSearchContractRsp)
       RpcSearchContractRspOrBuilder {
@@ -7626,6 +7835,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcSearchContractRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSearchContractRsp();
     }
 
     @java.lang.Override
@@ -7641,7 +7857,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -7666,7 +7881,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -7701,19 +7916,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -7763,14 +7983,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSearchContractRsp other = (xyz.redtorch.pb.CoreRpc.RpcSearchContractRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -7960,35 +8179,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8034,17 +8253,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -8153,7 +8374,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8209,10 +8430,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -8227,7 +8450,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetOrderListReq}
    */
-  public  static final class RpcGetOrderListReq extends
+  public static final class RpcGetOrderListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetOrderListReq)
       RpcGetOrderListReqOrBuilder {
@@ -8237,6 +8460,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetOrderListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetOrderListReq();
     }
 
     @java.lang.Override
@@ -8252,7 +8482,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -8277,7 +8506,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8312,19 +8541,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -8374,14 +8608,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetOrderListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetOrderListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -8575,35 +8808,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -8649,17 +8882,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -8768,7 +9003,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -8824,10 +9059,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -8862,7 +9099,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetOrderListRsp}
    */
-  public  static final class RpcGetOrderListRsp extends
+  public static final class RpcGetOrderListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetOrderListRsp)
       RpcGetOrderListRspOrBuilder {
@@ -8873,6 +9110,13 @@ public final class CoreRpc {
     }
     private RpcGetOrderListRsp() {
       order_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetOrderListRsp();
     }
 
     @java.lang.Override
@@ -8913,16 +9157,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               order_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.OrderField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8936,7 +9180,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           order_ = java.util.Collections.unmodifiableList(order_);
         }
         this.unknownFields = unknownFields.build();
@@ -8956,24 +9200,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -8983,12 +9231,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.OrderField> getOrderList() {
       return order_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> 
         getOrderOrBuilderList() {
       return order_;
@@ -8996,18 +9246,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public int getOrderCount() {
       return order_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder(int index) {
       return order_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder(
         int index) {
       return order_.get(index);
@@ -9065,16 +9318,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getOrderList()
-          .equals(other.getOrderList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderList()
+          .equals(other.getOrderList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -9234,7 +9486,7 @@ public final class CoreRpc {
         }
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           orderBuilder_.clear();
         }
@@ -9265,57 +9517,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (orderBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             order_ = java.util.Collections.unmodifiableList(order_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.order_ = order_;
         } else {
           result.order_ = orderBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -9336,7 +9586,7 @@ public final class CoreRpc {
           if (!other.order_.isEmpty()) {
             if (order_.isEmpty()) {
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureOrderIsMutable();
               order_.addAll(other.order_);
@@ -9349,7 +9599,7 @@ public final class CoreRpc {
               orderBuilder_.dispose();
               orderBuilder_ = null;
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               orderBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOrderFieldBuilder() : null;
@@ -9388,17 +9638,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -9508,9 +9760,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.OrderField> order_ =
         java.util.Collections.emptyList();
       private void ensureOrderIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>(order_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -9660,7 +9912,7 @@ public final class CoreRpc {
       public Builder clearOrder() {
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           orderBuilder_.clear();
@@ -9737,7 +9989,7 @@ public final class CoreRpc {
           orderBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder>(
                   order_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           order_ = null;
@@ -9747,7 +9999,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -9803,10 +10055,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -9821,7 +10075,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetWorkingOrderListReq}
    */
-  public  static final class RpcGetWorkingOrderListReq extends
+  public static final class RpcGetWorkingOrderListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetWorkingOrderListReq)
       RpcGetWorkingOrderListReqOrBuilder {
@@ -9831,6 +10085,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetWorkingOrderListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetWorkingOrderListReq();
     }
 
     @java.lang.Override
@@ -9846,7 +10107,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -9871,7 +10131,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -9906,19 +10166,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -9968,14 +10233,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10169,35 +10433,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10243,17 +10507,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -10362,7 +10628,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -10418,10 +10684,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -10456,7 +10724,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetWorkingOrderListRsp}
    */
-  public  static final class RpcGetWorkingOrderListRsp extends
+  public static final class RpcGetWorkingOrderListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetWorkingOrderListRsp)
       RpcGetWorkingOrderListRspOrBuilder {
@@ -10467,6 +10735,13 @@ public final class CoreRpc {
     }
     private RpcGetWorkingOrderListRsp() {
       order_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetWorkingOrderListRsp();
     }
 
     @java.lang.Override
@@ -10507,16 +10782,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               order_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.OrderField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -10530,7 +10805,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           order_ = java.util.Collections.unmodifiableList(order_);
         }
         this.unknownFields = unknownFields.build();
@@ -10550,24 +10825,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -10577,12 +10856,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.OrderField> getOrderList() {
       return order_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> 
         getOrderOrBuilderList() {
       return order_;
@@ -10590,18 +10871,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public int getOrderCount() {
       return order_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder(int index) {
       return order_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder(
         int index) {
       return order_.get(index);
@@ -10659,16 +10943,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getOrderList()
-          .equals(other.getOrderList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderList()
+          .equals(other.getOrderList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10828,7 +11111,7 @@ public final class CoreRpc {
         }
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           orderBuilder_.clear();
         }
@@ -10859,57 +11142,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetWorkingOrderListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (orderBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             order_ = java.util.Collections.unmodifiableList(order_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.order_ = order_;
         } else {
           result.order_ = orderBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10930,7 +11211,7 @@ public final class CoreRpc {
           if (!other.order_.isEmpty()) {
             if (order_.isEmpty()) {
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureOrderIsMutable();
               order_.addAll(other.order_);
@@ -10943,7 +11224,7 @@ public final class CoreRpc {
               orderBuilder_.dispose();
               orderBuilder_ = null;
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               orderBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOrderFieldBuilder() : null;
@@ -10982,17 +11263,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -11102,9 +11385,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.OrderField> order_ =
         java.util.Collections.emptyList();
       private void ensureOrderIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>(order_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -11254,7 +11537,7 @@ public final class CoreRpc {
       public Builder clearOrder() {
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           orderBuilder_.clear();
@@ -11331,7 +11614,7 @@ public final class CoreRpc {
           orderBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder>(
                   order_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           order_ = null;
@@ -11341,7 +11624,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -11397,10 +11680,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -11410,10 +11695,12 @@ public final class CoreRpc {
 
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -11425,7 +11712,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOrderIdReq}
    */
-  public  static final class RpcQueryOrderByOrderIdReq extends
+  public static final class RpcQueryOrderByOrderIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderByOrderIdReq)
       RpcQueryOrderByOrderIdReqOrBuilder {
@@ -11436,6 +11723,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderByOrderIdReq() {
       orderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderByOrderIdReq();
     }
 
     @java.lang.Override
@@ -11451,7 +11745,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -11482,7 +11775,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -11517,19 +11810,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -11538,7 +11836,9 @@ public final class CoreRpc {
     private volatile java.lang.Object orderId_;
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -11553,7 +11853,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -11619,16 +11921,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOrderIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOrderIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -11827,35 +12128,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -11905,17 +12206,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -12025,6 +12328,7 @@ public final class CoreRpc {
       private java.lang.Object orderId_ = "";
       /**
        * <code>string orderId = 2;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -12040,6 +12344,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -12056,6 +12361,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -12069,6 +12376,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -12078,6 +12386,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -12093,7 +12403,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -12149,10 +12459,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -12162,10 +12474,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return Whether the order field is set.
      */
     boolean hasOrder();
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return The order.
      */
     xyz.redtorch.pb.CoreField.OrderField getOrder();
     /**
@@ -12176,7 +12490,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOrderIdRsp}
    */
-  public  static final class RpcQueryOrderByOrderIdRsp extends
+  public static final class RpcQueryOrderByOrderIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderByOrderIdRsp)
       RpcQueryOrderByOrderIdRspOrBuilder {
@@ -12186,6 +12500,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryOrderByOrderIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderByOrderIdRsp();
     }
 
     @java.lang.Override
@@ -12201,7 +12522,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -12239,7 +12559,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -12274,19 +12594,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -12295,19 +12620,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.OrderField order_;
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return Whether the order field is set.
      */
+    @java.lang.Override
     public boolean hasOrder() {
       return order_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return The order.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder() {
       return order_ == null ? xyz.redtorch.pb.CoreField.OrderField.getDefaultInstance() : order_;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder() {
       return getOrder();
     }
@@ -12364,19 +12694,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOrderIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOrderIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasOrder() == other.hasOrder());
+      if (hasOrder() != other.hasOrder()) return false;
       if (hasOrder()) {
-        result = result && getOrder()
-            .equals(other.getOrder());
+        if (!getOrder()
+            .equals(other.getOrder())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -12581,35 +12910,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -12658,17 +12987,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -12775,17 +13106,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.OrderField order_ = null;
+      private xyz.redtorch.pb.CoreField.OrderField order_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> orderBuilder_;
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+       * @return Whether the order field is set.
        */
       public boolean hasOrder() {
         return orderBuilder_ != null || order_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+       * @return The order.
        */
       public xyz.redtorch.pb.CoreField.OrderField getOrder() {
         if (orderBuilder_ == null) {
@@ -12894,7 +13227,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -12950,10 +13283,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -12963,10 +13298,12 @@ public final class CoreRpc {
 
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -12978,7 +13315,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdReq}
    */
-  public  static final class RpcQueryOrderByOriginOrderIdReq extends
+  public static final class RpcQueryOrderByOriginOrderIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdReq)
       RpcQueryOrderByOriginOrderIdReqOrBuilder {
@@ -12989,6 +13326,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderByOriginOrderIdReq() {
       originOrderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderByOriginOrderIdReq();
     }
 
     @java.lang.Override
@@ -13004,7 +13348,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -13035,7 +13378,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -13070,19 +13413,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -13091,7 +13439,9 @@ public final class CoreRpc {
     private volatile java.lang.Object originOrderId_;
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -13106,7 +13456,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -13172,16 +13524,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOriginOrderIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOriginOrderIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -13380,35 +13731,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -13458,17 +13809,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -13578,6 +13931,7 @@ public final class CoreRpc {
       private java.lang.Object originOrderId_ = "";
       /**
        * <code>string originOrderId = 2;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -13593,6 +13947,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -13609,6 +13964,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -13622,6 +13979,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -13631,6 +13989,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -13646,7 +14006,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -13702,10 +14062,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -13715,10 +14077,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return Whether the order field is set.
      */
     boolean hasOrder();
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return The order.
      */
     xyz.redtorch.pb.CoreField.OrderField getOrder();
     /**
@@ -13729,7 +14093,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdRsp}
    */
-  public  static final class RpcQueryOrderByOriginOrderIdRsp extends
+  public static final class RpcQueryOrderByOriginOrderIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdRsp)
       RpcQueryOrderByOriginOrderIdRspOrBuilder {
@@ -13739,6 +14103,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryOrderByOriginOrderIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderByOriginOrderIdRsp();
     }
 
     @java.lang.Override
@@ -13754,7 +14125,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -13792,7 +14162,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -13827,19 +14197,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -13848,19 +14223,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.OrderField order_;
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return Whether the order field is set.
      */
+    @java.lang.Override
     public boolean hasOrder() {
       return order_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+     * @return The order.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder() {
       return order_ == null ? xyz.redtorch.pb.CoreField.OrderField.getDefaultInstance() : order_;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder() {
       return getOrder();
     }
@@ -13917,19 +14297,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOriginOrderIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderByOriginOrderIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasOrder() == other.hasOrder());
+      if (hasOrder() != other.hasOrder()) return false;
       if (hasOrder()) {
-        result = result && getOrder()
-            .equals(other.getOrder());
+        if (!getOrder()
+            .equals(other.getOrder())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -14134,35 +14513,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -14211,17 +14590,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -14328,17 +14709,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.OrderField order_ = null;
+      private xyz.redtorch.pb.CoreField.OrderField order_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> orderBuilder_;
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+       * @return Whether the order field is set.
        */
       public boolean hasOrder() {
         return orderBuilder_ != null || order_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 2;</code>
+       * @return The order.
        */
       public xyz.redtorch.pb.CoreField.OrderField getOrder() {
         if (orderBuilder_ == null) {
@@ -14447,7 +14830,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -14503,10 +14886,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -14516,10 +14901,12 @@ public final class CoreRpc {
 
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -14531,7 +14918,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByAccountIdReq}
    */
-  public  static final class RpcQueryOrderListByAccountIdReq extends
+  public static final class RpcQueryOrderListByAccountIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByAccountIdReq)
       RpcQueryOrderListByAccountIdReqOrBuilder {
@@ -14542,6 +14929,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderListByAccountIdReq() {
       accountId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderListByAccountIdReq();
     }
 
     @java.lang.Override
@@ -14557,7 +14951,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -14588,7 +14981,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -14623,19 +15016,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -14644,7 +15042,9 @@ public final class CoreRpc {
     private volatile java.lang.Object accountId_;
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -14659,7 +15059,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -14725,16 +15127,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -14933,35 +15334,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -15011,17 +15412,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -15131,6 +15534,7 @@ public final class CoreRpc {
       private java.lang.Object accountId_ = "";
       /**
        * <code>string accountId = 2;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -15146,6 +15550,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -15162,6 +15567,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -15175,6 +15582,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -15184,6 +15592,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15199,7 +15609,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -15255,10 +15665,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -15293,7 +15705,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByAccountIdRsp}
    */
-  public  static final class RpcQueryOrderListByAccountIdRsp extends
+  public static final class RpcQueryOrderListByAccountIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByAccountIdRsp)
       RpcQueryOrderListByAccountIdRspOrBuilder {
@@ -15304,6 +15716,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderListByAccountIdRsp() {
       order_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderListByAccountIdRsp();
     }
 
     @java.lang.Override
@@ -15344,16 +15763,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               order_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.OrderField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -15367,7 +15786,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           order_ = java.util.Collections.unmodifiableList(order_);
         }
         this.unknownFields = unknownFields.build();
@@ -15387,24 +15806,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -15414,12 +15837,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.OrderField> getOrderList() {
       return order_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> 
         getOrderOrBuilderList() {
       return order_;
@@ -15427,18 +15852,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public int getOrderCount() {
       return order_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder(int index) {
       return order_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder(
         int index) {
       return order_.get(index);
@@ -15496,16 +15924,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getOrderList()
-          .equals(other.getOrderList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderList()
+          .equals(other.getOrderList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -15665,7 +16092,7 @@ public final class CoreRpc {
         }
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           orderBuilder_.clear();
         }
@@ -15696,57 +16123,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByAccountIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (orderBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             order_ = java.util.Collections.unmodifiableList(order_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.order_ = order_;
         } else {
           result.order_ = orderBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -15767,7 +16192,7 @@ public final class CoreRpc {
           if (!other.order_.isEmpty()) {
             if (order_.isEmpty()) {
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureOrderIsMutable();
               order_.addAll(other.order_);
@@ -15780,7 +16205,7 @@ public final class CoreRpc {
               orderBuilder_.dispose();
               orderBuilder_ = null;
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               orderBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOrderFieldBuilder() : null;
@@ -15819,17 +16244,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -15939,9 +16366,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.OrderField> order_ =
         java.util.Collections.emptyList();
       private void ensureOrderIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>(order_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -16091,7 +16518,7 @@ public final class CoreRpc {
       public Builder clearOrder() {
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           orderBuilder_.clear();
@@ -16168,7 +16595,7 @@ public final class CoreRpc {
           orderBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder>(
                   order_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           order_ = null;
@@ -16178,7 +16605,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -16234,10 +16661,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -16247,10 +16676,12 @@ public final class CoreRpc {
 
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -16262,7 +16693,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq}
    */
-  public  static final class RpcQueryOrderListByUnifiedSymbolReq extends
+  public static final class RpcQueryOrderListByUnifiedSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
       RpcQueryOrderListByUnifiedSymbolReqOrBuilder {
@@ -16273,6 +16704,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderListByUnifiedSymbolReq() {
       unifiedSymbol_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderListByUnifiedSymbolReq();
     }
 
     @java.lang.Override
@@ -16288,7 +16726,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -16319,7 +16756,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -16354,19 +16791,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -16375,7 +16817,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -16390,7 +16834,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -16456,16 +16902,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -16664,35 +17109,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -16742,17 +17187,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -16862,6 +17309,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -16877,6 +17325,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -16893,6 +17342,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -16906,6 +17357,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -16915,6 +17367,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -16930,7 +17384,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -16986,10 +17440,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -17024,7 +17480,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp}
    */
-  public  static final class RpcQueryOrderListByUnifiedSymbolRsp extends
+  public static final class RpcQueryOrderListByUnifiedSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
       RpcQueryOrderListByUnifiedSymbolRspOrBuilder {
@@ -17035,6 +17491,13 @@ public final class CoreRpc {
     }
     private RpcQueryOrderListByUnifiedSymbolRsp() {
       order_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryOrderListByUnifiedSymbolRsp();
     }
 
     @java.lang.Override
@@ -17075,16 +17538,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               order_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.OrderField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -17098,7 +17561,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           order_ = java.util.Collections.unmodifiableList(order_);
         }
         this.unknownFields = unknownFields.build();
@@ -17118,24 +17581,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -17145,12 +17612,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.OrderField> getOrderList() {
       return order_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> 
         getOrderOrBuilderList() {
       return order_;
@@ -17158,18 +17627,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public int getOrderCount() {
       return order_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder(int index) {
       return order_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder(
         int index) {
       return order_.get(index);
@@ -17227,16 +17699,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getOrderList()
-          .equals(other.getOrderList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderList()
+          .equals(other.getOrderList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -17396,7 +17867,7 @@ public final class CoreRpc {
         }
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           orderBuilder_.clear();
         }
@@ -17427,57 +17898,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (orderBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             order_ = java.util.Collections.unmodifiableList(order_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.order_ = order_;
         } else {
           result.order_ = orderBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -17498,7 +17967,7 @@ public final class CoreRpc {
           if (!other.order_.isEmpty()) {
             if (order_.isEmpty()) {
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureOrderIsMutable();
               order_.addAll(other.order_);
@@ -17511,7 +17980,7 @@ public final class CoreRpc {
               orderBuilder_.dispose();
               orderBuilder_ = null;
               order_ = other.order_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               orderBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getOrderFieldBuilder() : null;
@@ -17550,17 +18019,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -17670,9 +18141,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.OrderField> order_ =
         java.util.Collections.emptyList();
       private void ensureOrderIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>(order_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -17822,7 +18293,7 @@ public final class CoreRpc {
       public Builder clearOrder() {
         if (orderBuilder_ == null) {
           order_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           orderBuilder_.clear();
@@ -17899,7 +18370,7 @@ public final class CoreRpc {
           orderBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder>(
                   order_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           order_ = null;
@@ -17909,7 +18380,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -17965,10 +18436,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -17983,7 +18456,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTradeListReq}
    */
-  public  static final class RpcGetTradeListReq extends
+  public static final class RpcGetTradeListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetTradeListReq)
       RpcGetTradeListReqOrBuilder {
@@ -17993,6 +18466,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetTradeListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetTradeListReq();
     }
 
     @java.lang.Override
@@ -18008,7 +18488,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -18033,7 +18512,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -18068,19 +18547,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -18130,14 +18614,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetTradeListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetTradeListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -18331,35 +18814,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -18405,17 +18888,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -18524,7 +19009,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -18580,10 +19065,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -18618,7 +19105,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTradeListRsp}
    */
-  public  static final class RpcGetTradeListRsp extends
+  public static final class RpcGetTradeListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetTradeListRsp)
       RpcGetTradeListRspOrBuilder {
@@ -18629,6 +19116,13 @@ public final class CoreRpc {
     }
     private RpcGetTradeListRsp() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetTradeListRsp();
     }
 
     @java.lang.Override
@@ -18669,16 +19163,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               trade_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TradeField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -18692,7 +19186,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -18712,24 +19206,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -18739,12 +19237,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -18752,18 +19252,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -18821,16 +19324,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -18990,7 +19492,7 @@ public final class CoreRpc {
         }
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tradeBuilder_.clear();
         }
@@ -19021,57 +19523,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.trade_ = trade_;
         } else {
           result.trade_ = tradeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -19092,7 +19592,7 @@ public final class CoreRpc {
           if (!other.trade_.isEmpty()) {
             if (trade_.isEmpty()) {
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTradeIsMutable();
               trade_.addAll(other.trade_);
@@ -19105,7 +19605,7 @@ public final class CoreRpc {
               tradeBuilder_.dispose();
               tradeBuilder_ = null;
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tradeBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTradeFieldBuilder() : null;
@@ -19144,17 +19644,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -19264,9 +19766,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -19416,7 +19918,7 @@ public final class CoreRpc {
       public Builder clearTrade() {
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tradeBuilder_.clear();
@@ -19493,7 +19995,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -19503,7 +20005,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -19559,10 +20061,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -19572,10 +20076,12 @@ public final class CoreRpc {
 
     /**
      * <code>string tradeId = 2;</code>
+     * @return The tradeId.
      */
     java.lang.String getTradeId();
     /**
      * <code>string tradeId = 2;</code>
+     * @return The bytes for tradeId.
      */
     com.google.protobuf.ByteString
         getTradeIdBytes();
@@ -19587,7 +20093,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeByTradeIdReq}
    */
-  public  static final class RpcQueryTradeByTradeIdReq extends
+  public static final class RpcQueryTradeByTradeIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeByTradeIdReq)
       RpcQueryTradeByTradeIdReqOrBuilder {
@@ -19598,6 +20104,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeByTradeIdReq() {
       tradeId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeByTradeIdReq();
     }
 
     @java.lang.Override
@@ -19613,7 +20126,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -19644,7 +20156,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -19679,19 +20191,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -19700,7 +20217,9 @@ public final class CoreRpc {
     private volatile java.lang.Object tradeId_;
     /**
      * <code>string tradeId = 2;</code>
+     * @return The tradeId.
      */
+    @java.lang.Override
     public java.lang.String getTradeId() {
       java.lang.Object ref = tradeId_;
       if (ref instanceof java.lang.String) {
@@ -19715,7 +20234,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string tradeId = 2;</code>
+     * @return The bytes for tradeId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradeIdBytes() {
       java.lang.Object ref = tradeId_;
@@ -19781,16 +20302,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeByTradeIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeByTradeIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getTradeId()
-          .equals(other.getTradeId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeId()
+          .equals(other.getTradeId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -19989,35 +20509,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -20067,17 +20587,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -20187,6 +20709,7 @@ public final class CoreRpc {
       private java.lang.Object tradeId_ = "";
       /**
        * <code>string tradeId = 2;</code>
+       * @return The tradeId.
        */
       public java.lang.String getTradeId() {
         java.lang.Object ref = tradeId_;
@@ -20202,6 +20725,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string tradeId = 2;</code>
+       * @return The bytes for tradeId.
        */
       public com.google.protobuf.ByteString
           getTradeIdBytes() {
@@ -20218,6 +20742,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string tradeId = 2;</code>
+       * @param value The tradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeId(
           java.lang.String value) {
@@ -20231,6 +20757,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string tradeId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeId() {
         
@@ -20240,6 +20767,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string tradeId = 2;</code>
+       * @param value The bytes for tradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeIdBytes(
           com.google.protobuf.ByteString value) {
@@ -20255,7 +20784,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -20311,10 +20840,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -20324,10 +20855,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+     * @return Whether the trade field is set.
      */
     boolean hasTrade();
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+     * @return The trade.
      */
     xyz.redtorch.pb.CoreField.TradeField getTrade();
     /**
@@ -20338,7 +20871,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeByTradeIdRsp}
    */
-  public  static final class RpcQueryTradeByTradeIdRsp extends
+  public static final class RpcQueryTradeByTradeIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeByTradeIdRsp)
       RpcQueryTradeByTradeIdRspOrBuilder {
@@ -20348,6 +20881,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryTradeByTradeIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeByTradeIdRsp();
     }
 
     @java.lang.Override
@@ -20363,7 +20903,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -20401,7 +20940,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -20436,19 +20975,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -20457,19 +21001,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.TradeField trade_;
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+     * @return Whether the trade field is set.
      */
+    @java.lang.Override
     public boolean hasTrade() {
       return trade_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+     * @return The trade.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade() {
       return trade_ == null ? xyz.redtorch.pb.CoreField.TradeField.getDefaultInstance() : trade_;
     }
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder() {
       return getTrade();
     }
@@ -20526,19 +21075,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeByTradeIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeByTradeIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasTrade() == other.hasTrade());
+      if (hasTrade() != other.hasTrade()) return false;
       if (hasTrade()) {
-        result = result && getTrade()
-            .equals(other.getTrade());
+        if (!getTrade()
+            .equals(other.getTrade())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -20743,35 +21291,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -20820,17 +21368,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -20937,17 +21487,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.TradeField trade_ = null;
+      private xyz.redtorch.pb.CoreField.TradeField trade_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> tradeBuilder_;
       /**
        * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+       * @return Whether the trade field is set.
        */
       public boolean hasTrade() {
         return tradeBuilder_ != null || trade_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.TradeField trade = 2;</code>
+       * @return The trade.
        */
       public xyz.redtorch.pb.CoreField.TradeField getTrade() {
         if (tradeBuilder_ == null) {
@@ -21056,7 +21608,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -21112,10 +21664,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -21125,10 +21679,12 @@ public final class CoreRpc {
 
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -21140,7 +21696,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq}
    */
-  public  static final class RpcQueryTradeListByUnifiedSymbolReq extends
+  public static final class RpcQueryTradeListByUnifiedSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
       RpcQueryTradeListByUnifiedSymbolReqOrBuilder {
@@ -21151,6 +21707,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByUnifiedSymbolReq() {
       unifiedSymbol_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByUnifiedSymbolReq();
     }
 
     @java.lang.Override
@@ -21166,7 +21729,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -21197,7 +21759,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -21232,19 +21794,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -21253,7 +21820,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -21268,7 +21837,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -21334,16 +21905,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -21542,35 +22112,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -21620,17 +22190,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -21740,6 +22312,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -21755,6 +22328,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -21771,6 +22345,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -21784,6 +22360,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -21793,6 +22370,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -21808,7 +22387,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -21864,10 +22443,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -21902,7 +22483,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp}
    */
-  public  static final class RpcQueryTradeListByUnifiedSymbolRsp extends
+  public static final class RpcQueryTradeListByUnifiedSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
       RpcQueryTradeListByUnifiedSymbolRspOrBuilder {
@@ -21913,6 +22494,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByUnifiedSymbolRsp() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByUnifiedSymbolRsp();
     }
 
     @java.lang.Override
@@ -21953,16 +22541,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               trade_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TradeField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -21976,7 +22564,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -21996,24 +22584,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -22023,12 +22615,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -22036,18 +22630,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -22105,16 +22702,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -22274,7 +22870,7 @@ public final class CoreRpc {
         }
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tradeBuilder_.clear();
         }
@@ -22305,57 +22901,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.trade_ = trade_;
         } else {
           result.trade_ = tradeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -22376,7 +22970,7 @@ public final class CoreRpc {
           if (!other.trade_.isEmpty()) {
             if (trade_.isEmpty()) {
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTradeIsMutable();
               trade_.addAll(other.trade_);
@@ -22389,7 +22983,7 @@ public final class CoreRpc {
               tradeBuilder_.dispose();
               tradeBuilder_ = null;
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tradeBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTradeFieldBuilder() : null;
@@ -22428,17 +23022,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -22548,9 +23144,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -22700,7 +23296,7 @@ public final class CoreRpc {
       public Builder clearTrade() {
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tradeBuilder_.clear();
@@ -22777,7 +23373,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -22787,7 +23383,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -22843,10 +23439,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -22856,10 +23454,12 @@ public final class CoreRpc {
 
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -22871,7 +23471,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByAccountIdReq}
    */
-  public  static final class RpcQueryTradeListByAccountIdReq extends
+  public static final class RpcQueryTradeListByAccountIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByAccountIdReq)
       RpcQueryTradeListByAccountIdReqOrBuilder {
@@ -22882,6 +23482,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByAccountIdReq() {
       accountId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByAccountIdReq();
     }
 
     @java.lang.Override
@@ -22897,7 +23504,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -22928,7 +23534,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -22963,19 +23569,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -22984,7 +23595,9 @@ public final class CoreRpc {
     private volatile java.lang.Object accountId_;
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -22999,7 +23612,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -23065,16 +23680,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -23273,35 +23887,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -23351,17 +23965,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -23471,6 +24087,7 @@ public final class CoreRpc {
       private java.lang.Object accountId_ = "";
       /**
        * <code>string accountId = 2;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -23486,6 +24103,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -23502,6 +24120,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -23515,6 +24135,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -23524,6 +24145,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -23539,7 +24162,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -23595,10 +24218,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -23633,7 +24258,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByAccountIdRsp}
    */
-  public  static final class RpcQueryTradeListByAccountIdRsp extends
+  public static final class RpcQueryTradeListByAccountIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByAccountIdRsp)
       RpcQueryTradeListByAccountIdRspOrBuilder {
@@ -23644,6 +24269,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByAccountIdRsp() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByAccountIdRsp();
     }
 
     @java.lang.Override
@@ -23684,16 +24316,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               trade_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TradeField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -23707,7 +24339,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -23727,24 +24359,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -23754,12 +24390,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -23767,18 +24405,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -23836,16 +24477,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -24005,7 +24645,7 @@ public final class CoreRpc {
         }
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tradeBuilder_.clear();
         }
@@ -24036,57 +24676,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByAccountIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.trade_ = trade_;
         } else {
           result.trade_ = tradeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -24107,7 +24745,7 @@ public final class CoreRpc {
           if (!other.trade_.isEmpty()) {
             if (trade_.isEmpty()) {
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTradeIsMutable();
               trade_.addAll(other.trade_);
@@ -24120,7 +24758,7 @@ public final class CoreRpc {
               tradeBuilder_.dispose();
               tradeBuilder_ = null;
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tradeBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTradeFieldBuilder() : null;
@@ -24159,17 +24797,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -24279,9 +24919,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -24431,7 +25071,7 @@ public final class CoreRpc {
       public Builder clearTrade() {
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tradeBuilder_.clear();
@@ -24508,7 +25148,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -24518,7 +25158,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -24574,10 +25214,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -24587,10 +25229,12 @@ public final class CoreRpc {
 
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -24602,7 +25246,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOrderIdReq}
    */
-  public  static final class RpcQueryTradeListByOrderIdReq extends
+  public static final class RpcQueryTradeListByOrderIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByOrderIdReq)
       RpcQueryTradeListByOrderIdReqOrBuilder {
@@ -24613,6 +25257,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByOrderIdReq() {
       orderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByOrderIdReq();
     }
 
     @java.lang.Override
@@ -24628,7 +25279,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -24659,7 +25309,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -24694,19 +25344,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -24715,7 +25370,9 @@ public final class CoreRpc {
     private volatile java.lang.Object orderId_;
     /**
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -24730,7 +25387,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -24796,16 +25455,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -25004,35 +25662,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -25082,17 +25740,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -25202,6 +25862,7 @@ public final class CoreRpc {
       private java.lang.Object orderId_ = "";
       /**
        * <code>string orderId = 2;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -25217,6 +25878,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -25233,6 +25895,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -25246,6 +25910,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -25255,6 +25920,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string orderId = 2;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -25270,7 +25937,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -25326,10 +25993,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -25364,7 +26033,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOrderIdRsp}
    */
-  public  static final class RpcQueryTradeListByOrderIdRsp extends
+  public static final class RpcQueryTradeListByOrderIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByOrderIdRsp)
       RpcQueryTradeListByOrderIdRspOrBuilder {
@@ -25375,6 +26044,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByOrderIdRsp() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByOrderIdRsp();
     }
 
     @java.lang.Override
@@ -25415,16 +26091,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               trade_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TradeField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -25438,7 +26114,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -25458,24 +26134,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -25485,12 +26165,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -25498,18 +26180,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -25567,16 +26252,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -25736,7 +26420,7 @@ public final class CoreRpc {
         }
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tradeBuilder_.clear();
         }
@@ -25767,57 +26451,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOrderIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.trade_ = trade_;
         } else {
           result.trade_ = tradeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -25838,7 +26520,7 @@ public final class CoreRpc {
           if (!other.trade_.isEmpty()) {
             if (trade_.isEmpty()) {
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTradeIsMutable();
               trade_.addAll(other.trade_);
@@ -25851,7 +26533,7 @@ public final class CoreRpc {
               tradeBuilder_.dispose();
               tradeBuilder_ = null;
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tradeBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTradeFieldBuilder() : null;
@@ -25890,17 +26572,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -26010,9 +26694,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -26162,7 +26846,7 @@ public final class CoreRpc {
       public Builder clearTrade() {
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tradeBuilder_.clear();
@@ -26239,7 +26923,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -26249,7 +26933,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -26305,10 +26989,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -26318,10 +27004,12 @@ public final class CoreRpc {
 
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -26333,7 +27021,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdReq}
    */
-  public  static final class RpcQueryTradeListByOriginOrderIdReq extends
+  public static final class RpcQueryTradeListByOriginOrderIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdReq)
       RpcQueryTradeListByOriginOrderIdReqOrBuilder {
@@ -26344,6 +27032,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByOriginOrderIdReq() {
       originOrderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByOriginOrderIdReq();
     }
 
     @java.lang.Override
@@ -26359,7 +27054,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -26390,7 +27084,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -26425,19 +27119,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -26446,7 +27145,9 @@ public final class CoreRpc {
     private volatile java.lang.Object originOrderId_;
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -26461,7 +27162,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string originOrderId = 2;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -26527,16 +27230,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -26735,35 +27437,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -26813,17 +27515,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -26933,6 +27637,7 @@ public final class CoreRpc {
       private java.lang.Object originOrderId_ = "";
       /**
        * <code>string originOrderId = 2;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -26948,6 +27653,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -26964,6 +27670,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -26977,6 +27685,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -26986,6 +27695,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originOrderId = 2;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -27001,7 +27712,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -27057,10 +27768,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -27095,7 +27808,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdRsp}
    */
-  public  static final class RpcQueryTradeListByOriginOrderIdRsp extends
+  public static final class RpcQueryTradeListByOriginOrderIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdRsp)
       RpcQueryTradeListByOriginOrderIdRspOrBuilder {
@@ -27106,6 +27819,13 @@ public final class CoreRpc {
     }
     private RpcQueryTradeListByOriginOrderIdRsp() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryTradeListByOriginOrderIdRsp();
     }
 
     @java.lang.Override
@@ -27146,16 +27866,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               trade_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TradeField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -27169,7 +27889,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -27189,24 +27909,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -27216,12 +27940,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -27229,18 +27955,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -27298,16 +28027,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -27467,7 +28195,7 @@ public final class CoreRpc {
         }
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tradeBuilder_.clear();
         }
@@ -27498,57 +28226,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByOriginOrderIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.trade_ = trade_;
         } else {
           result.trade_ = tradeBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -27569,7 +28295,7 @@ public final class CoreRpc {
           if (!other.trade_.isEmpty()) {
             if (trade_.isEmpty()) {
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTradeIsMutable();
               trade_.addAll(other.trade_);
@@ -27582,7 +28308,7 @@ public final class CoreRpc {
               tradeBuilder_.dispose();
               tradeBuilder_ = null;
               trade_ = other.trade_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tradeBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTradeFieldBuilder() : null;
@@ -27621,17 +28347,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -27741,9 +28469,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -27893,7 +28621,7 @@ public final class CoreRpc {
       public Builder clearTrade() {
         if (tradeBuilder_ == null) {
           trade_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tradeBuilder_.clear();
@@ -27970,7 +28698,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -27980,7 +28708,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -28036,10 +28764,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -28054,7 +28784,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetPositionListReq}
    */
-  public  static final class RpcGetPositionListReq extends
+  public static final class RpcGetPositionListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetPositionListReq)
       RpcGetPositionListReqOrBuilder {
@@ -28064,6 +28794,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetPositionListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetPositionListReq();
     }
 
     @java.lang.Override
@@ -28079,7 +28816,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -28104,7 +28840,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -28139,19 +28875,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -28201,14 +28942,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetPositionListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetPositionListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -28402,35 +29142,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -28476,17 +29216,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -28595,7 +29337,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -28651,10 +29393,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -28689,7 +29433,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetPositionListRsp}
    */
-  public  static final class RpcGetPositionListRsp extends
+  public static final class RpcGetPositionListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetPositionListRsp)
       RpcGetPositionListRspOrBuilder {
@@ -28700,6 +29444,13 @@ public final class CoreRpc {
     }
     private RpcGetPositionListRsp() {
       position_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetPositionListRsp();
     }
 
     @java.lang.Override
@@ -28740,16 +29491,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               position_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.PositionField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -28763,7 +29514,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           position_ = java.util.Collections.unmodifiableList(position_);
         }
         this.unknownFields = unknownFields.build();
@@ -28783,24 +29534,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -28810,12 +29565,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.PositionField> getPositionList() {
       return position_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> 
         getPositionOrBuilderList() {
       return position_;
@@ -28823,18 +29580,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public int getPositionCount() {
       return position_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition(int index) {
       return position_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder(
         int index) {
       return position_.get(index);
@@ -28892,16 +29652,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getPositionList()
-          .equals(other.getPositionList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPositionList()
+          .equals(other.getPositionList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -29061,7 +29820,7 @@ public final class CoreRpc {
         }
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           positionBuilder_.clear();
         }
@@ -29092,57 +29851,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (positionBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             position_ = java.util.Collections.unmodifiableList(position_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.position_ = position_;
         } else {
           result.position_ = positionBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -29163,7 +29920,7 @@ public final class CoreRpc {
           if (!other.position_.isEmpty()) {
             if (position_.isEmpty()) {
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensurePositionIsMutable();
               position_.addAll(other.position_);
@@ -29176,7 +29933,7 @@ public final class CoreRpc {
               positionBuilder_.dispose();
               positionBuilder_ = null;
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               positionBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPositionFieldBuilder() : null;
@@ -29215,17 +29972,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -29335,9 +30094,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.PositionField> position_ =
         java.util.Collections.emptyList();
       private void ensurePositionIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>(position_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -29487,7 +30246,7 @@ public final class CoreRpc {
       public Builder clearPosition() {
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           positionBuilder_.clear();
@@ -29564,7 +30323,7 @@ public final class CoreRpc {
           positionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder>(
                   position_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           position_ = null;
@@ -29574,7 +30333,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -29630,10 +30389,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -29643,10 +30404,12 @@ public final class CoreRpc {
 
     /**
      * <code>string positionId = 2;</code>
+     * @return The positionId.
      */
     java.lang.String getPositionId();
     /**
      * <code>string positionId = 2;</code>
+     * @return The bytes for positionId.
      */
     com.google.protobuf.ByteString
         getPositionIdBytes();
@@ -29658,7 +30421,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionByPositionIdReq}
    */
-  public  static final class RpcQueryPositionByPositionIdReq extends
+  public static final class RpcQueryPositionByPositionIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionByPositionIdReq)
       RpcQueryPositionByPositionIdReqOrBuilder {
@@ -29669,6 +30432,13 @@ public final class CoreRpc {
     }
     private RpcQueryPositionByPositionIdReq() {
       positionId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionByPositionIdReq();
     }
 
     @java.lang.Override
@@ -29684,7 +30454,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -29715,7 +30484,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -29750,19 +30519,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -29771,7 +30545,9 @@ public final class CoreRpc {
     private volatile java.lang.Object positionId_;
     /**
      * <code>string positionId = 2;</code>
+     * @return The positionId.
      */
+    @java.lang.Override
     public java.lang.String getPositionId() {
       java.lang.Object ref = positionId_;
       if (ref instanceof java.lang.String) {
@@ -29786,7 +30562,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string positionId = 2;</code>
+     * @return The bytes for positionId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPositionIdBytes() {
       java.lang.Object ref = positionId_;
@@ -29852,16 +30630,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionByPositionIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionByPositionIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getPositionId()
-          .equals(other.getPositionId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPositionId()
+          .equals(other.getPositionId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -30060,35 +30837,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -30138,17 +30915,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -30258,6 +31037,7 @@ public final class CoreRpc {
       private java.lang.Object positionId_ = "";
       /**
        * <code>string positionId = 2;</code>
+       * @return The positionId.
        */
       public java.lang.String getPositionId() {
         java.lang.Object ref = positionId_;
@@ -30273,6 +31053,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string positionId = 2;</code>
+       * @return The bytes for positionId.
        */
       public com.google.protobuf.ByteString
           getPositionIdBytes() {
@@ -30289,6 +31070,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string positionId = 2;</code>
+       * @param value The positionId to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionId(
           java.lang.String value) {
@@ -30302,6 +31085,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string positionId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionId() {
         
@@ -30311,6 +31095,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string positionId = 2;</code>
+       * @param value The bytes for positionId to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionIdBytes(
           com.google.protobuf.ByteString value) {
@@ -30326,7 +31112,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -30382,10 +31168,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -30395,10 +31183,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+     * @return Whether the position field is set.
      */
     boolean hasPosition();
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+     * @return The position.
      */
     xyz.redtorch.pb.CoreField.PositionField getPosition();
     /**
@@ -30409,7 +31199,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionByPositionIdRsp}
    */
-  public  static final class RpcQueryPositionByPositionIdRsp extends
+  public static final class RpcQueryPositionByPositionIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionByPositionIdRsp)
       RpcQueryPositionByPositionIdRspOrBuilder {
@@ -30419,6 +31209,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryPositionByPositionIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionByPositionIdRsp();
     }
 
     @java.lang.Override
@@ -30434,7 +31231,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -30472,7 +31268,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -30507,19 +31303,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -30528,19 +31329,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.PositionField position_;
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+     * @return Whether the position field is set.
      */
+    @java.lang.Override
     public boolean hasPosition() {
       return position_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+     * @return The position.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition() {
       return position_ == null ? xyz.redtorch.pb.CoreField.PositionField.getDefaultInstance() : position_;
     }
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder() {
       return getPosition();
     }
@@ -30597,19 +31403,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionByPositionIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionByPositionIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasPosition() == other.hasPosition());
+      if (hasPosition() != other.hasPosition()) return false;
       if (hasPosition()) {
-        result = result && getPosition()
-            .equals(other.getPosition());
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -30814,35 +31619,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -30891,17 +31696,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -31008,17 +31815,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.PositionField position_ = null;
+      private xyz.redtorch.pb.CoreField.PositionField position_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> positionBuilder_;
       /**
        * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+       * @return Whether the position field is set.
        */
       public boolean hasPosition() {
         return positionBuilder_ != null || position_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.PositionField position = 2;</code>
+       * @return The position.
        */
       public xyz.redtorch.pb.CoreField.PositionField getPosition() {
         if (positionBuilder_ == null) {
@@ -31127,7 +31936,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -31183,10 +31992,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -31196,10 +32007,12 @@ public final class CoreRpc {
 
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -31211,7 +32024,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByAccountIdReq}
    */
-  public  static final class RpcQueryPositionListByAccountIdReq extends
+  public static final class RpcQueryPositionListByAccountIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByAccountIdReq)
       RpcQueryPositionListByAccountIdReqOrBuilder {
@@ -31222,6 +32035,13 @@ public final class CoreRpc {
     }
     private RpcQueryPositionListByAccountIdReq() {
       accountId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionListByAccountIdReq();
     }
 
     @java.lang.Override
@@ -31237,7 +32057,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -31268,7 +32087,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -31303,19 +32122,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -31324,7 +32148,9 @@ public final class CoreRpc {
     private volatile java.lang.Object accountId_;
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -31339,7 +32165,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -31405,16 +32233,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -31613,35 +32440,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -31691,17 +32518,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -31811,6 +32640,7 @@ public final class CoreRpc {
       private java.lang.Object accountId_ = "";
       /**
        * <code>string accountId = 2;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -31826,6 +32656,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -31842,6 +32673,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -31855,6 +32688,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -31864,6 +32698,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -31879,7 +32715,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -31935,10 +32771,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -31973,7 +32811,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByAccountIdRsp}
    */
-  public  static final class RpcQueryPositionListByAccountIdRsp extends
+  public static final class RpcQueryPositionListByAccountIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByAccountIdRsp)
       RpcQueryPositionListByAccountIdRspOrBuilder {
@@ -31984,6 +32822,13 @@ public final class CoreRpc {
     }
     private RpcQueryPositionListByAccountIdRsp() {
       position_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionListByAccountIdRsp();
     }
 
     @java.lang.Override
@@ -32024,16 +32869,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               position_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.PositionField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -32047,7 +32892,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           position_ = java.util.Collections.unmodifiableList(position_);
         }
         this.unknownFields = unknownFields.build();
@@ -32067,24 +32912,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -32094,12 +32943,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.PositionField> getPositionList() {
       return position_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> 
         getPositionOrBuilderList() {
       return position_;
@@ -32107,18 +32958,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public int getPositionCount() {
       return position_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition(int index) {
       return position_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder(
         int index) {
       return position_.get(index);
@@ -32176,16 +33030,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getPositionList()
-          .equals(other.getPositionList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPositionList()
+          .equals(other.getPositionList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -32345,7 +33198,7 @@ public final class CoreRpc {
         }
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           positionBuilder_.clear();
         }
@@ -32376,57 +33229,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByAccountIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (positionBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             position_ = java.util.Collections.unmodifiableList(position_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.position_ = position_;
         } else {
           result.position_ = positionBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -32447,7 +33298,7 @@ public final class CoreRpc {
           if (!other.position_.isEmpty()) {
             if (position_.isEmpty()) {
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensurePositionIsMutable();
               position_.addAll(other.position_);
@@ -32460,7 +33311,7 @@ public final class CoreRpc {
               positionBuilder_.dispose();
               positionBuilder_ = null;
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               positionBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPositionFieldBuilder() : null;
@@ -32499,17 +33350,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -32619,9 +33472,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.PositionField> position_ =
         java.util.Collections.emptyList();
       private void ensurePositionIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>(position_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -32771,7 +33624,7 @@ public final class CoreRpc {
       public Builder clearPosition() {
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           positionBuilder_.clear();
@@ -32848,7 +33701,7 @@ public final class CoreRpc {
           positionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder>(
                   position_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           position_ = null;
@@ -32858,7 +33711,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -32914,10 +33767,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -32927,10 +33782,12 @@ public final class CoreRpc {
 
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -32942,7 +33799,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq}
    */
-  public  static final class RpcQueryPositionListByUnifiedSymbolReq extends
+  public static final class RpcQueryPositionListByUnifiedSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
       RpcQueryPositionListByUnifiedSymbolReqOrBuilder {
@@ -32953,6 +33810,13 @@ public final class CoreRpc {
     }
     private RpcQueryPositionListByUnifiedSymbolReq() {
       unifiedSymbol_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionListByUnifiedSymbolReq();
     }
 
     @java.lang.Override
@@ -32968,7 +33832,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -32999,7 +33862,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -33034,19 +33897,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -33055,7 +33923,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -33070,7 +33940,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -33136,16 +34008,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -33344,35 +34215,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -33422,17 +34293,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -33542,6 +34415,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -33557,6 +34431,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -33573,6 +34448,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -33586,6 +34463,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -33595,6 +34473,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -33610,7 +34490,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -33666,10 +34546,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -33704,7 +34586,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp}
    */
-  public  static final class RpcQueryPositionListByUnifiedSymbolRsp extends
+  public static final class RpcQueryPositionListByUnifiedSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
       RpcQueryPositionListByUnifiedSymbolRspOrBuilder {
@@ -33715,6 +34597,13 @@ public final class CoreRpc {
     }
     private RpcQueryPositionListByUnifiedSymbolRsp() {
       position_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryPositionListByUnifiedSymbolRsp();
     }
 
     @java.lang.Override
@@ -33755,16 +34644,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               position_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.PositionField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -33778,7 +34667,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           position_ = java.util.Collections.unmodifiableList(position_);
         }
         this.unknownFields = unknownFields.build();
@@ -33798,24 +34687,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -33825,12 +34718,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.PositionField> getPositionList() {
       return position_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> 
         getPositionOrBuilderList() {
       return position_;
@@ -33838,18 +34733,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public int getPositionCount() {
       return position_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition(int index) {
       return position_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder(
         int index) {
       return position_.get(index);
@@ -33907,16 +34805,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getPositionList()
-          .equals(other.getPositionList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPositionList()
+          .equals(other.getPositionList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -34076,7 +34973,7 @@ public final class CoreRpc {
         }
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           positionBuilder_.clear();
         }
@@ -34107,57 +35004,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (positionBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             position_ = java.util.Collections.unmodifiableList(position_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.position_ = position_;
         } else {
           result.position_ = positionBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -34178,7 +35073,7 @@ public final class CoreRpc {
           if (!other.position_.isEmpty()) {
             if (position_.isEmpty()) {
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensurePositionIsMutable();
               position_.addAll(other.position_);
@@ -34191,7 +35086,7 @@ public final class CoreRpc {
               positionBuilder_.dispose();
               positionBuilder_ = null;
               position_ = other.position_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               positionBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPositionFieldBuilder() : null;
@@ -34230,17 +35125,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -34350,9 +35247,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.PositionField> position_ =
         java.util.Collections.emptyList();
       private void ensurePositionIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>(position_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -34502,7 +35399,7 @@ public final class CoreRpc {
       public Builder clearPosition() {
         if (positionBuilder_ == null) {
           position_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           positionBuilder_.clear();
@@ -34579,7 +35476,7 @@ public final class CoreRpc {
           positionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder>(
                   position_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           position_ = null;
@@ -34589,7 +35486,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -34645,10 +35542,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -34663,7 +35562,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetAccountListReq}
    */
-  public  static final class RpcGetAccountListReq extends
+  public static final class RpcGetAccountListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetAccountListReq)
       RpcGetAccountListReqOrBuilder {
@@ -34673,6 +35572,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetAccountListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetAccountListReq();
     }
 
     @java.lang.Override
@@ -34688,7 +35594,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -34713,7 +35618,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -34748,19 +35653,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -34810,14 +35720,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetAccountListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetAccountListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -35011,35 +35920,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -35085,17 +35994,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -35204,7 +36115,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -35260,10 +36171,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -35298,7 +36211,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetAccountListRsp}
    */
-  public  static final class RpcGetAccountListRsp extends
+  public static final class RpcGetAccountListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetAccountListRsp)
       RpcGetAccountListRspOrBuilder {
@@ -35309,6 +36222,13 @@ public final class CoreRpc {
     }
     private RpcGetAccountListRsp() {
       account_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetAccountListRsp();
     }
 
     @java.lang.Override
@@ -35349,16 +36269,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               account_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.AccountField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -35372,7 +36292,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           account_ = java.util.Collections.unmodifiableList(account_);
         }
         this.unknownFields = unknownFields.build();
@@ -35392,24 +36312,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -35419,12 +36343,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.AccountField> getAccountList() {
       return account_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.AccountFieldOrBuilder> 
         getAccountOrBuilderList() {
       return account_;
@@ -35432,18 +36358,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public int getAccountCount() {
       return account_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountField getAccount(int index) {
       return account_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountFieldOrBuilder getAccountOrBuilder(
         int index) {
       return account_.get(index);
@@ -35501,16 +36430,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getAccountList()
-          .equals(other.getAccountList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountList()
+          .equals(other.getAccountList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -35670,7 +36598,7 @@ public final class CoreRpc {
         }
         if (accountBuilder_ == null) {
           account_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           accountBuilder_.clear();
         }
@@ -35701,57 +36629,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (accountBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             account_ = java.util.Collections.unmodifiableList(account_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.account_ = account_;
         } else {
           result.account_ = accountBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -35772,7 +36698,7 @@ public final class CoreRpc {
           if (!other.account_.isEmpty()) {
             if (account_.isEmpty()) {
               account_ = other.account_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureAccountIsMutable();
               account_.addAll(other.account_);
@@ -35785,7 +36711,7 @@ public final class CoreRpc {
               accountBuilder_.dispose();
               accountBuilder_ = null;
               account_ = other.account_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               accountBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getAccountFieldBuilder() : null;
@@ -35824,17 +36750,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -35944,9 +36872,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.AccountField> account_ =
         java.util.Collections.emptyList();
       private void ensureAccountIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>(account_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -36096,7 +37024,7 @@ public final class CoreRpc {
       public Builder clearAccount() {
         if (accountBuilder_ == null) {
           account_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           accountBuilder_.clear();
@@ -36173,7 +37101,7 @@ public final class CoreRpc {
           accountBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.AccountField, xyz.redtorch.pb.CoreField.AccountField.Builder, xyz.redtorch.pb.CoreField.AccountFieldOrBuilder>(
                   account_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           account_ = null;
@@ -36183,7 +37111,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -36239,10 +37167,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -36252,10 +37182,12 @@ public final class CoreRpc {
 
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -36267,7 +37199,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountByAccountIdReq}
    */
-  public  static final class RpcQueryAccountByAccountIdReq extends
+  public static final class RpcQueryAccountByAccountIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryAccountByAccountIdReq)
       RpcQueryAccountByAccountIdReqOrBuilder {
@@ -36278,6 +37210,13 @@ public final class CoreRpc {
     }
     private RpcQueryAccountByAccountIdReq() {
       accountId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryAccountByAccountIdReq();
     }
 
     @java.lang.Override
@@ -36293,7 +37232,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -36324,7 +37262,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -36359,19 +37297,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -36380,7 +37323,9 @@ public final class CoreRpc {
     private volatile java.lang.Object accountId_;
     /**
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -36395,7 +37340,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -36461,16 +37408,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryAccountByAccountIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryAccountByAccountIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -36669,35 +37615,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -36747,17 +37693,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -36867,6 +37815,7 @@ public final class CoreRpc {
       private java.lang.Object accountId_ = "";
       /**
        * <code>string accountId = 2;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -36882,6 +37831,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -36898,6 +37848,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -36911,6 +37863,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -36920,6 +37873,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountId = 2;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -36935,7 +37890,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -36991,10 +37946,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -37004,10 +37961,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+     * @return Whether the account field is set.
      */
     boolean hasAccount();
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+     * @return The account.
      */
     xyz.redtorch.pb.CoreField.AccountField getAccount();
     /**
@@ -37018,7 +37977,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountByAccountIdRsp}
    */
-  public  static final class RpcQueryAccountByAccountIdRsp extends
+  public static final class RpcQueryAccountByAccountIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryAccountByAccountIdRsp)
       RpcQueryAccountByAccountIdRspOrBuilder {
@@ -37028,6 +37987,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryAccountByAccountIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryAccountByAccountIdRsp();
     }
 
     @java.lang.Override
@@ -37043,7 +38009,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -37081,7 +38046,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -37116,19 +38081,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -37137,19 +38107,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.AccountField account_;
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+     * @return Whether the account field is set.
      */
+    @java.lang.Override
     public boolean hasAccount() {
       return account_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+     * @return The account.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountField getAccount() {
       return account_ == null ? xyz.redtorch.pb.CoreField.AccountField.getDefaultInstance() : account_;
     }
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountFieldOrBuilder getAccountOrBuilder() {
       return getAccount();
     }
@@ -37206,19 +38181,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryAccountByAccountIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryAccountByAccountIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasAccount() == other.hasAccount());
+      if (hasAccount() != other.hasAccount()) return false;
       if (hasAccount()) {
-        result = result && getAccount()
-            .equals(other.getAccount());
+        if (!getAccount()
+            .equals(other.getAccount())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -37423,35 +38397,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -37500,17 +38474,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -37617,17 +38593,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.AccountField account_ = null;
+      private xyz.redtorch.pb.CoreField.AccountField account_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.AccountField, xyz.redtorch.pb.CoreField.AccountField.Builder, xyz.redtorch.pb.CoreField.AccountFieldOrBuilder> accountBuilder_;
       /**
        * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+       * @return Whether the account field is set.
        */
       public boolean hasAccount() {
         return accountBuilder_ != null || account_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.AccountField account = 2;</code>
+       * @return The account.
        */
       public xyz.redtorch.pb.CoreField.AccountField getAccount() {
         if (accountBuilder_ == null) {
@@ -37736,7 +38714,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -37792,10 +38770,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -37805,10 +38785,12 @@ public final class CoreRpc {
 
     /**
      * <code>string accountCode = 2;</code>
+     * @return The accountCode.
      */
     java.lang.String getAccountCode();
     /**
      * <code>string accountCode = 2;</code>
+     * @return The bytes for accountCode.
      */
     com.google.protobuf.ByteString
         getAccountCodeBytes();
@@ -37820,7 +38802,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountListByAccountCodeReq}
    */
-  public  static final class RpcQueryAccountListByAccountCodeReq extends
+  public static final class RpcQueryAccountListByAccountCodeReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryAccountListByAccountCodeReq)
       RpcQueryAccountListByAccountCodeReqOrBuilder {
@@ -37831,6 +38813,13 @@ public final class CoreRpc {
     }
     private RpcQueryAccountListByAccountCodeReq() {
       accountCode_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryAccountListByAccountCodeReq();
     }
 
     @java.lang.Override
@@ -37846,7 +38835,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -37877,7 +38865,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -37912,19 +38900,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -37933,7 +38926,9 @@ public final class CoreRpc {
     private volatile java.lang.Object accountCode_;
     /**
      * <code>string accountCode = 2;</code>
+     * @return The accountCode.
      */
+    @java.lang.Override
     public java.lang.String getAccountCode() {
       java.lang.Object ref = accountCode_;
       if (ref instanceof java.lang.String) {
@@ -37948,7 +38943,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string accountCode = 2;</code>
+     * @return The bytes for accountCode.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountCodeBytes() {
       java.lang.Object ref = accountCode_;
@@ -38014,16 +39011,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getAccountCode()
-          .equals(other.getAccountCode());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountCode()
+          .equals(other.getAccountCode())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -38222,35 +39218,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -38300,17 +39296,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -38420,6 +39418,7 @@ public final class CoreRpc {
       private java.lang.Object accountCode_ = "";
       /**
        * <code>string accountCode = 2;</code>
+       * @return The accountCode.
        */
       public java.lang.String getAccountCode() {
         java.lang.Object ref = accountCode_;
@@ -38435,6 +39434,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountCode = 2;</code>
+       * @return The bytes for accountCode.
        */
       public com.google.protobuf.ByteString
           getAccountCodeBytes() {
@@ -38451,6 +39451,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountCode = 2;</code>
+       * @param value The accountCode to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountCode(
           java.lang.String value) {
@@ -38464,6 +39466,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountCode = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountCode() {
         
@@ -38473,6 +39476,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string accountCode = 2;</code>
+       * @param value The bytes for accountCode to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountCodeBytes(
           com.google.protobuf.ByteString value) {
@@ -38488,7 +39493,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -38544,10 +39549,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -38582,7 +39589,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountListByAccountCodeRsp}
    */
-  public  static final class RpcQueryAccountListByAccountCodeRsp extends
+  public static final class RpcQueryAccountListByAccountCodeRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryAccountListByAccountCodeRsp)
       RpcQueryAccountListByAccountCodeRspOrBuilder {
@@ -38593,6 +39600,13 @@ public final class CoreRpc {
     }
     private RpcQueryAccountListByAccountCodeRsp() {
       account_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryAccountListByAccountCodeRsp();
     }
 
     @java.lang.Override
@@ -38633,16 +39647,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               account_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.AccountField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -38656,7 +39670,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           account_ = java.util.Collections.unmodifiableList(account_);
         }
         this.unknownFields = unknownFields.build();
@@ -38676,24 +39690,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -38703,12 +39721,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.AccountField> getAccountList() {
       return account_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.AccountFieldOrBuilder> 
         getAccountOrBuilderList() {
       return account_;
@@ -38716,18 +39736,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public int getAccountCount() {
       return account_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountField getAccount(int index) {
       return account_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountFieldOrBuilder getAccountOrBuilder(
         int index) {
       return account_.get(index);
@@ -38785,16 +39808,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getAccountList()
-          .equals(other.getAccountList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountList()
+          .equals(other.getAccountList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -38954,7 +39976,7 @@ public final class CoreRpc {
         }
         if (accountBuilder_ == null) {
           account_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           accountBuilder_.clear();
         }
@@ -38985,57 +40007,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryAccountListByAccountCodeRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (accountBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             account_ = java.util.Collections.unmodifiableList(account_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.account_ = account_;
         } else {
           result.account_ = accountBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -39056,7 +40076,7 @@ public final class CoreRpc {
           if (!other.account_.isEmpty()) {
             if (account_.isEmpty()) {
               account_ = other.account_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureAccountIsMutable();
               account_.addAll(other.account_);
@@ -39069,7 +40089,7 @@ public final class CoreRpc {
               accountBuilder_.dispose();
               accountBuilder_ = null;
               account_ = other.account_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               accountBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getAccountFieldBuilder() : null;
@@ -39108,17 +40128,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -39228,9 +40250,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.AccountField> account_ =
         java.util.Collections.emptyList();
       private void ensureAccountIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>(account_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -39380,7 +40402,7 @@ public final class CoreRpc {
       public Builder clearAccount() {
         if (accountBuilder_ == null) {
           account_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           accountBuilder_.clear();
@@ -39457,7 +40479,7 @@ public final class CoreRpc {
           accountBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.AccountField, xyz.redtorch.pb.CoreField.AccountField.Builder, xyz.redtorch.pb.CoreField.AccountFieldOrBuilder>(
                   account_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           account_ = null;
@@ -39467,7 +40489,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -39523,10 +40545,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -39541,7 +40565,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetContractListReq}
    */
-  public  static final class RpcGetContractListReq extends
+  public static final class RpcGetContractListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetContractListReq)
       RpcGetContractListReqOrBuilder {
@@ -39551,6 +40575,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetContractListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetContractListReq();
     }
 
     @java.lang.Override
@@ -39566,7 +40597,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -39591,7 +40621,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -39626,19 +40656,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -39688,14 +40723,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetContractListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetContractListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -39889,35 +40923,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -39963,17 +40997,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -40082,7 +41118,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -40138,10 +41174,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -40176,7 +41214,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetContractListRsp}
    */
-  public  static final class RpcGetContractListRsp extends
+  public static final class RpcGetContractListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetContractListRsp)
       RpcGetContractListRspOrBuilder {
@@ -40187,6 +41225,13 @@ public final class CoreRpc {
     }
     private RpcGetContractListRsp() {
       contract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetContractListRsp();
     }
 
     @java.lang.Override
@@ -40227,16 +41272,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               contract_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -40250,7 +41295,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           contract_ = java.util.Collections.unmodifiableList(contract_);
         }
         this.unknownFields = unknownFields.build();
@@ -40270,24 +41315,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -40297,12 +41346,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
       return contract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getContractOrBuilderList() {
       return contract_;
@@ -40310,18 +41361,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public int getContractCount() {
       return contract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
       return contract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
         int index) {
       return contract_.get(index);
@@ -40379,16 +41433,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getContractList()
-          .equals(other.getContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractList()
+          .equals(other.getContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -40548,7 +41601,7 @@ public final class CoreRpc {
         }
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           contractBuilder_.clear();
         }
@@ -40579,57 +41632,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.contract_ = contract_;
         } else {
           result.contract_ = contractBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -40650,7 +41701,7 @@ public final class CoreRpc {
           if (!other.contract_.isEmpty()) {
             if (contract_.isEmpty()) {
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureContractIsMutable();
               contract_.addAll(other.contract_);
@@ -40663,7 +41714,7 @@ public final class CoreRpc {
               contractBuilder_.dispose();
               contractBuilder_ = null;
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               contractBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getContractFieldBuilder() : null;
@@ -40702,17 +41753,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -40822,9 +41875,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
         java.util.Collections.emptyList();
       private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -40974,7 +42027,7 @@ public final class CoreRpc {
       public Builder clearContract() {
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           contractBuilder_.clear();
@@ -41051,7 +42104,7 @@ public final class CoreRpc {
           contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   contract_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           contract_ = null;
@@ -41061,7 +42114,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -41117,10 +42170,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -41130,10 +42185,12 @@ public final class CoreRpc {
 
     /**
      * <code>string contractId = 2;</code>
+     * @return The contractId.
      */
     java.lang.String getContractId();
     /**
      * <code>string contractId = 2;</code>
+     * @return The bytes for contractId.
      */
     com.google.protobuf.ByteString
         getContractIdBytes();
@@ -41145,7 +42202,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdReq}
    */
-  public  static final class RpcQueryContractByContractIdReq extends
+  public static final class RpcQueryContractByContractIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
       RpcQueryContractByContractIdReqOrBuilder {
@@ -41156,6 +42213,13 @@ public final class CoreRpc {
     }
     private RpcQueryContractByContractIdReq() {
       contractId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractByContractIdReq();
     }
 
     @java.lang.Override
@@ -41171,7 +42235,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -41202,7 +42265,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -41237,19 +42300,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -41258,7 +42326,9 @@ public final class CoreRpc {
     private volatile java.lang.Object contractId_;
     /**
      * <code>string contractId = 2;</code>
+     * @return The contractId.
      */
+    @java.lang.Override
     public java.lang.String getContractId() {
       java.lang.Object ref = contractId_;
       if (ref instanceof java.lang.String) {
@@ -41273,7 +42343,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string contractId = 2;</code>
+     * @return The bytes for contractId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContractIdBytes() {
       java.lang.Object ref = contractId_;
@@ -41339,16 +42411,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getContractId()
-          .equals(other.getContractId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractId()
+          .equals(other.getContractId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -41547,35 +42618,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -41625,17 +42696,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -41745,6 +42818,7 @@ public final class CoreRpc {
       private java.lang.Object contractId_ = "";
       /**
        * <code>string contractId = 2;</code>
+       * @return The contractId.
        */
       public java.lang.String getContractId() {
         java.lang.Object ref = contractId_;
@@ -41760,6 +42834,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string contractId = 2;</code>
+       * @return The bytes for contractId.
        */
       public com.google.protobuf.ByteString
           getContractIdBytes() {
@@ -41776,6 +42851,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string contractId = 2;</code>
+       * @param value The contractId to set.
+       * @return This builder for chaining.
        */
       public Builder setContractId(
           java.lang.String value) {
@@ -41789,6 +42866,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string contractId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContractId() {
         
@@ -41798,6 +42876,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string contractId = 2;</code>
+       * @param value The bytes for contractId to set.
+       * @return This builder for chaining.
        */
       public Builder setContractIdBytes(
           com.google.protobuf.ByteString value) {
@@ -41813,7 +42893,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -41869,10 +42949,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -41882,10 +42964,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -41896,7 +42980,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdRsp}
    */
-  public  static final class RpcQueryContractByContractIdRsp extends
+  public static final class RpcQueryContractByContractIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
       RpcQueryContractByContractIdRspOrBuilder {
@@ -41906,6 +42990,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryContractByContractIdRsp() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractByContractIdRsp();
     }
 
     @java.lang.Override
@@ -41921,7 +43012,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -41959,7 +43049,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -41994,19 +43084,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -42015,19 +43110,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.ContractField contract_;
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -42084,19 +43184,18 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && (hasContract() == other.hasContract());
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -42301,35 +43400,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -42378,17 +43477,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -42495,17 +43596,19 @@ public final class CoreRpc {
         return commonRspBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 2;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -42614,7 +43717,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -42670,10 +43773,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -42683,10 +43788,12 @@ public final class CoreRpc {
 
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -42698,7 +43805,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq}
    */
-  public  static final class RpcQueryContractListByUnifiedSymbolReq extends
+  public static final class RpcQueryContractListByUnifiedSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
       RpcQueryContractListByUnifiedSymbolReqOrBuilder {
@@ -42709,6 +43816,13 @@ public final class CoreRpc {
     }
     private RpcQueryContractListByUnifiedSymbolReq() {
       unifiedSymbol_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractListByUnifiedSymbolReq();
     }
 
     @java.lang.Override
@@ -42724,7 +43838,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -42755,7 +43868,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -42790,19 +43903,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -42811,7 +43929,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -42826,7 +43946,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 2;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -42892,16 +44014,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -43100,35 +44221,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -43178,17 +44299,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -43298,6 +44421,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -43313,6 +44437,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -43329,6 +44454,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -43342,6 +44469,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -43351,6 +44479,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 2;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -43366,7 +44496,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -43422,10 +44552,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -43460,7 +44592,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp}
    */
-  public  static final class RpcQueryContractListByUnifiedSymbolRsp extends
+  public static final class RpcQueryContractListByUnifiedSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
       RpcQueryContractListByUnifiedSymbolRspOrBuilder {
@@ -43471,6 +44603,13 @@ public final class CoreRpc {
     }
     private RpcQueryContractListByUnifiedSymbolRsp() {
       contract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractListByUnifiedSymbolRsp();
     }
 
     @java.lang.Override
@@ -43511,16 +44650,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               contract_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -43534,7 +44673,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           contract_ = java.util.Collections.unmodifiableList(contract_);
         }
         this.unknownFields = unknownFields.build();
@@ -43554,24 +44693,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -43581,12 +44724,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
       return contract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getContractOrBuilderList() {
       return contract_;
@@ -43594,18 +44739,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public int getContractCount() {
       return contract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
       return contract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
         int index) {
       return contract_.get(index);
@@ -43663,16 +44811,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getContractList()
-          .equals(other.getContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractList()
+          .equals(other.getContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -43832,7 +44979,7 @@ public final class CoreRpc {
         }
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           contractBuilder_.clear();
         }
@@ -43863,57 +45010,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.contract_ = contract_;
         } else {
           result.contract_ = contractBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -43934,7 +45079,7 @@ public final class CoreRpc {
           if (!other.contract_.isEmpty()) {
             if (contract_.isEmpty()) {
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureContractIsMutable();
               contract_.addAll(other.contract_);
@@ -43947,7 +45092,7 @@ public final class CoreRpc {
               contractBuilder_.dispose();
               contractBuilder_ = null;
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               contractBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getContractFieldBuilder() : null;
@@ -43986,17 +45131,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -44106,9 +45253,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
         java.util.Collections.emptyList();
       private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -44258,7 +45405,7 @@ public final class CoreRpc {
       public Builder clearContract() {
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           contractBuilder_.clear();
@@ -44335,7 +45482,7 @@ public final class CoreRpc {
           contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   contract_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           contract_ = null;
@@ -44345,7 +45492,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -44401,10 +45548,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -44414,10 +45563,12 @@ public final class CoreRpc {
 
     /**
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -44429,7 +45580,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq}
    */
-  public  static final class RpcQueryContractListByGatewayIdReq extends
+  public static final class RpcQueryContractListByGatewayIdReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
       RpcQueryContractListByGatewayIdReqOrBuilder {
@@ -44440,6 +45591,13 @@ public final class CoreRpc {
     }
     private RpcQueryContractListByGatewayIdReq() {
       gatewayId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractListByGatewayIdReq();
     }
 
     @java.lang.Override
@@ -44455,7 +45613,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -44486,7 +45643,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -44521,19 +45678,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -44542,7 +45704,9 @@ public final class CoreRpc {
     private volatile java.lang.Object gatewayId_;
     /**
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -44557,7 +45721,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -44623,16 +45789,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -44831,35 +45996,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -44909,17 +46074,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -45029,6 +46196,7 @@ public final class CoreRpc {
       private java.lang.Object gatewayId_ = "";
       /**
        * <code>string gatewayId = 2;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -45044,6 +46212,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 2;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -45060,6 +46229,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 2;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -45073,6 +46244,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -45082,6 +46254,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string gatewayId = 2;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -45097,7 +46271,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -45153,10 +46327,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -45191,7 +46367,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp}
    */
-  public  static final class RpcQueryContractListByGatewayIdRsp extends
+  public static final class RpcQueryContractListByGatewayIdRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
       RpcQueryContractListByGatewayIdRspOrBuilder {
@@ -45202,6 +46378,13 @@ public final class CoreRpc {
     }
     private RpcQueryContractListByGatewayIdRsp() {
       contract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryContractListByGatewayIdRsp();
     }
 
     @java.lang.Override
@@ -45242,16 +46425,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               contract_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -45265,7 +46448,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           contract_ = java.util.Collections.unmodifiableList(contract_);
         }
         this.unknownFields = unknownFields.build();
@@ -45285,24 +46468,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -45312,12 +46499,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
       return contract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getContractOrBuilderList() {
       return contract_;
@@ -45325,18 +46514,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public int getContractCount() {
       return contract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
       return contract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
         int index) {
       return contract_.get(index);
@@ -45394,16 +46586,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getContractList()
-          .equals(other.getContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractList()
+          .equals(other.getContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -45563,7 +46754,7 @@ public final class CoreRpc {
         }
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           contractBuilder_.clear();
         }
@@ -45594,57 +46785,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.contract_ = contract_;
         } else {
           result.contract_ = contractBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -45665,7 +46854,7 @@ public final class CoreRpc {
           if (!other.contract_.isEmpty()) {
             if (contract_.isEmpty()) {
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureContractIsMutable();
               contract_.addAll(other.contract_);
@@ -45678,7 +46867,7 @@ public final class CoreRpc {
               contractBuilder_.dispose();
               contractBuilder_ = null;
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               contractBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getContractFieldBuilder() : null;
@@ -45717,17 +46906,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -45837,9 +47028,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
         java.util.Collections.emptyList();
       private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -45989,7 +47180,7 @@ public final class CoreRpc {
       public Builder clearContract() {
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           contractBuilder_.clear();
@@ -46066,7 +47257,7 @@ public final class CoreRpc {
           contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   contract_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           contract_ = null;
@@ -46076,7 +47267,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -46132,10 +47323,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -46174,7 +47367,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataReq}
    */
-  public  static final class RpcSyncSlaveNodeRuntimeDataReq extends
+  public static final class RpcSyncSlaveNodeRuntimeDataReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataReq)
       RpcSyncSlaveNodeRuntimeDataReqOrBuilder {
@@ -46185,6 +47378,13 @@ public final class CoreRpc {
     }
     private RpcSyncSlaveNodeRuntimeDataReq() {
       gateway_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSyncSlaveNodeRuntimeDataReq();
     }
 
     @java.lang.Override
@@ -46225,16 +47425,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 gateway_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.GatewayField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               gateway_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.GatewayField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -46248,7 +47448,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           gateway_ = java.util.Collections.unmodifiableList(gateway_);
         }
         this.unknownFields = unknownFields.build();
@@ -46268,24 +47468,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq.class, xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONREQ_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -46295,12 +47499,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.GatewayField gateway = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.GatewayField> getGatewayList() {
       return gateway_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewayField gateway = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.GatewayFieldOrBuilder> 
         getGatewayOrBuilderList() {
       return gateway_;
@@ -46308,18 +47514,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.GatewayField gateway = 2;</code>
      */
+    @java.lang.Override
     public int getGatewayCount() {
       return gateway_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewayField gateway = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewayField getGateway(int index) {
       return gateway_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewayField gateway = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewayFieldOrBuilder getGatewayOrBuilder(
         int index) {
       return gateway_.get(index);
@@ -46377,16 +47586,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq other = (xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && getGatewayList()
-          .equals(other.getGatewayList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayList()
+          .equals(other.getGatewayList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -46550,7 +47758,7 @@ public final class CoreRpc {
         }
         if (gatewayBuilder_ == null) {
           gateway_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           gatewayBuilder_.clear();
         }
@@ -46581,57 +47789,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq result = new xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataReq(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonReqBuilder_ == null) {
           result.commonReq_ = commonReq_;
         } else {
           result.commonReq_ = commonReqBuilder_.build();
         }
         if (gatewayBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             gateway_ = java.util.Collections.unmodifiableList(gateway_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.gateway_ = gateway_;
         } else {
           result.gateway_ = gatewayBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -46652,7 +47858,7 @@ public final class CoreRpc {
           if (!other.gateway_.isEmpty()) {
             if (gateway_.isEmpty()) {
               gateway_ = other.gateway_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureGatewayIsMutable();
               gateway_.addAll(other.gateway_);
@@ -46665,7 +47871,7 @@ public final class CoreRpc {
               gatewayBuilder_.dispose();
               gatewayBuilder_ = null;
               gateway_ = other.gateway_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               gatewayBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getGatewayFieldBuilder() : null;
@@ -46704,17 +47910,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -46824,9 +48032,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.GatewayField> gateway_ =
         java.util.Collections.emptyList();
       private void ensureGatewayIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           gateway_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.GatewayField>(gateway_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -46976,7 +48184,7 @@ public final class CoreRpc {
       public Builder clearGateway() {
         if (gatewayBuilder_ == null) {
           gateway_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           gatewayBuilder_.clear();
@@ -47053,7 +48261,7 @@ public final class CoreRpc {
           gatewayBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.GatewayField, xyz.redtorch.pb.CoreField.GatewayField.Builder, xyz.redtorch.pb.CoreField.GatewayFieldOrBuilder>(
                   gateway_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           gateway_ = null;
@@ -47063,7 +48271,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -47119,10 +48327,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -47181,7 +48391,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataRsp}
    */
-  public  static final class RpcSyncSlaveNodeRuntimeDataRsp extends
+  public static final class RpcSyncSlaveNodeRuntimeDataRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataRsp)
       RpcSyncSlaveNodeRuntimeDataRspOrBuilder {
@@ -47193,6 +48403,13 @@ public final class CoreRpc {
     private RpcSyncSlaveNodeRuntimeDataRsp() {
       gatewaySetting_ = java.util.Collections.emptyList();
       subscribedContract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcSyncSlaveNodeRuntimeDataRsp();
     }
 
     @java.lang.Override
@@ -47233,25 +48450,25 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 gatewaySetting_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.GatewaySettingField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               gatewaySetting_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.GatewaySettingField.parser(), extensionRegistry));
               break;
             }
             case 26: {
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                 subscribedContract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000004;
+                mutable_bitField0_ |= 0x00000002;
               }
               subscribedContract_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -47265,10 +48482,10 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           gatewaySetting_ = java.util.Collections.unmodifiableList(gatewaySetting_);
         }
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
           subscribedContract_ = java.util.Collections.unmodifiableList(subscribedContract_);
         }
         this.unknownFields = unknownFields.build();
@@ -47288,24 +48505,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp.class, xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -47315,12 +48536,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.GatewaySettingField gatewaySetting = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.GatewaySettingField> getGatewaySettingList() {
       return gatewaySetting_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewaySettingField gatewaySetting = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.GatewaySettingFieldOrBuilder> 
         getGatewaySettingOrBuilderList() {
       return gatewaySetting_;
@@ -47328,18 +48551,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.GatewaySettingField gatewaySetting = 2;</code>
      */
+    @java.lang.Override
     public int getGatewaySettingCount() {
       return gatewaySetting_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewaySettingField gatewaySetting = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingField getGatewaySetting(int index) {
       return gatewaySetting_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.GatewaySettingField gatewaySetting = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingFieldOrBuilder getGatewaySettingOrBuilder(
         int index) {
       return gatewaySetting_.get(index);
@@ -47350,12 +48576,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField subscribedContract = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getSubscribedContractList() {
       return subscribedContract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField subscribedContract = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getSubscribedContractOrBuilderList() {
       return subscribedContract_;
@@ -47363,18 +48591,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField subscribedContract = 3;</code>
      */
+    @java.lang.Override
     public int getSubscribedContractCount() {
       return subscribedContract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField subscribedContract = 3;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getSubscribedContract(int index) {
       return subscribedContract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField subscribedContract = 3;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getSubscribedContractOrBuilder(
         int index) {
       return subscribedContract_.get(index);
@@ -47439,18 +48670,17 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp other = (xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getGatewaySettingList()
-          .equals(other.getGatewaySettingList());
-      result = result && getSubscribedContractList()
-          .equals(other.getSubscribedContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewaySettingList()
+          .equals(other.getGatewaySettingList())) return false;
+      if (!getSubscribedContractList()
+          .equals(other.getSubscribedContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -47615,13 +48845,13 @@ public final class CoreRpc {
         }
         if (gatewaySettingBuilder_ == null) {
           gatewaySetting_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           gatewaySettingBuilder_.clear();
         }
         if (subscribedContractBuilder_ == null) {
           subscribedContract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
           subscribedContractBuilder_.clear();
         }
@@ -47652,66 +48882,64 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp result = new xyz.redtorch.pb.CoreRpc.RpcSyncSlaveNodeRuntimeDataRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (gatewaySettingBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             gatewaySetting_ = java.util.Collections.unmodifiableList(gatewaySetting_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.gatewaySetting_ = gatewaySetting_;
         } else {
           result.gatewaySetting_ = gatewaySettingBuilder_.build();
         }
         if (subscribedContractBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             subscribedContract_ = java.util.Collections.unmodifiableList(subscribedContract_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.subscribedContract_ = subscribedContract_;
         } else {
           result.subscribedContract_ = subscribedContractBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -47732,7 +48960,7 @@ public final class CoreRpc {
           if (!other.gatewaySetting_.isEmpty()) {
             if (gatewaySetting_.isEmpty()) {
               gatewaySetting_ = other.gatewaySetting_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureGatewaySettingIsMutable();
               gatewaySetting_.addAll(other.gatewaySetting_);
@@ -47745,7 +48973,7 @@ public final class CoreRpc {
               gatewaySettingBuilder_.dispose();
               gatewaySettingBuilder_ = null;
               gatewaySetting_ = other.gatewaySetting_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               gatewaySettingBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getGatewaySettingFieldBuilder() : null;
@@ -47758,7 +48986,7 @@ public final class CoreRpc {
           if (!other.subscribedContract_.isEmpty()) {
             if (subscribedContract_.isEmpty()) {
               subscribedContract_ = other.subscribedContract_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureSubscribedContractIsMutable();
               subscribedContract_.addAll(other.subscribedContract_);
@@ -47771,7 +48999,7 @@ public final class CoreRpc {
               subscribedContractBuilder_.dispose();
               subscribedContractBuilder_ = null;
               subscribedContract_ = other.subscribedContract_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000002);
               subscribedContractBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getSubscribedContractFieldBuilder() : null;
@@ -47810,17 +49038,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -47930,9 +49160,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.GatewaySettingField> gatewaySetting_ =
         java.util.Collections.emptyList();
       private void ensureGatewaySettingIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           gatewaySetting_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.GatewaySettingField>(gatewaySetting_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -48082,7 +49312,7 @@ public final class CoreRpc {
       public Builder clearGatewaySetting() {
         if (gatewaySettingBuilder_ == null) {
           gatewaySetting_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           gatewaySettingBuilder_.clear();
@@ -48159,7 +49389,7 @@ public final class CoreRpc {
           gatewaySettingBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.GatewaySettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingFieldOrBuilder>(
                   gatewaySetting_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           gatewaySetting_ = null;
@@ -48170,9 +49400,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> subscribedContract_ =
         java.util.Collections.emptyList();
       private void ensureSubscribedContractIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           subscribedContract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(subscribedContract_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -48322,7 +49552,7 @@ public final class CoreRpc {
       public Builder clearSubscribedContract() {
         if (subscribedContractBuilder_ == null) {
           subscribedContract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           subscribedContractBuilder_.clear();
@@ -48399,7 +49629,7 @@ public final class CoreRpc {
           subscribedContractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   subscribedContract_,
-                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           subscribedContract_ = null;
@@ -48409,7 +49639,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -48465,10 +49695,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -48483,7 +49715,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListReq}
    */
-  public  static final class RpcGetMixContractListReq extends
+  public static final class RpcGetMixContractListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetMixContractListReq)
       RpcGetMixContractListReqOrBuilder {
@@ -48493,6 +49725,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetMixContractListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetMixContractListReq();
     }
 
     @java.lang.Override
@@ -48508,7 +49747,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -48533,7 +49771,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -48568,19 +49806,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -48630,14 +49873,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -48831,35 +50073,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -48905,17 +50147,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -49024,7 +50268,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -49080,10 +50324,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -49118,7 +50364,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListRsp}
    */
-  public  static final class RpcGetMixContractListRsp extends
+  public static final class RpcGetMixContractListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetMixContractListRsp)
       RpcGetMixContractListRspOrBuilder {
@@ -49129,6 +50375,13 @@ public final class CoreRpc {
     }
     private RpcGetMixContractListRsp() {
       contract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetMixContractListRsp();
     }
 
     @java.lang.Override
@@ -49169,16 +50422,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               contract_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -49192,7 +50445,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           contract_ = java.util.Collections.unmodifiableList(contract_);
         }
         this.unknownFields = unknownFields.build();
@@ -49212,24 +50465,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -49239,12 +50496,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
       return contract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getContractOrBuilderList() {
       return contract_;
@@ -49252,18 +50511,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public int getContractCount() {
       return contract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
       return contract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
         int index) {
       return contract_.get(index);
@@ -49321,16 +50583,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getContractList()
-          .equals(other.getContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractList()
+          .equals(other.getContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -49490,7 +50751,7 @@ public final class CoreRpc {
         }
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           contractBuilder_.clear();
         }
@@ -49521,57 +50782,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.contract_ = contract_;
         } else {
           result.contract_ = contractBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -49592,7 +50851,7 @@ public final class CoreRpc {
           if (!other.contract_.isEmpty()) {
             if (contract_.isEmpty()) {
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureContractIsMutable();
               contract_.addAll(other.contract_);
@@ -49605,7 +50864,7 @@ public final class CoreRpc {
               contractBuilder_.dispose();
               contractBuilder_ = null;
               contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               contractBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getContractFieldBuilder() : null;
@@ -49644,17 +50903,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -49764,9 +51025,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
         java.util.Collections.emptyList();
       private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -49916,7 +51177,7 @@ public final class CoreRpc {
       public Builder clearContract() {
         if (contractBuilder_ == null) {
           contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           contractBuilder_.clear();
@@ -49993,7 +51254,7 @@ public final class CoreRpc {
           contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   contract_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           contract_ = null;
@@ -50003,7 +51264,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -50059,10 +51320,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -50077,7 +51340,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTickListReq}
    */
-  public  static final class RpcGetTickListReq extends
+  public static final class RpcGetTickListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetTickListReq)
       RpcGetTickListReqOrBuilder {
@@ -50087,6 +51350,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcGetTickListReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetTickListReq();
     }
 
     @java.lang.Override
@@ -50102,7 +51372,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -50127,7 +51396,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -50162,19 +51431,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -50224,14 +51498,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetTickListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetTickListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -50425,35 +51698,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -50499,17 +51772,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -50618,7 +51893,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -50674,10 +51949,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -50712,7 +51989,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTickListRsp}
    */
-  public  static final class RpcGetTickListRsp extends
+  public static final class RpcGetTickListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetTickListRsp)
       RpcGetTickListRspOrBuilder {
@@ -50723,6 +52000,13 @@ public final class CoreRpc {
     }
     private RpcGetTickListRsp() {
       tick_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcGetTickListRsp();
     }
 
     @java.lang.Override
@@ -50763,16 +52047,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               tick_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TickField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -50786,7 +52070,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           tick_ = java.util.Collections.unmodifiableList(tick_);
         }
         this.unknownFields = unknownFields.build();
@@ -50806,24 +52090,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -50833,12 +52121,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TickField> getTickList() {
       return tick_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TickFieldOrBuilder> 
         getTickOrBuilderList() {
       return tick_;
@@ -50846,18 +52136,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public int getTickCount() {
       return tick_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickField getTick(int index) {
       return tick_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickFieldOrBuilder getTickOrBuilder(
         int index) {
       return tick_.get(index);
@@ -50915,16 +52208,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTickList()
-          .equals(other.getTickList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTickList()
+          .equals(other.getTickList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -51084,7 +52376,7 @@ public final class CoreRpc {
         }
         if (tickBuilder_ == null) {
           tick_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tickBuilder_.clear();
         }
@@ -51115,57 +52407,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tickBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             tick_ = java.util.Collections.unmodifiableList(tick_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.tick_ = tick_;
         } else {
           result.tick_ = tickBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -51186,7 +52476,7 @@ public final class CoreRpc {
           if (!other.tick_.isEmpty()) {
             if (tick_.isEmpty()) {
               tick_ = other.tick_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTickIsMutable();
               tick_.addAll(other.tick_);
@@ -51199,7 +52489,7 @@ public final class CoreRpc {
               tickBuilder_.dispose();
               tickBuilder_ = null;
               tick_ = other.tick_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tickBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTickFieldBuilder() : null;
@@ -51238,17 +52528,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -51358,9 +52650,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TickField> tick_ =
         java.util.Collections.emptyList();
       private void ensureTickIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>(tick_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -51510,7 +52802,7 @@ public final class CoreRpc {
       public Builder clearTick() {
         if (tickBuilder_ == null) {
           tick_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tickBuilder_.clear();
@@ -51587,7 +52879,7 @@ public final class CoreRpc {
           tickBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TickField, xyz.redtorch.pb.CoreField.TickField.Builder, xyz.redtorch.pb.CoreField.TickFieldOrBuilder>(
                   tick_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           tick_ = null;
@@ -51597,7 +52889,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -51653,10 +52945,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -51666,39 +52960,47 @@ public final class CoreRpc {
 
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
     long getStartTimestamp();
 
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
     long getEndTimestamp();
 
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
 
     /**
      * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+     * @return The enum numeric value on the wire for barCycle.
      */
     int getBarCycleValue();
     /**
      * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+     * @return The barCycle.
      */
     xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle();
 
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+     * @return The enum numeric value on the wire for marketDataDBType.
      */
     int getMarketDataDBTypeValue();
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+     * @return The marketDataDBType.
      */
     xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType();
   }
@@ -51709,7 +53011,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListReq}
    */
-  public  static final class RpcQueryDBBarListReq extends
+  public static final class RpcQueryDBBarListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryDBBarListReq)
       RpcQueryDBBarListReqOrBuilder {
@@ -51719,11 +53021,16 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryDBBarListReq() {
-      startTimestamp_ = 0L;
-      endTimestamp_ = 0L;
       unifiedSymbol_ = "";
       barCycle_ = 0;
       marketDataDBType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryDBBarListReq();
     }
 
     @java.lang.Override
@@ -51739,7 +53046,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -51792,7 +53098,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -51827,19 +53133,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -51848,7 +53159,9 @@ public final class CoreRpc {
     private long startTimestamp_;
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
+    @java.lang.Override
     public long getStartTimestamp() {
       return startTimestamp_;
     }
@@ -51857,7 +53170,9 @@ public final class CoreRpc {
     private long endTimestamp_;
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
+    @java.lang.Override
     public long getEndTimestamp() {
       return endTimestamp_;
     }
@@ -51866,7 +53181,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -51881,7 +53198,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -51900,14 +53219,16 @@ public final class CoreRpc {
     private int barCycle_;
     /**
      * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+     * @return The enum numeric value on the wire for barCycle.
      */
-    public int getBarCycleValue() {
+    @java.lang.Override public int getBarCycleValue() {
       return barCycle_;
     }
     /**
      * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+     * @return The barCycle.
      */
-    public xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.BarCycleEnum result = xyz.redtorch.pb.CoreEnum.BarCycleEnum.valueOf(barCycle_);
       return result == null ? xyz.redtorch.pb.CoreEnum.BarCycleEnum.UNRECOGNIZED : result;
@@ -51917,14 +53238,16 @@ public final class CoreRpc {
     private int marketDataDBType_;
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+     * @return The enum numeric value on the wire for marketDataDBType.
      */
-    public int getMarketDataDBTypeValue() {
+    @java.lang.Override public int getMarketDataDBTypeValue() {
       return marketDataDBType_;
     }
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+     * @return The marketDataDBType.
      */
-    public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum result = xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.valueOf(marketDataDBType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.UNRECOGNIZED : result;
@@ -52009,22 +53332,21 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (getStartTimestamp()
-          == other.getStartTimestamp());
-      result = result && (getEndTimestamp()
-          == other.getEndTimestamp());
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && barCycle_ == other.barCycle_;
-      result = result && marketDataDBType_ == other.marketDataDBType_;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getStartTimestamp()
+          != other.getStartTimestamp()) return false;
+      if (getEndTimestamp()
+          != other.getEndTimestamp()) return false;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (barCycle_ != other.barCycle_) return false;
+      if (marketDataDBType_ != other.marketDataDBType_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -52245,35 +53567,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -52335,17 +53657,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -52455,12 +53779,16 @@ public final class CoreRpc {
       private long startTimestamp_ ;
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return The startTimestamp.
        */
+      @java.lang.Override
       public long getStartTimestamp() {
         return startTimestamp_;
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @param value The startTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setStartTimestamp(long value) {
         
@@ -52470,6 +53798,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStartTimestamp() {
         
@@ -52481,12 +53810,16 @@ public final class CoreRpc {
       private long endTimestamp_ ;
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return The endTimestamp.
        */
+      @java.lang.Override
       public long getEndTimestamp() {
         return endTimestamp_;
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @param value The endTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setEndTimestamp(long value) {
         
@@ -52496,6 +53829,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearEndTimestamp() {
         
@@ -52507,6 +53841,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -52522,6 +53857,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -52538,6 +53874,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -52551,6 +53889,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -52560,6 +53899,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -52576,21 +53917,27 @@ public final class CoreRpc {
       private int barCycle_ = 0;
       /**
        * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * @return The enum numeric value on the wire for barCycle.
        */
-      public int getBarCycleValue() {
+      @java.lang.Override public int getBarCycleValue() {
         return barCycle_;
       }
       /**
        * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * @param value The enum numeric value on the wire for barCycle to set.
+       * @return This builder for chaining.
        */
       public Builder setBarCycleValue(int value) {
+        
         barCycle_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * @return The barCycle.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.BarCycleEnum result = xyz.redtorch.pb.CoreEnum.BarCycleEnum.valueOf(barCycle_);
@@ -52598,6 +53945,8 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * @param value The barCycle to set.
+       * @return This builder for chaining.
        */
       public Builder setBarCycle(xyz.redtorch.pb.CoreEnum.BarCycleEnum value) {
         if (value == null) {
@@ -52610,6 +53959,7 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBarCycle() {
         
@@ -52621,21 +53971,27 @@ public final class CoreRpc {
       private int marketDataDBType_ = 0;
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+       * @return The enum numeric value on the wire for marketDataDBType.
        */
-      public int getMarketDataDBTypeValue() {
+      @java.lang.Override public int getMarketDataDBTypeValue() {
         return marketDataDBType_;
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+       * @param value The enum numeric value on the wire for marketDataDBType to set.
+       * @return This builder for chaining.
        */
       public Builder setMarketDataDBTypeValue(int value) {
+        
         marketDataDBType_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+       * @return The marketDataDBType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum result = xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.valueOf(marketDataDBType_);
@@ -52643,6 +53999,8 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+       * @param value The marketDataDBType to set.
+       * @return This builder for chaining.
        */
       public Builder setMarketDataDBType(xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum value) {
         if (value == null) {
@@ -52655,6 +54013,7 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMarketDataDBType() {
         
@@ -52665,7 +54024,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -52721,10 +54080,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -52759,7 +54120,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListRsp}
    */
-  public  static final class RpcQueryDBBarListRsp extends
+  public static final class RpcQueryDBBarListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryDBBarListRsp)
       RpcQueryDBBarListRspOrBuilder {
@@ -52770,6 +54131,13 @@ public final class CoreRpc {
     }
     private RpcQueryDBBarListRsp() {
       bar_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryDBBarListRsp();
     }
 
     @java.lang.Override
@@ -52810,16 +54178,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 bar_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.BarField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               bar_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.BarField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -52833,7 +54201,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           bar_ = java.util.Collections.unmodifiableList(bar_);
         }
         this.unknownFields = unknownFields.build();
@@ -52853,24 +54221,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -52880,12 +54252,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.BarField> getBarList() {
       return bar_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.BarFieldOrBuilder> 
         getBarOrBuilderList() {
       return bar_;
@@ -52893,18 +54267,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public int getBarCount() {
       return bar_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.BarField getBar(int index) {
       return bar_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.BarFieldOrBuilder getBarOrBuilder(
         int index) {
       return bar_.get(index);
@@ -52962,16 +54339,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getBarList()
-          .equals(other.getBarList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getBarList()
+          .equals(other.getBarList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -53131,7 +54507,7 @@ public final class CoreRpc {
         }
         if (barBuilder_ == null) {
           bar_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           barBuilder_.clear();
         }
@@ -53162,57 +54538,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryDBBarListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (barBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             bar_ = java.util.Collections.unmodifiableList(bar_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.bar_ = bar_;
         } else {
           result.bar_ = barBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -53233,7 +54607,7 @@ public final class CoreRpc {
           if (!other.bar_.isEmpty()) {
             if (bar_.isEmpty()) {
               bar_ = other.bar_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureBarIsMutable();
               bar_.addAll(other.bar_);
@@ -53246,7 +54620,7 @@ public final class CoreRpc {
               barBuilder_.dispose();
               barBuilder_ = null;
               bar_ = other.bar_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               barBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getBarFieldBuilder() : null;
@@ -53285,17 +54659,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -53405,9 +54781,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.BarField> bar_ =
         java.util.Collections.emptyList();
       private void ensureBarIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           bar_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.BarField>(bar_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -53557,7 +54933,7 @@ public final class CoreRpc {
       public Builder clearBar() {
         if (barBuilder_ == null) {
           bar_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           barBuilder_.clear();
@@ -53634,7 +55010,7 @@ public final class CoreRpc {
           barBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.BarField, xyz.redtorch.pb.CoreField.BarField.Builder, xyz.redtorch.pb.CoreField.BarFieldOrBuilder>(
                   bar_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           bar_ = null;
@@ -53644,7 +55020,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -53700,10 +55076,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -53713,30 +55091,36 @@ public final class CoreRpc {
 
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
     long getStartTimestamp();
 
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
     long getEndTimestamp();
 
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
 
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+     * @return The enum numeric value on the wire for marketDataDBType.
      */
     int getMarketDataDBTypeValue();
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+     * @return The marketDataDBType.
      */
     xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType();
   }
@@ -53747,7 +55131,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBTickListReq}
    */
-  public  static final class RpcQueryDBTickListReq extends
+  public static final class RpcQueryDBTickListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryDBTickListReq)
       RpcQueryDBTickListReqOrBuilder {
@@ -53757,10 +55141,15 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryDBTickListReq() {
-      startTimestamp_ = 0L;
-      endTimestamp_ = 0L;
       unifiedSymbol_ = "";
       marketDataDBType_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryDBTickListReq();
     }
 
     @java.lang.Override
@@ -53776,7 +55165,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -53823,7 +55211,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -53858,19 +55246,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -53879,7 +55272,9 @@ public final class CoreRpc {
     private long startTimestamp_;
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
+    @java.lang.Override
     public long getStartTimestamp() {
       return startTimestamp_;
     }
@@ -53888,7 +55283,9 @@ public final class CoreRpc {
     private long endTimestamp_;
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
+    @java.lang.Override
     public long getEndTimestamp() {
       return endTimestamp_;
     }
@@ -53897,7 +55294,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -53912,7 +55311,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -53931,14 +55332,16 @@ public final class CoreRpc {
     private int marketDataDBType_;
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+     * @return The enum numeric value on the wire for marketDataDBType.
      */
-    public int getMarketDataDBTypeValue() {
+    @java.lang.Override public int getMarketDataDBTypeValue() {
       return marketDataDBType_;
     }
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+     * @return The marketDataDBType.
      */
-    public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum result = xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.valueOf(marketDataDBType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.UNRECOGNIZED : result;
@@ -54016,21 +55419,20 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (getStartTimestamp()
-          == other.getStartTimestamp());
-      result = result && (getEndTimestamp()
-          == other.getEndTimestamp());
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && marketDataDBType_ == other.marketDataDBType_;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getStartTimestamp()
+          != other.getStartTimestamp()) return false;
+      if (getEndTimestamp()
+          != other.getEndTimestamp()) return false;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (marketDataDBType_ != other.marketDataDBType_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -54246,35 +55648,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -54333,17 +55735,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -54453,12 +55857,16 @@ public final class CoreRpc {
       private long startTimestamp_ ;
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return The startTimestamp.
        */
+      @java.lang.Override
       public long getStartTimestamp() {
         return startTimestamp_;
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @param value The startTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setStartTimestamp(long value) {
         
@@ -54468,6 +55876,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStartTimestamp() {
         
@@ -54479,12 +55888,16 @@ public final class CoreRpc {
       private long endTimestamp_ ;
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return The endTimestamp.
        */
+      @java.lang.Override
       public long getEndTimestamp() {
         return endTimestamp_;
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @param value The endTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setEndTimestamp(long value) {
         
@@ -54494,6 +55907,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearEndTimestamp() {
         
@@ -54505,6 +55919,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -54520,6 +55935,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -54536,6 +55952,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -54549,6 +55967,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -54558,6 +55977,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -54574,21 +55995,27 @@ public final class CoreRpc {
       private int marketDataDBType_ = 0;
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+       * @return The enum numeric value on the wire for marketDataDBType.
        */
-      public int getMarketDataDBTypeValue() {
+      @java.lang.Override public int getMarketDataDBTypeValue() {
         return marketDataDBType_;
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+       * @param value The enum numeric value on the wire for marketDataDBType to set.
+       * @return This builder for chaining.
        */
       public Builder setMarketDataDBTypeValue(int value) {
+        
         marketDataDBType_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+       * @return The marketDataDBType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum getMarketDataDBType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum result = xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.valueOf(marketDataDBType_);
@@ -54596,6 +56023,8 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+       * @param value The marketDataDBType to set.
+       * @return This builder for chaining.
        */
       public Builder setMarketDataDBType(xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum value) {
         if (value == null) {
@@ -54608,6 +56037,7 @@ public final class CoreRpc {
       }
       /**
        * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMarketDataDBType() {
         
@@ -54618,7 +56048,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -54674,10 +56104,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -54712,7 +56144,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBTickListRsp}
    */
-  public  static final class RpcQueryDBTickListRsp extends
+  public static final class RpcQueryDBTickListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryDBTickListRsp)
       RpcQueryDBTickListRspOrBuilder {
@@ -54723,6 +56155,13 @@ public final class CoreRpc {
     }
     private RpcQueryDBTickListRsp() {
       tick_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryDBTickListRsp();
     }
 
     @java.lang.Override
@@ -54763,16 +56202,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               tick_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.TickField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -54786,7 +56225,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           tick_ = java.util.Collections.unmodifiableList(tick_);
         }
         this.unknownFields = unknownFields.build();
@@ -54806,24 +56245,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -54833,12 +56276,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TickField> getTickList() {
       return tick_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TickFieldOrBuilder> 
         getTickOrBuilderList() {
       return tick_;
@@ -54846,18 +56291,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public int getTickCount() {
       return tick_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickField getTick(int index) {
       return tick_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickFieldOrBuilder getTickOrBuilder(
         int index) {
       return tick_.get(index);
@@ -54915,16 +56363,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getTickList()
-          .equals(other.getTickList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTickList()
+          .equals(other.getTickList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -55084,7 +56531,7 @@ public final class CoreRpc {
         }
         if (tickBuilder_ == null) {
           tick_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tickBuilder_.clear();
         }
@@ -55115,57 +56562,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryDBTickListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (tickBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             tick_ = java.util.Collections.unmodifiableList(tick_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.tick_ = tick_;
         } else {
           result.tick_ = tickBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -55186,7 +56631,7 @@ public final class CoreRpc {
           if (!other.tick_.isEmpty()) {
             if (tick_.isEmpty()) {
               tick_ = other.tick_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTickIsMutable();
               tick_.addAll(other.tick_);
@@ -55199,7 +56644,7 @@ public final class CoreRpc {
               tickBuilder_.dispose();
               tickBuilder_ = null;
               tick_ = other.tick_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               tickBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTickFieldBuilder() : null;
@@ -55238,17 +56683,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -55358,9 +56805,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TickField> tick_ =
         java.util.Collections.emptyList();
       private void ensureTickIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>(tick_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -55510,7 +56957,7 @@ public final class CoreRpc {
       public Builder clearTick() {
         if (tickBuilder_ == null) {
           tick_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tickBuilder_.clear();
@@ -55587,7 +57034,7 @@ public final class CoreRpc {
           tickBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TickField, xyz.redtorch.pb.CoreField.TickField.Builder, xyz.redtorch.pb.CoreField.TickFieldOrBuilder>(
                   tick_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           tick_ = null;
@@ -55597,7 +57044,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -55653,10 +57100,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
     boolean hasCommonReq();
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
     xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
     /**
@@ -55666,26 +57115,31 @@ public final class CoreRpc {
 
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
     long getStartTimestamp();
 
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
     long getEndTimestamp();
 
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
 
     /**
      * <code>fixed32 volume = 5;</code>
+     * @return The volume.
      */
     int getVolume();
   }
@@ -55696,7 +57150,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryVolumeBarListReq}
    */
-  public  static final class RpcQueryVolumeBarListReq extends
+  public static final class RpcQueryVolumeBarListReq extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryVolumeBarListReq)
       RpcQueryVolumeBarListReqOrBuilder {
@@ -55706,10 +57160,14 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryVolumeBarListReq() {
-      startTimestamp_ = 0L;
-      endTimestamp_ = 0L;
       unifiedSymbol_ = "";
-      volume_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryVolumeBarListReq();
     }
 
     @java.lang.Override
@@ -55725,7 +57183,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -55771,7 +57228,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -55806,19 +57263,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return Whether the commonReq field is set.
      */
+    @java.lang.Override
     public boolean hasCommonReq() {
       return commonReq_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+     * @return The commonReq.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
       return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
       return getCommonReq();
     }
@@ -55827,7 +57289,9 @@ public final class CoreRpc {
     private long startTimestamp_;
     /**
      * <code>fixed64 startTimestamp = 2;</code>
+     * @return The startTimestamp.
      */
+    @java.lang.Override
     public long getStartTimestamp() {
       return startTimestamp_;
     }
@@ -55836,7 +57300,9 @@ public final class CoreRpc {
     private long endTimestamp_;
     /**
      * <code>fixed64 endTimestamp = 3;</code>
+     * @return The endTimestamp.
      */
+    @java.lang.Override
     public long getEndTimestamp() {
       return endTimestamp_;
     }
@@ -55845,7 +57311,9 @@ public final class CoreRpc {
     private volatile java.lang.Object unifiedSymbol_;
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -55860,7 +57328,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string unifiedSymbol = 4;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -55879,7 +57349,9 @@ public final class CoreRpc {
     private int volume_;
     /**
      * <code>fixed32 volume = 5;</code>
+     * @return The volume.
      */
+    @java.lang.Override
     public int getVolume() {
       return volume_;
     }
@@ -55956,22 +57428,21 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListReq) obj;
 
-      boolean result = true;
-      result = result && (hasCommonReq() == other.hasCommonReq());
+      if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
-        result = result && getCommonReq()
-            .equals(other.getCommonReq());
+        if (!getCommonReq()
+            .equals(other.getCommonReq())) return false;
       }
-      result = result && (getStartTimestamp()
-          == other.getStartTimestamp());
-      result = result && (getEndTimestamp()
-          == other.getEndTimestamp());
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && (getVolume()
-          == other.getVolume());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getStartTimestamp()
+          != other.getStartTimestamp()) return false;
+      if (getEndTimestamp()
+          != other.getEndTimestamp()) return false;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (getVolume()
+          != other.getVolume()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -56187,35 +57658,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -56274,17 +57745,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_ = null;
+      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return Whether the commonReq field is set.
        */
       public boolean hasCommonReq() {
         return commonReqBuilder_ != null || commonReq_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
+       * @return The commonReq.
        */
       public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
         if (commonReqBuilder_ == null) {
@@ -56394,12 +57867,16 @@ public final class CoreRpc {
       private long startTimestamp_ ;
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return The startTimestamp.
        */
+      @java.lang.Override
       public long getStartTimestamp() {
         return startTimestamp_;
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @param value The startTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setStartTimestamp(long value) {
         
@@ -56409,6 +57886,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 startTimestamp = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStartTimestamp() {
         
@@ -56420,12 +57898,16 @@ public final class CoreRpc {
       private long endTimestamp_ ;
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return The endTimestamp.
        */
+      @java.lang.Override
       public long getEndTimestamp() {
         return endTimestamp_;
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @param value The endTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setEndTimestamp(long value) {
         
@@ -56435,6 +57917,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 endTimestamp = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearEndTimestamp() {
         
@@ -56446,6 +57929,7 @@ public final class CoreRpc {
       private java.lang.Object unifiedSymbol_ = "";
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -56461,6 +57945,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -56477,6 +57962,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -56490,6 +57977,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -56499,6 +57987,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string unifiedSymbol = 4;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -56515,12 +58005,16 @@ public final class CoreRpc {
       private int volume_ ;
       /**
        * <code>fixed32 volume = 5;</code>
+       * @return The volume.
        */
+      @java.lang.Override
       public int getVolume() {
         return volume_;
       }
       /**
        * <code>fixed32 volume = 5;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
        */
       public Builder setVolume(int value) {
         
@@ -56530,6 +58024,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed32 volume = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
@@ -56540,7 +58035,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -56596,10 +58091,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
     boolean hasCommonRsp();
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
     xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
     /**
@@ -56634,7 +58131,7 @@ public final class CoreRpc {
   /**
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryVolumeBarListRsp}
    */
-  public  static final class RpcQueryVolumeBarListRsp extends
+  public static final class RpcQueryVolumeBarListRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryVolumeBarListRsp)
       RpcQueryVolumeBarListRspOrBuilder {
@@ -56645,6 +58142,13 @@ public final class CoreRpc {
     }
     private RpcQueryVolumeBarListRsp() {
       bar_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcQueryVolumeBarListRsp();
     }
 
     @java.lang.Override
@@ -56685,16 +58189,16 @@ public final class CoreRpc {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 bar_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.BarField>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               bar_.add(
                   input.readMessage(xyz.redtorch.pb.CoreField.BarField.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -56708,7 +58212,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           bar_ = java.util.Collections.unmodifiableList(bar_);
         }
         this.unknownFields = unknownFields.build();
@@ -56728,24 +58232,28 @@ public final class CoreRpc {
               xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp.Builder.class);
     }
 
-    private int bitField0_;
     public static final int COMMONRSP_FIELD_NUMBER = 1;
     private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return Whether the commonRsp field is set.
      */
+    @java.lang.Override
     public boolean hasCommonRsp() {
       return commonRsp_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+     * @return The commonRsp.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
       return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
       return getCommonRsp();
     }
@@ -56755,12 +58263,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.BarField> getBarList() {
       return bar_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.BarFieldOrBuilder> 
         getBarOrBuilderList() {
       return bar_;
@@ -56768,18 +58278,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public int getBarCount() {
       return bar_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.BarField getBar(int index) {
       return bar_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.BarField bar = 2;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.BarFieldOrBuilder getBarOrBuilder(
         int index) {
       return bar_.get(index);
@@ -56837,16 +58350,15 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp) obj;
 
-      boolean result = true;
-      result = result && (hasCommonRsp() == other.hasCommonRsp());
+      if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
-        result = result && getCommonRsp()
-            .equals(other.getCommonRsp());
+        if (!getCommonRsp()
+            .equals(other.getCommonRsp())) return false;
       }
-      result = result && getBarList()
-          .equals(other.getBarList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getBarList()
+          .equals(other.getBarList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -57006,7 +58518,7 @@ public final class CoreRpc {
         }
         if (barBuilder_ == null) {
           bar_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           barBuilder_.clear();
         }
@@ -57037,57 +58549,55 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryVolumeBarListRsp(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
           result.commonRsp_ = commonRspBuilder_.build();
         }
         if (barBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             bar_ = java.util.Collections.unmodifiableList(bar_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.bar_ = bar_;
         } else {
           result.bar_ = barBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -57108,7 +58618,7 @@ public final class CoreRpc {
           if (!other.bar_.isEmpty()) {
             if (bar_.isEmpty()) {
               bar_ = other.bar_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureBarIsMutable();
               bar_.addAll(other.bar_);
@@ -57121,7 +58631,7 @@ public final class CoreRpc {
               barBuilder_.dispose();
               barBuilder_ = null;
               bar_ = other.bar_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
               barBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getBarFieldBuilder() : null;
@@ -57160,17 +58670,19 @@ public final class CoreRpc {
       }
       private int bitField0_;
 
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_ = null;
+      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return Whether the commonRsp field is set.
        */
       public boolean hasCommonRsp() {
         return commonRspBuilder_ != null || commonRsp_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
+       * @return The commonRsp.
        */
       public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
         if (commonRspBuilder_ == null) {
@@ -57280,9 +58792,9 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.BarField> bar_ =
         java.util.Collections.emptyList();
       private void ensureBarIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           bar_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.BarField>(bar_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -57432,7 +58944,7 @@ public final class CoreRpc {
       public Builder clearBar() {
         if (barBuilder_ == null) {
           bar_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           barBuilder_.clear();
@@ -57509,7 +59021,7 @@ public final class CoreRpc {
           barBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.BarField, xyz.redtorch.pb.CoreField.BarField.Builder, xyz.redtorch.pb.CoreField.BarFieldOrBuilder>(
                   bar_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           bar_ = null;
@@ -57519,7 +59031,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -57575,30 +59087,36 @@ public final class CoreRpc {
 
     /**
      * <code>fixed32 originalRpcId = 1;</code>
+     * @return The originalRpcId.
      */
     int getOriginalRpcId();
 
     /**
      * <code>string originalReqId = 2;</code>
+     * @return The originalReqId.
      */
     java.lang.String getOriginalReqId();
     /**
      * <code>string originalReqId = 2;</code>
+     * @return The bytes for originalReqId.
      */
     com.google.protobuf.ByteString
         getOriginalReqIdBytes();
 
     /**
      * <code>fixed64 originalTimestamp = 3;</code>
+     * @return The originalTimestamp.
      */
     long getOriginalTimestamp();
 
     /**
      * <code>string info = 4;</code>
+     * @return The info.
      */
     java.lang.String getInfo();
     /**
      * <code>string info = 4;</code>
+     * @return The bytes for info.
      */
     com.google.protobuf.ByteString
         getInfoBytes();
@@ -57610,7 +59128,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcExceptionRsp}
    */
-  public  static final class RpcExceptionRsp extends
+  public static final class RpcExceptionRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcExceptionRsp)
       RpcExceptionRspOrBuilder {
@@ -57620,10 +59138,15 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcExceptionRsp() {
-      originalRpcId_ = 0;
       originalReqId_ = "";
-      originalTimestamp_ = 0L;
       info_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcExceptionRsp();
     }
 
     @java.lang.Override
@@ -57639,7 +59162,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -57673,7 +59195,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -57708,7 +59230,9 @@ public final class CoreRpc {
     private int originalRpcId_;
     /**
      * <code>fixed32 originalRpcId = 1;</code>
+     * @return The originalRpcId.
      */
+    @java.lang.Override
     public int getOriginalRpcId() {
       return originalRpcId_;
     }
@@ -57717,7 +59241,9 @@ public final class CoreRpc {
     private volatile java.lang.Object originalReqId_;
     /**
      * <code>string originalReqId = 2;</code>
+     * @return The originalReqId.
      */
+    @java.lang.Override
     public java.lang.String getOriginalReqId() {
       java.lang.Object ref = originalReqId_;
       if (ref instanceof java.lang.String) {
@@ -57732,7 +59258,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string originalReqId = 2;</code>
+     * @return The bytes for originalReqId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginalReqIdBytes() {
       java.lang.Object ref = originalReqId_;
@@ -57751,7 +59279,9 @@ public final class CoreRpc {
     private long originalTimestamp_;
     /**
      * <code>fixed64 originalTimestamp = 3;</code>
+     * @return The originalTimestamp.
      */
+    @java.lang.Override
     public long getOriginalTimestamp() {
       return originalTimestamp_;
     }
@@ -57760,7 +59290,9 @@ public final class CoreRpc {
     private volatile java.lang.Object info_;
     /**
      * <code>string info = 4;</code>
+     * @return The info.
      */
+    @java.lang.Override
     public java.lang.String getInfo() {
       java.lang.Object ref = info_;
       if (ref instanceof java.lang.String) {
@@ -57775,7 +59307,9 @@ public final class CoreRpc {
     }
     /**
      * <code>string info = 4;</code>
+     * @return The bytes for info.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getInfoBytes() {
       java.lang.Object ref = info_;
@@ -57854,17 +59388,16 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcExceptionRsp other = (xyz.redtorch.pb.CoreRpc.RpcExceptionRsp) obj;
 
-      boolean result = true;
-      result = result && (getOriginalRpcId()
-          == other.getOriginalRpcId());
-      result = result && getOriginalReqId()
-          .equals(other.getOriginalReqId());
-      result = result && (getOriginalTimestamp()
-          == other.getOriginalTimestamp());
-      result = result && getInfo()
-          .equals(other.getInfo());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (getOriginalRpcId()
+          != other.getOriginalRpcId()) return false;
+      if (!getOriginalReqId()
+          .equals(other.getOriginalReqId())) return false;
+      if (getOriginalTimestamp()
+          != other.getOriginalTimestamp()) return false;
+      if (!getInfo()
+          .equals(other.getInfo())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -58064,35 +59597,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -58152,12 +59685,16 @@ public final class CoreRpc {
       private int originalRpcId_ ;
       /**
        * <code>fixed32 originalRpcId = 1;</code>
+       * @return The originalRpcId.
        */
+      @java.lang.Override
       public int getOriginalRpcId() {
         return originalRpcId_;
       }
       /**
        * <code>fixed32 originalRpcId = 1;</code>
+       * @param value The originalRpcId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginalRpcId(int value) {
         
@@ -58167,6 +59704,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed32 originalRpcId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginalRpcId() {
         
@@ -58178,6 +59716,7 @@ public final class CoreRpc {
       private java.lang.Object originalReqId_ = "";
       /**
        * <code>string originalReqId = 2;</code>
+       * @return The originalReqId.
        */
       public java.lang.String getOriginalReqId() {
         java.lang.Object ref = originalReqId_;
@@ -58193,6 +59732,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originalReqId = 2;</code>
+       * @return The bytes for originalReqId.
        */
       public com.google.protobuf.ByteString
           getOriginalReqIdBytes() {
@@ -58209,6 +59749,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originalReqId = 2;</code>
+       * @param value The originalReqId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginalReqId(
           java.lang.String value) {
@@ -58222,6 +59764,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string originalReqId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginalReqId() {
         
@@ -58231,6 +59774,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string originalReqId = 2;</code>
+       * @param value The bytes for originalReqId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginalReqIdBytes(
           com.google.protobuf.ByteString value) {
@@ -58247,12 +59792,16 @@ public final class CoreRpc {
       private long originalTimestamp_ ;
       /**
        * <code>fixed64 originalTimestamp = 3;</code>
+       * @return The originalTimestamp.
        */
+      @java.lang.Override
       public long getOriginalTimestamp() {
         return originalTimestamp_;
       }
       /**
        * <code>fixed64 originalTimestamp = 3;</code>
+       * @param value The originalTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginalTimestamp(long value) {
         
@@ -58262,6 +59811,7 @@ public final class CoreRpc {
       }
       /**
        * <code>fixed64 originalTimestamp = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginalTimestamp() {
         
@@ -58273,6 +59823,7 @@ public final class CoreRpc {
       private java.lang.Object info_ = "";
       /**
        * <code>string info = 4;</code>
+       * @return The info.
        */
       public java.lang.String getInfo() {
         java.lang.Object ref = info_;
@@ -58288,6 +59839,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string info = 4;</code>
+       * @return The bytes for info.
        */
       public com.google.protobuf.ByteString
           getInfoBytes() {
@@ -58304,6 +59856,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string info = 4;</code>
+       * @param value The info to set.
+       * @return This builder for chaining.
        */
       public Builder setInfo(
           java.lang.String value) {
@@ -58317,6 +59871,7 @@ public final class CoreRpc {
       }
       /**
        * <code>string info = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearInfo() {
         
@@ -58326,6 +59881,8 @@ public final class CoreRpc {
       }
       /**
        * <code>string info = 4;</code>
+       * @param value The bytes for info to set.
+       * @return This builder for chaining.
        */
       public Builder setInfoBytes(
           com.google.protobuf.ByteString value) {
@@ -58341,7 +59898,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -58397,10 +59954,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+     * @return Whether the order field is set.
      */
     boolean hasOrder();
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+     * @return The order.
      */
     xyz.redtorch.pb.CoreField.OrderField getOrder();
     /**
@@ -58415,7 +59974,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcOrderRtn}
    */
-  public  static final class RpcOrderRtn extends
+  public static final class RpcOrderRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcOrderRtn)
       RpcOrderRtnOrBuilder {
@@ -58425,6 +59984,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcOrderRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcOrderRtn();
     }
 
     @java.lang.Override
@@ -58440,7 +60006,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -58465,7 +60030,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -58500,19 +60065,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.OrderField order_;
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+     * @return Whether the order field is set.
      */
+    @java.lang.Override
     public boolean hasOrder() {
       return order_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+     * @return The order.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder() {
       return order_ == null ? xyz.redtorch.pb.CoreField.OrderField.getDefaultInstance() : order_;
     }
     /**
      * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder() {
       return getOrder();
     }
@@ -58562,14 +60132,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcOrderRtn other = (xyz.redtorch.pb.CoreRpc.RpcOrderRtn) obj;
 
-      boolean result = true;
-      result = result && (hasOrder() == other.hasOrder());
+      if (hasOrder() != other.hasOrder()) return false;
       if (hasOrder()) {
-        result = result && getOrder()
-            .equals(other.getOrder());
+        if (!getOrder()
+            .equals(other.getOrder())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -58763,35 +60332,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -58837,17 +60406,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.OrderField order_ = null;
+      private xyz.redtorch.pb.CoreField.OrderField order_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> orderBuilder_;
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+       * @return Whether the order field is set.
        */
       public boolean hasOrder() {
         return orderBuilder_ != null || order_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.OrderField order = 1;</code>
+       * @return The order.
        */
       public xyz.redtorch.pb.CoreField.OrderField getOrder() {
         if (orderBuilder_ == null) {
@@ -58956,7 +60527,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -59012,10 +60583,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+     * @return Whether the trade field is set.
      */
     boolean hasTrade();
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+     * @return The trade.
      */
     xyz.redtorch.pb.CoreField.TradeField getTrade();
     /**
@@ -59030,7 +60603,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcTradeRtn}
    */
-  public  static final class RpcTradeRtn extends
+  public static final class RpcTradeRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcTradeRtn)
       RpcTradeRtnOrBuilder {
@@ -59040,6 +60613,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcTradeRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcTradeRtn();
     }
 
     @java.lang.Override
@@ -59055,7 +60635,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -59080,7 +60659,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -59115,19 +60694,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.TradeField trade_;
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+     * @return Whether the trade field is set.
      */
+    @java.lang.Override
     public boolean hasTrade() {
       return trade_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+     * @return The trade.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade() {
       return trade_ == null ? xyz.redtorch.pb.CoreField.TradeField.getDefaultInstance() : trade_;
     }
     /**
      * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder() {
       return getTrade();
     }
@@ -59177,14 +60761,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcTradeRtn other = (xyz.redtorch.pb.CoreRpc.RpcTradeRtn) obj;
 
-      boolean result = true;
-      result = result && (hasTrade() == other.hasTrade());
+      if (hasTrade() != other.hasTrade()) return false;
       if (hasTrade()) {
-        result = result && getTrade()
-            .equals(other.getTrade());
+        if (!getTrade()
+            .equals(other.getTrade())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -59378,35 +60961,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -59452,17 +61035,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.TradeField trade_ = null;
+      private xyz.redtorch.pb.CoreField.TradeField trade_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> tradeBuilder_;
       /**
        * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+       * @return Whether the trade field is set.
        */
       public boolean hasTrade() {
         return tradeBuilder_ != null || trade_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.TradeField trade = 1;</code>
+       * @return The trade.
        */
       public xyz.redtorch.pb.CoreField.TradeField getTrade() {
         if (tradeBuilder_ == null) {
@@ -59571,7 +61156,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -59627,10 +61212,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -59645,7 +61232,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcContractRtn}
    */
-  public  static final class RpcContractRtn extends
+  public static final class RpcContractRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcContractRtn)
       RpcContractRtnOrBuilder {
@@ -59655,6 +61242,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcContractRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcContractRtn();
     }
 
     @java.lang.Override
@@ -59670,7 +61264,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -59695,7 +61288,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -59730,19 +61323,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.ContractField contract_;
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
     /**
      * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -59792,14 +61390,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcContractRtn other = (xyz.redtorch.pb.CoreRpc.RpcContractRtn) obj;
 
-      boolean result = true;
-      result = result && (hasContract() == other.hasContract());
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -59993,35 +61590,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -60067,17 +61664,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.ContractField contract = 1;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -60186,7 +61785,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -60242,10 +61841,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+     * @return Whether the position field is set.
      */
     boolean hasPosition();
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+     * @return The position.
      */
     xyz.redtorch.pb.CoreField.PositionField getPosition();
     /**
@@ -60260,7 +61861,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcPositionRtn}
    */
-  public  static final class RpcPositionRtn extends
+  public static final class RpcPositionRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcPositionRtn)
       RpcPositionRtnOrBuilder {
@@ -60270,6 +61871,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcPositionRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcPositionRtn();
     }
 
     @java.lang.Override
@@ -60285,7 +61893,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -60310,7 +61917,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -60345,19 +61952,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.PositionField position_;
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+     * @return Whether the position field is set.
      */
+    @java.lang.Override
     public boolean hasPosition() {
       return position_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+     * @return The position.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition() {
       return position_ == null ? xyz.redtorch.pb.CoreField.PositionField.getDefaultInstance() : position_;
     }
     /**
      * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder() {
       return getPosition();
     }
@@ -60407,14 +62019,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcPositionRtn other = (xyz.redtorch.pb.CoreRpc.RpcPositionRtn) obj;
 
-      boolean result = true;
-      result = result && (hasPosition() == other.hasPosition());
+      if (hasPosition() != other.hasPosition()) return false;
       if (hasPosition()) {
-        result = result && getPosition()
-            .equals(other.getPosition());
+        if (!getPosition()
+            .equals(other.getPosition())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -60608,35 +62219,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -60682,17 +62293,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.PositionField position_ = null;
+      private xyz.redtorch.pb.CoreField.PositionField position_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> positionBuilder_;
       /**
        * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+       * @return Whether the position field is set.
        */
       public boolean hasPosition() {
         return positionBuilder_ != null || position_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.PositionField position = 1;</code>
+       * @return The position.
        */
       public xyz.redtorch.pb.CoreField.PositionField getPosition() {
         if (positionBuilder_ == null) {
@@ -60801,7 +62414,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -60857,10 +62470,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+     * @return Whether the account field is set.
      */
     boolean hasAccount();
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+     * @return The account.
      */
     xyz.redtorch.pb.CoreField.AccountField getAccount();
     /**
@@ -60875,7 +62490,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcAccountRtn}
    */
-  public  static final class RpcAccountRtn extends
+  public static final class RpcAccountRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcAccountRtn)
       RpcAccountRtnOrBuilder {
@@ -60885,6 +62500,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcAccountRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcAccountRtn();
     }
 
     @java.lang.Override
@@ -60900,7 +62522,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -60925,7 +62546,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -60960,19 +62581,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.AccountField account_;
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+     * @return Whether the account field is set.
      */
+    @java.lang.Override
     public boolean hasAccount() {
       return account_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+     * @return The account.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountField getAccount() {
       return account_ == null ? xyz.redtorch.pb.CoreField.AccountField.getDefaultInstance() : account_;
     }
     /**
      * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountFieldOrBuilder getAccountOrBuilder() {
       return getAccount();
     }
@@ -61022,14 +62648,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcAccountRtn other = (xyz.redtorch.pb.CoreRpc.RpcAccountRtn) obj;
 
-      boolean result = true;
-      result = result && (hasAccount() == other.hasAccount());
+      if (hasAccount() != other.hasAccount()) return false;
       if (hasAccount()) {
-        result = result && getAccount()
-            .equals(other.getAccount());
+        if (!getAccount()
+            .equals(other.getAccount())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -61223,35 +62848,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -61297,17 +62922,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.AccountField account_ = null;
+      private xyz.redtorch.pb.CoreField.AccountField account_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.AccountField, xyz.redtorch.pb.CoreField.AccountField.Builder, xyz.redtorch.pb.CoreField.AccountFieldOrBuilder> accountBuilder_;
       /**
        * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+       * @return Whether the account field is set.
        */
       public boolean hasAccount() {
         return accountBuilder_ != null || account_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.AccountField account = 1;</code>
+       * @return The account.
        */
       public xyz.redtorch.pb.CoreField.AccountField getAccount() {
         if (accountBuilder_ == null) {
@@ -61416,7 +63043,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -61472,10 +63099,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+     * @return Whether the tick field is set.
      */
     boolean hasTick();
     /**
      * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+     * @return The tick.
      */
     xyz.redtorch.pb.CoreField.TickField getTick();
     /**
@@ -61490,7 +63119,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcTickRtn}
    */
-  public  static final class RpcTickRtn extends
+  public static final class RpcTickRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcTickRtn)
       RpcTickRtnOrBuilder {
@@ -61500,6 +63129,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcTickRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcTickRtn();
     }
 
     @java.lang.Override
@@ -61515,7 +63151,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -61540,7 +63175,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -61575,19 +63210,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.TickField tick_;
     /**
      * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+     * @return Whether the tick field is set.
      */
+    @java.lang.Override
     public boolean hasTick() {
       return tick_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+     * @return The tick.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickField getTick() {
       return tick_ == null ? xyz.redtorch.pb.CoreField.TickField.getDefaultInstance() : tick_;
     }
     /**
      * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickFieldOrBuilder getTickOrBuilder() {
       return getTick();
     }
@@ -61637,14 +63277,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcTickRtn other = (xyz.redtorch.pb.CoreRpc.RpcTickRtn) obj;
 
-      boolean result = true;
-      result = result && (hasTick() == other.hasTick());
+      if (hasTick() != other.hasTick()) return false;
       if (hasTick()) {
-        result = result && getTick()
-            .equals(other.getTick());
+        if (!getTick()
+            .equals(other.getTick())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -61838,35 +63477,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -61912,17 +63551,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.TickField tick_ = null;
+      private xyz.redtorch.pb.CoreField.TickField tick_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.TickField, xyz.redtorch.pb.CoreField.TickField.Builder, xyz.redtorch.pb.CoreField.TickFieldOrBuilder> tickBuilder_;
       /**
        * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+       * @return Whether the tick field is set.
        */
       public boolean hasTick() {
         return tickBuilder_ != null || tick_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.TickField tick = 1;</code>
+       * @return The tick.
        */
       public xyz.redtorch.pb.CoreField.TickField getTick() {
         if (tickBuilder_ == null) {
@@ -62031,7 +63672,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -62116,7 +63757,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcOrderListRtn}
    */
-  public  static final class RpcOrderListRtn extends
+  public static final class RpcOrderListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcOrderListRtn)
       RpcOrderListRtnOrBuilder {
@@ -62127,6 +63768,13 @@ public final class CoreRpc {
     }
     private RpcOrderListRtn() {
       order_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcOrderListRtn();
     }
 
     @java.lang.Override
@@ -62154,7 +63802,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -62163,7 +63811,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -62177,7 +63825,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           order_ = java.util.Collections.unmodifiableList(order_);
         }
         this.unknownFields = unknownFields.build();
@@ -62202,12 +63850,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.OrderField> getOrderList() {
       return order_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.OrderFieldOrBuilder> 
         getOrderOrBuilderList() {
       return order_;
@@ -62215,18 +63865,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public int getOrderCount() {
       return order_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderField getOrder(int index) {
       return order_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.OrderField order = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.OrderFieldOrBuilder getOrderOrBuilder(
         int index) {
       return order_.get(index);
@@ -62277,11 +63930,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcOrderListRtn other = (xyz.redtorch.pb.CoreRpc.RpcOrderListRtn) obj;
 
-      boolean result = true;
-      result = result && getOrderList()
-          .equals(other.getOrderList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOrderList()
+          .equals(other.getOrderList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -62467,7 +64119,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcOrderListRtn result = new xyz.redtorch.pb.CoreRpc.RpcOrderListRtn(this);
         int from_bitField0_ = bitField0_;
         if (orderBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             order_ = java.util.Collections.unmodifiableList(order_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -62481,35 +64133,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -62582,7 +64234,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.OrderField> order_ =
         java.util.Collections.emptyList();
       private void ensureOrderIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           order_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.OrderField>(order_);
           bitField0_ |= 0x00000001;
          }
@@ -62811,7 +64463,7 @@ public final class CoreRpc {
           orderBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.OrderField, xyz.redtorch.pb.CoreField.OrderField.Builder, xyz.redtorch.pb.CoreField.OrderFieldOrBuilder>(
                   order_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           order_ = null;
@@ -62821,7 +64473,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -62906,7 +64558,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcTradeListRtn}
    */
-  public  static final class RpcTradeListRtn extends
+  public static final class RpcTradeListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcTradeListRtn)
       RpcTradeListRtnOrBuilder {
@@ -62917,6 +64569,13 @@ public final class CoreRpc {
     }
     private RpcTradeListRtn() {
       trade_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcTradeListRtn();
     }
 
     @java.lang.Override
@@ -62944,7 +64603,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -62953,7 +64612,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -62967,7 +64626,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           trade_ = java.util.Collections.unmodifiableList(trade_);
         }
         this.unknownFields = unknownFields.build();
@@ -62992,12 +64651,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TradeField> getTradeList() {
       return trade_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TradeFieldOrBuilder> 
         getTradeOrBuilderList() {
       return trade_;
@@ -63005,18 +64666,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public int getTradeCount() {
       return trade_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeField getTrade(int index) {
       return trade_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TradeField trade = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TradeFieldOrBuilder getTradeOrBuilder(
         int index) {
       return trade_.get(index);
@@ -63067,11 +64731,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcTradeListRtn other = (xyz.redtorch.pb.CoreRpc.RpcTradeListRtn) obj;
 
-      boolean result = true;
-      result = result && getTradeList()
-          .equals(other.getTradeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTradeList()
+          .equals(other.getTradeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -63257,7 +64920,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcTradeListRtn result = new xyz.redtorch.pb.CoreRpc.RpcTradeListRtn(this);
         int from_bitField0_ = bitField0_;
         if (tradeBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             trade_ = java.util.Collections.unmodifiableList(trade_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -63271,35 +64934,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -63372,7 +65035,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TradeField> trade_ =
         java.util.Collections.emptyList();
       private void ensureTradeIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           trade_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TradeField>(trade_);
           bitField0_ |= 0x00000001;
          }
@@ -63601,7 +65264,7 @@ public final class CoreRpc {
           tradeBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TradeField, xyz.redtorch.pb.CoreField.TradeField.Builder, xyz.redtorch.pb.CoreField.TradeFieldOrBuilder>(
                   trade_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           trade_ = null;
@@ -63611,7 +65274,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -63696,7 +65359,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcContractListRtn}
    */
-  public  static final class RpcContractListRtn extends
+  public static final class RpcContractListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcContractListRtn)
       RpcContractListRtnOrBuilder {
@@ -63707,6 +65370,13 @@ public final class CoreRpc {
     }
     private RpcContractListRtn() {
       contract_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcContractListRtn();
     }
 
     @java.lang.Override
@@ -63734,7 +65404,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -63743,7 +65413,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -63757,7 +65427,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           contract_ = java.util.Collections.unmodifiableList(contract_);
         }
         this.unknownFields = unknownFields.build();
@@ -63782,12 +65452,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
       return contract_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
         getContractOrBuilderList() {
       return contract_;
@@ -63795,18 +65467,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public int getContractCount() {
       return contract_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
       return contract_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.ContractField contract = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
         int index) {
       return contract_.get(index);
@@ -63857,11 +65532,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcContractListRtn other = (xyz.redtorch.pb.CoreRpc.RpcContractListRtn) obj;
 
-      boolean result = true;
-      result = result && getContractList()
-          .equals(other.getContractList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractList()
+          .equals(other.getContractList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -64047,7 +65721,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcContractListRtn result = new xyz.redtorch.pb.CoreRpc.RpcContractListRtn(this);
         int from_bitField0_ = bitField0_;
         if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             contract_ = java.util.Collections.unmodifiableList(contract_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -64061,35 +65735,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -64162,7 +65836,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
         java.util.Collections.emptyList();
       private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
           bitField0_ |= 0x00000001;
          }
@@ -64391,7 +66065,7 @@ public final class CoreRpc {
           contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
                   contract_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           contract_ = null;
@@ -64401,7 +66075,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -64486,7 +66160,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcPositionListRtn}
    */
-  public  static final class RpcPositionListRtn extends
+  public static final class RpcPositionListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcPositionListRtn)
       RpcPositionListRtnOrBuilder {
@@ -64497,6 +66171,13 @@ public final class CoreRpc {
     }
     private RpcPositionListRtn() {
       position_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcPositionListRtn();
     }
 
     @java.lang.Override
@@ -64524,7 +66205,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -64533,7 +66214,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -64547,7 +66228,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           position_ = java.util.Collections.unmodifiableList(position_);
         }
         this.unknownFields = unknownFields.build();
@@ -64572,12 +66253,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.PositionField> getPositionList() {
       return position_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.PositionFieldOrBuilder> 
         getPositionOrBuilderList() {
       return position_;
@@ -64585,18 +66268,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public int getPositionCount() {
       return position_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionField getPosition(int index) {
       return position_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.PositionField position = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.PositionFieldOrBuilder getPositionOrBuilder(
         int index) {
       return position_.get(index);
@@ -64647,11 +66333,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcPositionListRtn other = (xyz.redtorch.pb.CoreRpc.RpcPositionListRtn) obj;
 
-      boolean result = true;
-      result = result && getPositionList()
-          .equals(other.getPositionList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getPositionList()
+          .equals(other.getPositionList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -64837,7 +66522,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcPositionListRtn result = new xyz.redtorch.pb.CoreRpc.RpcPositionListRtn(this);
         int from_bitField0_ = bitField0_;
         if (positionBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             position_ = java.util.Collections.unmodifiableList(position_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -64851,35 +66536,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -64952,7 +66637,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.PositionField> position_ =
         java.util.Collections.emptyList();
       private void ensurePositionIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           position_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.PositionField>(position_);
           bitField0_ |= 0x00000001;
          }
@@ -65181,7 +66866,7 @@ public final class CoreRpc {
           positionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.PositionField, xyz.redtorch.pb.CoreField.PositionField.Builder, xyz.redtorch.pb.CoreField.PositionFieldOrBuilder>(
                   position_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           position_ = null;
@@ -65191,7 +66876,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -65276,7 +66961,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcAccountListRtn}
    */
-  public  static final class RpcAccountListRtn extends
+  public static final class RpcAccountListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcAccountListRtn)
       RpcAccountListRtnOrBuilder {
@@ -65287,6 +66972,13 @@ public final class CoreRpc {
     }
     private RpcAccountListRtn() {
       account_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcAccountListRtn();
     }
 
     @java.lang.Override
@@ -65314,7 +67006,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -65323,7 +67015,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -65337,7 +67029,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           account_ = java.util.Collections.unmodifiableList(account_);
         }
         this.unknownFields = unknownFields.build();
@@ -65362,12 +67054,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.AccountField> getAccountList() {
       return account_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.AccountFieldOrBuilder> 
         getAccountOrBuilderList() {
       return account_;
@@ -65375,18 +67069,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public int getAccountCount() {
       return account_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountField getAccount(int index) {
       return account_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.AccountField account = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.AccountFieldOrBuilder getAccountOrBuilder(
         int index) {
       return account_.get(index);
@@ -65437,11 +67134,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcAccountListRtn other = (xyz.redtorch.pb.CoreRpc.RpcAccountListRtn) obj;
 
-      boolean result = true;
-      result = result && getAccountList()
-          .equals(other.getAccountList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountList()
+          .equals(other.getAccountList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -65627,7 +67323,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcAccountListRtn result = new xyz.redtorch.pb.CoreRpc.RpcAccountListRtn(this);
         int from_bitField0_ = bitField0_;
         if (accountBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             account_ = java.util.Collections.unmodifiableList(account_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -65641,35 +67337,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -65742,7 +67438,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.AccountField> account_ =
         java.util.Collections.emptyList();
       private void ensureAccountIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           account_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.AccountField>(account_);
           bitField0_ |= 0x00000001;
          }
@@ -65971,7 +67667,7 @@ public final class CoreRpc {
           accountBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.AccountField, xyz.redtorch.pb.CoreField.AccountField.Builder, xyz.redtorch.pb.CoreField.AccountFieldOrBuilder>(
                   account_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           account_ = null;
@@ -65981,7 +67677,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -66066,7 +67762,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcTickListRtn}
    */
-  public  static final class RpcTickListRtn extends
+  public static final class RpcTickListRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcTickListRtn)
       RpcTickListRtnOrBuilder {
@@ -66077,6 +67773,13 @@ public final class CoreRpc {
     }
     private RpcTickListRtn() {
       tick_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcTickListRtn();
     }
 
     @java.lang.Override
@@ -66104,7 +67807,7 @@ public final class CoreRpc {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -66113,7 +67816,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -66127,7 +67830,7 @@ public final class CoreRpc {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           tick_ = java.util.Collections.unmodifiableList(tick_);
         }
         this.unknownFields = unknownFields.build();
@@ -66152,12 +67855,14 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<xyz.redtorch.pb.CoreField.TickField> getTickList() {
       return tick_;
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends xyz.redtorch.pb.CoreField.TickFieldOrBuilder> 
         getTickOrBuilderList() {
       return tick_;
@@ -66165,18 +67870,21 @@ public final class CoreRpc {
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public int getTickCount() {
       return tick_.size();
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickField getTick(int index) {
       return tick_.get(index);
     }
     /**
      * <code>repeated .xyz.redtorch.pb.TickField tick = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.TickFieldOrBuilder getTickOrBuilder(
         int index) {
       return tick_.get(index);
@@ -66227,11 +67935,10 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcTickListRtn other = (xyz.redtorch.pb.CoreRpc.RpcTickListRtn) obj;
 
-      boolean result = true;
-      result = result && getTickList()
-          .equals(other.getTickList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTickList()
+          .equals(other.getTickList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -66417,7 +68124,7 @@ public final class CoreRpc {
         xyz.redtorch.pb.CoreRpc.RpcTickListRtn result = new xyz.redtorch.pb.CoreRpc.RpcTickListRtn(this);
         int from_bitField0_ = bitField0_;
         if (tickBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             tick_ = java.util.Collections.unmodifiableList(tick_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -66431,35 +68138,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -66532,7 +68239,7 @@ public final class CoreRpc {
       private java.util.List<xyz.redtorch.pb.CoreField.TickField> tick_ =
         java.util.Collections.emptyList();
       private void ensureTickIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           tick_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.TickField>(tick_);
           bitField0_ |= 0x00000001;
          }
@@ -66761,7 +68468,7 @@ public final class CoreRpc {
           tickBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               xyz.redtorch.pb.CoreField.TickField, xyz.redtorch.pb.CoreField.TickField.Builder, xyz.redtorch.pb.CoreField.TickFieldOrBuilder>(
                   tick_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           tick_ = null;
@@ -66771,7 +68478,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -66827,10 +68534,12 @@ public final class CoreRpc {
 
     /**
      * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+     * @return Whether the notice field is set.
      */
     boolean hasNotice();
     /**
      * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+     * @return The notice.
      */
     xyz.redtorch.pb.CoreField.NoticeField getNotice();
     /**
@@ -66845,7 +68554,7 @@ public final class CoreRpc {
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcNoticeRtn}
    */
-  public  static final class RpcNoticeRtn extends
+  public static final class RpcNoticeRtn extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcNoticeRtn)
       RpcNoticeRtnOrBuilder {
@@ -66855,6 +68564,13 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcNoticeRtn() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RpcNoticeRtn();
     }
 
     @java.lang.Override
@@ -66870,7 +68586,6 @@ public final class CoreRpc {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -66895,7 +68610,7 @@ public final class CoreRpc {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -66930,19 +68645,24 @@ public final class CoreRpc {
     private xyz.redtorch.pb.CoreField.NoticeField notice_;
     /**
      * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+     * @return Whether the notice field is set.
      */
+    @java.lang.Override
     public boolean hasNotice() {
       return notice_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+     * @return The notice.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.NoticeField getNotice() {
       return notice_ == null ? xyz.redtorch.pb.CoreField.NoticeField.getDefaultInstance() : notice_;
     }
     /**
      * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.NoticeFieldOrBuilder getNoticeOrBuilder() {
       return getNotice();
     }
@@ -66992,14 +68712,13 @@ public final class CoreRpc {
       }
       xyz.redtorch.pb.CoreRpc.RpcNoticeRtn other = (xyz.redtorch.pb.CoreRpc.RpcNoticeRtn) obj;
 
-      boolean result = true;
-      result = result && (hasNotice() == other.hasNotice());
+      if (hasNotice() != other.hasNotice()) return false;
       if (hasNotice()) {
-        result = result && getNotice()
-            .equals(other.getNotice());
+        if (!getNotice()
+            .equals(other.getNotice())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -67193,35 +68912,35 @@ public final class CoreRpc {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -67267,17 +68986,19 @@ public final class CoreRpc {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.NoticeField notice_ = null;
+      private xyz.redtorch.pb.CoreField.NoticeField notice_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.NoticeField, xyz.redtorch.pb.CoreField.NoticeField.Builder, xyz.redtorch.pb.CoreField.NoticeFieldOrBuilder> noticeBuilder_;
       /**
        * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+       * @return Whether the notice field is set.
        */
       public boolean hasNotice() {
         return noticeBuilder_ != null || notice_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.NoticeField notice = 1;</code>
+       * @return The notice.
        */
       public xyz.redtorch.pb.CoreField.NoticeField getNotice() {
         if (noticeBuilder_ == null) {
@@ -67386,7 +69107,7 @@ public final class CoreRpc {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -68151,20 +69872,12 @@ public final class CoreRpc {
       "ACCOUNT_LIST_RTN\020\363\007\022\022\n\rTICK_LIST_RTN\020\364\007\022" +
       "\017\n\nNOTICE_RTN\020\365\007b\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           xyz.redtorch.pb.CoreField.getDescriptor(),
           xyz.redtorch.pb.CoreEnum.getDescriptor(),
-        }, assigner);
+        });
     internal_static_xyz_redtorch_pb_RpcSubscribeReq_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_xyz_redtorch_pb_RpcSubscribeReq_fieldAccessorTable = new

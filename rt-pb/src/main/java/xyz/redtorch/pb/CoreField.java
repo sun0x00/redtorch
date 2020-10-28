@@ -24,6 +24,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -32,6 +33,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -42,6 +44,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
@@ -50,6 +53,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -60,6 +64,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return The description.
      */
     java.lang.String getDescription();
     /**
@@ -68,6 +73,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return The bytes for description.
      */
     com.google.protobuf.ByteString
         getDescriptionBytes();
@@ -78,6 +84,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+     * @return The enum numeric value on the wire for gatewayType.
      */
     int getGatewayTypeValue();
     /**
@@ -86,6 +93,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+     * @return The gatewayType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType();
 
@@ -95,6 +103,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+     * @return The enum numeric value on the wire for gatewayAdapterType.
      */
     int getGatewayAdapterTypeValue();
     /**
@@ -103,6 +112,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+     * @return The gatewayAdapterType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType();
 
@@ -112,6 +122,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+     * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
@@ -120,6 +131,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+     * @return The status.
      */
     xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus();
 
@@ -129,6 +141,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>bool authErrorFlag = 7;</code>
+     * @return The authErrorFlag.
      */
     boolean getAuthErrorFlag();
   }
@@ -139,7 +152,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.GatewayField}
    */
-  public  static final class GatewayField extends
+  public static final class GatewayField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.GatewayField)
       GatewayFieldOrBuilder {
@@ -155,7 +168,13 @@ public final class CoreField {
       gatewayType_ = 0;
       gatewayAdapterType_ = 0;
       status_ = 0;
-      authErrorFlag_ = false;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GatewayField();
     }
 
     @java.lang.Override
@@ -171,7 +190,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -224,7 +242,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -263,7 +281,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -282,7 +302,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -305,7 +327,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -324,7 +348,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -347,7 +373,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return The description.
      */
+    @java.lang.Override
     public java.lang.String getDescription() {
       java.lang.Object ref = description_;
       if (ref instanceof java.lang.String) {
@@ -366,7 +394,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return The bytes for description.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDescriptionBytes() {
       java.lang.Object ref = description_;
@@ -389,8 +419,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+     * @return The enum numeric value on the wire for gatewayType.
      */
-    public int getGatewayTypeValue() {
+    @java.lang.Override public int getGatewayTypeValue() {
       return gatewayType_;
     }
     /**
@@ -399,8 +430,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+     * @return The gatewayType.
      */
-    public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.GatewayTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.valueOf(gatewayType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.UNRECOGNIZED : result;
@@ -414,8 +446,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+     * @return The enum numeric value on the wire for gatewayAdapterType.
      */
-    public int getGatewayAdapterTypeValue() {
+    @java.lang.Override public int getGatewayAdapterTypeValue() {
       return gatewayAdapterType_;
     }
     /**
@@ -424,8 +457,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+     * @return The gatewayAdapterType.
      */
-    public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.valueOf(gatewayAdapterType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.UNRECOGNIZED : result;
@@ -439,8 +473,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+     * @return The enum numeric value on the wire for status.
      */
-    public int getStatusValue() {
+    @java.lang.Override public int getStatusValue() {
       return status_;
     }
     /**
@@ -449,8 +484,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+     * @return The status.
      */
-    public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
@@ -464,7 +500,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>bool authErrorFlag = 7;</code>
+     * @return The authErrorFlag.
      */
+    @java.lang.Override
     public boolean getAuthErrorFlag() {
       return authErrorFlag_;
     }
@@ -553,20 +591,19 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.GatewayField other = (xyz.redtorch.pb.CoreField.GatewayField) obj;
 
-      boolean result = true;
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getDescription()
-          .equals(other.getDescription());
-      result = result && gatewayType_ == other.gatewayType_;
-      result = result && gatewayAdapterType_ == other.gatewayAdapterType_;
-      result = result && status_ == other.status_;
-      result = result && (getAuthErrorFlag()
-          == other.getAuthErrorFlag());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getDescription()
+          .equals(other.getDescription())) return false;
+      if (gatewayType_ != other.gatewayType_) return false;
+      if (gatewayAdapterType_ != other.gatewayAdapterType_) return false;
+      if (status_ != other.status_) return false;
+      if (getAuthErrorFlag()
+          != other.getAuthErrorFlag()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -781,35 +818,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -883,6 +920,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -902,6 +940,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -922,6 +961,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -939,6 +980,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -952,6 +994,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -972,6 +1016,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -991,6 +1036,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -1011,6 +1057,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -1028,6 +1076,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -1041,6 +1090,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -1061,6 +1112,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string description = 3;</code>
+       * @return The description.
        */
       public java.lang.String getDescription() {
         java.lang.Object ref = description_;
@@ -1080,6 +1132,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string description = 3;</code>
+       * @return The bytes for description.
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
@@ -1100,6 +1153,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string description = 3;</code>
+       * @param value The description to set.
+       * @return This builder for chaining.
        */
       public Builder setDescription(
           java.lang.String value) {
@@ -1117,6 +1172,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string description = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDescription() {
         
@@ -1130,6 +1186,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string description = 3;</code>
+       * @param value The bytes for description to set.
+       * @return This builder for chaining.
        */
       public Builder setDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -1150,8 +1208,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+       * @return The enum numeric value on the wire for gatewayType.
        */
-      public int getGatewayTypeValue() {
+      @java.lang.Override public int getGatewayTypeValue() {
         return gatewayType_;
       }
       /**
@@ -1160,8 +1219,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+       * @param value The enum numeric value on the wire for gatewayType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayTypeValue(int value) {
+        
         gatewayType_ = value;
         onChanged();
         return this;
@@ -1172,7 +1234,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+       * @return The gatewayType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.GatewayTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.valueOf(gatewayType_);
@@ -1184,6 +1248,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+       * @param value The gatewayType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayType(xyz.redtorch.pb.CoreEnum.GatewayTypeEnum value) {
         if (value == null) {
@@ -1200,6 +1266,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayType() {
         
@@ -1215,8 +1282,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+       * @return The enum numeric value on the wire for gatewayAdapterType.
        */
-      public int getGatewayAdapterTypeValue() {
+      @java.lang.Override public int getGatewayAdapterTypeValue() {
         return gatewayAdapterType_;
       }
       /**
@@ -1225,8 +1293,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+       * @param value The enum numeric value on the wire for gatewayAdapterType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayAdapterTypeValue(int value) {
+        
         gatewayAdapterType_ = value;
         onChanged();
         return this;
@@ -1237,7 +1308,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+       * @return The gatewayAdapterType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.valueOf(gatewayAdapterType_);
@@ -1249,6 +1322,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+       * @param value The gatewayAdapterType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayAdapterType(xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum value) {
         if (value == null) {
@@ -1265,6 +1340,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayAdapterType() {
         
@@ -1280,8 +1356,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+       * @return The enum numeric value on the wire for status.
        */
-      public int getStatusValue() {
+      @java.lang.Override public int getStatusValue() {
         return status_;
       }
       /**
@@ -1290,8 +1367,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+       * @param value The enum numeric value on the wire for status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatusValue(int value) {
+        
         status_ = value;
         onChanged();
         return this;
@@ -1302,7 +1382,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+       * @return The status.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
@@ -1314,6 +1396,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatus(xyz.redtorch.pb.CoreEnum.ConnectStatusEnum value) {
         if (value == null) {
@@ -1330,6 +1414,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatus() {
         
@@ -1345,7 +1430,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool authErrorFlag = 7;</code>
+       * @return The authErrorFlag.
        */
+      @java.lang.Override
       public boolean getAuthErrorFlag() {
         return authErrorFlag_;
       }
@@ -1355,6 +1442,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool authErrorFlag = 7;</code>
+       * @param value The authErrorFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setAuthErrorFlag(boolean value) {
         
@@ -1368,6 +1457,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool authErrorFlag = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAuthErrorFlag() {
         
@@ -1378,7 +1468,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1438,6 +1528,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string contractId = 1;</code>
+     * @return The contractId.
      */
     java.lang.String getContractId();
     /**
@@ -1446,6 +1537,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string contractId = 1;</code>
+     * @return The bytes for contractId.
      */
     com.google.protobuf.ByteString
         getContractIdBytes();
@@ -1456,6 +1548,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
@@ -1464,6 +1557,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -1474,6 +1568,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string fullName = 3;</code>
+     * @return The fullName.
      */
     java.lang.String getFullName();
     /**
@@ -1482,6 +1577,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string fullName = 3;</code>
+     * @return The bytes for fullName.
      */
     com.google.protobuf.ByteString
         getFullNameBytes();
@@ -1492,6 +1588,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string thirdPartyId = 4;</code>
+     * @return The thirdPartyId.
      */
     java.lang.String getThirdPartyId();
     /**
@@ -1500,6 +1597,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string thirdPartyId = 4;</code>
+     * @return The bytes for thirdPartyId.
      */
     com.google.protobuf.ByteString
         getThirdPartyIdBytes();
@@ -1510,6 +1608,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 7;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
@@ -1518,6 +1617,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 7;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -1528,6 +1628,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string symbol = 8;</code>
+     * @return The symbol.
      */
     java.lang.String getSymbol();
     /**
@@ -1536,6 +1637,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string symbol = 8;</code>
+     * @return The bytes for symbol.
      */
     com.google.protobuf.ByteString
         getSymbolBytes();
@@ -1546,6 +1648,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+     * @return The enum numeric value on the wire for exchange.
      */
     int getExchangeValue();
     /**
@@ -1554,6 +1657,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+     * @return The exchange.
      */
     xyz.redtorch.pb.CoreEnum.ExchangeEnum getExchange();
 
@@ -1563,6 +1667,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+     * @return The enum numeric value on the wire for productClass.
      */
     int getProductClassValue();
     /**
@@ -1571,6 +1676,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+     * @return The productClass.
      */
     xyz.redtorch.pb.CoreEnum.ProductClassEnum getProductClass();
 
@@ -1580,6 +1686,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+     * @return The enum numeric value on the wire for currency.
      */
     int getCurrencyValue();
     /**
@@ -1588,6 +1695,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+     * @return The currency.
      */
     xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency();
 
@@ -1597,6 +1705,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double multiplier = 12;</code>
+     * @return The multiplier.
      */
     double getMultiplier();
 
@@ -1606,6 +1715,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double priceTick = 13;</code>
+     * @return The priceTick.
      */
     double getPriceTick();
 
@@ -1615,6 +1725,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double longMarginRatio = 14;</code>
+     * @return The longMarginRatio.
      */
     double getLongMarginRatio();
 
@@ -1624,6 +1735,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double shortMarginRatio = 15;</code>
+     * @return The shortMarginRatio.
      */
     double getShortMarginRatio();
 
@@ -1633,6 +1745,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>bool maxMarginSideAlgorithm = 16;</code>
+     * @return The maxMarginSideAlgorithm.
      */
     boolean getMaxMarginSideAlgorithm();
 
@@ -1642,6 +1755,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string underlyingSymbol = 17;</code>
+     * @return The underlyingSymbol.
      */
     java.lang.String getUnderlyingSymbol();
     /**
@@ -1650,6 +1764,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string underlyingSymbol = 17;</code>
+     * @return The bytes for underlyingSymbol.
      */
     com.google.protobuf.ByteString
         getUnderlyingSymbolBytes();
@@ -1660,6 +1775,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double strikePrice = 18;</code>
+     * @return The strikePrice.
      */
     double getStrikePrice();
 
@@ -1669,6 +1785,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+     * @return The enum numeric value on the wire for optionsType.
      */
     int getOptionsTypeValue();
     /**
@@ -1677,6 +1794,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+     * @return The optionsType.
      */
     xyz.redtorch.pb.CoreEnum.OptionsTypeEnum getOptionsType();
 
@@ -1686,6 +1804,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double underlyingMultiplier = 20;</code>
+     * @return The underlyingMultiplier.
      */
     double getUnderlyingMultiplier();
 
@@ -1695,6 +1814,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string lastTradeDateOrContractMonth = 21;</code>
+     * @return The lastTradeDateOrContractMonth.
      */
     java.lang.String getLastTradeDateOrContractMonth();
     /**
@@ -1703,6 +1823,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string lastTradeDateOrContractMonth = 21;</code>
+     * @return The bytes for lastTradeDateOrContractMonth.
      */
     com.google.protobuf.ByteString
         getLastTradeDateOrContractMonthBytes();
@@ -1713,6 +1834,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 maxMarketOrderVolume = 22;</code>
+     * @return The maxMarketOrderVolume.
      */
     int getMaxMarketOrderVolume();
 
@@ -1722,6 +1844,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minMarketOrderVolume = 23;</code>
+     * @return The minMarketOrderVolume.
      */
     int getMinMarketOrderVolume();
 
@@ -1731,6 +1854,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 maxLimitOrderVolume = 24;</code>
+     * @return The maxLimitOrderVolume.
      */
     int getMaxLimitOrderVolume();
 
@@ -1740,6 +1864,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minLimitOrderVolume = 25;</code>
+     * @return The minLimitOrderVolume.
      */
     int getMinLimitOrderVolume();
 
@@ -1749,6 +1874,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+     * @return The enum numeric value on the wire for combinationType.
      */
     int getCombinationTypeValue();
     /**
@@ -1757,6 +1883,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+     * @return The combinationType.
      */
     xyz.redtorch.pb.CoreEnum.CombinationTypeEnum getCombinationType();
 
@@ -1766,6 +1893,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 27;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -1774,6 +1902,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 27;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -1785,7 +1914,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.ContractField}
    */
-  public  static final class ContractField extends
+  public static final class ContractField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.ContractField)
       ContractFieldOrBuilder {
@@ -1804,22 +1933,18 @@ public final class CoreField {
       exchange_ = 0;
       productClass_ = 0;
       currency_ = 0;
-      multiplier_ = 0D;
-      priceTick_ = 0D;
-      longMarginRatio_ = 0D;
-      shortMarginRatio_ = 0D;
-      maxMarginSideAlgorithm_ = false;
       underlyingSymbol_ = "";
-      strikePrice_ = 0D;
       optionsType_ = 0;
-      underlyingMultiplier_ = 0D;
       lastTradeDateOrContractMonth_ = "";
-      maxMarketOrderVolume_ = 0;
-      minMarketOrderVolume_ = 0;
-      maxLimitOrderVolume_ = 0;
-      minLimitOrderVolume_ = 0;
       combinationType_ = 0;
       gatewayId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ContractField();
     }
 
     @java.lang.Override
@@ -1835,7 +1960,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1986,7 +2110,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2025,7 +2149,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string contractId = 1;</code>
+     * @return The contractId.
      */
+    @java.lang.Override
     public java.lang.String getContractId() {
       java.lang.Object ref = contractId_;
       if (ref instanceof java.lang.String) {
@@ -2044,7 +2170,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string contractId = 1;</code>
+     * @return The bytes for contractId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContractIdBytes() {
       java.lang.Object ref = contractId_;
@@ -2067,7 +2195,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -2086,7 +2216,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 2;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -2109,7 +2241,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string fullName = 3;</code>
+     * @return The fullName.
      */
+    @java.lang.Override
     public java.lang.String getFullName() {
       java.lang.Object ref = fullName_;
       if (ref instanceof java.lang.String) {
@@ -2128,7 +2262,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string fullName = 3;</code>
+     * @return The bytes for fullName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getFullNameBytes() {
       java.lang.Object ref = fullName_;
@@ -2151,7 +2287,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string thirdPartyId = 4;</code>
+     * @return The thirdPartyId.
      */
+    @java.lang.Override
     public java.lang.String getThirdPartyId() {
       java.lang.Object ref = thirdPartyId_;
       if (ref instanceof java.lang.String) {
@@ -2170,7 +2308,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string thirdPartyId = 4;</code>
+     * @return The bytes for thirdPartyId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getThirdPartyIdBytes() {
       java.lang.Object ref = thirdPartyId_;
@@ -2193,7 +2333,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 7;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -2212,7 +2354,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 7;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -2235,7 +2379,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string symbol = 8;</code>
+     * @return The symbol.
      */
+    @java.lang.Override
     public java.lang.String getSymbol() {
       java.lang.Object ref = symbol_;
       if (ref instanceof java.lang.String) {
@@ -2254,7 +2400,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string symbol = 8;</code>
+     * @return The bytes for symbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSymbolBytes() {
       java.lang.Object ref = symbol_;
@@ -2277,8 +2425,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+     * @return The enum numeric value on the wire for exchange.
      */
-    public int getExchangeValue() {
+    @java.lang.Override public int getExchangeValue() {
       return exchange_;
     }
     /**
@@ -2287,8 +2436,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+     * @return The exchange.
      */
-    public xyz.redtorch.pb.CoreEnum.ExchangeEnum getExchange() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ExchangeEnum getExchange() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ExchangeEnum result = xyz.redtorch.pb.CoreEnum.ExchangeEnum.valueOf(exchange_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ExchangeEnum.UNRECOGNIZED : result;
@@ -2302,8 +2452,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+     * @return The enum numeric value on the wire for productClass.
      */
-    public int getProductClassValue() {
+    @java.lang.Override public int getProductClassValue() {
       return productClass_;
     }
     /**
@@ -2312,8 +2463,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+     * @return The productClass.
      */
-    public xyz.redtorch.pb.CoreEnum.ProductClassEnum getProductClass() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ProductClassEnum getProductClass() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ProductClassEnum result = xyz.redtorch.pb.CoreEnum.ProductClassEnum.valueOf(productClass_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ProductClassEnum.UNRECOGNIZED : result;
@@ -2327,8 +2479,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+     * @return The enum numeric value on the wire for currency.
      */
-    public int getCurrencyValue() {
+    @java.lang.Override public int getCurrencyValue() {
       return currency_;
     }
     /**
@@ -2337,8 +2490,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+     * @return The currency.
      */
-    public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
       return result == null ? xyz.redtorch.pb.CoreEnum.CurrencyEnum.UNRECOGNIZED : result;
@@ -2352,7 +2506,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double multiplier = 12;</code>
+     * @return The multiplier.
      */
+    @java.lang.Override
     public double getMultiplier() {
       return multiplier_;
     }
@@ -2365,7 +2521,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double priceTick = 13;</code>
+     * @return The priceTick.
      */
+    @java.lang.Override
     public double getPriceTick() {
       return priceTick_;
     }
@@ -2378,7 +2536,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double longMarginRatio = 14;</code>
+     * @return The longMarginRatio.
      */
+    @java.lang.Override
     public double getLongMarginRatio() {
       return longMarginRatio_;
     }
@@ -2391,7 +2551,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double shortMarginRatio = 15;</code>
+     * @return The shortMarginRatio.
      */
+    @java.lang.Override
     public double getShortMarginRatio() {
       return shortMarginRatio_;
     }
@@ -2404,7 +2566,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>bool maxMarginSideAlgorithm = 16;</code>
+     * @return The maxMarginSideAlgorithm.
      */
+    @java.lang.Override
     public boolean getMaxMarginSideAlgorithm() {
       return maxMarginSideAlgorithm_;
     }
@@ -2417,7 +2581,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string underlyingSymbol = 17;</code>
+     * @return The underlyingSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnderlyingSymbol() {
       java.lang.Object ref = underlyingSymbol_;
       if (ref instanceof java.lang.String) {
@@ -2436,7 +2602,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string underlyingSymbol = 17;</code>
+     * @return The bytes for underlyingSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnderlyingSymbolBytes() {
       java.lang.Object ref = underlyingSymbol_;
@@ -2459,7 +2627,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double strikePrice = 18;</code>
+     * @return The strikePrice.
      */
+    @java.lang.Override
     public double getStrikePrice() {
       return strikePrice_;
     }
@@ -2472,8 +2642,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+     * @return The enum numeric value on the wire for optionsType.
      */
-    public int getOptionsTypeValue() {
+    @java.lang.Override public int getOptionsTypeValue() {
       return optionsType_;
     }
     /**
@@ -2482,8 +2653,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+     * @return The optionsType.
      */
-    public xyz.redtorch.pb.CoreEnum.OptionsTypeEnum getOptionsType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OptionsTypeEnum getOptionsType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OptionsTypeEnum result = xyz.redtorch.pb.CoreEnum.OptionsTypeEnum.valueOf(optionsType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OptionsTypeEnum.UNRECOGNIZED : result;
@@ -2497,7 +2669,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double underlyingMultiplier = 20;</code>
+     * @return The underlyingMultiplier.
      */
+    @java.lang.Override
     public double getUnderlyingMultiplier() {
       return underlyingMultiplier_;
     }
@@ -2510,7 +2684,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string lastTradeDateOrContractMonth = 21;</code>
+     * @return The lastTradeDateOrContractMonth.
      */
+    @java.lang.Override
     public java.lang.String getLastTradeDateOrContractMonth() {
       java.lang.Object ref = lastTradeDateOrContractMonth_;
       if (ref instanceof java.lang.String) {
@@ -2529,7 +2705,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string lastTradeDateOrContractMonth = 21;</code>
+     * @return The bytes for lastTradeDateOrContractMonth.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getLastTradeDateOrContractMonthBytes() {
       java.lang.Object ref = lastTradeDateOrContractMonth_;
@@ -2552,7 +2730,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 maxMarketOrderVolume = 22;</code>
+     * @return The maxMarketOrderVolume.
      */
+    @java.lang.Override
     public int getMaxMarketOrderVolume() {
       return maxMarketOrderVolume_;
     }
@@ -2565,7 +2745,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minMarketOrderVolume = 23;</code>
+     * @return The minMarketOrderVolume.
      */
+    @java.lang.Override
     public int getMinMarketOrderVolume() {
       return minMarketOrderVolume_;
     }
@@ -2578,7 +2760,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 maxLimitOrderVolume = 24;</code>
+     * @return The maxLimitOrderVolume.
      */
+    @java.lang.Override
     public int getMaxLimitOrderVolume() {
       return maxLimitOrderVolume_;
     }
@@ -2591,7 +2775,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minLimitOrderVolume = 25;</code>
+     * @return The minLimitOrderVolume.
      */
+    @java.lang.Override
     public int getMinLimitOrderVolume() {
       return minLimitOrderVolume_;
     }
@@ -2604,8 +2790,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+     * @return The enum numeric value on the wire for combinationType.
      */
-    public int getCombinationTypeValue() {
+    @java.lang.Override public int getCombinationTypeValue() {
       return combinationType_;
     }
     /**
@@ -2614,8 +2801,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+     * @return The combinationType.
      */
-    public xyz.redtorch.pb.CoreEnum.CombinationTypeEnum getCombinationType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.CombinationTypeEnum getCombinationType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.CombinationTypeEnum result = xyz.redtorch.pb.CoreEnum.CombinationTypeEnum.valueOf(combinationType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.CombinationTypeEnum.UNRECOGNIZED : result;
@@ -2629,7 +2817,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 27;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -2648,7 +2838,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 27;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -2867,66 +3059,59 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.ContractField other = (xyz.redtorch.pb.CoreField.ContractField) obj;
 
-      boolean result = true;
-      result = result && getContractId()
-          .equals(other.getContractId());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getFullName()
-          .equals(other.getFullName());
-      result = result && getThirdPartyId()
-          .equals(other.getThirdPartyId());
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && getSymbol()
-          .equals(other.getSymbol());
-      result = result && exchange_ == other.exchange_;
-      result = result && productClass_ == other.productClass_;
-      result = result && currency_ == other.currency_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getMultiplier())
-          == java.lang.Double.doubleToLongBits(
-              other.getMultiplier()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPriceTick())
-          == java.lang.Double.doubleToLongBits(
-              other.getPriceTick()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLongMarginRatio())
-          == java.lang.Double.doubleToLongBits(
-              other.getLongMarginRatio()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getShortMarginRatio())
-          == java.lang.Double.doubleToLongBits(
-              other.getShortMarginRatio()));
-      result = result && (getMaxMarginSideAlgorithm()
-          == other.getMaxMarginSideAlgorithm());
-      result = result && getUnderlyingSymbol()
-          .equals(other.getUnderlyingSymbol());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getStrikePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getStrikePrice()));
-      result = result && optionsType_ == other.optionsType_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getUnderlyingMultiplier())
-          == java.lang.Double.doubleToLongBits(
-              other.getUnderlyingMultiplier()));
-      result = result && getLastTradeDateOrContractMonth()
-          .equals(other.getLastTradeDateOrContractMonth());
-      result = result && (getMaxMarketOrderVolume()
-          == other.getMaxMarketOrderVolume());
-      result = result && (getMinMarketOrderVolume()
-          == other.getMinMarketOrderVolume());
-      result = result && (getMaxLimitOrderVolume()
-          == other.getMaxLimitOrderVolume());
-      result = result && (getMinLimitOrderVolume()
-          == other.getMinLimitOrderVolume());
-      result = result && combinationType_ == other.combinationType_;
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getContractId()
+          .equals(other.getContractId())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getFullName()
+          .equals(other.getFullName())) return false;
+      if (!getThirdPartyId()
+          .equals(other.getThirdPartyId())) return false;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!getSymbol()
+          .equals(other.getSymbol())) return false;
+      if (exchange_ != other.exchange_) return false;
+      if (productClass_ != other.productClass_) return false;
+      if (currency_ != other.currency_) return false;
+      if (java.lang.Double.doubleToLongBits(getMultiplier())
+          != java.lang.Double.doubleToLongBits(
+              other.getMultiplier())) return false;
+      if (java.lang.Double.doubleToLongBits(getPriceTick())
+          != java.lang.Double.doubleToLongBits(
+              other.getPriceTick())) return false;
+      if (java.lang.Double.doubleToLongBits(getLongMarginRatio())
+          != java.lang.Double.doubleToLongBits(
+              other.getLongMarginRatio())) return false;
+      if (java.lang.Double.doubleToLongBits(getShortMarginRatio())
+          != java.lang.Double.doubleToLongBits(
+              other.getShortMarginRatio())) return false;
+      if (getMaxMarginSideAlgorithm()
+          != other.getMaxMarginSideAlgorithm()) return false;
+      if (!getUnderlyingSymbol()
+          .equals(other.getUnderlyingSymbol())) return false;
+      if (java.lang.Double.doubleToLongBits(getStrikePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getStrikePrice())) return false;
+      if (optionsType_ != other.optionsType_) return false;
+      if (java.lang.Double.doubleToLongBits(getUnderlyingMultiplier())
+          != java.lang.Double.doubleToLongBits(
+              other.getUnderlyingMultiplier())) return false;
+      if (!getLastTradeDateOrContractMonth()
+          .equals(other.getLastTradeDateOrContractMonth())) return false;
+      if (getMaxMarketOrderVolume()
+          != other.getMaxMarketOrderVolume()) return false;
+      if (getMinMarketOrderVolume()
+          != other.getMinMarketOrderVolume()) return false;
+      if (getMaxLimitOrderVolume()
+          != other.getMaxLimitOrderVolume()) return false;
+      if (getMinLimitOrderVolume()
+          != other.getMinLimitOrderVolume()) return false;
+      if (combinationType_ != other.combinationType_) return false;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -3237,35 +3422,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3399,6 +3584,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string contractId = 1;</code>
+       * @return The contractId.
        */
       public java.lang.String getContractId() {
         java.lang.Object ref = contractId_;
@@ -3418,6 +3604,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string contractId = 1;</code>
+       * @return The bytes for contractId.
        */
       public com.google.protobuf.ByteString
           getContractIdBytes() {
@@ -3438,6 +3625,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string contractId = 1;</code>
+       * @param value The contractId to set.
+       * @return This builder for chaining.
        */
       public Builder setContractId(
           java.lang.String value) {
@@ -3455,6 +3644,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string contractId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContractId() {
         
@@ -3468,6 +3658,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string contractId = 1;</code>
+       * @param value The bytes for contractId to set.
+       * @return This builder for chaining.
        */
       public Builder setContractIdBytes(
           com.google.protobuf.ByteString value) {
@@ -3488,6 +3680,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -3507,6 +3700,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -3527,6 +3721,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -3544,6 +3740,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -3557,6 +3754,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -3577,6 +3776,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string fullName = 3;</code>
+       * @return The fullName.
        */
       public java.lang.String getFullName() {
         java.lang.Object ref = fullName_;
@@ -3596,6 +3796,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string fullName = 3;</code>
+       * @return The bytes for fullName.
        */
       public com.google.protobuf.ByteString
           getFullNameBytes() {
@@ -3616,6 +3817,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string fullName = 3;</code>
+       * @param value The fullName to set.
+       * @return This builder for chaining.
        */
       public Builder setFullName(
           java.lang.String value) {
@@ -3633,6 +3836,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string fullName = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFullName() {
         
@@ -3646,6 +3850,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string fullName = 3;</code>
+       * @param value The bytes for fullName to set.
+       * @return This builder for chaining.
        */
       public Builder setFullNameBytes(
           com.google.protobuf.ByteString value) {
@@ -3666,6 +3872,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string thirdPartyId = 4;</code>
+       * @return The thirdPartyId.
        */
       public java.lang.String getThirdPartyId() {
         java.lang.Object ref = thirdPartyId_;
@@ -3685,6 +3892,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string thirdPartyId = 4;</code>
+       * @return The bytes for thirdPartyId.
        */
       public com.google.protobuf.ByteString
           getThirdPartyIdBytes() {
@@ -3705,6 +3913,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string thirdPartyId = 4;</code>
+       * @param value The thirdPartyId to set.
+       * @return This builder for chaining.
        */
       public Builder setThirdPartyId(
           java.lang.String value) {
@@ -3722,6 +3932,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string thirdPartyId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearThirdPartyId() {
         
@@ -3735,6 +3946,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string thirdPartyId = 4;</code>
+       * @param value The bytes for thirdPartyId to set.
+       * @return This builder for chaining.
        */
       public Builder setThirdPartyIdBytes(
           com.google.protobuf.ByteString value) {
@@ -3755,6 +3968,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 7;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -3774,6 +3988,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 7;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -3794,6 +4009,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 7;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -3811,6 +4028,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -3824,6 +4042,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 7;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -3844,6 +4064,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string symbol = 8;</code>
+       * @return The symbol.
        */
       public java.lang.String getSymbol() {
         java.lang.Object ref = symbol_;
@@ -3863,6 +4084,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string symbol = 8;</code>
+       * @return The bytes for symbol.
        */
       public com.google.protobuf.ByteString
           getSymbolBytes() {
@@ -3883,6 +4105,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string symbol = 8;</code>
+       * @param value The symbol to set.
+       * @return This builder for chaining.
        */
       public Builder setSymbol(
           java.lang.String value) {
@@ -3900,6 +4124,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string symbol = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSymbol() {
         
@@ -3913,6 +4138,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string symbol = 8;</code>
+       * @param value The bytes for symbol to set.
+       * @return This builder for chaining.
        */
       public Builder setSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -3933,8 +4160,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+       * @return The enum numeric value on the wire for exchange.
        */
-      public int getExchangeValue() {
+      @java.lang.Override public int getExchangeValue() {
         return exchange_;
       }
       /**
@@ -3943,8 +4171,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+       * @param value The enum numeric value on the wire for exchange to set.
+       * @return This builder for chaining.
        */
       public Builder setExchangeValue(int value) {
+        
         exchange_ = value;
         onChanged();
         return this;
@@ -3955,7 +4186,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+       * @return The exchange.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ExchangeEnum getExchange() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ExchangeEnum result = xyz.redtorch.pb.CoreEnum.ExchangeEnum.valueOf(exchange_);
@@ -3967,6 +4200,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+       * @param value The exchange to set.
+       * @return This builder for chaining.
        */
       public Builder setExchange(xyz.redtorch.pb.CoreEnum.ExchangeEnum value) {
         if (value == null) {
@@ -3983,6 +4218,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ExchangeEnum exchange = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearExchange() {
         
@@ -3998,8 +4234,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+       * @return The enum numeric value on the wire for productClass.
        */
-      public int getProductClassValue() {
+      @java.lang.Override public int getProductClassValue() {
         return productClass_;
       }
       /**
@@ -4008,8 +4245,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+       * @param value The enum numeric value on the wire for productClass to set.
+       * @return This builder for chaining.
        */
       public Builder setProductClassValue(int value) {
+        
         productClass_ = value;
         onChanged();
         return this;
@@ -4020,7 +4260,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+       * @return The productClass.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ProductClassEnum getProductClass() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ProductClassEnum result = xyz.redtorch.pb.CoreEnum.ProductClassEnum.valueOf(productClass_);
@@ -4032,6 +4274,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+       * @param value The productClass to set.
+       * @return This builder for chaining.
        */
       public Builder setProductClass(xyz.redtorch.pb.CoreEnum.ProductClassEnum value) {
         if (value == null) {
@@ -4048,6 +4292,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ProductClassEnum productClass = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearProductClass() {
         
@@ -4063,8 +4308,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+       * @return The enum numeric value on the wire for currency.
        */
-      public int getCurrencyValue() {
+      @java.lang.Override public int getCurrencyValue() {
         return currency_;
       }
       /**
@@ -4073,8 +4319,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+       * @param value The enum numeric value on the wire for currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrencyValue(int value) {
+        
         currency_ = value;
         onChanged();
         return this;
@@ -4085,7 +4334,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+       * @return The currency.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
@@ -4097,6 +4348,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+       * @param value The currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrency(xyz.redtorch.pb.CoreEnum.CurrencyEnum value) {
         if (value == null) {
@@ -4113,6 +4366,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCurrency() {
         
@@ -4128,7 +4382,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double multiplier = 12;</code>
+       * @return The multiplier.
        */
+      @java.lang.Override
       public double getMultiplier() {
         return multiplier_;
       }
@@ -4138,6 +4394,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double multiplier = 12;</code>
+       * @param value The multiplier to set.
+       * @return This builder for chaining.
        */
       public Builder setMultiplier(double value) {
         
@@ -4151,6 +4409,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double multiplier = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMultiplier() {
         
@@ -4166,7 +4425,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceTick = 13;</code>
+       * @return The priceTick.
        */
+      @java.lang.Override
       public double getPriceTick() {
         return priceTick_;
       }
@@ -4176,6 +4437,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceTick = 13;</code>
+       * @param value The priceTick to set.
+       * @return This builder for chaining.
        */
       public Builder setPriceTick(double value) {
         
@@ -4189,6 +4452,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceTick = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPriceTick() {
         
@@ -4204,7 +4468,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double longMarginRatio = 14;</code>
+       * @return The longMarginRatio.
        */
+      @java.lang.Override
       public double getLongMarginRatio() {
         return longMarginRatio_;
       }
@@ -4214,6 +4480,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double longMarginRatio = 14;</code>
+       * @param value The longMarginRatio to set.
+       * @return This builder for chaining.
        */
       public Builder setLongMarginRatio(double value) {
         
@@ -4227,6 +4495,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double longMarginRatio = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLongMarginRatio() {
         
@@ -4242,7 +4511,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double shortMarginRatio = 15;</code>
+       * @return The shortMarginRatio.
        */
+      @java.lang.Override
       public double getShortMarginRatio() {
         return shortMarginRatio_;
       }
@@ -4252,6 +4523,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double shortMarginRatio = 15;</code>
+       * @param value The shortMarginRatio to set.
+       * @return This builder for chaining.
        */
       public Builder setShortMarginRatio(double value) {
         
@@ -4265,6 +4538,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double shortMarginRatio = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearShortMarginRatio() {
         
@@ -4280,7 +4554,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool maxMarginSideAlgorithm = 16;</code>
+       * @return The maxMarginSideAlgorithm.
        */
+      @java.lang.Override
       public boolean getMaxMarginSideAlgorithm() {
         return maxMarginSideAlgorithm_;
       }
@@ -4290,6 +4566,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool maxMarginSideAlgorithm = 16;</code>
+       * @param value The maxMarginSideAlgorithm to set.
+       * @return This builder for chaining.
        */
       public Builder setMaxMarginSideAlgorithm(boolean value) {
         
@@ -4303,6 +4581,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>bool maxMarginSideAlgorithm = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMaxMarginSideAlgorithm() {
         
@@ -4318,6 +4597,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string underlyingSymbol = 17;</code>
+       * @return The underlyingSymbol.
        */
       public java.lang.String getUnderlyingSymbol() {
         java.lang.Object ref = underlyingSymbol_;
@@ -4337,6 +4617,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string underlyingSymbol = 17;</code>
+       * @return The bytes for underlyingSymbol.
        */
       public com.google.protobuf.ByteString
           getUnderlyingSymbolBytes() {
@@ -4357,6 +4638,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string underlyingSymbol = 17;</code>
+       * @param value The underlyingSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnderlyingSymbol(
           java.lang.String value) {
@@ -4374,6 +4657,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string underlyingSymbol = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnderlyingSymbol() {
         
@@ -4387,6 +4671,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string underlyingSymbol = 17;</code>
+       * @param value The bytes for underlyingSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnderlyingSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -4407,7 +4693,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double strikePrice = 18;</code>
+       * @return The strikePrice.
        */
+      @java.lang.Override
       public double getStrikePrice() {
         return strikePrice_;
       }
@@ -4417,6 +4705,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double strikePrice = 18;</code>
+       * @param value The strikePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setStrikePrice(double value) {
         
@@ -4430,6 +4720,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double strikePrice = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStrikePrice() {
         
@@ -4445,8 +4736,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+       * @return The enum numeric value on the wire for optionsType.
        */
-      public int getOptionsTypeValue() {
+      @java.lang.Override public int getOptionsTypeValue() {
         return optionsType_;
       }
       /**
@@ -4455,8 +4747,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+       * @param value The enum numeric value on the wire for optionsType to set.
+       * @return This builder for chaining.
        */
       public Builder setOptionsTypeValue(int value) {
+        
         optionsType_ = value;
         onChanged();
         return this;
@@ -4467,7 +4762,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+       * @return The optionsType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OptionsTypeEnum getOptionsType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OptionsTypeEnum result = xyz.redtorch.pb.CoreEnum.OptionsTypeEnum.valueOf(optionsType_);
@@ -4479,6 +4776,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+       * @param value The optionsType to set.
+       * @return This builder for chaining.
        */
       public Builder setOptionsType(xyz.redtorch.pb.CoreEnum.OptionsTypeEnum value) {
         if (value == null) {
@@ -4495,6 +4794,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OptionsTypeEnum optionsType = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOptionsType() {
         
@@ -4510,7 +4810,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double underlyingMultiplier = 20;</code>
+       * @return The underlyingMultiplier.
        */
+      @java.lang.Override
       public double getUnderlyingMultiplier() {
         return underlyingMultiplier_;
       }
@@ -4520,6 +4822,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double underlyingMultiplier = 20;</code>
+       * @param value The underlyingMultiplier to set.
+       * @return This builder for chaining.
        */
       public Builder setUnderlyingMultiplier(double value) {
         
@@ -4533,6 +4837,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double underlyingMultiplier = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnderlyingMultiplier() {
         
@@ -4548,6 +4853,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string lastTradeDateOrContractMonth = 21;</code>
+       * @return The lastTradeDateOrContractMonth.
        */
       public java.lang.String getLastTradeDateOrContractMonth() {
         java.lang.Object ref = lastTradeDateOrContractMonth_;
@@ -4567,6 +4873,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string lastTradeDateOrContractMonth = 21;</code>
+       * @return The bytes for lastTradeDateOrContractMonth.
        */
       public com.google.protobuf.ByteString
           getLastTradeDateOrContractMonthBytes() {
@@ -4587,6 +4894,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string lastTradeDateOrContractMonth = 21;</code>
+       * @param value The lastTradeDateOrContractMonth to set.
+       * @return This builder for chaining.
        */
       public Builder setLastTradeDateOrContractMonth(
           java.lang.String value) {
@@ -4604,6 +4913,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string lastTradeDateOrContractMonth = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLastTradeDateOrContractMonth() {
         
@@ -4617,6 +4927,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string lastTradeDateOrContractMonth = 21;</code>
+       * @param value The bytes for lastTradeDateOrContractMonth to set.
+       * @return This builder for chaining.
        */
       public Builder setLastTradeDateOrContractMonthBytes(
           com.google.protobuf.ByteString value) {
@@ -4637,7 +4949,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxMarketOrderVolume = 22;</code>
+       * @return The maxMarketOrderVolume.
        */
+      @java.lang.Override
       public int getMaxMarketOrderVolume() {
         return maxMarketOrderVolume_;
       }
@@ -4647,6 +4961,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxMarketOrderVolume = 22;</code>
+       * @param value The maxMarketOrderVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMaxMarketOrderVolume(int value) {
         
@@ -4660,6 +4976,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxMarketOrderVolume = 22;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMaxMarketOrderVolume() {
         
@@ -4675,7 +4992,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minMarketOrderVolume = 23;</code>
+       * @return The minMarketOrderVolume.
        */
+      @java.lang.Override
       public int getMinMarketOrderVolume() {
         return minMarketOrderVolume_;
       }
@@ -4685,6 +5004,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minMarketOrderVolume = 23;</code>
+       * @param value The minMarketOrderVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMinMarketOrderVolume(int value) {
         
@@ -4698,6 +5019,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minMarketOrderVolume = 23;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMinMarketOrderVolume() {
         
@@ -4713,7 +5035,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxLimitOrderVolume = 24;</code>
+       * @return The maxLimitOrderVolume.
        */
+      @java.lang.Override
       public int getMaxLimitOrderVolume() {
         return maxLimitOrderVolume_;
       }
@@ -4723,6 +5047,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxLimitOrderVolume = 24;</code>
+       * @param value The maxLimitOrderVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMaxLimitOrderVolume(int value) {
         
@@ -4736,6 +5062,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 maxLimitOrderVolume = 24;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMaxLimitOrderVolume() {
         
@@ -4751,7 +5078,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minLimitOrderVolume = 25;</code>
+       * @return The minLimitOrderVolume.
        */
+      @java.lang.Override
       public int getMinLimitOrderVolume() {
         return minLimitOrderVolume_;
       }
@@ -4761,6 +5090,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minLimitOrderVolume = 25;</code>
+       * @param value The minLimitOrderVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMinLimitOrderVolume(int value) {
         
@@ -4774,6 +5105,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minLimitOrderVolume = 25;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMinLimitOrderVolume() {
         
@@ -4789,8 +5121,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+       * @return The enum numeric value on the wire for combinationType.
        */
-      public int getCombinationTypeValue() {
+      @java.lang.Override public int getCombinationTypeValue() {
         return combinationType_;
       }
       /**
@@ -4799,8 +5132,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+       * @param value The enum numeric value on the wire for combinationType to set.
+       * @return This builder for chaining.
        */
       public Builder setCombinationTypeValue(int value) {
+        
         combinationType_ = value;
         onChanged();
         return this;
@@ -4811,7 +5147,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+       * @return The combinationType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.CombinationTypeEnum getCombinationType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.CombinationTypeEnum result = xyz.redtorch.pb.CoreEnum.CombinationTypeEnum.valueOf(combinationType_);
@@ -4823,6 +5161,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+       * @param value The combinationType to set.
+       * @return This builder for chaining.
        */
       public Builder setCombinationType(xyz.redtorch.pb.CoreEnum.CombinationTypeEnum value) {
         if (value == null) {
@@ -4839,6 +5179,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CombinationTypeEnum combinationType = 26;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCombinationType() {
         
@@ -4854,6 +5195,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 27;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -4873,6 +5215,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 27;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -4893,6 +5236,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 27;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -4910,6 +5255,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 27;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -4923,6 +5269,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 27;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -4938,7 +5286,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -4998,6 +5346,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 1;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
@@ -5006,6 +5355,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 1;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -5016,6 +5366,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string code = 2;</code>
+     * @return The code.
      */
     java.lang.String getCode();
     /**
@@ -5024,6 +5375,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string code = 2;</code>
+     * @return The bytes for code.
      */
     com.google.protobuf.ByteString
         getCodeBytes();
@@ -5034,6 +5386,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return The name.
      */
     java.lang.String getName();
     /**
@@ -5042,6 +5395,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -5052,6 +5406,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string holder = 4;</code>
+     * @return The holder.
      */
     java.lang.String getHolder();
     /**
@@ -5060,6 +5415,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string holder = 4;</code>
+     * @return The bytes for holder.
      */
     com.google.protobuf.ByteString
         getHolderBytes();
@@ -5070,6 +5426,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+     * @return The enum numeric value on the wire for currency.
      */
     int getCurrencyValue();
     /**
@@ -5078,6 +5435,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+     * @return The currency.
      */
     xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency();
 
@@ -5087,6 +5445,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preBalance = 6;</code>
+     * @return The preBalance.
      */
     double getPreBalance();
 
@@ -5096,6 +5455,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double balance = 7;</code>
+     * @return The balance.
      */
     double getBalance();
 
@@ -5105,6 +5465,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double available = 8;</code>
+     * @return The available.
      */
     double getAvailable();
 
@@ -5114,6 +5475,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double commission = 9;</code>
+     * @return The commission.
      */
     double getCommission();
 
@@ -5123,6 +5485,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double margin = 10;</code>
+     * @return The margin.
      */
     double getMargin();
 
@@ -5132,6 +5495,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double closeProfit = 11;</code>
+     * @return The closeProfit.
      */
     double getCloseProfit();
 
@@ -5141,6 +5505,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfit = 12;</code>
+     * @return The positionProfit.
      */
     double getPositionProfit();
 
@@ -5150,6 +5515,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double deposit = 13;</code>
+     * @return The deposit.
      */
     double getDeposit();
 
@@ -5159,6 +5525,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double withdraw = 14;</code>
+     * @return The withdraw.
      */
     double getWithdraw();
 
@@ -5168,6 +5535,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 15;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -5176,6 +5544,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 15;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -5186,6 +5555,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 localCreatedTimestamp = 16;</code>
+     * @return The localCreatedTimestamp.
      */
     long getLocalCreatedTimestamp();
   }
@@ -5196,7 +5566,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.AccountField}
    */
-  public  static final class AccountField extends
+  public static final class AccountField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.AccountField)
       AccountFieldOrBuilder {
@@ -5211,17 +5581,14 @@ public final class CoreField {
       name_ = "";
       holder_ = "";
       currency_ = 0;
-      preBalance_ = 0D;
-      balance_ = 0D;
-      available_ = 0D;
-      commission_ = 0D;
-      margin_ = 0D;
-      closeProfit_ = 0D;
-      positionProfit_ = 0D;
-      deposit_ = 0D;
-      withdraw_ = 0D;
       gatewayId_ = "";
-      localCreatedTimestamp_ = 0L;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new AccountField();
     }
 
     @java.lang.Override
@@ -5237,7 +5604,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5335,7 +5701,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -5374,7 +5740,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 1;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -5393,7 +5761,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 1;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -5416,7 +5786,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string code = 2;</code>
+     * @return The code.
      */
+    @java.lang.Override
     public java.lang.String getCode() {
       java.lang.Object ref = code_;
       if (ref instanceof java.lang.String) {
@@ -5435,7 +5807,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string code = 2;</code>
+     * @return The bytes for code.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCodeBytes() {
       java.lang.Object ref = code_;
@@ -5458,7 +5832,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -5477,7 +5853,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -5500,7 +5878,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string holder = 4;</code>
+     * @return The holder.
      */
+    @java.lang.Override
     public java.lang.String getHolder() {
       java.lang.Object ref = holder_;
       if (ref instanceof java.lang.String) {
@@ -5519,7 +5899,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string holder = 4;</code>
+     * @return The bytes for holder.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getHolderBytes() {
       java.lang.Object ref = holder_;
@@ -5542,8 +5924,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+     * @return The enum numeric value on the wire for currency.
      */
-    public int getCurrencyValue() {
+    @java.lang.Override public int getCurrencyValue() {
       return currency_;
     }
     /**
@@ -5552,8 +5935,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+     * @return The currency.
      */
-    public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
       return result == null ? xyz.redtorch.pb.CoreEnum.CurrencyEnum.UNRECOGNIZED : result;
@@ -5567,7 +5951,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preBalance = 6;</code>
+     * @return The preBalance.
      */
+    @java.lang.Override
     public double getPreBalance() {
       return preBalance_;
     }
@@ -5580,7 +5966,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double balance = 7;</code>
+     * @return The balance.
      */
+    @java.lang.Override
     public double getBalance() {
       return balance_;
     }
@@ -5593,7 +5981,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double available = 8;</code>
+     * @return The available.
      */
+    @java.lang.Override
     public double getAvailable() {
       return available_;
     }
@@ -5606,7 +5996,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double commission = 9;</code>
+     * @return The commission.
      */
+    @java.lang.Override
     public double getCommission() {
       return commission_;
     }
@@ -5619,7 +6011,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double margin = 10;</code>
+     * @return The margin.
      */
+    @java.lang.Override
     public double getMargin() {
       return margin_;
     }
@@ -5632,7 +6026,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double closeProfit = 11;</code>
+     * @return The closeProfit.
      */
+    @java.lang.Override
     public double getCloseProfit() {
       return closeProfit_;
     }
@@ -5645,7 +6041,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfit = 12;</code>
+     * @return The positionProfit.
      */
+    @java.lang.Override
     public double getPositionProfit() {
       return positionProfit_;
     }
@@ -5658,7 +6056,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double deposit = 13;</code>
+     * @return The deposit.
      */
+    @java.lang.Override
     public double getDeposit() {
       return deposit_;
     }
@@ -5671,7 +6071,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double withdraw = 14;</code>
+     * @return The withdraw.
      */
+    @java.lang.Override
     public double getWithdraw() {
       return withdraw_;
     }
@@ -5684,7 +6086,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 15;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -5703,7 +6107,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 15;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -5726,7 +6132,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 localCreatedTimestamp = 16;</code>
+     * @return The localCreatedTimestamp.
      */
+    @java.lang.Override
     public long getLocalCreatedTimestamp() {
       return localCreatedTimestamp_;
     }
@@ -5876,58 +6284,48 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.AccountField other = (xyz.redtorch.pb.CoreField.AccountField) obj;
 
-      boolean result = true;
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && getCode()
-          .equals(other.getCode());
-      result = result && getName()
-          .equals(other.getName());
-      result = result && getHolder()
-          .equals(other.getHolder());
-      result = result && currency_ == other.currency_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreBalance())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreBalance()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getBalance())
-          == java.lang.Double.doubleToLongBits(
-              other.getBalance()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getAvailable())
-          == java.lang.Double.doubleToLongBits(
-              other.getAvailable()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getCommission())
-          == java.lang.Double.doubleToLongBits(
-              other.getCommission()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getMargin())
-          == java.lang.Double.doubleToLongBits(
-              other.getMargin()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getCloseProfit())
-          == java.lang.Double.doubleToLongBits(
-              other.getCloseProfit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPositionProfit())
-          == java.lang.Double.doubleToLongBits(
-              other.getPositionProfit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getDeposit())
-          == java.lang.Double.doubleToLongBits(
-              other.getDeposit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getWithdraw())
-          == java.lang.Double.doubleToLongBits(
-              other.getWithdraw()));
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && (getLocalCreatedTimestamp()
-          == other.getLocalCreatedTimestamp());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!getCode()
+          .equals(other.getCode())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getHolder()
+          .equals(other.getHolder())) return false;
+      if (currency_ != other.currency_) return false;
+      if (java.lang.Double.doubleToLongBits(getPreBalance())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreBalance())) return false;
+      if (java.lang.Double.doubleToLongBits(getBalance())
+          != java.lang.Double.doubleToLongBits(
+              other.getBalance())) return false;
+      if (java.lang.Double.doubleToLongBits(getAvailable())
+          != java.lang.Double.doubleToLongBits(
+              other.getAvailable())) return false;
+      if (java.lang.Double.doubleToLongBits(getCommission())
+          != java.lang.Double.doubleToLongBits(
+              other.getCommission())) return false;
+      if (java.lang.Double.doubleToLongBits(getMargin())
+          != java.lang.Double.doubleToLongBits(
+              other.getMargin())) return false;
+      if (java.lang.Double.doubleToLongBits(getCloseProfit())
+          != java.lang.Double.doubleToLongBits(
+              other.getCloseProfit())) return false;
+      if (java.lang.Double.doubleToLongBits(getPositionProfit())
+          != java.lang.Double.doubleToLongBits(
+              other.getPositionProfit())) return false;
+      if (java.lang.Double.doubleToLongBits(getDeposit())
+          != java.lang.Double.doubleToLongBits(
+              other.getDeposit())) return false;
+      if (java.lang.Double.doubleToLongBits(getWithdraw())
+          != java.lang.Double.doubleToLongBits(
+              other.getWithdraw())) return false;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (getLocalCreatedTimestamp()
+          != other.getLocalCreatedTimestamp()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -6196,35 +6594,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -6327,6 +6725,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 1;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -6346,6 +6745,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 1;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -6366,6 +6766,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 1;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -6383,6 +6785,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -6396,6 +6799,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 1;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -6416,6 +6821,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string code = 2;</code>
+       * @return The code.
        */
       public java.lang.String getCode() {
         java.lang.Object ref = code_;
@@ -6435,6 +6841,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string code = 2;</code>
+       * @return The bytes for code.
        */
       public com.google.protobuf.ByteString
           getCodeBytes() {
@@ -6455,6 +6862,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string code = 2;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
        */
       public Builder setCode(
           java.lang.String value) {
@@ -6472,6 +6881,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string code = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCode() {
         
@@ -6485,6 +6895,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string code = 2;</code>
+       * @param value The bytes for code to set.
+       * @return This builder for chaining.
        */
       public Builder setCodeBytes(
           com.google.protobuf.ByteString value) {
@@ -6505,6 +6917,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 3;</code>
+       * @return The name.
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -6524,6 +6937,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 3;</code>
+       * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -6544,6 +6958,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 3;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
        */
       public Builder setName(
           java.lang.String value) {
@@ -6561,6 +6977,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearName() {
         
@@ -6574,6 +6991,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string name = 3;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -6594,6 +7013,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string holder = 4;</code>
+       * @return The holder.
        */
       public java.lang.String getHolder() {
         java.lang.Object ref = holder_;
@@ -6613,6 +7033,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string holder = 4;</code>
+       * @return The bytes for holder.
        */
       public com.google.protobuf.ByteString
           getHolderBytes() {
@@ -6633,6 +7054,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string holder = 4;</code>
+       * @param value The holder to set.
+       * @return This builder for chaining.
        */
       public Builder setHolder(
           java.lang.String value) {
@@ -6650,6 +7073,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string holder = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHolder() {
         
@@ -6663,6 +7087,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string holder = 4;</code>
+       * @param value The bytes for holder to set.
+       * @return This builder for chaining.
        */
       public Builder setHolderBytes(
           com.google.protobuf.ByteString value) {
@@ -6683,8 +7109,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+       * @return The enum numeric value on the wire for currency.
        */
-      public int getCurrencyValue() {
+      @java.lang.Override public int getCurrencyValue() {
         return currency_;
       }
       /**
@@ -6693,8 +7120,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+       * @param value The enum numeric value on the wire for currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrencyValue(int value) {
+        
         currency_ = value;
         onChanged();
         return this;
@@ -6705,7 +7135,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+       * @return The currency.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
@@ -6717,6 +7149,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+       * @param value The currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrency(xyz.redtorch.pb.CoreEnum.CurrencyEnum value) {
         if (value == null) {
@@ -6733,6 +7167,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCurrency() {
         
@@ -6748,7 +7183,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preBalance = 6;</code>
+       * @return The preBalance.
        */
+      @java.lang.Override
       public double getPreBalance() {
         return preBalance_;
       }
@@ -6758,6 +7195,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preBalance = 6;</code>
+       * @param value The preBalance to set.
+       * @return This builder for chaining.
        */
       public Builder setPreBalance(double value) {
         
@@ -6771,6 +7210,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preBalance = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreBalance() {
         
@@ -6786,7 +7226,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double balance = 7;</code>
+       * @return The balance.
        */
+      @java.lang.Override
       public double getBalance() {
         return balance_;
       }
@@ -6796,6 +7238,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double balance = 7;</code>
+       * @param value The balance to set.
+       * @return This builder for chaining.
        */
       public Builder setBalance(double value) {
         
@@ -6809,6 +7253,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double balance = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBalance() {
         
@@ -6824,7 +7269,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double available = 8;</code>
+       * @return The available.
        */
+      @java.lang.Override
       public double getAvailable() {
         return available_;
       }
@@ -6834,6 +7281,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double available = 8;</code>
+       * @param value The available to set.
+       * @return This builder for chaining.
        */
       public Builder setAvailable(double value) {
         
@@ -6847,6 +7296,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double available = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAvailable() {
         
@@ -6862,7 +7312,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double commission = 9;</code>
+       * @return The commission.
        */
+      @java.lang.Override
       public double getCommission() {
         return commission_;
       }
@@ -6872,6 +7324,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double commission = 9;</code>
+       * @param value The commission to set.
+       * @return This builder for chaining.
        */
       public Builder setCommission(double value) {
         
@@ -6885,6 +7339,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double commission = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCommission() {
         
@@ -6900,7 +7355,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double margin = 10;</code>
+       * @return The margin.
        */
+      @java.lang.Override
       public double getMargin() {
         return margin_;
       }
@@ -6910,6 +7367,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double margin = 10;</code>
+       * @param value The margin to set.
+       * @return This builder for chaining.
        */
       public Builder setMargin(double value) {
         
@@ -6923,6 +7382,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double margin = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMargin() {
         
@@ -6938,7 +7398,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closeProfit = 11;</code>
+       * @return The closeProfit.
        */
+      @java.lang.Override
       public double getCloseProfit() {
         return closeProfit_;
       }
@@ -6948,6 +7410,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closeProfit = 11;</code>
+       * @param value The closeProfit to set.
+       * @return This builder for chaining.
        */
       public Builder setCloseProfit(double value) {
         
@@ -6961,6 +7425,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closeProfit = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCloseProfit() {
         
@@ -6976,7 +7441,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 12;</code>
+       * @return The positionProfit.
        */
+      @java.lang.Override
       public double getPositionProfit() {
         return positionProfit_;
       }
@@ -6986,6 +7453,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 12;</code>
+       * @param value The positionProfit to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionProfit(double value) {
         
@@ -6999,6 +7468,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionProfit() {
         
@@ -7014,7 +7484,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double deposit = 13;</code>
+       * @return The deposit.
        */
+      @java.lang.Override
       public double getDeposit() {
         return deposit_;
       }
@@ -7024,6 +7496,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double deposit = 13;</code>
+       * @param value The deposit to set.
+       * @return This builder for chaining.
        */
       public Builder setDeposit(double value) {
         
@@ -7037,6 +7511,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double deposit = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDeposit() {
         
@@ -7052,7 +7527,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double withdraw = 14;</code>
+       * @return The withdraw.
        */
+      @java.lang.Override
       public double getWithdraw() {
         return withdraw_;
       }
@@ -7062,6 +7539,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double withdraw = 14;</code>
+       * @param value The withdraw to set.
+       * @return This builder for chaining.
        */
       public Builder setWithdraw(double value) {
         
@@ -7075,6 +7554,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double withdraw = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearWithdraw() {
         
@@ -7090,6 +7570,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 15;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -7109,6 +7590,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 15;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -7129,6 +7611,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 15;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -7146,6 +7630,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -7159,6 +7644,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 15;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -7179,7 +7666,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 16;</code>
+       * @return The localCreatedTimestamp.
        */
+      @java.lang.Override
       public long getLocalCreatedTimestamp() {
         return localCreatedTimestamp_;
       }
@@ -7189,6 +7678,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 16;</code>
+       * @param value The localCreatedTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setLocalCreatedTimestamp(long value) {
         
@@ -7202,6 +7693,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLocalCreatedTimestamp() {
         
@@ -7212,7 +7704,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -7272,6 +7764,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
@@ -7280,6 +7773,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -7290,6 +7784,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
@@ -7298,6 +7793,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -7308,6 +7804,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 3;</code>
+     * @return The adapterOrderId.
      */
     java.lang.String getAdapterOrderId();
     /**
@@ -7316,6 +7813,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 3;</code>
+     * @return The bytes for adapterOrderId.
      */
     com.google.protobuf.ByteString
         getAdapterOrderIdBytes();
@@ -7326,6 +7824,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 4;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
@@ -7334,6 +7833,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 4;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -7344,6 +7844,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 5;</code>
+     * @return The orderLocalId.
      */
     java.lang.String getOrderLocalId();
     /**
@@ -7352,6 +7853,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 5;</code>
+     * @return The bytes for orderLocalId.
      */
     com.google.protobuf.ByteString
         getOrderLocalIdBytes();
@@ -7362,6 +7864,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 6;</code>
+     * @return The brokerOrderSeq.
      */
     java.lang.String getBrokerOrderSeq();
     /**
@@ -7370,6 +7873,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 6;</code>
+     * @return The bytes for brokerOrderSeq.
      */
     com.google.protobuf.ByteString
         getBrokerOrderSeqBytes();
@@ -7380,6 +7884,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 7;</code>
+     * @return The orderSysId.
      */
     java.lang.String getOrderSysId();
     /**
@@ -7388,6 +7893,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 7;</code>
+     * @return The bytes for orderSysId.
      */
     com.google.protobuf.ByteString
         getOrderSysIdBytes();
@@ -7398,6 +7904,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 8;</code>
+     * @return The sequenceNo.
      */
     java.lang.String getSequenceNo();
     /**
@@ -7406,6 +7913,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 8;</code>
+     * @return The bytes for sequenceNo.
      */
     com.google.protobuf.ByteString
         getSequenceNoBytes();
@@ -7416,6 +7924,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The enum numeric value on the wire for direction.
      */
     int getDirectionValue();
     /**
@@ -7424,6 +7933,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The direction.
      */
     xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection();
 
@@ -7433,6 +7943,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
     int getOffsetFlagValue();
     /**
@@ -7441,6 +7952,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The offsetFlag.
      */
     xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag();
 
@@ -7450,6 +7962,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
     int getHedgeFlagValue();
     /**
@@ -7458,6 +7971,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The hedgeFlag.
      */
     xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag();
 
@@ -7467,6 +7981,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+     * @return The enum numeric value on the wire for orderPriceType.
      */
     int getOrderPriceTypeValue();
     /**
@@ -7475,6 +7990,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+     * @return The orderPriceType.
      */
     xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType();
 
@@ -7484,6 +8000,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+     * @return The enum numeric value on the wire for orderStatus.
      */
     int getOrderStatusValue();
     /**
@@ -7492,6 +8009,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+     * @return The orderStatus.
      */
     xyz.redtorch.pb.CoreEnum.OrderStatusEnum getOrderStatus();
 
@@ -7501,6 +8019,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 14;</code>
+     * @return The price.
      */
     double getPrice();
 
@@ -7510,6 +8029,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 totalVolume = 15;</code>
+     * @return The totalVolume.
      */
     int getTotalVolume();
 
@@ -7519,6 +8039,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tradedVolume = 16;</code>
+     * @return The tradedVolume.
      */
     int getTradedVolume();
 
@@ -7528,6 +8049,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+     * @return The enum numeric value on the wire for timeCondition.
      */
     int getTimeConditionValue();
     /**
@@ -7536,6 +8058,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+     * @return The timeCondition.
      */
     xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition();
 
@@ -7545,6 +8068,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 18;</code>
+     * @return The gtdDate.
      */
     java.lang.String getGtdDate();
     /**
@@ -7553,6 +8077,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 18;</code>
+     * @return The bytes for gtdDate.
      */
     com.google.protobuf.ByteString
         getGtdDateBytes();
@@ -7563,6 +8088,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+     * @return The enum numeric value on the wire for volumeCondition.
      */
     int getVolumeConditionValue();
     /**
@@ -7571,6 +8097,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+     * @return The volumeCondition.
      */
     xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition();
 
@@ -7580,6 +8107,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minVolume = 20;</code>
+     * @return The minVolume.
      */
     int getMinVolume();
 
@@ -7589,6 +8117,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+     * @return The enum numeric value on the wire for contingentCondition.
      */
     int getContingentConditionValue();
     /**
@@ -7597,6 +8126,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+     * @return The contingentCondition.
      */
     xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition();
 
@@ -7606,6 +8136,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double stopPrice = 22;</code>
+     * @return The stopPrice.
      */
     double getStopPrice();
 
@@ -7615,6 +8146,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+     * @return The enum numeric value on the wire for forceCloseReason.
      */
     int getForceCloseReasonValue();
     /**
@@ -7623,6 +8155,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+     * @return The forceCloseReason.
      */
     xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason();
 
@@ -7632,6 +8165,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 autoSuspend = 24;</code>
+     * @return The autoSuspend.
      */
     int getAutoSuspend();
 
@@ -7641,6 +8175,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 userForceClose = 25;</code>
+     * @return The userForceClose.
      */
     int getUserForceClose();
 
@@ -7650,6 +8185,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 swapOrder = 26;</code>
+     * @return The swapOrder.
      */
     int getSwapOrder();
 
@@ -7659,6 +8195,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 27;</code>
+     * @return The tradingDay.
      */
     java.lang.String getTradingDay();
     /**
@@ -7667,6 +8204,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 27;</code>
+     * @return The bytes for tradingDay.
      */
     com.google.protobuf.ByteString
         getTradingDayBytes();
@@ -7677,6 +8215,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderDate = 28;</code>
+     * @return The orderDate.
      */
     java.lang.String getOrderDate();
     /**
@@ -7685,6 +8224,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderDate = 28;</code>
+     * @return The bytes for orderDate.
      */
     com.google.protobuf.ByteString
         getOrderDateBytes();
@@ -7695,6 +8235,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderTime = 29;</code>
+     * @return The orderTime.
      */
     java.lang.String getOrderTime();
     /**
@@ -7703,6 +8244,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderTime = 29;</code>
+     * @return The bytes for orderTime.
      */
     com.google.protobuf.ByteString
         getOrderTimeBytes();
@@ -7713,6 +8255,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string activeTime = 30;</code>
+     * @return The activeTime.
      */
     java.lang.String getActiveTime();
     /**
@@ -7721,6 +8264,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string activeTime = 30;</code>
+     * @return The bytes for activeTime.
      */
     com.google.protobuf.ByteString
         getActiveTimeBytes();
@@ -7731,6 +8275,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string suspendTime = 31;</code>
+     * @return The suspendTime.
      */
     java.lang.String getSuspendTime();
     /**
@@ -7739,6 +8284,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string suspendTime = 31;</code>
+     * @return The bytes for suspendTime.
      */
     com.google.protobuf.ByteString
         getSuspendTimeBytes();
@@ -7749,6 +8295,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string cancelTime = 32;</code>
+     * @return The cancelTime.
      */
     java.lang.String getCancelTime();
     /**
@@ -7757,6 +8304,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string cancelTime = 32;</code>
+     * @return The bytes for cancelTime.
      */
     com.google.protobuf.ByteString
         getCancelTimeBytes();
@@ -7767,6 +8315,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string updateTime = 33;</code>
+     * @return The updateTime.
      */
     java.lang.String getUpdateTime();
     /**
@@ -7775,6 +8324,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string updateTime = 33;</code>
+     * @return The bytes for updateTime.
      */
     com.google.protobuf.ByteString
         getUpdateTimeBytes();
@@ -7785,6 +8335,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string statusMsg = 34;</code>
+     * @return The statusMsg.
      */
     java.lang.String getStatusMsg();
     /**
@@ -7793,6 +8344,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string statusMsg = 34;</code>
+     * @return The bytes for statusMsg.
      */
     com.google.protobuf.ByteString
         getStatusMsgBytes();
@@ -7803,6 +8355,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 frontId = 35;</code>
+     * @return The frontId.
      */
     int getFrontId();
 
@@ -7812,6 +8365,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 sessionId = 36;</code>
+     * @return The sessionId.
      */
     int getSessionId();
 
@@ -7821,6 +8375,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
@@ -7829,6 +8384,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -7846,6 +8402,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 38;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -7854,6 +8411,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 38;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -7864,6 +8422,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+     * @return The enum numeric value on the wire for orderSubmitStatus.
      */
     int getOrderSubmitStatusValue();
     /**
@@ -7872,6 +8431,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+     * @return The orderSubmitStatus.
      */
     xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum getOrderSubmitStatus();
   }
@@ -7882,7 +8442,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.OrderField}
    */
-  public  static final class OrderField extends
+  public static final class OrderField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.OrderField)
       OrderFieldOrBuilder {
@@ -7905,19 +8465,11 @@ public final class CoreField {
       hedgeFlag_ = 0;
       orderPriceType_ = 0;
       orderStatus_ = 0;
-      price_ = 0D;
-      totalVolume_ = 0;
-      tradedVolume_ = 0;
       timeCondition_ = 0;
       gtdDate_ = "";
       volumeCondition_ = 0;
-      minVolume_ = 0;
       contingentCondition_ = 0;
-      stopPrice_ = 0D;
       forceCloseReason_ = 0;
-      autoSuspend_ = 0;
-      userForceClose_ = 0;
-      swapOrder_ = 0;
       tradingDay_ = "";
       orderDate_ = "";
       orderTime_ = "";
@@ -7926,10 +8478,15 @@ public final class CoreField {
       cancelTime_ = "";
       updateTime_ = "";
       statusMsg_ = "";
-      frontId_ = 0;
-      sessionId_ = 0;
       gatewayId_ = "";
       orderSubmitStatus_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new OrderField();
     }
 
     @java.lang.Override
@@ -7945,8 +8502,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
-      int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -8189,7 +8744,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8228,7 +8783,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -8247,7 +8804,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -8270,7 +8829,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 2;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -8289,7 +8850,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 2;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -8312,7 +8875,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 3;</code>
+     * @return The adapterOrderId.
      */
+    @java.lang.Override
     public java.lang.String getAdapterOrderId() {
       java.lang.Object ref = adapterOrderId_;
       if (ref instanceof java.lang.String) {
@@ -8331,7 +8896,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 3;</code>
+     * @return The bytes for adapterOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAdapterOrderIdBytes() {
       java.lang.Object ref = adapterOrderId_;
@@ -8354,7 +8921,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 4;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -8373,7 +8942,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 4;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -8396,7 +8967,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 5;</code>
+     * @return The orderLocalId.
      */
+    @java.lang.Override
     public java.lang.String getOrderLocalId() {
       java.lang.Object ref = orderLocalId_;
       if (ref instanceof java.lang.String) {
@@ -8415,7 +8988,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 5;</code>
+     * @return The bytes for orderLocalId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderLocalIdBytes() {
       java.lang.Object ref = orderLocalId_;
@@ -8438,7 +9013,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 6;</code>
+     * @return The brokerOrderSeq.
      */
+    @java.lang.Override
     public java.lang.String getBrokerOrderSeq() {
       java.lang.Object ref = brokerOrderSeq_;
       if (ref instanceof java.lang.String) {
@@ -8457,7 +9034,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 6;</code>
+     * @return The bytes for brokerOrderSeq.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBrokerOrderSeqBytes() {
       java.lang.Object ref = brokerOrderSeq_;
@@ -8480,7 +9059,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 7;</code>
+     * @return The orderSysId.
      */
+    @java.lang.Override
     public java.lang.String getOrderSysId() {
       java.lang.Object ref = orderSysId_;
       if (ref instanceof java.lang.String) {
@@ -8499,7 +9080,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 7;</code>
+     * @return The bytes for orderSysId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderSysIdBytes() {
       java.lang.Object ref = orderSysId_;
@@ -8522,7 +9105,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 8;</code>
+     * @return The sequenceNo.
      */
+    @java.lang.Override
     public java.lang.String getSequenceNo() {
       java.lang.Object ref = sequenceNo_;
       if (ref instanceof java.lang.String) {
@@ -8541,7 +9126,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 8;</code>
+     * @return The bytes for sequenceNo.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSequenceNoBytes() {
       java.lang.Object ref = sequenceNo_;
@@ -8564,8 +9151,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The enum numeric value on the wire for direction.
      */
-    public int getDirectionValue() {
+    @java.lang.Override public int getDirectionValue() {
       return direction_;
     }
     /**
@@ -8574,8 +9162,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The direction.
      */
-    public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
       return result == null ? xyz.redtorch.pb.CoreEnum.DirectionEnum.UNRECOGNIZED : result;
@@ -8589,8 +9178,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
-    public int getOffsetFlagValue() {
+    @java.lang.Override public int getOffsetFlagValue() {
       return offsetFlag_;
     }
     /**
@@ -8599,8 +9189,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The offsetFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.UNRECOGNIZED : result;
@@ -8614,8 +9205,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
-    public int getHedgeFlagValue() {
+    @java.lang.Override public int getHedgeFlagValue() {
       return hedgeFlag_;
     }
     /**
@@ -8624,8 +9216,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The hedgeFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.UNRECOGNIZED : result;
@@ -8639,8 +9232,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+     * @return The enum numeric value on the wire for orderPriceType.
      */
-    public int getOrderPriceTypeValue() {
+    @java.lang.Override public int getOrderPriceTypeValue() {
       return orderPriceType_;
     }
     /**
@@ -8649,8 +9243,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+     * @return The orderPriceType.
      */
-    public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum result = xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.valueOf(orderPriceType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.UNRECOGNIZED : result;
@@ -8664,8 +9259,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+     * @return The enum numeric value on the wire for orderStatus.
      */
-    public int getOrderStatusValue() {
+    @java.lang.Override public int getOrderStatusValue() {
       return orderStatus_;
     }
     /**
@@ -8674,8 +9270,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+     * @return The orderStatus.
      */
-    public xyz.redtorch.pb.CoreEnum.OrderStatusEnum getOrderStatus() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OrderStatusEnum getOrderStatus() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OrderStatusEnum result = xyz.redtorch.pb.CoreEnum.OrderStatusEnum.valueOf(orderStatus_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OrderStatusEnum.UNRECOGNIZED : result;
@@ -8689,7 +9286,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 14;</code>
+     * @return The price.
      */
+    @java.lang.Override
     public double getPrice() {
       return price_;
     }
@@ -8702,7 +9301,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 totalVolume = 15;</code>
+     * @return The totalVolume.
      */
+    @java.lang.Override
     public int getTotalVolume() {
       return totalVolume_;
     }
@@ -8715,7 +9316,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tradedVolume = 16;</code>
+     * @return The tradedVolume.
      */
+    @java.lang.Override
     public int getTradedVolume() {
       return tradedVolume_;
     }
@@ -8728,8 +9331,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+     * @return The enum numeric value on the wire for timeCondition.
      */
-    public int getTimeConditionValue() {
+    @java.lang.Override public int getTimeConditionValue() {
       return timeCondition_;
     }
     /**
@@ -8738,8 +9342,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+     * @return The timeCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.TimeConditionEnum result = xyz.redtorch.pb.CoreEnum.TimeConditionEnum.valueOf(timeCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.TimeConditionEnum.UNRECOGNIZED : result;
@@ -8753,7 +9358,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 18;</code>
+     * @return The gtdDate.
      */
+    @java.lang.Override
     public java.lang.String getGtdDate() {
       java.lang.Object ref = gtdDate_;
       if (ref instanceof java.lang.String) {
@@ -8772,7 +9379,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 18;</code>
+     * @return The bytes for gtdDate.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGtdDateBytes() {
       java.lang.Object ref = gtdDate_;
@@ -8795,8 +9404,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+     * @return The enum numeric value on the wire for volumeCondition.
      */
-    public int getVolumeConditionValue() {
+    @java.lang.Override public int getVolumeConditionValue() {
       return volumeCondition_;
     }
     /**
@@ -8805,8 +9415,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+     * @return The volumeCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.VolumeConditionEnum result = xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.valueOf(volumeCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.UNRECOGNIZED : result;
@@ -8820,7 +9431,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minVolume = 20;</code>
+     * @return The minVolume.
      */
+    @java.lang.Override
     public int getMinVolume() {
       return minVolume_;
     }
@@ -8833,8 +9446,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+     * @return The enum numeric value on the wire for contingentCondition.
      */
-    public int getContingentConditionValue() {
+    @java.lang.Override public int getContingentConditionValue() {
       return contingentCondition_;
     }
     /**
@@ -8843,8 +9457,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+     * @return The contingentCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ContingentConditionEnum result = xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.valueOf(contingentCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.UNRECOGNIZED : result;
@@ -8858,7 +9473,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double stopPrice = 22;</code>
+     * @return The stopPrice.
      */
+    @java.lang.Override
     public double getStopPrice() {
       return stopPrice_;
     }
@@ -8871,8 +9488,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+     * @return The enum numeric value on the wire for forceCloseReason.
      */
-    public int getForceCloseReasonValue() {
+    @java.lang.Override public int getForceCloseReasonValue() {
       return forceCloseReason_;
     }
     /**
@@ -8881,8 +9499,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+     * @return The forceCloseReason.
      */
-    public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum result = xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.valueOf(forceCloseReason_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.UNRECOGNIZED : result;
@@ -8896,7 +9515,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 autoSuspend = 24;</code>
+     * @return The autoSuspend.
      */
+    @java.lang.Override
     public int getAutoSuspend() {
       return autoSuspend_;
     }
@@ -8909,7 +9530,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 userForceClose = 25;</code>
+     * @return The userForceClose.
      */
+    @java.lang.Override
     public int getUserForceClose() {
       return userForceClose_;
     }
@@ -8922,7 +9545,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 swapOrder = 26;</code>
+     * @return The swapOrder.
      */
+    @java.lang.Override
     public int getSwapOrder() {
       return swapOrder_;
     }
@@ -8935,7 +9560,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 27;</code>
+     * @return The tradingDay.
      */
+    @java.lang.Override
     public java.lang.String getTradingDay() {
       java.lang.Object ref = tradingDay_;
       if (ref instanceof java.lang.String) {
@@ -8954,7 +9581,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 27;</code>
+     * @return The bytes for tradingDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradingDayBytes() {
       java.lang.Object ref = tradingDay_;
@@ -8977,7 +9606,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderDate = 28;</code>
+     * @return The orderDate.
      */
+    @java.lang.Override
     public java.lang.String getOrderDate() {
       java.lang.Object ref = orderDate_;
       if (ref instanceof java.lang.String) {
@@ -8996,7 +9627,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderDate = 28;</code>
+     * @return The bytes for orderDate.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderDateBytes() {
       java.lang.Object ref = orderDate_;
@@ -9019,7 +9652,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderTime = 29;</code>
+     * @return The orderTime.
      */
+    @java.lang.Override
     public java.lang.String getOrderTime() {
       java.lang.Object ref = orderTime_;
       if (ref instanceof java.lang.String) {
@@ -9038,7 +9673,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderTime = 29;</code>
+     * @return The bytes for orderTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderTimeBytes() {
       java.lang.Object ref = orderTime_;
@@ -9061,7 +9698,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string activeTime = 30;</code>
+     * @return The activeTime.
      */
+    @java.lang.Override
     public java.lang.String getActiveTime() {
       java.lang.Object ref = activeTime_;
       if (ref instanceof java.lang.String) {
@@ -9080,7 +9719,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string activeTime = 30;</code>
+     * @return The bytes for activeTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActiveTimeBytes() {
       java.lang.Object ref = activeTime_;
@@ -9103,7 +9744,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string suspendTime = 31;</code>
+     * @return The suspendTime.
      */
+    @java.lang.Override
     public java.lang.String getSuspendTime() {
       java.lang.Object ref = suspendTime_;
       if (ref instanceof java.lang.String) {
@@ -9122,7 +9765,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string suspendTime = 31;</code>
+     * @return The bytes for suspendTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSuspendTimeBytes() {
       java.lang.Object ref = suspendTime_;
@@ -9145,7 +9790,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string cancelTime = 32;</code>
+     * @return The cancelTime.
      */
+    @java.lang.Override
     public java.lang.String getCancelTime() {
       java.lang.Object ref = cancelTime_;
       if (ref instanceof java.lang.String) {
@@ -9164,7 +9811,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string cancelTime = 32;</code>
+     * @return The bytes for cancelTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCancelTimeBytes() {
       java.lang.Object ref = cancelTime_;
@@ -9187,7 +9836,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string updateTime = 33;</code>
+     * @return The updateTime.
      */
+    @java.lang.Override
     public java.lang.String getUpdateTime() {
       java.lang.Object ref = updateTime_;
       if (ref instanceof java.lang.String) {
@@ -9206,7 +9857,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string updateTime = 33;</code>
+     * @return The bytes for updateTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUpdateTimeBytes() {
       java.lang.Object ref = updateTime_;
@@ -9229,7 +9882,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string statusMsg = 34;</code>
+     * @return The statusMsg.
      */
+    @java.lang.Override
     public java.lang.String getStatusMsg() {
       java.lang.Object ref = statusMsg_;
       if (ref instanceof java.lang.String) {
@@ -9248,7 +9903,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string statusMsg = 34;</code>
+     * @return The bytes for statusMsg.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getStatusMsgBytes() {
       java.lang.Object ref = statusMsg_;
@@ -9271,7 +9928,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 frontId = 35;</code>
+     * @return The frontId.
      */
+    @java.lang.Override
     public int getFrontId() {
       return frontId_;
     }
@@ -9284,7 +9943,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 sessionId = 36;</code>
+     * @return The sessionId.
      */
+    @java.lang.Override
     public int getSessionId() {
       return sessionId_;
     }
@@ -9297,7 +9958,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
@@ -9307,7 +9970,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
@@ -9318,6 +9983,7 @@ public final class CoreField {
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -9330,7 +9996,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 38;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -9349,7 +10017,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 38;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -9372,8 +10042,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+     * @return The enum numeric value on the wire for orderSubmitStatus.
      */
-    public int getOrderSubmitStatusValue() {
+    @java.lang.Override public int getOrderSubmitStatusValue() {
       return orderSubmitStatus_;
     }
     /**
@@ -9382,8 +10053,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+     * @return The orderSubmitStatus.
      */
-    public xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum getOrderSubmitStatus() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum getOrderSubmitStatus() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum result = xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum.valueOf(orderSubmitStatus_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum.UNRECOGNIZED : result;
@@ -9682,84 +10354,81 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.OrderField other = (xyz.redtorch.pb.CoreField.OrderField) obj;
 
-      boolean result = true;
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && getAdapterOrderId()
-          .equals(other.getAdapterOrderId());
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && getOrderLocalId()
-          .equals(other.getOrderLocalId());
-      result = result && getBrokerOrderSeq()
-          .equals(other.getBrokerOrderSeq());
-      result = result && getOrderSysId()
-          .equals(other.getOrderSysId());
-      result = result && getSequenceNo()
-          .equals(other.getSequenceNo());
-      result = result && direction_ == other.direction_;
-      result = result && offsetFlag_ == other.offsetFlag_;
-      result = result && hedgeFlag_ == other.hedgeFlag_;
-      result = result && orderPriceType_ == other.orderPriceType_;
-      result = result && orderStatus_ == other.orderStatus_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPrice()));
-      result = result && (getTotalVolume()
-          == other.getTotalVolume());
-      result = result && (getTradedVolume()
-          == other.getTradedVolume());
-      result = result && timeCondition_ == other.timeCondition_;
-      result = result && getGtdDate()
-          .equals(other.getGtdDate());
-      result = result && volumeCondition_ == other.volumeCondition_;
-      result = result && (getMinVolume()
-          == other.getMinVolume());
-      result = result && contingentCondition_ == other.contingentCondition_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getStopPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getStopPrice()));
-      result = result && forceCloseReason_ == other.forceCloseReason_;
-      result = result && (getAutoSuspend()
-          == other.getAutoSuspend());
-      result = result && (getUserForceClose()
-          == other.getUserForceClose());
-      result = result && (getSwapOrder()
-          == other.getSwapOrder());
-      result = result && getTradingDay()
-          .equals(other.getTradingDay());
-      result = result && getOrderDate()
-          .equals(other.getOrderDate());
-      result = result && getOrderTime()
-          .equals(other.getOrderTime());
-      result = result && getActiveTime()
-          .equals(other.getActiveTime());
-      result = result && getSuspendTime()
-          .equals(other.getSuspendTime());
-      result = result && getCancelTime()
-          .equals(other.getCancelTime());
-      result = result && getUpdateTime()
-          .equals(other.getUpdateTime());
-      result = result && getStatusMsg()
-          .equals(other.getStatusMsg());
-      result = result && (getFrontId()
-          == other.getFrontId());
-      result = result && (getSessionId()
-          == other.getSessionId());
-      result = result && (hasContract() == other.hasContract());
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!getAdapterOrderId()
+          .equals(other.getAdapterOrderId())) return false;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (!getOrderLocalId()
+          .equals(other.getOrderLocalId())) return false;
+      if (!getBrokerOrderSeq()
+          .equals(other.getBrokerOrderSeq())) return false;
+      if (!getOrderSysId()
+          .equals(other.getOrderSysId())) return false;
+      if (!getSequenceNo()
+          .equals(other.getSequenceNo())) return false;
+      if (direction_ != other.direction_) return false;
+      if (offsetFlag_ != other.offsetFlag_) return false;
+      if (hedgeFlag_ != other.hedgeFlag_) return false;
+      if (orderPriceType_ != other.orderPriceType_) return false;
+      if (orderStatus_ != other.orderStatus_) return false;
+      if (java.lang.Double.doubleToLongBits(getPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPrice())) return false;
+      if (getTotalVolume()
+          != other.getTotalVolume()) return false;
+      if (getTradedVolume()
+          != other.getTradedVolume()) return false;
+      if (timeCondition_ != other.timeCondition_) return false;
+      if (!getGtdDate()
+          .equals(other.getGtdDate())) return false;
+      if (volumeCondition_ != other.volumeCondition_) return false;
+      if (getMinVolume()
+          != other.getMinVolume()) return false;
+      if (contingentCondition_ != other.contingentCondition_) return false;
+      if (java.lang.Double.doubleToLongBits(getStopPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getStopPrice())) return false;
+      if (forceCloseReason_ != other.forceCloseReason_) return false;
+      if (getAutoSuspend()
+          != other.getAutoSuspend()) return false;
+      if (getUserForceClose()
+          != other.getUserForceClose()) return false;
+      if (getSwapOrder()
+          != other.getSwapOrder()) return false;
+      if (!getTradingDay()
+          .equals(other.getTradingDay())) return false;
+      if (!getOrderDate()
+          .equals(other.getOrderDate())) return false;
+      if (!getOrderTime()
+          .equals(other.getOrderTime())) return false;
+      if (!getActiveTime()
+          .equals(other.getActiveTime())) return false;
+      if (!getSuspendTime()
+          .equals(other.getSuspendTime())) return false;
+      if (!getCancelTime()
+          .equals(other.getCancelTime())) return false;
+      if (!getUpdateTime()
+          .equals(other.getUpdateTime())) return false;
+      if (!getStatusMsg()
+          .equals(other.getStatusMsg())) return false;
+      if (getFrontId()
+          != other.getFrontId()) return false;
+      if (getSessionId()
+          != other.getSessionId()) return false;
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && orderSubmitStatus_ == other.orderSubmitStatus_;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (orderSubmitStatus_ != other.orderSubmitStatus_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -10145,35 +10814,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -10358,6 +11027,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -10377,6 +11047,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -10397,6 +11068,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -10414,6 +11087,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -10427,6 +11101,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10447,6 +11123,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 2;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -10466,6 +11143,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 2;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -10486,6 +11164,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 2;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -10503,6 +11183,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -10516,6 +11197,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 2;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10536,6 +11219,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 3;</code>
+       * @return The adapterOrderId.
        */
       public java.lang.String getAdapterOrderId() {
         java.lang.Object ref = adapterOrderId_;
@@ -10555,6 +11239,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 3;</code>
+       * @return The bytes for adapterOrderId.
        */
       public com.google.protobuf.ByteString
           getAdapterOrderIdBytes() {
@@ -10575,6 +11260,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 3;</code>
+       * @param value The adapterOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterOrderId(
           java.lang.String value) {
@@ -10592,6 +11279,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAdapterOrderId() {
         
@@ -10605,6 +11293,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 3;</code>
+       * @param value The bytes for adapterOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10625,6 +11315,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 4;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -10644,6 +11335,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 4;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -10664,6 +11356,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 4;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -10681,6 +11375,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -10694,6 +11389,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 4;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10714,6 +11411,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 5;</code>
+       * @return The orderLocalId.
        */
       public java.lang.String getOrderLocalId() {
         java.lang.Object ref = orderLocalId_;
@@ -10733,6 +11431,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 5;</code>
+       * @return The bytes for orderLocalId.
        */
       public com.google.protobuf.ByteString
           getOrderLocalIdBytes() {
@@ -10753,6 +11452,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 5;</code>
+       * @param value The orderLocalId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderLocalId(
           java.lang.String value) {
@@ -10770,6 +11471,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderLocalId() {
         
@@ -10783,6 +11485,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 5;</code>
+       * @param value The bytes for orderLocalId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderLocalIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10803,6 +11507,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 6;</code>
+       * @return The brokerOrderSeq.
        */
       public java.lang.String getBrokerOrderSeq() {
         java.lang.Object ref = brokerOrderSeq_;
@@ -10822,6 +11527,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 6;</code>
+       * @return The bytes for brokerOrderSeq.
        */
       public com.google.protobuf.ByteString
           getBrokerOrderSeqBytes() {
@@ -10842,6 +11548,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 6;</code>
+       * @param value The brokerOrderSeq to set.
+       * @return This builder for chaining.
        */
       public Builder setBrokerOrderSeq(
           java.lang.String value) {
@@ -10859,6 +11567,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBrokerOrderSeq() {
         
@@ -10872,6 +11581,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 6;</code>
+       * @param value The bytes for brokerOrderSeq to set.
+       * @return This builder for chaining.
        */
       public Builder setBrokerOrderSeqBytes(
           com.google.protobuf.ByteString value) {
@@ -10892,6 +11603,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 7;</code>
+       * @return The orderSysId.
        */
       public java.lang.String getOrderSysId() {
         java.lang.Object ref = orderSysId_;
@@ -10911,6 +11623,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 7;</code>
+       * @return The bytes for orderSysId.
        */
       public com.google.protobuf.ByteString
           getOrderSysIdBytes() {
@@ -10931,6 +11644,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 7;</code>
+       * @param value The orderSysId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSysId(
           java.lang.String value) {
@@ -10948,6 +11663,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderSysId() {
         
@@ -10961,6 +11677,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 7;</code>
+       * @param value The bytes for orderSysId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSysIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10981,6 +11699,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 8;</code>
+       * @return The sequenceNo.
        */
       public java.lang.String getSequenceNo() {
         java.lang.Object ref = sequenceNo_;
@@ -11000,6 +11719,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 8;</code>
+       * @return The bytes for sequenceNo.
        */
       public com.google.protobuf.ByteString
           getSequenceNoBytes() {
@@ -11020,6 +11740,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 8;</code>
+       * @param value The sequenceNo to set.
+       * @return This builder for chaining.
        */
       public Builder setSequenceNo(
           java.lang.String value) {
@@ -11037,6 +11759,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSequenceNo() {
         
@@ -11050,6 +11773,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 8;</code>
+       * @param value The bytes for sequenceNo to set.
+       * @return This builder for chaining.
        */
       public Builder setSequenceNoBytes(
           com.google.protobuf.ByteString value) {
@@ -11070,8 +11795,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return The enum numeric value on the wire for direction.
        */
-      public int getDirectionValue() {
+      @java.lang.Override public int getDirectionValue() {
         return direction_;
       }
       /**
@@ -11080,8 +11806,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @param value The enum numeric value on the wire for direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirectionValue(int value) {
+        
         direction_ = value;
         onChanged();
         return this;
@@ -11092,7 +11821,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return The direction.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
@@ -11104,6 +11835,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @param value The direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirection(xyz.redtorch.pb.CoreEnum.DirectionEnum value) {
         if (value == null) {
@@ -11120,6 +11853,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDirection() {
         
@@ -11135,8 +11869,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return The enum numeric value on the wire for offsetFlag.
        */
-      public int getOffsetFlagValue() {
+      @java.lang.Override public int getOffsetFlagValue() {
         return offsetFlag_;
       }
       /**
@@ -11145,8 +11880,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @param value The enum numeric value on the wire for offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlagValue(int value) {
+        
         offsetFlag_ = value;
         onChanged();
         return this;
@@ -11157,7 +11895,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return The offsetFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
@@ -11169,6 +11909,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @param value The offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlag(xyz.redtorch.pb.CoreEnum.OffsetFlagEnum value) {
         if (value == null) {
@@ -11185,6 +11927,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOffsetFlag() {
         
@@ -11200,8 +11943,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return The enum numeric value on the wire for hedgeFlag.
        */
-      public int getHedgeFlagValue() {
+      @java.lang.Override public int getHedgeFlagValue() {
         return hedgeFlag_;
       }
       /**
@@ -11210,8 +11954,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @param value The enum numeric value on the wire for hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlagValue(int value) {
+        
         hedgeFlag_ = value;
         onChanged();
         return this;
@@ -11222,7 +11969,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return The hedgeFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
@@ -11234,6 +11983,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @param value The hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlag(xyz.redtorch.pb.CoreEnum.HedgeFlagEnum value) {
         if (value == null) {
@@ -11250,6 +12001,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHedgeFlag() {
         
@@ -11265,8 +12017,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+       * @return The enum numeric value on the wire for orderPriceType.
        */
-      public int getOrderPriceTypeValue() {
+      @java.lang.Override public int getOrderPriceTypeValue() {
         return orderPriceType_;
       }
       /**
@@ -11275,8 +12028,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+       * @param value The enum numeric value on the wire for orderPriceType to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderPriceTypeValue(int value) {
+        
         orderPriceType_ = value;
         onChanged();
         return this;
@@ -11287,7 +12043,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+       * @return The orderPriceType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum result = xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.valueOf(orderPriceType_);
@@ -11299,6 +12057,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+       * @param value The orderPriceType to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderPriceType(xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum value) {
         if (value == null) {
@@ -11315,6 +12075,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderPriceType() {
         
@@ -11330,8 +12091,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+       * @return The enum numeric value on the wire for orderStatus.
        */
-      public int getOrderStatusValue() {
+      @java.lang.Override public int getOrderStatusValue() {
         return orderStatus_;
       }
       /**
@@ -11340,8 +12102,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+       * @param value The enum numeric value on the wire for orderStatus to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderStatusValue(int value) {
+        
         orderStatus_ = value;
         onChanged();
         return this;
@@ -11352,7 +12117,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+       * @return The orderStatus.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OrderStatusEnum getOrderStatus() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OrderStatusEnum result = xyz.redtorch.pb.CoreEnum.OrderStatusEnum.valueOf(orderStatus_);
@@ -11364,6 +12131,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+       * @param value The orderStatus to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderStatus(xyz.redtorch.pb.CoreEnum.OrderStatusEnum value) {
         if (value == null) {
@@ -11380,6 +12149,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderStatusEnum orderStatus = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderStatus() {
         
@@ -11395,7 +12165,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 14;</code>
+       * @return The price.
        */
+      @java.lang.Override
       public double getPrice() {
         return price_;
       }
@@ -11405,6 +12177,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 14;</code>
+       * @param value The price to set.
+       * @return This builder for chaining.
        */
       public Builder setPrice(double value) {
         
@@ -11418,6 +12192,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPrice() {
         
@@ -11433,7 +12208,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 totalVolume = 15;</code>
+       * @return The totalVolume.
        */
+      @java.lang.Override
       public int getTotalVolume() {
         return totalVolume_;
       }
@@ -11443,6 +12220,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 totalVolume = 15;</code>
+       * @param value The totalVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setTotalVolume(int value) {
         
@@ -11456,6 +12235,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 totalVolume = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTotalVolume() {
         
@@ -11471,7 +12251,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tradedVolume = 16;</code>
+       * @return The tradedVolume.
        */
+      @java.lang.Override
       public int getTradedVolume() {
         return tradedVolume_;
       }
@@ -11481,6 +12263,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tradedVolume = 16;</code>
+       * @param value The tradedVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setTradedVolume(int value) {
         
@@ -11494,6 +12278,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tradedVolume = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradedVolume() {
         
@@ -11509,8 +12294,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+       * @return The enum numeric value on the wire for timeCondition.
        */
-      public int getTimeConditionValue() {
+      @java.lang.Override public int getTimeConditionValue() {
         return timeCondition_;
       }
       /**
@@ -11519,8 +12305,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+       * @param value The enum numeric value on the wire for timeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setTimeConditionValue(int value) {
+        
         timeCondition_ = value;
         onChanged();
         return this;
@@ -11531,7 +12320,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+       * @return The timeCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.TimeConditionEnum result = xyz.redtorch.pb.CoreEnum.TimeConditionEnum.valueOf(timeCondition_);
@@ -11543,6 +12334,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+       * @param value The timeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setTimeCondition(xyz.redtorch.pb.CoreEnum.TimeConditionEnum value) {
         if (value == null) {
@@ -11559,6 +12352,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTimeCondition() {
         
@@ -11574,6 +12368,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 18;</code>
+       * @return The gtdDate.
        */
       public java.lang.String getGtdDate() {
         java.lang.Object ref = gtdDate_;
@@ -11593,6 +12388,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 18;</code>
+       * @return The bytes for gtdDate.
        */
       public com.google.protobuf.ByteString
           getGtdDateBytes() {
@@ -11613,6 +12409,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 18;</code>
+       * @param value The gtdDate to set.
+       * @return This builder for chaining.
        */
       public Builder setGtdDate(
           java.lang.String value) {
@@ -11630,6 +12428,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGtdDate() {
         
@@ -11643,6 +12442,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 18;</code>
+       * @param value The bytes for gtdDate to set.
+       * @return This builder for chaining.
        */
       public Builder setGtdDateBytes(
           com.google.protobuf.ByteString value) {
@@ -11663,8 +12464,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+       * @return The enum numeric value on the wire for volumeCondition.
        */
-      public int getVolumeConditionValue() {
+      @java.lang.Override public int getVolumeConditionValue() {
         return volumeCondition_;
       }
       /**
@@ -11673,8 +12475,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+       * @param value The enum numeric value on the wire for volumeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeConditionValue(int value) {
+        
         volumeCondition_ = value;
         onChanged();
         return this;
@@ -11685,7 +12490,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+       * @return The volumeCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.VolumeConditionEnum result = xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.valueOf(volumeCondition_);
@@ -11697,6 +12504,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+       * @param value The volumeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeCondition(xyz.redtorch.pb.CoreEnum.VolumeConditionEnum value) {
         if (value == null) {
@@ -11713,6 +12522,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolumeCondition() {
         
@@ -11728,7 +12538,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 20;</code>
+       * @return The minVolume.
        */
+      @java.lang.Override
       public int getMinVolume() {
         return minVolume_;
       }
@@ -11738,6 +12550,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 20;</code>
+       * @param value The minVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMinVolume(int value) {
         
@@ -11751,6 +12565,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMinVolume() {
         
@@ -11766,8 +12581,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+       * @return The enum numeric value on the wire for contingentCondition.
        */
-      public int getContingentConditionValue() {
+      @java.lang.Override public int getContingentConditionValue() {
         return contingentCondition_;
       }
       /**
@@ -11776,8 +12592,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+       * @param value The enum numeric value on the wire for contingentCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setContingentConditionValue(int value) {
+        
         contingentCondition_ = value;
         onChanged();
         return this;
@@ -11788,7 +12607,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+       * @return The contingentCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ContingentConditionEnum result = xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.valueOf(contingentCondition_);
@@ -11800,6 +12621,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+       * @param value The contingentCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setContingentCondition(xyz.redtorch.pb.CoreEnum.ContingentConditionEnum value) {
         if (value == null) {
@@ -11816,6 +12639,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContingentCondition() {
         
@@ -11831,7 +12655,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 22;</code>
+       * @return The stopPrice.
        */
+      @java.lang.Override
       public double getStopPrice() {
         return stopPrice_;
       }
@@ -11841,6 +12667,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 22;</code>
+       * @param value The stopPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setStopPrice(double value) {
         
@@ -11854,6 +12682,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 22;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStopPrice() {
         
@@ -11869,8 +12698,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+       * @return The enum numeric value on the wire for forceCloseReason.
        */
-      public int getForceCloseReasonValue() {
+      @java.lang.Override public int getForceCloseReasonValue() {
         return forceCloseReason_;
       }
       /**
@@ -11879,8 +12709,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+       * @param value The enum numeric value on the wire for forceCloseReason to set.
+       * @return This builder for chaining.
        */
       public Builder setForceCloseReasonValue(int value) {
+        
         forceCloseReason_ = value;
         onChanged();
         return this;
@@ -11891,7 +12724,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+       * @return The forceCloseReason.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum result = xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.valueOf(forceCloseReason_);
@@ -11903,6 +12738,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+       * @param value The forceCloseReason to set.
+       * @return This builder for chaining.
        */
       public Builder setForceCloseReason(xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum value) {
         if (value == null) {
@@ -11919,6 +12756,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 23;</code>
+       * @return This builder for chaining.
        */
       public Builder clearForceCloseReason() {
         
@@ -11934,7 +12772,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 24;</code>
+       * @return The autoSuspend.
        */
+      @java.lang.Override
       public int getAutoSuspend() {
         return autoSuspend_;
       }
@@ -11944,6 +12784,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 24;</code>
+       * @param value The autoSuspend to set.
+       * @return This builder for chaining.
        */
       public Builder setAutoSuspend(int value) {
         
@@ -11957,6 +12799,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 24;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAutoSuspend() {
         
@@ -11972,7 +12815,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 25;</code>
+       * @return The userForceClose.
        */
+      @java.lang.Override
       public int getUserForceClose() {
         return userForceClose_;
       }
@@ -11982,6 +12827,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 25;</code>
+       * @param value The userForceClose to set.
+       * @return This builder for chaining.
        */
       public Builder setUserForceClose(int value) {
         
@@ -11995,6 +12842,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 25;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserForceClose() {
         
@@ -12010,7 +12858,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 26;</code>
+       * @return The swapOrder.
        */
+      @java.lang.Override
       public int getSwapOrder() {
         return swapOrder_;
       }
@@ -12020,6 +12870,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 26;</code>
+       * @param value The swapOrder to set.
+       * @return This builder for chaining.
        */
       public Builder setSwapOrder(int value) {
         
@@ -12033,6 +12885,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 26;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSwapOrder() {
         
@@ -12048,6 +12901,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 27;</code>
+       * @return The tradingDay.
        */
       public java.lang.String getTradingDay() {
         java.lang.Object ref = tradingDay_;
@@ -12067,6 +12921,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 27;</code>
+       * @return The bytes for tradingDay.
        */
       public com.google.protobuf.ByteString
           getTradingDayBytes() {
@@ -12087,6 +12942,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 27;</code>
+       * @param value The tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDay(
           java.lang.String value) {
@@ -12104,6 +12961,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 27;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
@@ -12117,6 +12975,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 27;</code>
+       * @param value The bytes for tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDayBytes(
           com.google.protobuf.ByteString value) {
@@ -12137,6 +12997,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderDate = 28;</code>
+       * @return The orderDate.
        */
       public java.lang.String getOrderDate() {
         java.lang.Object ref = orderDate_;
@@ -12156,6 +13017,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderDate = 28;</code>
+       * @return The bytes for orderDate.
        */
       public com.google.protobuf.ByteString
           getOrderDateBytes() {
@@ -12176,6 +13038,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderDate = 28;</code>
+       * @param value The orderDate to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderDate(
           java.lang.String value) {
@@ -12193,6 +13057,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderDate = 28;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderDate() {
         
@@ -12206,6 +13071,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderDate = 28;</code>
+       * @param value The bytes for orderDate to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderDateBytes(
           com.google.protobuf.ByteString value) {
@@ -12226,6 +13093,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderTime = 29;</code>
+       * @return The orderTime.
        */
       public java.lang.String getOrderTime() {
         java.lang.Object ref = orderTime_;
@@ -12245,6 +13113,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderTime = 29;</code>
+       * @return The bytes for orderTime.
        */
       public com.google.protobuf.ByteString
           getOrderTimeBytes() {
@@ -12265,6 +13134,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderTime = 29;</code>
+       * @param value The orderTime to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderTime(
           java.lang.String value) {
@@ -12282,6 +13153,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderTime = 29;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderTime() {
         
@@ -12295,6 +13167,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderTime = 29;</code>
+       * @param value The bytes for orderTime to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -12315,6 +13189,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string activeTime = 30;</code>
+       * @return The activeTime.
        */
       public java.lang.String getActiveTime() {
         java.lang.Object ref = activeTime_;
@@ -12334,6 +13209,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string activeTime = 30;</code>
+       * @return The bytes for activeTime.
        */
       public com.google.protobuf.ByteString
           getActiveTimeBytes() {
@@ -12354,6 +13230,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string activeTime = 30;</code>
+       * @param value The activeTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActiveTime(
           java.lang.String value) {
@@ -12371,6 +13249,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string activeTime = 30;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActiveTime() {
         
@@ -12384,6 +13263,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string activeTime = 30;</code>
+       * @param value The bytes for activeTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActiveTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -12404,6 +13285,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string suspendTime = 31;</code>
+       * @return The suspendTime.
        */
       public java.lang.String getSuspendTime() {
         java.lang.Object ref = suspendTime_;
@@ -12423,6 +13305,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string suspendTime = 31;</code>
+       * @return The bytes for suspendTime.
        */
       public com.google.protobuf.ByteString
           getSuspendTimeBytes() {
@@ -12443,6 +13326,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string suspendTime = 31;</code>
+       * @param value The suspendTime to set.
+       * @return This builder for chaining.
        */
       public Builder setSuspendTime(
           java.lang.String value) {
@@ -12460,6 +13345,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string suspendTime = 31;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSuspendTime() {
         
@@ -12473,6 +13359,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string suspendTime = 31;</code>
+       * @param value The bytes for suspendTime to set.
+       * @return This builder for chaining.
        */
       public Builder setSuspendTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -12493,6 +13381,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string cancelTime = 32;</code>
+       * @return The cancelTime.
        */
       public java.lang.String getCancelTime() {
         java.lang.Object ref = cancelTime_;
@@ -12512,6 +13401,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string cancelTime = 32;</code>
+       * @return The bytes for cancelTime.
        */
       public com.google.protobuf.ByteString
           getCancelTimeBytes() {
@@ -12532,6 +13422,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string cancelTime = 32;</code>
+       * @param value The cancelTime to set.
+       * @return This builder for chaining.
        */
       public Builder setCancelTime(
           java.lang.String value) {
@@ -12549,6 +13441,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string cancelTime = 32;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCancelTime() {
         
@@ -12562,6 +13455,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string cancelTime = 32;</code>
+       * @param value The bytes for cancelTime to set.
+       * @return This builder for chaining.
        */
       public Builder setCancelTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -12582,6 +13477,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string updateTime = 33;</code>
+       * @return The updateTime.
        */
       public java.lang.String getUpdateTime() {
         java.lang.Object ref = updateTime_;
@@ -12601,6 +13497,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string updateTime = 33;</code>
+       * @return The bytes for updateTime.
        */
       public com.google.protobuf.ByteString
           getUpdateTimeBytes() {
@@ -12621,6 +13518,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string updateTime = 33;</code>
+       * @param value The updateTime to set.
+       * @return This builder for chaining.
        */
       public Builder setUpdateTime(
           java.lang.String value) {
@@ -12638,6 +13537,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string updateTime = 33;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUpdateTime() {
         
@@ -12651,6 +13551,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string updateTime = 33;</code>
+       * @param value The bytes for updateTime to set.
+       * @return This builder for chaining.
        */
       public Builder setUpdateTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -12671,6 +13573,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string statusMsg = 34;</code>
+       * @return The statusMsg.
        */
       public java.lang.String getStatusMsg() {
         java.lang.Object ref = statusMsg_;
@@ -12690,6 +13593,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string statusMsg = 34;</code>
+       * @return The bytes for statusMsg.
        */
       public com.google.protobuf.ByteString
           getStatusMsgBytes() {
@@ -12710,6 +13614,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string statusMsg = 34;</code>
+       * @param value The statusMsg to set.
+       * @return This builder for chaining.
        */
       public Builder setStatusMsg(
           java.lang.String value) {
@@ -12727,6 +13633,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string statusMsg = 34;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatusMsg() {
         
@@ -12740,6 +13647,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string statusMsg = 34;</code>
+       * @param value The bytes for statusMsg to set.
+       * @return This builder for chaining.
        */
       public Builder setStatusMsgBytes(
           com.google.protobuf.ByteString value) {
@@ -12760,7 +13669,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frontId = 35;</code>
+       * @return The frontId.
        */
+      @java.lang.Override
       public int getFrontId() {
         return frontId_;
       }
@@ -12770,6 +13681,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frontId = 35;</code>
+       * @param value The frontId to set.
+       * @return This builder for chaining.
        */
       public Builder setFrontId(int value) {
         
@@ -12783,6 +13696,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frontId = 35;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFrontId() {
         
@@ -12798,7 +13712,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sessionId = 36;</code>
+       * @return The sessionId.
        */
+      @java.lang.Override
       public int getSessionId() {
         return sessionId_;
       }
@@ -12808,6 +13724,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sessionId = 36;</code>
+       * @param value The sessionId to set.
+       * @return This builder for chaining.
        */
       public Builder setSessionId(int value) {
         
@@ -12821,6 +13739,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sessionId = 36;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSessionId() {
         
@@ -12829,7 +13748,7 @@ public final class CoreField {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
@@ -12838,6 +13757,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
@@ -12848,6 +13768,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 37;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -12989,6 +13910,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 38;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -13008,6 +13930,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 38;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -13028,6 +13951,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 38;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -13045,6 +13970,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 38;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -13058,6 +13984,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 38;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -13078,8 +14006,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+       * @return The enum numeric value on the wire for orderSubmitStatus.
        */
-      public int getOrderSubmitStatusValue() {
+      @java.lang.Override public int getOrderSubmitStatusValue() {
         return orderSubmitStatus_;
       }
       /**
@@ -13088,8 +14017,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+       * @param value The enum numeric value on the wire for orderSubmitStatus to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSubmitStatusValue(int value) {
+        
         orderSubmitStatus_ = value;
         onChanged();
         return this;
@@ -13100,7 +14032,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+       * @return The orderSubmitStatus.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum getOrderSubmitStatus() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum result = xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum.valueOf(orderSubmitStatus_);
@@ -13112,6 +14046,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+       * @param value The orderSubmitStatus to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSubmitStatus(xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum value) {
         if (value == null) {
@@ -13128,6 +14064,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderSubmitStatusEnum orderSubmitStatus = 39;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderSubmitStatus() {
         
@@ -13138,7 +14075,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -13198,6 +14135,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeId = 1;</code>
+     * @return The tradeId.
      */
     java.lang.String getTradeId();
     /**
@@ -13206,6 +14144,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeId = 1;</code>
+     * @return The bytes for tradeId.
      */
     com.google.protobuf.ByteString
         getTradeIdBytes();
@@ -13216,6 +14155,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterTradeId = 2;</code>
+     * @return The adapterTradeId.
      */
     java.lang.String getAdapterTradeId();
     /**
@@ -13224,6 +14164,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterTradeId = 2;</code>
+     * @return The bytes for adapterTradeId.
      */
     com.google.protobuf.ByteString
         getAdapterTradeIdBytes();
@@ -13234,6 +14175,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
@@ -13242,6 +14184,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -13252,6 +14195,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
@@ -13260,6 +14204,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -13270,6 +14215,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 5;</code>
+     * @return The adapterOrderId.
      */
     java.lang.String getAdapterOrderId();
     /**
@@ -13278,6 +14224,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 5;</code>
+     * @return The bytes for adapterOrderId.
      */
     com.google.protobuf.ByteString
         getAdapterOrderIdBytes();
@@ -13288,6 +14235,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 6;</code>
+     * @return The orderLocalId.
      */
     java.lang.String getOrderLocalId();
     /**
@@ -13296,6 +14244,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 6;</code>
+     * @return The bytes for orderLocalId.
      */
     com.google.protobuf.ByteString
         getOrderLocalIdBytes();
@@ -13306,6 +14255,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 7;</code>
+     * @return The brokerOrderSeq.
      */
     java.lang.String getBrokerOrderSeq();
     /**
@@ -13314,6 +14264,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 7;</code>
+     * @return The bytes for brokerOrderSeq.
      */
     com.google.protobuf.ByteString
         getBrokerOrderSeqBytes();
@@ -13324,6 +14275,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 8;</code>
+     * @return The orderSysId.
      */
     java.lang.String getOrderSysId();
     /**
@@ -13332,6 +14284,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 8;</code>
+     * @return The bytes for orderSysId.
      */
     com.google.protobuf.ByteString
         getOrderSysIdBytes();
@@ -13342,6 +14295,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string settlementId = 9;</code>
+     * @return The settlementId.
      */
     java.lang.String getSettlementId();
     /**
@@ -13350,6 +14304,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string settlementId = 9;</code>
+     * @return The bytes for settlementId.
      */
     com.google.protobuf.ByteString
         getSettlementIdBytes();
@@ -13360,6 +14315,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 10;</code>
+     * @return The sequenceNo.
      */
     java.lang.String getSequenceNo();
     /**
@@ -13368,6 +14324,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 10;</code>
+     * @return The bytes for sequenceNo.
      */
     com.google.protobuf.ByteString
         getSequenceNoBytes();
@@ -13378,6 +14335,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 11;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
@@ -13386,6 +14344,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 11;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -13396,6 +14355,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+     * @return The enum numeric value on the wire for direction.
      */
     int getDirectionValue();
     /**
@@ -13404,6 +14364,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+     * @return The direction.
      */
     xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection();
 
@@ -13413,6 +14374,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
     int getOffsetFlagValue();
     /**
@@ -13421,6 +14383,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+     * @return The offsetFlag.
      */
     xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag();
 
@@ -13430,6 +14393,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
     int getHedgeFlagValue();
     /**
@@ -13438,6 +14402,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+     * @return The hedgeFlag.
      */
     xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag();
 
@@ -13447,6 +14412,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 15;</code>
+     * @return The price.
      */
     double getPrice();
 
@@ -13456,6 +14422,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 volume = 16;</code>
+     * @return The volume.
      */
     int getVolume();
 
@@ -13465,6 +14432,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+     * @return The enum numeric value on the wire for tradeType.
      */
     int getTradeTypeValue();
     /**
@@ -13473,6 +14441,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+     * @return The tradeType.
      */
     xyz.redtorch.pb.CoreEnum.TradeTypeEnum getTradeType();
 
@@ -13482,6 +14451,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+     * @return The enum numeric value on the wire for priceSource.
      */
     int getPriceSourceValue();
     /**
@@ -13490,6 +14460,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+     * @return The priceSource.
      */
     xyz.redtorch.pb.CoreEnum.PriceSourceEnum getPriceSource();
 
@@ -13499,6 +14470,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 19;</code>
+     * @return The tradingDay.
      */
     java.lang.String getTradingDay();
     /**
@@ -13507,6 +14479,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 19;</code>
+     * @return The bytes for tradingDay.
      */
     com.google.protobuf.ByteString
         getTradingDayBytes();
@@ -13517,6 +14490,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeDate = 20;</code>
+     * @return The tradeDate.
      */
     java.lang.String getTradeDate();
     /**
@@ -13525,6 +14499,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeDate = 20;</code>
+     * @return The bytes for tradeDate.
      */
     com.google.protobuf.ByteString
         getTradeDateBytes();
@@ -13535,6 +14510,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeTime = 21;</code>
+     * @return The tradeTime.
      */
     java.lang.String getTradeTime();
     /**
@@ -13543,6 +14519,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeTime = 21;</code>
+     * @return The bytes for tradeTime.
      */
     com.google.protobuf.ByteString
         getTradeTimeBytes();
@@ -13553,6 +14530,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 tradeTimestamp = 22;</code>
+     * @return The tradeTimestamp.
      */
     long getTradeTimestamp();
 
@@ -13562,6 +14540,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
@@ -13570,6 +14549,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -13587,6 +14567,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -13595,6 +14576,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -13606,7 +14588,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.TradeField}
    */
-  public  static final class TradeField extends
+  public static final class TradeField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.TradeField)
       TradeFieldOrBuilder {
@@ -13630,15 +14612,19 @@ public final class CoreField {
       direction_ = 0;
       offsetFlag_ = 0;
       hedgeFlag_ = 0;
-      price_ = 0D;
-      volume_ = 0;
       tradeType_ = 0;
       priceSource_ = 0;
       tradingDay_ = "";
       tradeDate_ = "";
       tradeTime_ = "";
-      tradeTimestamp_ = 0L;
       gatewayId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TradeField();
     }
 
     @java.lang.Override
@@ -13654,7 +14640,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -13814,7 +14799,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -13853,7 +14838,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeId = 1;</code>
+     * @return The tradeId.
      */
+    @java.lang.Override
     public java.lang.String getTradeId() {
       java.lang.Object ref = tradeId_;
       if (ref instanceof java.lang.String) {
@@ -13872,7 +14859,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeId = 1;</code>
+     * @return The bytes for tradeId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradeIdBytes() {
       java.lang.Object ref = tradeId_;
@@ -13895,7 +14884,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterTradeId = 2;</code>
+     * @return The adapterTradeId.
      */
+    @java.lang.Override
     public java.lang.String getAdapterTradeId() {
       java.lang.Object ref = adapterTradeId_;
       if (ref instanceof java.lang.String) {
@@ -13914,7 +14905,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterTradeId = 2;</code>
+     * @return The bytes for adapterTradeId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAdapterTradeIdBytes() {
       java.lang.Object ref = adapterTradeId_;
@@ -13937,7 +14930,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -13956,7 +14951,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -13979,7 +14976,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -13998,7 +14997,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -14021,7 +15022,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 5;</code>
+     * @return The adapterOrderId.
      */
+    @java.lang.Override
     public java.lang.String getAdapterOrderId() {
       java.lang.Object ref = adapterOrderId_;
       if (ref instanceof java.lang.String) {
@@ -14040,7 +15043,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string adapterOrderId = 5;</code>
+     * @return The bytes for adapterOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAdapterOrderIdBytes() {
       java.lang.Object ref = adapterOrderId_;
@@ -14063,7 +15068,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 6;</code>
+     * @return The orderLocalId.
      */
+    @java.lang.Override
     public java.lang.String getOrderLocalId() {
       java.lang.Object ref = orderLocalId_;
       if (ref instanceof java.lang.String) {
@@ -14082,7 +15089,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderLocalId = 6;</code>
+     * @return The bytes for orderLocalId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderLocalIdBytes() {
       java.lang.Object ref = orderLocalId_;
@@ -14105,7 +15114,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 7;</code>
+     * @return The brokerOrderSeq.
      */
+    @java.lang.Override
     public java.lang.String getBrokerOrderSeq() {
       java.lang.Object ref = brokerOrderSeq_;
       if (ref instanceof java.lang.String) {
@@ -14124,7 +15135,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string brokerOrderSeq = 7;</code>
+     * @return The bytes for brokerOrderSeq.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getBrokerOrderSeqBytes() {
       java.lang.Object ref = brokerOrderSeq_;
@@ -14147,7 +15160,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 8;</code>
+     * @return The orderSysId.
      */
+    @java.lang.Override
     public java.lang.String getOrderSysId() {
       java.lang.Object ref = orderSysId_;
       if (ref instanceof java.lang.String) {
@@ -14166,7 +15181,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderSysId = 8;</code>
+     * @return The bytes for orderSysId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderSysIdBytes() {
       java.lang.Object ref = orderSysId_;
@@ -14189,7 +15206,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string settlementId = 9;</code>
+     * @return The settlementId.
      */
+    @java.lang.Override
     public java.lang.String getSettlementId() {
       java.lang.Object ref = settlementId_;
       if (ref instanceof java.lang.String) {
@@ -14208,7 +15227,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string settlementId = 9;</code>
+     * @return The bytes for settlementId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSettlementIdBytes() {
       java.lang.Object ref = settlementId_;
@@ -14231,7 +15252,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 10;</code>
+     * @return The sequenceNo.
      */
+    @java.lang.Override
     public java.lang.String getSequenceNo() {
       java.lang.Object ref = sequenceNo_;
       if (ref instanceof java.lang.String) {
@@ -14250,7 +15273,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string sequenceNo = 10;</code>
+     * @return The bytes for sequenceNo.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSequenceNoBytes() {
       java.lang.Object ref = sequenceNo_;
@@ -14273,7 +15298,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 11;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -14292,7 +15319,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 11;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -14315,8 +15344,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+     * @return The enum numeric value on the wire for direction.
      */
-    public int getDirectionValue() {
+    @java.lang.Override public int getDirectionValue() {
       return direction_;
     }
     /**
@@ -14325,8 +15355,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+     * @return The direction.
      */
-    public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
       return result == null ? xyz.redtorch.pb.CoreEnum.DirectionEnum.UNRECOGNIZED : result;
@@ -14340,8 +15371,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
-    public int getOffsetFlagValue() {
+    @java.lang.Override public int getOffsetFlagValue() {
       return offsetFlag_;
     }
     /**
@@ -14350,8 +15382,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+     * @return The offsetFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.UNRECOGNIZED : result;
@@ -14365,8 +15398,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
-    public int getHedgeFlagValue() {
+    @java.lang.Override public int getHedgeFlagValue() {
       return hedgeFlag_;
     }
     /**
@@ -14375,8 +15409,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+     * @return The hedgeFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.UNRECOGNIZED : result;
@@ -14390,7 +15425,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 15;</code>
+     * @return The price.
      */
+    @java.lang.Override
     public double getPrice() {
       return price_;
     }
@@ -14403,7 +15440,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 volume = 16;</code>
+     * @return The volume.
      */
+    @java.lang.Override
     public int getVolume() {
       return volume_;
     }
@@ -14416,8 +15455,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+     * @return The enum numeric value on the wire for tradeType.
      */
-    public int getTradeTypeValue() {
+    @java.lang.Override public int getTradeTypeValue() {
       return tradeType_;
     }
     /**
@@ -14426,8 +15466,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+     * @return The tradeType.
      */
-    public xyz.redtorch.pb.CoreEnum.TradeTypeEnum getTradeType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.TradeTypeEnum getTradeType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.TradeTypeEnum result = xyz.redtorch.pb.CoreEnum.TradeTypeEnum.valueOf(tradeType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.TradeTypeEnum.UNRECOGNIZED : result;
@@ -14441,8 +15482,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+     * @return The enum numeric value on the wire for priceSource.
      */
-    public int getPriceSourceValue() {
+    @java.lang.Override public int getPriceSourceValue() {
       return priceSource_;
     }
     /**
@@ -14451,8 +15493,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+     * @return The priceSource.
      */
-    public xyz.redtorch.pb.CoreEnum.PriceSourceEnum getPriceSource() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.PriceSourceEnum getPriceSource() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.PriceSourceEnum result = xyz.redtorch.pb.CoreEnum.PriceSourceEnum.valueOf(priceSource_);
       return result == null ? xyz.redtorch.pb.CoreEnum.PriceSourceEnum.UNRECOGNIZED : result;
@@ -14466,7 +15509,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 19;</code>
+     * @return The tradingDay.
      */
+    @java.lang.Override
     public java.lang.String getTradingDay() {
       java.lang.Object ref = tradingDay_;
       if (ref instanceof java.lang.String) {
@@ -14485,7 +15530,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 19;</code>
+     * @return The bytes for tradingDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradingDayBytes() {
       java.lang.Object ref = tradingDay_;
@@ -14508,7 +15555,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeDate = 20;</code>
+     * @return The tradeDate.
      */
+    @java.lang.Override
     public java.lang.String getTradeDate() {
       java.lang.Object ref = tradeDate_;
       if (ref instanceof java.lang.String) {
@@ -14527,7 +15576,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeDate = 20;</code>
+     * @return The bytes for tradeDate.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradeDateBytes() {
       java.lang.Object ref = tradeDate_;
@@ -14550,7 +15601,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeTime = 21;</code>
+     * @return The tradeTime.
      */
+    @java.lang.Override
     public java.lang.String getTradeTime() {
       java.lang.Object ref = tradeTime_;
       if (ref instanceof java.lang.String) {
@@ -14569,7 +15622,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradeTime = 21;</code>
+     * @return The bytes for tradeTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradeTimeBytes() {
       java.lang.Object ref = tradeTime_;
@@ -14592,7 +15647,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 tradeTimestamp = 22;</code>
+     * @return The tradeTimestamp.
      */
+    @java.lang.Override
     public long getTradeTimestamp() {
       return tradeTimestamp_;
     }
@@ -14605,7 +15662,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
@@ -14615,7 +15674,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
@@ -14626,6 +15687,7 @@ public final class CoreField {
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -14638,7 +15700,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -14657,7 +15721,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -14863,57 +15929,55 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.TradeField other = (xyz.redtorch.pb.CoreField.TradeField) obj;
 
-      boolean result = true;
-      result = result && getTradeId()
-          .equals(other.getTradeId());
-      result = result && getAdapterTradeId()
-          .equals(other.getAdapterTradeId());
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && getAdapterOrderId()
-          .equals(other.getAdapterOrderId());
-      result = result && getOrderLocalId()
-          .equals(other.getOrderLocalId());
-      result = result && getBrokerOrderSeq()
-          .equals(other.getBrokerOrderSeq());
-      result = result && getOrderSysId()
-          .equals(other.getOrderSysId());
-      result = result && getSettlementId()
-          .equals(other.getSettlementId());
-      result = result && getSequenceNo()
-          .equals(other.getSequenceNo());
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && direction_ == other.direction_;
-      result = result && offsetFlag_ == other.offsetFlag_;
-      result = result && hedgeFlag_ == other.hedgeFlag_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPrice()));
-      result = result && (getVolume()
-          == other.getVolume());
-      result = result && tradeType_ == other.tradeType_;
-      result = result && priceSource_ == other.priceSource_;
-      result = result && getTradingDay()
-          .equals(other.getTradingDay());
-      result = result && getTradeDate()
-          .equals(other.getTradeDate());
-      result = result && getTradeTime()
-          .equals(other.getTradeTime());
-      result = result && (getTradeTimestamp()
-          == other.getTradeTimestamp());
-      result = result && (hasContract() == other.hasContract());
+      if (!getTradeId()
+          .equals(other.getTradeId())) return false;
+      if (!getAdapterTradeId()
+          .equals(other.getAdapterTradeId())) return false;
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!getAdapterOrderId()
+          .equals(other.getAdapterOrderId())) return false;
+      if (!getOrderLocalId()
+          .equals(other.getOrderLocalId())) return false;
+      if (!getBrokerOrderSeq()
+          .equals(other.getBrokerOrderSeq())) return false;
+      if (!getOrderSysId()
+          .equals(other.getOrderSysId())) return false;
+      if (!getSettlementId()
+          .equals(other.getSettlementId())) return false;
+      if (!getSequenceNo()
+          .equals(other.getSequenceNo())) return false;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (direction_ != other.direction_) return false;
+      if (offsetFlag_ != other.offsetFlag_) return false;
+      if (hedgeFlag_ != other.hedgeFlag_) return false;
+      if (java.lang.Double.doubleToLongBits(getPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPrice())) return false;
+      if (getVolume()
+          != other.getVolume()) return false;
+      if (tradeType_ != other.tradeType_) return false;
+      if (priceSource_ != other.priceSource_) return false;
+      if (!getTradingDay()
+          .equals(other.getTradingDay())) return false;
+      if (!getTradeDate()
+          .equals(other.getTradeDate())) return false;
+      if (!getTradeTime()
+          .equals(other.getTradeTime())) return false;
+      if (getTradeTimestamp()
+          != other.getTradeTimestamp()) return false;
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -15224,35 +16288,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -15389,6 +16453,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeId = 1;</code>
+       * @return The tradeId.
        */
       public java.lang.String getTradeId() {
         java.lang.Object ref = tradeId_;
@@ -15408,6 +16473,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeId = 1;</code>
+       * @return The bytes for tradeId.
        */
       public com.google.protobuf.ByteString
           getTradeIdBytes() {
@@ -15428,6 +16494,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeId = 1;</code>
+       * @param value The tradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeId(
           java.lang.String value) {
@@ -15445,6 +16513,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeId() {
         
@@ -15458,6 +16527,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeId = 1;</code>
+       * @param value The bytes for tradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15478,6 +16549,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterTradeId = 2;</code>
+       * @return The adapterTradeId.
        */
       public java.lang.String getAdapterTradeId() {
         java.lang.Object ref = adapterTradeId_;
@@ -15497,6 +16569,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterTradeId = 2;</code>
+       * @return The bytes for adapterTradeId.
        */
       public com.google.protobuf.ByteString
           getAdapterTradeIdBytes() {
@@ -15517,6 +16590,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterTradeId = 2;</code>
+       * @param value The adapterTradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterTradeId(
           java.lang.String value) {
@@ -15534,6 +16609,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterTradeId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAdapterTradeId() {
         
@@ -15547,6 +16623,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterTradeId = 2;</code>
+       * @param value The bytes for adapterTradeId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterTradeIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15567,6 +16645,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -15586,6 +16665,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -15606,6 +16686,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -15623,6 +16705,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -15636,6 +16719,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15656,6 +16741,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -15675,6 +16761,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -15695,6 +16782,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -15712,6 +16801,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -15725,6 +16815,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15745,6 +16837,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 5;</code>
+       * @return The adapterOrderId.
        */
       public java.lang.String getAdapterOrderId() {
         java.lang.Object ref = adapterOrderId_;
@@ -15764,6 +16857,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 5;</code>
+       * @return The bytes for adapterOrderId.
        */
       public com.google.protobuf.ByteString
           getAdapterOrderIdBytes() {
@@ -15784,6 +16878,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 5;</code>
+       * @param value The adapterOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterOrderId(
           java.lang.String value) {
@@ -15801,6 +16897,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAdapterOrderId() {
         
@@ -15814,6 +16911,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string adapterOrderId = 5;</code>
+       * @param value The bytes for adapterOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setAdapterOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15834,6 +16933,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 6;</code>
+       * @return The orderLocalId.
        */
       public java.lang.String getOrderLocalId() {
         java.lang.Object ref = orderLocalId_;
@@ -15853,6 +16953,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 6;</code>
+       * @return The bytes for orderLocalId.
        */
       public com.google.protobuf.ByteString
           getOrderLocalIdBytes() {
@@ -15873,6 +16974,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 6;</code>
+       * @param value The orderLocalId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderLocalId(
           java.lang.String value) {
@@ -15890,6 +16993,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderLocalId() {
         
@@ -15903,6 +17007,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderLocalId = 6;</code>
+       * @param value The bytes for orderLocalId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderLocalIdBytes(
           com.google.protobuf.ByteString value) {
@@ -15923,6 +17029,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 7;</code>
+       * @return The brokerOrderSeq.
        */
       public java.lang.String getBrokerOrderSeq() {
         java.lang.Object ref = brokerOrderSeq_;
@@ -15942,6 +17049,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 7;</code>
+       * @return The bytes for brokerOrderSeq.
        */
       public com.google.protobuf.ByteString
           getBrokerOrderSeqBytes() {
@@ -15962,6 +17070,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 7;</code>
+       * @param value The brokerOrderSeq to set.
+       * @return This builder for chaining.
        */
       public Builder setBrokerOrderSeq(
           java.lang.String value) {
@@ -15979,6 +17089,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBrokerOrderSeq() {
         
@@ -15992,6 +17103,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string brokerOrderSeq = 7;</code>
+       * @param value The bytes for brokerOrderSeq to set.
+       * @return This builder for chaining.
        */
       public Builder setBrokerOrderSeqBytes(
           com.google.protobuf.ByteString value) {
@@ -16012,6 +17125,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 8;</code>
+       * @return The orderSysId.
        */
       public java.lang.String getOrderSysId() {
         java.lang.Object ref = orderSysId_;
@@ -16031,6 +17145,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 8;</code>
+       * @return The bytes for orderSysId.
        */
       public com.google.protobuf.ByteString
           getOrderSysIdBytes() {
@@ -16051,6 +17166,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 8;</code>
+       * @param value The orderSysId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSysId(
           java.lang.String value) {
@@ -16068,6 +17185,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderSysId() {
         
@@ -16081,6 +17199,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderSysId = 8;</code>
+       * @param value The bytes for orderSysId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderSysIdBytes(
           com.google.protobuf.ByteString value) {
@@ -16101,6 +17221,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string settlementId = 9;</code>
+       * @return The settlementId.
        */
       public java.lang.String getSettlementId() {
         java.lang.Object ref = settlementId_;
@@ -16120,6 +17241,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string settlementId = 9;</code>
+       * @return The bytes for settlementId.
        */
       public com.google.protobuf.ByteString
           getSettlementIdBytes() {
@@ -16140,6 +17262,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string settlementId = 9;</code>
+       * @param value The settlementId to set.
+       * @return This builder for chaining.
        */
       public Builder setSettlementId(
           java.lang.String value) {
@@ -16157,6 +17281,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string settlementId = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSettlementId() {
         
@@ -16170,6 +17295,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string settlementId = 9;</code>
+       * @param value The bytes for settlementId to set.
+       * @return This builder for chaining.
        */
       public Builder setSettlementIdBytes(
           com.google.protobuf.ByteString value) {
@@ -16190,6 +17317,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 10;</code>
+       * @return The sequenceNo.
        */
       public java.lang.String getSequenceNo() {
         java.lang.Object ref = sequenceNo_;
@@ -16209,6 +17337,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 10;</code>
+       * @return The bytes for sequenceNo.
        */
       public com.google.protobuf.ByteString
           getSequenceNoBytes() {
@@ -16229,6 +17358,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 10;</code>
+       * @param value The sequenceNo to set.
+       * @return This builder for chaining.
        */
       public Builder setSequenceNo(
           java.lang.String value) {
@@ -16246,6 +17377,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSequenceNo() {
         
@@ -16259,6 +17391,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string sequenceNo = 10;</code>
+       * @param value The bytes for sequenceNo to set.
+       * @return This builder for chaining.
        */
       public Builder setSequenceNoBytes(
           com.google.protobuf.ByteString value) {
@@ -16279,6 +17413,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 11;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -16298,6 +17433,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 11;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -16318,6 +17454,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 11;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -16335,6 +17473,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -16348,6 +17487,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 11;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -16368,8 +17509,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+       * @return The enum numeric value on the wire for direction.
        */
-      public int getDirectionValue() {
+      @java.lang.Override public int getDirectionValue() {
         return direction_;
       }
       /**
@@ -16378,8 +17520,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+       * @param value The enum numeric value on the wire for direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirectionValue(int value) {
+        
         direction_ = value;
         onChanged();
         return this;
@@ -16390,7 +17535,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+       * @return The direction.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
@@ -16402,6 +17549,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+       * @param value The direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirection(xyz.redtorch.pb.CoreEnum.DirectionEnum value) {
         if (value == null) {
@@ -16418,6 +17567,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDirection() {
         
@@ -16433,8 +17583,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+       * @return The enum numeric value on the wire for offsetFlag.
        */
-      public int getOffsetFlagValue() {
+      @java.lang.Override public int getOffsetFlagValue() {
         return offsetFlag_;
       }
       /**
@@ -16443,8 +17594,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+       * @param value The enum numeric value on the wire for offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlagValue(int value) {
+        
         offsetFlag_ = value;
         onChanged();
         return this;
@@ -16455,7 +17609,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+       * @return The offsetFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
@@ -16467,6 +17623,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+       * @param value The offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlag(xyz.redtorch.pb.CoreEnum.OffsetFlagEnum value) {
         if (value == null) {
@@ -16483,6 +17641,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOffsetFlag() {
         
@@ -16498,8 +17657,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+       * @return The enum numeric value on the wire for hedgeFlag.
        */
-      public int getHedgeFlagValue() {
+      @java.lang.Override public int getHedgeFlagValue() {
         return hedgeFlag_;
       }
       /**
@@ -16508,8 +17668,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+       * @param value The enum numeric value on the wire for hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlagValue(int value) {
+        
         hedgeFlag_ = value;
         onChanged();
         return this;
@@ -16520,7 +17683,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+       * @return The hedgeFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
@@ -16532,6 +17697,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+       * @param value The hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlag(xyz.redtorch.pb.CoreEnum.HedgeFlagEnum value) {
         if (value == null) {
@@ -16548,6 +17715,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHedgeFlag() {
         
@@ -16563,7 +17731,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 15;</code>
+       * @return The price.
        */
+      @java.lang.Override
       public double getPrice() {
         return price_;
       }
@@ -16573,6 +17743,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 15;</code>
+       * @param value The price to set.
+       * @return This builder for chaining.
        */
       public Builder setPrice(double value) {
         
@@ -16586,6 +17758,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPrice() {
         
@@ -16601,7 +17774,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 16;</code>
+       * @return The volume.
        */
+      @java.lang.Override
       public int getVolume() {
         return volume_;
       }
@@ -16611,6 +17786,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 16;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
        */
       public Builder setVolume(int value) {
         
@@ -16624,6 +17801,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
@@ -16639,8 +17817,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+       * @return The enum numeric value on the wire for tradeType.
        */
-      public int getTradeTypeValue() {
+      @java.lang.Override public int getTradeTypeValue() {
         return tradeType_;
       }
       /**
@@ -16649,8 +17828,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+       * @param value The enum numeric value on the wire for tradeType to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeTypeValue(int value) {
+        
         tradeType_ = value;
         onChanged();
         return this;
@@ -16661,7 +17843,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+       * @return The tradeType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.TradeTypeEnum getTradeType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.TradeTypeEnum result = xyz.redtorch.pb.CoreEnum.TradeTypeEnum.valueOf(tradeType_);
@@ -16673,6 +17857,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+       * @param value The tradeType to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeType(xyz.redtorch.pb.CoreEnum.TradeTypeEnum value) {
         if (value == null) {
@@ -16689,6 +17875,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TradeTypeEnum tradeType = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeType() {
         
@@ -16704,8 +17891,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+       * @return The enum numeric value on the wire for priceSource.
        */
-      public int getPriceSourceValue() {
+      @java.lang.Override public int getPriceSourceValue() {
         return priceSource_;
       }
       /**
@@ -16714,8 +17902,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+       * @param value The enum numeric value on the wire for priceSource to set.
+       * @return This builder for chaining.
        */
       public Builder setPriceSourceValue(int value) {
+        
         priceSource_ = value;
         onChanged();
         return this;
@@ -16726,7 +17917,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+       * @return The priceSource.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.PriceSourceEnum getPriceSource() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.PriceSourceEnum result = xyz.redtorch.pb.CoreEnum.PriceSourceEnum.valueOf(priceSource_);
@@ -16738,6 +17931,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+       * @param value The priceSource to set.
+       * @return This builder for chaining.
        */
       public Builder setPriceSource(xyz.redtorch.pb.CoreEnum.PriceSourceEnum value) {
         if (value == null) {
@@ -16754,6 +17949,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PriceSourceEnum priceSource = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPriceSource() {
         
@@ -16769,6 +17965,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 19;</code>
+       * @return The tradingDay.
        */
       public java.lang.String getTradingDay() {
         java.lang.Object ref = tradingDay_;
@@ -16788,6 +17985,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 19;</code>
+       * @return The bytes for tradingDay.
        */
       public com.google.protobuf.ByteString
           getTradingDayBytes() {
@@ -16808,6 +18006,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 19;</code>
+       * @param value The tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDay(
           java.lang.String value) {
@@ -16825,6 +18025,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
@@ -16838,6 +18039,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 19;</code>
+       * @param value The bytes for tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDayBytes(
           com.google.protobuf.ByteString value) {
@@ -16858,6 +18061,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeDate = 20;</code>
+       * @return The tradeDate.
        */
       public java.lang.String getTradeDate() {
         java.lang.Object ref = tradeDate_;
@@ -16877,6 +18081,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeDate = 20;</code>
+       * @return The bytes for tradeDate.
        */
       public com.google.protobuf.ByteString
           getTradeDateBytes() {
@@ -16897,6 +18102,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeDate = 20;</code>
+       * @param value The tradeDate to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeDate(
           java.lang.String value) {
@@ -16914,6 +18121,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeDate = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeDate() {
         
@@ -16927,6 +18135,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeDate = 20;</code>
+       * @param value The bytes for tradeDate to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeDateBytes(
           com.google.protobuf.ByteString value) {
@@ -16947,6 +18157,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeTime = 21;</code>
+       * @return The tradeTime.
        */
       public java.lang.String getTradeTime() {
         java.lang.Object ref = tradeTime_;
@@ -16966,6 +18177,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeTime = 21;</code>
+       * @return The bytes for tradeTime.
        */
       public com.google.protobuf.ByteString
           getTradeTimeBytes() {
@@ -16986,6 +18198,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeTime = 21;</code>
+       * @param value The tradeTime to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeTime(
           java.lang.String value) {
@@ -17003,6 +18217,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeTime = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeTime() {
         
@@ -17016,6 +18231,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradeTime = 21;</code>
+       * @param value The bytes for tradeTime to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -17036,7 +18253,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 tradeTimestamp = 22;</code>
+       * @return The tradeTimestamp.
        */
+      @java.lang.Override
       public long getTradeTimestamp() {
         return tradeTimestamp_;
       }
@@ -17046,6 +18265,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 tradeTimestamp = 22;</code>
+       * @param value The tradeTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setTradeTimestamp(long value) {
         
@@ -17059,6 +18280,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 tradeTimestamp = 22;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradeTimestamp() {
         
@@ -17067,7 +18289,7 @@ public final class CoreField {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
@@ -17076,6 +18298,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
@@ -17086,6 +18309,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -17227,6 +18451,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -17246,6 +18471,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -17266,6 +18492,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -17283,6 +18511,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -17296,6 +18525,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -17311,7 +18542,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -17371,6 +18602,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string positionId = 1;</code>
+     * @return The positionId.
      */
     java.lang.String getPositionId();
     /**
@@ -17379,6 +18611,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string positionId = 1;</code>
+     * @return The bytes for positionId.
      */
     com.google.protobuf.ByteString
         getPositionIdBytes();
@@ -17389,6 +18622,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
     java.lang.String getAccountId();
     /**
@@ -17397,6 +18631,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
@@ -17407,6 +18642,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+     * @return The enum numeric value on the wire for positionDirection.
      */
     int getPositionDirectionValue();
     /**
@@ -17415,6 +18651,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+     * @return The positionDirection.
      */
     xyz.redtorch.pb.CoreEnum.PositionDirectionEnum getPositionDirection();
 
@@ -17424,6 +18661,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 position = 4;</code>
+     * @return The position.
      */
     int getPosition();
 
@@ -17433,6 +18671,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 frozen = 5;</code>
+     * @return The frozen.
      */
     int getFrozen();
 
@@ -17442,6 +18681,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 ydPosition = 6;</code>
+     * @return The ydPosition.
      */
     int getYdPosition();
 
@@ -17451,6 +18691,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 ydFrozen = 7;</code>
+     * @return The ydFrozen.
      */
     int getYdFrozen();
 
@@ -17460,6 +18701,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tdPosition = 8;</code>
+     * @return The tdPosition.
      */
     int getTdPosition();
 
@@ -17469,6 +18711,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tdFrozen = 9;</code>
+     * @return The tdFrozen.
      */
     int getTdFrozen();
 
@@ -17478,6 +18721,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lastPrice = 10;</code>
+     * @return The lastPrice.
      */
     double getLastPrice();
 
@@ -17487,6 +18731,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 11;</code>
+     * @return The price.
      */
     double getPrice();
 
@@ -17496,6 +18741,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double priceDiff = 12;</code>
+     * @return The priceDiff.
      */
     double getPriceDiff();
 
@@ -17505,6 +18751,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 13;</code>
+     * @return The openPrice.
      */
     double getOpenPrice();
 
@@ -17514,6 +18761,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPriceDiff = 14;</code>
+     * @return The openPriceDiff.
      */
     double getOpenPriceDiff();
 
@@ -17523,6 +18771,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfit = 15;</code>
+     * @return The positionProfit.
      */
     double getPositionProfit();
 
@@ -17532,6 +18781,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfitRatio = 16;</code>
+     * @return The positionProfitRatio.
      */
     double getPositionProfitRatio();
 
@@ -17541,6 +18791,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPositionProfit = 17;</code>
+     * @return The openPositionProfit.
      */
     double getOpenPositionProfit();
 
@@ -17550,6 +18801,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPositionProfitRatio = 18;</code>
+     * @return The openPositionProfitRatio.
      */
     double getOpenPositionProfitRatio();
 
@@ -17559,6 +18811,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double useMargin = 19;</code>
+     * @return The useMargin.
      */
     double getUseMargin();
 
@@ -17568,6 +18821,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double exchangeMargin = 20;</code>
+     * @return The exchangeMargin.
      */
     double getExchangeMargin();
 
@@ -17577,6 +18831,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double contractValue = 21;</code>
+     * @return The contractValue.
      */
     double getContractValue();
 
@@ -17586,6 +18841,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
     int getHedgeFlagValue();
     /**
@@ -17594,6 +18850,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+     * @return The hedgeFlag.
      */
     xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag();
 
@@ -17603,6 +18860,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
@@ -17611,6 +18869,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -17628,6 +18887,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -17636,6 +18896,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -17646,6 +18907,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 localCreatedTimestamp = 25;</code>
+     * @return The localCreatedTimestamp.
      */
     long getLocalCreatedTimestamp();
   }
@@ -17656,7 +18918,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.PositionField}
    */
-  public  static final class PositionField extends
+  public static final class PositionField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.PositionField)
       PositionFieldOrBuilder {
@@ -17669,27 +18931,15 @@ public final class CoreField {
       positionId_ = "";
       accountId_ = "";
       positionDirection_ = 0;
-      position_ = 0;
-      frozen_ = 0;
-      ydPosition_ = 0;
-      ydFrozen_ = 0;
-      tdPosition_ = 0;
-      tdFrozen_ = 0;
-      lastPrice_ = 0D;
-      price_ = 0D;
-      priceDiff_ = 0D;
-      openPrice_ = 0D;
-      openPriceDiff_ = 0D;
-      positionProfit_ = 0D;
-      positionProfitRatio_ = 0D;
-      openPositionProfit_ = 0D;
-      openPositionProfitRatio_ = 0D;
-      useMargin_ = 0D;
-      exchangeMargin_ = 0D;
-      contractValue_ = 0D;
       hedgeFlag_ = 0;
       gatewayId_ = "";
-      localCreatedTimestamp_ = 0L;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PositionField();
     }
 
     @java.lang.Override
@@ -17705,7 +18955,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -17855,7 +19104,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -17894,7 +19143,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string positionId = 1;</code>
+     * @return The positionId.
      */
+    @java.lang.Override
     public java.lang.String getPositionId() {
       java.lang.Object ref = positionId_;
       if (ref instanceof java.lang.String) {
@@ -17913,7 +19164,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string positionId = 1;</code>
+     * @return The bytes for positionId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getPositionIdBytes() {
       java.lang.Object ref = positionId_;
@@ -17936,7 +19189,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 2;</code>
+     * @return The accountId.
      */
+    @java.lang.Override
     public java.lang.String getAccountId() {
       java.lang.Object ref = accountId_;
       if (ref instanceof java.lang.String) {
@@ -17955,7 +19210,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountId = 2;</code>
+     * @return The bytes for accountId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       java.lang.Object ref = accountId_;
@@ -17978,8 +19235,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+     * @return The enum numeric value on the wire for positionDirection.
      */
-    public int getPositionDirectionValue() {
+    @java.lang.Override public int getPositionDirectionValue() {
       return positionDirection_;
     }
     /**
@@ -17988,8 +19246,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+     * @return The positionDirection.
      */
-    public xyz.redtorch.pb.CoreEnum.PositionDirectionEnum getPositionDirection() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.PositionDirectionEnum getPositionDirection() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.PositionDirectionEnum result = xyz.redtorch.pb.CoreEnum.PositionDirectionEnum.valueOf(positionDirection_);
       return result == null ? xyz.redtorch.pb.CoreEnum.PositionDirectionEnum.UNRECOGNIZED : result;
@@ -18003,7 +19262,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 position = 4;</code>
+     * @return The position.
      */
+    @java.lang.Override
     public int getPosition() {
       return position_;
     }
@@ -18016,7 +19277,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 frozen = 5;</code>
+     * @return The frozen.
      */
+    @java.lang.Override
     public int getFrozen() {
       return frozen_;
     }
@@ -18029,7 +19292,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 ydPosition = 6;</code>
+     * @return The ydPosition.
      */
+    @java.lang.Override
     public int getYdPosition() {
       return ydPosition_;
     }
@@ -18042,7 +19307,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 ydFrozen = 7;</code>
+     * @return The ydFrozen.
      */
+    @java.lang.Override
     public int getYdFrozen() {
       return ydFrozen_;
     }
@@ -18055,7 +19322,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tdPosition = 8;</code>
+     * @return The tdPosition.
      */
+    @java.lang.Override
     public int getTdPosition() {
       return tdPosition_;
     }
@@ -18068,7 +19337,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 tdFrozen = 9;</code>
+     * @return The tdFrozen.
      */
+    @java.lang.Override
     public int getTdFrozen() {
       return tdFrozen_;
     }
@@ -18081,7 +19352,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lastPrice = 10;</code>
+     * @return The lastPrice.
      */
+    @java.lang.Override
     public double getLastPrice() {
       return lastPrice_;
     }
@@ -18094,7 +19367,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 11;</code>
+     * @return The price.
      */
+    @java.lang.Override
     public double getPrice() {
       return price_;
     }
@@ -18107,7 +19382,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double priceDiff = 12;</code>
+     * @return The priceDiff.
      */
+    @java.lang.Override
     public double getPriceDiff() {
       return priceDiff_;
     }
@@ -18120,7 +19397,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 13;</code>
+     * @return The openPrice.
      */
+    @java.lang.Override
     public double getOpenPrice() {
       return openPrice_;
     }
@@ -18133,7 +19412,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPriceDiff = 14;</code>
+     * @return The openPriceDiff.
      */
+    @java.lang.Override
     public double getOpenPriceDiff() {
       return openPriceDiff_;
     }
@@ -18146,7 +19427,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfit = 15;</code>
+     * @return The positionProfit.
      */
+    @java.lang.Override
     public double getPositionProfit() {
       return positionProfit_;
     }
@@ -18159,7 +19442,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double positionProfitRatio = 16;</code>
+     * @return The positionProfitRatio.
      */
+    @java.lang.Override
     public double getPositionProfitRatio() {
       return positionProfitRatio_;
     }
@@ -18172,7 +19457,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPositionProfit = 17;</code>
+     * @return The openPositionProfit.
      */
+    @java.lang.Override
     public double getOpenPositionProfit() {
       return openPositionProfit_;
     }
@@ -18185,7 +19472,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPositionProfitRatio = 18;</code>
+     * @return The openPositionProfitRatio.
      */
+    @java.lang.Override
     public double getOpenPositionProfitRatio() {
       return openPositionProfitRatio_;
     }
@@ -18198,7 +19487,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double useMargin = 19;</code>
+     * @return The useMargin.
      */
+    @java.lang.Override
     public double getUseMargin() {
       return useMargin_;
     }
@@ -18211,7 +19502,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double exchangeMargin = 20;</code>
+     * @return The exchangeMargin.
      */
+    @java.lang.Override
     public double getExchangeMargin() {
       return exchangeMargin_;
     }
@@ -18224,7 +19517,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double contractValue = 21;</code>
+     * @return The contractValue.
      */
+    @java.lang.Override
     public double getContractValue() {
       return contractValue_;
     }
@@ -18237,8 +19532,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
-    public int getHedgeFlagValue() {
+    @java.lang.Override public int getHedgeFlagValue() {
       return hedgeFlag_;
     }
     /**
@@ -18247,8 +19543,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+     * @return The hedgeFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.UNRECOGNIZED : result;
@@ -18262,7 +19559,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
@@ -18272,7 +19571,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
@@ -18283,6 +19584,7 @@ public final class CoreField {
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -18295,7 +19597,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -18314,7 +19618,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 24;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -18337,7 +19643,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 localCreatedTimestamp = 25;</code>
+     * @return The localCreatedTimestamp.
      */
+    @java.lang.Override
     public long getLocalCreatedTimestamp() {
       return localCreatedTimestamp_;
     }
@@ -18552,84 +19860,71 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.PositionField other = (xyz.redtorch.pb.CoreField.PositionField) obj;
 
-      boolean result = true;
-      result = result && getPositionId()
-          .equals(other.getPositionId());
-      result = result && getAccountId()
-          .equals(other.getAccountId());
-      result = result && positionDirection_ == other.positionDirection_;
-      result = result && (getPosition()
-          == other.getPosition());
-      result = result && (getFrozen()
-          == other.getFrozen());
-      result = result && (getYdPosition()
-          == other.getYdPosition());
-      result = result && (getYdFrozen()
-          == other.getYdFrozen());
-      result = result && (getTdPosition()
-          == other.getTdPosition());
-      result = result && (getTdFrozen()
-          == other.getTdFrozen());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLastPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getLastPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPriceDiff())
-          == java.lang.Double.doubleToLongBits(
-              other.getPriceDiff()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPriceDiff())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPriceDiff()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPositionProfit())
-          == java.lang.Double.doubleToLongBits(
-              other.getPositionProfit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPositionProfitRatio())
-          == java.lang.Double.doubleToLongBits(
-              other.getPositionProfitRatio()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPositionProfit())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPositionProfit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPositionProfitRatio())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPositionProfitRatio()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getUseMargin())
-          == java.lang.Double.doubleToLongBits(
-              other.getUseMargin()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getExchangeMargin())
-          == java.lang.Double.doubleToLongBits(
-              other.getExchangeMargin()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getContractValue())
-          == java.lang.Double.doubleToLongBits(
-              other.getContractValue()));
-      result = result && hedgeFlag_ == other.hedgeFlag_;
-      result = result && (hasContract() == other.hasContract());
+      if (!getPositionId()
+          .equals(other.getPositionId())) return false;
+      if (!getAccountId()
+          .equals(other.getAccountId())) return false;
+      if (positionDirection_ != other.positionDirection_) return false;
+      if (getPosition()
+          != other.getPosition()) return false;
+      if (getFrozen()
+          != other.getFrozen()) return false;
+      if (getYdPosition()
+          != other.getYdPosition()) return false;
+      if (getYdFrozen()
+          != other.getYdFrozen()) return false;
+      if (getTdPosition()
+          != other.getTdPosition()) return false;
+      if (getTdFrozen()
+          != other.getTdFrozen()) return false;
+      if (java.lang.Double.doubleToLongBits(getLastPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getLastPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getPriceDiff())
+          != java.lang.Double.doubleToLongBits(
+              other.getPriceDiff())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPriceDiff())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPriceDiff())) return false;
+      if (java.lang.Double.doubleToLongBits(getPositionProfit())
+          != java.lang.Double.doubleToLongBits(
+              other.getPositionProfit())) return false;
+      if (java.lang.Double.doubleToLongBits(getPositionProfitRatio())
+          != java.lang.Double.doubleToLongBits(
+              other.getPositionProfitRatio())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPositionProfit())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPositionProfit())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPositionProfitRatio())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPositionProfitRatio())) return false;
+      if (java.lang.Double.doubleToLongBits(getUseMargin())
+          != java.lang.Double.doubleToLongBits(
+              other.getUseMargin())) return false;
+      if (java.lang.Double.doubleToLongBits(getExchangeMargin())
+          != java.lang.Double.doubleToLongBits(
+              other.getExchangeMargin())) return false;
+      if (java.lang.Double.doubleToLongBits(getContractValue())
+          != java.lang.Double.doubleToLongBits(
+              other.getContractValue())) return false;
+      if (hedgeFlag_ != other.hedgeFlag_) return false;
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && (getLocalCreatedTimestamp()
-          == other.getLocalCreatedTimestamp());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (getLocalCreatedTimestamp()
+          != other.getLocalCreatedTimestamp()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -18956,35 +20251,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -19112,6 +20407,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string positionId = 1;</code>
+       * @return The positionId.
        */
       public java.lang.String getPositionId() {
         java.lang.Object ref = positionId_;
@@ -19131,6 +20427,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string positionId = 1;</code>
+       * @return The bytes for positionId.
        */
       public com.google.protobuf.ByteString
           getPositionIdBytes() {
@@ -19151,6 +20448,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string positionId = 1;</code>
+       * @param value The positionId to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionId(
           java.lang.String value) {
@@ -19168,6 +20467,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string positionId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionId() {
         
@@ -19181,6 +20481,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string positionId = 1;</code>
+       * @param value The bytes for positionId to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionIdBytes(
           com.google.protobuf.ByteString value) {
@@ -19201,6 +20503,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 2;</code>
+       * @return The accountId.
        */
       public java.lang.String getAccountId() {
         java.lang.Object ref = accountId_;
@@ -19220,6 +20523,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 2;</code>
+       * @return The bytes for accountId.
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
@@ -19240,6 +20544,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 2;</code>
+       * @param value The accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -19257,6 +20563,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountId() {
         
@@ -19270,6 +20577,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountId = 2;</code>
+       * @param value The bytes for accountId to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -19290,8 +20599,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+       * @return The enum numeric value on the wire for positionDirection.
        */
-      public int getPositionDirectionValue() {
+      @java.lang.Override public int getPositionDirectionValue() {
         return positionDirection_;
       }
       /**
@@ -19300,8 +20610,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+       * @param value The enum numeric value on the wire for positionDirection to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionDirectionValue(int value) {
+        
         positionDirection_ = value;
         onChanged();
         return this;
@@ -19312,7 +20625,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+       * @return The positionDirection.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.PositionDirectionEnum getPositionDirection() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.PositionDirectionEnum result = xyz.redtorch.pb.CoreEnum.PositionDirectionEnum.valueOf(positionDirection_);
@@ -19324,6 +20639,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+       * @param value The positionDirection to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionDirection(xyz.redtorch.pb.CoreEnum.PositionDirectionEnum value) {
         if (value == null) {
@@ -19340,6 +20657,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.PositionDirectionEnum positionDirection = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionDirection() {
         
@@ -19355,7 +20673,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 position = 4;</code>
+       * @return The position.
        */
+      @java.lang.Override
       public int getPosition() {
         return position_;
       }
@@ -19365,6 +20685,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 position = 4;</code>
+       * @param value The position to set.
+       * @return This builder for chaining.
        */
       public Builder setPosition(int value) {
         
@@ -19378,6 +20700,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 position = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPosition() {
         
@@ -19393,7 +20716,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frozen = 5;</code>
+       * @return The frozen.
        */
+      @java.lang.Override
       public int getFrozen() {
         return frozen_;
       }
@@ -19403,6 +20728,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frozen = 5;</code>
+       * @param value The frozen to set.
+       * @return This builder for chaining.
        */
       public Builder setFrozen(int value) {
         
@@ -19416,6 +20743,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 frozen = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearFrozen() {
         
@@ -19431,7 +20759,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydPosition = 6;</code>
+       * @return The ydPosition.
        */
+      @java.lang.Override
       public int getYdPosition() {
         return ydPosition_;
       }
@@ -19441,6 +20771,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydPosition = 6;</code>
+       * @param value The ydPosition to set.
+       * @return This builder for chaining.
        */
       public Builder setYdPosition(int value) {
         
@@ -19454,6 +20786,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydPosition = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearYdPosition() {
         
@@ -19469,7 +20802,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydFrozen = 7;</code>
+       * @return The ydFrozen.
        */
+      @java.lang.Override
       public int getYdFrozen() {
         return ydFrozen_;
       }
@@ -19479,6 +20814,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydFrozen = 7;</code>
+       * @param value The ydFrozen to set.
+       * @return This builder for chaining.
        */
       public Builder setYdFrozen(int value) {
         
@@ -19492,6 +20829,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 ydFrozen = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearYdFrozen() {
         
@@ -19507,7 +20845,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdPosition = 8;</code>
+       * @return The tdPosition.
        */
+      @java.lang.Override
       public int getTdPosition() {
         return tdPosition_;
       }
@@ -19517,6 +20857,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdPosition = 8;</code>
+       * @param value The tdPosition to set.
+       * @return This builder for chaining.
        */
       public Builder setTdPosition(int value) {
         
@@ -19530,6 +20872,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdPosition = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTdPosition() {
         
@@ -19545,7 +20888,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdFrozen = 9;</code>
+       * @return The tdFrozen.
        */
+      @java.lang.Override
       public int getTdFrozen() {
         return tdFrozen_;
       }
@@ -19555,6 +20900,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdFrozen = 9;</code>
+       * @param value The tdFrozen to set.
+       * @return This builder for chaining.
        */
       public Builder setTdFrozen(int value) {
         
@@ -19568,6 +20915,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 tdFrozen = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTdFrozen() {
         
@@ -19583,7 +20931,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 10;</code>
+       * @return The lastPrice.
        */
+      @java.lang.Override
       public double getLastPrice() {
         return lastPrice_;
       }
@@ -19593,6 +20943,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 10;</code>
+       * @param value The lastPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setLastPrice(double value) {
         
@@ -19606,6 +20958,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLastPrice() {
         
@@ -19621,7 +20974,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 11;</code>
+       * @return The price.
        */
+      @java.lang.Override
       public double getPrice() {
         return price_;
       }
@@ -19631,6 +20986,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 11;</code>
+       * @param value The price to set.
+       * @return This builder for chaining.
        */
       public Builder setPrice(double value) {
         
@@ -19644,6 +21001,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPrice() {
         
@@ -19659,7 +21017,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceDiff = 12;</code>
+       * @return The priceDiff.
        */
+      @java.lang.Override
       public double getPriceDiff() {
         return priceDiff_;
       }
@@ -19669,6 +21029,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceDiff = 12;</code>
+       * @param value The priceDiff to set.
+       * @return This builder for chaining.
        */
       public Builder setPriceDiff(double value) {
         
@@ -19682,6 +21044,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double priceDiff = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPriceDiff() {
         
@@ -19697,7 +21060,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 13;</code>
+       * @return The openPrice.
        */
+      @java.lang.Override
       public double getOpenPrice() {
         return openPrice_;
       }
@@ -19707,6 +21072,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 13;</code>
+       * @param value The openPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPrice(double value) {
         
@@ -19720,6 +21087,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPrice() {
         
@@ -19735,7 +21103,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPriceDiff = 14;</code>
+       * @return The openPriceDiff.
        */
+      @java.lang.Override
       public double getOpenPriceDiff() {
         return openPriceDiff_;
       }
@@ -19745,6 +21115,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPriceDiff = 14;</code>
+       * @param value The openPriceDiff to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPriceDiff(double value) {
         
@@ -19758,6 +21130,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPriceDiff = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPriceDiff() {
         
@@ -19773,7 +21146,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 15;</code>
+       * @return The positionProfit.
        */
+      @java.lang.Override
       public double getPositionProfit() {
         return positionProfit_;
       }
@@ -19783,6 +21158,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 15;</code>
+       * @param value The positionProfit to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionProfit(double value) {
         
@@ -19796,6 +21173,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfit = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionProfit() {
         
@@ -19811,7 +21189,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfitRatio = 16;</code>
+       * @return The positionProfitRatio.
        */
+      @java.lang.Override
       public double getPositionProfitRatio() {
         return positionProfitRatio_;
       }
@@ -19821,6 +21201,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfitRatio = 16;</code>
+       * @param value The positionProfitRatio to set.
+       * @return This builder for chaining.
        */
       public Builder setPositionProfitRatio(double value) {
         
@@ -19834,6 +21216,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double positionProfitRatio = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPositionProfitRatio() {
         
@@ -19849,7 +21232,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfit = 17;</code>
+       * @return The openPositionProfit.
        */
+      @java.lang.Override
       public double getOpenPositionProfit() {
         return openPositionProfit_;
       }
@@ -19859,6 +21244,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfit = 17;</code>
+       * @param value The openPositionProfit to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPositionProfit(double value) {
         
@@ -19872,6 +21259,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfit = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPositionProfit() {
         
@@ -19887,7 +21275,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfitRatio = 18;</code>
+       * @return The openPositionProfitRatio.
        */
+      @java.lang.Override
       public double getOpenPositionProfitRatio() {
         return openPositionProfitRatio_;
       }
@@ -19897,6 +21287,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfitRatio = 18;</code>
+       * @param value The openPositionProfitRatio to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPositionProfitRatio(double value) {
         
@@ -19910,6 +21302,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPositionProfitRatio = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPositionProfitRatio() {
         
@@ -19925,7 +21318,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double useMargin = 19;</code>
+       * @return The useMargin.
        */
+      @java.lang.Override
       public double getUseMargin() {
         return useMargin_;
       }
@@ -19935,6 +21330,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double useMargin = 19;</code>
+       * @param value The useMargin to set.
+       * @return This builder for chaining.
        */
       public Builder setUseMargin(double value) {
         
@@ -19948,6 +21345,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double useMargin = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUseMargin() {
         
@@ -19963,7 +21361,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double exchangeMargin = 20;</code>
+       * @return The exchangeMargin.
        */
+      @java.lang.Override
       public double getExchangeMargin() {
         return exchangeMargin_;
       }
@@ -19973,6 +21373,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double exchangeMargin = 20;</code>
+       * @param value The exchangeMargin to set.
+       * @return This builder for chaining.
        */
       public Builder setExchangeMargin(double value) {
         
@@ -19986,6 +21388,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double exchangeMargin = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearExchangeMargin() {
         
@@ -20001,7 +21404,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double contractValue = 21;</code>
+       * @return The contractValue.
        */
+      @java.lang.Override
       public double getContractValue() {
         return contractValue_;
       }
@@ -20011,6 +21416,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double contractValue = 21;</code>
+       * @param value The contractValue to set.
+       * @return This builder for chaining.
        */
       public Builder setContractValue(double value) {
         
@@ -20024,6 +21431,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double contractValue = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContractValue() {
         
@@ -20039,8 +21447,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+       * @return The enum numeric value on the wire for hedgeFlag.
        */
-      public int getHedgeFlagValue() {
+      @java.lang.Override public int getHedgeFlagValue() {
         return hedgeFlag_;
       }
       /**
@@ -20049,8 +21458,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+       * @param value The enum numeric value on the wire for hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlagValue(int value) {
+        
         hedgeFlag_ = value;
         onChanged();
         return this;
@@ -20061,7 +21473,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+       * @return The hedgeFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
@@ -20073,6 +21487,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+       * @param value The hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlag(xyz.redtorch.pb.CoreEnum.HedgeFlagEnum value) {
         if (value == null) {
@@ -20089,6 +21505,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 22;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHedgeFlag() {
         
@@ -20097,7 +21514,7 @@ public final class CoreField {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
@@ -20106,6 +21523,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
@@ -20116,6 +21534,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 23;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -20257,6 +21676,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -20276,6 +21696,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -20296,6 +21717,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -20313,6 +21736,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -20326,6 +21750,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 24;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -20346,7 +21772,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 25;</code>
+       * @return The localCreatedTimestamp.
        */
+      @java.lang.Override
       public long getLocalCreatedTimestamp() {
         return localCreatedTimestamp_;
       }
@@ -20356,6 +21784,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 25;</code>
+       * @param value The localCreatedTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setLocalCreatedTimestamp(long value) {
         
@@ -20369,6 +21799,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 localCreatedTimestamp = 25;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLocalCreatedTimestamp() {
         
@@ -20379,7 +21810,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -20439,6 +21870,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
@@ -20447,6 +21879,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -20457,6 +21890,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -20465,6 +21899,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -20475,6 +21910,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The tradingDay.
      */
     java.lang.String getTradingDay();
     /**
@@ -20483,6 +21919,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The bytes for tradingDay.
      */
     com.google.protobuf.ByteString
         getTradingDayBytes();
@@ -20493,6 +21930,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The actionDay.
      */
     java.lang.String getActionDay();
     /**
@@ -20501,6 +21939,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The bytes for actionDay.
      */
     com.google.protobuf.ByteString
         getActionDayBytes();
@@ -20511,6 +21950,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The actionTime.
      */
     java.lang.String getActionTime();
     /**
@@ -20519,6 +21959,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The bytes for actionTime.
      */
     com.google.protobuf.ByteString
         getActionTimeBytes();
@@ -20529,6 +21970,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 actionTimestamp = 6;</code>
+     * @return The actionTimestamp.
      */
     long getActionTimestamp();
 
@@ -20538,6 +21980,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 status = 7;</code>
+     * @return The status.
      */
     int getStatus();
 
@@ -20547,6 +21990,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lastPrice = 8;</code>
+     * @return The lastPrice.
      */
     double getLastPrice();
 
@@ -20556,6 +22000,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double avgPrice = 9;</code>
+     * @return The avgPrice.
      */
     double getAvgPrice();
 
@@ -20565,6 +22010,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 totalBidVol = 10;</code>
+     * @return The totalBidVol.
      */
     long getTotalBidVol();
 
@@ -20574,6 +22020,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 totalAskVol = 11;</code>
+     * @return The totalAskVol.
      */
     long getTotalAskVol();
 
@@ -20583,6 +22030,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double weightedAvgBidPrice = 12;</code>
+     * @return The weightedAvgBidPrice.
      */
     double getWeightedAvgBidPrice();
 
@@ -20592,6 +22040,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double weightedAvgAskPrice = 13;</code>
+     * @return The weightedAvgAskPrice.
      */
     double getWeightedAvgAskPrice();
 
@@ -20601,6 +22050,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double iopv = 14;</code>
+     * @return The iopv.
      */
     double getIopv();
 
@@ -20610,6 +22060,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double yieldToMaturity = 15;</code>
+     * @return The yieldToMaturity.
      */
     double getYieldToMaturity();
 
@@ -20619,6 +22070,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volumeDelta = 16;</code>
+     * @return The volumeDelta.
      */
     long getVolumeDelta();
 
@@ -20628,6 +22080,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volume = 17;</code>
+     * @return The volume.
      */
     long getVolume();
 
@@ -20637,6 +22090,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnover = 18;</code>
+     * @return The turnover.
      */
     double getTurnover();
 
@@ -20646,6 +22100,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnoverDelta = 19;</code>
+     * @return The turnoverDelta.
      */
     double getTurnoverDelta();
 
@@ -20655,6 +22110,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTrades = 20;</code>
+     * @return The numTrades.
      */
     long getNumTrades();
 
@@ -20664,6 +22120,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTradesDelta = 21;</code>
+     * @return The numTradesDelta.
      */
     long getNumTradesDelta();
 
@@ -20673,6 +22130,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterest = 22;</code>
+     * @return The openInterest.
      */
     double getOpenInterest();
 
@@ -20682,6 +22140,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterestDelta = 23;</code>
+     * @return The openInterestDelta.
      */
     double getOpenInterestDelta();
 
@@ -20691,6 +22150,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preOpenInterest = 24;</code>
+     * @return The preOpenInterest.
      */
     double getPreOpenInterest();
 
@@ -20700,6 +22160,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preClosePrice = 25;</code>
+     * @return The preClosePrice.
      */
     double getPreClosePrice();
 
@@ -20709,6 +22170,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double settlePrice = 26;</code>
+     * @return The settlePrice.
      */
     double getSettlePrice();
 
@@ -20718,6 +22180,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preSettlePrice = 27;</code>
+     * @return The preSettlePrice.
      */
     double getPreSettlePrice();
 
@@ -20727,6 +22190,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 28;</code>
+     * @return The openPrice.
      */
     double getOpenPrice();
 
@@ -20736,6 +22200,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double highPrice = 29;</code>
+     * @return The highPrice.
      */
     double getHighPrice();
 
@@ -20745,6 +22210,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowPrice = 30;</code>
+     * @return The lowPrice.
      */
     double getLowPrice();
 
@@ -20754,6 +22220,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double upperLimit = 31;</code>
+     * @return The upperLimit.
      */
     double getUpperLimit();
 
@@ -20763,6 +22230,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowerLimit = 32;</code>
+     * @return The lowerLimit.
      */
     double getLowerLimit();
 
@@ -20772,6 +22240,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @return A list containing the bidPrice.
      */
     java.util.List<java.lang.Double> getBidPriceList();
     /**
@@ -20780,6 +22249,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @return The count of bidPrice.
      */
     int getBidPriceCount();
     /**
@@ -20788,6 +22258,8 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @param index The index of the element to return.
+     * @return The bidPrice at the given index.
      */
     double getBidPrice(int index);
 
@@ -20797,6 +22269,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @return A list containing the askPrice.
      */
     java.util.List<java.lang.Double> getAskPriceList();
     /**
@@ -20805,6 +22278,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @return The count of askPrice.
      */
     int getAskPriceCount();
     /**
@@ -20813,6 +22287,8 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @param index The index of the element to return.
+     * @return The askPrice at the given index.
      */
     double getAskPrice(int index);
 
@@ -20822,6 +22298,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @return A list containing the bidVolume.
      */
     java.util.List<java.lang.Integer> getBidVolumeList();
     /**
@@ -20830,6 +22307,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @return The count of bidVolume.
      */
     int getBidVolumeCount();
     /**
@@ -20838,6 +22316,8 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @param index The index of the element to return.
+     * @return The bidVolume at the given index.
      */
     int getBidVolume(int index);
 
@@ -20847,6 +22327,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @return A list containing the askVolume.
      */
     java.util.List<java.lang.Integer> getAskVolumeList();
     /**
@@ -20855,6 +22336,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @return The count of askVolume.
      */
     int getAskVolumeCount();
     /**
@@ -20863,6 +22345,8 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @param index The index of the element to return.
+     * @return The askVolume at the given index.
      */
     int getAskVolume(int index);
   }
@@ -20873,7 +22357,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.TickField}
    */
-  public  static final class TickField extends
+  public static final class TickField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.TickField)
       TickFieldOrBuilder {
@@ -20888,37 +22372,17 @@ public final class CoreField {
       tradingDay_ = "";
       actionDay_ = "";
       actionTime_ = "";
-      actionTimestamp_ = 0L;
-      status_ = 0;
-      lastPrice_ = 0D;
-      avgPrice_ = 0D;
-      totalBidVol_ = 0L;
-      totalAskVol_ = 0L;
-      weightedAvgBidPrice_ = 0D;
-      weightedAvgAskPrice_ = 0D;
-      iopv_ = 0D;
-      yieldToMaturity_ = 0D;
-      volumeDelta_ = 0L;
-      volume_ = 0L;
-      turnover_ = 0D;
-      turnoverDelta_ = 0D;
-      numTrades_ = 0L;
-      numTradesDelta_ = 0L;
-      openInterest_ = 0D;
-      openInterestDelta_ = 0D;
-      preOpenInterest_ = 0D;
-      preClosePrice_ = 0D;
-      settlePrice_ = 0D;
-      preSettlePrice_ = 0D;
-      openPrice_ = 0D;
-      highPrice_ = 0D;
-      lowPrice_ = 0D;
-      upperLimit_ = 0D;
-      lowerLimit_ = 0D;
-      bidPrice_ = java.util.Collections.emptyList();
-      askPrice_ = java.util.Collections.emptyList();
-      bidVolume_ = java.util.Collections.emptyList();
-      askVolume_ = java.util.Collections.emptyList();
+      bidPrice_ = emptyDoubleList();
+      askPrice_ = emptyDoubleList();
+      bidVolume_ = emptyIntList();
+      askVolume_ = emptyIntList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TickField();
     }
 
     @java.lang.Override
@@ -20935,7 +22399,6 @@ public final class CoreField {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
-      int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -21112,91 +22575,91 @@ public final class CoreField {
               break;
             }
             case 265: {
-              if (!((mutable_bitField1_ & 0x00000001) == 0x00000001)) {
-                bidPrice_ = new java.util.ArrayList<java.lang.Double>();
-                mutable_bitField1_ |= 0x00000001;
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                bidPrice_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000001;
               }
-              bidPrice_.add(input.readDouble());
+              bidPrice_.addDouble(input.readDouble());
               break;
             }
             case 266: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField1_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
-                bidPrice_ = new java.util.ArrayList<java.lang.Double>();
-                mutable_bitField1_ |= 0x00000001;
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                bidPrice_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000001;
               }
               while (input.getBytesUntilLimit() > 0) {
-                bidPrice_.add(input.readDouble());
+                bidPrice_.addDouble(input.readDouble());
               }
               input.popLimit(limit);
               break;
             }
             case 273: {
-              if (!((mutable_bitField1_ & 0x00000002) == 0x00000002)) {
-                askPrice_ = new java.util.ArrayList<java.lang.Double>();
-                mutable_bitField1_ |= 0x00000002;
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                askPrice_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000002;
               }
-              askPrice_.add(input.readDouble());
+              askPrice_.addDouble(input.readDouble());
               break;
             }
             case 274: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField1_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
-                askPrice_ = new java.util.ArrayList<java.lang.Double>();
-                mutable_bitField1_ |= 0x00000002;
+              if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
+                askPrice_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000002;
               }
               while (input.getBytesUntilLimit() > 0) {
-                askPrice_.add(input.readDouble());
+                askPrice_.addDouble(input.readDouble());
               }
               input.popLimit(limit);
               break;
             }
             case 285: {
-              if (!((mutable_bitField1_ & 0x00000004) == 0x00000004)) {
-                bidVolume_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField1_ |= 0x00000004;
+              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
+                bidVolume_ = newIntList();
+                mutable_bitField0_ |= 0x00000004;
               }
-              bidVolume_.add(input.readFixed32());
+              bidVolume_.addInt(input.readFixed32());
               break;
             }
             case 282: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField1_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
-                bidVolume_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField1_ |= 0x00000004;
+              if (!((mutable_bitField0_ & 0x00000004) != 0) && input.getBytesUntilLimit() > 0) {
+                bidVolume_ = newIntList();
+                mutable_bitField0_ |= 0x00000004;
               }
               while (input.getBytesUntilLimit() > 0) {
-                bidVolume_.add(input.readFixed32());
+                bidVolume_.addInt(input.readFixed32());
               }
               input.popLimit(limit);
               break;
             }
             case 293: {
-              if (!((mutable_bitField1_ & 0x00000008) == 0x00000008)) {
-                askVolume_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField1_ |= 0x00000008;
+              if (!((mutable_bitField0_ & 0x00000008) != 0)) {
+                askVolume_ = newIntList();
+                mutable_bitField0_ |= 0x00000008;
               }
-              askVolume_.add(input.readFixed32());
+              askVolume_.addInt(input.readFixed32());
               break;
             }
             case 290: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
-              if (!((mutable_bitField1_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
-                askVolume_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField1_ |= 0x00000008;
+              if (!((mutable_bitField0_ & 0x00000008) != 0) && input.getBytesUntilLimit() > 0) {
+                askVolume_ = newIntList();
+                mutable_bitField0_ |= 0x00000008;
               }
               while (input.getBytesUntilLimit() > 0) {
-                askVolume_.add(input.readFixed32());
+                askVolume_.addInt(input.readFixed32());
               }
               input.popLimit(limit);
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -21210,17 +22673,17 @@ public final class CoreField {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField1_ & 0x00000001) == 0x00000001)) {
-          bidPrice_ = java.util.Collections.unmodifiableList(bidPrice_);
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          bidPrice_.makeImmutable(); // C
         }
-        if (((mutable_bitField1_ & 0x00000002) == 0x00000002)) {
-          askPrice_ = java.util.Collections.unmodifiableList(askPrice_);
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
+          askPrice_.makeImmutable(); // C
         }
-        if (((mutable_bitField1_ & 0x00000004) == 0x00000004)) {
-          bidVolume_ = java.util.Collections.unmodifiableList(bidVolume_);
+        if (((mutable_bitField0_ & 0x00000004) != 0)) {
+          bidVolume_.makeImmutable(); // C
         }
-        if (((mutable_bitField1_ & 0x00000008) == 0x00000008)) {
-          askVolume_ = java.util.Collections.unmodifiableList(askVolume_);
+        if (((mutable_bitField0_ & 0x00000008) != 0)) {
+          askVolume_.makeImmutable(); // C
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -21239,7 +22702,6 @@ public final class CoreField {
               xyz.redtorch.pb.CoreField.TickField.class, xyz.redtorch.pb.CoreField.TickField.Builder.class);
     }
 
-    private int bitField0_;
     public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 1;
     private volatile java.lang.Object unifiedSymbol_;
     /**
@@ -21248,7 +22710,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -21267,7 +22731,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -21290,7 +22756,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -21309,7 +22777,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -21332,7 +22802,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The tradingDay.
      */
+    @java.lang.Override
     public java.lang.String getTradingDay() {
       java.lang.Object ref = tradingDay_;
       if (ref instanceof java.lang.String) {
@@ -21351,7 +22823,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The bytes for tradingDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradingDayBytes() {
       java.lang.Object ref = tradingDay_;
@@ -21374,7 +22848,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The actionDay.
      */
+    @java.lang.Override
     public java.lang.String getActionDay() {
       java.lang.Object ref = actionDay_;
       if (ref instanceof java.lang.String) {
@@ -21393,7 +22869,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The bytes for actionDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActionDayBytes() {
       java.lang.Object ref = actionDay_;
@@ -21416,7 +22894,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The actionTime.
      */
+    @java.lang.Override
     public java.lang.String getActionTime() {
       java.lang.Object ref = actionTime_;
       if (ref instanceof java.lang.String) {
@@ -21435,7 +22915,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The bytes for actionTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActionTimeBytes() {
       java.lang.Object ref = actionTime_;
@@ -21458,7 +22940,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 actionTimestamp = 6;</code>
+     * @return The actionTimestamp.
      */
+    @java.lang.Override
     public long getActionTimestamp() {
       return actionTimestamp_;
     }
@@ -21471,7 +22955,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 status = 7;</code>
+     * @return The status.
      */
+    @java.lang.Override
     public int getStatus() {
       return status_;
     }
@@ -21484,7 +22970,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lastPrice = 8;</code>
+     * @return The lastPrice.
      */
+    @java.lang.Override
     public double getLastPrice() {
       return lastPrice_;
     }
@@ -21497,7 +22985,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double avgPrice = 9;</code>
+     * @return The avgPrice.
      */
+    @java.lang.Override
     public double getAvgPrice() {
       return avgPrice_;
     }
@@ -21510,7 +23000,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 totalBidVol = 10;</code>
+     * @return The totalBidVol.
      */
+    @java.lang.Override
     public long getTotalBidVol() {
       return totalBidVol_;
     }
@@ -21523,7 +23015,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 totalAskVol = 11;</code>
+     * @return The totalAskVol.
      */
+    @java.lang.Override
     public long getTotalAskVol() {
       return totalAskVol_;
     }
@@ -21536,7 +23030,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double weightedAvgBidPrice = 12;</code>
+     * @return The weightedAvgBidPrice.
      */
+    @java.lang.Override
     public double getWeightedAvgBidPrice() {
       return weightedAvgBidPrice_;
     }
@@ -21549,7 +23045,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double weightedAvgAskPrice = 13;</code>
+     * @return The weightedAvgAskPrice.
      */
+    @java.lang.Override
     public double getWeightedAvgAskPrice() {
       return weightedAvgAskPrice_;
     }
@@ -21562,7 +23060,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double iopv = 14;</code>
+     * @return The iopv.
      */
+    @java.lang.Override
     public double getIopv() {
       return iopv_;
     }
@@ -21575,7 +23075,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double yieldToMaturity = 15;</code>
+     * @return The yieldToMaturity.
      */
+    @java.lang.Override
     public double getYieldToMaturity() {
       return yieldToMaturity_;
     }
@@ -21588,7 +23090,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volumeDelta = 16;</code>
+     * @return The volumeDelta.
      */
+    @java.lang.Override
     public long getVolumeDelta() {
       return volumeDelta_;
     }
@@ -21601,7 +23105,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volume = 17;</code>
+     * @return The volume.
      */
+    @java.lang.Override
     public long getVolume() {
       return volume_;
     }
@@ -21614,7 +23120,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnover = 18;</code>
+     * @return The turnover.
      */
+    @java.lang.Override
     public double getTurnover() {
       return turnover_;
     }
@@ -21627,7 +23135,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnoverDelta = 19;</code>
+     * @return The turnoverDelta.
      */
+    @java.lang.Override
     public double getTurnoverDelta() {
       return turnoverDelta_;
     }
@@ -21640,7 +23150,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTrades = 20;</code>
+     * @return The numTrades.
      */
+    @java.lang.Override
     public long getNumTrades() {
       return numTrades_;
     }
@@ -21653,7 +23165,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTradesDelta = 21;</code>
+     * @return The numTradesDelta.
      */
+    @java.lang.Override
     public long getNumTradesDelta() {
       return numTradesDelta_;
     }
@@ -21666,7 +23180,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterest = 22;</code>
+     * @return The openInterest.
      */
+    @java.lang.Override
     public double getOpenInterest() {
       return openInterest_;
     }
@@ -21679,7 +23195,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterestDelta = 23;</code>
+     * @return The openInterestDelta.
      */
+    @java.lang.Override
     public double getOpenInterestDelta() {
       return openInterestDelta_;
     }
@@ -21692,7 +23210,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preOpenInterest = 24;</code>
+     * @return The preOpenInterest.
      */
+    @java.lang.Override
     public double getPreOpenInterest() {
       return preOpenInterest_;
     }
@@ -21705,7 +23225,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preClosePrice = 25;</code>
+     * @return The preClosePrice.
      */
+    @java.lang.Override
     public double getPreClosePrice() {
       return preClosePrice_;
     }
@@ -21718,7 +23240,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double settlePrice = 26;</code>
+     * @return The settlePrice.
      */
+    @java.lang.Override
     public double getSettlePrice() {
       return settlePrice_;
     }
@@ -21731,7 +23255,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preSettlePrice = 27;</code>
+     * @return The preSettlePrice.
      */
+    @java.lang.Override
     public double getPreSettlePrice() {
       return preSettlePrice_;
     }
@@ -21744,7 +23270,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 28;</code>
+     * @return The openPrice.
      */
+    @java.lang.Override
     public double getOpenPrice() {
       return openPrice_;
     }
@@ -21757,7 +23285,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double highPrice = 29;</code>
+     * @return The highPrice.
      */
+    @java.lang.Override
     public double getHighPrice() {
       return highPrice_;
     }
@@ -21770,7 +23300,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowPrice = 30;</code>
+     * @return The lowPrice.
      */
+    @java.lang.Override
     public double getLowPrice() {
       return lowPrice_;
     }
@@ -21783,7 +23315,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double upperLimit = 31;</code>
+     * @return The upperLimit.
      */
+    @java.lang.Override
     public double getUpperLimit() {
       return upperLimit_;
     }
@@ -21796,20 +23330,24 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowerLimit = 32;</code>
+     * @return The lowerLimit.
      */
+    @java.lang.Override
     public double getLowerLimit() {
       return lowerLimit_;
     }
 
     public static final int BIDPRICE_FIELD_NUMBER = 33;
-    private java.util.List<java.lang.Double> bidPrice_;
+    private com.google.protobuf.Internal.DoubleList bidPrice_;
     /**
      * <pre>
      * 买价
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @return A list containing the bidPrice.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Double>
         getBidPriceList() {
       return bidPrice_;
@@ -21820,6 +23358,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @return The count of bidPrice.
      */
     public int getBidPriceCount() {
       return bidPrice_.size();
@@ -21830,21 +23369,25 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double bidPrice = 33;</code>
+     * @param index The index of the element to return.
+     * @return The bidPrice at the given index.
      */
     public double getBidPrice(int index) {
-      return bidPrice_.get(index);
+      return bidPrice_.getDouble(index);
     }
     private int bidPriceMemoizedSerializedSize = -1;
 
     public static final int ASKPRICE_FIELD_NUMBER = 34;
-    private java.util.List<java.lang.Double> askPrice_;
+    private com.google.protobuf.Internal.DoubleList askPrice_;
     /**
      * <pre>
      * 卖价
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @return A list containing the askPrice.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Double>
         getAskPriceList() {
       return askPrice_;
@@ -21855,6 +23398,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @return The count of askPrice.
      */
     public int getAskPriceCount() {
       return askPrice_.size();
@@ -21865,21 +23409,25 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated double askPrice = 34;</code>
+     * @param index The index of the element to return.
+     * @return The askPrice at the given index.
      */
     public double getAskPrice(int index) {
-      return askPrice_.get(index);
+      return askPrice_.getDouble(index);
     }
     private int askPriceMemoizedSerializedSize = -1;
 
     public static final int BIDVOLUME_FIELD_NUMBER = 35;
-    private java.util.List<java.lang.Integer> bidVolume_;
+    private com.google.protobuf.Internal.IntList bidVolume_;
     /**
      * <pre>
      * 买量
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @return A list containing the bidVolume.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Integer>
         getBidVolumeList() {
       return bidVolume_;
@@ -21890,6 +23438,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @return The count of bidVolume.
      */
     public int getBidVolumeCount() {
       return bidVolume_.size();
@@ -21900,21 +23449,25 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 bidVolume = 35;</code>
+     * @param index The index of the element to return.
+     * @return The bidVolume at the given index.
      */
     public int getBidVolume(int index) {
-      return bidVolume_.get(index);
+      return bidVolume_.getInt(index);
     }
     private int bidVolumeMemoizedSerializedSize = -1;
 
     public static final int ASKVOLUME_FIELD_NUMBER = 36;
-    private java.util.List<java.lang.Integer> askVolume_;
+    private com.google.protobuf.Internal.IntList askVolume_;
     /**
      * <pre>
      * 卖量
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @return A list containing the askVolume.
      */
+    @java.lang.Override
     public java.util.List<java.lang.Integer>
         getAskVolumeList() {
       return askVolume_;
@@ -21925,6 +23478,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @return The count of askVolume.
      */
     public int getAskVolumeCount() {
       return askVolume_.size();
@@ -21935,9 +23489,11 @@ public final class CoreField {
      * </pre>
      *
      * <code>repeated fixed32 askVolume = 36;</code>
+     * @param index The index of the element to return.
+     * @return The askVolume at the given index.
      */
     public int getAskVolume(int index) {
-      return askVolume_.get(index);
+      return askVolume_.getInt(index);
     }
     private int askVolumeMemoizedSerializedSize = -1;
 
@@ -22057,28 +23613,28 @@ public final class CoreField {
         output.writeUInt32NoTag(bidPriceMemoizedSerializedSize);
       }
       for (int i = 0; i < bidPrice_.size(); i++) {
-        output.writeDoubleNoTag(bidPrice_.get(i));
+        output.writeDoubleNoTag(bidPrice_.getDouble(i));
       }
       if (getAskPriceList().size() > 0) {
         output.writeUInt32NoTag(274);
         output.writeUInt32NoTag(askPriceMemoizedSerializedSize);
       }
       for (int i = 0; i < askPrice_.size(); i++) {
-        output.writeDoubleNoTag(askPrice_.get(i));
+        output.writeDoubleNoTag(askPrice_.getDouble(i));
       }
       if (getBidVolumeList().size() > 0) {
         output.writeUInt32NoTag(282);
         output.writeUInt32NoTag(bidVolumeMemoizedSerializedSize);
       }
       for (int i = 0; i < bidVolume_.size(); i++) {
-        output.writeFixed32NoTag(bidVolume_.get(i));
+        output.writeFixed32NoTag(bidVolume_.getInt(i));
       }
       if (getAskVolumeList().size() > 0) {
         output.writeUInt32NoTag(290);
         output.writeUInt32NoTag(askVolumeMemoizedSerializedSize);
       }
       for (int i = 0; i < askVolume_.size(); i++) {
-        output.writeFixed32NoTag(askVolume_.get(i));
+        output.writeFixed32NoTag(askVolume_.getInt(i));
       }
       unknownFields.writeTo(output);
     }
@@ -22271,119 +23827,99 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.TickField other = (xyz.redtorch.pb.CoreField.TickField) obj;
 
-      boolean result = true;
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && getTradingDay()
-          .equals(other.getTradingDay());
-      result = result && getActionDay()
-          .equals(other.getActionDay());
-      result = result && getActionTime()
-          .equals(other.getActionTime());
-      result = result && (getActionTimestamp()
-          == other.getActionTimestamp());
-      result = result && (getStatus()
-          == other.getStatus());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLastPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getLastPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getAvgPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getAvgPrice()));
-      result = result && (getTotalBidVol()
-          == other.getTotalBidVol());
-      result = result && (getTotalAskVol()
-          == other.getTotalAskVol());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getWeightedAvgBidPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getWeightedAvgBidPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getWeightedAvgAskPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getWeightedAvgAskPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getIopv())
-          == java.lang.Double.doubleToLongBits(
-              other.getIopv()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getYieldToMaturity())
-          == java.lang.Double.doubleToLongBits(
-              other.getYieldToMaturity()));
-      result = result && (getVolumeDelta()
-          == other.getVolumeDelta());
-      result = result && (getVolume()
-          == other.getVolume());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getTurnover())
-          == java.lang.Double.doubleToLongBits(
-              other.getTurnover()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getTurnoverDelta())
-          == java.lang.Double.doubleToLongBits(
-              other.getTurnoverDelta()));
-      result = result && (getNumTrades()
-          == other.getNumTrades());
-      result = result && (getNumTradesDelta()
-          == other.getNumTradesDelta());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenInterest())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenInterest()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenInterestDelta())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenInterestDelta()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreOpenInterest())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreOpenInterest()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreClosePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreClosePrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getSettlePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getSettlePrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreSettlePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreSettlePrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getHighPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getHighPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLowPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getLowPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getUpperLimit())
-          == java.lang.Double.doubleToLongBits(
-              other.getUpperLimit()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLowerLimit())
-          == java.lang.Double.doubleToLongBits(
-              other.getLowerLimit()));
-      result = result && getBidPriceList()
-          .equals(other.getBidPriceList());
-      result = result && getAskPriceList()
-          .equals(other.getAskPriceList());
-      result = result && getBidVolumeList()
-          .equals(other.getBidVolumeList());
-      result = result && getAskVolumeList()
-          .equals(other.getAskVolumeList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!getTradingDay()
+          .equals(other.getTradingDay())) return false;
+      if (!getActionDay()
+          .equals(other.getActionDay())) return false;
+      if (!getActionTime()
+          .equals(other.getActionTime())) return false;
+      if (getActionTimestamp()
+          != other.getActionTimestamp()) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
+      if (java.lang.Double.doubleToLongBits(getLastPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getLastPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getAvgPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getAvgPrice())) return false;
+      if (getTotalBidVol()
+          != other.getTotalBidVol()) return false;
+      if (getTotalAskVol()
+          != other.getTotalAskVol()) return false;
+      if (java.lang.Double.doubleToLongBits(getWeightedAvgBidPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getWeightedAvgBidPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getWeightedAvgAskPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getWeightedAvgAskPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getIopv())
+          != java.lang.Double.doubleToLongBits(
+              other.getIopv())) return false;
+      if (java.lang.Double.doubleToLongBits(getYieldToMaturity())
+          != java.lang.Double.doubleToLongBits(
+              other.getYieldToMaturity())) return false;
+      if (getVolumeDelta()
+          != other.getVolumeDelta()) return false;
+      if (getVolume()
+          != other.getVolume()) return false;
+      if (java.lang.Double.doubleToLongBits(getTurnover())
+          != java.lang.Double.doubleToLongBits(
+              other.getTurnover())) return false;
+      if (java.lang.Double.doubleToLongBits(getTurnoverDelta())
+          != java.lang.Double.doubleToLongBits(
+              other.getTurnoverDelta())) return false;
+      if (getNumTrades()
+          != other.getNumTrades()) return false;
+      if (getNumTradesDelta()
+          != other.getNumTradesDelta()) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenInterest())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenInterest())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenInterestDelta())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenInterestDelta())) return false;
+      if (java.lang.Double.doubleToLongBits(getPreOpenInterest())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreOpenInterest())) return false;
+      if (java.lang.Double.doubleToLongBits(getPreClosePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreClosePrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getSettlePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getSettlePrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getPreSettlePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreSettlePrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getHighPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getHighPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getLowPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getLowPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getUpperLimit())
+          != java.lang.Double.doubleToLongBits(
+              other.getUpperLimit())) return false;
+      if (java.lang.Double.doubleToLongBits(getLowerLimit())
+          != java.lang.Double.doubleToLongBits(
+              other.getLowerLimit())) return false;
+      if (!getBidPriceList()
+          .equals(other.getBidPriceList())) return false;
+      if (!getAskPriceList()
+          .equals(other.getAskPriceList())) return false;
+      if (!getBidVolumeList()
+          .equals(other.getBidVolumeList())) return false;
+      if (!getAskVolumeList()
+          .equals(other.getAskVolumeList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -22700,14 +24236,14 @@ public final class CoreField {
 
         lowerLimit_ = 0D;
 
-        bidPrice_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000001);
-        askPrice_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000002);
-        bidVolume_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000004);
-        askVolume_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000008);
+        bidPrice_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        askPrice_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        bidVolume_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        askVolume_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -22735,8 +24271,6 @@ public final class CoreField {
       public xyz.redtorch.pb.CoreField.TickField buildPartial() {
         xyz.redtorch.pb.CoreField.TickField result = new xyz.redtorch.pb.CoreField.TickField(this);
         int from_bitField0_ = bitField0_;
-        int from_bitField1_ = bitField1_;
-        int to_bitField0_ = 0;
         result.unifiedSymbol_ = unifiedSymbol_;
         result.gatewayId_ = gatewayId_;
         result.tradingDay_ = tradingDay_;
@@ -22769,62 +24303,61 @@ public final class CoreField {
         result.lowPrice_ = lowPrice_;
         result.upperLimit_ = upperLimit_;
         result.lowerLimit_ = lowerLimit_;
-        if (((bitField1_ & 0x00000001) == 0x00000001)) {
-          bidPrice_ = java.util.Collections.unmodifiableList(bidPrice_);
-          bitField1_ = (bitField1_ & ~0x00000001);
+        if (((bitField0_ & 0x00000001) != 0)) {
+          bidPrice_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.bidPrice_ = bidPrice_;
-        if (((bitField1_ & 0x00000002) == 0x00000002)) {
-          askPrice_ = java.util.Collections.unmodifiableList(askPrice_);
-          bitField1_ = (bitField1_ & ~0x00000002);
+        if (((bitField0_ & 0x00000002) != 0)) {
+          askPrice_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.askPrice_ = askPrice_;
-        if (((bitField1_ & 0x00000004) == 0x00000004)) {
-          bidVolume_ = java.util.Collections.unmodifiableList(bidVolume_);
-          bitField1_ = (bitField1_ & ~0x00000004);
+        if (((bitField0_ & 0x00000004) != 0)) {
+          bidVolume_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000004);
         }
         result.bidVolume_ = bidVolume_;
-        if (((bitField1_ & 0x00000008) == 0x00000008)) {
-          askVolume_ = java.util.Collections.unmodifiableList(askVolume_);
-          bitField1_ = (bitField1_ & ~0x00000008);
+        if (((bitField0_ & 0x00000008) != 0)) {
+          askVolume_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.askVolume_ = askVolume_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -22942,7 +24475,7 @@ public final class CoreField {
         if (!other.bidPrice_.isEmpty()) {
           if (bidPrice_.isEmpty()) {
             bidPrice_ = other.bidPrice_;
-            bitField1_ = (bitField1_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000001);
           } else {
             ensureBidPriceIsMutable();
             bidPrice_.addAll(other.bidPrice_);
@@ -22952,7 +24485,7 @@ public final class CoreField {
         if (!other.askPrice_.isEmpty()) {
           if (askPrice_.isEmpty()) {
             askPrice_ = other.askPrice_;
-            bitField1_ = (bitField1_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000002);
           } else {
             ensureAskPriceIsMutable();
             askPrice_.addAll(other.askPrice_);
@@ -22962,7 +24495,7 @@ public final class CoreField {
         if (!other.bidVolume_.isEmpty()) {
           if (bidVolume_.isEmpty()) {
             bidVolume_ = other.bidVolume_;
-            bitField1_ = (bitField1_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureBidVolumeIsMutable();
             bidVolume_.addAll(other.bidVolume_);
@@ -22972,7 +24505,7 @@ public final class CoreField {
         if (!other.askVolume_.isEmpty()) {
           if (askVolume_.isEmpty()) {
             askVolume_ = other.askVolume_;
-            bitField1_ = (bitField1_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureAskVolumeIsMutable();
             askVolume_.addAll(other.askVolume_);
@@ -23008,7 +24541,6 @@ public final class CoreField {
         return this;
       }
       private int bitField0_;
-      private int bitField1_;
 
       private java.lang.Object unifiedSymbol_ = "";
       /**
@@ -23017,6 +24549,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -23036,6 +24569,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -23056,6 +24590,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -23073,6 +24609,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -23086,6 +24623,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -23106,6 +24645,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -23125,6 +24665,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -23145,6 +24686,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -23162,6 +24705,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -23175,6 +24719,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -23195,6 +24741,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return The tradingDay.
        */
       public java.lang.String getTradingDay() {
         java.lang.Object ref = tradingDay_;
@@ -23214,6 +24761,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return The bytes for tradingDay.
        */
       public com.google.protobuf.ByteString
           getTradingDayBytes() {
@@ -23234,6 +24782,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @param value The tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDay(
           java.lang.String value) {
@@ -23251,6 +24801,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
@@ -23264,6 +24815,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @param value The bytes for tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDayBytes(
           com.google.protobuf.ByteString value) {
@@ -23284,6 +24837,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return The actionDay.
        */
       public java.lang.String getActionDay() {
         java.lang.Object ref = actionDay_;
@@ -23303,6 +24857,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return The bytes for actionDay.
        */
       public com.google.protobuf.ByteString
           getActionDayBytes() {
@@ -23323,6 +24878,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @param value The actionDay to set.
+       * @return This builder for chaining.
        */
       public Builder setActionDay(
           java.lang.String value) {
@@ -23340,6 +24897,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionDay() {
         
@@ -23353,6 +24911,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @param value The bytes for actionDay to set.
+       * @return This builder for chaining.
        */
       public Builder setActionDayBytes(
           com.google.protobuf.ByteString value) {
@@ -23373,6 +24933,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return The actionTime.
        */
       public java.lang.String getActionTime() {
         java.lang.Object ref = actionTime_;
@@ -23392,6 +24953,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return The bytes for actionTime.
        */
       public com.google.protobuf.ByteString
           getActionTimeBytes() {
@@ -23412,6 +24974,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @param value The actionTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTime(
           java.lang.String value) {
@@ -23429,6 +24993,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionTime() {
         
@@ -23442,6 +25007,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @param value The bytes for actionTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -23462,7 +25029,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @return The actionTimestamp.
        */
+      @java.lang.Override
       public long getActionTimestamp() {
         return actionTimestamp_;
       }
@@ -23472,6 +25041,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @param value The actionTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTimestamp(long value) {
         
@@ -23485,6 +25056,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionTimestamp() {
         
@@ -23500,7 +25072,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 status = 7;</code>
+       * @return The status.
        */
+      @java.lang.Override
       public int getStatus() {
         return status_;
       }
@@ -23510,6 +25084,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 status = 7;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatus(int value) {
         
@@ -23523,6 +25099,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 status = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatus() {
         
@@ -23538,7 +25115,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 8;</code>
+       * @return The lastPrice.
        */
+      @java.lang.Override
       public double getLastPrice() {
         return lastPrice_;
       }
@@ -23548,6 +25127,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 8;</code>
+       * @param value The lastPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setLastPrice(double value) {
         
@@ -23561,6 +25142,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lastPrice = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLastPrice() {
         
@@ -23576,7 +25158,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double avgPrice = 9;</code>
+       * @return The avgPrice.
        */
+      @java.lang.Override
       public double getAvgPrice() {
         return avgPrice_;
       }
@@ -23586,6 +25170,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double avgPrice = 9;</code>
+       * @param value The avgPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setAvgPrice(double value) {
         
@@ -23599,6 +25185,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double avgPrice = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAvgPrice() {
         
@@ -23614,7 +25201,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalBidVol = 10;</code>
+       * @return The totalBidVol.
        */
+      @java.lang.Override
       public long getTotalBidVol() {
         return totalBidVol_;
       }
@@ -23624,6 +25213,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalBidVol = 10;</code>
+       * @param value The totalBidVol to set.
+       * @return This builder for chaining.
        */
       public Builder setTotalBidVol(long value) {
         
@@ -23637,6 +25228,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalBidVol = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTotalBidVol() {
         
@@ -23652,7 +25244,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalAskVol = 11;</code>
+       * @return The totalAskVol.
        */
+      @java.lang.Override
       public long getTotalAskVol() {
         return totalAskVol_;
       }
@@ -23662,6 +25256,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalAskVol = 11;</code>
+       * @param value The totalAskVol to set.
+       * @return This builder for chaining.
        */
       public Builder setTotalAskVol(long value) {
         
@@ -23675,6 +25271,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 totalAskVol = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTotalAskVol() {
         
@@ -23690,7 +25287,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgBidPrice = 12;</code>
+       * @return The weightedAvgBidPrice.
        */
+      @java.lang.Override
       public double getWeightedAvgBidPrice() {
         return weightedAvgBidPrice_;
       }
@@ -23700,6 +25299,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgBidPrice = 12;</code>
+       * @param value The weightedAvgBidPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setWeightedAvgBidPrice(double value) {
         
@@ -23713,6 +25314,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgBidPrice = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearWeightedAvgBidPrice() {
         
@@ -23728,7 +25330,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgAskPrice = 13;</code>
+       * @return The weightedAvgAskPrice.
        */
+      @java.lang.Override
       public double getWeightedAvgAskPrice() {
         return weightedAvgAskPrice_;
       }
@@ -23738,6 +25342,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgAskPrice = 13;</code>
+       * @param value The weightedAvgAskPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setWeightedAvgAskPrice(double value) {
         
@@ -23751,6 +25357,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double weightedAvgAskPrice = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearWeightedAvgAskPrice() {
         
@@ -23766,7 +25373,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double iopv = 14;</code>
+       * @return The iopv.
        */
+      @java.lang.Override
       public double getIopv() {
         return iopv_;
       }
@@ -23776,6 +25385,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double iopv = 14;</code>
+       * @param value The iopv to set.
+       * @return This builder for chaining.
        */
       public Builder setIopv(double value) {
         
@@ -23789,6 +25400,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double iopv = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearIopv() {
         
@@ -23804,7 +25416,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double yieldToMaturity = 15;</code>
+       * @return The yieldToMaturity.
        */
+      @java.lang.Override
       public double getYieldToMaturity() {
         return yieldToMaturity_;
       }
@@ -23814,6 +25428,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double yieldToMaturity = 15;</code>
+       * @param value The yieldToMaturity to set.
+       * @return This builder for chaining.
        */
       public Builder setYieldToMaturity(double value) {
         
@@ -23827,6 +25443,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double yieldToMaturity = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearYieldToMaturity() {
         
@@ -23842,7 +25459,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 16;</code>
+       * @return The volumeDelta.
        */
+      @java.lang.Override
       public long getVolumeDelta() {
         return volumeDelta_;
       }
@@ -23852,6 +25471,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 16;</code>
+       * @param value The volumeDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeDelta(long value) {
         
@@ -23865,6 +25486,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolumeDelta() {
         
@@ -23880,7 +25502,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 17;</code>
+       * @return The volume.
        */
+      @java.lang.Override
       public long getVolume() {
         return volume_;
       }
@@ -23890,6 +25514,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 17;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
        */
       public Builder setVolume(long value) {
         
@@ -23903,6 +25529,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
@@ -23918,7 +25545,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 18;</code>
+       * @return The turnover.
        */
+      @java.lang.Override
       public double getTurnover() {
         return turnover_;
       }
@@ -23928,6 +25557,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 18;</code>
+       * @param value The turnover to set.
+       * @return This builder for chaining.
        */
       public Builder setTurnover(double value) {
         
@@ -23941,6 +25572,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTurnover() {
         
@@ -23956,7 +25588,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 19;</code>
+       * @return The turnoverDelta.
        */
+      @java.lang.Override
       public double getTurnoverDelta() {
         return turnoverDelta_;
       }
@@ -23966,6 +25600,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 19;</code>
+       * @param value The turnoverDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setTurnoverDelta(double value) {
         
@@ -23979,6 +25615,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTurnoverDelta() {
         
@@ -23994,7 +25631,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 20;</code>
+       * @return The numTrades.
        */
+      @java.lang.Override
       public long getNumTrades() {
         return numTrades_;
       }
@@ -24004,6 +25643,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 20;</code>
+       * @param value The numTrades to set.
+       * @return This builder for chaining.
        */
       public Builder setNumTrades(long value) {
         
@@ -24017,6 +25658,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearNumTrades() {
         
@@ -24032,7 +25674,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 21;</code>
+       * @return The numTradesDelta.
        */
+      @java.lang.Override
       public long getNumTradesDelta() {
         return numTradesDelta_;
       }
@@ -24042,6 +25686,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 21;</code>
+       * @param value The numTradesDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setNumTradesDelta(long value) {
         
@@ -24055,6 +25701,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearNumTradesDelta() {
         
@@ -24070,7 +25717,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 22;</code>
+       * @return The openInterest.
        */
+      @java.lang.Override
       public double getOpenInterest() {
         return openInterest_;
       }
@@ -24080,6 +25729,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 22;</code>
+       * @param value The openInterest to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenInterest(double value) {
         
@@ -24093,6 +25744,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 22;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenInterest() {
         
@@ -24108,7 +25760,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 23;</code>
+       * @return The openInterestDelta.
        */
+      @java.lang.Override
       public double getOpenInterestDelta() {
         return openInterestDelta_;
       }
@@ -24118,6 +25772,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 23;</code>
+       * @param value The openInterestDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenInterestDelta(double value) {
         
@@ -24131,6 +25787,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 23;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenInterestDelta() {
         
@@ -24146,7 +25803,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 24;</code>
+       * @return The preOpenInterest.
        */
+      @java.lang.Override
       public double getPreOpenInterest() {
         return preOpenInterest_;
       }
@@ -24156,6 +25815,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 24;</code>
+       * @param value The preOpenInterest to set.
+       * @return This builder for chaining.
        */
       public Builder setPreOpenInterest(double value) {
         
@@ -24169,6 +25830,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 24;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreOpenInterest() {
         
@@ -24184,7 +25846,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 25;</code>
+       * @return The preClosePrice.
        */
+      @java.lang.Override
       public double getPreClosePrice() {
         return preClosePrice_;
       }
@@ -24194,6 +25858,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 25;</code>
+       * @param value The preClosePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setPreClosePrice(double value) {
         
@@ -24207,6 +25873,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 25;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreClosePrice() {
         
@@ -24222,7 +25889,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double settlePrice = 26;</code>
+       * @return The settlePrice.
        */
+      @java.lang.Override
       public double getSettlePrice() {
         return settlePrice_;
       }
@@ -24232,6 +25901,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double settlePrice = 26;</code>
+       * @param value The settlePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setSettlePrice(double value) {
         
@@ -24245,6 +25916,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double settlePrice = 26;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSettlePrice() {
         
@@ -24260,7 +25932,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 27;</code>
+       * @return The preSettlePrice.
        */
+      @java.lang.Override
       public double getPreSettlePrice() {
         return preSettlePrice_;
       }
@@ -24270,6 +25944,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 27;</code>
+       * @param value The preSettlePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setPreSettlePrice(double value) {
         
@@ -24283,6 +25959,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 27;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreSettlePrice() {
         
@@ -24298,7 +25975,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 28;</code>
+       * @return The openPrice.
        */
+      @java.lang.Override
       public double getOpenPrice() {
         return openPrice_;
       }
@@ -24308,6 +25987,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 28;</code>
+       * @param value The openPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPrice(double value) {
         
@@ -24321,6 +26002,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 28;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPrice() {
         
@@ -24336,7 +26018,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 29;</code>
+       * @return The highPrice.
        */
+      @java.lang.Override
       public double getHighPrice() {
         return highPrice_;
       }
@@ -24346,6 +26030,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 29;</code>
+       * @param value The highPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setHighPrice(double value) {
         
@@ -24359,6 +26045,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 29;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHighPrice() {
         
@@ -24374,7 +26061,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 30;</code>
+       * @return The lowPrice.
        */
+      @java.lang.Override
       public double getLowPrice() {
         return lowPrice_;
       }
@@ -24384,6 +26073,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 30;</code>
+       * @param value The lowPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setLowPrice(double value) {
         
@@ -24397,6 +26088,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 30;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLowPrice() {
         
@@ -24412,7 +26104,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double upperLimit = 31;</code>
+       * @return The upperLimit.
        */
+      @java.lang.Override
       public double getUpperLimit() {
         return upperLimit_;
       }
@@ -24422,6 +26116,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double upperLimit = 31;</code>
+       * @param value The upperLimit to set.
+       * @return This builder for chaining.
        */
       public Builder setUpperLimit(double value) {
         
@@ -24435,6 +26131,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double upperLimit = 31;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUpperLimit() {
         
@@ -24450,7 +26147,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowerLimit = 32;</code>
+       * @return The lowerLimit.
        */
+      @java.lang.Override
       public double getLowerLimit() {
         return lowerLimit_;
       }
@@ -24460,6 +26159,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowerLimit = 32;</code>
+       * @param value The lowerLimit to set.
+       * @return This builder for chaining.
        */
       public Builder setLowerLimit(double value) {
         
@@ -24473,6 +26174,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowerLimit = 32;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLowerLimit() {
         
@@ -24481,11 +26183,11 @@ public final class CoreField {
         return this;
       }
 
-      private java.util.List<java.lang.Double> bidPrice_ = java.util.Collections.emptyList();
+      private com.google.protobuf.Internal.DoubleList bidPrice_ = emptyDoubleList();
       private void ensureBidPriceIsMutable() {
-        if (!((bitField1_ & 0x00000001) == 0x00000001)) {
-          bidPrice_ = new java.util.ArrayList<java.lang.Double>(bidPrice_);
-          bitField1_ |= 0x00000001;
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          bidPrice_ = mutableCopy(bidPrice_);
+          bitField0_ |= 0x00000001;
          }
       }
       /**
@@ -24494,10 +26196,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @return A list containing the bidPrice.
        */
       public java.util.List<java.lang.Double>
           getBidPriceList() {
-        return java.util.Collections.unmodifiableList(bidPrice_);
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(bidPrice_) : bidPrice_;
       }
       /**
        * <pre>
@@ -24505,6 +26209,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @return The count of bidPrice.
        */
       public int getBidPriceCount() {
         return bidPrice_.size();
@@ -24515,9 +26220,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @param index The index of the element to return.
+       * @return The bidPrice at the given index.
        */
       public double getBidPrice(int index) {
-        return bidPrice_.get(index);
+        return bidPrice_.getDouble(index);
       }
       /**
        * <pre>
@@ -24525,11 +26232,14 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @param index The index to set the value at.
+       * @param value The bidPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setBidPrice(
           int index, double value) {
         ensureBidPriceIsMutable();
-        bidPrice_.set(index, value);
+        bidPrice_.setDouble(index, value);
         onChanged();
         return this;
       }
@@ -24539,10 +26249,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @param value The bidPrice to add.
+       * @return This builder for chaining.
        */
       public Builder addBidPrice(double value) {
         ensureBidPriceIsMutable();
-        bidPrice_.add(value);
+        bidPrice_.addDouble(value);
         onChanged();
         return this;
       }
@@ -24552,6 +26264,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @param values The bidPrice to add.
+       * @return This builder for chaining.
        */
       public Builder addAllBidPrice(
           java.lang.Iterable<? extends java.lang.Double> values) {
@@ -24567,19 +26281,20 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double bidPrice = 33;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBidPrice() {
-        bidPrice_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bidPrice_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
 
-      private java.util.List<java.lang.Double> askPrice_ = java.util.Collections.emptyList();
+      private com.google.protobuf.Internal.DoubleList askPrice_ = emptyDoubleList();
       private void ensureAskPriceIsMutable() {
-        if (!((bitField1_ & 0x00000002) == 0x00000002)) {
-          askPrice_ = new java.util.ArrayList<java.lang.Double>(askPrice_);
-          bitField1_ |= 0x00000002;
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          askPrice_ = mutableCopy(askPrice_);
+          bitField0_ |= 0x00000002;
          }
       }
       /**
@@ -24588,10 +26303,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @return A list containing the askPrice.
        */
       public java.util.List<java.lang.Double>
           getAskPriceList() {
-        return java.util.Collections.unmodifiableList(askPrice_);
+        return ((bitField0_ & 0x00000002) != 0) ?
+                 java.util.Collections.unmodifiableList(askPrice_) : askPrice_;
       }
       /**
        * <pre>
@@ -24599,6 +26316,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @return The count of askPrice.
        */
       public int getAskPriceCount() {
         return askPrice_.size();
@@ -24609,9 +26327,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @param index The index of the element to return.
+       * @return The askPrice at the given index.
        */
       public double getAskPrice(int index) {
-        return askPrice_.get(index);
+        return askPrice_.getDouble(index);
       }
       /**
        * <pre>
@@ -24619,11 +26339,14 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @param index The index to set the value at.
+       * @param value The askPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setAskPrice(
           int index, double value) {
         ensureAskPriceIsMutable();
-        askPrice_.set(index, value);
+        askPrice_.setDouble(index, value);
         onChanged();
         return this;
       }
@@ -24633,10 +26356,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @param value The askPrice to add.
+       * @return This builder for chaining.
        */
       public Builder addAskPrice(double value) {
         ensureAskPriceIsMutable();
-        askPrice_.add(value);
+        askPrice_.addDouble(value);
         onChanged();
         return this;
       }
@@ -24646,6 +26371,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @param values The askPrice to add.
+       * @return This builder for chaining.
        */
       public Builder addAllAskPrice(
           java.lang.Iterable<? extends java.lang.Double> values) {
@@ -24661,19 +26388,20 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated double askPrice = 34;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAskPrice() {
-        askPrice_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000002);
+        askPrice_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
 
-      private java.util.List<java.lang.Integer> bidVolume_ = java.util.Collections.emptyList();
+      private com.google.protobuf.Internal.IntList bidVolume_ = emptyIntList();
       private void ensureBidVolumeIsMutable() {
-        if (!((bitField1_ & 0x00000004) == 0x00000004)) {
-          bidVolume_ = new java.util.ArrayList<java.lang.Integer>(bidVolume_);
-          bitField1_ |= 0x00000004;
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          bidVolume_ = mutableCopy(bidVolume_);
+          bitField0_ |= 0x00000004;
          }
       }
       /**
@@ -24682,10 +26410,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @return A list containing the bidVolume.
        */
       public java.util.List<java.lang.Integer>
           getBidVolumeList() {
-        return java.util.Collections.unmodifiableList(bidVolume_);
+        return ((bitField0_ & 0x00000004) != 0) ?
+                 java.util.Collections.unmodifiableList(bidVolume_) : bidVolume_;
       }
       /**
        * <pre>
@@ -24693,6 +26423,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @return The count of bidVolume.
        */
       public int getBidVolumeCount() {
         return bidVolume_.size();
@@ -24703,9 +26434,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @param index The index of the element to return.
+       * @return The bidVolume at the given index.
        */
       public int getBidVolume(int index) {
-        return bidVolume_.get(index);
+        return bidVolume_.getInt(index);
       }
       /**
        * <pre>
@@ -24713,11 +26446,14 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @param index The index to set the value at.
+       * @param value The bidVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setBidVolume(
           int index, int value) {
         ensureBidVolumeIsMutable();
-        bidVolume_.set(index, value);
+        bidVolume_.setInt(index, value);
         onChanged();
         return this;
       }
@@ -24727,10 +26463,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @param value The bidVolume to add.
+       * @return This builder for chaining.
        */
       public Builder addBidVolume(int value) {
         ensureBidVolumeIsMutable();
-        bidVolume_.add(value);
+        bidVolume_.addInt(value);
         onChanged();
         return this;
       }
@@ -24740,6 +26478,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @param values The bidVolume to add.
+       * @return This builder for chaining.
        */
       public Builder addAllBidVolume(
           java.lang.Iterable<? extends java.lang.Integer> values) {
@@ -24755,19 +26495,20 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 bidVolume = 35;</code>
+       * @return This builder for chaining.
        */
       public Builder clearBidVolume() {
-        bidVolume_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000004);
+        bidVolume_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
 
-      private java.util.List<java.lang.Integer> askVolume_ = java.util.Collections.emptyList();
+      private com.google.protobuf.Internal.IntList askVolume_ = emptyIntList();
       private void ensureAskVolumeIsMutable() {
-        if (!((bitField1_ & 0x00000008) == 0x00000008)) {
-          askVolume_ = new java.util.ArrayList<java.lang.Integer>(askVolume_);
-          bitField1_ |= 0x00000008;
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          askVolume_ = mutableCopy(askVolume_);
+          bitField0_ |= 0x00000008;
          }
       }
       /**
@@ -24776,10 +26517,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @return A list containing the askVolume.
        */
       public java.util.List<java.lang.Integer>
           getAskVolumeList() {
-        return java.util.Collections.unmodifiableList(askVolume_);
+        return ((bitField0_ & 0x00000008) != 0) ?
+                 java.util.Collections.unmodifiableList(askVolume_) : askVolume_;
       }
       /**
        * <pre>
@@ -24787,6 +26530,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @return The count of askVolume.
        */
       public int getAskVolumeCount() {
         return askVolume_.size();
@@ -24797,9 +26541,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @param index The index of the element to return.
+       * @return The askVolume at the given index.
        */
       public int getAskVolume(int index) {
-        return askVolume_.get(index);
+        return askVolume_.getInt(index);
       }
       /**
        * <pre>
@@ -24807,11 +26553,14 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @param index The index to set the value at.
+       * @param value The askVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setAskVolume(
           int index, int value) {
         ensureAskVolumeIsMutable();
-        askVolume_.set(index, value);
+        askVolume_.setInt(index, value);
         onChanged();
         return this;
       }
@@ -24821,10 +26570,12 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @param value The askVolume to add.
+       * @return This builder for chaining.
        */
       public Builder addAskVolume(int value) {
         ensureAskVolumeIsMutable();
-        askVolume_.add(value);
+        askVolume_.addInt(value);
         onChanged();
         return this;
       }
@@ -24834,6 +26585,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @param values The askVolume to add.
+       * @return This builder for chaining.
        */
       public Builder addAllAskVolume(
           java.lang.Iterable<? extends java.lang.Integer> values) {
@@ -24849,17 +26602,18 @@ public final class CoreField {
        * </pre>
        *
        * <code>repeated fixed32 askVolume = 36;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAskVolume() {
-        askVolume_ = java.util.Collections.emptyList();
-        bitField1_ = (bitField1_ & ~0x00000008);
+        askVolume_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -24919,6 +26673,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The unifiedSymbol.
      */
     java.lang.String getUnifiedSymbol();
     /**
@@ -24927,6 +26682,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The bytes for unifiedSymbol.
      */
     com.google.protobuf.ByteString
         getUnifiedSymbolBytes();
@@ -24937,6 +26693,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -24945,6 +26702,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -24955,6 +26713,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The tradingDay.
      */
     java.lang.String getTradingDay();
     /**
@@ -24963,6 +26722,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The bytes for tradingDay.
      */
     com.google.protobuf.ByteString
         getTradingDayBytes();
@@ -24973,6 +26733,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The actionDay.
      */
     java.lang.String getActionDay();
     /**
@@ -24981,6 +26742,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The bytes for actionDay.
      */
     com.google.protobuf.ByteString
         getActionDayBytes();
@@ -24991,6 +26753,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The actionTime.
      */
     java.lang.String getActionTime();
     /**
@@ -24999,6 +26762,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The bytes for actionTime.
      */
     com.google.protobuf.ByteString
         getActionTimeBytes();
@@ -25009,6 +26773,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 actionTimestamp = 6;</code>
+     * @return The actionTimestamp.
      */
     long getActionTimestamp();
 
@@ -25018,6 +26783,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 7;</code>
+     * @return The openPrice.
      */
     double getOpenPrice();
 
@@ -25027,6 +26793,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double highPrice = 8;</code>
+     * @return The highPrice.
      */
     double getHighPrice();
 
@@ -25036,6 +26803,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowPrice = 9;</code>
+     * @return The lowPrice.
      */
     double getLowPrice();
 
@@ -25045,6 +26813,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double closePrice = 10;</code>
+     * @return The closePrice.
      */
     double getClosePrice();
 
@@ -25054,6 +26823,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterest = 11;</code>
+     * @return The openInterest.
      */
     double getOpenInterest();
 
@@ -25063,6 +26833,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterestDelta = 12;</code>
+     * @return The openInterestDelta.
      */
     double getOpenInterestDelta();
 
@@ -25072,6 +26843,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volume = 13;</code>
+     * @return The volume.
      */
     long getVolume();
 
@@ -25081,6 +26853,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volumeDelta = 14;</code>
+     * @return The volumeDelta.
      */
     long getVolumeDelta();
 
@@ -25090,6 +26863,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnover = 15;</code>
+     * @return The turnover.
      */
     double getTurnover();
 
@@ -25099,6 +26873,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnoverDelta = 16;</code>
+     * @return The turnoverDelta.
      */
     double getTurnoverDelta();
 
@@ -25108,6 +26883,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTrades = 17;</code>
+     * @return The numTrades.
      */
     long getNumTrades();
 
@@ -25117,6 +26893,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTradesDelta = 18;</code>
+     * @return The numTradesDelta.
      */
     long getNumTradesDelta();
 
@@ -25126,6 +26903,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preOpenInterest = 19;</code>
+     * @return The preOpenInterest.
      */
     double getPreOpenInterest();
 
@@ -25135,6 +26913,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preClosePrice = 20;</code>
+     * @return The preClosePrice.
      */
     double getPreClosePrice();
 
@@ -25144,6 +26923,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preSettlePrice = 21;</code>
+     * @return The preSettlePrice.
      */
     double getPreSettlePrice();
   }
@@ -25154,7 +26934,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.BarField}
    */
-  public  static final class BarField extends
+  public static final class BarField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.BarField)
       BarFieldOrBuilder {
@@ -25169,22 +26949,13 @@ public final class CoreField {
       tradingDay_ = "";
       actionDay_ = "";
       actionTime_ = "";
-      actionTimestamp_ = 0L;
-      openPrice_ = 0D;
-      highPrice_ = 0D;
-      lowPrice_ = 0D;
-      closePrice_ = 0D;
-      openInterest_ = 0D;
-      openInterestDelta_ = 0D;
-      volume_ = 0L;
-      volumeDelta_ = 0L;
-      turnover_ = 0D;
-      turnoverDelta_ = 0D;
-      numTrades_ = 0L;
-      numTradesDelta_ = 0L;
-      preOpenInterest_ = 0D;
-      preClosePrice_ = 0D;
-      preSettlePrice_ = 0D;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BarField();
     }
 
     @java.lang.Override
@@ -25200,7 +26971,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -25322,7 +27092,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -25361,7 +27131,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The unifiedSymbol.
      */
+    @java.lang.Override
     public java.lang.String getUnifiedSymbol() {
       java.lang.Object ref = unifiedSymbol_;
       if (ref instanceof java.lang.String) {
@@ -25380,7 +27152,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string unifiedSymbol = 1;</code>
+     * @return The bytes for unifiedSymbol.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnifiedSymbolBytes() {
       java.lang.Object ref = unifiedSymbol_;
@@ -25403,7 +27177,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -25422,7 +27198,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 2;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -25445,7 +27223,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The tradingDay.
      */
+    @java.lang.Override
     public java.lang.String getTradingDay() {
       java.lang.Object ref = tradingDay_;
       if (ref instanceof java.lang.String) {
@@ -25464,7 +27244,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string tradingDay = 3;</code>
+     * @return The bytes for tradingDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTradingDayBytes() {
       java.lang.Object ref = tradingDay_;
@@ -25487,7 +27269,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The actionDay.
      */
+    @java.lang.Override
     public java.lang.String getActionDay() {
       java.lang.Object ref = actionDay_;
       if (ref instanceof java.lang.String) {
@@ -25506,7 +27290,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionDay = 4;</code>
+     * @return The bytes for actionDay.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActionDayBytes() {
       java.lang.Object ref = actionDay_;
@@ -25529,7 +27315,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The actionTime.
      */
+    @java.lang.Override
     public java.lang.String getActionTime() {
       java.lang.Object ref = actionTime_;
       if (ref instanceof java.lang.String) {
@@ -25548,7 +27336,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string actionTime = 5;</code>
+     * @return The bytes for actionTime.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getActionTimeBytes() {
       java.lang.Object ref = actionTime_;
@@ -25571,7 +27361,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 actionTimestamp = 6;</code>
+     * @return The actionTimestamp.
      */
+    @java.lang.Override
     public long getActionTimestamp() {
       return actionTimestamp_;
     }
@@ -25584,7 +27376,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openPrice = 7;</code>
+     * @return The openPrice.
      */
+    @java.lang.Override
     public double getOpenPrice() {
       return openPrice_;
     }
@@ -25597,7 +27391,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double highPrice = 8;</code>
+     * @return The highPrice.
      */
+    @java.lang.Override
     public double getHighPrice() {
       return highPrice_;
     }
@@ -25610,7 +27406,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double lowPrice = 9;</code>
+     * @return The lowPrice.
      */
+    @java.lang.Override
     public double getLowPrice() {
       return lowPrice_;
     }
@@ -25623,7 +27421,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double closePrice = 10;</code>
+     * @return The closePrice.
      */
+    @java.lang.Override
     public double getClosePrice() {
       return closePrice_;
     }
@@ -25636,7 +27436,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterest = 11;</code>
+     * @return The openInterest.
      */
+    @java.lang.Override
     public double getOpenInterest() {
       return openInterest_;
     }
@@ -25649,7 +27451,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double openInterestDelta = 12;</code>
+     * @return The openInterestDelta.
      */
+    @java.lang.Override
     public double getOpenInterestDelta() {
       return openInterestDelta_;
     }
@@ -25662,7 +27466,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volume = 13;</code>
+     * @return The volume.
      */
+    @java.lang.Override
     public long getVolume() {
       return volume_;
     }
@@ -25675,7 +27481,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 volumeDelta = 14;</code>
+     * @return The volumeDelta.
      */
+    @java.lang.Override
     public long getVolumeDelta() {
       return volumeDelta_;
     }
@@ -25688,7 +27496,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnover = 15;</code>
+     * @return The turnover.
      */
+    @java.lang.Override
     public double getTurnover() {
       return turnover_;
     }
@@ -25701,7 +27511,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double turnoverDelta = 16;</code>
+     * @return The turnoverDelta.
      */
+    @java.lang.Override
     public double getTurnoverDelta() {
       return turnoverDelta_;
     }
@@ -25714,7 +27526,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTrades = 17;</code>
+     * @return The numTrades.
      */
+    @java.lang.Override
     public long getNumTrades() {
       return numTrades_;
     }
@@ -25727,7 +27541,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed64 numTradesDelta = 18;</code>
+     * @return The numTradesDelta.
      */
+    @java.lang.Override
     public long getNumTradesDelta() {
       return numTradesDelta_;
     }
@@ -25740,7 +27556,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preOpenInterest = 19;</code>
+     * @return The preOpenInterest.
      */
+    @java.lang.Override
     public double getPreOpenInterest() {
       return preOpenInterest_;
     }
@@ -25753,7 +27571,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preClosePrice = 20;</code>
+     * @return The preClosePrice.
      */
+    @java.lang.Override
     public double getPreClosePrice() {
       return preClosePrice_;
     }
@@ -25766,7 +27586,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double preSettlePrice = 21;</code>
+     * @return The preSettlePrice.
      */
+    @java.lang.Override
     public double getPreSettlePrice() {
       return preSettlePrice_;
     }
@@ -25951,73 +27773,61 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.BarField other = (xyz.redtorch.pb.CoreField.BarField) obj;
 
-      boolean result = true;
-      result = result && getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol());
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && getTradingDay()
-          .equals(other.getTradingDay());
-      result = result && getActionDay()
-          .equals(other.getActionDay());
-      result = result && getActionTime()
-          .equals(other.getActionTime());
-      result = result && (getActionTimestamp()
-          == other.getActionTimestamp());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getHighPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getHighPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getLowPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getLowPrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getClosePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getClosePrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenInterest())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenInterest()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getOpenInterestDelta())
-          == java.lang.Double.doubleToLongBits(
-              other.getOpenInterestDelta()));
-      result = result && (getVolume()
-          == other.getVolume());
-      result = result && (getVolumeDelta()
-          == other.getVolumeDelta());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getTurnover())
-          == java.lang.Double.doubleToLongBits(
-              other.getTurnover()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getTurnoverDelta())
-          == java.lang.Double.doubleToLongBits(
-              other.getTurnoverDelta()));
-      result = result && (getNumTrades()
-          == other.getNumTrades());
-      result = result && (getNumTradesDelta()
-          == other.getNumTradesDelta());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreOpenInterest())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreOpenInterest()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreClosePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreClosePrice()));
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPreSettlePrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPreSettlePrice()));
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getUnifiedSymbol()
+          .equals(other.getUnifiedSymbol())) return false;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!getTradingDay()
+          .equals(other.getTradingDay())) return false;
+      if (!getActionDay()
+          .equals(other.getActionDay())) return false;
+      if (!getActionTime()
+          .equals(other.getActionTime())) return false;
+      if (getActionTimestamp()
+          != other.getActionTimestamp()) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getHighPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getHighPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getLowPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getLowPrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getClosePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getClosePrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenInterest())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenInterest())) return false;
+      if (java.lang.Double.doubleToLongBits(getOpenInterestDelta())
+          != java.lang.Double.doubleToLongBits(
+              other.getOpenInterestDelta())) return false;
+      if (getVolume()
+          != other.getVolume()) return false;
+      if (getVolumeDelta()
+          != other.getVolumeDelta()) return false;
+      if (java.lang.Double.doubleToLongBits(getTurnover())
+          != java.lang.Double.doubleToLongBits(
+              other.getTurnover())) return false;
+      if (java.lang.Double.doubleToLongBits(getTurnoverDelta())
+          != java.lang.Double.doubleToLongBits(
+              other.getTurnoverDelta())) return false;
+      if (getNumTrades()
+          != other.getNumTrades()) return false;
+      if (getNumTradesDelta()
+          != other.getNumTradesDelta()) return false;
+      if (java.lang.Double.doubleToLongBits(getPreOpenInterest())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreOpenInterest())) return false;
+      if (java.lang.Double.doubleToLongBits(getPreClosePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreClosePrice())) return false;
+      if (java.lang.Double.doubleToLongBits(getPreSettlePrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPreSettlePrice())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -26317,35 +28127,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -26463,6 +28273,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return The unifiedSymbol.
        */
       public java.lang.String getUnifiedSymbol() {
         java.lang.Object ref = unifiedSymbol_;
@@ -26482,6 +28293,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return The bytes for unifiedSymbol.
        */
       public com.google.protobuf.ByteString
           getUnifiedSymbolBytes() {
@@ -26502,6 +28314,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @param value The unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbol(
           java.lang.String value) {
@@ -26519,6 +28333,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUnifiedSymbol() {
         
@@ -26532,6 +28347,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string unifiedSymbol = 1;</code>
+       * @param value The bytes for unifiedSymbol to set.
+       * @return This builder for chaining.
        */
       public Builder setUnifiedSymbolBytes(
           com.google.protobuf.ByteString value) {
@@ -26552,6 +28369,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -26571,6 +28389,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -26591,6 +28410,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -26608,6 +28429,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -26621,6 +28443,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 2;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -26641,6 +28465,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return The tradingDay.
        */
       public java.lang.String getTradingDay() {
         java.lang.Object ref = tradingDay_;
@@ -26660,6 +28485,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return The bytes for tradingDay.
        */
       public com.google.protobuf.ByteString
           getTradingDayBytes() {
@@ -26680,6 +28506,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @param value The tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDay(
           java.lang.String value) {
@@ -26697,6 +28525,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
@@ -26710,6 +28539,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string tradingDay = 3;</code>
+       * @param value The bytes for tradingDay to set.
+       * @return This builder for chaining.
        */
       public Builder setTradingDayBytes(
           com.google.protobuf.ByteString value) {
@@ -26730,6 +28561,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return The actionDay.
        */
       public java.lang.String getActionDay() {
         java.lang.Object ref = actionDay_;
@@ -26749,6 +28581,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return The bytes for actionDay.
        */
       public com.google.protobuf.ByteString
           getActionDayBytes() {
@@ -26769,6 +28602,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @param value The actionDay to set.
+       * @return This builder for chaining.
        */
       public Builder setActionDay(
           java.lang.String value) {
@@ -26786,6 +28621,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionDay() {
         
@@ -26799,6 +28635,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionDay = 4;</code>
+       * @param value The bytes for actionDay to set.
+       * @return This builder for chaining.
        */
       public Builder setActionDayBytes(
           com.google.protobuf.ByteString value) {
@@ -26819,6 +28657,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return The actionTime.
        */
       public java.lang.String getActionTime() {
         java.lang.Object ref = actionTime_;
@@ -26838,6 +28677,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return The bytes for actionTime.
        */
       public com.google.protobuf.ByteString
           getActionTimeBytes() {
@@ -26858,6 +28698,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @param value The actionTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTime(
           java.lang.String value) {
@@ -26875,6 +28717,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionTime() {
         
@@ -26888,6 +28731,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string actionTime = 5;</code>
+       * @param value The bytes for actionTime to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTimeBytes(
           com.google.protobuf.ByteString value) {
@@ -26908,7 +28753,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @return The actionTimestamp.
        */
+      @java.lang.Override
       public long getActionTimestamp() {
         return actionTimestamp_;
       }
@@ -26918,6 +28765,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @param value The actionTimestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setActionTimestamp(long value) {
         
@@ -26931,6 +28780,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 actionTimestamp = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearActionTimestamp() {
         
@@ -26946,7 +28796,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 7;</code>
+       * @return The openPrice.
        */
+      @java.lang.Override
       public double getOpenPrice() {
         return openPrice_;
       }
@@ -26956,6 +28808,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 7;</code>
+       * @param value The openPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenPrice(double value) {
         
@@ -26969,6 +28823,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openPrice = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenPrice() {
         
@@ -26984,7 +28839,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 8;</code>
+       * @return The highPrice.
        */
+      @java.lang.Override
       public double getHighPrice() {
         return highPrice_;
       }
@@ -26994,6 +28851,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 8;</code>
+       * @param value The highPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setHighPrice(double value) {
         
@@ -27007,6 +28866,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double highPrice = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHighPrice() {
         
@@ -27022,7 +28882,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 9;</code>
+       * @return The lowPrice.
        */
+      @java.lang.Override
       public double getLowPrice() {
         return lowPrice_;
       }
@@ -27032,6 +28894,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 9;</code>
+       * @param value The lowPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setLowPrice(double value) {
         
@@ -27045,6 +28909,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double lowPrice = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLowPrice() {
         
@@ -27060,7 +28925,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closePrice = 10;</code>
+       * @return The closePrice.
        */
+      @java.lang.Override
       public double getClosePrice() {
         return closePrice_;
       }
@@ -27070,6 +28937,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closePrice = 10;</code>
+       * @param value The closePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setClosePrice(double value) {
         
@@ -27083,6 +28952,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double closePrice = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearClosePrice() {
         
@@ -27098,7 +28968,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 11;</code>
+       * @return The openInterest.
        */
+      @java.lang.Override
       public double getOpenInterest() {
         return openInterest_;
       }
@@ -27108,6 +28980,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 11;</code>
+       * @param value The openInterest to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenInterest(double value) {
         
@@ -27121,6 +28995,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterest = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenInterest() {
         
@@ -27136,7 +29011,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 12;</code>
+       * @return The openInterestDelta.
        */
+      @java.lang.Override
       public double getOpenInterestDelta() {
         return openInterestDelta_;
       }
@@ -27146,6 +29023,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 12;</code>
+       * @param value The openInterestDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setOpenInterestDelta(double value) {
         
@@ -27159,6 +29038,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double openInterestDelta = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOpenInterestDelta() {
         
@@ -27174,7 +29054,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 13;</code>
+       * @return The volume.
        */
+      @java.lang.Override
       public long getVolume() {
         return volume_;
       }
@@ -27184,6 +29066,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 13;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
        */
       public Builder setVolume(long value) {
         
@@ -27197,6 +29081,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volume = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
@@ -27212,7 +29097,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 14;</code>
+       * @return The volumeDelta.
        */
+      @java.lang.Override
       public long getVolumeDelta() {
         return volumeDelta_;
       }
@@ -27222,6 +29109,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 14;</code>
+       * @param value The volumeDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeDelta(long value) {
         
@@ -27235,6 +29124,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 volumeDelta = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolumeDelta() {
         
@@ -27250,7 +29140,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 15;</code>
+       * @return The turnover.
        */
+      @java.lang.Override
       public double getTurnover() {
         return turnover_;
       }
@@ -27260,6 +29152,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 15;</code>
+       * @param value The turnover to set.
+       * @return This builder for chaining.
        */
       public Builder setTurnover(double value) {
         
@@ -27273,6 +29167,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnover = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTurnover() {
         
@@ -27288,7 +29183,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 16;</code>
+       * @return The turnoverDelta.
        */
+      @java.lang.Override
       public double getTurnoverDelta() {
         return turnoverDelta_;
       }
@@ -27298,6 +29195,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 16;</code>
+       * @param value The turnoverDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setTurnoverDelta(double value) {
         
@@ -27311,6 +29210,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double turnoverDelta = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTurnoverDelta() {
         
@@ -27326,7 +29226,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 17;</code>
+       * @return The numTrades.
        */
+      @java.lang.Override
       public long getNumTrades() {
         return numTrades_;
       }
@@ -27336,6 +29238,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 17;</code>
+       * @param value The numTrades to set.
+       * @return This builder for chaining.
        */
       public Builder setNumTrades(long value) {
         
@@ -27349,6 +29253,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTrades = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearNumTrades() {
         
@@ -27364,7 +29269,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 18;</code>
+       * @return The numTradesDelta.
        */
+      @java.lang.Override
       public long getNumTradesDelta() {
         return numTradesDelta_;
       }
@@ -27374,6 +29281,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 18;</code>
+       * @param value The numTradesDelta to set.
+       * @return This builder for chaining.
        */
       public Builder setNumTradesDelta(long value) {
         
@@ -27387,6 +29296,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed64 numTradesDelta = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearNumTradesDelta() {
         
@@ -27402,7 +29312,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 19;</code>
+       * @return The preOpenInterest.
        */
+      @java.lang.Override
       public double getPreOpenInterest() {
         return preOpenInterest_;
       }
@@ -27412,6 +29324,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 19;</code>
+       * @param value The preOpenInterest to set.
+       * @return This builder for chaining.
        */
       public Builder setPreOpenInterest(double value) {
         
@@ -27425,6 +29339,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preOpenInterest = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreOpenInterest() {
         
@@ -27440,7 +29355,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 20;</code>
+       * @return The preClosePrice.
        */
+      @java.lang.Override
       public double getPreClosePrice() {
         return preClosePrice_;
       }
@@ -27450,6 +29367,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 20;</code>
+       * @param value The preClosePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setPreClosePrice(double value) {
         
@@ -27463,6 +29382,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preClosePrice = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreClosePrice() {
         
@@ -27478,7 +29398,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 21;</code>
+       * @return The preSettlePrice.
        */
+      @java.lang.Override
       public double getPreSettlePrice() {
         return preSettlePrice_;
       }
@@ -27488,6 +29410,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 21;</code>
+       * @param value The preSettlePrice to set.
+       * @return This builder for chaining.
        */
       public Builder setPreSettlePrice(double value) {
         
@@ -27501,6 +29425,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double preSettlePrice = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPreSettlePrice() {
         
@@ -27511,7 +29436,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -27571,6 +29496,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The reqId.
      */
     java.lang.String getReqId();
     /**
@@ -27579,6 +29505,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The bytes for reqId.
      */
     com.google.protobuf.ByteString
         getReqIdBytes();
@@ -27589,6 +29516,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string operatorId = 2;</code>
+     * @return The operatorId.
      */
     java.lang.String getOperatorId();
     /**
@@ -27597,6 +29525,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string operatorId = 2;</code>
+     * @return The bytes for operatorId.
      */
     com.google.protobuf.ByteString
         getOperatorIdBytes();
@@ -27607,6 +29536,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 targetNodeId = 3;</code>
+     * @return The targetNodeId.
      */
     int getTargetNodeId();
 
@@ -27616,6 +29546,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 sourceNodeId = 4;</code>
+     * @return The sourceNodeId.
      */
     int getSourceNodeId();
   }
@@ -27626,7 +29557,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.CommonReqField}
    */
-  public  static final class CommonReqField extends
+  public static final class CommonReqField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.CommonReqField)
       CommonReqFieldOrBuilder {
@@ -27638,8 +29569,13 @@ public final class CoreField {
     private CommonReqField() {
       reqId_ = "";
       operatorId_ = "";
-      targetNodeId_ = 0;
-      sourceNodeId_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CommonReqField();
     }
 
     @java.lang.Override
@@ -27655,7 +29591,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -27689,7 +29624,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -27728,7 +29663,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The reqId.
      */
+    @java.lang.Override
     public java.lang.String getReqId() {
       java.lang.Object ref = reqId_;
       if (ref instanceof java.lang.String) {
@@ -27747,7 +29684,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The bytes for reqId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReqIdBytes() {
       java.lang.Object ref = reqId_;
@@ -27770,7 +29709,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string operatorId = 2;</code>
+     * @return The operatorId.
      */
+    @java.lang.Override
     public java.lang.String getOperatorId() {
       java.lang.Object ref = operatorId_;
       if (ref instanceof java.lang.String) {
@@ -27789,7 +29730,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string operatorId = 2;</code>
+     * @return The bytes for operatorId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOperatorIdBytes() {
       java.lang.Object ref = operatorId_;
@@ -27812,7 +29755,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 targetNodeId = 3;</code>
+     * @return The targetNodeId.
      */
+    @java.lang.Override
     public int getTargetNodeId() {
       return targetNodeId_;
     }
@@ -27825,7 +29770,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 sourceNodeId = 4;</code>
+     * @return The sourceNodeId.
      */
+    @java.lang.Override
     public int getSourceNodeId() {
       return sourceNodeId_;
     }
@@ -27894,17 +29841,16 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.CommonReqField other = (xyz.redtorch.pb.CoreField.CommonReqField) obj;
 
-      boolean result = true;
-      result = result && getReqId()
-          .equals(other.getReqId());
-      result = result && getOperatorId()
-          .equals(other.getOperatorId());
-      result = result && (getTargetNodeId()
-          == other.getTargetNodeId());
-      result = result && (getSourceNodeId()
-          == other.getSourceNodeId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getReqId()
+          .equals(other.getReqId())) return false;
+      if (!getOperatorId()
+          .equals(other.getOperatorId())) return false;
+      if (getTargetNodeId()
+          != other.getTargetNodeId()) return false;
+      if (getSourceNodeId()
+          != other.getSourceNodeId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -28103,35 +30049,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -28195,6 +30141,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return The reqId.
        */
       public java.lang.String getReqId() {
         java.lang.Object ref = reqId_;
@@ -28214,6 +30161,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return The bytes for reqId.
        */
       public com.google.protobuf.ByteString
           getReqIdBytes() {
@@ -28234,6 +30182,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @param value The reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqId(
           java.lang.String value) {
@@ -28251,6 +30201,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearReqId() {
         
@@ -28264,6 +30215,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @param value The bytes for reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqIdBytes(
           com.google.protobuf.ByteString value) {
@@ -28284,6 +30237,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string operatorId = 2;</code>
+       * @return The operatorId.
        */
       public java.lang.String getOperatorId() {
         java.lang.Object ref = operatorId_;
@@ -28303,6 +30257,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string operatorId = 2;</code>
+       * @return The bytes for operatorId.
        */
       public com.google.protobuf.ByteString
           getOperatorIdBytes() {
@@ -28323,6 +30278,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string operatorId = 2;</code>
+       * @param value The operatorId to set.
+       * @return This builder for chaining.
        */
       public Builder setOperatorId(
           java.lang.String value) {
@@ -28340,6 +30297,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string operatorId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOperatorId() {
         
@@ -28353,6 +30311,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string operatorId = 2;</code>
+       * @param value The bytes for operatorId to set.
+       * @return This builder for chaining.
        */
       public Builder setOperatorIdBytes(
           com.google.protobuf.ByteString value) {
@@ -28373,7 +30333,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 3;</code>
+       * @return The targetNodeId.
        */
+      @java.lang.Override
       public int getTargetNodeId() {
         return targetNodeId_;
       }
@@ -28383,6 +30345,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 3;</code>
+       * @param value The targetNodeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTargetNodeId(int value) {
         
@@ -28396,6 +30360,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTargetNodeId() {
         
@@ -28411,7 +30376,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @return The sourceNodeId.
        */
+      @java.lang.Override
       public int getSourceNodeId() {
         return sourceNodeId_;
       }
@@ -28421,6 +30388,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @param value The sourceNodeId to set.
+       * @return This builder for chaining.
        */
       public Builder setSourceNodeId(int value) {
         
@@ -28434,6 +30403,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSourceNodeId() {
         
@@ -28444,7 +30414,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -28504,6 +30474,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The reqId.
      */
     java.lang.String getReqId();
     /**
@@ -28512,6 +30483,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The bytes for reqId.
      */
     com.google.protobuf.ByteString
         getReqIdBytes();
@@ -28522,6 +30494,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 errorId = 2;</code>
+     * @return The errorId.
      */
     int getErrorId();
 
@@ -28531,6 +30504,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string errorMsg = 3;</code>
+     * @return The errorMsg.
      */
     java.lang.String getErrorMsg();
     /**
@@ -28539,6 +30513,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string errorMsg = 3;</code>
+     * @return The bytes for errorMsg.
      */
     com.google.protobuf.ByteString
         getErrorMsgBytes();
@@ -28550,7 +30525,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.CommonRspField}
    */
-  public  static final class CommonRspField extends
+  public static final class CommonRspField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.CommonRspField)
       CommonRspFieldOrBuilder {
@@ -28561,8 +30536,14 @@ public final class CoreField {
     }
     private CommonRspField() {
       reqId_ = "";
-      errorId_ = 0;
       errorMsg_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CommonRspField();
     }
 
     @java.lang.Override
@@ -28578,7 +30559,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -28607,7 +30587,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -28646,7 +30626,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The reqId.
      */
+    @java.lang.Override
     public java.lang.String getReqId() {
       java.lang.Object ref = reqId_;
       if (ref instanceof java.lang.String) {
@@ -28665,7 +30647,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string reqId = 1;</code>
+     * @return The bytes for reqId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReqIdBytes() {
       java.lang.Object ref = reqId_;
@@ -28688,7 +30672,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 errorId = 2;</code>
+     * @return The errorId.
      */
+    @java.lang.Override
     public int getErrorId() {
       return errorId_;
     }
@@ -28701,7 +30687,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string errorMsg = 3;</code>
+     * @return The errorMsg.
      */
+    @java.lang.Override
     public java.lang.String getErrorMsg() {
       java.lang.Object ref = errorMsg_;
       if (ref instanceof java.lang.String) {
@@ -28720,7 +30708,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string errorMsg = 3;</code>
+     * @return The bytes for errorMsg.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getErrorMsgBytes() {
       java.lang.Object ref = errorMsg_;
@@ -28792,15 +30782,14 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.CommonRspField other = (xyz.redtorch.pb.CoreField.CommonRspField) obj;
 
-      boolean result = true;
-      result = result && getReqId()
-          .equals(other.getReqId());
-      result = result && (getErrorId()
-          == other.getErrorId());
-      result = result && getErrorMsg()
-          .equals(other.getErrorMsg());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getReqId()
+          .equals(other.getReqId())) return false;
+      if (getErrorId()
+          != other.getErrorId()) return false;
+      if (!getErrorMsg()
+          .equals(other.getErrorMsg())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -28994,35 +30983,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -29083,6 +31072,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return The reqId.
        */
       public java.lang.String getReqId() {
         java.lang.Object ref = reqId_;
@@ -29102,6 +31092,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return The bytes for reqId.
        */
       public com.google.protobuf.ByteString
           getReqIdBytes() {
@@ -29122,6 +31113,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @param value The reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqId(
           java.lang.String value) {
@@ -29139,6 +31132,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearReqId() {
         
@@ -29152,6 +31146,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string reqId = 1;</code>
+       * @param value The bytes for reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqIdBytes(
           com.google.protobuf.ByteString value) {
@@ -29172,7 +31168,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 errorId = 2;</code>
+       * @return The errorId.
        */
+      @java.lang.Override
       public int getErrorId() {
         return errorId_;
       }
@@ -29182,6 +31180,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 errorId = 2;</code>
+       * @param value The errorId to set.
+       * @return This builder for chaining.
        */
       public Builder setErrorId(int value) {
         
@@ -29195,6 +31195,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 errorId = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearErrorId() {
         
@@ -29210,6 +31211,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string errorMsg = 3;</code>
+       * @return The errorMsg.
        */
       public java.lang.String getErrorMsg() {
         java.lang.Object ref = errorMsg_;
@@ -29229,6 +31231,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string errorMsg = 3;</code>
+       * @return The bytes for errorMsg.
        */
       public com.google.protobuf.ByteString
           getErrorMsgBytes() {
@@ -29249,6 +31252,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string errorMsg = 3;</code>
+       * @param value The errorMsg to set.
+       * @return This builder for chaining.
        */
       public Builder setErrorMsg(
           java.lang.String value) {
@@ -29266,6 +31271,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string errorMsg = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearErrorMsg() {
         
@@ -29279,6 +31285,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string errorMsg = 3;</code>
+       * @param value The bytes for errorMsg to set.
+       * @return This builder for chaining.
        */
       public Builder setErrorMsgBytes(
           com.google.protobuf.ByteString value) {
@@ -29294,7 +31302,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -29354,6 +31362,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
@@ -29362,6 +31371,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -29372,6 +31382,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountCode = 2;</code>
+     * @return The accountCode.
      */
     java.lang.String getAccountCode();
     /**
@@ -29380,6 +31391,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountCode = 2;</code>
+     * @return The bytes for accountCode.
      */
     com.google.protobuf.ByteString
         getAccountCodeBytes();
@@ -29390,6 +31402,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+     * @return The enum numeric value on the wire for currency.
      */
     int getCurrencyValue();
     /**
@@ -29398,6 +31411,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+     * @return The currency.
      */
     xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency();
 
@@ -29407,6 +31421,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+     * @return Whether the contract field is set.
      */
     boolean hasContract();
     /**
@@ -29415,6 +31430,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+     * @return The contract.
      */
     xyz.redtorch.pb.CoreField.ContractField getContract();
     /**
@@ -29432,6 +31448,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 5;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -29440,6 +31457,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 5;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -29450,6 +31468,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 volume = 6;</code>
+     * @return The volume.
      */
     int getVolume();
 
@@ -29459,6 +31478,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 7;</code>
+     * @return The price.
      */
     double getPrice();
 
@@ -29468,6 +31488,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+     * @return The enum numeric value on the wire for orderPriceType.
      */
     int getOrderPriceTypeValue();
     /**
@@ -29476,6 +31497,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+     * @return The orderPriceType.
      */
     xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType();
 
@@ -29485,6 +31507,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The enum numeric value on the wire for direction.
      */
     int getDirectionValue();
     /**
@@ -29493,6 +31516,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The direction.
      */
     xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection();
 
@@ -29502,6 +31526,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
     int getOffsetFlagValue();
     /**
@@ -29510,6 +31535,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The offsetFlag.
      */
     xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag();
 
@@ -29519,6 +31545,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
     int getHedgeFlagValue();
     /**
@@ -29527,6 +31554,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The hedgeFlag.
      */
     xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag();
 
@@ -29536,6 +31564,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+     * @return The enum numeric value on the wire for timeCondition.
      */
     int getTimeConditionValue();
     /**
@@ -29544,6 +31573,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+     * @return The timeCondition.
      */
     xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition();
 
@@ -29553,6 +31583,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 13;</code>
+     * @return The gtdDate.
      */
     java.lang.String getGtdDate();
     /**
@@ -29561,6 +31592,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 13;</code>
+     * @return The bytes for gtdDate.
      */
     com.google.protobuf.ByteString
         getGtdDateBytes();
@@ -29571,6 +31603,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+     * @return The enum numeric value on the wire for volumeCondition.
      */
     int getVolumeConditionValue();
     /**
@@ -29579,6 +31612,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+     * @return The volumeCondition.
      */
     xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition();
 
@@ -29588,6 +31622,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minVolume = 15;</code>
+     * @return The minVolume.
      */
     int getMinVolume();
 
@@ -29597,6 +31632,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+     * @return The enum numeric value on the wire for contingentCondition.
      */
     int getContingentConditionValue();
     /**
@@ -29605,6 +31641,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+     * @return The contingentCondition.
      */
     xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition();
 
@@ -29614,6 +31651,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>double stopPrice = 17;</code>
+     * @return The stopPrice.
      */
     double getStopPrice();
 
@@ -29623,6 +31661,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+     * @return The enum numeric value on the wire for forceCloseReason.
      */
     int getForceCloseReasonValue();
     /**
@@ -29631,6 +31670,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+     * @return The forceCloseReason.
      */
     xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason();
 
@@ -29640,6 +31680,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 autoSuspend = 19;</code>
+     * @return The autoSuspend.
      */
     int getAutoSuspend();
 
@@ -29649,6 +31690,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 userForceClose = 20;</code>
+     * @return The userForceClose.
      */
     int getUserForceClose();
 
@@ -29658,6 +31700,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 swapOrder = 21;</code>
+     * @return The swapOrder.
      */
     int getSwapOrder();
   }
@@ -29668,7 +31711,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.SubmitOrderReqField}
    */
-  public  static final class SubmitOrderReqField extends
+  public static final class SubmitOrderReqField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.SubmitOrderReqField)
       SubmitOrderReqFieldOrBuilder {
@@ -29682,8 +31725,6 @@ public final class CoreField {
       accountCode_ = "";
       currency_ = 0;
       gatewayId_ = "";
-      volume_ = 0;
-      price_ = 0D;
       orderPriceType_ = 0;
       direction_ = 0;
       offsetFlag_ = 0;
@@ -29691,13 +31732,15 @@ public final class CoreField {
       timeCondition_ = 0;
       gtdDate_ = "";
       volumeCondition_ = 0;
-      minVolume_ = 0;
       contingentCondition_ = 0;
-      stopPrice_ = 0D;
       forceCloseReason_ = 0;
-      autoSuspend_ = 0;
-      userForceClose_ = 0;
-      swapOrder_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SubmitOrderReqField();
     }
 
     @java.lang.Override
@@ -29713,7 +31756,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -29851,7 +31893,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -29890,7 +31932,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -29909,7 +31953,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 1;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -29932,7 +31978,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountCode = 2;</code>
+     * @return The accountCode.
      */
+    @java.lang.Override
     public java.lang.String getAccountCode() {
       java.lang.Object ref = accountCode_;
       if (ref instanceof java.lang.String) {
@@ -29951,7 +31999,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string accountCode = 2;</code>
+     * @return The bytes for accountCode.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAccountCodeBytes() {
       java.lang.Object ref = accountCode_;
@@ -29974,8 +32024,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+     * @return The enum numeric value on the wire for currency.
      */
-    public int getCurrencyValue() {
+    @java.lang.Override public int getCurrencyValue() {
       return currency_;
     }
     /**
@@ -29984,8 +32035,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+     * @return The currency.
      */
-    public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
       return result == null ? xyz.redtorch.pb.CoreEnum.CurrencyEnum.UNRECOGNIZED : result;
@@ -29999,7 +32051,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+     * @return Whether the contract field is set.
      */
+    @java.lang.Override
     public boolean hasContract() {
       return contract_ != null;
     }
@@ -30009,7 +32063,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+     * @return The contract.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractField getContract() {
       return contract_ == null ? xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance() : contract_;
     }
@@ -30020,6 +32076,7 @@ public final class CoreField {
      *
      * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder() {
       return getContract();
     }
@@ -30032,7 +32089,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 5;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -30051,7 +32110,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 5;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -30074,7 +32135,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 volume = 6;</code>
+     * @return The volume.
      */
+    @java.lang.Override
     public int getVolume() {
       return volume_;
     }
@@ -30087,7 +32150,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double price = 7;</code>
+     * @return The price.
      */
+    @java.lang.Override
     public double getPrice() {
       return price_;
     }
@@ -30100,8 +32165,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+     * @return The enum numeric value on the wire for orderPriceType.
      */
-    public int getOrderPriceTypeValue() {
+    @java.lang.Override public int getOrderPriceTypeValue() {
       return orderPriceType_;
     }
     /**
@@ -30110,8 +32176,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+     * @return The orderPriceType.
      */
-    public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum result = xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.valueOf(orderPriceType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.UNRECOGNIZED : result;
@@ -30125,8 +32192,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The enum numeric value on the wire for direction.
      */
-    public int getDirectionValue() {
+    @java.lang.Override public int getDirectionValue() {
       return direction_;
     }
     /**
@@ -30135,8 +32203,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+     * @return The direction.
      */
-    public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
       return result == null ? xyz.redtorch.pb.CoreEnum.DirectionEnum.UNRECOGNIZED : result;
@@ -30150,8 +32219,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The enum numeric value on the wire for offsetFlag.
      */
-    public int getOffsetFlagValue() {
+    @java.lang.Override public int getOffsetFlagValue() {
       return offsetFlag_;
     }
     /**
@@ -30160,8 +32230,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+     * @return The offsetFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.UNRECOGNIZED : result;
@@ -30175,8 +32246,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The enum numeric value on the wire for hedgeFlag.
      */
-    public int getHedgeFlagValue() {
+    @java.lang.Override public int getHedgeFlagValue() {
       return hedgeFlag_;
     }
     /**
@@ -30185,8 +32257,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+     * @return The hedgeFlag.
      */
-    public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
       return result == null ? xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.UNRECOGNIZED : result;
@@ -30200,8 +32273,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+     * @return The enum numeric value on the wire for timeCondition.
      */
-    public int getTimeConditionValue() {
+    @java.lang.Override public int getTimeConditionValue() {
       return timeCondition_;
     }
     /**
@@ -30210,8 +32284,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+     * @return The timeCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.TimeConditionEnum result = xyz.redtorch.pb.CoreEnum.TimeConditionEnum.valueOf(timeCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.TimeConditionEnum.UNRECOGNIZED : result;
@@ -30225,7 +32300,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 13;</code>
+     * @return The gtdDate.
      */
+    @java.lang.Override
     public java.lang.String getGtdDate() {
       java.lang.Object ref = gtdDate_;
       if (ref instanceof java.lang.String) {
@@ -30244,7 +32321,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gtdDate = 13;</code>
+     * @return The bytes for gtdDate.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGtdDateBytes() {
       java.lang.Object ref = gtdDate_;
@@ -30267,8 +32346,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+     * @return The enum numeric value on the wire for volumeCondition.
      */
-    public int getVolumeConditionValue() {
+    @java.lang.Override public int getVolumeConditionValue() {
       return volumeCondition_;
     }
     /**
@@ -30277,8 +32357,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+     * @return The volumeCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.VolumeConditionEnum result = xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.valueOf(volumeCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.UNRECOGNIZED : result;
@@ -30292,7 +32373,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 minVolume = 15;</code>
+     * @return The minVolume.
      */
+    @java.lang.Override
     public int getMinVolume() {
       return minVolume_;
     }
@@ -30305,8 +32388,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+     * @return The enum numeric value on the wire for contingentCondition.
      */
-    public int getContingentConditionValue() {
+    @java.lang.Override public int getContingentConditionValue() {
       return contingentCondition_;
     }
     /**
@@ -30315,8 +32399,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+     * @return The contingentCondition.
      */
-    public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ContingentConditionEnum result = xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.valueOf(contingentCondition_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.UNRECOGNIZED : result;
@@ -30330,7 +32415,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>double stopPrice = 17;</code>
+     * @return The stopPrice.
      */
+    @java.lang.Override
     public double getStopPrice() {
       return stopPrice_;
     }
@@ -30343,8 +32430,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+     * @return The enum numeric value on the wire for forceCloseReason.
      */
-    public int getForceCloseReasonValue() {
+    @java.lang.Override public int getForceCloseReasonValue() {
       return forceCloseReason_;
     }
     /**
@@ -30353,8 +32441,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+     * @return The forceCloseReason.
      */
-    public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum result = xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.valueOf(forceCloseReason_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.UNRECOGNIZED : result;
@@ -30368,7 +32457,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 autoSuspend = 19;</code>
+     * @return The autoSuspend.
      */
+    @java.lang.Override
     public int getAutoSuspend() {
       return autoSuspend_;
     }
@@ -30381,7 +32472,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 userForceClose = 20;</code>
+     * @return The userForceClose.
      */
+    @java.lang.Override
     public int getUserForceClose() {
       return userForceClose_;
     }
@@ -30394,7 +32487,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>fixed32 swapOrder = 21;</code>
+     * @return The swapOrder.
      */
+    @java.lang.Override
     public int getSwapOrder() {
       return swapOrder_;
     }
@@ -30580,49 +32675,46 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.SubmitOrderReqField other = (xyz.redtorch.pb.CoreField.SubmitOrderReqField) obj;
 
-      boolean result = true;
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && getAccountCode()
-          .equals(other.getAccountCode());
-      result = result && currency_ == other.currency_;
-      result = result && (hasContract() == other.hasContract());
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!getAccountCode()
+          .equals(other.getAccountCode())) return false;
+      if (currency_ != other.currency_) return false;
+      if (hasContract() != other.hasContract()) return false;
       if (hasContract()) {
-        result = result && getContract()
-            .equals(other.getContract());
+        if (!getContract()
+            .equals(other.getContract())) return false;
       }
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && (getVolume()
-          == other.getVolume());
-      result = result && (
-          java.lang.Double.doubleToLongBits(getPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getPrice()));
-      result = result && orderPriceType_ == other.orderPriceType_;
-      result = result && direction_ == other.direction_;
-      result = result && offsetFlag_ == other.offsetFlag_;
-      result = result && hedgeFlag_ == other.hedgeFlag_;
-      result = result && timeCondition_ == other.timeCondition_;
-      result = result && getGtdDate()
-          .equals(other.getGtdDate());
-      result = result && volumeCondition_ == other.volumeCondition_;
-      result = result && (getMinVolume()
-          == other.getMinVolume());
-      result = result && contingentCondition_ == other.contingentCondition_;
-      result = result && (
-          java.lang.Double.doubleToLongBits(getStopPrice())
-          == java.lang.Double.doubleToLongBits(
-              other.getStopPrice()));
-      result = result && forceCloseReason_ == other.forceCloseReason_;
-      result = result && (getAutoSuspend()
-          == other.getAutoSuspend());
-      result = result && (getUserForceClose()
-          == other.getUserForceClose());
-      result = result && (getSwapOrder()
-          == other.getSwapOrder());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (getVolume()
+          != other.getVolume()) return false;
+      if (java.lang.Double.doubleToLongBits(getPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getPrice())) return false;
+      if (orderPriceType_ != other.orderPriceType_) return false;
+      if (direction_ != other.direction_) return false;
+      if (offsetFlag_ != other.offsetFlag_) return false;
+      if (hedgeFlag_ != other.hedgeFlag_) return false;
+      if (timeCondition_ != other.timeCondition_) return false;
+      if (!getGtdDate()
+          .equals(other.getGtdDate())) return false;
+      if (volumeCondition_ != other.volumeCondition_) return false;
+      if (getMinVolume()
+          != other.getMinVolume()) return false;
+      if (contingentCondition_ != other.contingentCondition_) return false;
+      if (java.lang.Double.doubleToLongBits(getStopPrice())
+          != java.lang.Double.doubleToLongBits(
+              other.getStopPrice())) return false;
+      if (forceCloseReason_ != other.forceCloseReason_) return false;
+      if (getAutoSuspend()
+          != other.getAutoSuspend()) return false;
+      if (getUserForceClose()
+          != other.getUserForceClose()) return false;
+      if (getSwapOrder()
+          != other.getSwapOrder()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -30918,35 +33010,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -31063,6 +33155,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -31082,6 +33175,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -31102,6 +33196,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -31119,6 +33215,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -31132,6 +33229,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 1;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -31152,6 +33251,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountCode = 2;</code>
+       * @return The accountCode.
        */
       public java.lang.String getAccountCode() {
         java.lang.Object ref = accountCode_;
@@ -31171,6 +33271,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountCode = 2;</code>
+       * @return The bytes for accountCode.
        */
       public com.google.protobuf.ByteString
           getAccountCodeBytes() {
@@ -31191,6 +33292,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountCode = 2;</code>
+       * @param value The accountCode to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountCode(
           java.lang.String value) {
@@ -31208,6 +33311,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountCode = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAccountCode() {
         
@@ -31221,6 +33325,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string accountCode = 2;</code>
+       * @param value The bytes for accountCode to set.
+       * @return This builder for chaining.
        */
       public Builder setAccountCodeBytes(
           com.google.protobuf.ByteString value) {
@@ -31241,8 +33347,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+       * @return The enum numeric value on the wire for currency.
        */
-      public int getCurrencyValue() {
+      @java.lang.Override public int getCurrencyValue() {
         return currency_;
       }
       /**
@@ -31251,8 +33358,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+       * @param value The enum numeric value on the wire for currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrencyValue(int value) {
+        
         currency_ = value;
         onChanged();
         return this;
@@ -31263,7 +33373,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+       * @return The currency.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.CurrencyEnum getCurrency() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.CurrencyEnum result = xyz.redtorch.pb.CoreEnum.CurrencyEnum.valueOf(currency_);
@@ -31275,6 +33387,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+       * @param value The currency to set.
+       * @return This builder for chaining.
        */
       public Builder setCurrency(xyz.redtorch.pb.CoreEnum.CurrencyEnum value) {
         if (value == null) {
@@ -31291,6 +33405,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.CurrencyEnum currency = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearCurrency() {
         
@@ -31299,7 +33414,7 @@ public final class CoreField {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.ContractField contract_ = null;
+      private xyz.redtorch.pb.CoreField.ContractField contract_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
       /**
@@ -31308,6 +33423,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+       * @return Whether the contract field is set.
        */
       public boolean hasContract() {
         return contractBuilder_ != null || contract_ != null;
@@ -31318,6 +33434,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContractField contract = 4;</code>
+       * @return The contract.
        */
       public xyz.redtorch.pb.CoreField.ContractField getContract() {
         if (contractBuilder_ == null) {
@@ -31459,6 +33576,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 5;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -31478,6 +33596,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 5;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -31498,6 +33617,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 5;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -31515,6 +33636,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -31528,6 +33650,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 5;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -31548,7 +33672,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 6;</code>
+       * @return The volume.
        */
+      @java.lang.Override
       public int getVolume() {
         return volume_;
       }
@@ -31558,6 +33684,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 6;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
        */
       public Builder setVolume(int value) {
         
@@ -31571,6 +33699,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 volume = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
@@ -31586,7 +33715,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 7;</code>
+       * @return The price.
        */
+      @java.lang.Override
       public double getPrice() {
         return price_;
       }
@@ -31596,6 +33727,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 7;</code>
+       * @param value The price to set.
+       * @return This builder for chaining.
        */
       public Builder setPrice(double value) {
         
@@ -31609,6 +33742,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double price = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearPrice() {
         
@@ -31624,8 +33758,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+       * @return The enum numeric value on the wire for orderPriceType.
        */
-      public int getOrderPriceTypeValue() {
+      @java.lang.Override public int getOrderPriceTypeValue() {
         return orderPriceType_;
       }
       /**
@@ -31634,8 +33769,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+       * @param value The enum numeric value on the wire for orderPriceType to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderPriceTypeValue(int value) {
+        
         orderPriceType_ = value;
         onChanged();
         return this;
@@ -31646,7 +33784,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+       * @return The orderPriceType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum getOrderPriceType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum result = xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum.valueOf(orderPriceType_);
@@ -31658,6 +33798,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+       * @param value The orderPriceType to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderPriceType(xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum value) {
         if (value == null) {
@@ -31674,6 +33816,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OrderPriceTypeEnum orderPriceType = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderPriceType() {
         
@@ -31689,8 +33832,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return The enum numeric value on the wire for direction.
        */
-      public int getDirectionValue() {
+      @java.lang.Override public int getDirectionValue() {
         return direction_;
       }
       /**
@@ -31699,8 +33843,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @param value The enum numeric value on the wire for direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirectionValue(int value) {
+        
         direction_ = value;
         onChanged();
         return this;
@@ -31711,7 +33858,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return The direction.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.DirectionEnum getDirection() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.DirectionEnum result = xyz.redtorch.pb.CoreEnum.DirectionEnum.valueOf(direction_);
@@ -31723,6 +33872,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @param value The direction to set.
+       * @return This builder for chaining.
        */
       public Builder setDirection(xyz.redtorch.pb.CoreEnum.DirectionEnum value) {
         if (value == null) {
@@ -31739,6 +33890,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DirectionEnum direction = 9;</code>
+       * @return This builder for chaining.
        */
       public Builder clearDirection() {
         
@@ -31754,8 +33906,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return The enum numeric value on the wire for offsetFlag.
        */
-      public int getOffsetFlagValue() {
+      @java.lang.Override public int getOffsetFlagValue() {
         return offsetFlag_;
       }
       /**
@@ -31764,8 +33917,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @param value The enum numeric value on the wire for offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlagValue(int value) {
+        
         offsetFlag_ = value;
         onChanged();
         return this;
@@ -31776,7 +33932,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return The offsetFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.OffsetFlagEnum getOffsetFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.OffsetFlagEnum result = xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.valueOf(offsetFlag_);
@@ -31788,6 +33946,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @param value The offsetFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setOffsetFlag(xyz.redtorch.pb.CoreEnum.OffsetFlagEnum value) {
         if (value == null) {
@@ -31804,6 +33964,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.OffsetFlagEnum offsetFlag = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOffsetFlag() {
         
@@ -31819,8 +33980,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return The enum numeric value on the wire for hedgeFlag.
        */
-      public int getHedgeFlagValue() {
+      @java.lang.Override public int getHedgeFlagValue() {
         return hedgeFlag_;
       }
       /**
@@ -31829,8 +33991,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @param value The enum numeric value on the wire for hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlagValue(int value) {
+        
         hedgeFlag_ = value;
         onChanged();
         return this;
@@ -31841,7 +34006,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return The hedgeFlag.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.HedgeFlagEnum getHedgeFlag() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.HedgeFlagEnum result = xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.valueOf(hedgeFlag_);
@@ -31853,6 +34020,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @param value The hedgeFlag to set.
+       * @return This builder for chaining.
        */
       public Builder setHedgeFlag(xyz.redtorch.pb.CoreEnum.HedgeFlagEnum value) {
         if (value == null) {
@@ -31869,6 +34038,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.HedgeFlagEnum hedgeFlag = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearHedgeFlag() {
         
@@ -31884,8 +34054,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+       * @return The enum numeric value on the wire for timeCondition.
        */
-      public int getTimeConditionValue() {
+      @java.lang.Override public int getTimeConditionValue() {
         return timeCondition_;
       }
       /**
@@ -31894,8 +34065,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+       * @param value The enum numeric value on the wire for timeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setTimeConditionValue(int value) {
+        
         timeCondition_ = value;
         onChanged();
         return this;
@@ -31906,7 +34080,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+       * @return The timeCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.TimeConditionEnum getTimeCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.TimeConditionEnum result = xyz.redtorch.pb.CoreEnum.TimeConditionEnum.valueOf(timeCondition_);
@@ -31918,6 +34094,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+       * @param value The timeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setTimeCondition(xyz.redtorch.pb.CoreEnum.TimeConditionEnum value) {
         if (value == null) {
@@ -31934,6 +34112,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.TimeConditionEnum timeCondition = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTimeCondition() {
         
@@ -31949,6 +34128,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 13;</code>
+       * @return The gtdDate.
        */
       public java.lang.String getGtdDate() {
         java.lang.Object ref = gtdDate_;
@@ -31968,6 +34148,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 13;</code>
+       * @return The bytes for gtdDate.
        */
       public com.google.protobuf.ByteString
           getGtdDateBytes() {
@@ -31988,6 +34169,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 13;</code>
+       * @param value The gtdDate to set.
+       * @return This builder for chaining.
        */
       public Builder setGtdDate(
           java.lang.String value) {
@@ -32005,6 +34188,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 13;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGtdDate() {
         
@@ -32018,6 +34202,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gtdDate = 13;</code>
+       * @param value The bytes for gtdDate to set.
+       * @return This builder for chaining.
        */
       public Builder setGtdDateBytes(
           com.google.protobuf.ByteString value) {
@@ -32038,8 +34224,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+       * @return The enum numeric value on the wire for volumeCondition.
        */
-      public int getVolumeConditionValue() {
+      @java.lang.Override public int getVolumeConditionValue() {
         return volumeCondition_;
       }
       /**
@@ -32048,8 +34235,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+       * @param value The enum numeric value on the wire for volumeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeConditionValue(int value) {
+        
         volumeCondition_ = value;
         onChanged();
         return this;
@@ -32060,7 +34250,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+       * @return The volumeCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.VolumeConditionEnum getVolumeCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.VolumeConditionEnum result = xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.valueOf(volumeCondition_);
@@ -32072,6 +34264,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+       * @param value The volumeCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setVolumeCondition(xyz.redtorch.pb.CoreEnum.VolumeConditionEnum value) {
         if (value == null) {
@@ -32088,6 +34282,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.VolumeConditionEnum volumeCondition = 14;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVolumeCondition() {
         
@@ -32103,7 +34298,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 15;</code>
+       * @return The minVolume.
        */
+      @java.lang.Override
       public int getMinVolume() {
         return minVolume_;
       }
@@ -32113,6 +34310,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 15;</code>
+       * @param value The minVolume to set.
+       * @return This builder for chaining.
        */
       public Builder setMinVolume(int value) {
         
@@ -32126,6 +34325,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 minVolume = 15;</code>
+       * @return This builder for chaining.
        */
       public Builder clearMinVolume() {
         
@@ -32141,8 +34341,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+       * @return The enum numeric value on the wire for contingentCondition.
        */
-      public int getContingentConditionValue() {
+      @java.lang.Override public int getContingentConditionValue() {
         return contingentCondition_;
       }
       /**
@@ -32151,8 +34352,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+       * @param value The enum numeric value on the wire for contingentCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setContingentConditionValue(int value) {
+        
         contingentCondition_ = value;
         onChanged();
         return this;
@@ -32163,7 +34367,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+       * @return The contingentCondition.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ContingentConditionEnum getContingentCondition() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ContingentConditionEnum result = xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.valueOf(contingentCondition_);
@@ -32175,6 +34381,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+       * @param value The contingentCondition to set.
+       * @return This builder for chaining.
        */
       public Builder setContingentCondition(xyz.redtorch.pb.CoreEnum.ContingentConditionEnum value) {
         if (value == null) {
@@ -32191,6 +34399,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ContingentConditionEnum contingentCondition = 16;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContingentCondition() {
         
@@ -32206,7 +34415,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 17;</code>
+       * @return The stopPrice.
        */
+      @java.lang.Override
       public double getStopPrice() {
         return stopPrice_;
       }
@@ -32216,6 +34427,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 17;</code>
+       * @param value The stopPrice to set.
+       * @return This builder for chaining.
        */
       public Builder setStopPrice(double value) {
         
@@ -32229,6 +34442,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>double stopPrice = 17;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStopPrice() {
         
@@ -32244,8 +34458,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+       * @return The enum numeric value on the wire for forceCloseReason.
        */
-      public int getForceCloseReasonValue() {
+      @java.lang.Override public int getForceCloseReasonValue() {
         return forceCloseReason_;
       }
       /**
@@ -32254,8 +34469,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+       * @param value The enum numeric value on the wire for forceCloseReason to set.
+       * @return This builder for chaining.
        */
       public Builder setForceCloseReasonValue(int value) {
+        
         forceCloseReason_ = value;
         onChanged();
         return this;
@@ -32266,7 +34484,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+       * @return The forceCloseReason.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum getForceCloseReason() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum result = xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.valueOf(forceCloseReason_);
@@ -32278,6 +34498,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+       * @param value The forceCloseReason to set.
+       * @return This builder for chaining.
        */
       public Builder setForceCloseReason(xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum value) {
         if (value == null) {
@@ -32294,6 +34516,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.ForceCloseReasonEnum forceCloseReason = 18;</code>
+       * @return This builder for chaining.
        */
       public Builder clearForceCloseReason() {
         
@@ -32309,7 +34532,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 19;</code>
+       * @return The autoSuspend.
        */
+      @java.lang.Override
       public int getAutoSuspend() {
         return autoSuspend_;
       }
@@ -32319,6 +34544,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 19;</code>
+       * @param value The autoSuspend to set.
+       * @return This builder for chaining.
        */
       public Builder setAutoSuspend(int value) {
         
@@ -32332,6 +34559,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 autoSuspend = 19;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAutoSuspend() {
         
@@ -32347,7 +34575,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 20;</code>
+       * @return The userForceClose.
        */
+      @java.lang.Override
       public int getUserForceClose() {
         return userForceClose_;
       }
@@ -32357,6 +34587,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 20;</code>
+       * @param value The userForceClose to set.
+       * @return This builder for chaining.
        */
       public Builder setUserForceClose(int value) {
         
@@ -32370,6 +34602,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 userForceClose = 20;</code>
+       * @return This builder for chaining.
        */
       public Builder clearUserForceClose() {
         
@@ -32385,7 +34618,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 21;</code>
+       * @return The swapOrder.
        */
+      @java.lang.Override
       public int getSwapOrder() {
         return swapOrder_;
       }
@@ -32395,6 +34630,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 21;</code>
+       * @param value The swapOrder to set.
+       * @return This builder for chaining.
        */
       public Builder setSwapOrder(int value) {
         
@@ -32408,6 +34645,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>fixed32 swapOrder = 21;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSwapOrder() {
         
@@ -32418,7 +34656,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -32478,6 +34716,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The originOrderId.
      */
     java.lang.String getOriginOrderId();
     /**
@@ -32486,6 +34725,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The bytes for originOrderId.
      */
     com.google.protobuf.ByteString
         getOriginOrderIdBytes();
@@ -32496,6 +34736,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The orderId.
      */
     java.lang.String getOrderId();
     /**
@@ -32504,6 +34745,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The bytes for orderId.
      */
     com.google.protobuf.ByteString
         getOrderIdBytes();
@@ -32515,7 +34757,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.CancelOrderReqField}
    */
-  public  static final class CancelOrderReqField extends
+  public static final class CancelOrderReqField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.CancelOrderReqField)
       CancelOrderReqFieldOrBuilder {
@@ -32527,6 +34769,13 @@ public final class CoreField {
     private CancelOrderReqField() {
       originOrderId_ = "";
       orderId_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CancelOrderReqField();
     }
 
     @java.lang.Override
@@ -32542,7 +34791,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -32566,7 +34814,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -32605,7 +34853,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The originOrderId.
      */
+    @java.lang.Override
     public java.lang.String getOriginOrderId() {
       java.lang.Object ref = originOrderId_;
       if (ref instanceof java.lang.String) {
@@ -32624,7 +34874,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string originOrderId = 3;</code>
+     * @return The bytes for originOrderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOriginOrderIdBytes() {
       java.lang.Object ref = originOrderId_;
@@ -32647,7 +34899,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The orderId.
      */
+    @java.lang.Override
     public java.lang.String getOrderId() {
       java.lang.Object ref = orderId_;
       if (ref instanceof java.lang.String) {
@@ -32666,7 +34920,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string orderId = 4;</code>
+     * @return The bytes for orderId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getOrderIdBytes() {
       java.lang.Object ref = orderId_;
@@ -32731,13 +34987,12 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.CancelOrderReqField other = (xyz.redtorch.pb.CoreField.CancelOrderReqField) obj;
 
-      boolean result = true;
-      result = result && getOriginOrderId()
-          .equals(other.getOriginOrderId());
-      result = result && getOrderId()
-          .equals(other.getOrderId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getOriginOrderId()
+          .equals(other.getOriginOrderId())) return false;
+      if (!getOrderId()
+          .equals(other.getOrderId())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -32926,35 +35181,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -33012,6 +35267,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return The originOrderId.
        */
       public java.lang.String getOriginOrderId() {
         java.lang.Object ref = originOrderId_;
@@ -33031,6 +35287,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return The bytes for originOrderId.
        */
       public com.google.protobuf.ByteString
           getOriginOrderIdBytes() {
@@ -33051,6 +35308,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @param value The originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderId(
           java.lang.String value) {
@@ -33068,6 +35327,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOriginOrderId() {
         
@@ -33081,6 +35341,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string originOrderId = 3;</code>
+       * @param value The bytes for originOrderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOriginOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -33101,6 +35363,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return The orderId.
        */
       public java.lang.String getOrderId() {
         java.lang.Object ref = orderId_;
@@ -33120,6 +35383,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return The bytes for orderId.
        */
       public com.google.protobuf.ByteString
           getOrderIdBytes() {
@@ -33140,6 +35404,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @param value The orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderId(
           java.lang.String value) {
@@ -33157,6 +35423,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearOrderId() {
         
@@ -33170,6 +35437,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string orderId = 4;</code>
+       * @param value The bytes for orderId to set.
+       * @return This builder for chaining.
        */
       public Builder setOrderIdBytes(
           com.google.protobuf.ByteString value) {
@@ -33185,7 +35454,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -33245,6 +35514,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The gatewayId.
      */
     java.lang.String getGatewayId();
     /**
@@ -33253,6 +35523,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The bytes for gatewayId.
      */
     com.google.protobuf.ByteString
         getGatewayIdBytes();
@@ -33263,6 +35534,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayName = 2;</code>
+     * @return The gatewayName.
      */
     java.lang.String getGatewayName();
     /**
@@ -33271,6 +35543,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayName = 2;</code>
+     * @return The bytes for gatewayName.
      */
     com.google.protobuf.ByteString
         getGatewayNameBytes();
@@ -33281,6 +35554,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayDescription = 4;</code>
+     * @return The gatewayDescription.
      */
     java.lang.String getGatewayDescription();
     /**
@@ -33289,6 +35563,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayDescription = 4;</code>
+     * @return The bytes for gatewayDescription.
      */
     com.google.protobuf.ByteString
         getGatewayDescriptionBytes();
@@ -33299,6 +35574,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string implementClassName = 5;</code>
+     * @return The implementClassName.
      */
     java.lang.String getImplementClassName();
     /**
@@ -33307,6 +35583,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>string implementClassName = 5;</code>
+     * @return The bytes for implementClassName.
      */
     com.google.protobuf.ByteString
         getImplementClassNameBytes();
@@ -33317,6 +35594,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * @return The enum numeric value on the wire for gatewayType.
      */
     int getGatewayTypeValue();
     /**
@@ -33325,6 +35603,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * @return The gatewayType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType();
 
@@ -33334,6 +35613,7 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * @return The enum numeric value on the wire for gatewayAdapterType.
      */
     int getGatewayAdapterTypeValue();
     /**
@@ -33342,15 +35622,18 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * @return The gatewayAdapterType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType();
 
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+     * @return Whether the ctpApiSetting field is set.
      */
     boolean hasCtpApiSetting();
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+     * @return The ctpApiSetting.
      */
     xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting();
     /**
@@ -33360,10 +35643,12 @@ public final class CoreField {
 
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+     * @return Whether the ibApiSetting field is set.
      */
     boolean hasIbApiSetting();
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+     * @return The ibApiSetting.
      */
     xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting();
     /**
@@ -33373,24 +35658,29 @@ public final class CoreField {
 
     /**
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * @return The status.
      */
     xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus();
 
     /**
      * <code>fixed64 version = 11;</code>
+     * @return The version.
      */
     long getVersion();
 
     /**
      * <code>string autoConnectTimeRanges = 12;</code>
+     * @return The autoConnectTimeRanges.
      */
     java.lang.String getAutoConnectTimeRanges();
     /**
      * <code>string autoConnectTimeRanges = 12;</code>
+     * @return The bytes for autoConnectTimeRanges.
      */
     com.google.protobuf.ByteString
         getAutoConnectTimeRangesBytes();
@@ -33402,7 +35692,7 @@ public final class CoreField {
    *
    * Protobuf type {@code xyz.redtorch.pb.GatewaySettingField}
    */
-  public  static final class GatewaySettingField extends
+  public static final class GatewaySettingField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.GatewaySettingField)
       GatewaySettingFieldOrBuilder {
@@ -33419,8 +35709,14 @@ public final class CoreField {
       gatewayType_ = 0;
       gatewayAdapterType_ = 0;
       status_ = 0;
-      version_ = 0L;
       autoConnectTimeRanges_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new GatewaySettingField();
     }
 
     @java.lang.Override
@@ -33436,7 +35732,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -33527,7 +35822,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -33564,100 +35859,120 @@ public final class CoreField {
 
       /**
        * <code>string userId = 1;</code>
+       * @return The userId.
        */
       java.lang.String getUserId();
       /**
        * <code>string userId = 1;</code>
+       * @return The bytes for userId.
        */
       com.google.protobuf.ByteString
           getUserIdBytes();
 
       /**
        * <code>string password = 2;</code>
+       * @return The password.
        */
       java.lang.String getPassword();
       /**
        * <code>string password = 2;</code>
+       * @return The bytes for password.
        */
       com.google.protobuf.ByteString
           getPasswordBytes();
 
       /**
        * <code>string brokerId = 3;</code>
+       * @return The brokerId.
        */
       java.lang.String getBrokerId();
       /**
        * <code>string brokerId = 3;</code>
+       * @return The bytes for brokerId.
        */
       com.google.protobuf.ByteString
           getBrokerIdBytes();
 
       /**
        * <code>string tdHost = 4;</code>
+       * @return The tdHost.
        */
       java.lang.String getTdHost();
       /**
        * <code>string tdHost = 4;</code>
+       * @return The bytes for tdHost.
        */
       com.google.protobuf.ByteString
           getTdHostBytes();
 
       /**
        * <code>string tdPort = 5;</code>
+       * @return The tdPort.
        */
       java.lang.String getTdPort();
       /**
        * <code>string tdPort = 5;</code>
+       * @return The bytes for tdPort.
        */
       com.google.protobuf.ByteString
           getTdPortBytes();
 
       /**
        * <code>string mdHost = 6;</code>
+       * @return The mdHost.
        */
       java.lang.String getMdHost();
       /**
        * <code>string mdHost = 6;</code>
+       * @return The bytes for mdHost.
        */
       com.google.protobuf.ByteString
           getMdHostBytes();
 
       /**
        * <code>string mdPort = 7;</code>
+       * @return The mdPort.
        */
       java.lang.String getMdPort();
       /**
        * <code>string mdPort = 7;</code>
+       * @return The bytes for mdPort.
        */
       com.google.protobuf.ByteString
           getMdPortBytes();
 
       /**
        * <code>string authCode = 8;</code>
+       * @return The authCode.
        */
       java.lang.String getAuthCode();
       /**
        * <code>string authCode = 8;</code>
+       * @return The bytes for authCode.
        */
       com.google.protobuf.ByteString
           getAuthCodeBytes();
 
       /**
        * <code>string userProductInfo = 9;</code>
+       * @return The userProductInfo.
        */
       java.lang.String getUserProductInfo();
       /**
        * <code>string userProductInfo = 9;</code>
+       * @return The bytes for userProductInfo.
        */
       com.google.protobuf.ByteString
           getUserProductInfoBytes();
 
       /**
        * <code>string appId = 10;</code>
+       * @return The appId.
        */
       java.lang.String getAppId();
       /**
        * <code>string appId = 10;</code>
+       * @return The bytes for appId.
        */
       com.google.protobuf.ByteString
           getAppIdBytes();
@@ -33665,7 +35980,7 @@ public final class CoreField {
     /**
      * Protobuf type {@code xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField}
      */
-    public  static final class CtpApiSettingField extends
+    public static final class CtpApiSettingField extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField)
         CtpApiSettingFieldOrBuilder {
@@ -33688,6 +36003,13 @@ public final class CoreField {
       }
 
       @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new CtpApiSettingField();
+      }
+
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
@@ -33700,7 +36022,6 @@ public final class CoreField {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -33772,7 +36093,7 @@ public final class CoreField {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -33807,7 +36128,9 @@ public final class CoreField {
       private volatile java.lang.Object userId_;
       /**
        * <code>string userId = 1;</code>
+       * @return The userId.
        */
+      @java.lang.Override
       public java.lang.String getUserId() {
         java.lang.Object ref = userId_;
         if (ref instanceof java.lang.String) {
@@ -33822,7 +36145,9 @@ public final class CoreField {
       }
       /**
        * <code>string userId = 1;</code>
+       * @return The bytes for userId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getUserIdBytes() {
         java.lang.Object ref = userId_;
@@ -33841,7 +36166,9 @@ public final class CoreField {
       private volatile java.lang.Object password_;
       /**
        * <code>string password = 2;</code>
+       * @return The password.
        */
+      @java.lang.Override
       public java.lang.String getPassword() {
         java.lang.Object ref = password_;
         if (ref instanceof java.lang.String) {
@@ -33856,7 +36183,9 @@ public final class CoreField {
       }
       /**
        * <code>string password = 2;</code>
+       * @return The bytes for password.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getPasswordBytes() {
         java.lang.Object ref = password_;
@@ -33875,7 +36204,9 @@ public final class CoreField {
       private volatile java.lang.Object brokerId_;
       /**
        * <code>string brokerId = 3;</code>
+       * @return The brokerId.
        */
+      @java.lang.Override
       public java.lang.String getBrokerId() {
         java.lang.Object ref = brokerId_;
         if (ref instanceof java.lang.String) {
@@ -33890,7 +36221,9 @@ public final class CoreField {
       }
       /**
        * <code>string brokerId = 3;</code>
+       * @return The bytes for brokerId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getBrokerIdBytes() {
         java.lang.Object ref = brokerId_;
@@ -33909,7 +36242,9 @@ public final class CoreField {
       private volatile java.lang.Object tdHost_;
       /**
        * <code>string tdHost = 4;</code>
+       * @return The tdHost.
        */
+      @java.lang.Override
       public java.lang.String getTdHost() {
         java.lang.Object ref = tdHost_;
         if (ref instanceof java.lang.String) {
@@ -33924,7 +36259,9 @@ public final class CoreField {
       }
       /**
        * <code>string tdHost = 4;</code>
+       * @return The bytes for tdHost.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getTdHostBytes() {
         java.lang.Object ref = tdHost_;
@@ -33943,7 +36280,9 @@ public final class CoreField {
       private volatile java.lang.Object tdPort_;
       /**
        * <code>string tdPort = 5;</code>
+       * @return The tdPort.
        */
+      @java.lang.Override
       public java.lang.String getTdPort() {
         java.lang.Object ref = tdPort_;
         if (ref instanceof java.lang.String) {
@@ -33958,7 +36297,9 @@ public final class CoreField {
       }
       /**
        * <code>string tdPort = 5;</code>
+       * @return The bytes for tdPort.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getTdPortBytes() {
         java.lang.Object ref = tdPort_;
@@ -33977,7 +36318,9 @@ public final class CoreField {
       private volatile java.lang.Object mdHost_;
       /**
        * <code>string mdHost = 6;</code>
+       * @return The mdHost.
        */
+      @java.lang.Override
       public java.lang.String getMdHost() {
         java.lang.Object ref = mdHost_;
         if (ref instanceof java.lang.String) {
@@ -33992,7 +36335,9 @@ public final class CoreField {
       }
       /**
        * <code>string mdHost = 6;</code>
+       * @return The bytes for mdHost.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getMdHostBytes() {
         java.lang.Object ref = mdHost_;
@@ -34011,7 +36356,9 @@ public final class CoreField {
       private volatile java.lang.Object mdPort_;
       /**
        * <code>string mdPort = 7;</code>
+       * @return The mdPort.
        */
+      @java.lang.Override
       public java.lang.String getMdPort() {
         java.lang.Object ref = mdPort_;
         if (ref instanceof java.lang.String) {
@@ -34026,7 +36373,9 @@ public final class CoreField {
       }
       /**
        * <code>string mdPort = 7;</code>
+       * @return The bytes for mdPort.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getMdPortBytes() {
         java.lang.Object ref = mdPort_;
@@ -34045,7 +36394,9 @@ public final class CoreField {
       private volatile java.lang.Object authCode_;
       /**
        * <code>string authCode = 8;</code>
+       * @return The authCode.
        */
+      @java.lang.Override
       public java.lang.String getAuthCode() {
         java.lang.Object ref = authCode_;
         if (ref instanceof java.lang.String) {
@@ -34060,7 +36411,9 @@ public final class CoreField {
       }
       /**
        * <code>string authCode = 8;</code>
+       * @return The bytes for authCode.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getAuthCodeBytes() {
         java.lang.Object ref = authCode_;
@@ -34079,7 +36432,9 @@ public final class CoreField {
       private volatile java.lang.Object userProductInfo_;
       /**
        * <code>string userProductInfo = 9;</code>
+       * @return The userProductInfo.
        */
+      @java.lang.Override
       public java.lang.String getUserProductInfo() {
         java.lang.Object ref = userProductInfo_;
         if (ref instanceof java.lang.String) {
@@ -34094,7 +36449,9 @@ public final class CoreField {
       }
       /**
        * <code>string userProductInfo = 9;</code>
+       * @return The bytes for userProductInfo.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getUserProductInfoBytes() {
         java.lang.Object ref = userProductInfo_;
@@ -34113,7 +36470,9 @@ public final class CoreField {
       private volatile java.lang.Object appId_;
       /**
        * <code>string appId = 10;</code>
+       * @return The appId.
        */
+      @java.lang.Override
       public java.lang.String getAppId() {
         java.lang.Object ref = appId_;
         if (ref instanceof java.lang.String) {
@@ -34128,7 +36487,9 @@ public final class CoreField {
       }
       /**
        * <code>string appId = 10;</code>
+       * @return The bytes for appId.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getAppIdBytes() {
         java.lang.Object ref = appId_;
@@ -34241,29 +36602,28 @@ public final class CoreField {
         }
         xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField other = (xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField) obj;
 
-        boolean result = true;
-        result = result && getUserId()
-            .equals(other.getUserId());
-        result = result && getPassword()
-            .equals(other.getPassword());
-        result = result && getBrokerId()
-            .equals(other.getBrokerId());
-        result = result && getTdHost()
-            .equals(other.getTdHost());
-        result = result && getTdPort()
-            .equals(other.getTdPort());
-        result = result && getMdHost()
-            .equals(other.getMdHost());
-        result = result && getMdPort()
-            .equals(other.getMdPort());
-        result = result && getAuthCode()
-            .equals(other.getAuthCode());
-        result = result && getUserProductInfo()
-            .equals(other.getUserProductInfo());
-        result = result && getAppId()
-            .equals(other.getAppId());
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!getUserId()
+            .equals(other.getUserId())) return false;
+        if (!getPassword()
+            .equals(other.getPassword())) return false;
+        if (!getBrokerId()
+            .equals(other.getBrokerId())) return false;
+        if (!getTdHost()
+            .equals(other.getTdHost())) return false;
+        if (!getTdPort()
+            .equals(other.getTdPort())) return false;
+        if (!getMdHost()
+            .equals(other.getMdHost())) return false;
+        if (!getMdPort()
+            .equals(other.getMdPort())) return false;
+        if (!getAuthCode()
+            .equals(other.getAuthCode())) return false;
+        if (!getUserProductInfo()
+            .equals(other.getUserProductInfo())) return false;
+        if (!getAppId()
+            .equals(other.getAppId())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
       @java.lang.Override
@@ -34488,35 +36848,35 @@ public final class CoreField {
 
         @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
         @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.setField(field, value);
+          return super.setField(field, value);
         }
         @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
         @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
         @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+          return super.setRepeatedField(field, index, value);
         }
         @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+          return super.addRepeatedField(field, value);
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -34602,6 +36962,7 @@ public final class CoreField {
         private java.lang.Object userId_ = "";
         /**
          * <code>string userId = 1;</code>
+         * @return The userId.
          */
         public java.lang.String getUserId() {
           java.lang.Object ref = userId_;
@@ -34617,6 +36978,7 @@ public final class CoreField {
         }
         /**
          * <code>string userId = 1;</code>
+         * @return The bytes for userId.
          */
         public com.google.protobuf.ByteString
             getUserIdBytes() {
@@ -34633,6 +36995,8 @@ public final class CoreField {
         }
         /**
          * <code>string userId = 1;</code>
+         * @param value The userId to set.
+         * @return This builder for chaining.
          */
         public Builder setUserId(
             java.lang.String value) {
@@ -34646,6 +37010,7 @@ public final class CoreField {
         }
         /**
          * <code>string userId = 1;</code>
+         * @return This builder for chaining.
          */
         public Builder clearUserId() {
           
@@ -34655,6 +37020,8 @@ public final class CoreField {
         }
         /**
          * <code>string userId = 1;</code>
+         * @param value The bytes for userId to set.
+         * @return This builder for chaining.
          */
         public Builder setUserIdBytes(
             com.google.protobuf.ByteString value) {
@@ -34671,6 +37038,7 @@ public final class CoreField {
         private java.lang.Object password_ = "";
         /**
          * <code>string password = 2;</code>
+         * @return The password.
          */
         public java.lang.String getPassword() {
           java.lang.Object ref = password_;
@@ -34686,6 +37054,7 @@ public final class CoreField {
         }
         /**
          * <code>string password = 2;</code>
+         * @return The bytes for password.
          */
         public com.google.protobuf.ByteString
             getPasswordBytes() {
@@ -34702,6 +37071,8 @@ public final class CoreField {
         }
         /**
          * <code>string password = 2;</code>
+         * @param value The password to set.
+         * @return This builder for chaining.
          */
         public Builder setPassword(
             java.lang.String value) {
@@ -34715,6 +37086,7 @@ public final class CoreField {
         }
         /**
          * <code>string password = 2;</code>
+         * @return This builder for chaining.
          */
         public Builder clearPassword() {
           
@@ -34724,6 +37096,8 @@ public final class CoreField {
         }
         /**
          * <code>string password = 2;</code>
+         * @param value The bytes for password to set.
+         * @return This builder for chaining.
          */
         public Builder setPasswordBytes(
             com.google.protobuf.ByteString value) {
@@ -34740,6 +37114,7 @@ public final class CoreField {
         private java.lang.Object brokerId_ = "";
         /**
          * <code>string brokerId = 3;</code>
+         * @return The brokerId.
          */
         public java.lang.String getBrokerId() {
           java.lang.Object ref = brokerId_;
@@ -34755,6 +37130,7 @@ public final class CoreField {
         }
         /**
          * <code>string brokerId = 3;</code>
+         * @return The bytes for brokerId.
          */
         public com.google.protobuf.ByteString
             getBrokerIdBytes() {
@@ -34771,6 +37147,8 @@ public final class CoreField {
         }
         /**
          * <code>string brokerId = 3;</code>
+         * @param value The brokerId to set.
+         * @return This builder for chaining.
          */
         public Builder setBrokerId(
             java.lang.String value) {
@@ -34784,6 +37162,7 @@ public final class CoreField {
         }
         /**
          * <code>string brokerId = 3;</code>
+         * @return This builder for chaining.
          */
         public Builder clearBrokerId() {
           
@@ -34793,6 +37172,8 @@ public final class CoreField {
         }
         /**
          * <code>string brokerId = 3;</code>
+         * @param value The bytes for brokerId to set.
+         * @return This builder for chaining.
          */
         public Builder setBrokerIdBytes(
             com.google.protobuf.ByteString value) {
@@ -34809,6 +37190,7 @@ public final class CoreField {
         private java.lang.Object tdHost_ = "";
         /**
          * <code>string tdHost = 4;</code>
+         * @return The tdHost.
          */
         public java.lang.String getTdHost() {
           java.lang.Object ref = tdHost_;
@@ -34824,6 +37206,7 @@ public final class CoreField {
         }
         /**
          * <code>string tdHost = 4;</code>
+         * @return The bytes for tdHost.
          */
         public com.google.protobuf.ByteString
             getTdHostBytes() {
@@ -34840,6 +37223,8 @@ public final class CoreField {
         }
         /**
          * <code>string tdHost = 4;</code>
+         * @param value The tdHost to set.
+         * @return This builder for chaining.
          */
         public Builder setTdHost(
             java.lang.String value) {
@@ -34853,6 +37238,7 @@ public final class CoreField {
         }
         /**
          * <code>string tdHost = 4;</code>
+         * @return This builder for chaining.
          */
         public Builder clearTdHost() {
           
@@ -34862,6 +37248,8 @@ public final class CoreField {
         }
         /**
          * <code>string tdHost = 4;</code>
+         * @param value The bytes for tdHost to set.
+         * @return This builder for chaining.
          */
         public Builder setTdHostBytes(
             com.google.protobuf.ByteString value) {
@@ -34878,6 +37266,7 @@ public final class CoreField {
         private java.lang.Object tdPort_ = "";
         /**
          * <code>string tdPort = 5;</code>
+         * @return The tdPort.
          */
         public java.lang.String getTdPort() {
           java.lang.Object ref = tdPort_;
@@ -34893,6 +37282,7 @@ public final class CoreField {
         }
         /**
          * <code>string tdPort = 5;</code>
+         * @return The bytes for tdPort.
          */
         public com.google.protobuf.ByteString
             getTdPortBytes() {
@@ -34909,6 +37299,8 @@ public final class CoreField {
         }
         /**
          * <code>string tdPort = 5;</code>
+         * @param value The tdPort to set.
+         * @return This builder for chaining.
          */
         public Builder setTdPort(
             java.lang.String value) {
@@ -34922,6 +37314,7 @@ public final class CoreField {
         }
         /**
          * <code>string tdPort = 5;</code>
+         * @return This builder for chaining.
          */
         public Builder clearTdPort() {
           
@@ -34931,6 +37324,8 @@ public final class CoreField {
         }
         /**
          * <code>string tdPort = 5;</code>
+         * @param value The bytes for tdPort to set.
+         * @return This builder for chaining.
          */
         public Builder setTdPortBytes(
             com.google.protobuf.ByteString value) {
@@ -34947,6 +37342,7 @@ public final class CoreField {
         private java.lang.Object mdHost_ = "";
         /**
          * <code>string mdHost = 6;</code>
+         * @return The mdHost.
          */
         public java.lang.String getMdHost() {
           java.lang.Object ref = mdHost_;
@@ -34962,6 +37358,7 @@ public final class CoreField {
         }
         /**
          * <code>string mdHost = 6;</code>
+         * @return The bytes for mdHost.
          */
         public com.google.protobuf.ByteString
             getMdHostBytes() {
@@ -34978,6 +37375,8 @@ public final class CoreField {
         }
         /**
          * <code>string mdHost = 6;</code>
+         * @param value The mdHost to set.
+         * @return This builder for chaining.
          */
         public Builder setMdHost(
             java.lang.String value) {
@@ -34991,6 +37390,7 @@ public final class CoreField {
         }
         /**
          * <code>string mdHost = 6;</code>
+         * @return This builder for chaining.
          */
         public Builder clearMdHost() {
           
@@ -35000,6 +37400,8 @@ public final class CoreField {
         }
         /**
          * <code>string mdHost = 6;</code>
+         * @param value The bytes for mdHost to set.
+         * @return This builder for chaining.
          */
         public Builder setMdHostBytes(
             com.google.protobuf.ByteString value) {
@@ -35016,6 +37418,7 @@ public final class CoreField {
         private java.lang.Object mdPort_ = "";
         /**
          * <code>string mdPort = 7;</code>
+         * @return The mdPort.
          */
         public java.lang.String getMdPort() {
           java.lang.Object ref = mdPort_;
@@ -35031,6 +37434,7 @@ public final class CoreField {
         }
         /**
          * <code>string mdPort = 7;</code>
+         * @return The bytes for mdPort.
          */
         public com.google.protobuf.ByteString
             getMdPortBytes() {
@@ -35047,6 +37451,8 @@ public final class CoreField {
         }
         /**
          * <code>string mdPort = 7;</code>
+         * @param value The mdPort to set.
+         * @return This builder for chaining.
          */
         public Builder setMdPort(
             java.lang.String value) {
@@ -35060,6 +37466,7 @@ public final class CoreField {
         }
         /**
          * <code>string mdPort = 7;</code>
+         * @return This builder for chaining.
          */
         public Builder clearMdPort() {
           
@@ -35069,6 +37476,8 @@ public final class CoreField {
         }
         /**
          * <code>string mdPort = 7;</code>
+         * @param value The bytes for mdPort to set.
+         * @return This builder for chaining.
          */
         public Builder setMdPortBytes(
             com.google.protobuf.ByteString value) {
@@ -35085,6 +37494,7 @@ public final class CoreField {
         private java.lang.Object authCode_ = "";
         /**
          * <code>string authCode = 8;</code>
+         * @return The authCode.
          */
         public java.lang.String getAuthCode() {
           java.lang.Object ref = authCode_;
@@ -35100,6 +37510,7 @@ public final class CoreField {
         }
         /**
          * <code>string authCode = 8;</code>
+         * @return The bytes for authCode.
          */
         public com.google.protobuf.ByteString
             getAuthCodeBytes() {
@@ -35116,6 +37527,8 @@ public final class CoreField {
         }
         /**
          * <code>string authCode = 8;</code>
+         * @param value The authCode to set.
+         * @return This builder for chaining.
          */
         public Builder setAuthCode(
             java.lang.String value) {
@@ -35129,6 +37542,7 @@ public final class CoreField {
         }
         /**
          * <code>string authCode = 8;</code>
+         * @return This builder for chaining.
          */
         public Builder clearAuthCode() {
           
@@ -35138,6 +37552,8 @@ public final class CoreField {
         }
         /**
          * <code>string authCode = 8;</code>
+         * @param value The bytes for authCode to set.
+         * @return This builder for chaining.
          */
         public Builder setAuthCodeBytes(
             com.google.protobuf.ByteString value) {
@@ -35154,6 +37570,7 @@ public final class CoreField {
         private java.lang.Object userProductInfo_ = "";
         /**
          * <code>string userProductInfo = 9;</code>
+         * @return The userProductInfo.
          */
         public java.lang.String getUserProductInfo() {
           java.lang.Object ref = userProductInfo_;
@@ -35169,6 +37586,7 @@ public final class CoreField {
         }
         /**
          * <code>string userProductInfo = 9;</code>
+         * @return The bytes for userProductInfo.
          */
         public com.google.protobuf.ByteString
             getUserProductInfoBytes() {
@@ -35185,6 +37603,8 @@ public final class CoreField {
         }
         /**
          * <code>string userProductInfo = 9;</code>
+         * @param value The userProductInfo to set.
+         * @return This builder for chaining.
          */
         public Builder setUserProductInfo(
             java.lang.String value) {
@@ -35198,6 +37618,7 @@ public final class CoreField {
         }
         /**
          * <code>string userProductInfo = 9;</code>
+         * @return This builder for chaining.
          */
         public Builder clearUserProductInfo() {
           
@@ -35207,6 +37628,8 @@ public final class CoreField {
         }
         /**
          * <code>string userProductInfo = 9;</code>
+         * @param value The bytes for userProductInfo to set.
+         * @return This builder for chaining.
          */
         public Builder setUserProductInfoBytes(
             com.google.protobuf.ByteString value) {
@@ -35223,6 +37646,7 @@ public final class CoreField {
         private java.lang.Object appId_ = "";
         /**
          * <code>string appId = 10;</code>
+         * @return The appId.
          */
         public java.lang.String getAppId() {
           java.lang.Object ref = appId_;
@@ -35238,6 +37662,7 @@ public final class CoreField {
         }
         /**
          * <code>string appId = 10;</code>
+         * @return The bytes for appId.
          */
         public com.google.protobuf.ByteString
             getAppIdBytes() {
@@ -35254,6 +37679,8 @@ public final class CoreField {
         }
         /**
          * <code>string appId = 10;</code>
+         * @param value The appId to set.
+         * @return This builder for chaining.
          */
         public Builder setAppId(
             java.lang.String value) {
@@ -35267,6 +37694,7 @@ public final class CoreField {
         }
         /**
          * <code>string appId = 10;</code>
+         * @return This builder for chaining.
          */
         public Builder clearAppId() {
           
@@ -35276,6 +37704,8 @@ public final class CoreField {
         }
         /**
          * <code>string appId = 10;</code>
+         * @param value The bytes for appId to set.
+         * @return This builder for chaining.
          */
         public Builder setAppIdBytes(
             com.google.protobuf.ByteString value) {
@@ -35291,7 +37721,7 @@ public final class CoreField {
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
@@ -35347,28 +37777,32 @@ public final class CoreField {
 
       /**
        * <code>string host = 1;</code>
+       * @return The host.
        */
       java.lang.String getHost();
       /**
        * <code>string host = 1;</code>
+       * @return The bytes for host.
        */
       com.google.protobuf.ByteString
           getHostBytes();
 
       /**
        * <code>fixed32 port = 2;</code>
+       * @return The port.
        */
       int getPort();
 
       /**
        * <code>fixed32 clientId = 3;</code>
+       * @return The clientId.
        */
       int getClientId();
     }
     /**
      * Protobuf type {@code xyz.redtorch.pb.GatewaySettingField.IbApiSettingField}
      */
-    public  static final class IbApiSettingField extends
+    public static final class IbApiSettingField extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.GatewaySettingField.IbApiSettingField)
         IbApiSettingFieldOrBuilder {
@@ -35379,8 +37813,13 @@ public final class CoreField {
       }
       private IbApiSettingField() {
         host_ = "";
-        port_ = 0;
-        clientId_ = 0;
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new IbApiSettingField();
       }
 
       @java.lang.Override
@@ -35396,7 +37835,6 @@ public final class CoreField {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -35424,7 +37862,7 @@ public final class CoreField {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -35459,7 +37897,9 @@ public final class CoreField {
       private volatile java.lang.Object host_;
       /**
        * <code>string host = 1;</code>
+       * @return The host.
        */
+      @java.lang.Override
       public java.lang.String getHost() {
         java.lang.Object ref = host_;
         if (ref instanceof java.lang.String) {
@@ -35474,7 +37914,9 @@ public final class CoreField {
       }
       /**
        * <code>string host = 1;</code>
+       * @return The bytes for host.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString
           getHostBytes() {
         java.lang.Object ref = host_;
@@ -35493,7 +37935,9 @@ public final class CoreField {
       private int port_;
       /**
        * <code>fixed32 port = 2;</code>
+       * @return The port.
        */
+      @java.lang.Override
       public int getPort() {
         return port_;
       }
@@ -35502,7 +37946,9 @@ public final class CoreField {
       private int clientId_;
       /**
        * <code>fixed32 clientId = 3;</code>
+       * @return The clientId.
        */
+      @java.lang.Override
       public int getClientId() {
         return clientId_;
       }
@@ -35565,15 +38011,14 @@ public final class CoreField {
         }
         xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField other = (xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField) obj;
 
-        boolean result = true;
-        result = result && getHost()
-            .equals(other.getHost());
-        result = result && (getPort()
-            == other.getPort());
-        result = result && (getClientId()
-            == other.getClientId());
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!getHost()
+            .equals(other.getHost())) return false;
+        if (getPort()
+            != other.getPort()) return false;
+        if (getClientId()
+            != other.getClientId()) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
       @java.lang.Override
@@ -35763,35 +38208,35 @@ public final class CoreField {
 
         @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
         @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.setField(field, value);
+          return super.setField(field, value);
         }
         @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
         @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
         @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+          return super.setRepeatedField(field, index, value);
         }
         @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+          return super.addRepeatedField(field, value);
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -35847,6 +38292,7 @@ public final class CoreField {
         private java.lang.Object host_ = "";
         /**
          * <code>string host = 1;</code>
+         * @return The host.
          */
         public java.lang.String getHost() {
           java.lang.Object ref = host_;
@@ -35862,6 +38308,7 @@ public final class CoreField {
         }
         /**
          * <code>string host = 1;</code>
+         * @return The bytes for host.
          */
         public com.google.protobuf.ByteString
             getHostBytes() {
@@ -35878,6 +38325,8 @@ public final class CoreField {
         }
         /**
          * <code>string host = 1;</code>
+         * @param value The host to set.
+         * @return This builder for chaining.
          */
         public Builder setHost(
             java.lang.String value) {
@@ -35891,6 +38340,7 @@ public final class CoreField {
         }
         /**
          * <code>string host = 1;</code>
+         * @return This builder for chaining.
          */
         public Builder clearHost() {
           
@@ -35900,6 +38350,8 @@ public final class CoreField {
         }
         /**
          * <code>string host = 1;</code>
+         * @param value The bytes for host to set.
+         * @return This builder for chaining.
          */
         public Builder setHostBytes(
             com.google.protobuf.ByteString value) {
@@ -35916,12 +38368,16 @@ public final class CoreField {
         private int port_ ;
         /**
          * <code>fixed32 port = 2;</code>
+         * @return The port.
          */
+        @java.lang.Override
         public int getPort() {
           return port_;
         }
         /**
          * <code>fixed32 port = 2;</code>
+         * @param value The port to set.
+         * @return This builder for chaining.
          */
         public Builder setPort(int value) {
           
@@ -35931,6 +38387,7 @@ public final class CoreField {
         }
         /**
          * <code>fixed32 port = 2;</code>
+         * @return This builder for chaining.
          */
         public Builder clearPort() {
           
@@ -35942,12 +38399,16 @@ public final class CoreField {
         private int clientId_ ;
         /**
          * <code>fixed32 clientId = 3;</code>
+         * @return The clientId.
          */
+        @java.lang.Override
         public int getClientId() {
           return clientId_;
         }
         /**
          * <code>fixed32 clientId = 3;</code>
+         * @param value The clientId to set.
+         * @return This builder for chaining.
          */
         public Builder setClientId(int value) {
           
@@ -35957,6 +38418,7 @@ public final class CoreField {
         }
         /**
          * <code>fixed32 clientId = 3;</code>
+         * @return This builder for chaining.
          */
         public Builder clearClientId() {
           
@@ -35967,7 +38429,7 @@ public final class CoreField {
         @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
         @java.lang.Override
@@ -36025,7 +38487,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The gatewayId.
      */
+    @java.lang.Override
     public java.lang.String getGatewayId() {
       java.lang.Object ref = gatewayId_;
       if (ref instanceof java.lang.String) {
@@ -36044,7 +38508,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayId = 1;</code>
+     * @return The bytes for gatewayId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayIdBytes() {
       java.lang.Object ref = gatewayId_;
@@ -36067,7 +38533,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayName = 2;</code>
+     * @return The gatewayName.
      */
+    @java.lang.Override
     public java.lang.String getGatewayName() {
       java.lang.Object ref = gatewayName_;
       if (ref instanceof java.lang.String) {
@@ -36086,7 +38554,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayName = 2;</code>
+     * @return The bytes for gatewayName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayNameBytes() {
       java.lang.Object ref = gatewayName_;
@@ -36109,7 +38579,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayDescription = 4;</code>
+     * @return The gatewayDescription.
      */
+    @java.lang.Override
     public java.lang.String getGatewayDescription() {
       java.lang.Object ref = gatewayDescription_;
       if (ref instanceof java.lang.String) {
@@ -36128,7 +38600,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string gatewayDescription = 4;</code>
+     * @return The bytes for gatewayDescription.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getGatewayDescriptionBytes() {
       java.lang.Object ref = gatewayDescription_;
@@ -36151,7 +38625,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string implementClassName = 5;</code>
+     * @return The implementClassName.
      */
+    @java.lang.Override
     public java.lang.String getImplementClassName() {
       java.lang.Object ref = implementClassName_;
       if (ref instanceof java.lang.String) {
@@ -36170,7 +38646,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>string implementClassName = 5;</code>
+     * @return The bytes for implementClassName.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getImplementClassNameBytes() {
       java.lang.Object ref = implementClassName_;
@@ -36193,8 +38671,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * @return The enum numeric value on the wire for gatewayType.
      */
-    public int getGatewayTypeValue() {
+    @java.lang.Override public int getGatewayTypeValue() {
       return gatewayType_;
     }
     /**
@@ -36203,8 +38682,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * @return The gatewayType.
      */
-    public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.GatewayTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.valueOf(gatewayType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.UNRECOGNIZED : result;
@@ -36218,8 +38698,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * @return The enum numeric value on the wire for gatewayAdapterType.
      */
-    public int getGatewayAdapterTypeValue() {
+    @java.lang.Override public int getGatewayAdapterTypeValue() {
       return gatewayAdapterType_;
     }
     /**
@@ -36228,8 +38709,9 @@ public final class CoreField {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * @return The gatewayAdapterType.
      */
-    public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.valueOf(gatewayAdapterType_);
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.UNRECOGNIZED : result;
@@ -36239,19 +38721,24 @@ public final class CoreField {
     private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_;
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+     * @return Whether the ctpApiSetting field is set.
      */
+    @java.lang.Override
     public boolean hasCtpApiSetting() {
       return ctpApiSetting_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+     * @return The ctpApiSetting.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting() {
       return ctpApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.getDefaultInstance() : ctpApiSetting_;
     }
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder() {
       return getCtpApiSetting();
     }
@@ -36260,19 +38747,24 @@ public final class CoreField {
     private xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField ibApiSetting_;
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+     * @return Whether the ibApiSetting field is set.
      */
+    @java.lang.Override
     public boolean hasIbApiSetting() {
       return ibApiSetting_ != null;
     }
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+     * @return The ibApiSetting.
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting() {
       return ibApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.getDefaultInstance() : ibApiSetting_;
     }
     /**
      * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
      */
+    @java.lang.Override
     public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder() {
       return getIbApiSetting();
     }
@@ -36281,14 +38773,16 @@ public final class CoreField {
     private int status_;
     /**
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * @return The enum numeric value on the wire for status.
      */
-    public int getStatusValue() {
+    @java.lang.Override public int getStatusValue() {
       return status_;
     }
     /**
      * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * @return The status.
      */
-    public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
       return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
@@ -36298,7 +38792,9 @@ public final class CoreField {
     private long version_;
     /**
      * <code>fixed64 version = 11;</code>
+     * @return The version.
      */
+    @java.lang.Override
     public long getVersion() {
       return version_;
     }
@@ -36307,7 +38803,9 @@ public final class CoreField {
     private volatile java.lang.Object autoConnectTimeRanges_;
     /**
      * <code>string autoConnectTimeRanges = 12;</code>
+     * @return The autoConnectTimeRanges.
      */
+    @java.lang.Override
     public java.lang.String getAutoConnectTimeRanges() {
       java.lang.Object ref = autoConnectTimeRanges_;
       if (ref instanceof java.lang.String) {
@@ -36322,7 +38820,9 @@ public final class CoreField {
     }
     /**
      * <code>string autoConnectTimeRanges = 12;</code>
+     * @return The bytes for autoConnectTimeRanges.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getAutoConnectTimeRangesBytes() {
       java.lang.Object ref = autoConnectTimeRanges_;
@@ -36447,34 +38947,33 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.GatewaySettingField other = (xyz.redtorch.pb.CoreField.GatewaySettingField) obj;
 
-      boolean result = true;
-      result = result && getGatewayId()
-          .equals(other.getGatewayId());
-      result = result && getGatewayName()
-          .equals(other.getGatewayName());
-      result = result && getGatewayDescription()
-          .equals(other.getGatewayDescription());
-      result = result && getImplementClassName()
-          .equals(other.getImplementClassName());
-      result = result && gatewayType_ == other.gatewayType_;
-      result = result && gatewayAdapterType_ == other.gatewayAdapterType_;
-      result = result && (hasCtpApiSetting() == other.hasCtpApiSetting());
+      if (!getGatewayId()
+          .equals(other.getGatewayId())) return false;
+      if (!getGatewayName()
+          .equals(other.getGatewayName())) return false;
+      if (!getGatewayDescription()
+          .equals(other.getGatewayDescription())) return false;
+      if (!getImplementClassName()
+          .equals(other.getImplementClassName())) return false;
+      if (gatewayType_ != other.gatewayType_) return false;
+      if (gatewayAdapterType_ != other.gatewayAdapterType_) return false;
+      if (hasCtpApiSetting() != other.hasCtpApiSetting()) return false;
       if (hasCtpApiSetting()) {
-        result = result && getCtpApiSetting()
-            .equals(other.getCtpApiSetting());
+        if (!getCtpApiSetting()
+            .equals(other.getCtpApiSetting())) return false;
       }
-      result = result && (hasIbApiSetting() == other.hasIbApiSetting());
+      if (hasIbApiSetting() != other.hasIbApiSetting()) return false;
       if (hasIbApiSetting()) {
-        result = result && getIbApiSetting()
-            .equals(other.getIbApiSetting());
+        if (!getIbApiSetting()
+            .equals(other.getIbApiSetting())) return false;
       }
-      result = result && status_ == other.status_;
-      result = result && (getVersion()
-          == other.getVersion());
-      result = result && getAutoConnectTimeRanges()
-          .equals(other.getAutoConnectTimeRanges());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (status_ != other.status_) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
+      if (!getAutoConnectTimeRanges()
+          .equals(other.getAutoConnectTimeRanges())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -36729,35 +39228,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -36845,6 +39344,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return The gatewayId.
        */
       public java.lang.String getGatewayId() {
         java.lang.Object ref = gatewayId_;
@@ -36864,6 +39364,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return The bytes for gatewayId.
        */
       public com.google.protobuf.ByteString
           getGatewayIdBytes() {
@@ -36884,6 +39385,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @param value The gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayId(
           java.lang.String value) {
@@ -36901,6 +39404,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayId() {
         
@@ -36914,6 +39418,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayId = 1;</code>
+       * @param value The bytes for gatewayId to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayIdBytes(
           com.google.protobuf.ByteString value) {
@@ -36934,6 +39440,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayName = 2;</code>
+       * @return The gatewayName.
        */
       public java.lang.String getGatewayName() {
         java.lang.Object ref = gatewayName_;
@@ -36953,6 +39460,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayName = 2;</code>
+       * @return The bytes for gatewayName.
        */
       public com.google.protobuf.ByteString
           getGatewayNameBytes() {
@@ -36973,6 +39481,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayName = 2;</code>
+       * @param value The gatewayName to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayName(
           java.lang.String value) {
@@ -36990,6 +39500,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayName = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayName() {
         
@@ -37003,6 +39514,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayName = 2;</code>
+       * @param value The bytes for gatewayName to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayNameBytes(
           com.google.protobuf.ByteString value) {
@@ -37023,6 +39536,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayDescription = 4;</code>
+       * @return The gatewayDescription.
        */
       public java.lang.String getGatewayDescription() {
         java.lang.Object ref = gatewayDescription_;
@@ -37042,6 +39556,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayDescription = 4;</code>
+       * @return The bytes for gatewayDescription.
        */
       public com.google.protobuf.ByteString
           getGatewayDescriptionBytes() {
@@ -37062,6 +39577,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayDescription = 4;</code>
+       * @param value The gatewayDescription to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayDescription(
           java.lang.String value) {
@@ -37079,6 +39596,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayDescription = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayDescription() {
         
@@ -37092,6 +39610,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string gatewayDescription = 4;</code>
+       * @param value The bytes for gatewayDescription to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayDescriptionBytes(
           com.google.protobuf.ByteString value) {
@@ -37112,6 +39632,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string implementClassName = 5;</code>
+       * @return The implementClassName.
        */
       public java.lang.String getImplementClassName() {
         java.lang.Object ref = implementClassName_;
@@ -37131,6 +39652,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string implementClassName = 5;</code>
+       * @return The bytes for implementClassName.
        */
       public com.google.protobuf.ByteString
           getImplementClassNameBytes() {
@@ -37151,6 +39673,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string implementClassName = 5;</code>
+       * @param value The implementClassName to set.
+       * @return This builder for chaining.
        */
       public Builder setImplementClassName(
           java.lang.String value) {
@@ -37168,6 +39692,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>string implementClassName = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearImplementClassName() {
         
@@ -37181,6 +39706,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>string implementClassName = 5;</code>
+       * @param value The bytes for implementClassName to set.
+       * @return This builder for chaining.
        */
       public Builder setImplementClassNameBytes(
           com.google.protobuf.ByteString value) {
@@ -37201,8 +39728,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * @return The enum numeric value on the wire for gatewayType.
        */
-      public int getGatewayTypeValue() {
+      @java.lang.Override public int getGatewayTypeValue() {
         return gatewayType_;
       }
       /**
@@ -37211,8 +39739,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * @param value The enum numeric value on the wire for gatewayType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayTypeValue(int value) {
+        
         gatewayType_ = value;
         onChanged();
         return this;
@@ -37223,7 +39754,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * @return The gatewayType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.GatewayTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.valueOf(gatewayType_);
@@ -37235,6 +39768,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * @param value The gatewayType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayType(xyz.redtorch.pb.CoreEnum.GatewayTypeEnum value) {
         if (value == null) {
@@ -37251,6 +39786,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayType() {
         
@@ -37266,8 +39802,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * @return The enum numeric value on the wire for gatewayAdapterType.
        */
-      public int getGatewayAdapterTypeValue() {
+      @java.lang.Override public int getGatewayAdapterTypeValue() {
         return gatewayAdapterType_;
       }
       /**
@@ -37276,8 +39813,11 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * @param value The enum numeric value on the wire for gatewayAdapterType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayAdapterTypeValue(int value) {
+        
         gatewayAdapterType_ = value;
         onChanged();
         return this;
@@ -37288,7 +39828,9 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * @return The gatewayAdapterType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum result = xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.valueOf(gatewayAdapterType_);
@@ -37300,6 +39842,8 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * @param value The gatewayAdapterType to set.
+       * @return This builder for chaining.
        */
       public Builder setGatewayAdapterType(xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum value) {
         if (value == null) {
@@ -37316,6 +39860,7 @@ public final class CoreField {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearGatewayAdapterType() {
         
@@ -37324,17 +39869,19 @@ public final class CoreField {
         return this;
       }
 
-      private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_ = null;
+      private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder> ctpApiSettingBuilder_;
       /**
        * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * @return Whether the ctpApiSetting field is set.
        */
       public boolean hasCtpApiSetting() {
         return ctpApiSettingBuilder_ != null || ctpApiSetting_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * @return The ctpApiSetting.
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting() {
         if (ctpApiSettingBuilder_ == null) {
@@ -37441,17 +39988,19 @@ public final class CoreField {
         return ctpApiSettingBuilder_;
       }
 
-      private xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField ibApiSetting_ = null;
+      private xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField ibApiSetting_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder> ibApiSettingBuilder_;
       /**
        * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * @return Whether the ibApiSetting field is set.
        */
       public boolean hasIbApiSetting() {
         return ibApiSettingBuilder_ != null || ibApiSetting_ != null;
       }
       /**
        * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * @return The ibApiSetting.
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting() {
         if (ibApiSettingBuilder_ == null) {
@@ -37561,21 +40110,27 @@ public final class CoreField {
       private int status_ = 0;
       /**
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+       * @return The enum numeric value on the wire for status.
        */
-      public int getStatusValue() {
+      @java.lang.Override public int getStatusValue() {
         return status_;
       }
       /**
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+       * @param value The enum numeric value on the wire for status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatusValue(int value) {
+        
         status_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+       * @return The status.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
@@ -37583,6 +40138,8 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatus(xyz.redtorch.pb.CoreEnum.ConnectStatusEnum value) {
         if (value == null) {
@@ -37595,6 +40152,7 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatus() {
         
@@ -37606,12 +40164,16 @@ public final class CoreField {
       private long version_ ;
       /**
        * <code>fixed64 version = 11;</code>
+       * @return The version.
        */
+      @java.lang.Override
       public long getVersion() {
         return version_;
       }
       /**
        * <code>fixed64 version = 11;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
        */
       public Builder setVersion(long value) {
         
@@ -37621,6 +40183,7 @@ public final class CoreField {
       }
       /**
        * <code>fixed64 version = 11;</code>
+       * @return This builder for chaining.
        */
       public Builder clearVersion() {
         
@@ -37632,6 +40195,7 @@ public final class CoreField {
       private java.lang.Object autoConnectTimeRanges_ = "";
       /**
        * <code>string autoConnectTimeRanges = 12;</code>
+       * @return The autoConnectTimeRanges.
        */
       public java.lang.String getAutoConnectTimeRanges() {
         java.lang.Object ref = autoConnectTimeRanges_;
@@ -37647,6 +40211,7 @@ public final class CoreField {
       }
       /**
        * <code>string autoConnectTimeRanges = 12;</code>
+       * @return The bytes for autoConnectTimeRanges.
        */
       public com.google.protobuf.ByteString
           getAutoConnectTimeRangesBytes() {
@@ -37663,6 +40228,8 @@ public final class CoreField {
       }
       /**
        * <code>string autoConnectTimeRanges = 12;</code>
+       * @param value The autoConnectTimeRanges to set.
+       * @return This builder for chaining.
        */
       public Builder setAutoConnectTimeRanges(
           java.lang.String value) {
@@ -37676,6 +40243,7 @@ public final class CoreField {
       }
       /**
        * <code>string autoConnectTimeRanges = 12;</code>
+       * @return This builder for chaining.
        */
       public Builder clearAutoConnectTimeRanges() {
         
@@ -37685,6 +40253,8 @@ public final class CoreField {
       }
       /**
        * <code>string autoConnectTimeRanges = 12;</code>
+       * @param value The bytes for autoConnectTimeRanges to set.
+       * @return This builder for chaining.
        */
       public Builder setAutoConnectTimeRangesBytes(
           com.google.protobuf.ByteString value) {
@@ -37700,7 +40270,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -37756,24 +40326,29 @@ public final class CoreField {
 
     /**
      * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+     * @return The enum numeric value on the wire for logLevel.
      */
     int getLogLevelValue();
     /**
      * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+     * @return The logLevel.
      */
     xyz.redtorch.pb.CoreEnum.LogLevelEnum getLogLevel();
 
     /**
      * <code>fixed64 timestamp = 2;</code>
+     * @return The timestamp.
      */
     long getTimestamp();
 
     /**
      * <code>string content = 3;</code>
+     * @return The content.
      */
     java.lang.String getContent();
     /**
      * <code>string content = 3;</code>
+     * @return The bytes for content.
      */
     com.google.protobuf.ByteString
         getContentBytes();
@@ -37781,7 +40356,7 @@ public final class CoreField {
   /**
    * Protobuf type {@code xyz.redtorch.pb.LogField}
    */
-  public  static final class LogField extends
+  public static final class LogField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.LogField)
       LogFieldOrBuilder {
@@ -37792,8 +40367,14 @@ public final class CoreField {
     }
     private LogField() {
       logLevel_ = 0;
-      timestamp_ = 0L;
       content_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new LogField();
     }
 
     @java.lang.Override
@@ -37809,7 +40390,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -37838,7 +40418,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -37873,14 +40453,16 @@ public final class CoreField {
     private int logLevel_;
     /**
      * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+     * @return The enum numeric value on the wire for logLevel.
      */
-    public int getLogLevelValue() {
+    @java.lang.Override public int getLogLevelValue() {
       return logLevel_;
     }
     /**
      * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+     * @return The logLevel.
      */
-    public xyz.redtorch.pb.CoreEnum.LogLevelEnum getLogLevel() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.LogLevelEnum getLogLevel() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.LogLevelEnum result = xyz.redtorch.pb.CoreEnum.LogLevelEnum.valueOf(logLevel_);
       return result == null ? xyz.redtorch.pb.CoreEnum.LogLevelEnum.UNRECOGNIZED : result;
@@ -37890,7 +40472,9 @@ public final class CoreField {
     private long timestamp_;
     /**
      * <code>fixed64 timestamp = 2;</code>
+     * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
@@ -37899,7 +40483,9 @@ public final class CoreField {
     private volatile java.lang.Object content_;
     /**
      * <code>string content = 3;</code>
+     * @return The content.
      */
+    @java.lang.Override
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
       if (ref instanceof java.lang.String) {
@@ -37914,7 +40500,9 @@ public final class CoreField {
     }
     /**
      * <code>string content = 3;</code>
+     * @return The bytes for content.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContentBytes() {
       java.lang.Object ref = content_;
@@ -37987,14 +40575,13 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.LogField other = (xyz.redtorch.pb.CoreField.LogField) obj;
 
-      boolean result = true;
-      result = result && logLevel_ == other.logLevel_;
-      result = result && (getTimestamp()
-          == other.getTimestamp());
-      result = result && getContent()
-          .equals(other.getContent());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (logLevel_ != other.logLevel_) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (!getContent()
+          .equals(other.getContent())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -38185,35 +40772,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -38269,21 +40856,27 @@ public final class CoreField {
       private int logLevel_ = 0;
       /**
        * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+       * @return The enum numeric value on the wire for logLevel.
        */
-      public int getLogLevelValue() {
+      @java.lang.Override public int getLogLevelValue() {
         return logLevel_;
       }
       /**
        * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+       * @param value The enum numeric value on the wire for logLevel to set.
+       * @return This builder for chaining.
        */
       public Builder setLogLevelValue(int value) {
+        
         logLevel_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+       * @return The logLevel.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.LogLevelEnum getLogLevel() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.LogLevelEnum result = xyz.redtorch.pb.CoreEnum.LogLevelEnum.valueOf(logLevel_);
@@ -38291,6 +40884,8 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+       * @param value The logLevel to set.
+       * @return This builder for chaining.
        */
       public Builder setLogLevel(xyz.redtorch.pb.CoreEnum.LogLevelEnum value) {
         if (value == null) {
@@ -38303,6 +40898,7 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.LogLevelEnum logLevel = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearLogLevel() {
         
@@ -38314,12 +40910,16 @@ public final class CoreField {
       private long timestamp_ ;
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
         
@@ -38329,6 +40929,7 @@ public final class CoreField {
       }
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
         
@@ -38340,6 +40941,7 @@ public final class CoreField {
       private java.lang.Object content_ = "";
       /**
        * <code>string content = 3;</code>
+       * @return The content.
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -38355,6 +40957,7 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @return The bytes for content.
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -38371,6 +40974,8 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @param value The content to set.
+       * @return This builder for chaining.
        */
       public Builder setContent(
           java.lang.String value) {
@@ -38384,6 +40989,7 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContent() {
         
@@ -38393,6 +40999,8 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @param value The bytes for content to set.
+       * @return This builder for chaining.
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -38408,7 +41016,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -38464,24 +41072,29 @@ public final class CoreField {
 
     /**
      * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+     * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
      * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+     * @return The status.
      */
     xyz.redtorch.pb.CoreEnum.CommonStatusEnum getStatus();
 
     /**
      * <code>fixed64 timestamp = 2;</code>
+     * @return The timestamp.
      */
     long getTimestamp();
 
     /**
      * <code>string content = 3;</code>
+     * @return The content.
      */
     java.lang.String getContent();
     /**
      * <code>string content = 3;</code>
+     * @return The bytes for content.
      */
     com.google.protobuf.ByteString
         getContentBytes();
@@ -38489,7 +41102,7 @@ public final class CoreField {
   /**
    * Protobuf type {@code xyz.redtorch.pb.NoticeField}
    */
-  public  static final class NoticeField extends
+  public static final class NoticeField extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.NoticeField)
       NoticeFieldOrBuilder {
@@ -38500,8 +41113,14 @@ public final class CoreField {
     }
     private NoticeField() {
       status_ = 0;
-      timestamp_ = 0L;
       content_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new NoticeField();
     }
 
     @java.lang.Override
@@ -38517,7 +41136,6 @@ public final class CoreField {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -38546,7 +41164,7 @@ public final class CoreField {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -38581,14 +41199,16 @@ public final class CoreField {
     private int status_;
     /**
      * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+     * @return The enum numeric value on the wire for status.
      */
-    public int getStatusValue() {
+    @java.lang.Override public int getStatusValue() {
       return status_;
     }
     /**
      * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+     * @return The status.
      */
-    public xyz.redtorch.pb.CoreEnum.CommonStatusEnum getStatus() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.CommonStatusEnum getStatus() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.CoreEnum.CommonStatusEnum result = xyz.redtorch.pb.CoreEnum.CommonStatusEnum.valueOf(status_);
       return result == null ? xyz.redtorch.pb.CoreEnum.CommonStatusEnum.UNRECOGNIZED : result;
@@ -38598,7 +41218,9 @@ public final class CoreField {
     private long timestamp_;
     /**
      * <code>fixed64 timestamp = 2;</code>
+     * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
@@ -38607,7 +41229,9 @@ public final class CoreField {
     private volatile java.lang.Object content_;
     /**
      * <code>string content = 3;</code>
+     * @return The content.
      */
+    @java.lang.Override
     public java.lang.String getContent() {
       java.lang.Object ref = content_;
       if (ref instanceof java.lang.String) {
@@ -38622,7 +41246,9 @@ public final class CoreField {
     }
     /**
      * <code>string content = 3;</code>
+     * @return The bytes for content.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContentBytes() {
       java.lang.Object ref = content_;
@@ -38695,14 +41321,13 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.NoticeField other = (xyz.redtorch.pb.CoreField.NoticeField) obj;
 
-      boolean result = true;
-      result = result && status_ == other.status_;
-      result = result && (getTimestamp()
-          == other.getTimestamp());
-      result = result && getContent()
-          .equals(other.getContent());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (status_ != other.status_) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (!getContent()
+          .equals(other.getContent())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -38893,35 +41518,35 @@ public final class CoreField {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -38977,21 +41602,27 @@ public final class CoreField {
       private int status_ = 0;
       /**
        * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+       * @return The enum numeric value on the wire for status.
        */
-      public int getStatusValue() {
+      @java.lang.Override public int getStatusValue() {
         return status_;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+       * @param value The enum numeric value on the wire for status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatusValue(int value) {
+        
         status_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+       * @return The status.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.CoreEnum.CommonStatusEnum getStatus() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.CoreEnum.CommonStatusEnum result = xyz.redtorch.pb.CoreEnum.CommonStatusEnum.valueOf(status_);
@@ -38999,6 +41630,8 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
        */
       public Builder setStatus(xyz.redtorch.pb.CoreEnum.CommonStatusEnum value) {
         if (value == null) {
@@ -39011,6 +41644,7 @@ public final class CoreField {
       }
       /**
        * <code>.xyz.redtorch.pb.CommonStatusEnum status = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearStatus() {
         
@@ -39022,12 +41656,16 @@ public final class CoreField {
       private long timestamp_ ;
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
         
@@ -39037,6 +41675,7 @@ public final class CoreField {
       }
       /**
        * <code>fixed64 timestamp = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
         
@@ -39048,6 +41687,7 @@ public final class CoreField {
       private java.lang.Object content_ = "";
       /**
        * <code>string content = 3;</code>
+       * @return The content.
        */
       public java.lang.String getContent() {
         java.lang.Object ref = content_;
@@ -39063,6 +41703,7 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @return The bytes for content.
        */
       public com.google.protobuf.ByteString
           getContentBytes() {
@@ -39079,6 +41720,8 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @param value The content to set.
+       * @return This builder for chaining.
        */
       public Builder setContent(
           java.lang.String value) {
@@ -39092,6 +41735,7 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContent() {
         
@@ -39101,6 +41745,8 @@ public final class CoreField {
       }
       /**
        * <code>string content = 3;</code>
+       * @param value The bytes for content to set.
+       * @return This builder for chaining.
        */
       public Builder setContentBytes(
           com.google.protobuf.ByteString value) {
@@ -39116,7 +41762,7 @@ public final class CoreField {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -39444,19 +42090,11 @@ public final class CoreField {
       "um\022\021\n\ttimestamp\030\002 \001(\006\022\017\n\007content\030\003 \001(\tb\006" +
       "proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           xyz.redtorch.pb.CoreEnum.getDescriptor(),
-        }, assigner);
+        });
     internal_static_xyz_redtorch_pb_GatewayField_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_xyz_redtorch_pb_GatewayField_fieldAccessorTable = new

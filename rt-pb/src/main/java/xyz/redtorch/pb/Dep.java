@@ -24,6 +24,7 @@ public final class Dep {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+     * @return The enum numeric value on the wire for contentType.
      */
     int getContentTypeValue();
     /**
@@ -32,15 +33,18 @@ public final class Dep {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+     * @return The contentType.
      */
     xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType getContentType();
 
     /**
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+     * @return The enum numeric value on the wire for rpcType.
      */
     int getRpcTypeValue();
     /**
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+     * @return The rpcType.
      */
     xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType();
 
@@ -50,6 +54,7 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed64 timestamp = 3;</code>
+     * @return The timestamp.
      */
     long getTimestamp();
 
@@ -59,6 +64,7 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 sourceNodeId = 4;</code>
+     * @return The sourceNodeId.
      */
     int getSourceNodeId();
 
@@ -68,6 +74,7 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 targetNodeId = 5;</code>
+     * @return The targetNodeId.
      */
     int getTargetNodeId();
 
@@ -77,6 +84,7 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 rpcId = 6;</code>
+     * @return The rpcId.
      */
     int getRpcId();
 
@@ -86,6 +94,7 @@ public final class Dep {
      * </pre>
      *
      * <code>string reqId = 7;</code>
+     * @return The reqId.
      */
     java.lang.String getReqId();
     /**
@@ -94,6 +103,7 @@ public final class Dep {
      * </pre>
      *
      * <code>string reqId = 7;</code>
+     * @return The bytes for reqId.
      */
     com.google.protobuf.ByteString
         getReqIdBytes();
@@ -104,6 +114,7 @@ public final class Dep {
      * </pre>
      *
      * <code>bytes contentBytes = 8;</code>
+     * @return The contentBytes.
      */
     com.google.protobuf.ByteString getContentBytes();
   }
@@ -114,7 +125,7 @@ public final class Dep {
    *
    * Protobuf type {@code xyz.redtorch.pb.DataExchangeProtocol}
    */
-  public  static final class DataExchangeProtocol extends
+  public static final class DataExchangeProtocol extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.DataExchangeProtocol)
       DataExchangeProtocolOrBuilder {
@@ -126,12 +137,15 @@ public final class Dep {
     private DataExchangeProtocol() {
       contentType_ = 0;
       rpcType_ = 0;
-      timestamp_ = 0L;
-      sourceNodeId_ = 0;
-      targetNodeId_ = 0;
-      rpcId_ = 0;
       reqId_ = "";
       contentBytes_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DataExchangeProtocol();
     }
 
     @java.lang.Override
@@ -147,7 +161,6 @@ public final class Dep {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -202,7 +215,7 @@ public final class Dep {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -260,6 +273,8 @@ public final class Dep {
       }
 
       /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
        * @deprecated Use {@link #forNumber(int)} instead.
        */
       @java.lang.Deprecated
@@ -267,6 +282,10 @@ public final class Dep {
         return forNumber(value);
       }
 
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
       public static RpcType forNumber(int value) {
         switch (value) {
           case 0: return CORE_RPC;
@@ -288,6 +307,10 @@ public final class Dep {
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -377,6 +400,8 @@ public final class Dep {
       }
 
       /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
        * @deprecated Use {@link #forNumber(int)} instead.
        */
       @java.lang.Deprecated
@@ -384,6 +409,10 @@ public final class Dep {
         return forNumber(value);
       }
 
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
       public static ContentType forNumber(int value) {
         switch (value) {
           case 0: return ROUTINE;
@@ -406,6 +435,10 @@ public final class Dep {
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -448,8 +481,9 @@ public final class Dep {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+     * @return The enum numeric value on the wire for contentType.
      */
-    public int getContentTypeValue() {
+    @java.lang.Override public int getContentTypeValue() {
       return contentType_;
     }
     /**
@@ -458,8 +492,9 @@ public final class Dep {
      * </pre>
      *
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+     * @return The contentType.
      */
-    public xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType getContentType() {
+    @java.lang.Override public xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType getContentType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType.valueOf(contentType_);
       return result == null ? xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType.UNRECOGNIZED : result;
@@ -469,14 +504,16 @@ public final class Dep {
     private int rpcType_;
     /**
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+     * @return The enum numeric value on the wire for rpcType.
      */
-    public int getRpcTypeValue() {
+    @java.lang.Override public int getRpcTypeValue() {
       return rpcType_;
     }
     /**
      * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+     * @return The rpcType.
      */
-    public xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType() {
+    @java.lang.Override public xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType() {
       @SuppressWarnings("deprecation")
       xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.valueOf(rpcType_);
       return result == null ? xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.UNRECOGNIZED : result;
@@ -490,7 +527,9 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed64 timestamp = 3;</code>
+     * @return The timestamp.
      */
+    @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
     }
@@ -503,7 +542,9 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 sourceNodeId = 4;</code>
+     * @return The sourceNodeId.
      */
+    @java.lang.Override
     public int getSourceNodeId() {
       return sourceNodeId_;
     }
@@ -516,7 +557,9 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 targetNodeId = 5;</code>
+     * @return The targetNodeId.
      */
+    @java.lang.Override
     public int getTargetNodeId() {
       return targetNodeId_;
     }
@@ -529,7 +572,9 @@ public final class Dep {
      * </pre>
      *
      * <code>fixed32 rpcId = 6;</code>
+     * @return The rpcId.
      */
+    @java.lang.Override
     public int getRpcId() {
       return rpcId_;
     }
@@ -542,7 +587,9 @@ public final class Dep {
      * </pre>
      *
      * <code>string reqId = 7;</code>
+     * @return The reqId.
      */
+    @java.lang.Override
     public java.lang.String getReqId() {
       java.lang.Object ref = reqId_;
       if (ref instanceof java.lang.String) {
@@ -561,7 +608,9 @@ public final class Dep {
      * </pre>
      *
      * <code>string reqId = 7;</code>
+     * @return The bytes for reqId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getReqIdBytes() {
       java.lang.Object ref = reqId_;
@@ -584,7 +633,9 @@ public final class Dep {
      * </pre>
      *
      * <code>bytes contentBytes = 8;</code>
+     * @return The contentBytes.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getContentBytes() {
       return contentBytes_;
     }
@@ -682,23 +733,22 @@ public final class Dep {
       }
       xyz.redtorch.pb.Dep.DataExchangeProtocol other = (xyz.redtorch.pb.Dep.DataExchangeProtocol) obj;
 
-      boolean result = true;
-      result = result && contentType_ == other.contentType_;
-      result = result && rpcType_ == other.rpcType_;
-      result = result && (getTimestamp()
-          == other.getTimestamp());
-      result = result && (getSourceNodeId()
-          == other.getSourceNodeId());
-      result = result && (getTargetNodeId()
-          == other.getTargetNodeId());
-      result = result && (getRpcId()
-          == other.getRpcId());
-      result = result && getReqId()
-          .equals(other.getReqId());
-      result = result && getContentBytes()
-          .equals(other.getContentBytes());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (contentType_ != other.contentType_) return false;
+      if (rpcType_ != other.rpcType_) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
+      if (getSourceNodeId()
+          != other.getSourceNodeId()) return false;
+      if (getTargetNodeId()
+          != other.getTargetNodeId()) return false;
+      if (getRpcId()
+          != other.getRpcId()) return false;
+      if (!getReqId()
+          .equals(other.getReqId())) return false;
+      if (!getContentBytes()
+          .equals(other.getContentBytes())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
     @java.lang.Override
@@ -918,35 +968,35 @@ public final class Dep {
 
       @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.setField(field, value);
+        return super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+        return super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -1021,8 +1071,9 @@ public final class Dep {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+       * @return The enum numeric value on the wire for contentType.
        */
-      public int getContentTypeValue() {
+      @java.lang.Override public int getContentTypeValue() {
         return contentType_;
       }
       /**
@@ -1031,8 +1082,11 @@ public final class Dep {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+       * @param value The enum numeric value on the wire for contentType to set.
+       * @return This builder for chaining.
        */
       public Builder setContentTypeValue(int value) {
+        
         contentType_ = value;
         onChanged();
         return this;
@@ -1043,7 +1097,9 @@ public final class Dep {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+       * @return The contentType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType getContentType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType.valueOf(contentType_);
@@ -1055,6 +1111,8 @@ public final class Dep {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+       * @param value The contentType to set.
+       * @return This builder for chaining.
        */
       public Builder setContentType(xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType value) {
         if (value == null) {
@@ -1071,6 +1129,7 @@ public final class Dep {
        * </pre>
        *
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.ContentType contentType = 1;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContentType() {
         
@@ -1082,21 +1141,27 @@ public final class Dep {
       private int rpcType_ = 0;
       /**
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+       * @return The enum numeric value on the wire for rpcType.
        */
-      public int getRpcTypeValue() {
+      @java.lang.Override public int getRpcTypeValue() {
         return rpcType_;
       }
       /**
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+       * @param value The enum numeric value on the wire for rpcType to set.
+       * @return This builder for chaining.
        */
       public Builder setRpcTypeValue(int value) {
+        
         rpcType_ = value;
         onChanged();
         return this;
       }
       /**
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+       * @return The rpcType.
        */
+      @java.lang.Override
       public xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType() {
         @SuppressWarnings("deprecation")
         xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.valueOf(rpcType_);
@@ -1104,6 +1169,8 @@ public final class Dep {
       }
       /**
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+       * @param value The rpcType to set.
+       * @return This builder for chaining.
        */
       public Builder setRpcType(xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType value) {
         if (value == null) {
@@ -1116,6 +1183,7 @@ public final class Dep {
       }
       /**
        * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
+       * @return This builder for chaining.
        */
       public Builder clearRpcType() {
         
@@ -1131,7 +1199,9 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed64 timestamp = 3;</code>
+       * @return The timestamp.
        */
+      @java.lang.Override
       public long getTimestamp() {
         return timestamp_;
       }
@@ -1141,6 +1211,8 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed64 timestamp = 3;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
        */
       public Builder setTimestamp(long value) {
         
@@ -1154,6 +1226,7 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed64 timestamp = 3;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTimestamp() {
         
@@ -1169,7 +1242,9 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @return The sourceNodeId.
        */
+      @java.lang.Override
       public int getSourceNodeId() {
         return sourceNodeId_;
       }
@@ -1179,6 +1254,8 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @param value The sourceNodeId to set.
+       * @return This builder for chaining.
        */
       public Builder setSourceNodeId(int value) {
         
@@ -1192,6 +1269,7 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 sourceNodeId = 4;</code>
+       * @return This builder for chaining.
        */
       public Builder clearSourceNodeId() {
         
@@ -1207,7 +1285,9 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 5;</code>
+       * @return The targetNodeId.
        */
+      @java.lang.Override
       public int getTargetNodeId() {
         return targetNodeId_;
       }
@@ -1217,6 +1297,8 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 5;</code>
+       * @param value The targetNodeId to set.
+       * @return This builder for chaining.
        */
       public Builder setTargetNodeId(int value) {
         
@@ -1230,6 +1312,7 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 targetNodeId = 5;</code>
+       * @return This builder for chaining.
        */
       public Builder clearTargetNodeId() {
         
@@ -1245,7 +1328,9 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 rpcId = 6;</code>
+       * @return The rpcId.
        */
+      @java.lang.Override
       public int getRpcId() {
         return rpcId_;
       }
@@ -1255,6 +1340,8 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 rpcId = 6;</code>
+       * @param value The rpcId to set.
+       * @return This builder for chaining.
        */
       public Builder setRpcId(int value) {
         
@@ -1268,6 +1355,7 @@ public final class Dep {
        * </pre>
        *
        * <code>fixed32 rpcId = 6;</code>
+       * @return This builder for chaining.
        */
       public Builder clearRpcId() {
         
@@ -1283,6 +1371,7 @@ public final class Dep {
        * </pre>
        *
        * <code>string reqId = 7;</code>
+       * @return The reqId.
        */
       public java.lang.String getReqId() {
         java.lang.Object ref = reqId_;
@@ -1302,6 +1391,7 @@ public final class Dep {
        * </pre>
        *
        * <code>string reqId = 7;</code>
+       * @return The bytes for reqId.
        */
       public com.google.protobuf.ByteString
           getReqIdBytes() {
@@ -1322,6 +1412,8 @@ public final class Dep {
        * </pre>
        *
        * <code>string reqId = 7;</code>
+       * @param value The reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqId(
           java.lang.String value) {
@@ -1339,6 +1431,7 @@ public final class Dep {
        * </pre>
        *
        * <code>string reqId = 7;</code>
+       * @return This builder for chaining.
        */
       public Builder clearReqId() {
         
@@ -1352,6 +1445,8 @@ public final class Dep {
        * </pre>
        *
        * <code>string reqId = 7;</code>
+       * @param value The bytes for reqId to set.
+       * @return This builder for chaining.
        */
       public Builder setReqIdBytes(
           com.google.protobuf.ByteString value) {
@@ -1372,7 +1467,9 @@ public final class Dep {
        * </pre>
        *
        * <code>bytes contentBytes = 8;</code>
+       * @return The contentBytes.
        */
+      @java.lang.Override
       public com.google.protobuf.ByteString getContentBytes() {
         return contentBytes_;
       }
@@ -1382,6 +1479,8 @@ public final class Dep {
        * </pre>
        *
        * <code>bytes contentBytes = 8;</code>
+       * @param value The contentBytes to set.
+       * @return This builder for chaining.
        */
       public Builder setContentBytes(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -1398,6 +1497,7 @@ public final class Dep {
        * </pre>
        *
        * <code>bytes contentBytes = 8;</code>
+       * @return This builder for chaining.
        */
       public Builder clearContentBytes() {
         
@@ -1408,7 +1508,7 @@ public final class Dep {
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
       @java.lang.Override
@@ -1484,18 +1584,10 @@ public final class Dep {
       "\022\013\n\007ROUTINE\020\000\022\022\n\016COMPRESSED_LZ4\020\001b\006proto" +
       "3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        });
     internal_static_xyz_redtorch_pb_DataExchangeProtocol_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_xyz_redtorch_pb_DataExchangeProtocol_fieldAccessorTable = new
