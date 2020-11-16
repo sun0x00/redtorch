@@ -980,8 +980,20 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 				positionBuilder.setUseMargin(positionBuilder.getUseMargin() + pInvestorPosition.getUseMargin());
 				positionBuilder.setExchangeMargin(positionBuilder.getExchangeMargin() + pInvestorPosition.getExchangeMargin());
+				positionBuilder.setPositionProfit(positionBuilder.getPositionProfit() + pInvestorPosition.getPositionProfit());
 
+				// 计算旧成本
+				double cost = positionBuilder.getPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
+				double openCost = positionBuilder.getOpenPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
+
+				// 汇总总仓
 				positionBuilder.setPosition(positionBuilder.getPosition() + pInvestorPosition.getPosition());
+				
+				// 计算新的持仓均价
+				if (positionBuilder.getPosition() != 0) {
+					positionBuilder.setPrice((cost + pInvestorPosition.getPositionCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));
+					positionBuilder.setOpenPrice((openCost + pInvestorPosition.getOpenCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));
+				}
 
 				if (positionBuilder.getPositionDirection() == PositionDirectionEnum.PD_Long) {
 					positionBuilder.setFrozen(pInvestorPosition.getShortFrozen());
@@ -1041,18 +1053,6 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 				}
 
-				// 计算成本
-				double cost = positionBuilder.getPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
-				double openCost = positionBuilder.getOpenPrice() * positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier();
-
-				// 汇总总仓
-				positionBuilder.setPositionProfit(positionBuilder.getPositionProfit() + pInvestorPosition.getPositionProfit());
-
-				// 计算持仓均价
-				if (positionBuilder.getPosition() != 0) {
-					positionBuilder.setPrice((cost + pInvestorPosition.getPositionCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));
-					positionBuilder.setOpenPrice((openCost + pInvestorPosition.getOpenCost()) / (positionBuilder.getPosition() * positionBuilder.getContract().getMultiplier()));
-				}
 			}
 
 
@@ -1110,6 +1110,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			logger.error("{}处理查询持仓回报异常", logInfo, t);
 			ctpGatewayImpl.disconnect();
 		}
+		
 	}
 
 	// 账户查询回报

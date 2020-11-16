@@ -127,7 +127,6 @@ public class PositionLayout {
 						positionFieldBuilder.setPrice(price);
 					}
 
-					positionFieldBuilder.setPrice(position.getPrice());
 					positionFieldBuilder.setPosition(positionInt);
 					positionFieldBuilder.setFrozen(positionFieldBuilder.getFrozen() + position.getFrozen());
 					positionFieldBuilder.setTdPosition(positionFieldBuilder.getTdPosition() + position.getTdPosition());

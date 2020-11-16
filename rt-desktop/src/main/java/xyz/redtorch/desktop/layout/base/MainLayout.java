@@ -24,7 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import xyz.redtorch.desktop.layout.charts.BasicMarketDataChartLayout;
 import xyz.redtorch.desktop.service.GuiMainService;
 
