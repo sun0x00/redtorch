@@ -1,12 +1,12 @@
 group = 'xyz.redtorch'
-version = '0.3.0'
+version = '1.0.0'
 description = """Java开源量化交易开发框架 http://redtorch.io/"""
 
 ext {
-        springBootVersion = '2.3.4.RELEASE'
+        springBootVersion = '2.4.2'
         disruptorVersion = '3.4.2'
         lz4JavaVersion = '1.7.1'
-        fastjsonVersion = '1.2.74'
+        fastjsonVersion = '1.2.75'
 		commonsCodecVersion = '1.15'
 		commonsLang3Version = '3.11'
 		commonsIOVersion = '2.8.0'

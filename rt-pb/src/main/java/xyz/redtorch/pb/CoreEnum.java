@@ -848,9 +848,9 @@ public final class CoreEnum {
    * Bar周期
    * </pre>
    *
-   * Protobuf enum {@code xyz.redtorch.pb.BarCycleEnum}
+   * Protobuf enum {@code xyz.redtorch.pb.BarPeriodEnum}
    */
-  public enum BarCycleEnum
+  public enum BarPeriodEnum
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <code>B_5Sec = 0;</code>
@@ -919,7 +919,7 @@ public final class CoreEnum {
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static BarCycleEnum valueOf(int value) {
+    public static BarPeriodEnum valueOf(int value) {
       return forNumber(value);
     }
 
@@ -927,7 +927,7 @@ public final class CoreEnum {
      * @param value The numeric wire value of the corresponding enum entry.
      * @return The enum associated with the given numeric wire value.
      */
-    public static BarCycleEnum forNumber(int value) {
+    public static BarPeriodEnum forNumber(int value) {
       switch (value) {
         case 0: return B_5Sec;
         case 1: return B_1Min;
@@ -939,15 +939,15 @@ public final class CoreEnum {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<BarCycleEnum>
+    public static com.google.protobuf.Internal.EnumLiteMap<BarPeriodEnum>
         internalGetValueMap() {
       return internalValueMap;
     }
     private static final com.google.protobuf.Internal.EnumLiteMap<
-        BarCycleEnum> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<BarCycleEnum>() {
-            public BarCycleEnum findValueByNumber(int number) {
-              return BarCycleEnum.forNumber(number);
+        BarPeriodEnum> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<BarPeriodEnum>() {
+            public BarPeriodEnum findValueByNumber(int number) {
+              return BarPeriodEnum.forNumber(number);
             }
           };
 
@@ -968,9 +968,9 @@ public final class CoreEnum {
       return xyz.redtorch.pb.CoreEnum.getDescriptor().getEnumTypes().get(6);
     }
 
-    private static final BarCycleEnum[] VALUES = values();
+    private static final BarPeriodEnum[] VALUES = values();
 
-    public static BarCycleEnum valueOf(
+    public static BarPeriodEnum valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -984,11 +984,11 @@ public final class CoreEnum {
 
     private final int value;
 
-    private BarCycleEnum(int value) {
+    private BarPeriodEnum(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:xyz.redtorch.pb.BarCycleEnum)
+    // @@protoc_insertion_point(enum_scope:xyz.redtorch.pb.BarPeriodEnum)
   }
 
   /**
@@ -1005,9 +1005,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>CS_Unkonwn = 0;</code>
+     * <code>CS_Unknown = 0;</code>
      */
-    CS_Unkonwn(0),
+    CS_Unknown(0),
     /**
      * <pre>
      * 已经断开
@@ -1048,9 +1048,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>CS_Unkonwn = 0;</code>
+     * <code>CS_Unknown = 0;</code>
      */
-    public static final int CS_Unkonwn_VALUE = 0;
+    public static final int CS_Unknown_VALUE = 0;
     /**
      * <pre>
      * 已经断开
@@ -1109,7 +1109,7 @@ public final class CoreEnum {
      */
     public static ConnectStatusEnum forNumber(int value) {
       switch (value) {
-        case 0: return CS_Unkonwn;
+        case 0: return CS_Unknown;
         case 1: return CS_Disconnected;
         case 2: return CS_Connected;
         case 3: return CS_Disconnecting;
@@ -1184,9 +1184,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OAS_Unkonwn = 0;</code>
+     * <code>OAS_Unknown = 0;</code>
      */
-    OAS_Unkonwn(0),
+    OAS_Unknown(0),
     /**
      * <pre>
      * 已经提交
@@ -1219,9 +1219,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OAS_Unkonwn = 0;</code>
+     * <code>OAS_Unknown = 0;</code>
      */
-    public static final int OAS_Unkonwn_VALUE = 0;
+    public static final int OAS_Unknown_VALUE = 0;
     /**
      * <pre>
      * 已经提交
@@ -1272,7 +1272,7 @@ public final class CoreEnum {
      */
     public static OrderActionStatusTyp forNumber(int value) {
       switch (value) {
-        case 0: return OAS_Unkonwn;
+        case 0: return OAS_Unknown;
         case 1: return OAS_Submitted;
         case 2: return OAS_Accepted;
         case 3: return OAS_Rejected;
@@ -3284,9 +3284,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OF_Unkonwn = 0;</code>
+     * <code>OF_Unknown = 0;</code>
      */
-    OF_Unkonwn(0),
+    OF_Unknown(0),
     /**
      * <pre>
      * 开仓
@@ -3351,9 +3351,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OF_Unkonwn = 0;</code>
+     * <code>OF_Unknown = 0;</code>
      */
-    public static final int OF_Unkonwn_VALUE = 0;
+    public static final int OF_Unknown_VALUE = 0;
     /**
      * <pre>
      * 开仓
@@ -3436,7 +3436,7 @@ public final class CoreEnum {
      */
     public static OffsetFlagEnum forNumber(int value) {
       switch (value) {
-        case 0: return OF_Unkonwn;
+        case 0: return OF_Unknown;
         case 1: return OF_Open;
         case 2: return OF_Close;
         case 3: return OF_ForceClose;
@@ -3514,9 +3514,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>FCR_Unkonwn = 0;</code>
+     * <code>FCR_Unknown = 0;</code>
      */
-    FCR_Unkonwn(0),
+    FCR_Unknown(0),
     /**
      * <pre>
      * 非强平
@@ -3589,9 +3589,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>FCR_Unkonwn = 0;</code>
+     * <code>FCR_Unknown = 0;</code>
      */
-    public static final int FCR_Unkonwn_VALUE = 0;
+    public static final int FCR_Unknown_VALUE = 0;
     /**
      * <pre>
      * 非强平
@@ -3682,7 +3682,7 @@ public final class CoreEnum {
      */
     public static ForceCloseReasonEnum forNumber(int value) {
       switch (value) {
-        case 0: return FCR_Unkonwn;
+        case 0: return FCR_Unknown;
         case 1: return FCR_NotForceClose;
         case 2: return FCR_LackDeposit;
         case 3: return FCR_ClientOverPositionLimit;
@@ -3761,9 +3761,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OT_Unkonwn = 0;</code>
+     * <code>OT_Unknown = 0;</code>
      */
-    OT_Unkonwn(0),
+    OT_Unknown(0),
     /**
      * <pre>
      * 正常
@@ -3820,9 +3820,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>OT_Unkonwn = 0;</code>
+     * <code>OT_Unknown = 0;</code>
      */
-    public static final int OT_Unkonwn_VALUE = 0;
+    public static final int OT_Unknown_VALUE = 0;
     /**
      * <pre>
      * 正常
@@ -3897,7 +3897,7 @@ public final class CoreEnum {
      */
     public static OrderTypeEnum forNumber(int value) {
       switch (value) {
-        case 0: return OT_Unkonwn;
+        case 0: return OT_Unknown;
         case 1: return OT_Normal;
         case 2: return OT_DeriveFromQuote;
         case 3: return OT_DeriveFromCombination;
@@ -3974,9 +3974,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TC_Unkonwn = 0;</code>
+     * <code>TC_Unknown = 0;</code>
      */
-    TC_Unkonwn(0),
+    TC_Unknown(0),
     /**
      * <pre>
      * 立即完成，否则撤销
@@ -4033,9 +4033,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TC_Unkonwn = 0;</code>
+     * <code>TC_Unknown = 0;</code>
      */
-    public static final int TC_Unkonwn_VALUE = 0;
+    public static final int TC_Unknown_VALUE = 0;
     /**
      * <pre>
      * 立即完成，否则撤销
@@ -4110,7 +4110,7 @@ public final class CoreEnum {
      */
     public static TimeConditionEnum forNumber(int value) {
       switch (value) {
-        case 0: return TC_Unkonwn;
+        case 0: return TC_Unknown;
         case 1: return TC_IOC;
         case 2: return TC_GFS;
         case 3: return TC_GFD;
@@ -4187,9 +4187,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>VC_Unkonwn = 0;</code>
+     * <code>VC_Unknown = 0;</code>
      */
-    VC_Unkonwn(0),
+    VC_Unknown(0),
     /**
      * <pre>
      * 任何数量
@@ -4222,9 +4222,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>VC_Unkonwn = 0;</code>
+     * <code>VC_Unknown = 0;</code>
      */
-    public static final int VC_Unkonwn_VALUE = 0;
+    public static final int VC_Unknown_VALUE = 0;
     /**
      * <pre>
      * 任何数量
@@ -4275,7 +4275,7 @@ public final class CoreEnum {
      */
     public static VolumeConditionEnum forNumber(int value) {
       switch (value) {
-        case 0: return VC_Unkonwn;
+        case 0: return VC_Unknown;
         case 1: return VC_AV;
         case 2: return VC_MV;
         case 3: return VC_CV;
@@ -4349,9 +4349,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>CC_Unkonwn = 0;</code>
+     * <code>CC_Unknown = 0;</code>
      */
-    CC_Unkonwn(0),
+    CC_Unknown(0),
     /**
      * <pre>
      * 立即
@@ -4504,9 +4504,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>CC_Unkonwn = 0;</code>
+     * <code>CC_Unknown = 0;</code>
      */
-    public static final int CC_Unkonwn_VALUE = 0;
+    public static final int CC_Unknown_VALUE = 0;
     /**
      * <pre>
      * 立即
@@ -4677,7 +4677,7 @@ public final class CoreEnum {
      */
     public static ContingentConditionEnum forNumber(int value) {
       switch (value) {
-        case 0: return CC_Unkonwn;
+        case 0: return CC_Unknown;
         case 1: return CC_Immediately;
         case 2: return CC_Touch;
         case 3: return CC_TouchProfit;
@@ -4766,9 +4766,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>AF_Unkonwn = 0;</code>
+     * <code>AF_Unknown = 0;</code>
      */
-    AF_Unkonwn(0),
+    AF_Unknown(0),
     /**
      * <pre>
      * 删除
@@ -4793,9 +4793,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>AF_Unkonwn = 0;</code>
+     * <code>AF_Unknown = 0;</code>
      */
-    public static final int AF_Unkonwn_VALUE = 0;
+    public static final int AF_Unknown_VALUE = 0;
     /**
      * <pre>
      * 删除
@@ -4838,7 +4838,7 @@ public final class CoreEnum {
      */
     public static ActionFlagEnum forNumber(int value) {
       switch (value) {
-        case 0: return AF_Unkonwn;
+        case 0: return AF_Unknown;
         case 1: return AF_Delete;
         case 2: return AF_Modify;
         default: return null;
@@ -4911,9 +4911,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TR_Unkonwn = 0;</code>
+     * <code>TR_Unknown = 0;</code>
      */
-    TR_Unkonwn(0),
+    TR_Unknown(0),
     /**
      * <pre>
      * 可以交易
@@ -4946,9 +4946,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TR_Unkonwn = 0;</code>
+     * <code>TR_Unknown = 0;</code>
      */
-    public static final int TR_Unkonwn_VALUE = 0;
+    public static final int TR_Unknown_VALUE = 0;
     /**
      * <pre>
      * 可以交易
@@ -4999,7 +4999,7 @@ public final class CoreEnum {
      */
     public static TradingRightEnum forNumber(int value) {
       switch (value) {
-        case 0: return TR_Unkonwn;
+        case 0: return TR_Unknown;
         case 1: return TR_Allow;
         case 2: return TR_CloseOnly;
         case 3: return TR_Forbidden;
@@ -5073,9 +5073,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>ODS_Unkonwn = 0;</code>
+     * <code>ODS_Unknown = 0;</code>
      */
-    ODS_Unkonwn(0),
+    ODS_Unknown(0),
     /**
      * <pre>
      * 来自参与者
@@ -5100,9 +5100,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>ODS_Unkonwn = 0;</code>
+     * <code>ODS_Unknown = 0;</code>
      */
-    public static final int ODS_Unkonwn_VALUE = 0;
+    public static final int ODS_Unknown_VALUE = 0;
     /**
      * <pre>
      * 来自参与者
@@ -5145,7 +5145,7 @@ public final class CoreEnum {
      */
     public static OrderSourceEnum forNumber(int value) {
       switch (value) {
-        case 0: return ODS_Unkonwn;
+        case 0: return ODS_Unknown;
         case 1: return ODS_Participant;
         case 2: return ODS_Administrator;
         default: return null;
@@ -5218,9 +5218,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TT_Unkonwn = 0;</code>
+     * <code>TT_Unknown = 0;</code>
      */
-    TT_Unkonwn(0),
+    TT_Unknown(0),
     /**
      * <pre>
      * 组合持仓拆分为单一持仓,初始化不应包含该类型的持仓
@@ -5285,9 +5285,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>TT_Unkonwn = 0;</code>
+     * <code>TT_Unknown = 0;</code>
      */
-    public static final int TT_Unkonwn_VALUE = 0;
+    public static final int TT_Unknown_VALUE = 0;
     /**
      * <pre>
      * 组合持仓拆分为单一持仓,初始化不应包含该类型的持仓
@@ -5370,7 +5370,7 @@ public final class CoreEnum {
      */
     public static TradeTypeEnum forNumber(int value) {
       switch (value) {
-        case 0: return TT_Unkonwn;
+        case 0: return TT_Unknown;
         case 1: return TT_SplitCombination;
         case 2: return TT_Common;
         case 3: return TT_OptionsExecution;
@@ -5448,9 +5448,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>PSRC_Unkonwn = 0;</code>
+     * <code>PSRC_Unknown = 0;</code>
      */
-    PSRC_Unkonwn(0),
+    PSRC_Unknown(0),
     /**
      * <pre>
      * 前成交价
@@ -5491,9 +5491,9 @@ public final class CoreEnum {
      * 未知
      * </pre>
      *
-     * <code>PSRC_Unkonwn = 0;</code>
+     * <code>PSRC_Unknown = 0;</code>
      */
-    public static final int PSRC_Unkonwn_VALUE = 0;
+    public static final int PSRC_Unknown_VALUE = 0;
     /**
      * <pre>
      * 前成交价
@@ -5552,7 +5552,7 @@ public final class CoreEnum {
      */
     public static PriceSourceEnum forNumber(int value) {
       switch (value) {
-        case 0: return PSRC_Unkonwn;
+        case 0: return PSRC_Unknown;
         case 1: return PSRC_LastPrice;
         case 2: return PSRC_Buy;
         case 3: return PSRC_Sell;
@@ -7464,125 +7464,125 @@ public final class CoreEnum {
       "Enum\022\n\n\006LL_All\020\000\022\016\n\010LL_Error\020\300\270\002\022\r\n\007LL_W" +
       "arn\020\260\352\001\022\r\n\007LL_Info\020\240\234\001\022\r\n\010LL_Debug\020\220N\022\r\n" +
       "\010LL_Trace\020\210\'*@\n\024MarketDataDBTypeEnum\022\014\n\010" +
-      "MDDT_MIX\020\000\022\013\n\007MDDT_TD\020\001\022\r\n\tMDDT_HIST\020\002*W" +
-      "\n\014BarCycleEnum\022\n\n\006B_5Sec\020\000\022\n\n\006B_1Min\020\001\022\n" +
-      "\n\006B_3Min\020\002\022\n\n\006B_5Min\020\003\022\013\n\007B_15Min\020\004\022\n\n\006B" +
-      "_1Day\020\005*s\n\021ConnectStatusEnum\022\016\n\nCS_Unkon" +
-      "wn\020\000\022\023\n\017CS_Disconnected\020\001\022\020\n\014CS_Connecte" +
-      "d\020\002\022\024\n\020CS_Disconnecting\020\003\022\021\n\rCS_Connecti" +
-      "ng\020\004*^\n\024OrderActionStatusTyp\022\017\n\013OAS_Unko" +
-      "nwn\020\000\022\021\n\rOAS_Submitted\020\001\022\020\n\014OAS_Accepted" +
-      "\020\002\022\020\n\014OAS_Rejected\020\003*\344\001\n\017OrderStatusEnum" +
-      "\022\016\n\nOS_Unknown\020\000\022\020\n\014OS_AllTraded\020\001\022\031\n\025OS" +
-      "_PartTradedQueueing\020\002\022\034\n\030OS_PartTradedNo" +
-      "tQueueing\020\003\022\026\n\022OS_NoTradeQueueing\020\004\022\031\n\025O" +
-      "S_NoTradeNotQueueing\020\005\022\017\n\013OS_Canceled\020\006\022" +
-      "\021\n\rOS_NotTouched\020\007\022\016\n\nOS_Touched\020\010\022\017\n\013OS" +
-      "_Rejected\020\t*\315\001\n\025OrderSubmitStatusEnum\022\017\n" +
-      "\013OSS_Unknown\020\000\022\027\n\023OSS_InsertSubmitted\020\001\022" +
-      "\027\n\023OSS_CancelSubmitted\020\002\022\027\n\023OSS_ModifySu" +
-      "bmitted\020\003\022\020\n\014OSS_Accepted\020\004\022\026\n\022OSS_Inser" +
-      "tRejected\020\005\022\026\n\022OSS_CancelRejected\020\006\022\026\n\022O" +
-      "SS_ModifyRejected\020\007*\355\001\n\020ProductClassEnum" +
-      "\022\027\n\023UnknownProductClass\020\000\022\n\n\006EQUITY\020\001\022\013\n" +
-      "\007FUTURES\020\002\022\n\n\006OPTION\020\003\022\t\n\005INDEX\020\004\022\017\n\013COM" +
-      "BINATION\020\005\022\010\n\004BOND\020\006\022\t\n\005FOREX\020\007\022\010\n\004SPOT\020" +
-      "\010\022\t\n\005DEFER\020\t\022\007\n\003ETF\020\n\022\014\n\010WARRANTS\020\013\022\n\n\006S" +
-      "PREAD\020\014\022\010\n\004FUND\020\r\022\007\n\003EFP\020\016\022\016\n\nSPOTOPTION" +
-      "\020\017\022\007\n\003TAS\020\020\022\006\n\002MI\020\021*5\n\rDirectionEnum\022\r\n\t" +
-      "D_Unknown\020\000\022\t\n\005D_Buy\020\001\022\n\n\006D_Sell\020\002*<\n\020Po" +
-      "sitionTypeEnum\022\016\n\nPT_Unknown\020\000\022\n\n\006PT_Net" +
-      "\020\001\022\014\n\010PT_Gross\020\002*N\n\025PositionDirectionEnu" +
-      "m\022\016\n\nPD_Unknown\020\000\022\n\n\006PD_Net\020\001\022\013\n\007PD_Long" +
-      "\020\002\022\014\n\010PD_Short\020\003*\213\001\n\rHedgeFlagEnum\022\016\n\nHF" +
-      "_Unknown\020\000\022\022\n\016HF_Speculation\020\001\022\020\n\014HF_Arb" +
-      "itrage\020\002\022\014\n\010HF_Hedge\020\003\022\022\n\016HF_MarketMaker" +
-      "\020\004\022\020\n\014HF_SpecHedge\020\005\022\020\n\014HF_HedgeSpec\020\006*\314" +
-      "\003\n\022OrderPriceTypeEnum\022\017\n\013OPT_Unknown\020\000\022\020" +
-      "\n\014OPT_AnyPrice\020\001\022\022\n\016OPT_LimitPrice\020\002\022\021\n\r" +
-      "OPT_BestPrice\020\003\022\021\n\rOPT_LastPrice\020\004\022\035\n\031OP" +
-      "T_LastPricePlusOneTicks\020\005\022\035\n\031OPT_LastPri" +
-      "cePlusTwoTicks\020\006\022\037\n\033OPT_LastPricePlusThr" +
-      "eeTicks\020\007\022\021\n\rOPT_AskPrice1\020\010\022\035\n\031OPT_AskP" +
-      "rice1PlusOneTicks\020\t\022\035\n\031OPT_AskPrice1Plus" +
-      "TwoTicks\020\n\022\037\n\033OPT_AskPrice1PlusThreeTick" +
-      "s\020\013\022\021\n\rOPT_BidPrice1\020\014\022\035\n\031OPT_BidPrice1P" +
-      "lusOneTicks\020\r\022\035\n\031OPT_BidPrice1PlusTwoTic" +
-      "ks\020\016\022\037\n\033OPT_BidPrice1PlusThreeTicks\020\017\022\026\n" +
-      "\022OPT_FiveLevelPrice\020\020*\241\001\n\016OffsetFlagEnum" +
-      "\022\016\n\nOF_Unkonwn\020\000\022\013\n\007OF_Open\020\001\022\014\n\010OF_Clos" +
-      "e\020\002\022\021\n\rOF_ForceClose\020\003\022\021\n\rOF_CloseToday\020" +
-      "\004\022\025\n\021OF_CloseYesterday\020\005\022\017\n\013OF_ForceOff\020" +
-      "\006\022\026\n\022OF_LocalForceClose\020\007*\343\001\n\024ForceClose" +
-      "ReasonEnum\022\017\n\013FCR_Unkonwn\020\000\022\025\n\021FCR_NotFo" +
-      "rceClose\020\001\022\023\n\017FCR_LackDeposit\020\002\022\037\n\033FCR_C" +
-      "lientOverPositionLimit\020\003\022\037\n\033FCR_MemberOv" +
-      "erPositionLimit\020\004\022\023\n\017FCR_NotMultiple\020\005\022\021" +
-      "\n\rFCR_Violation\020\006\022\r\n\tFCR_Other\020\007\022\025\n\021FCR_" +
-      "PersonDeliver\020\010*\236\001\n\rOrderTypeEnum\022\016\n\nOT_" +
-      "Unkonwn\020\000\022\r\n\tOT_Normal\020\001\022\026\n\022OT_DeriveFro" +
-      "mQuote\020\002\022\034\n\030OT_DeriveFromCombination\020\003\022\022" +
-      "\n\016OT_Combination\020\004\022\027\n\023OT_ConditionalOrde" +
-      "r\020\005\022\013\n\007OT_Swap\020\006*k\n\021TimeConditionEnum\022\016\n" +
-      "\nTC_Unkonwn\020\000\022\n\n\006TC_IOC\020\001\022\n\n\006TC_GFS\020\002\022\n\n" +
-      "\006TC_GFD\020\003\022\n\n\006TC_GTD\020\004\022\n\n\006TC_GTC\020\005\022\n\n\006TC_" +
-      "GFA\020\006*F\n\023VolumeConditionEnum\022\016\n\nVC_Unkon" +
-      "wn\020\000\022\t\n\005VC_AV\020\001\022\t\n\005VC_MV\020\002\022\t\n\005VC_CV\020\003*\212\005" +
-      "\n\027ContingentConditionEnum\022\016\n\nCC_Unkonwn\020" +
-      "\000\022\022\n\016CC_Immediately\020\001\022\014\n\010CC_Touch\020\002\022\022\n\016C" +
-      "C_TouchProfit\020\003\022\022\n\016CC_ParkedOrder\020\004\022$\n C" +
-      "C_LastPriceGreaterThanStopPrice\020\005\022%\n!CC_" +
-      "LastPriceGreaterEqualStopPrice\020\006\022#\n\037CC_L" +
-      "astPriceLesserThanStopPrice\020\007\022$\n CC_Last" +
-      "PriceLesserEqualStopPrice\020\010\022#\n\037CC_AskPri" +
-      "ceGreaterThanStopPrice\020\t\022$\n CC_AskPriceG" +
-      "reaterEqualStopPrice\020\n\022\"\n\036CC_AskPriceLes" +
-      "serThanStopPrice\020\013\022#\n\037CC_AskPriceLesserE" +
-      "qualStopPrice\020\014\022#\n\037CC_BidPriceGreaterTha" +
-      "nStopPrice\020\r\022$\n CC_BidPriceGreaterEqualS" +
-      "topPrice\020\016\022\"\n\036CC_BidPriceLesserThanStopP" +
-      "rice\020\017\022#\n\037CC_BidPriceLesserEqualStopPric" +
-      "e\020\020\022)\n%CC_LocalLastPriceLesserEqualStopP" +
-      "rice\020\021\022*\n&CC_LocalLastPriceGreaterEqualS" +
-      "topPrice\020\022*>\n\016ActionFlagEnum\022\016\n\nAF_Unkon" +
-      "wn\020\000\022\r\n\tAF_Delete\020\001\022\r\n\tAF_Modify\020\002*T\n\020Tr" +
-      "adingRightEnum\022\016\n\nTR_Unkonwn\020\000\022\014\n\010TR_All" +
-      "ow\020\001\022\020\n\014TR_CloseOnly\020\002\022\020\n\014TR_Forbidden\020\003" +
-      "*N\n\017OrderSourceEnum\022\017\n\013ODS_Unkonwn\020\000\022\023\n\017" +
-      "ODS_Participant\020\001\022\025\n\021ODS_Administrator\020\002" +
-      "*\255\001\n\rTradeTypeEnum\022\016\n\nTT_Unkonwn\020\000\022\027\n\023TT" +
-      "_SplitCombination\020\001\022\r\n\tTT_Common\020\002\022\027\n\023TT" +
-      "_OptionsExecution\020\003\022\n\n\006TT_OTC\020\004\022\021\n\rTT_EF" +
-      "PDerived\020\005\022\031\n\025TT_CombinationDerived\020\006\022\021\n" +
-      "\rTT_BlockTrade\020\007*b\n\017PriceSourceEnum\022\020\n\014P" +
-      "SRC_Unkonwn\020\000\022\022\n\016PSRC_LastPrice\020\001\022\014\n\010PSR" +
-      "C_Buy\020\002\022\r\n\tPSRC_Sell\020\003\022\014\n\010PSRC_OTC\020\004*\250\002\n" +
-      "\014CurrencyEnum\022\023\n\017UnknownCurrency\020\000\022\007\n\003US" +
-      "D\020\001\022\007\n\003CNY\020\002\022\007\n\003CNH\020\003\022\007\n\003HKD\020\004\022\007\n\003JPY\020\005\022" +
-      "\007\n\003EUR\020\006\022\007\n\003GBP\020\007\022\007\n\003DEM\020\010\022\007\n\003CHF\020\t\022\007\n\003F" +
-      "RF\020\n\022\007\n\003CAD\020\013\022\007\n\003AUD\020\014\022\007\n\003ATS\020\r\022\007\n\003FIM\020\016" +
-      "\022\007\n\003BEF\020\017\022\007\n\003THB\020\020\022\007\n\003IEP\020\021\022\007\n\003ITL\020\022\022\007\n\003" +
-      "LUF\020\023\022\007\n\003NLG\020\024\022\007\n\003PTE\020\025\022\007\n\003ESP\020\026\022\007\n\003IDR\020" +
-      "\027\022\007\n\003MYR\020\030\022\007\n\003NZD\020\031\022\007\n\003PHP\020\032\022\007\n\003SUR\020\033\022\007\n" +
-      "\003SGD\020\034\022\007\n\003KRW\020\035*\226\003\n\014ExchangeEnum\022\023\n\017Unkn" +
-      "ownExchange\020\000\022\007\n\003SSE\020\001\022\010\n\004SZSE\020\002\022\t\n\005CFFE" +
-      "X\020\003\022\010\n\004SHFE\020\004\022\010\n\004CZCE\020\005\022\007\n\003DCE\020\006\022\007\n\003SGE\020" +
-      "\007\022\007\n\003INE\020\010\022\010\n\004SEHK\020\t\022\010\n\004HKFE\020\n\022\007\n\003SGX\020\013\022" +
-      "\t\n\005NYBOT\020\014\022\t\n\005NYMEX\020\r\022\007\n\003CFE\020\016\022\n\n\006GLOBEX" +
-      "\020\017\022\r\n\tCMECRYPTO\020\020\022\t\n\005ICEEU\020\021\022\r\n\tICEEUSOF" +
-      "T\020\022\022\t\n\005ICEUS\020\023\022\007\n\003IPE\020\024\022\n\n\006LMEOTC\020\025\022\t\n\005E" +
-      "CBOT\020\026\022\010\n\004APEX\020\027\022\007\n\003BMD\020\030\022\t\n\005MONEP\020\031\022\007\n\003" +
-      "DTB\020\032\022\t\n\005TOCOM\020\033\022\n\n\006TAIFEX\020\034\022\014\n\010SEHKSZSE" +
-      "\020\035\022\013\n\007SEHKNTL\020\036\022\007\n\003KSE\020\037\022\007\n\003OSE\020 \022\017\n\013IB_" +
-      "IDEALPRO\020!\022\014\n\010IB_SMART\020\"*E\n\017OptionsTypeE" +
-      "num\022\r\n\tO_Unknown\020\000\022\021\n\rO_CallOptions\020\001\022\020\n" +
-      "\014O_PutOptions\020\002*Y\n\016StrikeModeEnum\022\017\n\013STM" +
-      "_Unknown\020\000\022\023\n\017STM_Continental\020\001\022\020\n\014STM_A" +
-      "merican\020\002\022\017\n\013STM_Bermuda\020\003*\224\001\n\023Combinati" +
-      "onTypeEnum\022\021\n\rCOMBT_Unknown\020\000\022\020\n\014COMBT_F" +
-      "uture\020\001\022\r\n\tCOMBT_BUL\020\002\022\r\n\tCOMBT_BER\020\003\022\r\n" +
-      "\tCOMBT_STD\020\004\022\r\n\tCOMBT_STG\020\005\022\r\n\tCOMBT_PRT" +
-      "\020\006\022\r\n\tCOMBT_CLD\020\007b\006proto3"
+      "MDDT_MIX\020\000\022\013\n\007MDDT_TD\020\001\022\r\n\tMDDT_HIST\020\002*X" +
+      "\n\rBarPeriodEnum\022\n\n\006B_5Sec\020\000\022\n\n\006B_1Min\020\001\022" +
+      "\n\n\006B_3Min\020\002\022\n\n\006B_5Min\020\003\022\013\n\007B_15Min\020\004\022\n\n\006" +
+      "B_1Day\020\005*s\n\021ConnectStatusEnum\022\016\n\nCS_Unkn" +
+      "own\020\000\022\023\n\017CS_Disconnected\020\001\022\020\n\014CS_Connect" +
+      "ed\020\002\022\024\n\020CS_Disconnecting\020\003\022\021\n\rCS_Connect" +
+      "ing\020\004*^\n\024OrderActionStatusTyp\022\017\n\013OAS_Unk" +
+      "nown\020\000\022\021\n\rOAS_Submitted\020\001\022\020\n\014OAS_Accepte" +
+      "d\020\002\022\020\n\014OAS_Rejected\020\003*\344\001\n\017OrderStatusEnu" +
+      "m\022\016\n\nOS_Unknown\020\000\022\020\n\014OS_AllTraded\020\001\022\031\n\025O" +
+      "S_PartTradedQueueing\020\002\022\034\n\030OS_PartTradedN" +
+      "otQueueing\020\003\022\026\n\022OS_NoTradeQueueing\020\004\022\031\n\025" +
+      "OS_NoTradeNotQueueing\020\005\022\017\n\013OS_Canceled\020\006" +
+      "\022\021\n\rOS_NotTouched\020\007\022\016\n\nOS_Touched\020\010\022\017\n\013O" +
+      "S_Rejected\020\t*\315\001\n\025OrderSubmitStatusEnum\022\017" +
+      "\n\013OSS_Unknown\020\000\022\027\n\023OSS_InsertSubmitted\020\001" +
+      "\022\027\n\023OSS_CancelSubmitted\020\002\022\027\n\023OSS_ModifyS" +
+      "ubmitted\020\003\022\020\n\014OSS_Accepted\020\004\022\026\n\022OSS_Inse" +
+      "rtRejected\020\005\022\026\n\022OSS_CancelRejected\020\006\022\026\n\022" +
+      "OSS_ModifyRejected\020\007*\355\001\n\020ProductClassEnu" +
+      "m\022\027\n\023UnknownProductClass\020\000\022\n\n\006EQUITY\020\001\022\013" +
+      "\n\007FUTURES\020\002\022\n\n\006OPTION\020\003\022\t\n\005INDEX\020\004\022\017\n\013CO" +
+      "MBINATION\020\005\022\010\n\004BOND\020\006\022\t\n\005FOREX\020\007\022\010\n\004SPOT" +
+      "\020\010\022\t\n\005DEFER\020\t\022\007\n\003ETF\020\n\022\014\n\010WARRANTS\020\013\022\n\n\006" +
+      "SPREAD\020\014\022\010\n\004FUND\020\r\022\007\n\003EFP\020\016\022\016\n\nSPOTOPTIO" +
+      "N\020\017\022\007\n\003TAS\020\020\022\006\n\002MI\020\021*5\n\rDirectionEnum\022\r\n" +
+      "\tD_Unknown\020\000\022\t\n\005D_Buy\020\001\022\n\n\006D_Sell\020\002*<\n\020P" +
+      "ositionTypeEnum\022\016\n\nPT_Unknown\020\000\022\n\n\006PT_Ne" +
+      "t\020\001\022\014\n\010PT_Gross\020\002*N\n\025PositionDirectionEn" +
+      "um\022\016\n\nPD_Unknown\020\000\022\n\n\006PD_Net\020\001\022\013\n\007PD_Lon" +
+      "g\020\002\022\014\n\010PD_Short\020\003*\213\001\n\rHedgeFlagEnum\022\016\n\nH" +
+      "F_Unknown\020\000\022\022\n\016HF_Speculation\020\001\022\020\n\014HF_Ar" +
+      "bitrage\020\002\022\014\n\010HF_Hedge\020\003\022\022\n\016HF_MarketMake" +
+      "r\020\004\022\020\n\014HF_SpecHedge\020\005\022\020\n\014HF_HedgeSpec\020\006*" +
+      "\314\003\n\022OrderPriceTypeEnum\022\017\n\013OPT_Unknown\020\000\022" +
+      "\020\n\014OPT_AnyPrice\020\001\022\022\n\016OPT_LimitPrice\020\002\022\021\n" +
+      "\rOPT_BestPrice\020\003\022\021\n\rOPT_LastPrice\020\004\022\035\n\031O" +
+      "PT_LastPricePlusOneTicks\020\005\022\035\n\031OPT_LastPr" +
+      "icePlusTwoTicks\020\006\022\037\n\033OPT_LastPricePlusTh" +
+      "reeTicks\020\007\022\021\n\rOPT_AskPrice1\020\010\022\035\n\031OPT_Ask" +
+      "Price1PlusOneTicks\020\t\022\035\n\031OPT_AskPrice1Plu" +
+      "sTwoTicks\020\n\022\037\n\033OPT_AskPrice1PlusThreeTic" +
+      "ks\020\013\022\021\n\rOPT_BidPrice1\020\014\022\035\n\031OPT_BidPrice1" +
+      "PlusOneTicks\020\r\022\035\n\031OPT_BidPrice1PlusTwoTi" +
+      "cks\020\016\022\037\n\033OPT_BidPrice1PlusThreeTicks\020\017\022\026" +
+      "\n\022OPT_FiveLevelPrice\020\020*\241\001\n\016OffsetFlagEnu" +
+      "m\022\016\n\nOF_Unknown\020\000\022\013\n\007OF_Open\020\001\022\014\n\010OF_Clo" +
+      "se\020\002\022\021\n\rOF_ForceClose\020\003\022\021\n\rOF_CloseToday" +
+      "\020\004\022\025\n\021OF_CloseYesterday\020\005\022\017\n\013OF_ForceOff" +
+      "\020\006\022\026\n\022OF_LocalForceClose\020\007*\343\001\n\024ForceClos" +
+      "eReasonEnum\022\017\n\013FCR_Unknown\020\000\022\025\n\021FCR_NotF" +
+      "orceClose\020\001\022\023\n\017FCR_LackDeposit\020\002\022\037\n\033FCR_" +
+      "ClientOverPositionLimit\020\003\022\037\n\033FCR_MemberO" +
+      "verPositionLimit\020\004\022\023\n\017FCR_NotMultiple\020\005\022" +
+      "\021\n\rFCR_Violation\020\006\022\r\n\tFCR_Other\020\007\022\025\n\021FCR" +
+      "_PersonDeliver\020\010*\236\001\n\rOrderTypeEnum\022\016\n\nOT" +
+      "_Unknown\020\000\022\r\n\tOT_Normal\020\001\022\026\n\022OT_DeriveFr" +
+      "omQuote\020\002\022\034\n\030OT_DeriveFromCombination\020\003\022" +
+      "\022\n\016OT_Combination\020\004\022\027\n\023OT_ConditionalOrd" +
+      "er\020\005\022\013\n\007OT_Swap\020\006*k\n\021TimeConditionEnum\022\016" +
+      "\n\nTC_Unknown\020\000\022\n\n\006TC_IOC\020\001\022\n\n\006TC_GFS\020\002\022\n" +
+      "\n\006TC_GFD\020\003\022\n\n\006TC_GTD\020\004\022\n\n\006TC_GTC\020\005\022\n\n\006TC" +
+      "_GFA\020\006*F\n\023VolumeConditionEnum\022\016\n\nVC_Unkn" +
+      "own\020\000\022\t\n\005VC_AV\020\001\022\t\n\005VC_MV\020\002\022\t\n\005VC_CV\020\003*\212" +
+      "\005\n\027ContingentConditionEnum\022\016\n\nCC_Unknown" +
+      "\020\000\022\022\n\016CC_Immediately\020\001\022\014\n\010CC_Touch\020\002\022\022\n\016" +
+      "CC_TouchProfit\020\003\022\022\n\016CC_ParkedOrder\020\004\022$\n " +
+      "CC_LastPriceGreaterThanStopPrice\020\005\022%\n!CC" +
+      "_LastPriceGreaterEqualStopPrice\020\006\022#\n\037CC_" +
+      "LastPriceLesserThanStopPrice\020\007\022$\n CC_Las" +
+      "tPriceLesserEqualStopPrice\020\010\022#\n\037CC_AskPr" +
+      "iceGreaterThanStopPrice\020\t\022$\n CC_AskPrice" +
+      "GreaterEqualStopPrice\020\n\022\"\n\036CC_AskPriceLe" +
+      "sserThanStopPrice\020\013\022#\n\037CC_AskPriceLesser" +
+      "EqualStopPrice\020\014\022#\n\037CC_BidPriceGreaterTh" +
+      "anStopPrice\020\r\022$\n CC_BidPriceGreaterEqual" +
+      "StopPrice\020\016\022\"\n\036CC_BidPriceLesserThanStop" +
+      "Price\020\017\022#\n\037CC_BidPriceLesserEqualStopPri" +
+      "ce\020\020\022)\n%CC_LocalLastPriceLesserEqualStop" +
+      "Price\020\021\022*\n&CC_LocalLastPriceGreaterEqual" +
+      "StopPrice\020\022*>\n\016ActionFlagEnum\022\016\n\nAF_Unkn" +
+      "own\020\000\022\r\n\tAF_Delete\020\001\022\r\n\tAF_Modify\020\002*T\n\020T" +
+      "radingRightEnum\022\016\n\nTR_Unknown\020\000\022\014\n\010TR_Al" +
+      "low\020\001\022\020\n\014TR_CloseOnly\020\002\022\020\n\014TR_Forbidden\020" +
+      "\003*N\n\017OrderSourceEnum\022\017\n\013ODS_Unknown\020\000\022\023\n" +
+      "\017ODS_Participant\020\001\022\025\n\021ODS_Administrator\020" +
+      "\002*\255\001\n\rTradeTypeEnum\022\016\n\nTT_Unknown\020\000\022\027\n\023T" +
+      "T_SplitCombination\020\001\022\r\n\tTT_Common\020\002\022\027\n\023T" +
+      "T_OptionsExecution\020\003\022\n\n\006TT_OTC\020\004\022\021\n\rTT_E" +
+      "FPDerived\020\005\022\031\n\025TT_CombinationDerived\020\006\022\021" +
+      "\n\rTT_BlockTrade\020\007*b\n\017PriceSourceEnum\022\020\n\014" +
+      "PSRC_Unknown\020\000\022\022\n\016PSRC_LastPrice\020\001\022\014\n\010PS" +
+      "RC_Buy\020\002\022\r\n\tPSRC_Sell\020\003\022\014\n\010PSRC_OTC\020\004*\250\002" +
+      "\n\014CurrencyEnum\022\023\n\017UnknownCurrency\020\000\022\007\n\003U" +
+      "SD\020\001\022\007\n\003CNY\020\002\022\007\n\003CNH\020\003\022\007\n\003HKD\020\004\022\007\n\003JPY\020\005" +
+      "\022\007\n\003EUR\020\006\022\007\n\003GBP\020\007\022\007\n\003DEM\020\010\022\007\n\003CHF\020\t\022\007\n\003" +
+      "FRF\020\n\022\007\n\003CAD\020\013\022\007\n\003AUD\020\014\022\007\n\003ATS\020\r\022\007\n\003FIM\020" +
+      "\016\022\007\n\003BEF\020\017\022\007\n\003THB\020\020\022\007\n\003IEP\020\021\022\007\n\003ITL\020\022\022\007\n" +
+      "\003LUF\020\023\022\007\n\003NLG\020\024\022\007\n\003PTE\020\025\022\007\n\003ESP\020\026\022\007\n\003IDR" +
+      "\020\027\022\007\n\003MYR\020\030\022\007\n\003NZD\020\031\022\007\n\003PHP\020\032\022\007\n\003SUR\020\033\022\007" +
+      "\n\003SGD\020\034\022\007\n\003KRW\020\035*\226\003\n\014ExchangeEnum\022\023\n\017Unk" +
+      "nownExchange\020\000\022\007\n\003SSE\020\001\022\010\n\004SZSE\020\002\022\t\n\005CFF" +
+      "EX\020\003\022\010\n\004SHFE\020\004\022\010\n\004CZCE\020\005\022\007\n\003DCE\020\006\022\007\n\003SGE" +
+      "\020\007\022\007\n\003INE\020\010\022\010\n\004SEHK\020\t\022\010\n\004HKFE\020\n\022\007\n\003SGX\020\013" +
+      "\022\t\n\005NYBOT\020\014\022\t\n\005NYMEX\020\r\022\007\n\003CFE\020\016\022\n\n\006GLOBE" +
+      "X\020\017\022\r\n\tCMECRYPTO\020\020\022\t\n\005ICEEU\020\021\022\r\n\tICEEUSO" +
+      "FT\020\022\022\t\n\005ICEUS\020\023\022\007\n\003IPE\020\024\022\n\n\006LMEOTC\020\025\022\t\n\005" +
+      "ECBOT\020\026\022\010\n\004APEX\020\027\022\007\n\003BMD\020\030\022\t\n\005MONEP\020\031\022\007\n" +
+      "\003DTB\020\032\022\t\n\005TOCOM\020\033\022\n\n\006TAIFEX\020\034\022\014\n\010SEHKSZS" +
+      "E\020\035\022\013\n\007SEHKNTL\020\036\022\007\n\003KSE\020\037\022\007\n\003OSE\020 \022\017\n\013IB" +
+      "_IDEALPRO\020!\022\014\n\010IB_SMART\020\"*E\n\017OptionsType" +
+      "Enum\022\r\n\tO_Unknown\020\000\022\021\n\rO_CallOptions\020\001\022\020" +
+      "\n\014O_PutOptions\020\002*Y\n\016StrikeModeEnum\022\017\n\013ST" +
+      "M_Unknown\020\000\022\023\n\017STM_Continental\020\001\022\020\n\014STM_" +
+      "American\020\002\022\017\n\013STM_Bermuda\020\003*\224\001\n\023Combinat" +
+      "ionTypeEnum\022\021\n\rCOMBT_Unknown\020\000\022\020\n\014COMBT_" +
+      "Future\020\001\022\r\n\tCOMBT_BUL\020\002\022\r\n\tCOMBT_BER\020\003\022\r" +
+      "\n\tCOMBT_STD\020\004\022\r\n\tCOMBT_STG\020\005\022\r\n\tCOMBT_PR" +
+      "T\020\006\022\r\n\tCOMBT_CLD\020\007b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

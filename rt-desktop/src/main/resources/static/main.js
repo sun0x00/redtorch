@@ -56,11 +56,11 @@ $(document).ready(function () {
                             setOptionCandlestick(chart, res.voData.data, false)
                         }else if (res.voData.chartType === "histogram") {
                             setOptionHistogram(chart, res.voData.data, false)
-                        }else if (res.voData.chartType === "volOPIchangeHistogram") {
-                            setOptionVolOPIchangeHistogram(chart, res.voData.data, false)
                         }else if (res.voData.chartType === "tick") {
                             setOptionTick(chart, res.voData.data, false)
                         }
+                        
+                        
                     }
                 },
                 error: function (e) {

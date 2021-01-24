@@ -25,52 +25,52 @@ import xyz.redtorch.pb.CoreEnum.VolumeConditionEnum;
 public class CtpConstant {
 
 	public static Map<OrderPriceTypeEnum, Character> orderPriceTypeMap = new HashMap<>();
-	public static Map<Character, OrderPriceTypeEnum> orderPriceTypeMapReverse = new HashMap<>();
+	public static Map<Character, OrderPriceTypeEnum> orderPriceTypeMapReverse;
 
 	public static Map<DirectionEnum, Character> directionMap = new HashMap<>();
-	public static Map<Character, DirectionEnum> directionMapReverse = new HashMap<>();
+	public static Map<Character, DirectionEnum> directionMapReverse;
 
 	public static Map<OffsetFlagEnum, Character> offsetFlagMap = new HashMap<>();
-	public static Map<Character, OffsetFlagEnum> offsetMapReverse = new HashMap<>();
+	public static Map<Character, OffsetFlagEnum> offsetMapReverse;
 
 	public static Map<ExchangeEnum, String> exchangeMap = new HashMap<>();
-	public static Map<String, ExchangeEnum> exchangeMapReverse = new HashMap<>();
+	public static Map<String, ExchangeEnum> exchangeMapReverse;
 
-	public static Map<PositionDirectionEnum, Character> posiDirectionMap = new HashMap<>();
-	public static Map<Character, PositionDirectionEnum> posiDirectionMapReverse = new HashMap<>();
+	public static Map<PositionDirectionEnum, Character> positionDirectionMap = new HashMap<>();
+	public static Map<Character, PositionDirectionEnum> positionDirectionMapReverse;
 
 	public static Map<ProductClassEnum, Character> productTypeMap = new HashMap<>();
-	public static Map<Character, ProductClassEnum> productTypeMapReverse = new HashMap<>();
+	public static Map<Character, ProductClassEnum> productTypeMapReverse;
 
 	public static Map<OrderStatusEnum, Character> statusMap = new HashMap<>();
-	public static Map<Character, OrderStatusEnum> statusMapReverse = new HashMap<>();
+	public static Map<Character, OrderStatusEnum> statusMapReverse;
 
 	public static Map<OptionsTypeEnum, Character> optionTypeMap = new HashMap<>();
-	public static Map<Character, OptionsTypeEnum> optionTypeMapReverse = new HashMap<>();
+	public static Map<Character, OptionsTypeEnum> optionTypeMapReverse;
 
 	public static Map<HedgeFlagEnum, String> hedgeFlagMap = new HashMap<>();
-	public static Map<String, HedgeFlagEnum> hedgeFlagMapReverse = new HashMap<>();
+	public static Map<String, HedgeFlagEnum> hedgeFlagMapReverse;
 
 	public static Map<ContingentConditionEnum, Character> contingentConditionMap = new HashMap<>();
-	public static Map<Character, ContingentConditionEnum> contingentConditionMapReverse = new HashMap<>();
+	public static Map<Character, ContingentConditionEnum> contingentConditionMapReverse;
 
 	public static Map<ForceCloseReasonEnum, Character> forceCloseReasonMap = new HashMap<>();
-	public static Map<Character, ForceCloseReasonEnum> forceCloseReasonMapReverse = new HashMap<>();
+	public static Map<Character, ForceCloseReasonEnum> forceCloseReasonMapReverse;
 
 	public static Map<TimeConditionEnum, Character> timeConditionMap = new HashMap<>();
-	public static Map<Character, TimeConditionEnum> timeConditionMapReverse = new HashMap<>();
+	public static Map<Character, TimeConditionEnum> timeConditionMapReverse;
 
 	public static Map<VolumeConditionEnum, Character> volumeConditionMap = new HashMap<>();
-	public static Map<Character, VolumeConditionEnum> volumeConditionMapReverse = new HashMap<>();
+	public static Map<Character, VolumeConditionEnum> volumeConditionMapReverse;
 
 	public static Map<PriceSourceEnum, Character> priceSourceMap = new HashMap<>();
-	public static Map<Character, PriceSourceEnum> priceSourceMapReverse = new HashMap<>();
+	public static Map<Character, PriceSourceEnum> priceSourceMapReverse;
 
 	public static Map<TradeTypeEnum, Character> tradeTypeMap = new HashMap<>();
-	public static Map<Character, TradeTypeEnum> tradeTypeMapReverse = new HashMap<>();
+	public static Map<Character, TradeTypeEnum> tradeTypeMapReverse;
 
 	public static Map<OrderSubmitStatusEnum, Character> orderSubmitStatusMap = new HashMap<>();
-	public static Map<Character, OrderSubmitStatusEnum> orderSubmitStatusMapReverse = new HashMap<>();
+	public static Map<Character, OrderSubmitStatusEnum> orderSubmitStatusMapReverse;
 
 	static {
 
@@ -120,10 +120,10 @@ public class CtpConstant {
 		exchangeMapReverse = exchangeMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
 		// 持仓类型映射
-		posiDirectionMap.put(PositionDirectionEnum.PD_Net, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Net);
-		posiDirectionMap.put(PositionDirectionEnum.PD_Long, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Long);
-		posiDirectionMap.put(PositionDirectionEnum.PD_Short, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Short);
-		posiDirectionMapReverse = posiDirectionMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+		positionDirectionMap.put(PositionDirectionEnum.PD_Net, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Net);
+		positionDirectionMap.put(PositionDirectionEnum.PD_Long, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Long);
+		positionDirectionMap.put(PositionDirectionEnum.PD_Short, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PD_Short);
+		positionDirectionMapReverse = positionDirectionMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
 
 		// 产品类型映射
 		productTypeMap.put(ProductClassEnum.FUTURES, jctpv6v3v19t1x64apiConstants.THOST_FTDC_PC_Futures);

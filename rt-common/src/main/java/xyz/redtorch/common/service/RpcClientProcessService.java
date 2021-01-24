@@ -7,17 +7,7 @@ import xyz.redtorch.pb.CoreRpc.RpcId;
 public interface RpcClientProcessService {
 	void processData(byte[] data);
 
-	boolean sendCoreRpc(int targetNodeId, ByteString content, String reqId, RpcId rpcId);
+	boolean sendRpc(RpcId rpcId, String transactionId, ByteString content);
 
-	boolean sendRoutineCoreRpc(int targetNodeId, ByteString content, String reqId, RpcId rpcId);
-
-	boolean sendLz4CoreRpc(int targetNodeId, ByteString content, String reqId, RpcId rpcId);
-
-	void onWsClosed();
-
-	void onWsError();
-
-	void onWsConnected();
-
-	void onHeartbeat(String result);
+	boolean sendAsyncHttpRpc(RpcId rpcId, String transactionId, ByteString content);
 }

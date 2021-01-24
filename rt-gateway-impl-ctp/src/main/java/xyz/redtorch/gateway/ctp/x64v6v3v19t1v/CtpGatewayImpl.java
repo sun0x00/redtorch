@@ -1,12 +1,7 @@
 package xyz.redtorch.gateway.ctp.x64v6v3v19t1v;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import xyz.redtorch.common.service.FastEventService;
 import xyz.redtorch.common.util.CommonUtils;
 import xyz.redtorch.gateway.GatewayApiAbstract;
@@ -16,15 +11,19 @@ import xyz.redtorch.pb.CoreField.ContractField;
 import xyz.redtorch.pb.CoreField.GatewaySettingField;
 import xyz.redtorch.pb.CoreField.SubmitOrderReqField;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 public class CtpGatewayImpl extends GatewayApiAbstract {
 
 	private static final Logger logger = LoggerFactory.getLogger(CtpGatewayImpl.class);
 
 	static {
-		String envTmpDir = "";
+		String envTmpDir;
 		String tempLibPath = "";
 		try {
-			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			if (System.getProperties().getProperty("os.name").toUpperCase().contains("WINDOWS")) {
 
 				envTmpDir = System.getProperty("java.io.tmpdir");
 				tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api" + File.separator + "jctp" + File.separator + "lib" + File.separator
@@ -49,7 +48,7 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 		}
 
 		try {
-			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			if (System.getProperties().getProperty("os.name").toUpperCase().contains("WINDOWS")) {
 				System.load(tempLibPath + File.separator + "libiconv.dll");
 				System.load(tempLibPath + File.separator + "thostmduserapi_se.dll");
 				System.load(tempLibPath + File.separator + "thosttraderapi_se.dll");

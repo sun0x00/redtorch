@@ -52983,15 +52983,15 @@ public final class CoreRpc {
         getUnifiedSymbolBytes();
 
     /**
-     * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-     * @return The enum numeric value on the wire for barCycle.
+     * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+     * @return The enum numeric value on the wire for barPeriod.
      */
-    int getBarCycleValue();
+    int getBarPeriodValue();
     /**
-     * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-     * @return The barCycle.
+     * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+     * @return The barPeriod.
      */
-    xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle();
+    xyz.redtorch.pb.CoreEnum.BarPeriodEnum getBarPeriod();
 
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 6;</code>
@@ -53006,7 +53006,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle,MarketDataDBTypeEnum marketDataDBType) 
+   * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListReq}
@@ -53022,7 +53022,7 @@ public final class CoreRpc {
     }
     private RpcQueryDBBarListReq() {
       unifiedSymbol_ = "";
-      barCycle_ = 0;
+      barPeriod_ = 0;
       marketDataDBType_ = 0;
     }
 
@@ -53088,7 +53088,7 @@ public final class CoreRpc {
             case 40: {
               int rawValue = input.readEnum();
 
-              barCycle_ = rawValue;
+              barPeriod_ = rawValue;
               break;
             }
             case 48: {
@@ -53215,23 +53215,23 @@ public final class CoreRpc {
       }
     }
 
-    public static final int BARCYCLE_FIELD_NUMBER = 5;
-    private int barCycle_;
+    public static final int BARPERIOD_FIELD_NUMBER = 5;
+    private int barPeriod_;
     /**
-     * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-     * @return The enum numeric value on the wire for barCycle.
+     * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+     * @return The enum numeric value on the wire for barPeriod.
      */
-    @java.lang.Override public int getBarCycleValue() {
-      return barCycle_;
+    @java.lang.Override public int getBarPeriodValue() {
+      return barPeriod_;
     }
     /**
-     * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-     * @return The barCycle.
+     * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+     * @return The barPeriod.
      */
-    @java.lang.Override public xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle() {
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.BarPeriodEnum getBarPeriod() {
       @SuppressWarnings("deprecation")
-      xyz.redtorch.pb.CoreEnum.BarCycleEnum result = xyz.redtorch.pb.CoreEnum.BarCycleEnum.valueOf(barCycle_);
-      return result == null ? xyz.redtorch.pb.CoreEnum.BarCycleEnum.UNRECOGNIZED : result;
+      xyz.redtorch.pb.CoreEnum.BarPeriodEnum result = xyz.redtorch.pb.CoreEnum.BarPeriodEnum.valueOf(barPeriod_);
+      return result == null ? xyz.redtorch.pb.CoreEnum.BarPeriodEnum.UNRECOGNIZED : result;
     }
 
     public static final int MARKETDATADBTYPE_FIELD_NUMBER = 6;
@@ -53279,8 +53279,8 @@ public final class CoreRpc {
       if (!getUnifiedSymbolBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, unifiedSymbol_);
       }
-      if (barCycle_ != xyz.redtorch.pb.CoreEnum.BarCycleEnum.B_5Sec.getNumber()) {
-        output.writeEnum(5, barCycle_);
+      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
+        output.writeEnum(5, barPeriod_);
       }
       if (marketDataDBType_ != xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.MDDT_MIX.getNumber()) {
         output.writeEnum(6, marketDataDBType_);
@@ -53309,9 +53309,9 @@ public final class CoreRpc {
       if (!getUnifiedSymbolBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, unifiedSymbol_);
       }
-      if (barCycle_ != xyz.redtorch.pb.CoreEnum.BarCycleEnum.B_5Sec.getNumber()) {
+      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, barCycle_);
+          .computeEnumSize(5, barPeriod_);
       }
       if (marketDataDBType_ != xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.MDDT_MIX.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -53343,7 +53343,7 @@ public final class CoreRpc {
           != other.getEndTimestamp()) return false;
       if (!getUnifiedSymbol()
           .equals(other.getUnifiedSymbol())) return false;
-      if (barCycle_ != other.barCycle_) return false;
+      if (barPeriod_ != other.barPeriod_) return false;
       if (marketDataDBType_ != other.marketDataDBType_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -53368,8 +53368,8 @@ public final class CoreRpc {
           getEndTimestamp());
       hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
       hash = (53 * hash) + getUnifiedSymbol().hashCode();
-      hash = (37 * hash) + BARCYCLE_FIELD_NUMBER;
-      hash = (53 * hash) + barCycle_;
+      hash = (37 * hash) + BARPERIOD_FIELD_NUMBER;
+      hash = (53 * hash) + barPeriod_;
       hash = (37 * hash) + MARKETDATADBTYPE_FIELD_NUMBER;
       hash = (53 * hash) + marketDataDBType_;
       hash = (29 * hash) + unknownFields.hashCode();
@@ -53469,7 +53469,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle,MarketDataDBTypeEnum marketDataDBType) 
+     * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListReq}
@@ -53521,7 +53521,7 @@ public final class CoreRpc {
 
         unifiedSymbol_ = "";
 
-        barCycle_ = 0;
+        barPeriod_ = 0;
 
         marketDataDBType_ = 0;
 
@@ -53559,7 +53559,7 @@ public final class CoreRpc {
         result.startTimestamp_ = startTimestamp_;
         result.endTimestamp_ = endTimestamp_;
         result.unifiedSymbol_ = unifiedSymbol_;
-        result.barCycle_ = barCycle_;
+        result.barPeriod_ = barPeriod_;
         result.marketDataDBType_ = marketDataDBType_;
         onBuilt();
         return result;
@@ -53622,8 +53622,8 @@ public final class CoreRpc {
           unifiedSymbol_ = other.unifiedSymbol_;
           onChanged();
         }
-        if (other.barCycle_ != 0) {
-          setBarCycleValue(other.getBarCycleValue());
+        if (other.barPeriod_ != 0) {
+          setBarPeriodValue(other.getBarPeriodValue());
         }
         if (other.marketDataDBType_ != 0) {
           setMarketDataDBTypeValue(other.getMarketDataDBTypeValue());
@@ -53914,56 +53914,56 @@ public final class CoreRpc {
         return this;
       }
 
-      private int barCycle_ = 0;
+      private int barPeriod_ = 0;
       /**
-       * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-       * @return The enum numeric value on the wire for barCycle.
+       * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+       * @return The enum numeric value on the wire for barPeriod.
        */
-      @java.lang.Override public int getBarCycleValue() {
-        return barCycle_;
+      @java.lang.Override public int getBarPeriodValue() {
+        return barPeriod_;
       }
       /**
-       * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-       * @param value The enum numeric value on the wire for barCycle to set.
+       * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+       * @param value The enum numeric value on the wire for barPeriod to set.
        * @return This builder for chaining.
        */
-      public Builder setBarCycleValue(int value) {
+      public Builder setBarPeriodValue(int value) {
         
-        barCycle_ = value;
+        barPeriod_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-       * @return The barCycle.
+       * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+       * @return The barPeriod.
        */
       @java.lang.Override
-      public xyz.redtorch.pb.CoreEnum.BarCycleEnum getBarCycle() {
+      public xyz.redtorch.pb.CoreEnum.BarPeriodEnum getBarPeriod() {
         @SuppressWarnings("deprecation")
-        xyz.redtorch.pb.CoreEnum.BarCycleEnum result = xyz.redtorch.pb.CoreEnum.BarCycleEnum.valueOf(barCycle_);
-        return result == null ? xyz.redtorch.pb.CoreEnum.BarCycleEnum.UNRECOGNIZED : result;
+        xyz.redtorch.pb.CoreEnum.BarPeriodEnum result = xyz.redtorch.pb.CoreEnum.BarPeriodEnum.valueOf(barPeriod_);
+        return result == null ? xyz.redtorch.pb.CoreEnum.BarPeriodEnum.UNRECOGNIZED : result;
       }
       /**
-       * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
-       * @param value The barCycle to set.
+       * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
+       * @param value The barPeriod to set.
        * @return This builder for chaining.
        */
-      public Builder setBarCycle(xyz.redtorch.pb.CoreEnum.BarCycleEnum value) {
+      public Builder setBarPeriod(xyz.redtorch.pb.CoreEnum.BarPeriodEnum value) {
         if (value == null) {
           throw new NullPointerException();
         }
         
-        barCycle_ = value.getNumber();
+        barPeriod_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.BarCycleEnum barCycle = 5;</code>
+       * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
        * @return This builder for chaining.
        */
-      public Builder clearBarCycle() {
+      public Builder clearBarPeriod() {
         
-        barCycle_ = 0;
+        barPeriod_ = 0;
         onChanged();
         return this;
       }
@@ -59092,16 +59092,16 @@ public final class CoreRpc {
     int getOriginalRpcId();
 
     /**
-     * <code>string originalReqId = 2;</code>
-     * @return The originalReqId.
+     * <code>string originalTransactionId = 2;</code>
+     * @return The originalTransactionId.
      */
-    java.lang.String getOriginalReqId();
+    java.lang.String getOriginalTransactionId();
     /**
-     * <code>string originalReqId = 2;</code>
-     * @return The bytes for originalReqId.
+     * <code>string originalTransactionId = 2;</code>
+     * @return The bytes for originalTransactionId.
      */
     com.google.protobuf.ByteString
-        getOriginalReqIdBytes();
+        getOriginalTransactionIdBytes();
 
     /**
      * <code>fixed64 originalTimestamp = 3;</code>
@@ -59138,7 +59138,7 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcExceptionRsp() {
-      originalReqId_ = "";
+      originalTransactionId_ = "";
       info_ = "";
     }
 
@@ -59180,7 +59180,7 @@ public final class CoreRpc {
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              originalReqId_ = s;
+              originalTransactionId_ = s;
               break;
             }
             case 25: {
@@ -59237,38 +59237,38 @@ public final class CoreRpc {
       return originalRpcId_;
     }
 
-    public static final int ORIGINALREQID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object originalReqId_;
+    public static final int ORIGINALTRANSACTIONID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object originalTransactionId_;
     /**
-     * <code>string originalReqId = 2;</code>
-     * @return The originalReqId.
+     * <code>string originalTransactionId = 2;</code>
+     * @return The originalTransactionId.
      */
     @java.lang.Override
-    public java.lang.String getOriginalReqId() {
-      java.lang.Object ref = originalReqId_;
+    public java.lang.String getOriginalTransactionId() {
+      java.lang.Object ref = originalTransactionId_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        originalReqId_ = s;
+        originalTransactionId_ = s;
         return s;
       }
     }
     /**
-     * <code>string originalReqId = 2;</code>
-     * @return The bytes for originalReqId.
+     * <code>string originalTransactionId = 2;</code>
+     * @return The bytes for originalTransactionId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getOriginalReqIdBytes() {
-      java.lang.Object ref = originalReqId_;
+        getOriginalTransactionIdBytes() {
+      java.lang.Object ref = originalTransactionId_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        originalReqId_ = b;
+        originalTransactionId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -59341,8 +59341,8 @@ public final class CoreRpc {
       if (originalRpcId_ != 0) {
         output.writeFixed32(1, originalRpcId_);
       }
-      if (!getOriginalReqIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, originalReqId_);
+      if (!getOriginalTransactionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, originalTransactionId_);
       }
       if (originalTimestamp_ != 0L) {
         output.writeFixed64(3, originalTimestamp_);
@@ -59363,8 +59363,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(1, originalRpcId_);
       }
-      if (!getOriginalReqIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, originalReqId_);
+      if (!getOriginalTransactionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, originalTransactionId_);
       }
       if (originalTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -59390,8 +59390,8 @@ public final class CoreRpc {
 
       if (getOriginalRpcId()
           != other.getOriginalRpcId()) return false;
-      if (!getOriginalReqId()
-          .equals(other.getOriginalReqId())) return false;
+      if (!getOriginalTransactionId()
+          .equals(other.getOriginalTransactionId())) return false;
       if (getOriginalTimestamp()
           != other.getOriginalTimestamp()) return false;
       if (!getInfo()
@@ -59409,8 +59409,8 @@ public final class CoreRpc {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ORIGINALRPCID_FIELD_NUMBER;
       hash = (53 * hash) + getOriginalRpcId();
-      hash = (37 * hash) + ORIGINALREQID_FIELD_NUMBER;
-      hash = (53 * hash) + getOriginalReqId().hashCode();
+      hash = (37 * hash) + ORIGINALTRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getOriginalTransactionId().hashCode();
       hash = (37 * hash) + ORIGINALTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getOriginalTimestamp());
@@ -59555,7 +59555,7 @@ public final class CoreRpc {
         super.clear();
         originalRpcId_ = 0;
 
-        originalReqId_ = "";
+        originalTransactionId_ = "";
 
         originalTimestamp_ = 0L;
 
@@ -59588,7 +59588,7 @@ public final class CoreRpc {
       public xyz.redtorch.pb.CoreRpc.RpcExceptionRsp buildPartial() {
         xyz.redtorch.pb.CoreRpc.RpcExceptionRsp result = new xyz.redtorch.pb.CoreRpc.RpcExceptionRsp(this);
         result.originalRpcId_ = originalRpcId_;
-        result.originalReqId_ = originalReqId_;
+        result.originalTransactionId_ = originalTransactionId_;
         result.originalTimestamp_ = originalTimestamp_;
         result.info_ = info_;
         onBuilt();
@@ -59642,8 +59642,8 @@ public final class CoreRpc {
         if (other.getOriginalRpcId() != 0) {
           setOriginalRpcId(other.getOriginalRpcId());
         }
-        if (!other.getOriginalReqId().isEmpty()) {
-          originalReqId_ = other.originalReqId_;
+        if (!other.getOriginalTransactionId().isEmpty()) {
+          originalTransactionId_ = other.originalTransactionId_;
           onChanged();
         }
         if (other.getOriginalTimestamp() != 0L) {
@@ -59713,78 +59713,78 @@ public final class CoreRpc {
         return this;
       }
 
-      private java.lang.Object originalReqId_ = "";
+      private java.lang.Object originalTransactionId_ = "";
       /**
-       * <code>string originalReqId = 2;</code>
-       * @return The originalReqId.
+       * <code>string originalTransactionId = 2;</code>
+       * @return The originalTransactionId.
        */
-      public java.lang.String getOriginalReqId() {
-        java.lang.Object ref = originalReqId_;
+      public java.lang.String getOriginalTransactionId() {
+        java.lang.Object ref = originalTransactionId_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          originalReqId_ = s;
+          originalTransactionId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string originalReqId = 2;</code>
-       * @return The bytes for originalReqId.
+       * <code>string originalTransactionId = 2;</code>
+       * @return The bytes for originalTransactionId.
        */
       public com.google.protobuf.ByteString
-          getOriginalReqIdBytes() {
-        java.lang.Object ref = originalReqId_;
+          getOriginalTransactionIdBytes() {
+        java.lang.Object ref = originalTransactionId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          originalReqId_ = b;
+          originalTransactionId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string originalReqId = 2;</code>
-       * @param value The originalReqId to set.
+       * <code>string originalTransactionId = 2;</code>
+       * @param value The originalTransactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setOriginalReqId(
+      public Builder setOriginalTransactionId(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        originalReqId_ = value;
+        originalTransactionId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string originalReqId = 2;</code>
+       * <code>string originalTransactionId = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearOriginalReqId() {
+      public Builder clearOriginalTransactionId() {
         
-        originalReqId_ = getDefaultInstance().getOriginalReqId();
+        originalTransactionId_ = getDefaultInstance().getOriginalTransactionId();
         onChanged();
         return this;
       }
       /**
-       * <code>string originalReqId = 2;</code>
-       * @param value The bytes for originalReqId to set.
+       * <code>string originalTransactionId = 2;</code>
+       * @param value The bytes for originalTransactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setOriginalReqIdBytes(
+      public Builder setOriginalTransactionIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        originalReqId_ = value;
+        originalTransactionId_ = value;
         onChanged();
         return this;
       }
@@ -69757,120 +69757,120 @@ public final class CoreRpc {
       "b.CommonReqField\"q\n\021RpcGetTickListRsp\0222\n" +
       "\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.Commo" +
       "nRspField\022(\n\004tick\030\002 \003(\0132\032.xyz.redtorch.p" +
-      "b.TickField\"\201\002\n\024RpcQueryDBBarListReq\0222\n\t" +
+      "b.TickField\"\203\002\n\024RpcQueryDBBarListReq\0222\n\t" +
       "commonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Common" +
       "ReqField\022\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endT" +
-      "imestamp\030\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\022/\n" +
-      "\010barCycle\030\005 \001(\0162\035.xyz.redtorch.pb.BarCyc" +
-      "leEnum\022?\n\020marketDataDBType\030\006 \001(\0162%.xyz.r" +
-      "edtorch.pb.MarketDataDBTypeEnum\"r\n\024RpcQu" +
-      "eryDBBarListRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz" +
-      ".redtorch.pb.CommonRspField\022&\n\003bar\030\002 \003(\013" +
-      "2\031.xyz.redtorch.pb.BarField\"\321\001\n\025RpcQuery" +
-      "DBTickListReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.r" +
-      "edtorch.pb.CommonReqField\022\026\n\016startTimest" +
-      "amp\030\002 \001(\006\022\024\n\014endTimestamp\030\003 \001(\006\022\025\n\runifi" +
-      "edSymbol\030\004 \001(\t\022?\n\020marketDataDBType\030\005 \001(\016" +
-      "2%.xyz.redtorch.pb.MarketDataDBTypeEnum\"" +
-      "u\n\025RpcQueryDBTickListRsp\0222\n\tcommonRsp\030\001 " +
-      "\001(\0132\037.xyz.redtorch.pb.CommonRspField\022(\n\004" +
-      "tick\030\002 \003(\0132\032.xyz.redtorch.pb.TickField\"\243" +
-      "\001\n\030RpcQueryVolumeBarListReq\0222\n\tcommonReq" +
-      "\030\001 \001(\0132\037.xyz.redtorch.pb.CommonReqField\022" +
-      "\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endTimestamp\030" +
-      "\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\022\016\n\006volume\030\005" +
-      " \001(\007\"v\n\030RpcQueryVolumeBarListRsp\0222\n\tcomm" +
-      "onRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonRspF" +
-      "ield\022&\n\003bar\030\002 \003(\0132\031.xyz.redtorch.pb.BarF" +
-      "ield\"h\n\017RpcExceptionRsp\022\025\n\roriginalRpcId" +
-      "\030\001 \001(\007\022\025\n\roriginalReqId\030\002 \001(\t\022\031\n\021origina" +
-      "lTimestamp\030\003 \001(\006\022\014\n\004info\030\004 \001(\t\"9\n\013RpcOrd" +
-      "erRtn\022*\n\005order\030\001 \001(\0132\033.xyz.redtorch.pb.O" +
-      "rderField\"9\n\013RpcTradeRtn\022*\n\005trade\030\001 \001(\0132" +
-      "\033.xyz.redtorch.pb.TradeField\"B\n\016RpcContr" +
-      "actRtn\0220\n\010contract\030\001 \001(\0132\036.xyz.redtorch." +
-      "pb.ContractField\"B\n\016RpcPositionRtn\0220\n\010po" +
-      "sition\030\001 \001(\0132\036.xyz.redtorch.pb.PositionF" +
-      "ield\"?\n\rRpcAccountRtn\022.\n\007account\030\001 \001(\0132\035" +
-      ".xyz.redtorch.pb.AccountField\"6\n\nRpcTick" +
-      "Rtn\022(\n\004tick\030\001 \001(\0132\032.xyz.redtorch.pb.Tick" +
-      "Field\"=\n\017RpcOrderListRtn\022*\n\005order\030\001 \003(\0132" +
-      "\033.xyz.redtorch.pb.OrderField\"=\n\017RpcTrade" +
-      "ListRtn\022*\n\005trade\030\001 \003(\0132\033.xyz.redtorch.pb" +
-      ".TradeField\"F\n\022RpcContractListRtn\0220\n\010con" +
-      "tract\030\001 \003(\0132\036.xyz.redtorch.pb.ContractFi" +
-      "eld\"F\n\022RpcPositionListRtn\0220\n\010position\030\001 " +
-      "\003(\0132\036.xyz.redtorch.pb.PositionField\"C\n\021R" +
-      "pcAccountListRtn\022.\n\007account\030\001 \003(\0132\035.xyz." +
-      "redtorch.pb.AccountField\":\n\016RpcTickListR" +
-      "tn\022(\n\004tick\030\001 \003(\0132\032.xyz.redtorch.pb.TickF" +
-      "ield\"<\n\014RpcNoticeRtn\022,\n\006notice\030\001 \001(\0132\034.x" +
-      "yz.redtorch.pb.NoticeField*\233\024\n\005RpcId\022\022\n\016" +
-      "UNKNOWN_RPC_ID\020\000\022\021\n\rSUBSCRIBE_REQ\020\001\022\021\n\rS" +
-      "UBSCRIBE_RSP\020\002\022\023\n\017UNSUBSCRIBE_REQ\020\003\022\023\n\017U" +
-      "NSUBSCRIBE_RSP\020\004\022\024\n\020SUBMIT_ORDER_REQ\020\005\022\024" +
-      "\n\020SUBMIT_ORDER_RSP\020\006\022\024\n\020CANCEL_ORDER_REQ" +
-      "\020\007\022\024\n\020CANCEL_ORDER_RSP\020\010\022\027\n\023SEARCH_CONTR" +
-      "ACT_REQ\020\t\022\027\n\023SEARCH_CONTRACT_RSP\020\n\022\026\n\022GE" +
-      "T_ORDER_LIST_REQ\020\013\022\026\n\022GET_ORDER_LIST_RSP" +
-      "\020\014\022\036\n\032GET_WORKING_ORDER_LIST_REQ\020\r\022\036\n\032GE" +
-      "T_WORKING_ORDER_LIST_RSP\020\016\022\037\n\033QUERY_ORDE" +
-      "R_BY_ORDER_ID_REQ\020\017\022\037\n\033QUERY_ORDER_BY_OR" +
-      "DER_ID_RSP\020\020\022&\n\"QUERY_ORDER_BY_ORIGIN_OR" +
-      "DER_ID_REQ\020\021\022&\n\"QUERY_ORDER_BY_ORIGIN_OR" +
-      "DER_ID_RSP\020\022\022&\n\"QUERY_ORDER_LIST_BY_ACCO" +
-      "UNT_ID_REQ\020\023\022&\n\"QUERY_ORDER_LIST_BY_ACCO" +
-      "UNT_ID_RSP\020\024\022*\n&QUERY_ORDER_LIST_BY_UNIF" +
-      "IED_SYMBOL_REQ\020\025\022*\n&QUERY_ORDER_LIST_BY_" +
-      "UNIFIED_SYMBOL_RSP\020\026\022\026\n\022GET_TRADE_LIST_R" +
-      "EQ\020\027\022\026\n\022GET_TRADE_LIST_RSP\020\030\022\037\n\033QUERY_TR" +
-      "ADE_BY_TRADE_ID_REQ\020\031\022\037\n\033QUERY_TRADE_BY_" +
-      "TRADE_ID_RSP\020\032\022*\n&QUERY_TRADE_LIST_BY_UN" +
-      "IFIED_SYMBOL_REQ\020\033\022*\n&QUERY_TRADE_LIST_B" +
-      "Y_UNIFIED_SYMBOL_RSP\020\034\022&\n\"QUERY_TRADE_LI" +
-      "ST_BY_ACCOUNT_ID_REQ\020\035\022&\n\"QUERY_TRADE_LI" +
-      "ST_BY_ACCOUNT_ID_RSP\020\036\022$\n QUERY_TRADE_LI" +
-      "ST_BY_ORDER_ID_REQ\020\037\022$\n QUERY_TRADE_LIST" +
-      "_BY_ORDER_ID_RSP\020 \022+\n\'QUERY_TRADE_LIST_B" +
-      "Y_ORIGIN_ORDER_ID_REQ\020!\022+\n\'QUERY_TRADE_L" +
-      "IST_BY_ORIGIN_ORDER_ID_RSP\020\"\022\031\n\025GET_POSI" +
-      "TION_LIST_REQ\020#\022\031\n\025GET_POSITION_LIST_RSP" +
-      "\020$\022%\n!QUERY_POSITION_BY_POSITION_ID_REQ\020" +
-      "%\022%\n!QUERY_POSITION_BY_POSITION_ID_RSP\020&" +
-      "\022)\n%QUERY_POSITION_LIST_BY_ACCOUNT_ID_RE" +
-      "Q\020\'\022)\n%QUERY_POSITION_LIST_BY_ACCOUNT_ID" +
-      "_RSP\020(\022-\n)QUERY_POSITION_LIST_BY_UNIFIED" +
-      "_SYMBOL_REQ\020)\022-\n)QUERY_POSITION_LIST_BY_" +
-      "UNIFIED_SYMBOL_RSP\020*\022\030\n\024GET_ACCOUNT_LIST" +
-      "_REQ\020+\022\030\n\024GET_ACCOUNT_LIST_RSP\020,\022#\n\037QUER" +
-      "Y_ACCOUNT_BY_ACCOUNT_ID_REQ\020-\022#\n\037QUERY_A" +
-      "CCOUNT_BY_ACCOUNT_ID_RSP\020.\022*\n&QUERY_ACCO" +
-      "UNT_LIST_BY_ACCOUNT_CODE_REQ\020/\022*\n&QUERY_" +
-      "ACCOUNT_LIST_BY_ACCOUNT_CODE_RSP\0200\022\031\n\025GE" +
-      "T_CONTRACT_LIST_REQ\0201\022\031\n\025GET_CONTRACT_LI" +
-      "ST_RSP\0202\022%\n!QUERY_CONTRACT_BY_CONTRACT_I" +
-      "D_REQ\0203\022%\n!QUERY_CONTRACT_BY_CONTRACT_ID" +
-      "_RSP\0204\022-\n)QUERY_CONTRACT_LIST_BY_UNIFIED" +
-      "_SYMBOL_REQ\0205\022-\n)QUERY_CONTRACT_LIST_BY_" +
-      "UNIFIED_SYMBOL_RSP\0206\022)\n%QUERY_CONTRACT_L" +
-      "IST_BY_GATEWAY_ID_REQ\0207\022)\n%QUERY_CONTRAC" +
-      "T_LIST_BY_GATEWAY_ID_RSP\0208\022$\n SYNC_SLAVE" +
-      "_NODE_RUNTIME_DATA_REQ\0209\022$\n SYNC_SLAVE_N" +
-      "ODE_RUNTIME_DATA_RSP\020:\022\035\n\031GET_MIX_CONTRA" +
-      "CT_LIST_REQ\020;\022\035\n\031GET_MIX_CONTRACT_LIST_R" +
-      "SP\020<\022\025\n\021GET_TICK_LIST_REQ\020=\022\025\n\021GET_TICK_" +
-      "LIST_RSP\020>\022\031\n\025QUERY_DB_BAR_LIST_REQ\020?\022\031\n" +
-      "\025QUERY_DB_BAR_LIST_RSP\020@\022\032\n\026QUERY_DB_TIC" +
-      "K_LIST_REQ\020A\022\032\n\026QUERY_DB_TICK_LIST_RSP\020B" +
-      "\022\035\n\031QUERY_VOLUME_BAR_LIST_REQ\020C\022\035\n\031QUERY" +
-      "_VOLUME_BAR_LIST_RSP\020D\022\023\n\rEXCEPTION_RSP\020" +
-      "\277\204=\022\016\n\tORDER_RTN\020\351\007\022\016\n\tTRADE_RTN\020\352\007\022\021\n\014C" +
-      "ONTRACT_RTN\020\353\007\022\021\n\014POSITION_RTN\020\354\007\022\020\n\013ACC" +
-      "OUNT_RTN\020\355\007\022\r\n\010TICK_RTN\020\356\007\022\023\n\016ORDER_LIST" +
-      "_RTN\020\357\007\022\023\n\016TRADE_LIST_RTN\020\360\007\022\026\n\021CONTRACT" +
-      "_LIST_RTN\020\361\007\022\026\n\021POSITION_LIST_RTN\020\362\007\022\025\n\020" +
-      "ACCOUNT_LIST_RTN\020\363\007\022\022\n\rTICK_LIST_RTN\020\364\007\022" +
-      "\017\n\nNOTICE_RTN\020\365\007b\006proto3"
+      "imestamp\030\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\0221\n" +
+      "\tbarPeriod\030\005 \001(\0162\036.xyz.redtorch.pb.BarPe" +
+      "riodEnum\022?\n\020marketDataDBType\030\006 \001(\0162%.xyz" +
+      ".redtorch.pb.MarketDataDBTypeEnum\"r\n\024Rpc" +
+      "QueryDBBarListRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.x" +
+      "yz.redtorch.pb.CommonRspField\022&\n\003bar\030\002 \003" +
+      "(\0132\031.xyz.redtorch.pb.BarField\"\321\001\n\025RpcQue" +
+      "ryDBTickListReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz" +
+      ".redtorch.pb.CommonReqField\022\026\n\016startTime" +
+      "stamp\030\002 \001(\006\022\024\n\014endTimestamp\030\003 \001(\006\022\025\n\runi" +
+      "fiedSymbol\030\004 \001(\t\022?\n\020marketDataDBType\030\005 \001" +
+      "(\0162%.xyz.redtorch.pb.MarketDataDBTypeEnu" +
+      "m\"u\n\025RpcQueryDBTickListRsp\0222\n\tcommonRsp\030" +
+      "\001 \001(\0132\037.xyz.redtorch.pb.CommonRspField\022(" +
+      "\n\004tick\030\002 \003(\0132\032.xyz.redtorch.pb.TickField" +
+      "\"\243\001\n\030RpcQueryVolumeBarListReq\0222\n\tcommonR" +
+      "eq\030\001 \001(\0132\037.xyz.redtorch.pb.CommonReqFiel" +
+      "d\022\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endTimestam" +
+      "p\030\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\022\016\n\006volume" +
+      "\030\005 \001(\007\"v\n\030RpcQueryVolumeBarListRsp\0222\n\tco" +
+      "mmonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonRs" +
+      "pField\022&\n\003bar\030\002 \003(\0132\031.xyz.redtorch.pb.Ba" +
+      "rField\"p\n\017RpcExceptionRsp\022\025\n\roriginalRpc" +
+      "Id\030\001 \001(\007\022\035\n\025originalTransactionId\030\002 \001(\t\022" +
+      "\031\n\021originalTimestamp\030\003 \001(\006\022\014\n\004info\030\004 \001(\t" +
+      "\"9\n\013RpcOrderRtn\022*\n\005order\030\001 \001(\0132\033.xyz.red" +
+      "torch.pb.OrderField\"9\n\013RpcTradeRtn\022*\n\005tr" +
+      "ade\030\001 \001(\0132\033.xyz.redtorch.pb.TradeField\"B" +
+      "\n\016RpcContractRtn\0220\n\010contract\030\001 \001(\0132\036.xyz" +
+      ".redtorch.pb.ContractField\"B\n\016RpcPositio" +
+      "nRtn\0220\n\010position\030\001 \001(\0132\036.xyz.redtorch.pb" +
+      ".PositionField\"?\n\rRpcAccountRtn\022.\n\007accou" +
+      "nt\030\001 \001(\0132\035.xyz.redtorch.pb.AccountField\"" +
+      "6\n\nRpcTickRtn\022(\n\004tick\030\001 \001(\0132\032.xyz.redtor" +
+      "ch.pb.TickField\"=\n\017RpcOrderListRtn\022*\n\005or" +
+      "der\030\001 \003(\0132\033.xyz.redtorch.pb.OrderField\"=" +
+      "\n\017RpcTradeListRtn\022*\n\005trade\030\001 \003(\0132\033.xyz.r" +
+      "edtorch.pb.TradeField\"F\n\022RpcContractList" +
+      "Rtn\0220\n\010contract\030\001 \003(\0132\036.xyz.redtorch.pb." +
+      "ContractField\"F\n\022RpcPositionListRtn\0220\n\010p" +
+      "osition\030\001 \003(\0132\036.xyz.redtorch.pb.Position" +
+      "Field\"C\n\021RpcAccountListRtn\022.\n\007account\030\001 " +
+      "\003(\0132\035.xyz.redtorch.pb.AccountField\":\n\016Rp" +
+      "cTickListRtn\022(\n\004tick\030\001 \003(\0132\032.xyz.redtorc" +
+      "h.pb.TickField\"<\n\014RpcNoticeRtn\022,\n\006notice" +
+      "\030\001 \001(\0132\034.xyz.redtorch.pb.NoticeField*\233\024\n" +
+      "\005RpcId\022\022\n\016UNKNOWN_RPC_ID\020\000\022\021\n\rSUBSCRIBE_" +
+      "REQ\020\001\022\021\n\rSUBSCRIBE_RSP\020\002\022\023\n\017UNSUBSCRIBE_" +
+      "REQ\020\003\022\023\n\017UNSUBSCRIBE_RSP\020\004\022\024\n\020SUBMIT_ORD" +
+      "ER_REQ\020\005\022\024\n\020SUBMIT_ORDER_RSP\020\006\022\024\n\020CANCEL" +
+      "_ORDER_REQ\020\007\022\024\n\020CANCEL_ORDER_RSP\020\010\022\027\n\023SE" +
+      "ARCH_CONTRACT_REQ\020\t\022\027\n\023SEARCH_CONTRACT_R" +
+      "SP\020\n\022\026\n\022GET_ORDER_LIST_REQ\020\013\022\026\n\022GET_ORDE" +
+      "R_LIST_RSP\020\014\022\036\n\032GET_WORKING_ORDER_LIST_R" +
+      "EQ\020\r\022\036\n\032GET_WORKING_ORDER_LIST_RSP\020\016\022\037\n\033" +
+      "QUERY_ORDER_BY_ORDER_ID_REQ\020\017\022\037\n\033QUERY_O" +
+      "RDER_BY_ORDER_ID_RSP\020\020\022&\n\"QUERY_ORDER_BY" +
+      "_ORIGIN_ORDER_ID_REQ\020\021\022&\n\"QUERY_ORDER_BY" +
+      "_ORIGIN_ORDER_ID_RSP\020\022\022&\n\"QUERY_ORDER_LI" +
+      "ST_BY_ACCOUNT_ID_REQ\020\023\022&\n\"QUERY_ORDER_LI" +
+      "ST_BY_ACCOUNT_ID_RSP\020\024\022*\n&QUERY_ORDER_LI" +
+      "ST_BY_UNIFIED_SYMBOL_REQ\020\025\022*\n&QUERY_ORDE" +
+      "R_LIST_BY_UNIFIED_SYMBOL_RSP\020\026\022\026\n\022GET_TR" +
+      "ADE_LIST_REQ\020\027\022\026\n\022GET_TRADE_LIST_RSP\020\030\022\037" +
+      "\n\033QUERY_TRADE_BY_TRADE_ID_REQ\020\031\022\037\n\033QUERY" +
+      "_TRADE_BY_TRADE_ID_RSP\020\032\022*\n&QUERY_TRADE_" +
+      "LIST_BY_UNIFIED_SYMBOL_REQ\020\033\022*\n&QUERY_TR" +
+      "ADE_LIST_BY_UNIFIED_SYMBOL_RSP\020\034\022&\n\"QUER" +
+      "Y_TRADE_LIST_BY_ACCOUNT_ID_REQ\020\035\022&\n\"QUER" +
+      "Y_TRADE_LIST_BY_ACCOUNT_ID_RSP\020\036\022$\n QUER" +
+      "Y_TRADE_LIST_BY_ORDER_ID_REQ\020\037\022$\n QUERY_" +
+      "TRADE_LIST_BY_ORDER_ID_RSP\020 \022+\n\'QUERY_TR" +
+      "ADE_LIST_BY_ORIGIN_ORDER_ID_REQ\020!\022+\n\'QUE" +
+      "RY_TRADE_LIST_BY_ORIGIN_ORDER_ID_RSP\020\"\022\031" +
+      "\n\025GET_POSITION_LIST_REQ\020#\022\031\n\025GET_POSITIO" +
+      "N_LIST_RSP\020$\022%\n!QUERY_POSITION_BY_POSITI" +
+      "ON_ID_REQ\020%\022%\n!QUERY_POSITION_BY_POSITIO" +
+      "N_ID_RSP\020&\022)\n%QUERY_POSITION_LIST_BY_ACC" +
+      "OUNT_ID_REQ\020\'\022)\n%QUERY_POSITION_LIST_BY_" +
+      "ACCOUNT_ID_RSP\020(\022-\n)QUERY_POSITION_LIST_" +
+      "BY_UNIFIED_SYMBOL_REQ\020)\022-\n)QUERY_POSITIO" +
+      "N_LIST_BY_UNIFIED_SYMBOL_RSP\020*\022\030\n\024GET_AC" +
+      "COUNT_LIST_REQ\020+\022\030\n\024GET_ACCOUNT_LIST_RSP" +
+      "\020,\022#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_REQ\020-\022" +
+      "#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_RSP\020.\022*\n&" +
+      "QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_REQ\020/" +
+      "\022*\n&QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_R" +
+      "SP\0200\022\031\n\025GET_CONTRACT_LIST_REQ\0201\022\031\n\025GET_C" +
+      "ONTRACT_LIST_RSP\0202\022%\n!QUERY_CONTRACT_BY_" +
+      "CONTRACT_ID_REQ\0203\022%\n!QUERY_CONTRACT_BY_C" +
+      "ONTRACT_ID_RSP\0204\022-\n)QUERY_CONTRACT_LIST_" +
+      "BY_UNIFIED_SYMBOL_REQ\0205\022-\n)QUERY_CONTRAC" +
+      "T_LIST_BY_UNIFIED_SYMBOL_RSP\0206\022)\n%QUERY_" +
+      "CONTRACT_LIST_BY_GATEWAY_ID_REQ\0207\022)\n%QUE" +
+      "RY_CONTRACT_LIST_BY_GATEWAY_ID_RSP\0208\022$\n " +
+      "SYNC_SLAVE_NODE_RUNTIME_DATA_REQ\0209\022$\n SY" +
+      "NC_SLAVE_NODE_RUNTIME_DATA_RSP\020:\022\035\n\031GET_" +
+      "MIX_CONTRACT_LIST_REQ\020;\022\035\n\031GET_MIX_CONTR" +
+      "ACT_LIST_RSP\020<\022\025\n\021GET_TICK_LIST_REQ\020=\022\025\n" +
+      "\021GET_TICK_LIST_RSP\020>\022\031\n\025QUERY_DB_BAR_LIS" +
+      "T_REQ\020?\022\031\n\025QUERY_DB_BAR_LIST_RSP\020@\022\032\n\026QU" +
+      "ERY_DB_TICK_LIST_REQ\020A\022\032\n\026QUERY_DB_TICK_" +
+      "LIST_RSP\020B\022\035\n\031QUERY_VOLUME_BAR_LIST_REQ\020" +
+      "C\022\035\n\031QUERY_VOLUME_BAR_LIST_RSP\020D\022\023\n\rEXCE" +
+      "PTION_RSP\020\277\204=\022\016\n\tORDER_RTN\020\351\007\022\016\n\tTRADE_R" +
+      "TN\020\352\007\022\021\n\014CONTRACT_RTN\020\353\007\022\021\n\014POSITION_RTN" +
+      "\020\354\007\022\020\n\013ACCOUNT_RTN\020\355\007\022\r\n\010TICK_RTN\020\356\007\022\023\n\016" +
+      "ORDER_LIST_RTN\020\357\007\022\023\n\016TRADE_LIST_RTN\020\360\007\022\026" +
+      "\n\021CONTRACT_LIST_RTN\020\361\007\022\026\n\021POSITION_LIST_" +
+      "RTN\020\362\007\022\025\n\020ACCOUNT_LIST_RTN\020\363\007\022\022\n\rTICK_LI" +
+      "ST_RTN\020\364\007\022\017\n\nNOTICE_RTN\020\365\007b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -70255,7 +70255,7 @@ public final class CoreRpc {
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryDBBarListReq_descriptor,
-        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UnifiedSymbol", "BarCycle", "MarketDataDBType", });
+        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UnifiedSymbol", "BarPeriod", "MarketDataDBType", });
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListRsp_descriptor =
       getDescriptor().getMessageTypes().get(63);
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListRsp_fieldAccessorTable = new
@@ -70291,7 +70291,7 @@ public final class CoreRpc {
     internal_static_xyz_redtorch_pb_RpcExceptionRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcExceptionRsp_descriptor,
-        new java.lang.String[] { "OriginalRpcId", "OriginalReqId", "OriginalTimestamp", "Info", });
+        new java.lang.String[] { "OriginalRpcId", "OriginalTransactionId", "OriginalTimestamp", "Info", });
     internal_static_xyz_redtorch_pb_RpcOrderRtn_descriptor =
       getDescriptor().getMessageTypes().get(69);
     internal_static_xyz_redtorch_pb_RpcOrderRtn_fieldAccessorTable = new

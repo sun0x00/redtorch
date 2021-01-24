@@ -1,86 +1,57 @@
 package xyz.redtorch.gateway.ctp.x64v6v3v19t1v;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.*;
+import xyz.redtorch.pb.CoreEnum.*;
+import xyz.redtorch.pb.CoreField.*;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.*;
-import xyz.redtorch.pb.CoreEnum.CommonStatusEnum;
-import xyz.redtorch.pb.CoreEnum.ContingentConditionEnum;
-import xyz.redtorch.pb.CoreEnum.CurrencyEnum;
-import xyz.redtorch.pb.CoreEnum.DirectionEnum;
-import xyz.redtorch.pb.CoreEnum.ExchangeEnum;
-import xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum;
-import xyz.redtorch.pb.CoreEnum.HedgeFlagEnum;
-import xyz.redtorch.pb.CoreEnum.OffsetFlagEnum;
-import xyz.redtorch.pb.CoreEnum.OptionsTypeEnum;
-import xyz.redtorch.pb.CoreEnum.OrderPriceTypeEnum;
-import xyz.redtorch.pb.CoreEnum.OrderStatusEnum;
-import xyz.redtorch.pb.CoreEnum.OrderSubmitStatusEnum;
-import xyz.redtorch.pb.CoreEnum.PositionDirectionEnum;
-import xyz.redtorch.pb.CoreEnum.PriceSourceEnum;
-import xyz.redtorch.pb.CoreEnum.ProductClassEnum;
-import xyz.redtorch.pb.CoreEnum.TimeConditionEnum;
-import xyz.redtorch.pb.CoreEnum.TradeTypeEnum;
-import xyz.redtorch.pb.CoreEnum.VolumeConditionEnum;
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.CancelOrderReqField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.NoticeField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.SubmitOrderReqField;
-import xyz.redtorch.pb.CoreField.TradeField;
-
 public class TdSpi extends CThostFtdcTraderSpi {
 
-	private static int CONNECTION_STATUS_DISCONNECTED = 0;
-	private static int CONNECTION_STATUS_CONNECTED = 1;
-	private static int CONNECTION_STATUS_CONNECTING = 2;
-	private static int CONNECTION_STATUS_DISCONNECTING = 3;
+	private final static int CONNECTION_STATUS_DISCONNECTED = 0;
+	private final static int CONNECTION_STATUS_CONNECTED = 1;
+	private final static int CONNECTION_STATUS_CONNECTING = 2;
+	private final static int CONNECTION_STATUS_DISCONNECTING = 3;
 
 	private static final Logger logger = LoggerFactory.getLogger(TdSpi.class);
 
-	private CtpGatewayImpl ctpGatewayImpl;
-	private String tdHost;
-	private String tdPort;
-	private String brokerId;
-	private String userId;
-	private String password;
-	private String authCode;
-	private String appId;
-	private String userProductInfo;
-	private String logInfo;
-	private String gatewayId;
+	private final CtpGatewayImpl ctpGatewayImpl;
+	private final String tdHost;
+	private final String tdPort;
+	private final String brokerId;
+	private final String userId;
+	private final String password;
+	private final String authCode;
+	private final String appId;
+	private final String userProductInfo;
+	private final String logInfo;
+	private final String gatewayId;
 
 	private String investorName = "";
 
 	private HashMap<String, PositionField.Builder> positionBuilderMap = new HashMap<>();
 
-	private Map<String, String> orderIdToAdapterOrderIdMap = new ConcurrentHashMap<>(50000);
-	private Map<String, String> orderIdToOrderRefMap = new ConcurrentHashMap<>(50000);
-	private Map<String, String> orderIdToOriginalOrderIdMap = new HashMap<>();
-	private Map<String, String> originalOrderIdToOrderIdMap = new HashMap<>();
+	private final Map<String, String> orderIdToAdapterOrderIdMap = new ConcurrentHashMap<>(50000);
+	private final Map<String, String> orderIdToOrderRefMap = new ConcurrentHashMap<>(50000);
+	private final Map<String, String> orderIdToOriginalOrderIdMap = new HashMap<>();
+	private final Map<String, String> originalOrderIdToOrderIdMap = new HashMap<>();
 
-	private Map<String, String> exchangeIdAndOrderSysIdToOrderIdMap = new ConcurrentHashMap<>(50000);
+	private final Map<String, String> exchangeIdAndOrderSysIdToOrderIdMap = new ConcurrentHashMap<>(50000);
 
-	private Map<String, SubmitOrderReqField> orderIdToSubmitOrderReqMap = new HashMap<>();
-	private Map<String, OrderField> orderIdToOrderMap = new ConcurrentHashMap<>(50000);
+	private final Map<String, SubmitOrderReqField> orderIdToSubmitOrderReqMap = new HashMap<>();
+	private final Map<String, OrderField> orderIdToOrderMap = new ConcurrentHashMap<>(50000);
 
-	private Lock submitOrderLock = new ReentrantLock();
+	private final Lock submitOrderLock = new ReentrantLock();
 
 	private Thread intervalQueryThread;
 
@@ -107,8 +78,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private boolean instrumentQueried = false;
 	private boolean investorNameQueried = false;
 
-	private Random random = new Random();
-	private AtomicInteger reqId = new AtomicInteger(random.nextInt(1800) % (1800 - 200 + 1) + 200); // 操作请求编号
+	private final Random random = new Random();
+	private final AtomicInteger reqId = new AtomicInteger(random.nextInt(1800) % (1800 - 200 + 1) + 200); // 操作请求编号
 	private volatile int orderRef = random.nextInt(1800) % (1800 - 200 + 1) + 200; // 订单编号
 
 	private boolean loginFailed = false; // 是否已经使用错误的信息尝试登录过
@@ -116,8 +87,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	private int frontId = 0; // 前置机编号
 	private int sessionId = 0; // 会话编号
 
-	private List<OrderField.Builder> orderBuilderCacheList = new LinkedList<>(); // 登录起始阶段缓存Order
-	private List<TradeField.Builder> tradeBuilderCacheList = new LinkedList<>(); // 登录起始阶段缓存Trade
+	private final List<OrderField.Builder> orderBuilderCacheList = new LinkedList<>(); // 登录起始阶段缓存Order
+	private final List<TradeField.Builder> tradeBuilderCacheList = new LinkedList<>(); // 登录起始阶段缓存Trade
 
 	private void startIntervalQuery() {
 		if (this.intervalQueryThread != null) {
@@ -136,7 +107,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 
 						if (loginStatus) {
 							queryAccount();
-							Thread.sleep(1250);
+							Thread.sleep(1050);
 							queryPosition();
 							Thread.sleep(1250);
 						} else {
@@ -378,9 +349,9 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		cThostFtdcInputOrderField.setInstrumentID(submitOrderReq.getContract().getSymbol());
 		cThostFtdcInputOrderField.setLimitPrice(submitOrderReq.getPrice());
 		cThostFtdcInputOrderField.setVolumeTotalOriginal(submitOrderReq.getVolume());
-		cThostFtdcInputOrderField.setOrderPriceType(CtpConstant.orderPriceTypeMap.getOrDefault(submitOrderReq.getOrderPriceType(), Character.valueOf('\0')));
-		cThostFtdcInputOrderField.setDirection(CtpConstant.directionMap.getOrDefault(submitOrderReq.getDirection(), Character.valueOf('\0')));
-		cThostFtdcInputOrderField.setCombOffsetFlag(String.valueOf(CtpConstant.offsetFlagMap.getOrDefault(submitOrderReq.getOffsetFlag(), Character.valueOf('\0'))));
+		cThostFtdcInputOrderField.setOrderPriceType(CtpConstant.orderPriceTypeMap.getOrDefault(submitOrderReq.getOrderPriceType(), '\0'));
+		cThostFtdcInputOrderField.setDirection(CtpConstant.directionMap.getOrDefault(submitOrderReq.getDirection(), '\0'));
+		cThostFtdcInputOrderField.setCombOffsetFlag(String.valueOf(CtpConstant.offsetFlagMap.getOrDefault(submitOrderReq.getOffsetFlag(), '\0')));
 		cThostFtdcInputOrderField.setInvestorID(userId);
 		cThostFtdcInputOrderField.setUserID(userId);
 		cThostFtdcInputOrderField.setBrokerID(brokerId);
@@ -391,8 +362,8 @@ public class TdSpi extends CThostFtdcTraderSpi {
 		cThostFtdcInputOrderField.setIsAutoSuspend(submitOrderReq.getAutoSuspend());
 		cThostFtdcInputOrderField.setIsSwapOrder(submitOrderReq.getSwapOrder());
 		cThostFtdcInputOrderField.setMinVolume(submitOrderReq.getMinVolume());
-		cThostFtdcInputOrderField.setTimeCondition(CtpConstant.timeConditionMap.getOrDefault(submitOrderReq.getTimeCondition(), Character.valueOf('\0')));
-		cThostFtdcInputOrderField.setVolumeCondition(CtpConstant.volumeConditionMap.getOrDefault(submitOrderReq.getVolumeCondition(), Character.valueOf('\0')));
+		cThostFtdcInputOrderField.setTimeCondition(CtpConstant.timeConditionMap.getOrDefault(submitOrderReq.getTimeCondition(), '\0'));
+		cThostFtdcInputOrderField.setVolumeCondition(CtpConstant.volumeConditionMap.getOrDefault(submitOrderReq.getVolumeCondition(), '\0'));
 		cThostFtdcInputOrderField.setStopPrice(submitOrderReq.getStopPrice());
 
 		// 部分多线程场景下,如果不加锁,可能会导致自增乱序,因此导致发单失败
@@ -756,7 +727,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				String orderId = gatewayId + "@" + adapterOrderId;
 
 				DirectionEnum direction = CtpConstant.directionMapReverse.getOrDefault(pInputOrder.getDirection(), DirectionEnum.D_Unknown);
-				OffsetFlagEnum offsetflag = CtpConstant.offsetMapReverse.getOrDefault(pInputOrder.getCombOffsetFlag().toCharArray()[0], OffsetFlagEnum.OF_Unkonwn);
+				OffsetFlagEnum offsetflag = CtpConstant.offsetMapReverse.getOrDefault(pInputOrder.getCombOffsetFlag().toCharArray()[0], OffsetFlagEnum.OF_Unknown);
 
 				double price = pInputOrder.getLimitPrice();
 				int totalVolume = pInputOrder.getVolumeTotalOriginal();
@@ -765,14 +736,14 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				OrderStatusEnum orderStatus = OrderStatusEnum.OS_Rejected;
 
 				HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.getOrDefault(pInputOrder.getCombHedgeFlag(), HedgeFlagEnum.HF_Unknown);
-				ContingentConditionEnum contingentCondition = CtpConstant.contingentConditionMapReverse.getOrDefault(pInputOrder.getContingentCondition(), ContingentConditionEnum.CC_Unkonwn);
-				ForceCloseReasonEnum forceCloseReason = CtpConstant.forceCloseReasonMapReverse.getOrDefault(pInputOrder.getForceCloseReason(), ForceCloseReasonEnum.FCR_Unkonwn);
-				TimeConditionEnum timeCondition = CtpConstant.timeConditionMapReverse.getOrDefault(pInputOrder.getTimeCondition(), TimeConditionEnum.TC_Unkonwn);
+				ContingentConditionEnum contingentCondition = CtpConstant.contingentConditionMapReverse.getOrDefault(pInputOrder.getContingentCondition(), ContingentConditionEnum.CC_Unknown);
+				ForceCloseReasonEnum forceCloseReason = CtpConstant.forceCloseReasonMapReverse.getOrDefault(pInputOrder.getForceCloseReason(), ForceCloseReasonEnum.FCR_Unknown);
+				TimeConditionEnum timeCondition = CtpConstant.timeConditionMapReverse.getOrDefault(pInputOrder.getTimeCondition(), TimeConditionEnum.TC_Unknown);
 				String gtdDate = pInputOrder.getGTDDate();
 				int autoSuspend = pInputOrder.getIsAutoSuspend();
 				int userForceClose = pInputOrder.getUserForceClose();
 				int swapOrder = pInputOrder.getIsSwapOrder();
-				VolumeConditionEnum volumeCondition = CtpConstant.volumeConditionMapReverse.getOrDefault(pInputOrder.getVolumeCondition(), VolumeConditionEnum.VC_Unkonwn);
+				VolumeConditionEnum volumeCondition = CtpConstant.volumeConditionMapReverse.getOrDefault(pInputOrder.getVolumeCondition(), VolumeConditionEnum.VC_Unknown);
 				OrderPriceTypeEnum orderPriceType = CtpConstant.orderPriceTypeMapReverse.getOrDefault(pInputOrder.getOrderPriceType(), OrderPriceTypeEnum.OPT_Unknown);
 
 				int minVolume = pInputOrder.getMinVolume();
@@ -957,7 +928,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				// 无法获取币种信息使用特定值
 				String accountId = accountCode + "@CNY@" + gatewayId;
 
-				PositionDirectionEnum direction = CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown);
+				PositionDirectionEnum direction = CtpConstant.positionDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown);
 				HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.get(String.valueOf(pInvestorPosition.getHedgeFlag()));
 				// 获取持仓缓存
 				String positionId = unifiedSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
@@ -969,7 +940,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 					positionBuilder = PositionField.newBuilder();
 					positionBuilderMap.put(positionId, positionBuilder);
 					positionBuilder.setContract(ctpGatewayImpl.contractMap.get(symbol));
-					positionBuilder.setPositionDirection(CtpConstant.posiDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown));
+					positionBuilder.setPositionDirection(CtpConstant.positionDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown));
 					positionBuilder.setPositionId(positionId);
 
 					positionBuilder.setAccountId(accountId);
@@ -996,9 +967,9 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				}
 
 				if (positionBuilder.getPositionDirection() == PositionDirectionEnum.PD_Long) {
-					positionBuilder.setFrozen(pInvestorPosition.getShortFrozen());
+					positionBuilder.setFrozen(positionBuilder.getFrozen() + pInvestorPosition.getShortFrozen());
 				} else {
-					positionBuilder.setFrozen(pInvestorPosition.getLongFrozen());
+					positionBuilder.setFrozen(positionBuilder.getFrozen() + pInvestorPosition.getLongFrozen());
 				}
 
 				if (ExchangeEnum.INE == positionBuilder.getContract().getExchange() || ExchangeEnum.SHFE == positionBuilder.getContract().getExchange()) {
@@ -1402,7 +1373,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			orderIdToAdapterOrderIdMap.put(orderId, adapterOrderId);
 
 			DirectionEnum direction = CtpConstant.directionMapReverse.getOrDefault(pOrder.getDirection(), DirectionEnum.D_Unknown);
-			OffsetFlagEnum offsetFlag = CtpConstant.offsetMapReverse.getOrDefault(pOrder.getCombOffsetFlag().toCharArray()[0], OffsetFlagEnum.OF_Unkonwn);
+			OffsetFlagEnum offsetFlag = CtpConstant.offsetMapReverse.getOrDefault(pOrder.getCombOffsetFlag().toCharArray()[0], OffsetFlagEnum.OF_Unknown);
 
 			double price = pOrder.getLimitPrice();
 
@@ -1420,16 +1391,16 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			String suspendTime = pOrder.getSuspendTime();
 
 			HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.getOrDefault(pOrder.getCombHedgeFlag(), HedgeFlagEnum.HF_Unknown);
-			ContingentConditionEnum contingentCondition = CtpConstant.contingentConditionMapReverse.getOrDefault(pOrder.getContingentCondition(), ContingentConditionEnum.CC_Unkonwn);
-			ForceCloseReasonEnum forceCloseReason = CtpConstant.forceCloseReasonMapReverse.getOrDefault(pOrder.getForceCloseReason(), ForceCloseReasonEnum.FCR_Unkonwn);
-			TimeConditionEnum timeCondition = CtpConstant.timeConditionMapReverse.getOrDefault(pOrder.getTimeCondition(), TimeConditionEnum.TC_Unkonwn);
+			ContingentConditionEnum contingentCondition = CtpConstant.contingentConditionMapReverse.getOrDefault(pOrder.getContingentCondition(), ContingentConditionEnum.CC_Unknown);
+			ForceCloseReasonEnum forceCloseReason = CtpConstant.forceCloseReasonMapReverse.getOrDefault(pOrder.getForceCloseReason(), ForceCloseReasonEnum.FCR_Unknown);
+			TimeConditionEnum timeCondition = CtpConstant.timeConditionMapReverse.getOrDefault(pOrder.getTimeCondition(), TimeConditionEnum.TC_Unknown);
 
 			int userForceClose = pOrder.getUserForceClose();
 			String gtdDate = pOrder.getGTDDate();
 			int autoSuspend = pOrder.getIsAutoSuspend();
 			int swapOrder = pOrder.getIsSwapOrder();
 
-			VolumeConditionEnum volumeCondition = CtpConstant.volumeConditionMapReverse.getOrDefault(pOrder.getVolumeCondition(), VolumeConditionEnum.VC_Unkonwn);
+			VolumeConditionEnum volumeCondition = CtpConstant.volumeConditionMapReverse.getOrDefault(pOrder.getVolumeCondition(), VolumeConditionEnum.VC_Unknown);
 			OrderPriceTypeEnum orderPriceType = CtpConstant.orderPriceTypeMapReverse.getOrDefault(pOrder.getOrderPriceType(), OrderPriceTypeEnum.OPT_Unknown);
 
 			int minVolume = pOrder.getMinVolume();
@@ -1517,15 +1488,15 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			DirectionEnum direction = CtpConstant.directionMapReverse.getOrDefault(pTrade.getDirection(), DirectionEnum.D_Unknown);
 			String adapterTradeId = adapterOrderId + "@" + direction.getValueDescriptor().getName() + "@" + StringUtils.trim(pTrade.getTradeID());
 			String tradeId = gatewayId + "@" + adapterTradeId;
-			OffsetFlagEnum offsetFlag = CtpConstant.offsetMapReverse.getOrDefault(pTrade.getOffsetFlag(), OffsetFlagEnum.OF_Unkonwn);
+			OffsetFlagEnum offsetFlag = CtpConstant.offsetMapReverse.getOrDefault(pTrade.getOffsetFlag(), OffsetFlagEnum.OF_Unknown);
 			double price = pTrade.getPrice();
 			int volume = pTrade.getVolume();
 			String tradeDate = pTrade.getTradeDate();
 			String tradeTime = pTrade.getTradeTime();
 
 			HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.getOrDefault(String.valueOf(pTrade.getHedgeFlag()), HedgeFlagEnum.HF_Unknown);
-			TradeTypeEnum tradeType = CtpConstant.tradeTypeMapReverse.getOrDefault(pTrade.getTradeType(), TradeTypeEnum.TT_Unkonwn);
-			PriceSourceEnum priceSource = CtpConstant.priceSourceMapReverse.getOrDefault(pTrade.getPriceSource(), PriceSourceEnum.PSRC_Unkonwn);
+			TradeTypeEnum tradeType = CtpConstant.tradeTypeMapReverse.getOrDefault(pTrade.getTradeType(), TradeTypeEnum.TT_Unknown);
+			PriceSourceEnum priceSource = CtpConstant.priceSourceMapReverse.getOrDefault(pTrade.getPriceSource(), PriceSourceEnum.PSRC_Unknown);
 
 			String orderLocalId = pTrade.getOrderLocalID();
 			String orderSysId = pTrade.getOrderSysID();

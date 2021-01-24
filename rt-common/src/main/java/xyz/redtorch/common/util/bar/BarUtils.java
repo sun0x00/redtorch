@@ -22,7 +22,7 @@ public class BarUtils {
 		}
 
 		bg.finish();
-
+		
 		return barList;
 
 	}
@@ -38,13 +38,13 @@ public class BarUtils {
 		for (BarField bar1Min : bar1MinList) {
 			bg.updateBar(bar1Min);
 		}
-
+		
 		bg.finish();
-
+		
 		return resultBarList;
 
 	}
-
+	
 	public static List<BarField> generateXSecBar(int xSec, List<TickField> tickList) {
 		List<BarField> resultBarList = new ArrayList<>();
 		XSecBarGenerator bg = new XSecBarGenerator(xSec, new CommonBarCallBack() {
@@ -56,11 +56,28 @@ public class BarUtils {
 		for (TickField tick : tickList) {
 			bg.updateTick(tick);
 		}
-
+		
 		bg.finish();
-
+		
 		return resultBarList;
 
 	}
+	
+	public static List<BarField> generateVolBar(int barVolumeChange, List<TickField> tickList) {
+		List<BarField> resultBarList = new ArrayList<>();
+		VolBarGenerator bg = new VolBarGenerator(barVolumeChange, new CommonBarCallBack() {
+			@Override
+			public void call(BarField bar) {
+				resultBarList.add(bar);
+			}
+		});
+		for (TickField tick : tickList) {
+			bg.updateTick(tick);
+		}
+		
+		bg.finish();
+		
+		return resultBarList;
 
+	}
 }

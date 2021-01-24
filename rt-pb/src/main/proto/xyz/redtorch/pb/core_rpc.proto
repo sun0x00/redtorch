@@ -306,13 +306,13 @@ message RpcGetTickListRsp {
 	CommonRspField commonRsp = 1;
 	repeated TickField tick = 2;
 }
-/* 63 List<BarField> queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarCycleEnum barCycle,MarketDataDBTypeEnum marketDataDBType) */
+/* 63 List<BarField> queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) */
 message RpcQueryDBBarListReq{
 	CommonReqField commonReq = 1;
 	fixed64 startTimestamp = 2;
 	fixed64 endTimestamp = 3;
 	string unifiedSymbol = 4;
-	BarCycleEnum barCycle = 5;
+	BarPeriodEnum barPeriod = 5;
 	MarketDataDBTypeEnum marketDataDBType = 6;
 }
 message RpcQueryDBBarListRsp{
@@ -349,7 +349,7 @@ message RpcQueryVolumeBarListRsp{
 /* 999999 */
 message RpcExceptionRsp {
 	fixed32 originalRpcId = 1;
-	string originalReqId = 2;
+	string originalTransactionId = 2;
 	fixed64 originalTimestamp = 3;
 	string info = 4;
 }

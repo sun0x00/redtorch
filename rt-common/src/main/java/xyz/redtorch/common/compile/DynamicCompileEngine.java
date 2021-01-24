@@ -40,14 +40,15 @@ public class DynamicCompileEngine {
 		try {
 			this.buildClassPath();
 		} catch (IOException e) {
-			logger.error("建立ClassPath错误", e);
+			logger.error("建立ClassPath错误",e);
 		}
 	}
+
 
 	private void buildClassPath() throws IOException {
 		this.classpath = null;
 		if (this.parentClassLoader instanceof URLClassLoader) {
-
+			
 			ClassLoader cl = parentClassLoader;
 			List<String> paths = new ArrayList<String>();
 			while (cl instanceof URLClassLoader) {
@@ -64,7 +65,7 @@ public class DynamicCompileEngine {
 			}
 			StringBuilder sb = new StringBuilder();
 			for (String path : paths) {
-				if (StringUtils.isNoneBlank(path)) {
+				if(StringUtils.isNoneBlank(path)) {
 					sb.append(path).append(File.pathSeparator);
 				}
 			}
@@ -74,8 +75,7 @@ public class DynamicCompileEngine {
 		}
 	}
 
-	public Class<?> javaCodeToClass(String fullClassName, String javaCode, String classPath)
-			throws IllegalAccessException, InstantiationException {
+	public Class<?> javaCodeToClass(String fullClassName, String javaCode, String classPath) throws IllegalAccessException, InstantiationException {
 		// 获取系统编译器
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		// 建立DiagnosticCollector对象
@@ -83,8 +83,7 @@ public class DynamicCompileEngine {
 
 		// 建立用于保存被编译文件名的对象
 		// 每个文件被保存在一个从JavaFileObject继承的类中
-		ClassFileManager fileManager = new ClassFileManager(
-				compiler.getStandardFileManager(diagnosticCollector, null, null));
+		ClassFileManager fileManager = new ClassFileManager(compiler.getStandardFileManager(diagnosticCollector, null, null));
 
 		List<JavaFileObject> jfiles = new ArrayList<>();
 		jfiles.add(new CharSequenceJavaFileObject(fullClassName, javaCode));
@@ -94,16 +93,15 @@ public class DynamicCompileEngine {
 		options.add("-encoding");
 		options.add("UTF-8");
 		options.add("-classpath");
-		if (StringUtils.isBlank(classPath)) {
+		if(StringUtils.isBlank(classPath)) {
 			options.add(this.classpath);
-		} else {
-			options.add(this.classpath + File.pathSeparator + classPath + File.pathSeparator);
+		}else {
+			options.add(this.classpath+File.pathSeparator+classPath+File.pathSeparator);
 		}
 		// 不使用SharedNameTable （jdk1.7自带的软引用，会影响GC的回收，jdk1.9已经解决）
 		options.add("-XDuseUnsharedTable");
 
-		JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnosticCollector, options,
-				null, jfiles);
+		JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnosticCollector, options, null, jfiles);
 
 		// 编译源程序
 		boolean success = compilationTask.call();

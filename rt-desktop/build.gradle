@@ -26,6 +26,11 @@ springBoot {
 	mainClassName = 'xyz.redtorch.desktop.RedTorchApp'
 }
 
+
+bootJar {
+	archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
 dependencies {
 	compile project(':rt-common')
 	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {

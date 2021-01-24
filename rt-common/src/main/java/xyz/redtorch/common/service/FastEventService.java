@@ -44,12 +44,12 @@ public interface FastEventService {
 
 	void emitNotice(NoticeField notice);
 
-	public static enum FastEventType {
+	enum FastEventType {
 		TICK(0), POSITION(1), ACCOUNT(2), CONTRACT(3), TRADE(4), ORDER(5), NOTICE(6), LOG(7);
 
 		private int value;
 
-		private FastEventType(int value) {
+		FastEventType(int value) {
 			this.value = value;
 		}
 
@@ -58,7 +58,7 @@ public interface FastEventService {
 		}
 	}
 
-	public static class FastEvent {
+	class FastEvent {
 		FastEventType fastEventType;
 		private String event;
 
@@ -89,7 +89,7 @@ public interface FastEventService {
 		}
 	}
 
-	public static interface FastEventDynamicHandler extends EventHandler<FastEvent>, LifecycleAware {
+	interface FastEventDynamicHandler extends EventHandler<FastEvent>, LifecycleAware {
 
 		void awaitShutdown() throws InterruptedException;
 
@@ -107,7 +107,7 @@ public interface FastEventService {
 
 	}
 
-	public static abstract class FastEventDynamicHandlerAbstract implements FastEventDynamicHandler {
+	abstract class FastEventDynamicHandlerAbstract implements FastEventDynamicHandler {
 		protected final CountDownLatch shutdownLatch = new CountDownLatch(1);
 		protected List<String> subscribedEventList = new ArrayList<>();
 		protected Set<String> subscribedEventSet = new HashSet<>();
@@ -165,7 +165,7 @@ public interface FastEventService {
 
 	}
 
-	public static class FastEventFactory implements EventFactory<FastEvent> {
+	class FastEventFactory implements EventFactory<FastEvent> {
 
 		@Override
 		public FastEvent newInstance() {
@@ -174,7 +174,7 @@ public interface FastEventService {
 
 	}
 
-	public static class FastEventProducerAbstract {
+	class FastEventProducerAbstract {
 		protected final RingBuffer<FastEvent> ringBuffer;
 
 		public FastEventProducerAbstract(RingBuffer<FastEvent> ringBuffer) {

@@ -1,34 +1,21 @@
 package xyz.redtorch.gateway.ctp.x64v6v3v19t1v;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.common.util.CommonUtils;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcDepthMarketDataField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcForQuoteRspField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcMdApi;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcMdSpi;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcReqUserLoginField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcRspInfoField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcRspUserLoginField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcSpecificInstrumentField;
-import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.CThostFtdcUserLogoutField;
+import xyz.redtorch.gateway.ctp.x64v6v3v19t1v.api.*;
 import xyz.redtorch.pb.CoreEnum.ExchangeEnum;
 import xyz.redtorch.pb.CoreField.ContractField;
 import xyz.redtorch.pb.CoreField.TickField;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MdSpi extends CThostFtdcMdSpi {
 
@@ -39,19 +26,19 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 	private static final Logger logger = LoggerFactory.getLogger(MdSpi.class);
 
-	private CtpGatewayImpl ctpGatewayImpl;
-	private String mdHost;
-	private String mdPort;
-	private String brokerId;
-	private String userId;
-	private String password;
-	private String logInfo;
-	private String gatewayId;
+	private final CtpGatewayImpl ctpGatewayImpl;
+	private final String mdHost;
+	private final String mdPort;
+	private final String brokerId;
+	private final String userId;
+	private final String password;
+	private final String logInfo;
+	private final String gatewayId;
 	private String tradingDay;
 
-	private Map<String, TickField> preTickMap = new HashMap<>();
+	private final Map<String, TickField> preTickMap = new HashMap<>();
 
-	private Set<String> subscribedSymbolSet = ConcurrentHashMap.newKeySet();
+	private final Set<String> subscribedSymbolSet = ConcurrentHashMap.newKeySet();
 
 	MdSpi(CtpGatewayImpl ctpGatewayImpl) {
 		this.ctpGatewayImpl = ctpGatewayImpl;
@@ -89,18 +76,16 @@ public class MdSpi extends CThostFtdcMdSpi {
 				cThostFtdcMdApi = null;
 				cThostFtdcMdApiForRelease.RegisterSpi(null);
 
-				new Thread() {
-					public void run() {
-						Thread.currentThread().setName("GatewayId [" + gatewayId + "] MD API Release Thread, Start Time " + System.currentTimeMillis());
-						try {
-							logger.warn("行情接口异步释放启动！");
-							cThostFtdcMdApiForRelease.Release();
-							logger.warn("行情接口异步释放完成！");
-						} catch (Throwable t) {
-							logger.error("行情接口异步释放发生异常！", t);
-						}
+				new Thread(() -> {
+					Thread.currentThread().setName("GatewayId [" + gatewayId + "] MD API Release Thread, Start Time " + System.currentTimeMillis());
+					try {
+						logger.warn("行情接口异步释放启动！");
+						cThostFtdcMdApiForRelease.Release();
+						logger.warn("行情接口异步释放完成！");
+					} catch (Throwable t) {
+						logger.error("行情接口异步释放发生异常！", t);
 					}
-				}.start();
+				}).start();
 
 				Thread.sleep(100);
 			} catch (Throwable t) {
@@ -134,21 +119,18 @@ public class MdSpi extends CThostFtdcMdSpi {
 			logger.error("{}行情接口连接异常", logInfo, t);
 		}
 
-		new Thread() {
-			public void run() {
-				try {
-					Thread.sleep(60 * 1000);
-					if (!isConnected()) {
-						logger.error("{}行情接口连接超时,尝试断开", logInfo);
-						ctpGatewayImpl.disconnect();
-					}
-
-				} catch (Throwable t) {
-					logger.error("{}行情接口处理连接超时线程异常", logInfo, t);
+		new Thread(() -> {
+			try {
+				Thread.sleep(60 * 1000);
+				if (!isConnected()) {
+					logger.error("{}行情接口连接超时,尝试断开", logInfo);
+					ctpGatewayImpl.disconnect();
 				}
-			}
 
-		}.start();
+			} catch (Throwable t) {
+				logger.error("{}行情接口处理连接超时线程异常", logInfo, t);
+			}
+		}).start();
 
 	}
 
@@ -163,18 +145,16 @@ public class MdSpi extends CThostFtdcMdSpi {
 					CThostFtdcMdApi cThostFtdcMdApiForRelease = cThostFtdcMdApi;
 					cThostFtdcMdApi = null;
 					cThostFtdcMdApiForRelease.RegisterSpi(null);
-					new Thread() {
-						public void run() {
-							Thread.currentThread().setName("GatewayId " + gatewayId + " MD API Release Thread, Time " + System.currentTimeMillis());
-							try {
-								logger.warn("行情接口异步释放启动！");
-								cThostFtdcMdApiForRelease.Release();
-								logger.warn("行情接口异步释放完成！");
-							} catch (Throwable t) {
-								logger.error("行情接口异步释放发生异常", t);
-							}
+					new Thread(() -> {
+						Thread.currentThread().setName("GatewayId " + gatewayId + " MD API Release Thread, Time " + System.currentTimeMillis());
+						try {
+							logger.warn("行情接口异步释放启动！");
+							cThostFtdcMdApiForRelease.Release();
+							logger.warn("行情接口异步释放完成！");
+						} catch (Throwable t) {
+							logger.error("行情接口异步释放发生异常", t);
 						}
-					}.start();
+					}).start();
 					Thread.sleep(100);
 				} catch (Throwable t) {
 					logger.error("{}行情接口实例关闭并释放异常", logInfo, t);
@@ -387,8 +367,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 
 				String actionDay = pDepthMarketData.getActionDay();
 
-				Long updateTime = Long.valueOf(pDepthMarketData.getUpdateTime().replaceAll(":", ""));
-				Long updateMillisec = (long) pDepthMarketData.getUpdateMillisec();
+				long updateTime = Long.parseLong(pDepthMarketData.getUpdateTime().replaceAll(":", ""));
+				long updateMillisec = pDepthMarketData.getUpdateMillisec();
 				/*
 				 * 大商所获取的ActionDay可能是不正确的,因此这里采用本地时间修正 1.请注意，本地时间应该准确 2.使用 SimNow 7x24
 				 * 服务器获取行情时,这个修正方式可能会导致问题
@@ -400,7 +380,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 					}
 				}
 
-				Long actionDayLong = Long.valueOf(actionDay);
+				long actionDayLong = Long.parseLong(actionDay);
 
 				String updateDateTimeWithMS = (actionDayLong * 1000000 * 1000 + updateTime * 1000 + updateMillisec) + "";
 
@@ -414,10 +394,10 @@ public class MdSpi extends CThostFtdcMdSpi {
 				
 				long actionTimestamp = CommonUtils.localDateTimeToMills(dateTime);
 				
-				if(Math.abs(actionTimestamp-ctpGatewayImpl.getApproximateTimestamp())>5*60*1000) {
-					logger.error("接收到与本地时间戳相差较大的行情数据,疑似错误,合约{},发生时间{}",symbol,actionTimestamp);
-					return;
-				}
+//				if(Math.abs(actionTimestamp-ctpGatewayImpl.getApproximatelyTimestamp())>5*60*1000) {
+//					logger.error("接收到与本地时间戳相差较大的行情数据,疑似错误,合约{},发生时间{}",symbol,actionTimestamp);
+//					return;
+//				}
 				
 				String contractId = contract.getContractId();
 				String actionTime = dateTime.format(CommonConstant.T_FORMAT_WITH_MS_INT_FORMATTER);
@@ -428,13 +408,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 					volumeDelta = (int) (volume - preTickMap.get(contractId).getVolume());
 				}
 
-				Double turnover = pDepthMarketData.getTurnover();
+				double turnover = pDepthMarketData.getTurnover();
 				double turnoverDelta = 0;
 				if (preTickMap.containsKey(contractId)) {
 					turnoverDelta = turnover - preTickMap.get(contractId).getTurnover();
 				}
 
-				Long preOpenInterest = (long) pDepthMarketData.getPreOpenInterest();
+				long preOpenInterest = (long) pDepthMarketData.getPreOpenInterest();
 
 				double openInterest = pDepthMarketData.getOpenInterest();
 				int openInterestDelta = 0;
@@ -442,13 +422,13 @@ public class MdSpi extends CThostFtdcMdSpi {
 					openInterestDelta = (int) (openInterest - preTickMap.get(contractId).getOpenInterest());
 				}
 
-				Double preClosePrice = pDepthMarketData.getPreClosePrice();
-				Double preSettlePrice = pDepthMarketData.getPreSettlementPrice();
-				Double openPrice = pDepthMarketData.getOpenPrice();
-				Double highPrice = pDepthMarketData.getHighestPrice();
-				Double lowPrice = pDepthMarketData.getLowestPrice();
-				Double upperLimit = pDepthMarketData.getUpperLimitPrice();
-				Double lowerLimit = pDepthMarketData.getLowerLimitPrice();
+				double preClosePrice = pDepthMarketData.getPreClosePrice();
+				double preSettlePrice = pDepthMarketData.getPreSettlementPrice();
+				double openPrice = pDepthMarketData.getOpenPrice();
+				double highPrice = pDepthMarketData.getHighestPrice();
+				double lowPrice = pDepthMarketData.getLowestPrice();
+				double upperLimit = pDepthMarketData.getUpperLimitPrice();
+				double lowerLimit = pDepthMarketData.getLowerLimitPrice();
 
 				List<Double> bidPriceList = new ArrayList<>();
 				bidPriceList.add(pDepthMarketData.getBidPrice1());
@@ -476,8 +456,8 @@ public class MdSpi extends CThostFtdcMdSpi {
 				askVolumeList.add(pDepthMarketData.getAskVolume4());
 				askVolumeList.add(pDepthMarketData.getAskVolume5());
 
-				Double averagePrice = pDepthMarketData.getAveragePrice();
-				Double settlePrice = pDepthMarketData.getSettlementPrice();
+				double averagePrice = pDepthMarketData.getAveragePrice();
+				double settlePrice = pDepthMarketData.getSettlementPrice();
 
 				TickField.Builder tickBuilder = TickField.newBuilder();
 				ContractField.Builder contractBuilder = contract.toBuilder();

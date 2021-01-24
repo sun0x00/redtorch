@@ -6,33 +6,43 @@ import java.util.HashSet;
 import xyz.redtorch.pb.CoreEnum.OrderStatusEnum;
 
 public interface CommonConstant {
-	static final String DT_FORMAT_WITH_MS = "yyyy-MM-dd HH:mm:ss.SSS";
-	static final String DT_FORMAT_WITH_MS_INT = "yyyyMMddHHmmssSSS";
-	static final String DT_FORMAT = "yyyy-MM-dd HH:mm:ss";
-	static final String DT_FORMAT_INT = "yyyyMMddHHmmss";
 
-	static final String T_FORMAT_WITH_MS_INT = "HHmmssSSS";
-	static final String T_FORMAT_WITH_MS = "HH:mm:ss.SSS";
-	static final String T_FORMAT_INT = "HHmmss";
-	static final String T_FORMAT = "HH:mm:ss";
-	static final String D_FORMAT_INT = "yyyyMMdd";
-	static final String D_FORMAT = "yyyy-MM-dd";
+	String KEY_USER_PO = "userPo";
+	String KEY_OPERATOR_ID = "operatorId";
+	String KEY_NODE_ID = "nodeId";
+	String KEY_AUTH_TOKEN = "Auth-Token";
+	String KEY_VERIFIED = "verified";
+	String KEY_WEBSOCKET_SESSION_ID = "websocketSessionId";
 
-	static final DateTimeFormatter DT_FORMAT_WITH_MS_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_WITH_MS);
-	static final DateTimeFormatter DT_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_WITH_MS_INT);
-	static final DateTimeFormatter DT_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT);
-	static final DateTimeFormatter DT_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_INT);
+	String SECURITY_MASK = "********";
 
-	static final DateTimeFormatter T_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_WITH_MS_INT);
-	static final DateTimeFormatter T_FORMAT_WITH_MS_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_WITH_MS);
-	static final DateTimeFormatter T_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_INT);
-	static final DateTimeFormatter T_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT);
+	String DT_FORMAT_WITH_MS = "yyyy-MM-dd HH:mm:ss.SSS";
+	String DT_FORMAT_WITH_MS_INT = "yyyyMMddHHmmssSSS";
+	String DT_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	String DT_FORMAT_INT = "yyyyMMddHHmmss";
 
-	static final DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT_INT);
-	static final DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT);
+	String T_FORMAT_WITH_MS_INT = "HHmmssSSS";
+	String T_FORMAT_WITH_MS = "HH:mm:ss.SSS";
+	String T_FORMAT_INT = "HHmmss";
+	String T_FORMAT = "HH:mm:ss";
+	String D_FORMAT_INT = "yyyyMMdd";
+	String D_FORMAT = "yyyy-MM-dd";
 
-	static final HashSet<OrderStatusEnum> ORDER_STATUS_FINISHED_SET = new HashSet<OrderStatusEnum>() {
-		private static final long serialVersionUID = 8777691797309945190L;
+	DateTimeFormatter DT_FORMAT_WITH_MS_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_WITH_MS);
+	DateTimeFormatter DT_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_WITH_MS_INT);
+	DateTimeFormatter DT_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT);
+	DateTimeFormatter DT_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(DT_FORMAT_INT);
+
+	DateTimeFormatter T_FORMAT_WITH_MS_INT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_WITH_MS_INT);
+	DateTimeFormatter T_FORMAT_WITH_MS_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_WITH_MS);
+	DateTimeFormatter T_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT_INT);
+	DateTimeFormatter T_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(T_FORMAT);
+
+	DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT_INT);
+	DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT);
+
+	HashSet<OrderStatusEnum> ORDER_STATUS_FINISHED_SET = new HashSet<>() {
+		private static final long serialVersionUID = 909683985291870766L;
 		{
 			add(OrderStatusEnum.OS_Rejected);
 			add(OrderStatusEnum.OS_Canceled);
@@ -41,7 +51,7 @@ public interface CommonConstant {
 		}
 	};
 
-	static final HashSet<OrderStatusEnum> ORDER_STATUS_WORKING_SET = new HashSet<OrderStatusEnum>() {
+	HashSet<OrderStatusEnum> ORDER_STATUS_WORKING_SET = new HashSet<>() {
 		private static final long serialVersionUID = 909683985291870766L;
 		{
 			add(OrderStatusEnum.OS_Unknown);

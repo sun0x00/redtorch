@@ -37,25 +37,12 @@ public class MongoDBClient {
 	 */
 	private MongoClient mongoClient = null;
 
-	/**
-	 * 构造方法,用于实现单例等特殊需求
-	 * 
-	 * @param mongoClient
-	 */
+
 	public MongoDBClient(MongoClient mongoClient) {
 		this.mongoClient = mongoClient;
 	}
 
-	/**
-	 * 构造方法,创建MongoClient实例
-	 * 
-	 * @param host
-	 * @param port
-	 * @param username
-	 * @param password
-	 * @param authdb
-	 * @throws Exception
-	 */
+
 	public MongoDBClient(String host, int port, String username, String password, String authdb) throws Exception {
 		logger.info("连接MongoDB Host:{} Port:{}", host, port);
 		MongoClientOptions.Builder build = new MongoClientOptions.Builder();
@@ -65,14 +52,13 @@ public class MongoDBClient {
 		 * 故这里设置的maxWaitTime应该足够大,以免由于排队线程过多造成的数据库访问失败
 		 */
 		build.maxWaitTime(1000 * 60 * 2);
-		build.connectTimeout(1000 * 60 * 1); // 与数据库建立连接的timeout设置为1分钟
+		build.connectTimeout(1000 * 60); // 与数据库建立连接的timeout设置为1分钟
 		build.socketTimeout(0);// 套接字超时时间,0无限制
 		build.maxConnectionIdleTime(60000);
 		build.maxConnectionIdleTime(0);
 		build.retryWrites(true);
 		build.connectionsPerHost(300); // 连接池设置为300个连接,默认为100
-		build.threadsAllowedToBlockForConnectionMultiplier(1000);// 线程队列数,如果连接线程排满了队列就会抛出“Out of semaphores to get db"
-																	// 错误
+		build.threadsAllowedToBlockForConnectionMultiplier(1000);// 线程队列数,如果连接线程排满了队列就会抛出“Out of semaphores to get db" 错误
 		build.writeConcern(WriteConcern.ACKNOWLEDGED); // 写操作需要得到确认
 
 		MongoClientOptions myOptions = build.build();
