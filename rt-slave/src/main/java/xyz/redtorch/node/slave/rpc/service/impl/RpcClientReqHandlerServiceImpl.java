@@ -144,7 +144,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
                 .setCommonRsp(commonRspBuilder) //
                 .addAllOrder(orderList);
 
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_ORDER_LIST_RSP, rpcGetOrderListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_ORDER_LIST_RSP, transactionId, rpcGetOrderListRspBuilder.build().toByteString());
     }
 
     @Override
@@ -163,7 +163,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
         RpcGetTradeListRsp.Builder rpcGetTradeListRspBuilder = RpcGetTradeListRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllTrade(tradeList);
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_TRADE_LIST_RSP, rpcGetTradeListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_TRADE_LIST_RSP, transactionId, rpcGetTradeListRspBuilder.build().toByteString());
     }
 
     @Override
@@ -183,7 +183,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
         RpcGetPositionListRsp.Builder rpcGetPositionListRspBuilder = RpcGetPositionListRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllPosition(positionList);
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_POSITION_LIST_RSP, rpcGetPositionListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_POSITION_LIST_RSP, transactionId, rpcGetPositionListRspBuilder.build().toByteString());
     }
 
     @Override
@@ -202,7 +202,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
 
         RpcGetAccountListRsp.Builder rpcGetAccountListRspBuilder = RpcGetAccountListRsp.newBuilder().setCommonRsp(commonRspBuilder) //
                 .addAllAccount(accountList); //
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_ACCOUNT_LIST_RSP, rpcGetAccountListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_ACCOUNT_LIST_RSP, transactionId, rpcGetAccountListRspBuilder.build().toByteString());
     }
 
     @Override
@@ -222,7 +222,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
         RpcGetContractListRsp.Builder rpcGetContractListRspBuilder = RpcGetContractListRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllContract(contractList);
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_CONTRACT_LIST_RSP, rpcGetContractListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_CONTRACT_LIST_RSP, transactionId, rpcGetContractListRspBuilder.build().toByteString());
     }
 
     @Override
@@ -241,7 +241,7 @@ public class RpcClientReqHandlerServiceImpl implements RpcClientReqHandlerServic
         RpcGetTickListRsp.Builder rpcGetTickListRspBuilder = RpcGetTickListRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllTick(tickList);
-        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_TICK_LIST_RSP, rpcGetTickListRspBuilder.build().toByteString());
+        RpcUtils.sendAsyncHttpRpc(executor, restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.GET_TICK_LIST_RSP, transactionId, rpcGetTickListRspBuilder.build().toByteString());
     }
 
 }

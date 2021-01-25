@@ -37,7 +37,7 @@ public class RpcUtils {
     private static final Logger logger = LoggerFactory.getLogger(RpcUtils.class);
 
     public static byte[] generateRpcDep(RpcId rpcId, String transactionId, ByteString content) {
-        if (content.size() > 10240) {
+        if (content.size() > 262144) {
             return generateLz4RpcDep(rpcId, transactionId, content);
         } else {
             return generateRoutineRpcDep(rpcId, content);
@@ -68,8 +68,8 @@ public class RpcUtils {
             lzOut.close();
             in.close();
             contentByteString = ByteString.copyFrom(bOut.toByteArray());
-            if (logger.isDebugEnabled()) {
-                logger.debug("生成DEP数据, RPC:{}, 业务ID:{}, 压缩耗时{}ms,原始数据大小{},压缩后数据大小{},压缩率{}", rpcId.getValueDescriptor().getName(), transactionId, System.currentTimeMillis() - beginTime,
+            if (contentByteString.size()>1048576) {
+                logger.info("生成DEP数据, RPC:{}, 业务ID:{}, 压缩耗时{}ms,原始数据大小{},压缩后数据大小{},压缩率{}", rpcId.getValueDescriptor().getName(), transactionId, System.currentTimeMillis() - beginTime,
                         content.size(), contentByteString.size(), contentByteString.size() / (double) content.size());
             }
         } catch (Exception e) {
@@ -87,10 +87,10 @@ public class RpcUtils {
     }
 
     // 这个方法一般用于发送同步请求Req
-    public static DataExchangeProtocol sendSyncHttpRpc(RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId, ByteString content) {
+    public static DataExchangeProtocol sendSyncHttpRpc(RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId,String transactionId, ByteString content) {
 
         try {
-            HttpEntity<String> requestEntity = generateHttpEntity(authToken, rpcId, content);
+            HttpEntity<String> requestEntity = generateHttpEntity(authToken, rpcId, transactionId, content);
 
             ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, String.class);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
@@ -99,35 +99,35 @@ public class RpcUtils {
                     ResponseVo<String> ret = JSON.parseObject(responseEntity.getBody(), new TypeReference<ResponseVo<String>>() {
                     });
                     if(ret == null){
-                        logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{}", rpcId);
+                        logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{},业务ID:{}", rpcId, transactionId);
                     }else if (ret.isStatus()) {                    String base64Data = ret.getVoData();
                         if (logger.isDebugEnabled()) {
-                            logger.debug("接收到的Base64Data:{}", base64Data);
+                            logger.debug("HTTP RPC,RPC{},业务ID:{}接收到的Base64Data:{}",rpcId, transactionId, base64Data);
                         }
                         if (base64Data != null) {
                             byte[] data = Base64.getDecoder().decode(base64Data);
                             return DataExchangeProtocol.parseFrom(data);
                         }
                     }else{
-                        logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},信息:{}", rpcId, ret.getMessage());
+                        logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},业务ID{},信息:{}", rpcId, transactionId, ret.getMessage());
                     }
                 } else {
-                    logger.error("HTTP RPC状态非200,RPC:{},状态码为:{}", rpcId, responseEntity.getStatusCode().value());
+                    logger.error("HTTP RPC状态非200,RPC:{},业务ID{},状态码为:{}", rpcId, transactionId, responseEntity.getStatusCode().value());
                 }
             }
         } catch (Exception e) {
-            logger.error("HTTP RPC错误,RPC:{}", rpcId, e);
+            logger.error("HTTP RPC错误,RPC:{},业务ID{}", rpcId, transactionId, e);
         }
 
         return null;
     }
 
     // 这个方法一般用于异步发送Rsp回报
-    public static void sendAsyncHttpRpc(ExecutorService executor, RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId, ByteString content) {
+    public static void sendAsyncHttpRpc(ExecutorService executor, RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId, String transactionId, ByteString content) {
 
         executor.execute(() -> {
             try {
-                HttpEntity<String> requestEntity = generateHttpEntity(authToken, rpcId, content);
+                HttpEntity<String> requestEntity = generateHttpEntity(authToken, rpcId, transactionId, content);
 
                 ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, String.class);
                 if (responseEntity.getStatusCode().is2xxSuccessful()) {
@@ -136,23 +136,23 @@ public class RpcUtils {
                         ResponseVo<String> ret = JSON.parseObject(responseEntity.getBody(), new TypeReference<ResponseVo<String>>() {
                         });
                         if(ret == null){
-                            logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{}", rpcId);
+                            logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{},业务ID:{}", rpcId, transactionId);
                         }else if (!ret.isStatus()) {
-                            logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},信息:{}", rpcId, ret.getMessage());
+                            logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},业务ID:{},信息:{}", rpcId, transactionId, ret.getMessage());
                         }
                     } else {
-                        logger.error("HTTP RPC状态非200,RPC:{},状态码为:{}", rpcId, responseEntity.getStatusCode().value());
+                        logger.error("HTTP RPC状态非200,RPC:{},业务ID:{},状态码为:{}", rpcId, transactionId, responseEntity.getStatusCode().value());
                     }
                 }
             } catch (Exception e) {
-                logger.error("HTTP RPC错误,RPC:{}", rpcId, e);
+                logger.error("HTTP RPC错误,RPC:{},业务ID:{}", rpcId, transactionId, e);
             }
         });
 
     }
 
-    public static HttpEntity<String> generateHttpEntity(String authToken, RpcId rpcId, ByteString content) {
-        byte[] reqData = generateRoutineRpcDep(rpcId, content);
+    public static HttpEntity<String> generateHttpEntity(String authToken, RpcId rpcId, String transactionId, ByteString content) {
+        byte[] reqData = generateRpcDep(rpcId, transactionId, content);
 
         RequestVo<String> requestVo = new RequestVo<>();
         requestVo.setVoData(Base64.getEncoder().encodeToString(reqData));

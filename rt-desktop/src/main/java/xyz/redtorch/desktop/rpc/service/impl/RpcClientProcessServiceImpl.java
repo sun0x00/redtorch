@@ -493,7 +493,7 @@ public class RpcClientProcessServiceImpl implements RpcClientProcessService, Ini
 
         asyncHttpRpcExecutor.execute(() -> {
             try {
-                HttpEntity<String> requestEntity = RpcUtils.generateHttpEntity(configService.getAuthToken(), rpcId, content);
+                HttpEntity<String> requestEntity = RpcUtils.generateHttpEntity(configService.getAuthToken(), rpcId, transactionId, content);
 
                 ResponseEntity<String> responseEntity = restTemplate.exchange(configService.getPriorityRpcURI(), HttpMethod.POST, requestEntity, String.class);
                 if (responseEntity.getStatusCode().is2xxSuccessful()) {
@@ -504,7 +504,7 @@ public class RpcClientProcessServiceImpl implements RpcClientProcessService, Ini
                     } else if (ret.isStatus()) {
                         String base64Data = ret.getVoData();
                         if (logger.isDebugEnabled()) {
-                            logger.debug("业务ID:{},接收到的Base64Data:{}", transactionId, base64Data);
+                            logger.debug("HTTP RPC,RPC:{},业务ID:{},接收到的Base64Data:{}", rpcId, transactionId, base64Data);
                         }
                         if (base64Data != null) {
                             byte[] data = Base64.getDecoder().decode(base64Data);
@@ -513,16 +513,16 @@ public class RpcClientProcessServiceImpl implements RpcClientProcessService, Ini
                             rpcRspHandlerService.notifyAndRemoveRpcLock(transactionId);
                         }
                     } else {
-                        logger.error("HTTP RPC返回200,但状态回报错误,业务ID:{},RPC:{},信息:{}", transactionId, rpcId, ret.getMessage());
+                        logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},业务ID:{},信息:{}", rpcId, transactionId, ret.getMessage());
                         rpcRspHandlerService.notifyAndRemoveRpcLock(transactionId);
                     }
                 } else {
-                    logger.error("HTTP RPC状态非200,业务ID:{},RPC:{},状态码为:{}", transactionId, rpcId, responseEntity.getStatusCode().value());
+                    logger.error("HTTP RPC状态非200,RPC:{},业务ID:{},状态码为:{}", rpcId, transactionId, responseEntity.getStatusCode().value());
                     rpcRspHandlerService.notifyAndRemoveRpcLock(transactionId);
                 }
 
             } catch (Exception e) {
-                logger.error("HTTP RPC错误,业务ID:{},RPC:{}", transactionId, rpcId, e);
+                logger.error("HTTP RPC错误,RPC:{},业务ID:{}", rpcId, transactionId, e);
                 rpcRspHandlerService.notifyAndRemoveRpcLock(transactionId);
             }
         });

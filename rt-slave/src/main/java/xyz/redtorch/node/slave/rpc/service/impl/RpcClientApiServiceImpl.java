@@ -51,7 +51,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
         rpcSyncSlaveNodeRuntimeDataReqBuilder.addAllGateway(gatewayList);
 
         // SLAVE通过HTTP RPC向Master发起的请求比较少,因此直接发送同步请求
-        DataExchangeProtocol retDep = RpcUtils.sendSyncHttpRpc(restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.SYNC_SLAVE_NODE_RUNTIME_DATA_REQ, rpcSyncSlaveNodeRuntimeDataReqBuilder.build().toByteString());
+        DataExchangeProtocol retDep = RpcUtils.sendSyncHttpRpc(restTemplate, configService.getRpcURI(), configService.getAuthToken(), RpcId.SYNC_SLAVE_NODE_RUNTIME_DATA_REQ, transactionId, rpcSyncSlaveNodeRuntimeDataReqBuilder.build().toByteString());
 
         if (retDep == null) {
             return null;
