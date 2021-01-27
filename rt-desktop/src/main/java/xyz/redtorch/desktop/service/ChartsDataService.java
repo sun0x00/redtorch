@@ -11,11 +11,11 @@ public interface ChartsDataService {
 
     void setCharData(JSONObject charData, String key);
 
-    void generateCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, String key);
+    void generateCandlestickData(long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, String key);
 
-    void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String unifiedSymbol, String key);
+    void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String uniformSymbol, String key);
 
-    void generateTickLineData(long startTimestamp, long endTimestamp, String unifiedSymbol, String key);
+    void generateTickLineData(long startTimestamp, long endTimestamp, String uniformSymbol, String key);
 
-    void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, int volumeBarSize, String key);
+    void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String uniformSymbol, int volumeBarSize, String key);
 }

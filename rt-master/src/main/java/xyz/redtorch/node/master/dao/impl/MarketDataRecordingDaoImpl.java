@@ -53,40 +53,40 @@ public class MarketDataRecordingDaoImpl implements MarketDataRecordingDao, Initi
 	}
 
 	@Override
-	public void upsertContractByUnifiedSymbol(ContractPo contract) {
+	public void upsertContractByUniformSymbol(ContractPo contract) {
 		if (contract == null) {
 			logger.error("根据统一合约标识更新或保存合约错误,参数contract缺失");
 			throw new IllegalArgumentException("根据统一合约标识更新或保存合约错误,参数contract缺失");
 		}
-		if (StringUtils.isBlank(contract.getUnifiedSymbol())) {
-			logger.error("根据统一合约标识更新或保存合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据统一合约标识更新或保存合约错误,参数unifiedSymbol缺失");
+		if (StringUtils.isBlank(contract.getUniformSymbol())) {
+			logger.error("根据统一合约标识更新或保存合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据统一合约标识更新或保存合约错误,参数uniformSymbol缺失");
 		}
 
 		try {
 			Document document = Document.parse(JSON.toJSONString(contract));
 			Document filter = new Document();
-			filter.append("unifiedSymbol", contract.getUnifiedSymbol());
+			filter.append("uniformSymbol", contract.getUniformSymbol());
 			managementDBClient.upsert(managementDBName, MARKET_DATA_RECORDING_COLLECTION_NAME, document, filter);
 		} catch (IllegalArgumentException e) {
-			logger.error("根据统一合约标识更新或保存合约错误,统一合约标识:{}", contract.getUnifiedSymbol(), e);
+			logger.error("根据统一合约标识更新或保存合约错误,统一合约标识:{}", contract.getUniformSymbol(), e);
 		}
 
 	}
 
 	@Override
-	public void deleteContractByUnifiedSymbol(String unifiedSymbol) {
-		if (StringUtils.isBlank(unifiedSymbol)) {
-			logger.error("根据统一合约标识删除合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据统一合约标识删除合约错误,参数unifiedSymbol缺失");
+	public void deleteContractByUniformSymbol(String uniformSymbol) {
+		if (StringUtils.isBlank(uniformSymbol)) {
+			logger.error("根据统一合约标识删除合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据统一合约标识删除合约错误,参数uniformSymbol缺失");
 		}
 
 		try {
 			Document filter = new Document();
-			filter.append("unifiedSymbol", unifiedSymbol);
+			filter.append("uniformSymbol", uniformSymbol);
 			managementDBClient.delete(managementDBName, MARKET_DATA_RECORDING_COLLECTION_NAME, filter);
 		} catch (IllegalArgumentException e) {
-			logger.error("\"根据统一合约标识删除合约错误,统一合约标识:{}", unifiedSymbol, e);
+			logger.error("\"根据统一合约标识删除合约错误,统一合约标识:{}", uniformSymbol, e);
 		}
 	}
 

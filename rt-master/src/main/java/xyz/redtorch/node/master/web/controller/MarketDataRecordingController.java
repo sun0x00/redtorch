@@ -47,15 +47,15 @@ public class MarketDataRecordingController {
 		return responseVo;
 	}
 
-	@RequestMapping(value = { "/addContractByUnifiedSymbol" })
+	@RequestMapping(value = { "/addContractByUniformSymbol" })
 	@ResponseBody
-	public ResponseVo<String> addContractByUnifiedSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+	public ResponseVo<String> addContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteMarketDataRecording()) {
 				logger.info("用户{}新增合约,合约统一标识:{}", user.getUsername(), requestVo.getVoData());
-				marketDataRecordingService.addContractByUnifiedSymbol(requestVo.getVoData());
+				marketDataRecordingService.addContractByUniformSymbol(requestVo.getVoData());
 			} else {
 				logger.error("根据统一合约标识新增合约错误,用户{}没有权限", user.getUsername());
 				responseVo.setStatus(false);
@@ -69,7 +69,7 @@ public class MarketDataRecordingController {
 		return responseVo;
 	}
 
-	@RequestMapping(value = { "/deleteContractByUnifiedSymbol" })
+	@RequestMapping(value = { "/deleteContractByUniformSymbol" })
 	@ResponseBody
 	public ResponseVo<String> deleteGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
@@ -77,7 +77,7 @@ public class MarketDataRecordingController {
 			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteGateway()) {
 				logger.info("用户{}删除合约,合约统一标识:{}", user.getUsername(), requestVo.getVoData());
-				marketDataRecordingService.deleteContractByUnifiedSymbol(requestVo.getVoData());
+				marketDataRecordingService.deleteContractByUniformSymbol(requestVo.getVoData());
 			} else {
 				logger.error("据统一合约标识删除合约错误,用户{}没有权限", user.getUsername());
 				responseVo.setStatus(false);

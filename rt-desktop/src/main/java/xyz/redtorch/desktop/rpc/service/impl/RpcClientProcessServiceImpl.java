@@ -185,20 +185,6 @@ public class RpcClientProcessServiceImpl implements RpcClientProcessService, Ini
                 });
                 break;
             }
-            case RpcId.GET_MIX_CONTRACT_LIST_RSP_VALUE: {
-                normalExecutorService.execute(() -> {
-                    String transactionId = "";
-                    try {
-                        RpcGetMixContractListRsp rpcGetMixContractListRsp = RpcGetMixContractListRsp.parseFrom(contentByteString);
-                        RpcUtils.checkCommonRsp(rpcGetMixContractListRsp.getCommonRsp());
-                        transactionId = rpcGetMixContractListRsp.getCommonRsp().getTransactionId();
-                        rpcRspHandlerService.onRpcRsp(transactionId, rpcGetMixContractListRsp);
-                    } catch (Exception e) {
-                        logger.error("处理RPC异常,业务ID:{},RPC:GET_MIX_CONTRACT_LIST_RSP", transactionId, e);
-                    }
-                });
-                break;
-            }
             case RpcId.GET_TICK_LIST_RSP_VALUE: {
                 normalExecutorService.execute(() -> {
                     String transactionId = "";

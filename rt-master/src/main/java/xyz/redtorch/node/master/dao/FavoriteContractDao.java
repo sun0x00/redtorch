@@ -11,7 +11,7 @@ public interface FavoriteContractDao {
 
 	void deleteContractByUsername(String username);
 
-	void deleteContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol);
+	void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol);
 
-	void upsertContractByUsernameAndUnifiedSymbol(String username, ContractPo contract);
+	void upsertContractByUsernameAndUniformSymbol(String username, ContractPo contract);
 }

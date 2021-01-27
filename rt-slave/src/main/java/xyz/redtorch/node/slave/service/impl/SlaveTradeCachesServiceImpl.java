@@ -1,27 +1,10 @@
 package xyz.redtorch.node.slave.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.common.service.FastEventService;
 import xyz.redtorch.common.service.FastEventService.FastEvent;
@@ -30,13 +13,13 @@ import xyz.redtorch.common.service.FastEventService.FastEventType;
 import xyz.redtorch.node.slave.rpc.service.RpcClientApiService;
 import xyz.redtorch.node.slave.service.SlaveSystemService;
 import xyz.redtorch.node.slave.service.SlaveTradeCachesService;
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.NoticeField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
+import xyz.redtorch.pb.CoreField.*;
+
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 
 @Service
 public class SlaveTradeCachesServiceImpl extends FastEventDynamicHandlerAbstract implements SlaveTradeCachesService, InitializingBean {
@@ -348,7 +331,7 @@ public class SlaveTradeCachesServiceImpl extends FastEventDynamicHandlerAbstract
 
 		tickMapLock.lock();
 		try {
-			tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
+			tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
 		} catch (Exception e) {
 			logger.error("存储Tick异常", e);
 		} finally {
@@ -362,7 +345,7 @@ public class SlaveTradeCachesServiceImpl extends FastEventDynamicHandlerAbstract
 
 		contractMapLock.lock();
 		try {
-			contractMap.put(contract.getContractId(), contract);
+			contractMap.put(contract.getUniformSymbol(), contract);
 		} catch (Exception e) {
 			logger.error("存储合约异常", e);
 		} finally {

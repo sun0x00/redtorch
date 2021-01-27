@@ -94,16 +94,16 @@ public class OperatorServiceImpl implements OperatorService, InitializingBean {
 	}
 
 	@Override
-	public boolean checkSubscribePermission(String operatorId, String unifiedSymbol) {
+	public boolean checkSubscribePermission(String operatorId, String uniformSymbol) {
 		boolean canSubscribe = false;
 		if (adminOperatorId.equals(operatorId)) {
 			canSubscribe = true;
 		} else {
 			OperatorPo operator = getOperatorByOperatorId(operatorId);
-			if (operator != null && operator.isCanSubscribeAllContracts() && !operator.getDenySubscribeSpecialUnifiedSymbolSet().contains(unifiedSymbol)) {
+			if (operator != null && operator.isCanSubscribeAllContracts() && !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
 				canSubscribe = true;
-			} else if (operator != null && operator.getAcceptSubscribeSpecialUnifiedSymbolSet().contains(unifiedSymbol)
-					&& !operator.getDenySubscribeSpecialUnifiedSymbolSet().contains(unifiedSymbol)) {
+			} else if (operator != null && operator.getAcceptSubscribeSpecialUniformSymbolSet().contains(uniformSymbol)
+					&& !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
 				canSubscribe = true;
 			}
 		}
@@ -143,7 +143,7 @@ public class OperatorServiceImpl implements OperatorService, InitializingBean {
 	}
 
 	@Override
-	public boolean checkTradeContractPermission(String operatorId, String unifiedSymbol) {
+	public boolean checkTradeContractPermission(String operatorId, String uniformSymbol) {
 		boolean canTradeContract = false;
 
 		if (adminOperatorId.equals(operatorId)) {
@@ -151,9 +151,9 @@ public class OperatorServiceImpl implements OperatorService, InitializingBean {
 		} else {
 			OperatorPo operator = getOperatorByOperatorId(operatorId);
 
-			if (operator != null && operator.isCanTradeAllContracts() && !operator.getDenyTradeSpecialUnifiedSymbolSet().contains(unifiedSymbol)) {
+			if (operator != null && operator.isCanTradeAllContracts() && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
 				canTradeContract = true;
-			} else if (operator != null && operator.getAcceptTradeSpecialUnifiedSymbolSet().contains(unifiedSymbol) && !operator.getDenyTradeSpecialUnifiedSymbolSet().contains(unifiedSymbol)) {
+			} else if (operator != null && operator.getAcceptTradeSpecialUniformSymbolSet().contains(uniformSymbol) && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
 				canTradeContract = true;
 			}
 

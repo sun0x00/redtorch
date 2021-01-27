@@ -1,32 +1,19 @@
 package xyz.redtorch.desktop.rpc.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.google.protobuf.ByteString;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import xyz.redtorch.common.service.RpcClientProcessService;
 import xyz.redtorch.common.service.RpcRspHandlerService;
 import xyz.redtorch.common.util.rpc.RpcLock;
-import xyz.redtorch.common.util.rpc.RpcUtils;
-import xyz.redtorch.common.web.vo.ResponseVo;
 import xyz.redtorch.desktop.rpc.service.RpcClientApiService;
 import xyz.redtorch.desktop.service.ConfigService;
 import xyz.redtorch.pb.CoreEnum.BarPeriodEnum;
 import xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum;
 import xyz.redtorch.pb.CoreField.*;
 import xyz.redtorch.pb.CoreRpc.*;
-
-import java.util.Base64;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 @Service
 public class RpcClientApiServiceImpl implements RpcClientApiService {
@@ -264,40 +251,6 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public boolean asyncGetMixContractList(String transactionId) {
-        if (StringUtils.isBlank(transactionId)) {
-            logger.error("查询混合合约列表错误,参数transactionId缺失");
-            return false;
-        } else {
-
-            RpcGetMixContractListReq.Builder rpcGetMixContractListReqBuilder = RpcGetMixContractListReq.newBuilder() //
-                    .setCommonReq(generateCommonReq(transactionId));
-
-            return rpcClientProcessService.sendAsyncHttpRpc(RpcId.GET_MIX_CONTRACT_LIST_REQ, transactionId, rpcGetMixContractListReqBuilder.build().toByteString());
-        }
-    }
-
-    @Override
-    public RpcGetMixContractListRsp getMixContractList(String transactionId, Integer timeoutSeconds) {
-
-        RpcLock rpcLock = rpcRspHandlerService.getRpcLock(transactionId, timeoutSeconds);
-        String finalTransactionId = rpcLock.getTransactionId();
-        if (!asyncGetMixContractList(finalTransactionId)) {
-            rpcRspHandlerService.unregisterLock(rpcLock);
-            return null;
-        }
-
-        String logPartial = "查询混合合约列表";
-
-        RpcGetMixContractListRsp rsp = rpcRspHandlerService.processObjectRsp(finalTransactionId, rpcLock, RpcGetMixContractListRsp.class, logPartial);
-        if (rsp == null) {
-            return null;
-        }
-        return rpcRspHandlerService.processCommonRsp(finalTransactionId, rsp.getCommonRsp(), rsp, logPartial);
-
-    }
-
-    @Override
     public boolean asyncGetTickList(String transactionId) {
         if (StringUtils.isBlank(transactionId)) {
             logger.error("查询Tick列表错误,参数transactionId缺失");
@@ -465,7 +418,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType, String transactionId) {
+    public boolean asyncQueryDBBarList(long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType, String transactionId) {
         if (StringUtils.isBlank(transactionId)) {
             logger.error("查询历史Bar列表错误,参数transactionId缺失");
             return false;
@@ -473,7 +426,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 
             RpcQueryDBBarListReq.Builder rpcQueryDBBarListReqBuilder = RpcQueryDBBarListReq.newBuilder() //
-                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setBarPeriod(barPeriod)
+                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUniformSymbol(uniformSymbol).setBarPeriod(barPeriod)
                     .setMarketDataDBType(marketDataDBType);
 
             return rpcClientProcessService.sendAsyncHttpRpc(RpcId.QUERY_DB_BAR_LIST_REQ, transactionId, rpcQueryDBBarListReqBuilder.build().toByteString());
@@ -482,12 +435,12 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType, String transactionId,
+    public RpcQueryDBBarListRsp queryDBBarList(long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType, String transactionId,
                                                Integer timeoutSeconds) {
 
         RpcLock rpcLock = rpcRspHandlerService.getRpcLock(transactionId, timeoutSeconds);
         String finalTransactionId = rpcLock.getTransactionId();
-        if (!asyncQueryDBBarList(startTimestamp, endTimestamp, unifiedSymbol, barPeriod, marketDataDBType, transactionId)) {
+        if (!asyncQueryDBBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod, marketDataDBType, transactionId)) {
             rpcRspHandlerService.unregisterLock(rpcLock);
             return null;
         }
@@ -501,7 +454,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String transactionId) {
+    public boolean asyncQueryDBTickList(long startTimestamp, long endTimestamp, String uniformSymbol, MarketDataDBTypeEnum marketDataDBType, String transactionId) {
         if (StringUtils.isBlank(transactionId)) {
             logger.error("查询历史Tick列表错误,参数transactionId缺失");
             return false;
@@ -509,7 +462,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
 
             RpcQueryDBTickListReq.Builder rpcQueryDBTickListReqBuilder = RpcQueryDBTickListReq.newBuilder() //
-                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setMarketDataDBType(marketDataDBType);
+                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUniformSymbol(uniformSymbol).setMarketDataDBType(marketDataDBType);
 
             return rpcClientProcessService.sendAsyncHttpRpc(RpcId.QUERY_DB_TICK_LIST_REQ, transactionId, rpcQueryDBTickListReqBuilder.build().toByteString());
 
@@ -517,11 +470,11 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType, String transactionId, Integer timeoutSeconds) {
+    public RpcQueryDBTickListRsp queryDBTickList(long startTimestamp, long endTimestamp, String uniformSymbol, MarketDataDBTypeEnum marketDataDBType, String transactionId, Integer timeoutSeconds) {
 
         RpcLock rpcLock = rpcRspHandlerService.getRpcLock(transactionId, timeoutSeconds);
         String finalTransactionId = rpcLock.getTransactionId();
-        if (!asyncQueryDBTickList(startTimestamp, endTimestamp, unifiedSymbol, marketDataDBType, finalTransactionId)) {
+        if (!asyncQueryDBTickList(startTimestamp, endTimestamp, uniformSymbol, marketDataDBType, finalTransactionId)) {
             rpcRspHandlerService.unregisterLock(rpcLock);
             return null;
         }
@@ -537,14 +490,14 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String transactionId) {
+    public boolean asyncQueryVolumeBarList(long startTimestamp, long endTimestamp, String uniformSymbol, int volume, String transactionId) {
         if (StringUtils.isBlank(transactionId)) {
             logger.error("查询历史Bar列表错误,参数transactionId缺失");
             return false;
         } else {
 
             RpcQueryVolumeBarListReq.Builder rpcQueryVolumeBarListReqBuilder = RpcQueryVolumeBarListReq.newBuilder() //
-                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUnifiedSymbol(unifiedSymbol).setVolume(volume);
+                    .setCommonReq(generateCommonReq(transactionId)).setStartTimestamp(startTimestamp).setEndTimestamp(endTimestamp).setUniformSymbol(uniformSymbol).setVolume(volume);
 
             return rpcClientProcessService.sendAsyncHttpRpc(RpcId.QUERY_VOLUME_BAR_LIST_REQ, transactionId, rpcQueryVolumeBarListReqBuilder.build().toByteString());
 
@@ -552,11 +505,11 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
     }
 
     @Override
-    public RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String unifiedSymbol, int volume, String transactionId, Integer timeoutSeconds) {
+    public RpcQueryVolumeBarListRsp queryVolumeBarList(long startTimestamp, long endTimestamp, String uniformSymbol, int volume, String transactionId, Integer timeoutSeconds) {
 
         RpcLock rpcLock = rpcRspHandlerService.getRpcLock(transactionId, timeoutSeconds);
         String finalTransactionId = rpcLock.getTransactionId();
-        if (!asyncQueryVolumeBarList(startTimestamp, endTimestamp, unifiedSymbol, volume, finalTransactionId)) {
+        if (!asyncQueryVolumeBarList(startTimestamp, endTimestamp, uniformSymbol, volume, finalTransactionId)) {
             rpcRspHandlerService.unregisterLock(rpcLock);
             return null;
         }

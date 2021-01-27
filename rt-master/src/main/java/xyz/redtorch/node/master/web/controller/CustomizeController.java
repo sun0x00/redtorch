@@ -41,13 +41,13 @@ public class CustomizeController {
 		return responseVo;
 	}
 
-	@RequestMapping(value = { "/addFavoriteContractByUnifiedSymbol" })
+	@RequestMapping(value = { "/addFavoriteContractByUniformSymbol" })
 	@ResponseBody
-	public ResponseVo<String> addFavoriteContractByUnifiedSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+	public ResponseVo<String> addFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
-			favoriteContractService.upsertContractByUsernameAndUnifiedSymbol(user.getUsername(), requestVo.getVoData());
+			favoriteContractService.upsertContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
 		} catch (Exception e) {
 			logger.error("根据统一合约标识新增合约错误", e);
 			responseVo.setStatus(false);
@@ -56,13 +56,13 @@ public class CustomizeController {
 		return responseVo;
 	}
 
-	@RequestMapping(value = { "/deleteFavoriteContractByUnifiedSymbol" })
+	@RequestMapping(value = { "/deleteFavoriteContractByUniformSymbol" })
 	@ResponseBody
-	public ResponseVo<String> deleteFavoriteContractByUnifiedSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+	public ResponseVo<String> deleteFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
-			favoriteContractService.deleteContractByUsernameAndUnifiedSymbol(user.getUsername(), requestVo.getVoData());
+			favoriteContractService.deleteContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
 		} catch (Exception e) {
 			logger.error("根据用户名和统一合约标识删除合约错误", e);
 			responseVo.setStatus(false);

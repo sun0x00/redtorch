@@ -92,12 +92,12 @@ public class PositionFXBean {
 
     private void updateContract(PositionField newPositionField) {
         VBox vBox = new VBox();
-        Text unifiedSymbolText = new Text(newPositionField.getContract().getUnifiedSymbol());
+        Text uniformSymbolText = new Text(newPositionField.getContract().getUniformSymbol());
         Text shortNameText = new Text(newPositionField.getContract().getName());
-        vBox.getChildren().add(unifiedSymbolText);
+        vBox.getChildren().add(uniformSymbolText);
         vBox.getChildren().add(shortNameText);
         if (contractSelectedFlag) {
-            unifiedSymbolText.getStyleClass().add("trade-remind-color");
+            uniformSymbolText.getStyleClass().add("trade-remind-color");
         }
         vBox.setUserData(newPositionField);
         setContract(vBox);

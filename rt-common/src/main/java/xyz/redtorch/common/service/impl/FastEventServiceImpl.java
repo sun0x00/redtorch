@@ -161,7 +161,7 @@ public class FastEventServiceImpl implements FastEventService, InitializingBean 
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setObj(tick);
-			fastEvent.setEvent(tick.getUnifiedSymbol()+"@"+tick.getGatewayId());
+			fastEvent.setEvent(tick.getUniformSymbol()+"@"+tick.getGatewayId());
 			fastEvent.setFastEventType(FastEventType.TICK);
 
 		} finally {

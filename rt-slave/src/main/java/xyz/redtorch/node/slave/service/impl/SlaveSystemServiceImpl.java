@@ -206,23 +206,23 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
                     if (rpcSyncSlaveNodeRuntimeDataRsp != null) {
                         List<ContractField> newSubscribedContractList = rpcSyncSlaveNodeRuntimeDataRsp.getSubscribedContractList();
 
-                        Set<String> newSubscribedUnifiedSymbolSet = new HashSet<>();
+                        Set<String> newSubscribedUniformSymbolSet = new HashSet<>();
 
                         for (ContractField contract : newSubscribedContractList) {
-                            newSubscribedUnifiedSymbolSet.add(contract.getUnifiedSymbol());
+                            newSubscribedUniformSymbolSet.add(contract.getUniformSymbol());
                         }
 
                         List<ContractField> unsubscribeContractList = new ArrayList<>();
                         for (Entry<String, ContractField> entry : subscribedContractMap.entrySet()) {
-                            String unifiedSymbol = entry.getKey();
+                            String uniformSymbol = entry.getKey();
                             ContractField contract = entry.getValue();
-                            if (!newSubscribedUnifiedSymbolSet.contains(unifiedSymbol)) {
+                            if (!newSubscribedUniformSymbolSet.contains(uniformSymbol)) {
                                 unsubscribeContractList.add(contract);
                             }
                         }
 
                         for (ContractField contract : unsubscribeContractList) {
-                            subscribedContractMap.remove(contract.getUnifiedSymbol());
+                            subscribedContractMap.remove(contract.getUniformSymbol());
                             for (GatewayApi gatewayApi : gatewayApiMap.values()) {
                                 if (gatewayApi.getGateway().getGatewayType().equals(GatewayTypeEnum.GTE_MarketData)
                                         || gatewayApi.getGateway().getGatewayType().equals(GatewayTypeEnum.GTE_TradeAndMarketData)) {
@@ -236,8 +236,8 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
                         }
 
                         for (ContractField contract : newSubscribedContractList) {
-                            if (!subscribedContractMap.containsKey(contract.getUnifiedSymbol())) {
-                                subscribedContractMap.put(contract.getUnifiedSymbol(), contract);
+                            if (!subscribedContractMap.containsKey(contract.getUniformSymbol())) {
+                                subscribedContractMap.put(contract.getUniformSymbol(), contract);
                                 for (GatewayApi gatewayApi : gatewayApiMap.values()) {
                                     if (gatewayApi.getGateway().getGatewayType().equals(GatewayTypeEnum.GTE_MarketData)
                                             || gatewayApi.getGateway().getGatewayType().equals(GatewayTypeEnum.GTE_TradeAndMarketData)) {
@@ -319,6 +319,9 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
                                     if (connectFlag) {
                                         logger.info("网关{}执行连接操作", gatewaySetting.getGatewayId());
                                         connectGatewayApi(gatewaySetting);
+                                        logger.info("等待3秒");
+                                        // TODO 等待3秒,避免登录过于集中造成网络阻塞,可根据实际情况修改
+                                        Thread.sleep(3*1000);
                                     } else {
                                         logger.info("网关{}不在自动连接时间范围:{}", gatewaySetting.getGatewayId(), gatewaySetting.getAutoConnectTimeRanges());
                                     }

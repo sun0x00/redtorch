@@ -17,90 +17,90 @@ public interface MarketDataService {
 	String COLLECTION_NAME_BAR_5_SEC = "bar_5_sec";
 
 
-	List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 	
-	List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<TickField> queryTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-	
-
-	List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-	
-	List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-	
-	
-	List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-	
-	List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
-
-	List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol);
+	List<TickField> queryTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 	
 
-	List<BarField> queryBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 	
-	List<BarField> queryBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryBar1DayList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<TickField> queryTickList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-	
-
-	List<BarField> queryHistBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-	
-	List<BarField> queryHistBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-
-	List<BarField> queryHistBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-
-	List<BarField> queryHistBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-
-	List<BarField> queryHistBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-
-	List<BarField> queryHistBar1DayList(long startTimestamp, long endTimestamp, String unifiedSymbol);
-
-	List<TickField> queryHistTickList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 	
 	
-	List<BarField> queryTodayBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 	
-	List<BarField> queryTodayBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryTodayBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryTodayBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<BarField> queryTodayBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
 
-	List<TickField> queryTodayTickList(long startTimestamp, long endTimestamp, String unifiedSymbol);
+	List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol);
+	
+
+	List<BarField> queryBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol);
+	
+	List<BarField> queryBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryBar1DayList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<TickField> queryTickList(long startTimestamp, long endTimestamp, String uniformSymbol);
+	
+
+	List<BarField> queryHistBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol);
+	
+	List<BarField> queryHistBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryHistBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryHistBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryHistBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryHistBar1DayList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<TickField> queryHistTickList(long startTimestamp, long endTimestamp, String uniformSymbol);
+	
+	
+	List<BarField> queryTodayBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol);
+	
+	List<BarField> queryTodayBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryTodayBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryTodayBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<BarField> queryTodayBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol);
+
+	List<TickField> queryTodayTickList(long startTimestamp, long endTimestamp, String uniformSymbol);
 
 	
 	boolean upsertTick(String dbName, String collectionName, TickField tick);
@@ -157,18 +157,18 @@ public interface MarketDataService {
 	 *  加载Tick数据,根据最后时间和数量向前推移
 	 * @param endTimestamp
 	 * @param limit
-	 * @param unifiedSymbol
+	 * @param uniformSymbol
 	 * @return
 	 */
-	List<TickField> queryTickListByEndTimestampAndLimit(long endTimestamp, int limit, String unifiedSymbol);
+	List<TickField> queryTickListByEndTimestampAndLimit(long endTimestamp, int limit, String uniformSymbol);
 
 	/**
 	 *  加载1分钟Bar数据,根据最后时间和数量向前推移
 	 * @param endTimestamp
 	 * @param limit
-	 * @param unifiedSymbol
+	 * @param uniformSymbol
 	 * @return
 	 */
-	List<BarField> queryBar1MinListByEndTimestampAndLimit(long endTimestamp, int limit, String unifiedSymbol);
+	List<BarField> queryBar1MinListByEndTimestampAndLimit(long endTimestamp, int limit, String uniformSymbol);
 	
 }

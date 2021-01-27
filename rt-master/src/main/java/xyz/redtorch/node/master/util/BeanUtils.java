@@ -35,7 +35,7 @@ public class BeanUtils {
 		contractPo.setThirdPartyId(contractField.getThirdPartyId());
 		contractPo.setUnderlyingMultiplier(contractField.getUnderlyingMultiplier());
 		contractPo.setUnderlyingSymbol(contractField.getUnderlyingSymbol());
-		contractPo.setUnifiedSymbol(contractField.getUnifiedSymbol());
+		contractPo.setUniformSymbol(contractField.getUniformSymbol());
 		return contractPo;
 	}
 	
@@ -67,7 +67,7 @@ public class BeanUtils {
 		contractFieldBuilder.setThirdPartyId(contractPo.getThirdPartyId());
 		contractFieldBuilder.setUnderlyingMultiplier(contractPo.getUnderlyingMultiplier());
 		contractFieldBuilder.setUnderlyingSymbol(contractPo.getUnderlyingSymbol());
-		contractFieldBuilder.setUnifiedSymbol(contractPo.getUnifiedSymbol());
+		contractFieldBuilder.setUniformSymbol(contractPo.getUniformSymbol());
 		return contractFieldBuilder.build();
 	}
 }

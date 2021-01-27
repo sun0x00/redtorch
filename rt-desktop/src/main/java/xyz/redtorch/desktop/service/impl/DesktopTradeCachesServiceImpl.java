@@ -35,7 +35,6 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
 
     private final Map<String, OrderField> workingOrderMap = new HashMap<>(2000);
     private final Map<String, ContractField> contractMap = new HashMap<>(200000);
-    private final Map<String, ContractField> mixContractMap = new HashMap<>(10000);
     private final Map<String, TickField> tickMap = new HashMap<>(1000);
     private final Map<String, TickField> mixTickMap = new HashMap<>(1000);
     private final Map<String, OrderField> orderMap = new HashMap<>(50000);
@@ -126,9 +125,9 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
             return;
         }
 
-        RpcGetMixContractListRsp rpcGetMixContractListRsp = rpcClientApiService.getMixContractList(null, null);
-        if (rpcGetMixContractListRsp != null) {
-            clearAndCacheContractList(rpcGetMixContractListRsp.getContractList());
+        RpcGetContractListRsp rpcGetContractListRsp = rpcClientApiService.getContractList(null, null);
+        if (rpcGetContractListRsp != null) {
+            clearAndCacheContractList(rpcGetContractListRsp.getContractList());
         }
 
         try {
@@ -194,7 +193,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     }
 
     @Override
-    public List<OrderField> queryOrderListByUnifiedSymbol(String unifiedSymbol) {
+    public List<OrderField> queryOrderListByUniformSymbol(String uniformSymbol) {
         List<OrderField> orderList = new ArrayList<>();
         orderMapLock.lock();
         try {
@@ -227,7 +226,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     }
 
     @Override
-    public List<TradeField> queryTradeListByUnifiedSymbol(String unifiedSymbol) {
+    public List<TradeField> queryTradeListByUniformSymbol(String uniformSymbol) {
         List<TradeField> tradeList = new ArrayList<>();
         tradeMapLock.lock();
         try {
@@ -317,7 +316,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     }
 
     @Override
-    public List<PositionField> queryPositionListByUnifiedSymbol(String unifiedSymbol) {
+    public List<PositionField> queryPositionListByUniformSymbol(String uniformSymbol) {
         List<PositionField> positionList = new ArrayList<>();
         positionMapLock.lock();
         try {
@@ -392,8 +391,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     }
 
     @Override
-    public TickField queryTickByUnifiedSymbol(String unifiedSymbol) {
-        return mixTickMap.get(unifiedSymbol);
+    public TickField queryTickByUniformSymbol(String uniformSymbol) {
+        return mixTickMap.get(uniformSymbol);
     }
 
     @Override
@@ -415,7 +414,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
         List<ContractField> contractList = new ArrayList<>();
         contractMapLock.lock();
         try {
-            contractList = new ArrayList<>(mixContractMap.values());
+            contractList = new ArrayList<>(contractMap.values());
         } catch (Exception e) {
             logger.error("获取混合合约列表异常", e);
         } finally {
@@ -425,41 +424,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     }
 
     @Override
-    public ContractField queryContractByUnifiedSymbol(String unifiedSymbol) {
-        return mixContractMap.get(unifiedSymbol);
-    }
-
-    @Override
-    public ContractField queryContractByContractId(String contractId) {
-        return contractMap.get(contractId);
-    }
-
-    @Override
-    public List<ContractField> queryContractListByUnifiedSymbol(String unifiedSymbol) {
-        List<ContractField> contractList = new ArrayList<>();
-        contractMapLock.lock();
-        try {
-            contractList = contractMap.values().stream().filter(contractField -> contractField.getUnifiedSymbol().equals(unifiedSymbol)).collect(Collectors.toList());
-        } catch (Exception e) {
-            logger.error("根据统一标识获取合约列表异常", e);
-        } finally {
-            contractMapLock.unlock();
-        }
-        return contractList;
-    }
-
-    @Override
-    public List<ContractField> queryContractListByGatewayId(String gatewayId) {
-        List<ContractField> contractList = new ArrayList<>();
-        contractMapLock.lock();
-        try {
-            contractList = contractMap.values().stream().filter(contractField -> contractField.getGatewayId().equals(gatewayId)).collect(Collectors.toList());
-        } catch (Exception e) {
-            logger.error("根据网关ID获取合约列表异常", e);
-        } finally {
-            contractMapLock.unlock();
-        }
-        return contractList;
+    public ContractField queryContractByUniformSymbol(String uniformSymbol) {
+        return contractMap.get(uniformSymbol);
     }
 
     @Override
@@ -494,8 +460,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     public void cacheContract(ContractField contract) {
         contractMapLock.lock();
         try {
-            contractMap.put(contract.getContractId(), contract);
-            mixContractMap.put(contract.getUnifiedSymbol(), contract);
+            contractMap.put(contract.getUniformSymbol(), contract);
         } catch (Exception e) {
             logger.error("存储合约异常", e);
         } finally {
@@ -531,8 +496,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
     public void cacheTick(TickField tick) {
         tickMapLock.lock();
         try {
-            tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
-            mixTickMap.put(tick.getUnifiedSymbol(), tick);
+            tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
+            mixTickMap.put(tick.getUniformSymbol(), tick);
         } catch (Exception e) {
             logger.error("存储Tick异常", e);
         } finally {
@@ -574,8 +539,7 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
         contractMapLock.lock();
         try {
             for (ContractField contract : contractList) {
-                contractMap.put(contract.getContractId(), contract);
-                mixContractMap.put(contract.getUnifiedSymbol(), contract);
+                contractMap.put(contract.getUniformSymbol(), contract);
             }
         } catch (Exception e) {
             logger.error("存储合约列表异常", e);
@@ -617,8 +581,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
         tickMapLock.lock();
         try {
             for (TickField tick : tickList) {
-                tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
-                mixTickMap.put(tick.getUnifiedSymbol(), tick);
+                tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
+                mixTickMap.put(tick.getUniformSymbol(), tick);
             }
 
         } catch (Exception e) {
@@ -663,10 +627,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
         contractMapLock.lock();
         try {
             contractMap.clear();
-            mixContractMap.clear();
             for (ContractField contract : contractList) {
-                contractMap.put(contract.getContractId(), contract);
-                mixContractMap.put(contract.getUnifiedSymbol(), contract);
+                contractMap.put(contract.getUniformSymbol(), contract);
             }
         } catch (Exception e) {
             logger.error("存储合约列表异常", e);
@@ -714,8 +676,8 @@ public class DesktopTradeCachesServiceImpl implements DesktopTradeCachesService,
             tickMap.clear();
             mixTickMap.clear();
             for (TickField tick : tickList) {
-                tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
-                mixTickMap.put(tick.getUnifiedSymbol(), tick);
+                tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
+                mixTickMap.put(tick.getUniformSymbol(), tick);
             }
 
         } catch (Exception e) {

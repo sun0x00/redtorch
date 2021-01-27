@@ -148,7 +148,7 @@ public class AccountLayout {
         accountTableView.getColumns().add(accountCodeCol);
 
         TableColumn<AccountFXBean, String> holderCol = new TableColumn<>("持有人");
-        holderCol.setPrefWidth(60);
+        holderCol.setPrefWidth(150);
         holderCol.setCellValueFactory(new PropertyValueFactory<>("holder"));
         holderCol.setComparator(StringUtils::compare);
         accountTableView.getColumns().add(holderCol);

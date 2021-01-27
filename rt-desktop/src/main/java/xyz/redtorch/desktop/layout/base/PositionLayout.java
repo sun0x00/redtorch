@@ -85,7 +85,7 @@ public class PositionLayout {
 
             for (PositionField position : filteredPositionList) {
 
-                String key = position.getContract().getUnifiedSymbol() + "#" + position.getPositionDirectionValue();
+                String key = position.getContract().getUniformSymbol() + "#" + position.getPositionDirectionValue();
 
                 PositionField.Builder positionFieldBuilder;
                 if (mergedPositionFieldBuilderMap.containsKey(key)) {
@@ -233,7 +233,7 @@ public class PositionLayout {
             try {
                 PositionField position1 = (PositionField) p1.getUserData();
                 PositionField position2 = (PositionField) p2.getUserData();
-                return StringUtils.compare(position1.getContract().getUnifiedSymbol(), position2.getContract().getUnifiedSymbol());
+                return StringUtils.compare(position1.getContract().getUniformSymbol(), position2.getContract().getUniformSymbol());
             } catch (Exception e) {
                 logger.error("排序错误", e);
             }

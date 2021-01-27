@@ -15,13 +15,13 @@ public interface DesktopTradeCachesService {
 
     List<OrderField> queryOrderListByAccountId(String accountId);
 
-    List<OrderField> queryOrderListByUnifiedSymbol(String unifiedSymbol);
+    List<OrderField> queryOrderListByUniformSymbol(String uniformSymbol);
 
     List<TradeField> getTradeList();
 
     TradeField queryTradeByTradeId(String tradeId);
 
-    List<TradeField> queryTradeListByUnifiedSymbol(String unifiedSymbol);
+    List<TradeField> queryTradeListByUniformSymbol(String uniformSymbol);
 
     List<TradeField> queryTradeListByAccountId(String accountId);
 
@@ -35,7 +35,7 @@ public interface DesktopTradeCachesService {
 
     List<PositionField> queryPositionListByAccountId(String accountId);
 
-    List<PositionField> queryPositionListByUnifiedSymbol(String unifiedSymbol);
+    List<PositionField> queryPositionListByUniformSymbol(String uniformSymbol);
 
     List<AccountField> getAccountList();
 
@@ -45,21 +45,15 @@ public interface DesktopTradeCachesService {
 
     List<ContractField> getContractList();
 
-    ContractField queryContractByContractId(String contractId);
-
-    List<ContractField> queryContractListByUnifiedSymbol(String unifiedSymbol);
-
-    List<ContractField> queryContractListByGatewayId(String gatewayId);
+    ContractField queryContractByUniformSymbol(String uniformSymbol);
 
     List<ContractField> getMixContractList();
-
-    ContractField queryContractByUnifiedSymbol(String unifiedSymbol);
 
     List<TickField> getTickList();
 
     List<TickField> getMixTickList();
 
-    TickField queryTickByUnifiedSymbol(String unifiedSymbol);
+    TickField queryTickByUniformSymbol(String uniformSymbol);
     // ------------------------------------------------------------
 
     void cacheOrder(OrderField order);

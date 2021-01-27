@@ -139,8 +139,8 @@ public class BasicMarketDataChartLayout {
             LocalDateTime startLocalDateTime = LocalDateTime.now().withMinute(0).withHour(0).withSecond(0).withNano(0);
             LocalDateTime endLocalDateTime = startLocalDateTime.plusDays(1).minusNanos(1);
 
-            TextField unifiedSymbolSymbolTextField = new TextField("@FUTURES");
-            unifiedSymbolSymbolTextField.setPrefWidth(180);
+            TextField uniformSymbolSymbolTextField = new TextField("@FUTURES");
+            uniformSymbolSymbolTextField.setPrefWidth(180);
             TextField startDateTimePickerTextField = new TextField(startLocalDateTime.format(CommonConstant.DT_FORMAT_WITH_MS_FORMATTER));
             startDateTimePickerTextField.setPrefWidth(160);
             TextField endDateTimePickerTextField = new TextField(endLocalDateTime.format(CommonConstant.DT_FORMAT_WITH_MS_FORMATTER));
@@ -180,14 +180,14 @@ public class BasicMarketDataChartLayout {
                         return;
                     }
 
-                    String unifiedSymbol = unifiedSymbolSymbolTextField.getText();
+                    String uniformSymbol = uniformSymbolSymbolTextField.getText();
 
-                    if (unifiedSymbol.isBlank()) {
+                    if (uniformSymbol.isBlank()) {
                         return;
                     }
 
                     if ("TICK".equals(chartType)) {
-                        chartsDataService.generateTickLineData(startTimestamp, endTimestamp, unifiedSymbol, key);
+                        chartsDataService.generateTickLineData(startTimestamp, endTimestamp, uniformSymbol, key);
                     } else if ("VOLUME_BAR".equals(chartType)) {
                         int volumeBarSize;
                         try {
@@ -213,13 +213,13 @@ public class BasicMarketDataChartLayout {
                             alert.showAndWait();
                             return;
                         }
-                        chartsDataService.generateVolumeBarCandlestickData(startTimestamp, endTimestamp, unifiedSymbol, volumeBarSize, key);
+                        chartsDataService.generateVolumeBarCandlestickData(startTimestamp, endTimestamp, uniformSymbol, volumeBarSize, key);
                     } else if ("VOL_OPI_CHANGE_DISTRIBUTION".equals(chartType)) {
-                        chartsDataService.generateVolOPIDeltaHistogramData(startTimestamp, endTimestamp, unifiedSymbol, key);
+                        chartsDataService.generateVolOPIDeltaHistogramData(startTimestamp, endTimestamp, uniformSymbol, key);
                     } else {
 
                         BarPeriodEnum barPeriod = BarPeriodEnum.valueOf(chartType);
-                        chartsDataService.generateCandlestickData(startTimestamp, endTimestamp, unifiedSymbol, barPeriod, key);
+                        chartsDataService.generateCandlestickData(startTimestamp, endTimestamp, uniformSymbol, barPeriod, key);
                     }
 
                     String port = environment.getProperty("local.server.port");
@@ -227,14 +227,14 @@ public class BasicMarketDataChartLayout {
                     webEngine.load("http://127.0.0.1:" + port + "/index.html?key=" + key);
                     if ("VOLUME_BAR".equals(chartType)) {
                         basicMarketDataChartStage.setTitle(
-                                unifiedSymbol + " | " + chartType + " | " + volumeBarSize + " | " + startDateTimePickerTextField.getText() + " → " + endDateTimePickerTextField.getText());
+                                uniformSymbol + " | " + chartType + " | " + volumeBarSize + " | " + startDateTimePickerTextField.getText() + " → " + endDateTimePickerTextField.getText());
                     } else {
-                        basicMarketDataChartStage.setTitle(unifiedSymbol + " | " + chartType + " | " + startDateTimePickerTextField.getText() + " → " + endDateTimePickerTextField.getText());
+                        basicMarketDataChartStage.setTitle(uniformSymbol + " | " + chartType + " | " + startDateTimePickerTextField.getText() + " → " + endDateTimePickerTextField.getText());
                     }
                 }
             });
 
-            menuHBoxLine2.getChildren().addAll(new Text("合约"), unifiedSymbolSymbolTextField, new Text("时间范围"), startDateTimePickerTextField, new Text("-"), endDateTimePickerTextField, refreshButton);
+            menuHBoxLine2.getChildren().addAll(new Text("合约"), uniformSymbolSymbolTextField, new Text("时间范围"), startDateTimePickerTextField, new Text("-"), endDateTimePickerTextField, refreshButton);
             basicMarketDataChartVBox.getChildren().addAll(menuHBoxLine1, menuHBoxLine2);
 
             basicMarketDataChartVBox.getChildren().add(browser);

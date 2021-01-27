@@ -43,7 +43,7 @@ public class SlaveTradeExecuteServiceImpl implements SlaveTradeExecuteService {
 		if (submitOrderReq == null) {
 			logger.error("提交定单错误，参数submitOrderReq缺失");
 			throw new IllegalArgumentException("提交定单错误，参数submitOrderReq缺失");
-		} else if (StringUtils.isBlank(submitOrderReq.getContract().getUnifiedSymbol())) {
+		} else if (StringUtils.isBlank(submitOrderReq.getContract().getUniformSymbol())) {
 			logger.error("提交定单错误，参数contract错误");
 			throw new IllegalArgumentException("提交定单错误，参数contract错误");
 		} else if (StringUtils.isBlank(submitOrderReq.getOriginOrderId())) {

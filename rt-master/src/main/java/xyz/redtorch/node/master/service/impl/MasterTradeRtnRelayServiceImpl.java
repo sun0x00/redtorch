@@ -269,7 +269,7 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
     public void onTick(TickField tick) {
 
         // --------------------------先根据 合约标识+网关ID 进行转发--------------------------
-        Set<String> dataSourceIdSubscribedSessionIdSet = masterTradeExecuteService.getSubscribedSessionIdSet(tick.getUnifiedSymbol() + "@" + tick.getGatewayId());
+        Set<String> dataSourceIdSubscribedSessionIdSet = masterTradeExecuteService.getSubscribedSessionIdSet(tick.getUniformSymbol() + "@" + tick.getGatewayId());
 
         for (String sessionId : dataSourceIdSubscribedSessionIdSet) {
 
@@ -281,17 +281,17 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
         }
 
         // --------------------------过滤行情-----------------------------
-        String unifiedSymbol = tick.getUnifiedSymbol();
+        String uniformSymbol = tick.getUniformSymbol();
 
         long actionTimestamp = tick.getActionTimestamp();
 
-        if (tick.getUnifiedSymbol().contains(ExchangeEnum.CZCE.getValueDescriptor().getName())) {
-            if (tickGatewayIdFilterMap.containsKey(unifiedSymbol)) {
-                String gatewayId = tickGatewayIdFilterMap.get(unifiedSymbol);
+        if (tick.getUniformSymbol().contains(ExchangeEnum.CZCE.getValueDescriptor().getName())) {
+            if (tickGatewayIdFilterMap.containsKey(uniformSymbol)) {
+                String gatewayId = tickGatewayIdFilterMap.get(uniformSymbol);
                 if (!gatewayId.equals(tick.getGatewayId())) {
-                    if (tickLastLocalTimestampFilterMap.containsKey(unifiedSymbol)) {
-                        if (System.currentTimeMillis() - tickLastLocalTimestampFilterMap.get(unifiedSymbol) > 5 * 1000) {
-                            logger.warn("超过5秒未能接收到网关发送的郑商所合约行情数据,切换网关数据,网关ID:{},合约统一标识:{}", gatewayId, unifiedSymbol);
+                    if (tickLastLocalTimestampFilterMap.containsKey(uniformSymbol)) {
+                        if (System.currentTimeMillis() - tickLastLocalTimestampFilterMap.get(uniformSymbol) > 5 * 1000) {
+                            logger.warn("超过5秒未能接收到网关发送的郑商所合约行情数据,切换网关数据,网关ID:{},合约统一标识:{}", gatewayId, uniformSymbol);
                         } else {
                             return;
                         }
@@ -302,28 +302,28 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
 
             }
 
-            tickGatewayIdFilterMap.put(unifiedSymbol, tick.getGatewayId());
-            tickLastLocalTimestampFilterMap.put(unifiedSymbol, System.currentTimeMillis());
+            tickGatewayIdFilterMap.put(uniformSymbol, tick.getGatewayId());
+            tickLastLocalTimestampFilterMap.put(uniformSymbol, System.currentTimeMillis());
         } else {
-            if (tickTimestampFilterMap.containsKey(unifiedSymbol)) {
-                if (actionTimestamp <= tickTimestampFilterMap.get(unifiedSymbol)) {
+            if (tickTimestampFilterMap.containsKey(uniformSymbol)) {
+                if (actionTimestamp <= tickTimestampFilterMap.get(uniformSymbol)) {
                     return;
                 }
             }
         }
 
-        tickTimestampFilterMap.put(unifiedSymbol, actionTimestamp);
+        tickTimestampFilterMap.put(uniformSymbol, actionTimestamp);
 
-        Set<String> mdrSubscribedUnifiedSymbol = marketDataRecordingService.getSubscribedUnifiedSymbolSet();
-        if (mdrSubscribedUnifiedSymbol.contains(tick.getUnifiedSymbol())) {
+        Set<String> mdrSubscribedUniformSymbol = marketDataRecordingService.getSubscribedUniformSymbolSet();
+        if (mdrSubscribedUniformSymbol.contains(tick.getUniformSymbol())) {
             marketDataRecordingService.processTick(tick);
         }
 
 
-        // --------------------------先根据unifiedSymbol进行转发--------------------------
-        Set<String> unifiedSymbolSubscribedSessionIdSet = masterTradeExecuteService.getSubscribedSessionIdSet(tick.getUnifiedSymbol());
+        // --------------------------先根据uniformSymbol进行转发--------------------------
+        Set<String> uniformSymbolSubscribedSessionIdSet = masterTradeExecuteService.getSubscribedSessionIdSet(tick.getUniformSymbol());
 
-        for (String sessionId : unifiedSymbolSubscribedSessionIdSet) {
+        for (String sessionId : uniformSymbolSubscribedSessionIdSet) {
             // 过滤已经转发过的dataSourceId
             if (dataSourceIdSubscribedSessionIdSet.contains(sessionId)) {
                 continue;

@@ -5,7 +5,7 @@ import "xyz/redtorch/pb/core_enum.proto";
 
 package xyz.redtorch.pb;
 
-/* 1 void subscribe(CommonReqField commonReq, ContractField contract); */
+/* 1 */
 message RpcSubscribeReq {
 	CommonReqField commonReq = 1;
 	ContractField contract = 2;
@@ -14,7 +14,7 @@ message RpcSubscribeRsp {
 	CommonRspField commonRsp = 1;
 }
 
-/* 3 void unsubscribe(CommonReqField commonReq, ContractField contract, String gatewayId); */
+/* 3 */
 message RpcUnsubscribeReq {
 	CommonReqField commonReq = 1;
 	ContractField contract = 2;
@@ -24,7 +24,7 @@ message RpcUnsubscribeRsp {
 	CommonRspField commonRsp = 1;
 }
 
-/* 5 void sumitOrder(CommonReqField commonReq, SubmitOrderReqField submitOrderReq); */
+/* 5 */
 message RpcSubmitOrderReq {
     CommonReqField commonReq = 1;
 	SubmitOrderReqField submitOrderReq = 2;
@@ -34,7 +34,7 @@ message RpcSubmitOrderRsp {
 	string orderId = 2;
 }
 
-/* 7 void cancelOrder(CommonReqField commonReq, CancelOrderReqField cancelOrderReq);  */
+/* 7 */
 message RpcCancelOrderReq {
     CommonReqField commonReq = 1;
 	CancelOrderReqField cancelOrderReq = 2;
@@ -43,7 +43,7 @@ message RpcCancelOrderRsp {
 	CommonRspField commonRsp = 1;
 }
 
-/* 9 void searchContract(CommonReqField commonReq, ContractField contract); */
+/* 9 */
 message RpcSearchContractReq {
     CommonReqField commonReq = 1;
 	ContractField contract = 2;
@@ -52,7 +52,7 @@ message RpcSearchContractRsp {
 	CommonRspField commonRsp = 1;
 }
 
-/* 11 List<OrderField> getOrderList() */
+/* 11 */
 message RpcGetOrderListReq {
     CommonReqField commonReq = 1;
 } 
@@ -61,7 +61,7 @@ message RpcGetOrderListRsp {
 	repeated OrderField order = 2;
 }
 
-/* 13 List<OrderField> getOrderList() */
+/* 13 */
 message RpcGetWorkingOrderListReq {
     CommonReqField commonReq = 1;
 } 
@@ -70,7 +70,7 @@ message RpcGetWorkingOrderListRsp {
 	repeated OrderField order = 2;
 }
 
-/* 15 OrderField queryOrderByOrderId(String orderId); */
+/* 15 */
 message RpcQueryOrderByOrderIdReq {
     CommonReqField commonReq = 1;
     string orderId = 2;
@@ -80,7 +80,7 @@ message RpcQueryOrderByOrderIdRsp {
 	OrderField order = 2;
 }
 
-/* 17 OrderField queryOrderByOriginOrderId(String originOrderId); */
+/* 17 */
 message RpcQueryOrderByOriginOrderIdReq {
     CommonReqField commonReq = 1;
     string originOrderId = 2;
@@ -90,7 +90,7 @@ message RpcQueryOrderByOriginOrderIdRsp {
 	OrderField order = 2;
 }
 
-/* 19 List<OrderField> queryOrderListByAccountId(String accountId); */
+/* 19 */
 message RpcQueryOrderListByAccountIdReq {
     CommonReqField commonReq = 1;
     string accountId = 2;
@@ -100,17 +100,17 @@ message RpcQueryOrderListByAccountIdRsp {
 	repeated OrderField order = 2;
 }
 
-/* 21 List<OrderField> queryOrderListByUnifiedSymbol(String unifiedSymbol); */
-message RpcQueryOrderListByUnifiedSymbolReq {
+/* 21 */
+message RpcQueryOrderListByUniformSymbolReq {
     CommonReqField commonReq = 1;
-    string unifiedSymbol = 2;
+    string uniformSymbol = 2;
 } 
-message RpcQueryOrderListByUnifiedSymbolRsp {
+message RpcQueryOrderListByUniformSymbolRsp {
 	CommonRspField commonRsp = 1;
 	repeated OrderField order = 2;
 }
 
-/* 23 List<TradeField> getTradeList(); */
+/* 23 */
 message RpcGetTradeListReq {
     CommonReqField commonReq = 1;
 } 
@@ -119,7 +119,7 @@ message RpcGetTradeListRsp {
 	repeated TradeField trade = 2;
 }
 
-/* 25 TradeField queryTradeByTradeId(String tradeId); */
+/* 25 */
 message RpcQueryTradeByTradeIdReq {
     CommonReqField commonReq = 1;
     string tradeId = 2;
@@ -129,17 +129,17 @@ message RpcQueryTradeByTradeIdRsp {
 	TradeField trade = 2;
 }
 
-/* 27 List<TradeField> queryTradeListByUnifiedSymbol(String unifiedSymbol); */
-message RpcQueryTradeListByUnifiedSymbolReq {
+/* 27 */
+message RpcQueryTradeListByUniformSymbolReq {
     CommonReqField commonReq = 1;
-    string unifiedSymbol = 2;
+    string uniformSymbol = 2;
 } 
-message RpcQueryTradeListByUnifiedSymbolRsp {
+message RpcQueryTradeListByUniformSymbolRsp {
 	CommonRspField commonRsp = 1;
 	repeated TradeField trade = 2;
 }
 
-/* 29 List<TradeField> queryTradeListByAccountId(String accountId); */
+/* 29 */
 message RpcQueryTradeListByAccountIdReq {
     CommonReqField commonReq = 1;
     string accountId = 2;
@@ -149,7 +149,7 @@ message RpcQueryTradeListByAccountIdRsp {
 	repeated TradeField trade = 2;
 }
 
-/* 31 List<TradeField> queryTradeListByOrderId(String orderId); */
+/* 31 */
 message RpcQueryTradeListByOrderIdReq {
     CommonReqField commonReq = 1;
     string orderId = 2;
@@ -159,7 +159,7 @@ message RpcQueryTradeListByOrderIdRsp {
 	repeated TradeField trade = 2;
 }
 
-/* 33 List<TradeField> queryTradeListByOriginOrderId(String originOrderId); */
+/* 33 */
 message RpcQueryTradeListByOriginOrderIdReq {
     CommonReqField commonReq = 1;
     string originOrderId = 2;
@@ -169,7 +169,7 @@ message RpcQueryTradeListByOriginOrderIdRsp {
 	repeated TradeField trade = 2;
 }
 
-/* 35 List<PositionField> getPositionList(); */
+/* 35 */
 message RpcGetPositionListReq {
     CommonReqField commonReq = 1;
 } 
@@ -178,7 +178,7 @@ message RpcGetPositionListRsp {
 	repeated PositionField position = 2;
 }
 
-/* 37 PositionField queryPositionByPositionId(String positionId); */
+/* 37 */
 message RpcQueryPositionByPositionIdReq {
     CommonReqField commonReq = 1;
     string positionId = 2;
@@ -188,7 +188,7 @@ message RpcQueryPositionByPositionIdRsp {
 	PositionField position = 2;
 }
 
-/* 39 List<PositionField> queryPositionListByAccountId(String accountId); */
+/* 39 */
 message RpcQueryPositionListByAccountIdReq {
     CommonReqField commonReq = 1;
     string accountId = 2;
@@ -198,18 +198,17 @@ message RpcQueryPositionListByAccountIdRsp {
 	repeated PositionField position = 2;
 }
 
-/* 41 List<PositionField> queryPositionListByUnifiedSymbol(String unifiedSymbol); */
-message RpcQueryPositionListByUnifiedSymbolReq {
+/* 41 */
+message RpcQueryPositionListByUniformSymbolReq {
     CommonReqField commonReq = 1;
-    string unifiedSymbol = 2;
+    string uniformSymbol = 2;
 } 
-message RpcQueryPositionListByUnifiedSymbolRsp {
+message RpcQueryPositionListByUniformSymbolRsp {
 	CommonRspField commonRsp = 1;
 	repeated PositionField position = 2;
 }
 
-
-/* 43 List<AccountField> getAccountList(); */
+/* 43 */
 message RpcGetAccountListReq {
     CommonReqField commonReq = 1;
 } 
@@ -218,7 +217,7 @@ message RpcGetAccountListRsp {
 	repeated AccountField account = 2;
 }
 
-/* 45 AccountField queryAccountByAccountId(String accountId); */
+/* 45 */
 message RpcQueryAccountByAccountIdReq {
     CommonReqField commonReq = 1;
     string accountId = 2;
@@ -228,7 +227,7 @@ message RpcQueryAccountByAccountIdRsp {
 	AccountField account = 2;
 }
 
-/* 47 List<AccountField> queryAccountListByAccountCode(String accountCode); */
+/* 47 */
 message RpcQueryAccountListByAccountCodeReq {
     CommonReqField commonReq = 1;
     string accountCode = 2;
@@ -238,7 +237,7 @@ message RpcQueryAccountListByAccountCodeRsp {
 	repeated AccountField account = 2;
 }
 
-/* 49 List<ContractField> getContractList(); */
+/* 49 */
 message RpcGetContractListReq {
     CommonReqField commonReq = 1;
 } 
@@ -247,38 +246,17 @@ message RpcGetContractListRsp {
 	repeated ContractField contract = 2;
 }
 
-
-/* 51 ContractField queryContractByContractId(String contractId); */
-message RpcQueryContractByContractIdReq {
+/* 51 */
+message RpcQueryContractByUniformSymbolReq {
     CommonReqField commonReq = 1;
-    string contractId = 2;
-} 
-message RpcQueryContractByContractIdRsp {
+    string uniformSymbol = 2;
+}
+message RpcQueryContractByUniformSymbolRsp {
 	CommonRspField commonRsp = 1;
 	ContractField contract = 2;
 }
 
-/* 53 List<ContractField> queryContractListByUnifiedSymbol(String unifiedSymbol); */
-message RpcQueryContractListByUnifiedSymbolReq {
-    CommonReqField commonReq = 1;
-    string unifiedSymbol = 2;
-} 
-message RpcQueryContractListByUnifiedSymbolRsp {
-	CommonRspField commonRsp = 1;
-	repeated ContractField contract = 2;
-}
-
-/* 55 List<ContractField> queryContractListByGatewayId(String gatewayId); */
-message RpcQueryContractListByGatewayIdReq {
-    CommonReqField commonReq = 1;
-    string gatewayId = 2;
-} 
-message RpcQueryContractListByGatewayIdRsp {
-	CommonRspField commonRsp = 1;
-	repeated ContractField contract = 2;
-}
-
-/* 57 RpcSyncSlaveNodeRuntimeDataRsp syncSlaveNodeRuntimeData(CommonReqField commonReq, List<GatewayField> gatewayList) */
+/* 53 */
 message RpcSyncSlaveNodeRuntimeDataReq {
     CommonReqField commonReq = 1;
     repeated GatewayField gateway= 2;
@@ -289,16 +267,7 @@ message RpcSyncSlaveNodeRuntimeDataRsp {
 	repeated ContractField subscribedContract = 3;
 }
 
-
-/* 59 List<ContractField> getMixContractList(); */
-message RpcGetMixContractListReq {
-    CommonReqField commonReq = 1;
-} 
-message RpcGetMixContractListRsp {
-	CommonRspField commonRsp = 1;
-	repeated ContractField contract = 2;
-}
-/* 61 List<TickField> getTickList(); */
+/* 55 */
 message RpcGetTickListReq {
     CommonReqField commonReq = 1;
 } 
@@ -306,12 +275,13 @@ message RpcGetTickListRsp {
 	CommonRspField commonRsp = 1;
 	repeated TickField tick = 2;
 }
-/* 63 List<BarField> queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) */
+
+/* 57 */
 message RpcQueryDBBarListReq{
 	CommonReqField commonReq = 1;
 	fixed64 startTimestamp = 2;
 	fixed64 endTimestamp = 3;
-	string unifiedSymbol = 4;
+	string uniformSymbol = 4;
 	BarPeriodEnum barPeriod = 5;
 	MarketDataDBTypeEnum marketDataDBType = 6;
 }
@@ -320,12 +290,12 @@ message RpcQueryDBBarListRsp{
 	repeated BarField bar = 2;
 }
 
-/* 65 List<TickField> queryDBTickList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType) */
+/* 59 */
 message RpcQueryDBTickListReq{
 	CommonReqField commonReq = 1;
 	fixed64 startTimestamp = 2;
 	fixed64 endTimestamp = 3;
-	string unifiedSymbol = 4;
+	string uniformSymbol = 4;
 	MarketDataDBTypeEnum marketDataDBType = 5;
 }
 message RpcQueryDBTickListRsp{
@@ -333,12 +303,12 @@ message RpcQueryDBTickListRsp{
 	repeated TickField tick = 2;
 }
 
-/* 67 List<BarField> queryVolumeBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, int volume) */
+/* 61 */
 message RpcQueryVolumeBarListReq{
 	CommonReqField commonReq = 1;
 	fixed64 startTimestamp = 2;
 	fixed64 endTimestamp = 3;
-	string unifiedSymbol = 4;
+	string uniformSymbol = 4;
 	fixed32 volume = 5;
 }
 message RpcQueryVolumeBarListRsp{
@@ -443,14 +413,14 @@ enum RpcId {
 	QUERY_ORDER_BY_ORIGIN_ORDER_ID_RSP = 18;
 	QUERY_ORDER_LIST_BY_ACCOUNT_ID_REQ = 19;
 	QUERY_ORDER_LIST_BY_ACCOUNT_ID_RSP = 20;
-	QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ = 21;
-	QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP = 22;
+	QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ = 21;
+	QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP = 22;
 	GET_TRADE_LIST_REQ = 23;
 	GET_TRADE_LIST_RSP = 24;
 	QUERY_TRADE_BY_TRADE_ID_REQ = 25;
 	QUERY_TRADE_BY_TRADE_ID_RSP = 26;
-	QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ = 27;
-	QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP = 28;
+	QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ = 27;
+	QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP = 28;
 	QUERY_TRADE_LIST_BY_ACCOUNT_ID_REQ = 29;
 	QUERY_TRADE_LIST_BY_ACCOUNT_ID_RSP = 30;
 	QUERY_TRADE_LIST_BY_ORDER_ID_REQ = 31;
@@ -463,8 +433,8 @@ enum RpcId {
 	QUERY_POSITION_BY_POSITION_ID_RSP = 38;
 	QUERY_POSITION_LIST_BY_ACCOUNT_ID_REQ = 39;
 	QUERY_POSITION_LIST_BY_ACCOUNT_ID_RSP = 40;
-	QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ = 41;
-	QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP = 42;
+	QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ = 41;
+	QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP = 42;
 	GET_ACCOUNT_LIST_REQ = 43;
 	GET_ACCOUNT_LIST_RSP = 44;
 	QUERY_ACCOUNT_BY_ACCOUNT_ID_REQ = 45;
@@ -473,24 +443,18 @@ enum RpcId {
 	QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_RSP = 48;
 	GET_CONTRACT_LIST_REQ = 49;
 	GET_CONTRACT_LIST_RSP = 50;
-	QUERY_CONTRACT_BY_CONTRACT_ID_REQ = 51;
-	QUERY_CONTRACT_BY_CONTRACT_ID_RSP = 52;
-	QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ = 53;
-	QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP = 54;
-	QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ = 55;
-	QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP = 56;
-	SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 57;
-	SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 58;
-	GET_MIX_CONTRACT_LIST_REQ = 59;
-	GET_MIX_CONTRACT_LIST_RSP = 60;
-	GET_TICK_LIST_REQ = 61;
-	GET_TICK_LIST_RSP = 62;
-	QUERY_DB_BAR_LIST_REQ = 63;
-	QUERY_DB_BAR_LIST_RSP = 64;
-	QUERY_DB_TICK_LIST_REQ = 65;
-	QUERY_DB_TICK_LIST_RSP = 66;
-	QUERY_VOLUME_BAR_LIST_REQ = 67;
-	QUERY_VOLUME_BAR_LIST_RSP = 68;
+	QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ = 51;
+	QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP = 52;
+	SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 53;
+	SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 54;
+	GET_TICK_LIST_REQ = 55;
+	GET_TICK_LIST_RSP = 56;
+	QUERY_DB_BAR_LIST_REQ = 57;
+	QUERY_DB_BAR_LIST_RSP = 58;
+	QUERY_DB_TICK_LIST_REQ = 59;
+	QUERY_DB_TICK_LIST_RSP = 60;
+	QUERY_VOLUME_BAR_LIST_REQ = 61;
+	QUERY_VOLUME_BAR_LIST_RSP = 62;
 	EXCEPTION_RSP = 999999;
 	///////////////////////
 	ORDER_RTN = 1001;

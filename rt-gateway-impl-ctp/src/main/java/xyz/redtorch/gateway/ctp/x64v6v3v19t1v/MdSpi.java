@@ -462,7 +462,7 @@ public class MdSpi extends CThostFtdcMdSpi {
 				TickField.Builder tickBuilder = TickField.newBuilder();
 				ContractField.Builder contractBuilder = contract.toBuilder();
 				contractBuilder.setContractId(contractId);
-				tickBuilder.setUnifiedSymbol(contract.getUnifiedSymbol());
+				tickBuilder.setUniformSymbol(contract.getUniformSymbol());
 				tickBuilder.setActionDay(actionDay);
 				tickBuilder.setActionTime(actionTime);
 				tickBuilder.setActionTimestamp(actionTimestamp);

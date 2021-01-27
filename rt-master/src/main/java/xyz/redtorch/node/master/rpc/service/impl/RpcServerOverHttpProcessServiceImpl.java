@@ -124,14 +124,14 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
-            case RpcId.QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE: {
+            case RpcId.QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE: {
                 try {
-                    RpcQueryOrderListByUnifiedSymbolReq rpcQueryOrderListByUnifiedSymbolReq = RpcQueryOrderListByUnifiedSymbolReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryOrderListByUnifiedSymbolReq.getCommonReq());
-                    transactionId = rpcQueryOrderListByUnifiedSymbolReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryOrderListByUnifiedSymbol(rpcQueryOrderListByUnifiedSymbolReq.getCommonReq(), rpcQueryOrderListByUnifiedSymbolReq.getUnifiedSymbol());
+                    RpcQueryOrderListByUniformSymbolReq rpcQueryOrderListByUniformSymbolReq = RpcQueryOrderListByUniformSymbolReq.parseFrom(contentByteString);
+                    RpcUtils.checkCommonReq(rpcQueryOrderListByUniformSymbolReq.getCommonReq());
+                    transactionId = rpcQueryOrderListByUniformSymbolReq.getCommonReq().getTransactionId();
+                    return rpcServerOverHttpReqHandlerService.queryOrderListByUniformSymbol(rpcQueryOrderListByUniformSymbolReq.getCommonReq(), rpcQueryOrderListByUniformSymbolReq.getUniformSymbol());
                 } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ", sessionId, transactionId, e);
+                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
@@ -168,14 +168,14 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
-            case RpcId.QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE: {
+            case RpcId.QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE: {
                 try {
-                    RpcQueryTradeListByUnifiedSymbolReq rpcQueryTradeListByUnifiedSymbolReq = RpcQueryTradeListByUnifiedSymbolReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryTradeListByUnifiedSymbolReq.getCommonReq());
-                    transactionId = rpcQueryTradeListByUnifiedSymbolReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryTradeListByUnifiedSymbol(rpcQueryTradeListByUnifiedSymbolReq.getCommonReq(), rpcQueryTradeListByUnifiedSymbolReq.getUnifiedSymbol());
+                    RpcQueryTradeListByUniformSymbolReq rpcQueryTradeListByUniformSymbolReq = RpcQueryTradeListByUniformSymbolReq.parseFrom(contentByteString);
+                    RpcUtils.checkCommonReq(rpcQueryTradeListByUniformSymbolReq.getCommonReq());
+                    transactionId = rpcQueryTradeListByUniformSymbolReq.getCommonReq().getTransactionId();
+                    return rpcServerOverHttpReqHandlerService.queryTradeListByUniformSymbol(rpcQueryTradeListByUniformSymbolReq.getCommonReq(), rpcQueryTradeListByUniformSymbolReq.getUniformSymbol());
                 } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ", sessionId, transactionId, e);
+                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
@@ -246,15 +246,15 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
-            case RpcId.QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE: {
+            case RpcId.QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE: {
 
                 try {
-                    RpcQueryPositionListByUnifiedSymbolReq rpcQueryPositionListByUnifiedSymbolReq = RpcQueryPositionListByUnifiedSymbolReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryPositionListByUnifiedSymbolReq.getCommonReq());
-                    transactionId = rpcQueryPositionListByUnifiedSymbolReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryPositionListByUnifiedSymbol(rpcQueryPositionListByUnifiedSymbolReq.getCommonReq(), rpcQueryPositionListByUnifiedSymbolReq.getUnifiedSymbol());
+                    RpcQueryPositionListByUniformSymbolReq rpcQueryPositionListByUniformSymbolReq = RpcQueryPositionListByUniformSymbolReq.parseFrom(contentByteString);
+                    RpcUtils.checkCommonReq(rpcQueryPositionListByUniformSymbolReq.getCommonReq());
+                    transactionId = rpcQueryPositionListByUniformSymbolReq.getCommonReq().getTransactionId();
+                    return rpcServerOverHttpReqHandlerService.queryPositionListByUniformSymbol(rpcQueryPositionListByUniformSymbolReq.getCommonReq(), rpcQueryPositionListByUniformSymbolReq.getUniformSymbol());
                 } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ", sessionId, transactionId, e);
+                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
@@ -302,36 +302,14 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
-            case RpcId.QUERY_CONTRACT_BY_CONTRACT_ID_REQ_VALUE: {
+            case RpcId.QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ_VALUE: {
                 try {
-                    RpcQueryContractByContractIdReq rpcQueryContractByContractIdReq = RpcQueryContractByContractIdReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryContractByContractIdReq.getCommonReq());
-                    transactionId = rpcQueryContractByContractIdReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryContractByContractId(rpcQueryContractByContractIdReq.getCommonReq(), rpcQueryContractByContractIdReq.getContractId());
+                    RpcQueryContractByUniformSymbolReq rpcQueryContractByUniformSymbolReq = RpcQueryContractByUniformSymbolReq.parseFrom(contentByteString);
+                    RpcUtils.checkCommonReq(rpcQueryContractByUniformSymbolReq.getCommonReq());
+                    transactionId = rpcQueryContractByUniformSymbolReq.getCommonReq().getTransactionId();
+                    return rpcServerOverHttpReqHandlerService.queryContractByUniformSymbol(rpcQueryContractByUniformSymbolReq.getCommonReq(), rpcQueryContractByUniformSymbolReq.getUniformSymbol());
                 } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_CONTRACT_BY_CONTRACT_ID_REQ", sessionId, transactionId, e);
-                    return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
-                }
-            }
-            case RpcId.QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE: {
-                try {
-                    RpcQueryContractListByUnifiedSymbolReq rpcQueryContractListByUnifiedSymbolReq = RpcQueryContractListByUnifiedSymbolReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryContractListByUnifiedSymbolReq.getCommonReq());
-                    transactionId = rpcQueryContractListByUnifiedSymbolReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryContractListByUnifiedSymbol(rpcQueryContractListByUnifiedSymbolReq.getCommonReq(), rpcQueryContractListByUnifiedSymbolReq.getUnifiedSymbol());
-                } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ", sessionId, transactionId, e);
-                    return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
-                }
-            }
-            case RpcId.QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ_VALUE: {
-                try {
-                    RpcQueryContractListByGatewayIdReq rpcQueryContractListByGatewayIdReq = RpcQueryContractListByGatewayIdReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcQueryContractListByGatewayIdReq.getCommonReq());
-                    transactionId = rpcQueryContractListByGatewayIdReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.queryContractListByGatewayId(rpcQueryContractListByGatewayIdReq.getCommonReq(), rpcQueryContractListByGatewayIdReq.getGatewayId());
-                } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ", sessionId, transactionId, e);
+                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
@@ -346,25 +324,13 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
                 }
             }
-
-            case RpcId.GET_MIX_CONTRACT_LIST_REQ_VALUE: {
-                try {
-                    RpcGetMixContractListReq rpcGetMixContractListReq = RpcGetMixContractListReq.parseFrom(contentByteString);
-                    RpcUtils.checkCommonReq(rpcGetMixContractListReq.getCommonReq());
-                    transactionId = rpcGetMixContractListReq.getCommonReq().getTransactionId();
-                    return rpcServerOverHttpReqHandlerService.getMixContractList(rpcGetMixContractListReq.getCommonReq());
-                } catch (Exception e) {
-                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:GET_MIX_CONTRACT_LIST_REQ", sessionId, transactionId, e);
-                    return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
-                }
-            }
             case RpcId.QUERY_DB_BAR_LIST_REQ_VALUE: {
                 try {
                     RpcQueryDBBarListReq rpcQueryDBBarListReq = RpcQueryDBBarListReq.parseFrom(contentByteString);
                     RpcUtils.checkCommonReq(rpcQueryDBBarListReq.getCommonReq());
                     transactionId = rpcQueryDBBarListReq.getCommonReq().getTransactionId();
                     return rpcServerOverHttpReqHandlerService.queryDBBarList(rpcQueryDBBarListReq.getCommonReq(), rpcQueryDBBarListReq.getStartTimestamp(), rpcQueryDBBarListReq.getEndTimestamp(),
-                            rpcQueryDBBarListReq.getUnifiedSymbol(), rpcQueryDBBarListReq.getBarPeriod(), rpcQueryDBBarListReq.getMarketDataDBType());
+                            rpcQueryDBBarListReq.getUniformSymbol(), rpcQueryDBBarListReq.getBarPeriod(), rpcQueryDBBarListReq.getMarketDataDBType());
                 } catch (Exception e) {
                     logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_DB_BAR_LIST_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
@@ -376,7 +342,7 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     RpcUtils.checkCommonReq(rpcQueryDBTickListReq.getCommonReq());
                     transactionId = rpcQueryDBTickListReq.getCommonReq().getTransactionId();
                     return rpcServerOverHttpReqHandlerService.queryDBTickList(rpcQueryDBTickListReq.getCommonReq(), rpcQueryDBTickListReq.getStartTimestamp(), rpcQueryDBTickListReq.getEndTimestamp(),
-                            rpcQueryDBTickListReq.getUnifiedSymbol(), rpcQueryDBTickListReq.getMarketDataDBType());
+                            rpcQueryDBTickListReq.getUniformSymbol(), rpcQueryDBTickListReq.getMarketDataDBType());
                 } catch (Exception e) {
                     logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_DB_TICK_LIST_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());
@@ -388,7 +354,7 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                     RpcUtils.checkCommonReq(rpcQueryVolumeBarListReq.getCommonReq());
                     transactionId = rpcQueryVolumeBarListReq.getCommonReq().getTransactionId();
                     return rpcServerOverHttpReqHandlerService.queryVolumeBarList(rpcQueryVolumeBarListReq.getCommonReq(), rpcQueryVolumeBarListReq.getStartTimestamp(), rpcQueryVolumeBarListReq.getEndTimestamp(),
-                            rpcQueryVolumeBarListReq.getUnifiedSymbol(), rpcQueryVolumeBarListReq.getVolume());
+                            rpcQueryVolumeBarListReq.getUniformSymbol(), rpcQueryVolumeBarListReq.getVolume());
                 } catch (Exception e) {
                     logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:QUERY_VOLUME_BAR_LIST_REQ", sessionId, transactionId, e);
                     return generateExceptionRsp(rpcId, transactionId, timestamp, e.getMessage());

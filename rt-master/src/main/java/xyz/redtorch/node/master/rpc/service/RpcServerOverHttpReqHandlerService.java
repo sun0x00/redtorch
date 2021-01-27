@@ -19,13 +19,13 @@ public interface RpcServerOverHttpReqHandlerService {
 
 	byte[] queryOrderListByAccountId(CommonReqField commonReq, String accountId);
 
-	byte[] queryOrderListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol);
+	byte[] queryOrderListByUniformSymbol(CommonReqField commonReq, String uniformSymbol);
 
 	byte[] getTradeList(CommonReqField commonReq);
 
 	byte[] queryTradeByTradeId(CommonReqField commonReq, String tradeId);
 
-	byte[] queryTradeListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol);
+	byte[] queryTradeListByUniformSymbol(CommonReqField commonReq, String uniformSymbol);
 
 	byte[] queryTradeListByAccountId(CommonReqField commonReq, String accountId);
 
@@ -39,7 +39,7 @@ public interface RpcServerOverHttpReqHandlerService {
 
 	byte[] queryPositionListByAccountId(CommonReqField commonReq, String accountId);
 
-	byte[] queryPositionListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol);
+	byte[] queryPositionListByUniformSymbol(CommonReqField commonReq, String uniformSymbol);
 
 	byte[] getAccountList(CommonReqField commonReq);
 
@@ -49,22 +49,16 @@ public interface RpcServerOverHttpReqHandlerService {
 
 	byte[] getContractList(CommonReqField commonReq);
 
-	byte[] queryContractByContractId(CommonReqField commonReq, String contractId);
-
-	byte[] queryContractListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol);
-
-	byte[] queryContractListByGatewayId(CommonReqField commonReq, String gatewayId);
-
-	byte[] getMixContractList(CommonReqField commonReq);
+	byte[] queryContractByUniformSymbol(CommonReqField commonReq, String contractId);
 
 	byte[] getTickList(String sessionId,CommonReqField commonReq);
 
 	// ---------------------------------------------------------------------
 	byte[] syncSlaveNodeRuntimeData(String sessionId, CommonReqField commonReq, List<GatewayField> gatewayList);
 
-	byte[] queryDBBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType);
+	byte[] queryDBBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType);
 
-	byte[] queryDBTickList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType);
+	byte[] queryDBTickList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, MarketDataDBTypeEnum marketDataDBType);
 
-	byte[] queryVolumeBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, int volume);
+	byte[] queryVolumeBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, int volume);
 }

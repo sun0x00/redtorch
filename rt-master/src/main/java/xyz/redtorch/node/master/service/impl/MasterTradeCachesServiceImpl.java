@@ -1,25 +1,10 @@
 package xyz.redtorch.node.master.service.impl;
 
-import static java.util.concurrent.Executors.newSingleThreadScheduledExecutor;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.node.master.dao.GatewayDao;
 import xyz.redtorch.node.master.po.GatewayPo;
@@ -29,18 +14,17 @@ import xyz.redtorch.node.master.service.OperatorService;
 import xyz.redtorch.node.master.web.socket.WebSocketServerHandler;
 import xyz.redtorch.pb.CoreEnum.ConnectStatusEnum;
 import xyz.redtorch.pb.CoreEnum.ContingentConditionEnum;
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
-import xyz.redtorch.pb.CoreRpc.RpcGetAccountListRsp;
-import xyz.redtorch.pb.CoreRpc.RpcGetContractListRsp;
-import xyz.redtorch.pb.CoreRpc.RpcGetOrderListRsp;
-import xyz.redtorch.pb.CoreRpc.RpcGetPositionListRsp;
-import xyz.redtorch.pb.CoreRpc.RpcGetTickListRsp;
-import xyz.redtorch.pb.CoreRpc.RpcGetTradeListRsp;
+import xyz.redtorch.pb.CoreField.*;
+import xyz.redtorch.pb.CoreRpc.*;
+
+import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
+
+import static java.util.concurrent.Executors.newSingleThreadScheduledExecutor;
 
 @Service
 public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, InitializingBean {
@@ -62,14 +46,19 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	private WebSocketServerHandler webSocketServerHandler;
 	@Autowired
 	private RpcServerApiService rpcServerApiService;
+
+	// 合约信息长期缓存
+	private final Map<String, ContractField> contractMap = new HashMap<>(200000);
+
 	private Map<String, OrderField> workingOrderMap = new HashMap<>(2000);
-	private Map<String, ContractField> contractMap = new HashMap<>(200000);
-	private Map<String, ContractField> mixContractMap = new HashMap<>(10000);
 	private Map<String, TickField> tickMap = new HashMap<>(1000);
 	private Map<String, OrderField> orderMap = new HashMap<>(50000);
 	private Map<String, TradeField> tradeMap = new HashMap<>(100000);
 	private Map<String, AccountField> accountMap = new HashMap<>(500);
 	private Map<String, PositionField> positionMap = new HashMap<>(5000);
+
+	// 用于降低合约缓存的同步频率
+	private boolean fetchContractSwitch = false;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -137,22 +126,6 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 					tickMapLock.unlock();
 				}
 
-				contractMapLock.lock();
-				try {
-					// 删除Contract缓存
-					contractMap = contractMap.entrySet().stream().filter(map -> retainGatewayIdSet.contains(map.getValue().getGatewayId()))
-							.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-					// 重建
-					mixContractMap = new HashMap<>();
-					for (ContractField contract : contractMap.values()) {
-						mixContractMap.put(contract.getUnifiedSymbol(), contract);
-					}
-				} catch (Exception e) {
-					logger.error("删除合约缓存异常", e);
-				} finally {
-					contractMapLock.unlock();
-				}
-
 			} catch (Exception e) {
 				logger.error("定时清理数据异常", e);
 			}
@@ -218,12 +191,16 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 
 						Thread.sleep(200);
 
-						RpcGetContractListRsp rpcGetContractListRsp = rpcServerApiService.getContractList(sessionId, null, null);
-						if (rpcGetContractListRsp != null) {
-							logger.info("RpcGetContractListRsp返回{}条数据",rpcGetContractListRsp.getContractList().size());
-							clearAndCacheContractList(rpcGetContractListRsp.getContractList(), nodeId);
+						if(fetchContractSwitch){
+							RpcGetContractListRsp rpcGetContractListRsp = rpcServerApiService.getContractList(sessionId, null, null);
+							if (rpcGetContractListRsp != null) {
+								logger.info("RpcGetContractListRsp返回{}条数据",rpcGetContractListRsp.getContractList().size());
+								cacheContractList(rpcGetContractListRsp.getContractList());
+							}
+							fetchContractSwitch = false;
+						}else{
+							fetchContractSwitch = true;
 						}
-
 						Thread.sleep(200);
 
 					}
@@ -232,7 +209,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 			} catch (Exception e) {
 				logger.error("定时从子节点刷新数据异常", e);
 			}
-		}, 5, 60, TimeUnit.SECONDS);
+		}, 30, 60, TimeUnit.SECONDS);
 	}
 
 	@Override
@@ -302,12 +279,12 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	}
 
 	@Override
-	public List<OrderField> queryOrderListByUnifiedSymbol(String operatorId, String unifiedSymbol) {
+	public List<OrderField> queryOrderListByUniformSymbol(String operatorId, String uniformSymbol) {
 		List<OrderField> orderList = new ArrayList<>();
 		orderMapLock.lock();
 		try {
 			orderList = orderMap.values().stream()
-					.filter(order -> order.getContract().getUnifiedSymbol().equals(unifiedSymbol) && operatorService.checkReadAccountPermission(operatorId, order.getAccountId()))
+					.filter(order -> order.getContract().getUniformSymbol().equals(uniformSymbol) && operatorService.checkReadAccountPermission(operatorId, order.getAccountId()))
 					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据统一标识获取委托列表异常", e);
@@ -345,12 +322,12 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	}
 
 	@Override
-	public List<TradeField> queryTradeListByUnifiedSymbol(String operatorId, String unifiedSymbol) {
+	public List<TradeField> queryTradeListByUniformSymbol(String operatorId, String uniformSymbol) {
 		List<TradeField> tradeList = new ArrayList<>();
 		tradeMapLock.lock();
 		try {
 			tradeList = tradeMap.values().stream()
-					.filter(trade -> trade.getContract().getUnifiedSymbol().equals(unifiedSymbol) && operatorService.checkReadAccountPermission(operatorId, trade.getAccountId()))
+					.filter(trade -> trade.getContract().getUniformSymbol().equals(uniformSymbol) && operatorService.checkReadAccountPermission(operatorId, trade.getAccountId()))
 					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据统一标识获取成交列表异常", e);
@@ -449,12 +426,12 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	}
 
 	@Override
-	public List<PositionField> queryPositionListByUnifiedSymbol(String operatorId, String unifiedSymbol) {
+	public List<PositionField> queryPositionListByUniformSymbol(String operatorId, String uniformSymbol) {
 		List<PositionField> positionList = new ArrayList<>();
 		positionMapLock.lock();
 		try {
 			positionList = positionMap.values().stream()
-					.filter(position -> position.getContract().getUnifiedSymbol().equals(unifiedSymbol) && operatorService.checkReadAccountPermission(operatorId, position.getAccountId()))
+					.filter(position -> position.getContract().getUniformSymbol().equals(uniformSymbol) && operatorService.checkReadAccountPermission(operatorId, position.getAccountId()))
 					.collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("根据统一标识获取持仓列表异常", e);
@@ -521,7 +498,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 		List<TickField> tickList = new ArrayList<>();
 		tickMapLock.lock();
 		try {
-			tickList = tickMap.values().stream().filter(tick -> operatorService.checkSubscribePermission(operatorId, tick.getUnifiedSymbol())).collect(Collectors.toList());
+			tickList = tickMap.values().stream().filter(tick -> operatorService.checkSubscribePermission(operatorId, tick.getUniformSymbol())).collect(Collectors.toList());
 		} catch (Exception e) {
 			logger.error("获取Tick列表异常", e);
 		} finally {
@@ -530,57 +507,12 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 		return tickList;
 	}
 
-	@Override
-	public List<ContractField> getMixContractList(String operatorId) {
-		List<ContractField> contractList = new ArrayList<>();
-		contractMapLock.lock();
-		try {
-			contractList = new ArrayList<ContractField>(mixContractMap.values());
-		} catch (Exception e) {
-			logger.error("获取混合合约列表异常", e);
-		} finally {
-			contractMapLock.unlock();
-		}
-		return contractList;
-	}
 
 	@Override
-	public ContractField queryContractByUnifiedSymbol(String operatorId, String unifiedSymbol) {
-		return mixContractMap.get(unifiedSymbol);
+	public ContractField queryContractByUniformSymbol(String operatorId, String uniformSymbol) {
+		return contractMap.get(uniformSymbol);
 	}
 
-	@Override
-	public ContractField queryContractByContractId(String operatorId, String contractId) {
-		return contractMap.get(contractId);
-	}
-
-	@Override
-	public List<ContractField> queryContractListByUnifiedSymbol(String operatorId, String unifiedSymbol) {
-		List<ContractField> contractList = new ArrayList<>();
-		contractMapLock.lock();
-		try {
-			contractList = contractMap.values().stream().filter(contractField -> contractField.getUnifiedSymbol().equals(unifiedSymbol)).collect(Collectors.toList());
-		} catch (Exception e) {
-			logger.error("根据统一标识获取合约列表异常", e);
-		} finally {
-			contractMapLock.unlock();
-		}
-		return contractList;
-	}
-
-	@Override
-	public List<ContractField> queryContractListByGatewayId(String operatorId, String gatewayId) {
-		List<ContractField> contractList = new ArrayList<>();
-		contractMapLock.lock();
-		try {
-			contractList = contractMap.values().stream().filter(contractField -> contractField.getGatewayId().equals(gatewayId)).collect(Collectors.toList());
-		} catch (Exception e) {
-			logger.error("根据网关ID获取合约列表异常", e);
-		} finally {
-			contractMapLock.unlock();
-		}
-		return contractList;
-	}
 
 	@Override
 	public void cacheOrder(OrderField order) {
@@ -614,8 +546,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	public void cacheContract(ContractField contract) {
 		contractMapLock.lock();
 		try {
-			contractMap.put(contract.getContractId(), contract);
-			mixContractMap.put(contract.getUnifiedSymbol(), contract);
+			contractMap.put(contract.getUniformSymbol(), contract);
 		} catch (Exception e) {
 			logger.error("存储合约异常", e);
 		} finally {
@@ -651,7 +582,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 	public void cacheTick(TickField tick) {
 		tickMapLock.lock();
 		try {
-			tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
+			tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
 		} catch (Exception e) {
 			logger.error("存储Tick异常", e);
 		} finally {
@@ -694,8 +625,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 		contractMapLock.lock();
 		try {
 			for (ContractField contract : contractList) {
-				contractMap.put(contract.getContractId(), contract);
-				mixContractMap.put(contract.getUnifiedSymbol(), contract);
+				contractMap.put(contract.getUniformSymbol(), contract);
 			}
 		} catch (Exception e) {
 			logger.error("存储合约列表异常", e);
@@ -740,7 +670,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 		tickMapLock.lock();
 		try {
 			for (TickField tick : tickList) {
-				tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
+				tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
 			}
 
 		} catch (Exception e) {
@@ -793,32 +723,6 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 			logger.error("存储成交列表异常", e);
 		} finally {
 			tradeMapLock.unlock();
-		}
-	}
-
-	@Override
-	public void clearAndCacheContractList(List<ContractField> contractList, Integer sourceNodeId) {
-		contractMapLock.lock();
-		try {
-			Set<String> removeGatewayIdSet = new HashSet<>();
-			List<GatewayPo> gatewayList = gatewayDao.queryGatewayList();
-
-			for (GatewayPo gateway : gatewayList) {
-				if (gateway!=null&&gateway.getTargetNodeId()!=null&&gateway.getTargetNodeId().equals(sourceNodeId)) {
-					removeGatewayIdSet.add(gateway.getGatewayId());
-				}
-			}
-			contractMap = contractMap.entrySet().stream().filter(map -> !removeGatewayIdSet.contains(map.getValue().getGatewayId())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			mixContractMap = mixContractMap.entrySet().stream().filter(map -> !removeGatewayIdSet.contains(map.getValue().getGatewayId()))
-					.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-			for (ContractField contract : contractList) {
-				contractMap.put(contract.getContractId(), contract);
-				mixContractMap.put(contract.getUnifiedSymbol(), contract);
-			}
-		} catch (Exception e) {
-			logger.error("存储合约列表异常", e);
-		} finally {
-			contractMapLock.unlock();
 		}
 	}
 
@@ -884,7 +788,7 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 			}
 			tickMap = tickMap.entrySet().stream().filter(map -> !removeGatewayIdSet.contains(map.getValue().getGatewayId())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 			for (TickField tick : tickList) {
-				tickMap.put(tick.getUnifiedSymbol() + "@" + tick.getGatewayId(), tick);
+				tickMap.put(tick.getUniformSymbol() + "@" + tick.getGatewayId(), tick);
 			}
 
 		} catch (Exception e) {
@@ -947,21 +851,6 @@ public class MasterTradeCachesServiceImpl implements MasterTradeCachesService, I
 		} finally {
 			tickMapLock.unlock();
 		}
-
-		contractMapLock.lock();
-		try {
-			// 删除Contract缓存
-			contractMap = contractMap.entrySet().stream().filter(map -> !map.getValue().getGatewayId().equals(gatewayId)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-			// 重建
-			mixContractMap = new HashMap<>();
-			for (ContractField contract : contractMap.values()) {
-				mixContractMap.put(contract.getUnifiedSymbol(), contract);
-			}
-		} catch (Exception e) {
-			logger.error("删除合约缓存异常", e);
-		} finally {
-			contractMapLock.unlock();
-		}
 	}
+
 }

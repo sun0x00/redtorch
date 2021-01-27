@@ -41,7 +41,7 @@ public class TickFXBean {
 
     public void update(TickField newTickField, boolean newContractSelectedFlag, ContractField newContractField) {
         if (contractField == null && newContractField != null) {
-            if (tickField==null || newContractField.getUnifiedSymbol().equals(tickField.getUnifiedSymbol())) {
+            if (tickField==null || newContractField.getUniformSymbol().equals(tickField.getUniformSymbol())) {
                 contractField = newContractField;
                 int decimalDigits = CommonUtils.getNumberDecimalDigits(contractField.getPriceTick());
 
@@ -79,15 +79,15 @@ public class TickFXBean {
 
     private void updateContract(TickField newTickField) {
         VBox vBox = new VBox();
-        Text unifiedSymbolText = new Text(newTickField.getUnifiedSymbol());
+        Text uniformSymbolText = new Text(newTickField.getUniformSymbol());
         Text shortNameText = new Text();
         if (contractField != null) {
             shortNameText.setText(contractField.getName());
         }
-        vBox.getChildren().add(unifiedSymbolText);
+        vBox.getChildren().add(uniformSymbolText);
         vBox.getChildren().add(shortNameText);
         if (contractSelectedFlag) {
-            unifiedSymbolText.getStyleClass().add("trade-remind-color");
+            uniformSymbolText.getStyleClass().add("trade-remind-color");
         }
         vBox.setUserData(newTickField);
         setContract(vBox);

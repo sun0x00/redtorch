@@ -48,28 +48,28 @@ public class FavoriteContractServiceImpl implements FavoriteContractService {
 	}
 
 	@Override
-	public void deleteContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol) {
+	public void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol) {
 		if (StringUtils.isBlank(username)) {
 			logger.error("根据用户名和统一合约标识删除合约错误,参数username缺失");
 			throw new IllegalArgumentException("根据用户名和统一合约标识删除合约错误,参数username缺失");
 		}
-		if (StringUtils.isBlank(unifiedSymbol)) {
-			logger.error("根据用户名和统一合约标识删除合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和统一合约标识删除合约错误,参数unifiedSymbol缺失");
+		if (StringUtils.isBlank(uniformSymbol)) {
+			logger.error("根据用户名和统一合约标识删除合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据用户名和统一合约标识删除合约错误,参数uniformSymbol缺失");
 		}
-		favoriteContractDao.deleteContractByUsernameAndUnifiedSymbol(username, unifiedSymbol);
+		favoriteContractDao.deleteContractByUsernameAndUniformSymbol(username, uniformSymbol);
 	}
 
 	@Override
-	public void upsertContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol) {
+	public void upsertContractByUsernameAndUniformSymbol(String username, String uniformSymbol) {
 		
 		if (StringUtils.isBlank(username)) {
 			logger.error("根据用户名和统一合约标识更新或新增合约错误,参数username缺失");
 			throw new IllegalArgumentException("根据用户名和统一合约标识更新或新增合约错误,参数username缺失");
 		}
 		
-		if(StringUtils.isNotBlank(unifiedSymbol)) {
-			ContractField contract = masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, unifiedSymbol);
+		if(StringUtils.isNotBlank(uniformSymbol)) {
+			ContractField contract = masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, uniformSymbol);
 			if(contract==null) {
 				logger.error("根据用户名和统一合约标识更新或新增合约错误,未找到合约");
 				throw new IllegalArgumentException("根据用户名和统一合约标识更新或新增合约错误,未找到合约");
@@ -77,10 +77,10 @@ public class FavoriteContractServiceImpl implements FavoriteContractService {
 			
 			ContractPo contractPo = BeanUtils.contractFieldToContractPo(contract);
 
-			favoriteContractDao.upsertContractByUsernameAndUnifiedSymbol(username, contractPo);
+			favoriteContractDao.upsertContractByUsernameAndUniformSymbol(username, contractPo);
 		}else {
-			logger.error("根据用户名和统一合约标识更新或新增合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和统一合约标识更新或新增合约错误,参数unifiedSymbol缺失");
+			logger.error("根据用户名和统一合约标识更新或新增合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据用户名和统一合约标识更新或新增合约错误,参数uniformSymbol缺失");
 		}
 		
 	}

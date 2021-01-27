@@ -149,7 +149,7 @@ public class OrderLayout {
             try {
                 TradeField trade1 = (TradeField) p1.getUserData();
                 TradeField trade2 = (TradeField) p2.getUserData();
-                return StringUtils.compare(trade1.getContract().getUnifiedSymbol(), trade2.getContract().getUnifiedSymbol());
+                return StringUtils.compare(trade1.getContract().getUniformSymbol(), trade2.getContract().getUniformSymbol());
             } catch (Exception e) {
                 logger.error("排序错误", e);
             }

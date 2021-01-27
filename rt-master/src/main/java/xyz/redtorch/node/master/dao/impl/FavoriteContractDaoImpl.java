@@ -79,7 +79,7 @@ public class FavoriteContractDaoImpl implements FavoriteContractDao, Initializin
 	}
 
 	@Override
-	public void upsertContractByUsernameAndUnifiedSymbol(String username, ContractPo contract) {
+	public void upsertContractByUsernameAndUniformSymbol(String username, ContractPo contract) {
 		if (StringUtils.isBlank(username)) {
 			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
 			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
@@ -88,9 +88,9 @@ public class FavoriteContractDaoImpl implements FavoriteContractDao, Initializin
 			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
 			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
 		}
-		if (StringUtils.isBlank(contract.getUnifiedSymbol())) {
-			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数unifiedSymbol缺失");
+		if (StringUtils.isBlank(contract.getUniformSymbol())) {
+			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
 		}
 
 		try {
@@ -98,7 +98,7 @@ public class FavoriteContractDaoImpl implements FavoriteContractDao, Initializin
 			document.append("username", username);
 			Document filter = new Document();
 			filter.append("username", username);
-			filter.append("unifiedSymbol", contract.getUnifiedSymbol());
+			filter.append("uniformSymbol", contract.getUniformSymbol());
 			managementDBClient.upsert(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, document, filter);
 		} catch (IllegalArgumentException e) {
 			logger.error("根据用户名和合约统一标识更新或保存合约错误", e);
@@ -123,10 +123,10 @@ public class FavoriteContractDaoImpl implements FavoriteContractDao, Initializin
 	}
 
 	@Override
-	public void deleteContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol) {
-		if (StringUtils.isBlank(unifiedSymbol)) {
-			logger.error("根据用户名和合约统一标识删除合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数unifiedSymbol缺失");
+	public void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol) {
+		if (StringUtils.isBlank(uniformSymbol)) {
+			logger.error("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
 		}
 
 		if (StringUtils.isBlank(username)) {
@@ -137,7 +137,7 @@ public class FavoriteContractDaoImpl implements FavoriteContractDao, Initializin
 		try {
 			Document filter = new Document();
 			filter.append("username", username);
-			filter.append("unifiedSymbol", unifiedSymbol);
+			filter.append("uniformSymbol", uniformSymbol);
 			managementDBClient.delete(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, filter);
 		} catch (IllegalArgumentException e) {
 			logger.error("根据用户名和合约统一标识删除合约错误,用户名:{}", username, e);

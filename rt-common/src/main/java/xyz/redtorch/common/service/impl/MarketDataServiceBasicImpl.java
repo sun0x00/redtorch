@@ -44,141 +44,141 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryHistBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistBar1DayList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<TickField> queryHistTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryHistTickList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryHistTickList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<BarField> queryTodayBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
+	public List<TickField> queryTodayTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
 		long startTimestamp = CommonUtils.localDateTimeToMills(startDateTime);
 		long endTimestamp = CommonUtils.localDateTimeToMills(endDateTime);
-		return queryTodayTickList(startTimestamp, endTimestamp, unifiedSymbol);
+		return queryTodayTickList(startTimestamp, endTimestamp, uniformSymbol);
 	}
 
 	@Override
-	public List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar5SecList(startDateTime, endDateTime, unifiedSymbol);
-		barList.addAll(this.queryTodayBar5SecList(startDateTime, endDateTime, unifiedSymbol));
+	public List<BarField> queryBar5SecList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar5SecList(startDateTime, endDateTime, uniformSymbol);
+		barList.addAll(this.queryTodayBar5SecList(startDateTime, endDateTime, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar1MinList(startDateTime, endDateTime, unifiedSymbol);
-		barList.addAll(this.queryTodayBar1MinList(startDateTime, endDateTime, unifiedSymbol));
+	public List<BarField> queryBar1MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar1MinList(startDateTime, endDateTime, uniformSymbol);
+		barList.addAll(this.queryTodayBar1MinList(startDateTime, endDateTime, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar3MinList(startDateTime, endDateTime, unifiedSymbol);
-		barList.addAll(this.queryTodayBar3MinList(startDateTime, endDateTime, unifiedSymbol));
+	public List<BarField> queryBar3MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar3MinList(startDateTime, endDateTime, uniformSymbol);
+		barList.addAll(this.queryTodayBar3MinList(startDateTime, endDateTime, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar5MinList(startDateTime, endDateTime, unifiedSymbol);
-		barList.addAll(this.queryTodayBar5MinList(startDateTime, endDateTime, unifiedSymbol));
+	public List<BarField> queryBar5MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar5MinList(startDateTime, endDateTime, uniformSymbol);
+		barList.addAll(this.queryTodayBar5MinList(startDateTime, endDateTime, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar15MinList(startDateTime, endDateTime, unifiedSymbol);
-		barList.addAll(this.queryTodayBar15MinList(startDateTime, endDateTime, unifiedSymbol));
+	public List<BarField> queryBar15MinList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar15MinList(startDateTime, endDateTime, uniformSymbol);
+		barList.addAll(this.queryTodayBar15MinList(startDateTime, endDateTime, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar1DayList(startDateTime, endDateTime, unifiedSymbol);
+	public List<BarField> queryBar1DayList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar1DayList(startDateTime, endDateTime, uniformSymbol);
 		return barList;
 	}
 
 	@Override
-	public List<TickField> queryTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String unifiedSymbol) {
-		List<TickField> tickList = this.queryHistTickList(startDateTime, endDateTime, unifiedSymbol);
-		tickList.addAll(this.queryTodayTickList(startDateTime, endDateTime, unifiedSymbol));
+	public List<TickField> queryTickList(LocalDateTime startDateTime, LocalDateTime endDateTime, String uniformSymbol) {
+		List<TickField> tickList = this.queryHistTickList(startDateTime, endDateTime, uniformSymbol);
+		tickList.addAll(this.queryTodayTickList(startDateTime, endDateTime, uniformSymbol));
 		return tickList;
 	}
 
@@ -188,10 +188,10 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		Document barDocument = barToDocument(bar);
 
 		Document filterDocument = new Document();
-		filterDocument.put("unifiedSymbol", bar.getUnifiedSymbol());
+		filterDocument.put("uniformSymbol", bar.getUniformSymbol());
 		filterDocument.put("actionTimestamp", bar.getActionTimestamp());
 
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "uniformSymbol"));
 		return todayMarketDataDBClient.upsert(dbName, collectionName, barDocument, filterDocument);
 	}
 
@@ -208,7 +208,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		long beginTime = System.currentTimeMillis();
 		for (BarField bar : barList) {
 			Document filterDocument = new Document();
-			filterDocument.put("unifiedSymbol", bar.getUnifiedSymbol());
+			filterDocument.put("uniformSymbol", bar.getUniformSymbol());
 			filterDocument.put("actionTimestamp", bar.getActionTimestamp());
 
 			Document barDocument = barToDocument(bar);
@@ -220,7 +220,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		}
 		logger.info("更新插入Bar集合,数据库{},集合{},数据转换耗时{}ms,共{}条数据", dbName, collectionName, (System.currentTimeMillis() - beginTime), barList.size());
 		beginTime = System.currentTimeMillis();
-		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "unifiedSymbol"));
+		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp", "uniformSymbol"));
 		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).bulkWrite(writeModelList);
 		logger.info("更新插入Bar集合,数据库{},集合{},数据库操作耗时{}ms,共{}条操作", dbName, collectionName, (System.currentTimeMillis() - beginTime), writeModelList.size());
 		return true;
@@ -230,7 +230,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	public boolean upsertTick(String dbName, String collectionName, TickField tick) {
 		Document tickDocument = tickToDocument(tick);
 		Document filterDocument = new Document();
-		filterDocument.put("unifiedSymbol", tick.getUnifiedSymbol());
+		filterDocument.put("uniformSymbol", tick.getUniformSymbol());
 		filterDocument.put("actionTimestamp", tick.getActionTimestamp());
 
 		todayMarketDataDBClient.getDatabase(dbName).getCollection(collectionName).createIndex(Indexes.ascending("actionTimestamp"));
@@ -250,7 +250,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 		long beginTime = System.currentTimeMillis();
 		for (TickField tick : tickList) {
 			Document filterDocument = new Document();
-			filterDocument.put("unifiedSymbol", tick.getUnifiedSymbol());
+			filterDocument.put("uniformSymbol", tick.getUniformSymbol());
 			filterDocument.put("actionTimestamp", tick.getActionTimestamp());
 
 			Document tickDocument = tickToDocument(tick);
@@ -278,18 +278,18 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 
 					ContractField.Builder contractBuilder = ContractField.newBuilder();
 
-					String unifiedSymbol = document.getString("unifiedSymbol");
-					String[] unifiedSymbolStrArr = unifiedSymbol.split("@");
-					String symbol = unifiedSymbolStrArr[0];
-					String exchangeStr = unifiedSymbolStrArr[1];
-					String productClassStr = unifiedSymbolStrArr[2];
+					String uniformSymbol = document.getString("uniformSymbol");
+					String[] uniformSymbolStrArr = uniformSymbol.split("@");
+					String symbol = uniformSymbolStrArr[0];
+					String exchangeStr = uniformSymbolStrArr[1];
+					String productClassStr = uniformSymbolStrArr[2];
 
-					contractBuilder.setUnifiedSymbol(unifiedSymbol);
+					contractBuilder.setUniformSymbol(uniformSymbol);
 					contractBuilder.setSymbol(symbol);
 					contractBuilder.setExchange(ExchangeEnum.valueOf(exchangeStr));
 					contractBuilder.setProductClass(ProductClassEnum.valueOf(productClassStr));
 
-					barBuilder.setUnifiedSymbol(unifiedSymbol);
+					barBuilder.setUniformSymbol(uniformSymbol);
 					barBuilder.setGatewayId(gatewayId);
 
 					barBuilder.setActionDay(document.getString("actionDay"));
@@ -332,18 +332,18 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 					TickField.Builder tickBuilder = TickField.newBuilder();
 					ContractField.Builder contractBuilder = ContractField.newBuilder();
 
-					String unifiedSymbol = document.getString("unifiedSymbol");
-					String[] unifiedSymbolStrArr = unifiedSymbol.split("@");
-					String symbol = unifiedSymbolStrArr[0];
-					String exchangeStr = unifiedSymbolStrArr[1];
-					String productClassStr = unifiedSymbolStrArr[2];
+					String uniformSymbol = document.getString("uniformSymbol");
+					String[] uniformSymbolStrArr = uniformSymbol.split("@");
+					String symbol = uniformSymbolStrArr[0];
+					String exchangeStr = uniformSymbolStrArr[1];
+					String productClassStr = uniformSymbolStrArr[2];
 
-					contractBuilder.setUnifiedSymbol(unifiedSymbol);
+					contractBuilder.setUniformSymbol(uniformSymbol);
 					contractBuilder.setSymbol(symbol);
 					contractBuilder.setExchange(ExchangeEnum.valueOf(exchangeStr));
 					contractBuilder.setProductClass(ProductClassEnum.valueOf(productClassStr));
 
-					tickBuilder.setUnifiedSymbol(unifiedSymbol);
+					tickBuilder.setUniformSymbol(uniformSymbol);
 					tickBuilder.setGatewayId(gatewayId);
 
 					List<Double> askPriceList = new ArrayList<>();
@@ -411,7 +411,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 
 	private static Document tickToDocument(TickField tick) {
 		Document tickDocument = new Document();
-		tickDocument.put("unifiedSymbol", tick.getUnifiedSymbol());
+		tickDocument.put("uniformSymbol", tick.getUniformSymbol());
 
 		for (int i = 0; i < 5; i++) {
 			if (tick.getAskPriceList().size() > i) {
@@ -470,7 +470,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 
 	private static Document barToDocument(BarField bar) {
 		Document barDocument = new Document();
-		barDocument.put("unifiedSymbol", bar.getUnifiedSymbol());
+		barDocument.put("uniformSymbol", bar.getUniformSymbol());
 
 		barDocument.put("actionDay", bar.getActionDay());
 		barDocument.put("actionTime", bar.getActionTime());
@@ -628,62 +628,62 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
-		barList.addAll(this.queryTodayBar5SecList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<BarField> queryBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
+		barList.addAll(this.queryTodayBar5SecList(startTimestamp, endTimestamp, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
-		barList.addAll(this.queryTodayBar1MinList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<BarField> queryBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
+		barList.addAll(this.queryTodayBar1MinList(startTimestamp, endTimestamp, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
-		barList.addAll(this.queryTodayBar3MinList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<BarField> queryBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
+		barList.addAll(this.queryTodayBar3MinList(startTimestamp, endTimestamp, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
-		barList.addAll(this.queryTodayBar5MinList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<BarField> queryBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
+		barList.addAll(this.queryTodayBar5MinList(startTimestamp, endTimestamp, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
-		barList.addAll(this.queryTodayBar15MinList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<BarField> queryBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
+		barList.addAll(this.queryTodayBar15MinList(startTimestamp, endTimestamp, uniformSymbol));
 		return barList;
 	}
 
 	@Override
-	public List<BarField> queryBar1DayList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<BarField> barList = this.queryHistBar1DayList(startTimestamp, endTimestamp, unifiedSymbol);
+	public List<BarField> queryBar1DayList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<BarField> barList = this.queryHistBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
 		return barList;
 	}
 
 	@Override
-	public List<TickField> queryTickList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
-		List<TickField> tickList = this.queryHistTickList(startTimestamp, endTimestamp, unifiedSymbol);
-		tickList.addAll(this.queryTodayTickList(startTimestamp, endTimestamp, unifiedSymbol));
+	public List<TickField> queryTickList(long startTimestamp, long endTimestamp, String uniformSymbol) {
+		List<TickField> tickList = this.queryHistTickList(startTimestamp, endTimestamp, uniformSymbol);
+		tickList.addAll(this.queryTodayTickList(startTimestamp, endTimestamp, uniformSymbol));
 		return tickList;
 	}
 
 	@Override
-	public List<BarField> queryHistBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -698,14 +698,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -720,14 +720,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -742,14 +742,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -764,14 +764,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -786,14 +786,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryHistBar1DayList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryHistBar1DayList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -808,14 +808,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<TickField> queryHistTickList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<TickField> queryHistTickList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -831,14 +831,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5SecList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5SecList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -853,14 +853,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryTodayBar1MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryTodayBar1MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -875,14 +875,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryTodayBar3MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryTodayBar3MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -897,14 +897,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryTodayBar5MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryTodayBar5MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -919,14 +919,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryTodayBar15MinList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<BarField> queryTodayBar15MinList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -941,14 +941,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<TickField> queryTodayTickList(long startTimestamp, long endTimestamp, String unifiedSymbol) {
+	public List<TickField> queryTodayTickList(long startTimestamp, long endTimestamp, String uniformSymbol) {
 		try {
 			Document filter = new Document();
 			Document dateDocument = new Document();
 			dateDocument.put("$gte", startTimestamp);
 			dateDocument.put("$lte", endTimestamp);
 			filter.put("actionTimestamp", dateDocument);
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			BasicDBObject sortBO = new BasicDBObject();
 			sortBO.put("actionTimestamp", 1);
@@ -964,14 +964,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<TickField> queryTickListByEndTimestampAndLimit(long endTimestamp, int limit, String unifiedSymbol) {
+	public List<TickField> queryTickListByEndTimestampAndLimit(long endTimestamp, int limit, String uniformSymbol) {
 		List<TickField> tickList = new ArrayList<>();
 		try {
 			long beginTime = System.currentTimeMillis();
 			
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			String collectionName = COLLECTION_NAME_TICK;
 
@@ -995,7 +995,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			String collectionName = COLLECTION_NAME_TICK;
 
@@ -1022,14 +1022,14 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 	}
 
 	@Override
-	public List<BarField> queryBar1MinListByEndTimestampAndLimit(long endTimestamp, int limit, String unifiedSymbol) {
+	public List<BarField> queryBar1MinListByEndTimestampAndLimit(long endTimestamp, int limit, String uniformSymbol) {
 		List<BarField> barList = new ArrayList<>();
 		try {
 			long beginTime = System.currentTimeMillis();
 			
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			String collectionName = COLLECTION_NAME_BAR_1_MIN;
 
@@ -1053,7 +1053,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			
 			Document filter = new Document();
 			filter.put("actionTimestamp", new Document("$lte", endTimestamp));
-			filter.put("unifiedSymbol", unifiedSymbol);
+			filter.put("uniformSymbol", uniformSymbol);
 
 			String collectionName = COLLECTION_NAME_BAR_1_MIN;
 

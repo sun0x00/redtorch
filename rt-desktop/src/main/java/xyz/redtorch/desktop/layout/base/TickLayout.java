@@ -43,7 +43,7 @@ public class TickLayout {
 
     private Map<String, TickFXBean> tickFXBeanMap = new HashMap<>();
 
-    private Set<String> selectedTickUnifiedSymbolSet = new HashSet<>();
+    private Set<String> selectedTickUniformSymbolSet = new HashSet<>();
 
     @Autowired
     private GuiMainService guiMainService;
@@ -70,20 +70,20 @@ public class TickLayout {
         ///
         tickTableView.getSelectionModel().clearSelection();
 
-        Set<String> unifiedSymbolSet = new HashSet<>();
+        Set<String> uniformSymbolSet = new HashSet<>();
 
         List<TickFXBean> newTickFXBeanList = new ArrayList<>();
         for (TickField tick : tickList) {
-            String unifiedSymbol = tick.getUnifiedSymbol();
-            unifiedSymbolSet.add(unifiedSymbol);
+            String uniformSymbol = tick.getUniformSymbol();
+            uniformSymbolSet.add(uniformSymbol);
 
-            ContractField contractField = desktopTradeCachesService.queryContractByUnifiedSymbol(unifiedSymbol);
+            ContractField contractField = desktopTradeCachesService.queryContractByUniformSymbol(uniformSymbol);
 
-            if (tickFXBeanMap.containsKey(unifiedSymbol)) {
-                tickFXBeanMap.get(unifiedSymbol).update(tick, guiMainService.isSelectedContract(contractField), contractField);
+            if (tickFXBeanMap.containsKey(uniformSymbol)) {
+                tickFXBeanMap.get(uniformSymbol).update(tick, guiMainService.isSelectedContract(contractField), contractField);
             } else {
                 TickFXBean tickFXBean = new TickFXBean(tick, guiMainService.isSelectedContract(contractField), contractField);
-                tickFXBeanMap.put(unifiedSymbol, tickFXBean);
+                tickFXBeanMap.put(uniformSymbol, tickFXBean);
                 newTickFXBeanList.add(tickFXBean);
             }
         }
@@ -91,14 +91,14 @@ public class TickLayout {
         tickObservableList.addAll(newTickFXBeanList);
 
         Map<String, TickFXBean> newTickFXBeanMap = new HashMap<>();
-        for (String unifiedSymbol : tickFXBeanMap.keySet()) {
-            if (unifiedSymbolSet.contains(unifiedSymbol)) {
-                newTickFXBeanMap.put(unifiedSymbol, tickFXBeanMap.get(unifiedSymbol));
+        for (String uniformSymbol : tickFXBeanMap.keySet()) {
+            if (uniformSymbolSet.contains(uniformSymbol)) {
+                newTickFXBeanMap.put(uniformSymbol, tickFXBeanMap.get(uniformSymbol));
             }
         }
         tickFXBeanMap = newTickFXBeanMap;
 
-        tickObservableList.removeIf(tickFXBean -> !unifiedSymbolSet.contains(tickFXBean.getTickField().getUnifiedSymbol()));
+        tickObservableList.removeIf(tickFXBean -> !uniformSymbolSet.contains(tickFXBean.getTickField().getUniformSymbol()));
 
         tickTableView.sort();
 
@@ -106,12 +106,12 @@ public class TickLayout {
 
         Set<String> newSelectedTickIdSet = new HashSet<>();
         for (TickFXBean tick : tickObservableList) {
-            if (selectedTickUnifiedSymbolSet.contains(tick.getTickField().getUnifiedSymbol())) {
+            if (selectedTickUniformSymbolSet.contains(tick.getTickField().getUniformSymbol())) {
                 tickTableView.getSelectionModel().select(tick);
-                newSelectedTickIdSet.add(tick.getTickField().getUnifiedSymbol());
+                newSelectedTickIdSet.add(tick.getTickField().getUniformSymbol());
             }
         }
-        selectedTickUnifiedSymbolSet = newSelectedTickIdSet;
+        selectedTickUniformSymbolSet = newSelectedTickIdSet;
     }
 
     private void createLayout() {
@@ -126,7 +126,7 @@ public class TickLayout {
             try {
                 TickField tick1 = (TickField) p1.getUserData();
                 TickField tick2 = (TickField) p2.getUserData();
-                return StringUtils.compare(tick1.getUnifiedSymbol(), tick2.getUnifiedSymbol());
+                return StringUtils.compare(tick1.getUniformSymbol(), tick2.getUniformSymbol());
             } catch (Exception e) {
                 logger.error("排序错误", e);
             }
@@ -198,9 +198,9 @@ public class TickLayout {
 
         tickTableView.setOnMousePressed(event -> {
             ObservableList<TickFXBean> selectedItems = tickTableView.getSelectionModel().getSelectedItems();
-            selectedTickUnifiedSymbolSet.clear();
+            selectedTickUniformSymbolSet.clear();
             for (TickFXBean row : selectedItems) {
-                selectedTickUnifiedSymbolSet.add(row.getTickField().getUnifiedSymbol());
+                selectedTickUniformSymbolSet.add(row.getTickField().getUniformSymbol());
             }
         });
 
@@ -209,13 +209,13 @@ public class TickLayout {
             row.setOnMousePressed(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
                     ObservableList<TickFXBean> selectedItems = tickTableView.getSelectionModel().getSelectedItems();
-                    selectedTickUnifiedSymbolSet.clear();
+                    selectedTickUniformSymbolSet.clear();
                     for (TickFXBean tick : selectedItems) {
-                        selectedTickUnifiedSymbolSet.add(tick.getTickField().getUnifiedSymbol());
+                        selectedTickUniformSymbolSet.add(tick.getTickField().getUniformSymbol());
                     }
                     TickFXBean clickedItem = row.getItem();
 
-                    ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(clickedItem.getTickField().getUnifiedSymbol());
+                    ContractField contract = desktopTradeCachesService.queryContractByUniformSymbol(clickedItem.getTickField().getUniformSymbol());
 
                     guiMainService.updateSelectedContract(contract);
                 }

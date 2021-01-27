@@ -179,7 +179,7 @@ public class OrderPanelLayout {
 
     public void updateData(TickField tick) {
         if (tick == null || !tick.equals(this.tick)) {
-            if (this.tick != null && tick != null && !this.tick.getUnifiedSymbol().equals(tick.getUnifiedSymbol())) {
+            if (this.tick != null && tick != null && !this.tick.getUniformSymbol().equals(tick.getUniformSymbol())) {
                 this.price = null;
                 this.priceTextField.setText("");
 
@@ -194,7 +194,7 @@ public class OrderPanelLayout {
             this.tick = tick;
 
             if (tick != null) {
-                ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+                ContractField contract = desktopTradeCachesService.queryContractByUniformSymbol(tick.getUniformSymbol());
                 if (contract != null) {
                     decimalDigits = CommonUtils.getNumberDecimalDigits(contract.getPriceTick());
                     if (decimalDigits < 0) {
@@ -725,7 +725,7 @@ public class OrderPanelLayout {
 
         ContractField finalContract = null;
         if (tick != null) {
-            finalContract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+            finalContract = desktopTradeCachesService.queryContractByUniformSymbol(tick.getUniformSymbol());
         }
 
         if (finalContract == null) {

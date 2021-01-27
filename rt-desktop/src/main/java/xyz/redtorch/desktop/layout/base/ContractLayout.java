@@ -40,7 +40,7 @@ public class ContractLayout {
 
     private final TableView<ContractField> contractTableView = new TableView<>();
 
-    private Set<String> selectedContractUnifiedSymbolSet = new HashSet<>();
+    private Set<String> selectedContractUniformSymbolSet = new HashSet<>();
 
     private String filterExchange = "全部";
     private String filterProductType = "全部";
@@ -110,31 +110,31 @@ public class ContractLayout {
         contractObservableList.addAll(newContractList);
         Set<String> newSelectedContractIdSet = new HashSet<>();
         for (ContractField contract : contractObservableList) {
-            if (selectedContractUnifiedSymbolSet.contains(contract.getUnifiedSymbol())) {
+            if (selectedContractUniformSymbolSet.contains(contract.getUniformSymbol())) {
                 contractTableView.getSelectionModel().select(contract);
-                newSelectedContractIdSet.add(contract.getUnifiedSymbol());
+                newSelectedContractIdSet.add(contract.getUniformSymbol());
             }
         }
-        selectedContractUnifiedSymbolSet = newSelectedContractIdSet;
+        selectedContractUniformSymbolSet = newSelectedContractIdSet;
     }
 
     private void createLayout() {
 
         contractTableView.setTableMenuButtonVisible(true);
 
-        TableColumn<ContractField, String> unifiedSymbolCol = new TableColumn<>("统一标识");
-        unifiedSymbolCol.setPrefWidth(160);
-        unifiedSymbolCol.setCellValueFactory(feature -> {
-            String unifiedSymbol = "";
+        TableColumn<ContractField, String> uniformSymbolCol = new TableColumn<>("统一标识");
+        uniformSymbolCol.setPrefWidth(160);
+        uniformSymbolCol.setCellValueFactory(feature -> {
+            String uniformSymbol = "";
             try {
-                unifiedSymbol = feature.getValue().getUnifiedSymbol();
+                uniformSymbol = feature.getValue().getUniformSymbol();
             } catch (Exception e) {
                 logger.error("渲染错误", e);
             }
-            return new SimpleStringProperty(unifiedSymbol);
+            return new SimpleStringProperty(uniformSymbol);
         });
-        unifiedSymbolCol.setComparator(StringUtils::compare);
-        contractTableView.getColumns().add(unifiedSymbolCol);
+        uniformSymbolCol.setComparator(StringUtils::compare);
+        contractTableView.getColumns().add(uniformSymbolCol);
 
         TableColumn<ContractField, String> shortNameCol = new TableColumn<>("简称");
         shortNameCol.setPrefWidth(80);
@@ -336,15 +336,15 @@ public class ContractLayout {
         contractTableView.setItems(sortedItems);
         sortedItems.comparatorProperty().bind(contractTableView.comparatorProperty());
 
-        contractTableView.getSortOrder().add(unifiedSymbolCol);
+        contractTableView.getSortOrder().add(uniformSymbolCol);
 
         contractTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         contractTableView.setOnMousePressed(event -> {
             ObservableList<ContractField> selectedItems = contractTableView.getSelectionModel().getSelectedItems();
-            selectedContractUnifiedSymbolSet.clear();
+            selectedContractUniformSymbolSet.clear();
             for (ContractField row : selectedItems) {
-                selectedContractUnifiedSymbolSet.add(row.getUnifiedSymbol());
+                selectedContractUniformSymbolSet.add(row.getUniformSymbol());
             }
         });
 
@@ -353,9 +353,9 @@ public class ContractLayout {
             row.setOnMousePressed(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
                     ObservableList<ContractField> selectedItems = contractTableView.getSelectionModel().getSelectedItems();
-                    selectedContractUnifiedSymbolSet.clear();
+                    selectedContractUniformSymbolSet.clear();
                     for (ContractField contract : selectedItems) {
-                        selectedContractUnifiedSymbolSet.add(contract.getUnifiedSymbol());
+                        selectedContractUniformSymbolSet.add(contract.getUniformSymbol());
                     }
                     ContractField clickedItem = row.getItem();
                     guiMainService.updateSelectedContract(clickedItem);

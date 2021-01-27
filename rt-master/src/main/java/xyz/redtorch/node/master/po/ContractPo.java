@@ -6,7 +6,7 @@ public class ContractPo {
 	String name;  // 简称
 	String fullName;  // 全称
 	String thirdPartyId ;  // 第三方ID
-	String unifiedSymbol;  // 统一ID，通常是 <合约代码@交易所代码@产品类型>
+	String uniformSymbol;  // 统一ID，通常是 <合约代码@交易所代码@产品类型>
 	String symbol;  // 代码
 	int exchange;  // 交易所
 	int productClass;  // 产品类型
@@ -52,11 +52,11 @@ public class ContractPo {
 	public void setThirdPartyId(String thirdPartyId) {
 		this.thirdPartyId = thirdPartyId;
 	}
-	public String getUnifiedSymbol() {
-		return unifiedSymbol;
+	public String getUniformSymbol() {
+		return uniformSymbol;
 	}
-	public void setUnifiedSymbol(String unifiedSymbol) {
-		this.unifiedSymbol = unifiedSymbol;
+	public void setUniformSymbol(String uniformSymbol) {
+		this.uniformSymbol = uniformSymbol;
 	}
 	public String getSymbol() {
 		return symbol;

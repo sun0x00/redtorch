@@ -1,13 +1,8 @@
 package xyz.redtorch.node.master.service;
 
-import java.util.List;
+import xyz.redtorch.pb.CoreField.*;
 
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
+import java.util.List;
 
 public interface MasterTradeCachesService {
 
@@ -21,13 +16,13 @@ public interface MasterTradeCachesService {
 
 	List<OrderField> queryOrderListByAccountId(String operatorId, String accountId);
 
-	List<OrderField> queryOrderListByUnifiedSymbol(String operatorId, String unifiedSymbol);
+	List<OrderField> queryOrderListByUniformSymbol(String operatorId, String uniformSymbol);
 
 	List<TradeField> getTradeList(String operatorId);
 
 	TradeField queryTradeByTradeId(String operatorId, String tradeId);
 
-	List<TradeField> queryTradeListByUnifiedSymbol(String operatorId, String unifiedSymbol);
+	List<TradeField> queryTradeListByUniformSymbol(String operatorId, String uniformSymbol);
 
 	List<TradeField> queryTradeListByAccountId(String operatorId, String accountId);
 
@@ -41,7 +36,7 @@ public interface MasterTradeCachesService {
 
 	List<PositionField> queryPositionListByAccountId(String operatorId, String accountId);
 
-	List<PositionField> queryPositionListByUnifiedSymbol(String operatorId, String unifiedSymbol);
+	List<PositionField> queryPositionListByUniformSymbol(String operatorId, String uniformSymbol);
 
 	List<AccountField> getAccountList(String operatorId);
 
@@ -51,15 +46,7 @@ public interface MasterTradeCachesService {
 
 	List<ContractField> getContractList(String operatorId);
 
-	ContractField queryContractByContractId(String operatorId, String contractId);
-
-	List<ContractField> queryContractListByUnifiedSymbol(String operatorId, String unifiedSymbol);
-
-	List<ContractField> queryContractListByGatewayId(String operatorId, String gatewayId);
-
-	List<ContractField> getMixContractList(String operatorId);
-
-	ContractField queryContractByUnifiedSymbol(String operatorId, String unifiedSymbol);
+	ContractField queryContractByUniformSymbol(String operatorId, String uniformSymbol);
 
 	List<TickField> getTickList(String operatorId);
 
@@ -92,8 +79,6 @@ public interface MasterTradeCachesService {
 	void clearAndCacheOrderList(List<OrderField> orderList, Integer sourceNodeId);
 
 	void clearAndCacheTradeList(List<TradeField> tradeList, Integer sourceNodeId);
-
-	void clearAndCacheContractList(List<ContractField> contractList, Integer sourceNodeId);
 
 	void clearAndCachePositionList(List<PositionField> positionList, Integer sourceNodeId);
 

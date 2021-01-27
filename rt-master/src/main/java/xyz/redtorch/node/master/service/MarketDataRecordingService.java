@@ -10,13 +10,13 @@ import xyz.redtorch.pb.CoreField.TickField;
 public interface MarketDataRecordingService {
 	List<ContractPo> getContractList();
 
-	void deleteContractByUnifiedSymbol(String unifiedSymbol);
+	void deleteContractByUniformSymbol(String uniformSymbol);
 
-	void addContractByUnifiedSymbol(String unifiedSymbol);
+	void addContractByUniformSymbol(String uniformSymbol);
 
 	List<ContractField> getSubscribedContractFieldList();
 
-	Set<String> getSubscribedUnifiedSymbolSet();
+	Set<String> getSubscribedUniformSymbolSet();
 	
 	void processTick(TickField tick);
 }

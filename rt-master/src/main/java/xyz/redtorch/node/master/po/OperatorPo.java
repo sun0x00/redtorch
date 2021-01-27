@@ -18,12 +18,12 @@ public class OperatorPo {
 	private Set<String> denyTradeSpecialAccountIdSet = new HashSet<>();
 
 	private boolean canTradeAllContracts = false;
-	private Set<String> acceptTradeSpecialUnifiedSymbolSet = new HashSet<>();
-	private Set<String> denyTradeSpecialUnifiedSymbolSet = new HashSet<>();
+	private Set<String> acceptTradeSpecialUniformSymbolSet = new HashSet<>();
+	private Set<String> denyTradeSpecialUniformSymbolSet = new HashSet<>();
 
 	private boolean canSubscribeAllContracts = true;
-	private Set<String> acceptSubscribeSpecialUnifiedSymbolSet = new HashSet<>();
-	private Set<String> denySubscribeSpecialUnifiedSymbolSet = new HashSet<>();
+	private Set<String> acceptSubscribeSpecialUniformSymbolSet = new HashSet<>();
+	private Set<String> denySubscribeSpecialUniformSymbolSet = new HashSet<>();
 
 	public String getOperatorId() {
 		return operatorId;
@@ -113,20 +113,20 @@ public class OperatorPo {
 		this.canTradeAllContracts = canTradeAllContracts;
 	}
 
-	public Set<String> getAcceptTradeSpecialUnifiedSymbolSet() {
-		return acceptTradeSpecialUnifiedSymbolSet;
+	public Set<String> getAcceptTradeSpecialUniformSymbolSet() {
+		return acceptTradeSpecialUniformSymbolSet;
 	}
 
-	public void setAcceptTradeSpecialUnifiedSymbolSet(Set<String> acceptTradeSpecialUnifiedSymbolSet) {
-		this.acceptTradeSpecialUnifiedSymbolSet = acceptTradeSpecialUnifiedSymbolSet;
+	public void setAcceptTradeSpecialUniformSymbolSet(Set<String> acceptTradeSpecialUniformSymbolSet) {
+		this.acceptTradeSpecialUniformSymbolSet = acceptTradeSpecialUniformSymbolSet;
 	}
 
-	public Set<String> getDenyTradeSpecialUnifiedSymbolSet() {
-		return denyTradeSpecialUnifiedSymbolSet;
+	public Set<String> getDenyTradeSpecialUniformSymbolSet() {
+		return denyTradeSpecialUniformSymbolSet;
 	}
 
-	public void setDenyTradeSpecialUnifiedSymbolSet(Set<String> denyTradeSpecialUnifiedSymbolSet) {
-		this.denyTradeSpecialUnifiedSymbolSet = denyTradeSpecialUnifiedSymbolSet;
+	public void setDenyTradeSpecialUniformSymbolSet(Set<String> denyTradeSpecialUniformSymbolSet) {
+		this.denyTradeSpecialUniformSymbolSet = denyTradeSpecialUniformSymbolSet;
 	}
 
 	public boolean isCanSubscribeAllContracts() {
@@ -137,20 +137,20 @@ public class OperatorPo {
 		this.canSubscribeAllContracts = canSubscribeAllContracts;
 	}
 
-	public Set<String> getAcceptSubscribeSpecialUnifiedSymbolSet() {
-		return acceptSubscribeSpecialUnifiedSymbolSet;
+	public Set<String> getAcceptSubscribeSpecialUniformSymbolSet() {
+		return acceptSubscribeSpecialUniformSymbolSet;
 	}
 
-	public void setAcceptSubscribeSpecialUnifiedSymbolSet(Set<String> acceptSubscribeSpecialUnifiedSymbolSet) {
-		this.acceptSubscribeSpecialUnifiedSymbolSet = acceptSubscribeSpecialUnifiedSymbolSet;
+	public void setAcceptSubscribeSpecialUniformSymbolSet(Set<String> acceptSubscribeSpecialUniformSymbolSet) {
+		this.acceptSubscribeSpecialUniformSymbolSet = acceptSubscribeSpecialUniformSymbolSet;
 	}
 
-	public Set<String> getDenySubscribeSpecialUnifiedSymbolSet() {
-		return denySubscribeSpecialUnifiedSymbolSet;
+	public Set<String> getDenySubscribeSpecialUniformSymbolSet() {
+		return denySubscribeSpecialUniformSymbolSet;
 	}
 
-	public void setDenySubscribeSpecialUnifiedSymbolSet(Set<String> denySubscribeSpecialUnifiedSymbolSet) {
-		this.denySubscribeSpecialUnifiedSymbolSet = denySubscribeSpecialUnifiedSymbolSet;
+	public void setDenySubscribeSpecialUniformSymbolSet(Set<String> denySubscribeSpecialUniformSymbolSet) {
+		this.denySubscribeSpecialUniformSymbolSet = denySubscribeSpecialUniformSymbolSet;
 	}
 
 }

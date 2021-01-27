@@ -220,11 +220,14 @@ public class MainLayout {
         MenuItem accountGroupFileWriterMenuItem = new MenuItem("账户数据写入文件");
         accountGroupFileWriterMenuItem.setOnAction(event -> new Thread(() -> {
             try {
+
                 guiMainService.writeAccountsDataToFile();
+
             } catch (Exception e) {
                 logger.error("账户数据写入文件错误", e);
             }
         }).start());
+
 
         accountGroupMenu.getItems().addAll(accountGroupFileWriterMenuItem);
 

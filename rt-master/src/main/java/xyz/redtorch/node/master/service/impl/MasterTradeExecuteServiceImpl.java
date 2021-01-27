@@ -30,11 +30,11 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
     private final Map<String, SubmitOrderReqField> originOrderIdToSubmitOrderReqMap = new ConcurrentHashMap<>(5000);
     private final Map<String, String> orderIdToSourceSessionIdMap = new ConcurrentHashMap<>(5000);
     private final Map<String, String> originOrderIdToSourceSessionIdMap = new ConcurrentHashMap<>(5000);
-    private final Map<String, ContractField> unifiedSymbolToSubscribedContractMap = new HashMap<>();
-    // key可能是unifiedSymbol也可能是dataSourceId
+    private final Map<String, ContractField> uniformSymbolToSubscribedContractMap = new HashMap<>();
+    // key可能是uniformSymbol也可能是dataSourceId
     private final Map<String, Set<String>> subscribeKeyToSubscribedSessionIdSetMap = new HashMap<>();
     private final Map<String, Set<String>> subscribedSessionIdToSubscribeKeySetMap = new HashMap<>();
-    private final Map<String, String> subscribeKeyToUnifiedSymbolMap = new HashMap<>();
+    private final Map<String, String> subscribeKeyToUniformSymbolMap = new HashMap<>();
     private final Lock subscribeLock = new ReentrantLock();
     @Autowired
     private MasterSystemService masterSystemService;
@@ -78,26 +78,26 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
             logger.error("订阅错误,业务ID:{},参数contract为空", transactionId);
             errorId = 1;
             errorMsg = "订阅错误,参数contract为空";
-        } else if (StringUtils.isBlank(contract.getUnifiedSymbol())) {
+        } else if (StringUtils.isBlank(contract.getUniformSymbol())) {
             logger.error("订阅错误,业务ID:{},合约统一标识为空", transactionId);
             errorId = 1;
             errorMsg = "订阅错误,参数contract为空";
-        } else if (masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, contract.getUnifiedSymbol()) == null) {
-            logger.error("订阅错误,业务ID:{},未能找到合约:{},请尝试搜寻", transactionId, contract.getUnifiedSymbol());
+        } else if (masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, contract.getUniformSymbol()) == null) {
+            logger.error("订阅错误,业务ID:{},未能找到合约:{},请尝试搜寻", transactionId, contract.getUniformSymbol());
             errorId = 1;
             errorMsg = "订阅错误未能找到合约,请尝试搜寻";
         } else {
 
-            String unifiedSymbol = contract.getUnifiedSymbol();
-            boolean canSubscribe = operatorService.checkSubscribePermission(operatorId, unifiedSymbol);
+            String uniformSymbol = contract.getUniformSymbol();
+            boolean canSubscribe = operatorService.checkSubscribePermission(operatorId, uniformSymbol);
 
             if (canSubscribe) {
                 subscribeLock.lock();
                 try {
-                    ContractField targetContract = masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, contract.getUnifiedSymbol());
-                    unifiedSymbolToSubscribedContractMap.put(unifiedSymbol, targetContract);
+                    ContractField targetContract = masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, contract.getUniformSymbol());
+                    uniformSymbolToSubscribedContractMap.put(uniformSymbol, targetContract);
 
-                    String subscribeKey = unifiedSymbol;
+                    String subscribeKey = uniformSymbol;
                     if (StringUtils.isNotBlank(contract.getGatewayId())) {
                         subscribeKey = subscribeKey + "@" + contract.getGatewayId();
                     }
@@ -109,7 +109,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                     }
                     sessionIdSet.add(sessionId);
                     subscribeKeyToSubscribedSessionIdSetMap.put(subscribeKey, sessionIdSet);
-                    subscribeKeyToUnifiedSymbolMap.put(subscribeKey, unifiedSymbol);
+                    subscribeKeyToUniformSymbolMap.put(subscribeKey, uniformSymbol);
 
                     Set<String> subscribeKeySet = subscribedSessionIdToSubscribeKeySetMap.computeIfAbsent(sessionId, k -> new HashSet<>());
                     subscribeKeySet.add(subscribeKey);
@@ -122,7 +122,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                     subscribeLock.unlock();
                 }
             } else {
-                logger.info("订阅错误,业务ID:{},操作员ID:{},无权订阅合约:{}", transactionId, operatorId, unifiedSymbol);
+                logger.info("订阅错误,业务ID:{},操作员ID:{},无权订阅合约:{}", transactionId, operatorId, uniformSymbol);
             }
 
         }
@@ -148,21 +148,21 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
             logger.error("取消订阅错误,业务ID:{},参数contract为空", transactionId);
             errorId = 1;
             errorMsg = "取消订阅错误,参数contract为空";
-        } else if (StringUtils.isBlank(contract.getUnifiedSymbol())) {
+        } else if (StringUtils.isBlank(contract.getUniformSymbol())) {
             logger.error("取消订阅错误,业务ID:{},合约统一标识为空", transactionId);
             errorId = 1;
             errorMsg = "取消订阅错误,参数contract为空";
-        } else if (masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, contract.getUnifiedSymbol()) == null) {
-            logger.error("取消订阅错误,业务ID:{},未能找到合约:{},请尝试搜寻", transactionId, contract.getUnifiedSymbol());
+        } else if (masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, contract.getUniformSymbol()) == null) {
+            logger.error("取消订阅错误,业务ID:{},未能找到合约:{},请尝试搜寻", transactionId, contract.getUniformSymbol());
             errorId = 1;
             errorMsg = "取消订阅错误未能找到合约,请尝试搜寻";
         } else {
 
             subscribeLock.lock();
             try {
-                String unifiedSymbol = contract.getUnifiedSymbol();
+                String uniformSymbol = contract.getUniformSymbol();
 
-                String subscribeKey = unifiedSymbol;
+                String subscribeKey = uniformSymbol;
                 if (StringUtils.isNotBlank(contract.getGatewayId())) {
                     subscribeKey = subscribeKey + "@" + contract.getGatewayId();
                 }
@@ -180,9 +180,9 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                             logger.info("订阅键{}已经没有节点订阅,删除", subscribeKey);
                             subscribeKeyToSubscribedSessionIdSetMap.remove(subscribeKey);
                             // 如果不存在其它key的订阅关系了,则完全删除订阅关系
-                            if (!subscribeKeyToSubscribedSessionIdSetMap.containsKey(unifiedSymbol)) {
-                                logger.info("合约{}已经没有节点订阅,删除", unifiedSymbol);
-                                unifiedSymbolToSubscribedContractMap.remove(unifiedSymbol);
+                            if (!subscribeKeyToSubscribedSessionIdSetMap.containsKey(uniformSymbol)) {
+                                logger.info("合约{}已经没有节点订阅,删除", uniformSymbol);
+                                uniformSymbolToSubscribedContractMap.remove(uniformSymbol);
                             }
                         }
                     } else {
@@ -225,12 +225,12 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
             }
             for (String subscribeKey : removeKeyList) {
                 subscribeKeyToSubscribedSessionIdSetMap.remove(subscribeKey);
-                if (subscribeKeyToUnifiedSymbolMap.containsKey(subscribeKey)) {
-                    String unifiedSymbol = subscribeKeyToUnifiedSymbolMap.get(subscribeKey);
+                if (subscribeKeyToUniformSymbolMap.containsKey(subscribeKey)) {
+                    String uniformSymbol = subscribeKeyToUniformSymbolMap.get(subscribeKey);
                     // 如果不存在其它key的订阅关系了,则完全删除订阅关系
-                    if (!subscribeKeyToSubscribedSessionIdSetMap.containsKey(unifiedSymbol)) {
-                        logger.info("合约{}已经没有节点订阅,删除", unifiedSymbol);
-                        unifiedSymbolToSubscribedContractMap.remove(unifiedSymbol);
+                    if (!subscribeKeyToSubscribedSessionIdSetMap.containsKey(uniformSymbol)) {
+                        logger.info("合约{}已经没有节点订阅,删除", uniformSymbol);
+                        uniformSymbolToSubscribedContractMap.remove(uniformSymbol);
                     }
                 }
             }
@@ -275,7 +275,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
             logger.error("提交定单错误,业务ID:{},参数submitOrderReq缺失", transactionId);
             errorId = 1;
             errorMsg = "提交定单错误,参数submitOrderReq缺失";
-        } else if (StringUtils.isBlank(submitOrderReq.getContract().getUnifiedSymbol())) {
+        } else if (StringUtils.isBlank(submitOrderReq.getContract().getUniformSymbol())) {
             logger.error("提交定单错误,业务ID:{},参数contract不正确", transactionId);
             errorId = 1;
             errorMsg = "提交定单错误,参数contract不正确";
@@ -302,14 +302,14 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
             originOrderIdSet.add(submitOrderReq.getOriginOrderId());
 
             // 验证权限
-            String unifiedSymbol = submitOrderReq.getContract().getUnifiedSymbol();
+            String uniformSymbol = submitOrderReq.getContract().getUniformSymbol();
             String accountId = submitOrderReq.getAccountCode() + "@" + submitOrderReq.getCurrency().getValueDescriptor().getName() + "@" + submitOrderReq.getGatewayId();
 
             boolean canTradeAccount = operatorService.checkTradeAccountPermission(operatorId, accountId);
             boolean canTradeContract = false;
 
             if (canTradeAccount) {
-                canTradeContract = operatorService.checkTradeContractPermission(operatorId, unifiedSymbol);
+                canTradeContract = operatorService.checkTradeContractPermission(operatorId, uniformSymbol);
             }
 
             Integer nodeId = masterSystemService.getNodeIdByGatewayId(submitOrderReq.getGatewayId());
@@ -335,13 +335,13 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
 
             } else if (!canTradeAccount) {
                 commonRspBuilder.setErrorId(1).setErrorMsg("" + accountId);
-                logger.warn("会话ID:{},业务ID:{},操作员ID:{},无权交易账户:{}", sessionId, transactionId, operatorId, unifiedSymbol);
+                logger.warn("会话ID:{},业务ID:{},操作员ID:{},无权交易账户:{}", sessionId, transactionId, operatorId, uniformSymbol);
 
                 errorId = 1;
                 errorMsg = "此操作员无权交易此账户";
 
             } else if (!canTradeContract) {
-                logger.info("会话ID:{},业务ID:{},操作员ID:{},无权交易合约:{}", sessionId, transactionId, operatorId, unifiedSymbol);
+                logger.info("会话ID:{},业务ID:{},操作员ID:{},无权交易合约:{}", sessionId, transactionId, operatorId, uniformSymbol);
 
                 errorId = 1;
                 errorMsg = "此操作员无权交易此合约";
@@ -380,7 +380,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
 
             String gatewayId = null;
             String accountId = null;
-            String unifiedSymbol = null;
+            String uniformSymbol = null;
 
             if (StringUtils.isBlank(cancelOrderReq.getOriginOrderId())) {
                 String orderId = cancelOrderReq.getOrderId();
@@ -388,7 +388,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                 if (orderIdToSubmitOrderReqMap.containsKey(orderId)) {
                     SubmitOrderReqField submitOrderReq = orderIdToSubmitOrderReqMap.get(orderId);
                     gatewayId = submitOrderReq.getGatewayId();
-                    unifiedSymbol = submitOrderReq.getContract().getUnifiedSymbol();
+                    uniformSymbol = submitOrderReq.getContract().getUniformSymbol();
                     String currency = submitOrderReq.getContract().getCurrency().getValueDescriptor().getName();
                     String accountCode = submitOrderReq.getAccountCode();
                     accountId = accountCode + "@" + currency + "@" + gatewayId;
@@ -397,7 +397,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                     if (order != null) {
                         gatewayId = order.getContract().getGatewayId();
                         accountId = order.getAccountId();
-                        unifiedSymbol = order.getContract().getUnifiedSymbol();
+                        uniformSymbol = order.getContract().getUniformSymbol();
                     }
                 }
 
@@ -408,7 +408,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                 if (originOrderIdToSubmitOrderReqMap.containsKey(originOrderId)) {
                     SubmitOrderReqField submitOrderReq = originOrderIdToSubmitOrderReqMap.get(originOrderId);
                     gatewayId = submitOrderReq.getGatewayId();
-                    unifiedSymbol = submitOrderReq.getContract().getUnifiedSymbol();
+                    uniformSymbol = submitOrderReq.getContract().getUniformSymbol();
                     String currency = submitOrderReq.getContract().getCurrency().getValueDescriptor().getName();
                     String accountCode = submitOrderReq.getAccountCode();
                     accountId = accountCode + "@" + currency + "@" + gatewayId;
@@ -417,7 +417,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                     if (order != null) {
                         gatewayId = order.getContract().getGatewayId();
                         accountId = order.getAccountId();
-                        unifiedSymbol = order.getContract().getUnifiedSymbol();
+                        uniformSymbol = order.getContract().getUniformSymbol();
                     }
                 }
             }
@@ -439,7 +439,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                 boolean canTradeContract = false;
 
                 if (canTradeAccount) {
-                    canTradeContract = operatorService.checkTradeContractPermission(operatorId, unifiedSymbol);
+                    canTradeContract = operatorService.checkTradeContractPermission(operatorId, uniformSymbol);
                 }
 
                 if (canTradeAccount && canTradeContract) {
@@ -457,13 +457,13 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
                     }
                 } else if (!canTradeAccount) {
                     commonRspBuilder.setErrorId(1).setErrorMsg("" + accountId);
-                    logger.warn("业务ID:{},会话ID:{},操作员ID:{},无权交易账户:{}", transactionId, sessionId, operatorId, unifiedSymbol);
+                    logger.warn("业务ID:{},会话ID:{},操作员ID:{},无权交易账户:{}", transactionId, sessionId, operatorId, uniformSymbol);
 
                     errorId = 1;
                     errorMsg = "此操作员无权交易此账户";
 
                 } else if (!canTradeContract) {
-                    logger.info("业务ID:{},会话ID:{},操作员ID:{},无权交易合约:{}", transactionId, sessionId, operatorId, unifiedSymbol);
+                    logger.info("业务ID:{},会话ID:{},操作员ID:{},无权交易合约:{}", transactionId, sessionId, operatorId, uniformSymbol);
 
                     errorId = 1;
                     errorMsg = "此操作员无权交易此合约";
@@ -520,7 +520,7 @@ public class MasterTradeExecuteServiceImpl implements MasterTradeExecuteService 
     public List<ContractField> getSubscribedContract() {
         subscribeLock.lock();
         try {
-            return new ArrayList<>(unifiedSymbolToSubscribedContractMap.values());
+            return new ArrayList<>(uniformSymbolToSubscribedContractMap.values());
         } catch (Exception e) {
             logger.error("获取已经订阅合约列表发生错误", e);
         } finally {

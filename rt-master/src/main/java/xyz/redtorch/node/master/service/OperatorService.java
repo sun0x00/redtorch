@@ -15,11 +15,11 @@ public interface OperatorService {
 
 	OperatorPo createOperator();
 
-	boolean checkSubscribePermission(String operatorId, String unifiedSymbol);
+	boolean checkSubscribePermission(String operatorId, String uniformSymbol);
 
 	boolean checkReadAccountPermission(String operatorId, String accountId);
 
 	boolean checkTradeAccountPermission(String operatorId, String accountId);
 
-	boolean checkTradeContractPermission(String operatorId, String unifiedSymbol);
+	boolean checkTradeContractPermission(String operatorId, String uniformSymbol);
 }

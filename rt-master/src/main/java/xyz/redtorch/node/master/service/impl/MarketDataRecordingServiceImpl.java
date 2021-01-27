@@ -68,19 +68,19 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 	}
 
 	@Override
-	public void deleteContractByUnifiedSymbol(String unifiedSymbol) {
-		if (StringUtils.isBlank(unifiedSymbol)) {
-			logger.error("根据统一标识删除合约错误，参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据统一标识删除合约错误，参数unifiedSymbol缺失");
+	public void deleteContractByUniformSymbol(String uniformSymbol) {
+		if (StringUtils.isBlank(uniformSymbol)) {
+			logger.error("根据统一标识删除合约错误，参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据统一标识删除合约错误，参数uniformSymbol缺失");
 		}
-		marketDataRecordingDao.deleteContractByUnifiedSymbol(unifiedSymbol);
+		marketDataRecordingDao.deleteContractByUniformSymbol(uniformSymbol);
 	}
 
 	@Override
-	public void addContractByUnifiedSymbol(String unifiedSymbol) {
+	public void addContractByUniformSymbol(String uniformSymbol) {
 
-		if (StringUtils.isNotBlank(unifiedSymbol)) {
-			ContractField contract = masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, unifiedSymbol);
+		if (StringUtils.isNotBlank(uniformSymbol)) {
+			ContractField contract = masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, uniformSymbol);
 			if (contract == null) {
 				logger.error("根据统一标识新增合约错误,未找到合约");
 				throw new IllegalArgumentException("根据统一标识新增合约错误,未找到合约");
@@ -88,10 +88,10 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 
 			ContractPo contractPo = BeanUtils.contractFieldToContractPo(contract);
 
-			marketDataRecordingDao.upsertContractByUnifiedSymbol(contractPo);
+			marketDataRecordingDao.upsertContractByUniformSymbol(contractPo);
 		} else {
-			logger.error("根根据统一标识新增合约错误,参数unifiedSymbol缺失");
-			throw new IllegalArgumentException("根据统一标识新增合约错误,参数unifiedSymbol缺失");
+			logger.error("根根据统一标识新增合约错误,参数uniformSymbol缺失");
+			throw new IllegalArgumentException("根据统一标识新增合约错误,参数uniformSymbol缺失");
 		}
 
 	}
@@ -102,7 +102,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 	}
 
 	@Override
-	public Set<String> getSubscribedUnifiedSymbolSet() {
+	public Set<String> getSubscribedUniformSymbolSet() {
 		return subscribedContractFieldMap.keySet();
 	}
 
@@ -121,9 +121,9 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 						if (contractPoList != null && !contractPoList.isEmpty()) {
 							for (ContractPo contractPo : contractPoList) {
 
-								ContractField contractField = masterTradeCachesService.queryContractByUnifiedSymbol(masterOperatorId, contractPo.getUnifiedSymbol());
+								ContractField contractField = masterTradeCachesService.queryContractByUniformSymbol(masterOperatorId, contractPo.getUniformSymbol());
 								if (contractField != null) {
-									newSubscribedContractFieldMap.put(contractField.getUnifiedSymbol(), contractField);
+									newSubscribedContractFieldMap.put(contractField.getUniformSymbol(), contractField);
 								}
 							}
 						}
@@ -161,7 +161,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 	
 							tickInsertList.add(tick);
 							
-							String bgKey = tick.getUnifiedSymbol();
+							String bgKey = tick.getUniformSymbol();
 							// 基于合约+网关的onBar和onMinBar,使用这个key会多次触发同一策略下同一品种的相同时间bar的事件
 							// String bgKey = tick.getUniqueSymbol()+tick.getGatewayID();
 							BarGenerator barGenerator;

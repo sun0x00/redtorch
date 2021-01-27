@@ -97,12 +97,12 @@ public class OrderFXBean {
 
     private void updateContract(OrderField newOrderField) {
         VBox vBox = new VBox();
-        Text unifiedSymbolText = new Text(newOrderField.getContract().getUnifiedSymbol());
+        Text uniformSymbolText = new Text(newOrderField.getContract().getUniformSymbol());
         Text shortNameText = new Text(newOrderField.getContract().getName());
-        vBox.getChildren().add(unifiedSymbolText);
+        vBox.getChildren().add(uniformSymbolText);
         vBox.getChildren().add(shortNameText);
         if (contractSelectedFlag) {
-            unifiedSymbolText.getStyleClass().add("trade-remind-color");
+            uniformSymbolText.getStyleClass().add("trade-remind-color");
         }
         vBox.setUserData(newOrderField);
         setContract(vBox);

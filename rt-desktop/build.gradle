@@ -1,7 +1,7 @@
 plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'application'
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'org.springframework.boot' version '2.4.2'
 }
 
 group = "${rootProject.group}"

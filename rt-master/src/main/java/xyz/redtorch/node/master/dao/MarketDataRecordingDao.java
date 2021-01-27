@@ -7,7 +7,7 @@ import xyz.redtorch.node.master.po.ContractPo;
 public interface MarketDataRecordingDao {
 	List<ContractPo> queryContractList();
 
-	void deleteContractByUnifiedSymbol(String unifiedSymbol);
+	void deleteContractByUniformSymbol(String uniformSymbol);
 
-	void upsertContractByUnifiedSymbol(ContractPo contract);
+	void upsertContractByUniformSymbol(ContractPo contract);
 }

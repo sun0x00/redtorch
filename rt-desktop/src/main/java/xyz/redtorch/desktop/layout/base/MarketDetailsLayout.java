@@ -154,10 +154,10 @@ public class MarketDetailsLayout {
             this.timeText.setText("-");
 
         } else {
-            ContractField contract = desktopTradeCachesService.queryContractByUnifiedSymbol(tick.getUnifiedSymbol());
+            ContractField contract = desktopTradeCachesService.queryContractByUniformSymbol(tick.getUniformSymbol());
 
-            String symbol = tick.getUnifiedSymbol();
-            String name = tick.getUnifiedSymbol();
+            String symbol = tick.getUniformSymbol();
+            String name = tick.getUniformSymbol();
             int decimalDigits = 4;
             if (contract != null) {
                 decimalDigits = CommonUtils.getNumberDecimalDigits(contract.getPriceTick());

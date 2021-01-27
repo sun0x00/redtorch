@@ -81,7 +81,7 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
                             accountLayout.updateData(accountList);
 
                             if (selectedContract != null) {
-                                TickField tick = desktopTradeCachesService.queryTickByUnifiedSymbol(selectedContract.getUnifiedSymbol());
+                                TickField tick = desktopTradeCachesService.queryTickByUniformSymbol(selectedContract.getUniformSymbol());
                                 marketDetailsLayout.updateData(tick);
                                 orderPanelLayout.updateData(tick);
                             } else {
@@ -114,7 +114,7 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
     @Override
     public void updateSelectedContract(ContractField contract) {
 
-        if (!(this.selectedContract != null && contract != null && this.selectedContract.getUnifiedSymbol().equals(contract.getUnifiedSymbol()))) {
+        if (!(this.selectedContract != null && contract != null && this.selectedContract.getUniformSymbol().equals(contract.getUniformSymbol()))) {
             this.selectedContract = contract;
             if (contract != null) {
                 // 订阅合约
@@ -125,7 +125,7 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
                     List<TickField> tickList = rpcGetTickListRsp.getTickList();
                     desktopTradeCachesService.cacheTickList(tickList);
                 }
-                TickField tick = desktopTradeCachesService.queryTickByUnifiedSymbol(contract.getUnifiedSymbol());
+                TickField tick = desktopTradeCachesService.queryTickByUniformSymbol(contract.getUniformSymbol());
                 marketDetailsLayout.updateData(tick);
                 orderPanelLayout.updateData(tick);
             } else {
@@ -190,7 +190,7 @@ public class GuiMainServiceImpl implements GuiMainService, InitializingBean {
             return false;
         }
 
-        return selectedContract.getUnifiedSymbol().equals(contractField.getUnifiedSymbol());
+        return selectedContract.getUniformSymbol().equals(contractField.getUniformSymbol());
     }
 
     @Override

@@ -921,7 +921,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 			}else {
 				ContractField contract = ctpGatewayImpl.contractMap.get(symbol);
 
-				String unifiedSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
+				String uniformSymbol = symbol + "@" + contract.getExchange().getValueDescriptor().getName() + "@" + contract.getProductClass().getValueDescriptor().getName();
 
 				// 无法获取账户信息,使用userId作为账户ID
 				String accountCode = userId;
@@ -931,7 +931,7 @@ public class TdSpi extends CThostFtdcTraderSpi {
 				PositionDirectionEnum direction = CtpConstant.positionDirectionMapReverse.getOrDefault(pInvestorPosition.getPosiDirection(), PositionDirectionEnum.PD_Unknown);
 				HedgeFlagEnum hedgeFlag = CtpConstant.hedgeFlagMapReverse.get(String.valueOf(pInvestorPosition.getHedgeFlag()));
 				// 获取持仓缓存
-				String positionId = unifiedSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
+				String positionId = uniformSymbol + "@" + direction.getValueDescriptor().getName() + "@" + hedgeFlag.getValueDescriptor().getName() + "@" + accountId;
 
 				PositionField.Builder positionBuilder;
 				if (positionBuilderMap.containsKey(positionId)) {
@@ -1174,44 +1174,57 @@ public class TdSpi extends CThostFtdcTraderSpi {
 	public void OnRspQryInstrument(CThostFtdcInstrumentField pInstrument, CThostFtdcRspInfoField pRspInfo, int nRequestID, boolean bIsLast) {
 		try {
 			if(pInstrument!=null) {
-				ContractField.Builder contractBuilder = ContractField.newBuilder();
-				contractBuilder.setGatewayId(gatewayId);
-				contractBuilder.setSymbol(pInstrument.getInstrumentID());
-				contractBuilder.setExchange(CtpConstant.exchangeMapReverse.getOrDefault(pInstrument.getExchangeID(), ExchangeEnum.UnknownExchange));
-				contractBuilder.setProductClass(CtpConstant.productTypeMapReverse.getOrDefault(pInstrument.getProductClass(), ProductClassEnum.UnknownProductClass));
-				contractBuilder.setUnifiedSymbol(contractBuilder.getSymbol() + "@" + contractBuilder.getExchange() + "@" + contractBuilder.getProductClass());
-				contractBuilder.setContractId(contractBuilder.getUnifiedSymbol() + "@" + gatewayId);
-				contractBuilder.setName(pInstrument.getInstrumentName());
-				contractBuilder.setFullName(pInstrument.getInstrumentName());
-				contractBuilder.setThirdPartyId(contractBuilder.getSymbol());
 
-				if (pInstrument.getVolumeMultiple() <= 0) {
-					contractBuilder.setMultiplier(1);
-				} else {
-					contractBuilder.setMultiplier(pInstrument.getVolumeMultiple());
+				ProductClassEnum productClass = xyz.redtorch.gateway.ctp.x64v6v3v19p1v.CtpConstant.productTypeMapReverse.getOrDefault(pInstrument.getProductClass(), ProductClassEnum.UnknownProductClass);
+
+				boolean filterFlag = false;
+
+				if(productClass.getNumber() == ProductClassEnum.FUTURES_VALUE
+						|| productClass.getNumber() == ProductClassEnum.OPTION_VALUE
+						|| productClass.getNumber() == ProductClassEnum.SPOTOPTION_VALUE){
+					filterFlag = true;
 				}
 
-				contractBuilder.setPriceTick(pInstrument.getPriceTick());
-				contractBuilder.setCurrency(CurrencyEnum.CNY); // 默认人民币
-				contractBuilder.setLastTradeDateOrContractMonth(pInstrument.getExpireDate());
-				contractBuilder.setStrikePrice(pInstrument.getStrikePrice());
-				contractBuilder.setOptionsType(CtpConstant.optionTypeMapReverse.getOrDefault(pInstrument.getOptionsType(), OptionsTypeEnum.O_Unknown));
+				if(filterFlag){
+					ContractField.Builder contractBuilder = ContractField.newBuilder();
+					contractBuilder.setGatewayId(gatewayId);
+					contractBuilder.setSymbol(pInstrument.getInstrumentID());
+					contractBuilder.setExchange(xyz.redtorch.gateway.ctp.x64v6v3v19p1v.CtpConstant.exchangeMapReverse.getOrDefault(pInstrument.getExchangeID(), ExchangeEnum.UnknownExchange));
+					contractBuilder.setProductClass(productClass);
+					contractBuilder.setUniformSymbol(contractBuilder.getSymbol() + "@" + contractBuilder.getExchange() + "@" + contractBuilder.getProductClass());
+					contractBuilder.setContractId(contractBuilder.getUniformSymbol() + "@" + gatewayId);
+					contractBuilder.setName(pInstrument.getInstrumentName());
+					contractBuilder.setFullName(pInstrument.getInstrumentName());
+					contractBuilder.setThirdPartyId(contractBuilder.getSymbol());
 
-				if (pInstrument.getUnderlyingInstrID() != null) {
-					contractBuilder.setUnderlyingSymbol(pInstrument.getUnderlyingInstrID());
+					if (pInstrument.getVolumeMultiple() <= 0) {
+						contractBuilder.setMultiplier(1);
+					} else {
+						contractBuilder.setMultiplier(pInstrument.getVolumeMultiple());
+					}
+
+					contractBuilder.setPriceTick(pInstrument.getPriceTick());
+					contractBuilder.setCurrency(CurrencyEnum.CNY); // 默认人民币
+					contractBuilder.setLastTradeDateOrContractMonth(pInstrument.getExpireDate());
+					contractBuilder.setStrikePrice(pInstrument.getStrikePrice());
+					contractBuilder.setOptionsType(xyz.redtorch.gateway.ctp.x64v6v3v19p1v.CtpConstant.optionTypeMapReverse.getOrDefault(pInstrument.getOptionsType(), OptionsTypeEnum.O_Unknown));
+
+					if (pInstrument.getUnderlyingInstrID() != null) {
+						contractBuilder.setUnderlyingSymbol(pInstrument.getUnderlyingInstrID());
+					}
+
+					contractBuilder.setUnderlyingMultiplier(pInstrument.getUnderlyingMultiple());
+					contractBuilder.setMaxLimitOrderVolume(pInstrument.getMaxLimitOrderVolume());
+					contractBuilder.setMaxMarketOrderVolume(pInstrument.getMaxMarketOrderVolume());
+					contractBuilder.setMinLimitOrderVolume(pInstrument.getMinLimitOrderVolume());
+					contractBuilder.setMinMarketOrderVolume(pInstrument.getMinMarketOrderVolume());
+					contractBuilder.setMaxMarginSideAlgorithm(pInstrument.getMaxMarginSideAlgorithm() == '1');
+					contractBuilder.setLongMarginRatio(pInstrument.getLongMarginRatio());
+					contractBuilder.setShortMarginRatio(pInstrument.getShortMarginRatio());
+					ContractField contract = contractBuilder.build();
+
+					ctpGatewayImpl.contractMap.put(contractBuilder.getSymbol(), contract);
 				}
-
-				contractBuilder.setUnderlyingMultiplier(pInstrument.getUnderlyingMultiple());
-				contractBuilder.setMaxLimitOrderVolume(pInstrument.getMaxLimitOrderVolume());
-				contractBuilder.setMaxMarketOrderVolume(pInstrument.getMaxMarketOrderVolume());
-				contractBuilder.setMinLimitOrderVolume(pInstrument.getMinLimitOrderVolume());
-				contractBuilder.setMinMarketOrderVolume(pInstrument.getMinMarketOrderVolume());
-				contractBuilder.setMaxMarginSideAlgorithm(pInstrument.getMaxMarginSideAlgorithm() == '1');
-				contractBuilder.setLongMarginRatio(pInstrument.getLongMarginRatio());
-				contractBuilder.setShortMarginRatio(pInstrument.getShortMarginRatio());
-				ContractField contract = contractBuilder.build();
-				
-				ctpGatewayImpl.contractMap.put(contractBuilder.getSymbol(), contract);
 			}
 
 			if (bIsLast) {

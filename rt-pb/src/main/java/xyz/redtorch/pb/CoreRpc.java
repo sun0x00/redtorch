@@ -104,13 +104,13 @@ public final class CoreRpc {
      */
     QUERY_ORDER_LIST_BY_ACCOUNT_ID_RSP(20),
     /**
-     * <code>QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ = 21;</code>
+     * <code>QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ = 21;</code>
      */
-    QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ(21),
+    QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ(21),
     /**
-     * <code>QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP = 22;</code>
+     * <code>QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP = 22;</code>
      */
-    QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP(22),
+    QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP(22),
     /**
      * <code>GET_TRADE_LIST_REQ = 23;</code>
      */
@@ -128,13 +128,13 @@ public final class CoreRpc {
      */
     QUERY_TRADE_BY_TRADE_ID_RSP(26),
     /**
-     * <code>QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ = 27;</code>
+     * <code>QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ = 27;</code>
      */
-    QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ(27),
+    QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ(27),
     /**
-     * <code>QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP = 28;</code>
+     * <code>QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP = 28;</code>
      */
-    QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP(28),
+    QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP(28),
     /**
      * <code>QUERY_TRADE_LIST_BY_ACCOUNT_ID_REQ = 29;</code>
      */
@@ -184,13 +184,13 @@ public final class CoreRpc {
      */
     QUERY_POSITION_LIST_BY_ACCOUNT_ID_RSP(40),
     /**
-     * <code>QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ = 41;</code>
+     * <code>QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ = 41;</code>
      */
-    QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ(41),
+    QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ(41),
     /**
-     * <code>QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP = 42;</code>
+     * <code>QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP = 42;</code>
      */
-    QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP(42),
+    QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP(42),
     /**
      * <code>GET_ACCOUNT_LIST_REQ = 43;</code>
      */
@@ -224,77 +224,53 @@ public final class CoreRpc {
      */
     GET_CONTRACT_LIST_RSP(50),
     /**
-     * <code>QUERY_CONTRACT_BY_CONTRACT_ID_REQ = 51;</code>
+     * <code>QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ = 51;</code>
      */
-    QUERY_CONTRACT_BY_CONTRACT_ID_REQ(51),
+    QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ(51),
     /**
-     * <code>QUERY_CONTRACT_BY_CONTRACT_ID_RSP = 52;</code>
+     * <code>QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP = 52;</code>
      */
-    QUERY_CONTRACT_BY_CONTRACT_ID_RSP(52),
+    QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP(52),
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ = 53;</code>
+     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 53;</code>
      */
-    QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ(53),
+    SYNC_SLAVE_NODE_RUNTIME_DATA_REQ(53),
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP = 54;</code>
+     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 54;</code>
      */
-    QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP(54),
+    SYNC_SLAVE_NODE_RUNTIME_DATA_RSP(54),
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ = 55;</code>
+     * <code>GET_TICK_LIST_REQ = 55;</code>
      */
-    QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ(55),
+    GET_TICK_LIST_REQ(55),
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP = 56;</code>
+     * <code>GET_TICK_LIST_RSP = 56;</code>
      */
-    QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP(56),
+    GET_TICK_LIST_RSP(56),
     /**
-     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 57;</code>
+     * <code>QUERY_DB_BAR_LIST_REQ = 57;</code>
      */
-    SYNC_SLAVE_NODE_RUNTIME_DATA_REQ(57),
+    QUERY_DB_BAR_LIST_REQ(57),
     /**
-     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 58;</code>
+     * <code>QUERY_DB_BAR_LIST_RSP = 58;</code>
      */
-    SYNC_SLAVE_NODE_RUNTIME_DATA_RSP(58),
+    QUERY_DB_BAR_LIST_RSP(58),
     /**
-     * <code>GET_MIX_CONTRACT_LIST_REQ = 59;</code>
+     * <code>QUERY_DB_TICK_LIST_REQ = 59;</code>
      */
-    GET_MIX_CONTRACT_LIST_REQ(59),
+    QUERY_DB_TICK_LIST_REQ(59),
     /**
-     * <code>GET_MIX_CONTRACT_LIST_RSP = 60;</code>
+     * <code>QUERY_DB_TICK_LIST_RSP = 60;</code>
      */
-    GET_MIX_CONTRACT_LIST_RSP(60),
+    QUERY_DB_TICK_LIST_RSP(60),
     /**
-     * <code>GET_TICK_LIST_REQ = 61;</code>
+     * <code>QUERY_VOLUME_BAR_LIST_REQ = 61;</code>
      */
-    GET_TICK_LIST_REQ(61),
+    QUERY_VOLUME_BAR_LIST_REQ(61),
     /**
-     * <code>GET_TICK_LIST_RSP = 62;</code>
+     * <code>QUERY_VOLUME_BAR_LIST_RSP = 62;</code>
      */
-    GET_TICK_LIST_RSP(62),
-    /**
-     * <code>QUERY_DB_BAR_LIST_REQ = 63;</code>
-     */
-    QUERY_DB_BAR_LIST_REQ(63),
-    /**
-     * <code>QUERY_DB_BAR_LIST_RSP = 64;</code>
-     */
-    QUERY_DB_BAR_LIST_RSP(64),
-    /**
-     * <code>QUERY_DB_TICK_LIST_REQ = 65;</code>
-     */
-    QUERY_DB_TICK_LIST_REQ(65),
-    /**
-     * <code>QUERY_DB_TICK_LIST_RSP = 66;</code>
-     */
-    QUERY_DB_TICK_LIST_RSP(66),
-    /**
-     * <code>QUERY_VOLUME_BAR_LIST_REQ = 67;</code>
-     */
-    QUERY_VOLUME_BAR_LIST_REQ(67),
-    /**
-     * <code>QUERY_VOLUME_BAR_LIST_RSP = 68;</code>
-     */
-    QUERY_VOLUME_BAR_LIST_RSP(68),
+    QUERY_VOLUME_BAR_LIST_RSP(62),
     /**
      * <code>EXCEPTION_RSP = 999999;</code>
      */
@@ -443,13 +419,13 @@ public final class CoreRpc {
      */
     public static final int QUERY_ORDER_LIST_BY_ACCOUNT_ID_RSP_VALUE = 20;
     /**
-     * <code>QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ = 21;</code>
+     * <code>QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ = 21;</code>
      */
-    public static final int QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE = 21;
+    public static final int QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE = 21;
     /**
-     * <code>QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP = 22;</code>
+     * <code>QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP = 22;</code>
      */
-    public static final int QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP_VALUE = 22;
+    public static final int QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP_VALUE = 22;
     /**
      * <code>GET_TRADE_LIST_REQ = 23;</code>
      */
@@ -467,13 +443,13 @@ public final class CoreRpc {
      */
     public static final int QUERY_TRADE_BY_TRADE_ID_RSP_VALUE = 26;
     /**
-     * <code>QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ = 27;</code>
+     * <code>QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ = 27;</code>
      */
-    public static final int QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE = 27;
+    public static final int QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE = 27;
     /**
-     * <code>QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP = 28;</code>
+     * <code>QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP = 28;</code>
      */
-    public static final int QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP_VALUE = 28;
+    public static final int QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP_VALUE = 28;
     /**
      * <code>QUERY_TRADE_LIST_BY_ACCOUNT_ID_REQ = 29;</code>
      */
@@ -523,13 +499,13 @@ public final class CoreRpc {
      */
     public static final int QUERY_POSITION_LIST_BY_ACCOUNT_ID_RSP_VALUE = 40;
     /**
-     * <code>QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ = 41;</code>
+     * <code>QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ = 41;</code>
      */
-    public static final int QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE = 41;
+    public static final int QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ_VALUE = 41;
     /**
-     * <code>QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP = 42;</code>
+     * <code>QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP = 42;</code>
      */
-    public static final int QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP_VALUE = 42;
+    public static final int QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP_VALUE = 42;
     /**
      * <code>GET_ACCOUNT_LIST_REQ = 43;</code>
      */
@@ -563,77 +539,53 @@ public final class CoreRpc {
      */
     public static final int GET_CONTRACT_LIST_RSP_VALUE = 50;
     /**
-     * <code>QUERY_CONTRACT_BY_CONTRACT_ID_REQ = 51;</code>
+     * <code>QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ = 51;</code>
      */
-    public static final int QUERY_CONTRACT_BY_CONTRACT_ID_REQ_VALUE = 51;
+    public static final int QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ_VALUE = 51;
     /**
-     * <code>QUERY_CONTRACT_BY_CONTRACT_ID_RSP = 52;</code>
+     * <code>QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP = 52;</code>
      */
-    public static final int QUERY_CONTRACT_BY_CONTRACT_ID_RSP_VALUE = 52;
+    public static final int QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP_VALUE = 52;
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ = 53;</code>
+     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 53;</code>
      */
-    public static final int QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ_VALUE = 53;
+    public static final int SYNC_SLAVE_NODE_RUNTIME_DATA_REQ_VALUE = 53;
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP = 54;</code>
+     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 54;</code>
      */
-    public static final int QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP_VALUE = 54;
+    public static final int SYNC_SLAVE_NODE_RUNTIME_DATA_RSP_VALUE = 54;
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ = 55;</code>
+     * <code>GET_TICK_LIST_REQ = 55;</code>
      */
-    public static final int QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ_VALUE = 55;
+    public static final int GET_TICK_LIST_REQ_VALUE = 55;
     /**
-     * <code>QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP = 56;</code>
+     * <code>GET_TICK_LIST_RSP = 56;</code>
      */
-    public static final int QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP_VALUE = 56;
+    public static final int GET_TICK_LIST_RSP_VALUE = 56;
     /**
-     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_REQ = 57;</code>
+     * <code>QUERY_DB_BAR_LIST_REQ = 57;</code>
      */
-    public static final int SYNC_SLAVE_NODE_RUNTIME_DATA_REQ_VALUE = 57;
+    public static final int QUERY_DB_BAR_LIST_REQ_VALUE = 57;
     /**
-     * <code>SYNC_SLAVE_NODE_RUNTIME_DATA_RSP = 58;</code>
+     * <code>QUERY_DB_BAR_LIST_RSP = 58;</code>
      */
-    public static final int SYNC_SLAVE_NODE_RUNTIME_DATA_RSP_VALUE = 58;
+    public static final int QUERY_DB_BAR_LIST_RSP_VALUE = 58;
     /**
-     * <code>GET_MIX_CONTRACT_LIST_REQ = 59;</code>
+     * <code>QUERY_DB_TICK_LIST_REQ = 59;</code>
      */
-    public static final int GET_MIX_CONTRACT_LIST_REQ_VALUE = 59;
+    public static final int QUERY_DB_TICK_LIST_REQ_VALUE = 59;
     /**
-     * <code>GET_MIX_CONTRACT_LIST_RSP = 60;</code>
+     * <code>QUERY_DB_TICK_LIST_RSP = 60;</code>
      */
-    public static final int GET_MIX_CONTRACT_LIST_RSP_VALUE = 60;
+    public static final int QUERY_DB_TICK_LIST_RSP_VALUE = 60;
     /**
-     * <code>GET_TICK_LIST_REQ = 61;</code>
+     * <code>QUERY_VOLUME_BAR_LIST_REQ = 61;</code>
      */
-    public static final int GET_TICK_LIST_REQ_VALUE = 61;
+    public static final int QUERY_VOLUME_BAR_LIST_REQ_VALUE = 61;
     /**
-     * <code>GET_TICK_LIST_RSP = 62;</code>
+     * <code>QUERY_VOLUME_BAR_LIST_RSP = 62;</code>
      */
-    public static final int GET_TICK_LIST_RSP_VALUE = 62;
-    /**
-     * <code>QUERY_DB_BAR_LIST_REQ = 63;</code>
-     */
-    public static final int QUERY_DB_BAR_LIST_REQ_VALUE = 63;
-    /**
-     * <code>QUERY_DB_BAR_LIST_RSP = 64;</code>
-     */
-    public static final int QUERY_DB_BAR_LIST_RSP_VALUE = 64;
-    /**
-     * <code>QUERY_DB_TICK_LIST_REQ = 65;</code>
-     */
-    public static final int QUERY_DB_TICK_LIST_REQ_VALUE = 65;
-    /**
-     * <code>QUERY_DB_TICK_LIST_RSP = 66;</code>
-     */
-    public static final int QUERY_DB_TICK_LIST_RSP_VALUE = 66;
-    /**
-     * <code>QUERY_VOLUME_BAR_LIST_REQ = 67;</code>
-     */
-    public static final int QUERY_VOLUME_BAR_LIST_REQ_VALUE = 67;
-    /**
-     * <code>QUERY_VOLUME_BAR_LIST_RSP = 68;</code>
-     */
-    public static final int QUERY_VOLUME_BAR_LIST_RSP_VALUE = 68;
+    public static final int QUERY_VOLUME_BAR_LIST_RSP_VALUE = 62;
     /**
      * <code>EXCEPTION_RSP = 999999;</code>
      */
@@ -741,14 +693,14 @@ public final class CoreRpc {
         case 18: return QUERY_ORDER_BY_ORIGIN_ORDER_ID_RSP;
         case 19: return QUERY_ORDER_LIST_BY_ACCOUNT_ID_REQ;
         case 20: return QUERY_ORDER_LIST_BY_ACCOUNT_ID_RSP;
-        case 21: return QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_REQ;
-        case 22: return QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP;
+        case 21: return QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_REQ;
+        case 22: return QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP;
         case 23: return GET_TRADE_LIST_REQ;
         case 24: return GET_TRADE_LIST_RSP;
         case 25: return QUERY_TRADE_BY_TRADE_ID_REQ;
         case 26: return QUERY_TRADE_BY_TRADE_ID_RSP;
-        case 27: return QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_REQ;
-        case 28: return QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP;
+        case 27: return QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_REQ;
+        case 28: return QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP;
         case 29: return QUERY_TRADE_LIST_BY_ACCOUNT_ID_REQ;
         case 30: return QUERY_TRADE_LIST_BY_ACCOUNT_ID_RSP;
         case 31: return QUERY_TRADE_LIST_BY_ORDER_ID_REQ;
@@ -761,8 +713,8 @@ public final class CoreRpc {
         case 38: return QUERY_POSITION_BY_POSITION_ID_RSP;
         case 39: return QUERY_POSITION_LIST_BY_ACCOUNT_ID_REQ;
         case 40: return QUERY_POSITION_LIST_BY_ACCOUNT_ID_RSP;
-        case 41: return QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_REQ;
-        case 42: return QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP;
+        case 41: return QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_REQ;
+        case 42: return QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP;
         case 43: return GET_ACCOUNT_LIST_REQ;
         case 44: return GET_ACCOUNT_LIST_RSP;
         case 45: return QUERY_ACCOUNT_BY_ACCOUNT_ID_REQ;
@@ -771,24 +723,18 @@ public final class CoreRpc {
         case 48: return QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_RSP;
         case 49: return GET_CONTRACT_LIST_REQ;
         case 50: return GET_CONTRACT_LIST_RSP;
-        case 51: return QUERY_CONTRACT_BY_CONTRACT_ID_REQ;
-        case 52: return QUERY_CONTRACT_BY_CONTRACT_ID_RSP;
-        case 53: return QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_REQ;
-        case 54: return QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP;
-        case 55: return QUERY_CONTRACT_LIST_BY_GATEWAY_ID_REQ;
-        case 56: return QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP;
-        case 57: return SYNC_SLAVE_NODE_RUNTIME_DATA_REQ;
-        case 58: return SYNC_SLAVE_NODE_RUNTIME_DATA_RSP;
-        case 59: return GET_MIX_CONTRACT_LIST_REQ;
-        case 60: return GET_MIX_CONTRACT_LIST_RSP;
-        case 61: return GET_TICK_LIST_REQ;
-        case 62: return GET_TICK_LIST_RSP;
-        case 63: return QUERY_DB_BAR_LIST_REQ;
-        case 64: return QUERY_DB_BAR_LIST_RSP;
-        case 65: return QUERY_DB_TICK_LIST_REQ;
-        case 66: return QUERY_DB_TICK_LIST_RSP;
-        case 67: return QUERY_VOLUME_BAR_LIST_REQ;
-        case 68: return QUERY_VOLUME_BAR_LIST_RSP;
+        case 51: return QUERY_CONTRACT_BY_UNIFORM_SYMBOL_REQ;
+        case 52: return QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP;
+        case 53: return SYNC_SLAVE_NODE_RUNTIME_DATA_REQ;
+        case 54: return SYNC_SLAVE_NODE_RUNTIME_DATA_RSP;
+        case 55: return GET_TICK_LIST_REQ;
+        case 56: return GET_TICK_LIST_RSP;
+        case 57: return QUERY_DB_BAR_LIST_REQ;
+        case 58: return QUERY_DB_BAR_LIST_RSP;
+        case 59: return QUERY_DB_TICK_LIST_REQ;
+        case 60: return QUERY_DB_TICK_LIST_RSP;
+        case 61: return QUERY_VOLUME_BAR_LIST_REQ;
+        case 62: return QUERY_VOLUME_BAR_LIST_RSP;
         case 999999: return EXCEPTION_RSP;
         case 1001: return ORDER_RTN;
         case 1002: return TRADE_RTN;
@@ -895,7 +841,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 1 void subscribe(CommonReqField commonReq, ContractField contract); 
+   * 1 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSubscribeReq}
@@ -1230,7 +1176,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 1 void subscribe(CommonReqField commonReq, ContractField contract); 
+     * 1 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcSubscribeReq}
@@ -2360,7 +2306,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 3 void unsubscribe(CommonReqField commonReq, ContractField contract, String gatewayId); 
+   * 3 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcUnsubscribeReq}
@@ -2750,7 +2696,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 3 void unsubscribe(CommonReqField commonReq, ContractField contract, String gatewayId); 
+     * 3 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcUnsubscribeReq}
@@ -3951,7 +3897,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 5 void sumitOrder(CommonReqField commonReq, SubmitOrderReqField submitOrderReq); 
+   * 5 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSubmitOrderReq}
@@ -4286,7 +4232,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 5 void sumitOrder(CommonReqField commonReq, SubmitOrderReqField submitOrderReq); 
+     * 5 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcSubmitOrderReq}
@@ -5554,7 +5500,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 7 void cancelOrder(CommonReqField commonReq, CancelOrderReqField cancelOrderReq);  
+   * 7 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcCancelOrderReq}
@@ -5889,7 +5835,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 7 void cancelOrder(CommonReqField commonReq, CancelOrderReqField cancelOrderReq);  
+     * 7 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcCancelOrderReq}
@@ -7007,7 +6953,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 9 void searchContract(CommonReqField commonReq, ContractField contract); 
+   * 9 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSearchContractReq}
@@ -7342,7 +7288,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 9 void searchContract(CommonReqField commonReq, ContractField contract); 
+     * 9 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcSearchContractReq}
@@ -8445,7 +8391,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 11 List&lt;OrderField&gt; getOrderList() 
+   * 11 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetOrderListReq}
@@ -8725,7 +8671,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 11 List&lt;OrderField&gt; getOrderList() 
+     * 11 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetOrderListReq}
@@ -10070,7 +10016,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 13 List&lt;OrderField&gt; getOrderList() 
+   * 13 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetWorkingOrderListReq}
@@ -10350,7 +10296,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 13 List&lt;OrderField&gt; getOrderList() 
+     * 13 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetWorkingOrderListReq}
@@ -11707,7 +11653,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 15 OrderField queryOrderByOrderId(String orderId); 
+   * 15 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOrderIdReq}
@@ -12042,7 +11988,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 15 OrderField queryOrderByOrderId(String orderId); 
+     * 15 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOrderIdReq}
@@ -13310,7 +13256,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 17 OrderField queryOrderByOriginOrderId(String originOrderId); 
+   * 17 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdReq}
@@ -13645,7 +13591,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 17 OrderField queryOrderByOriginOrderId(String originOrderId); 
+     * 17 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderByOriginOrderIdReq}
@@ -14913,7 +14859,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 19 List&lt;OrderField&gt; queryOrderListByAccountId(String accountId); 
+   * 19 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByAccountIdReq}
@@ -15248,7 +15194,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 19 List&lt;OrderField&gt; queryOrderListByAccountId(String accountId); 
+     * 19 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByAccountIdReq}
@@ -16655,8 +16601,8 @@ public final class CoreRpc {
 
   }
 
-  public interface RpcQueryOrderListByUnifiedSymbolReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
+  public interface RpcQueryOrderListByUniformSymbolReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -16675,42 +16621,42 @@ public final class CoreRpc {
     xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
 
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
   }
   /**
    * <pre>
-   * 21 List&lt;OrderField&gt; queryOrderListByUnifiedSymbol(String unifiedSymbol); 
+   * 21 
    * </pre>
    *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq}
    */
-  public static final class RpcQueryOrderListByUnifiedSymbolReq extends
+  public static final class RpcQueryOrderListByUniformSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
-      RpcQueryOrderListByUnifiedSymbolReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq)
+      RpcQueryOrderListByUniformSymbolReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryOrderListByUnifiedSymbolReq.newBuilder() to construct.
-    private RpcQueryOrderListByUnifiedSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryOrderListByUniformSymbolReq.newBuilder() to construct.
+    private RpcQueryOrderListByUniformSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryOrderListByUnifiedSymbolReq() {
-      unifiedSymbol_ = "";
+    private RpcQueryOrderListByUniformSymbolReq() {
+      uniformSymbol_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryOrderListByUnifiedSymbolReq();
+      return new RpcQueryOrderListByUniformSymbolReq();
     }
 
     @java.lang.Override
@@ -16718,7 +16664,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryOrderListByUnifiedSymbolReq(
+    private RpcQueryOrderListByUniformSymbolReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -16752,7 +16698,7 @@ public final class CoreRpc {
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             default: {
@@ -16776,15 +16722,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.Builder.class);
     }
 
     public static final int COMMONREQ_FIELD_NUMBER = 1;
@@ -16813,38 +16759,38 @@ public final class CoreRpc {
       return getCommonReq();
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -16868,8 +16814,8 @@ public final class CoreRpc {
       if (commonReq_ != null) {
         output.writeMessage(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uniformSymbol_);
       }
       unknownFields.writeTo(output);
     }
@@ -16884,8 +16830,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uniformSymbol_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -16897,18 +16843,18 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq) obj;
 
       if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
         if (!getCommonReq()
             .equals(other.getCommonReq())) return false;
       }
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -16924,76 +16870,76 @@ public final class CoreRpc {
         hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
         hash = (53 * hash) + getCommonReq().hashCode();
       }
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -17006,7 +16952,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -17023,29 +16969,29 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 21 List&lt;OrderField&gt; queryOrderListByUnifiedSymbol(String unifiedSymbol); 
+     * 21 
      * </pre>
      *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq)
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17069,7 +17015,7 @@ public final class CoreRpc {
           commonReq_ = null;
           commonReqBuilder_ = null;
         }
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         return this;
       }
@@ -17077,17 +17023,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -17095,14 +17041,14 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq(this);
         if (commonReqBuilder_ == null) {
           result.commonReq_ = commonReq_;
         } else {
           result.commonReq_ = commonReqBuilder_.build();
         }
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         onBuilt();
         return result;
       }
@@ -17141,21 +17087,21 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq.getDefaultInstance()) return this;
         if (other.hasCommonReq()) {
           mergeCommonReq(other.getCommonReq());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -17173,11 +17119,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -17306,78 +17252,78 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
+       * <code>string uniformSymbol = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -17394,48 +17340,48 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolReq)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryOrderListByUnifiedSymbolReq>() {
+    private static final com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolReq>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryOrderListByUniformSymbolReq>() {
       @java.lang.Override
-      public RpcQueryOrderListByUnifiedSymbolReq parsePartialFrom(
+      public RpcQueryOrderListByUniformSymbolReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryOrderListByUnifiedSymbolReq(input, extensionRegistry);
+        return new RpcQueryOrderListByUniformSymbolReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolReq> parser() {
+    public static com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolReq> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolReq getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RpcQueryOrderListByUnifiedSymbolRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
+  public interface RpcQueryOrderListByUniformSymbolRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -17478,18 +17424,18 @@ public final class CoreRpc {
         int index);
   }
   /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp}
    */
-  public static final class RpcQueryOrderListByUnifiedSymbolRsp extends
+  public static final class RpcQueryOrderListByUniformSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
-      RpcQueryOrderListByUnifiedSymbolRspOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp)
+      RpcQueryOrderListByUniformSymbolRspOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryOrderListByUnifiedSymbolRsp.newBuilder() to construct.
-    private RpcQueryOrderListByUnifiedSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryOrderListByUniformSymbolRsp.newBuilder() to construct.
+    private RpcQueryOrderListByUniformSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryOrderListByUnifiedSymbolRsp() {
+    private RpcQueryOrderListByUniformSymbolRsp() {
       order_ = java.util.Collections.emptyList();
     }
 
@@ -17497,7 +17443,7 @@ public final class CoreRpc {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryOrderListByUnifiedSymbolRsp();
+      return new RpcQueryOrderListByUniformSymbolRsp();
     }
 
     @java.lang.Override
@@ -17505,7 +17451,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryOrderListByUnifiedSymbolRsp(
+    private RpcQueryOrderListByUniformSymbolRsp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -17570,15 +17516,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.Builder.class);
     }
 
     public static final int COMMONRSP_FIELD_NUMBER = 1;
@@ -17694,10 +17640,10 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp) obj;
 
       if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
@@ -17730,69 +17676,69 @@ public final class CoreRpc {
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -17805,7 +17751,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -17821,26 +17767,26 @@ public final class CoreRpc {
       return builder;
     }
     /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRspOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp)
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRspOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -17877,17 +17823,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -17895,8 +17841,8 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp(this);
         int from_bitField0_ = bitField0_;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
@@ -17950,16 +17896,16 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp.getDefaultInstance()) return this;
         if (other.hasCommonRsp()) {
           mergeCommonRsp(other.getCommonRsp());
         }
@@ -18004,11 +17950,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -18390,41 +18336,41 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryOrderListByUnifiedSymbolRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryOrderListByUniformSymbolRsp)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryOrderListByUnifiedSymbolRsp>() {
+    private static final com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolRsp>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryOrderListByUniformSymbolRsp>() {
       @java.lang.Override
-      public RpcQueryOrderListByUnifiedSymbolRsp parsePartialFrom(
+      public RpcQueryOrderListByUniformSymbolRsp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryOrderListByUnifiedSymbolRsp(input, extensionRegistry);
+        return new RpcQueryOrderListByUniformSymbolRsp(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolRsp> parser() {
+    public static com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolRsp> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryOrderListByUnifiedSymbolRsp> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryOrderListByUniformSymbolRsp> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUnifiedSymbolRsp getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryOrderListByUniformSymbolRsp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -18451,7 +18397,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 23 List&lt;TradeField&gt; getTradeList(); 
+   * 23 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTradeListReq}
@@ -18731,7 +18677,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 23 List&lt;TradeField&gt; getTradeList(); 
+     * 23 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetTradeListReq}
@@ -20088,7 +20034,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 25 TradeField queryTradeByTradeId(String tradeId); 
+   * 25 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeByTradeIdReq}
@@ -20423,7 +20369,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 25 TradeField queryTradeByTradeId(String tradeId); 
+     * 25 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeByTradeIdReq}
@@ -21658,8 +21604,8 @@ public final class CoreRpc {
 
   }
 
-  public interface RpcQueryTradeListByUnifiedSymbolReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
+  public interface RpcQueryTradeListByUniformSymbolReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -21678,42 +21624,42 @@ public final class CoreRpc {
     xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
 
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
   }
   /**
    * <pre>
-   * 27 List&lt;TradeField&gt; queryTradeListByUnifiedSymbol(String unifiedSymbol); 
+   * 27 
    * </pre>
    *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq}
    */
-  public static final class RpcQueryTradeListByUnifiedSymbolReq extends
+  public static final class RpcQueryTradeListByUniformSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
-      RpcQueryTradeListByUnifiedSymbolReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq)
+      RpcQueryTradeListByUniformSymbolReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryTradeListByUnifiedSymbolReq.newBuilder() to construct.
-    private RpcQueryTradeListByUnifiedSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryTradeListByUniformSymbolReq.newBuilder() to construct.
+    private RpcQueryTradeListByUniformSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryTradeListByUnifiedSymbolReq() {
-      unifiedSymbol_ = "";
+    private RpcQueryTradeListByUniformSymbolReq() {
+      uniformSymbol_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryTradeListByUnifiedSymbolReq();
+      return new RpcQueryTradeListByUniformSymbolReq();
     }
 
     @java.lang.Override
@@ -21721,7 +21667,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryTradeListByUnifiedSymbolReq(
+    private RpcQueryTradeListByUniformSymbolReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -21755,7 +21701,7 @@ public final class CoreRpc {
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             default: {
@@ -21779,15 +21725,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.Builder.class);
     }
 
     public static final int COMMONREQ_FIELD_NUMBER = 1;
@@ -21816,38 +21762,38 @@ public final class CoreRpc {
       return getCommonReq();
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -21871,8 +21817,8 @@ public final class CoreRpc {
       if (commonReq_ != null) {
         output.writeMessage(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uniformSymbol_);
       }
       unknownFields.writeTo(output);
     }
@@ -21887,8 +21833,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uniformSymbol_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -21900,18 +21846,18 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq) obj;
 
       if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
         if (!getCommonReq()
             .equals(other.getCommonReq())) return false;
       }
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -21927,76 +21873,76 @@ public final class CoreRpc {
         hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
         hash = (53 * hash) + getCommonReq().hashCode();
       }
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -22009,7 +21955,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -22026,29 +21972,29 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 27 List&lt;TradeField&gt; queryTradeListByUnifiedSymbol(String unifiedSymbol); 
+     * 27 
      * </pre>
      *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq)
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -22072,7 +22018,7 @@ public final class CoreRpc {
           commonReq_ = null;
           commonReqBuilder_ = null;
         }
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         return this;
       }
@@ -22080,17 +22026,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -22098,14 +22044,14 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq(this);
         if (commonReqBuilder_ == null) {
           result.commonReq_ = commonReq_;
         } else {
           result.commonReq_ = commonReqBuilder_.build();
         }
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         onBuilt();
         return result;
       }
@@ -22144,21 +22090,21 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq.getDefaultInstance()) return this;
         if (other.hasCommonReq()) {
           mergeCommonReq(other.getCommonReq());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -22176,11 +22122,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -22309,78 +22255,78 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
+       * <code>string uniformSymbol = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -22397,48 +22343,48 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolReq)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryTradeListByUnifiedSymbolReq>() {
+    private static final com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolReq>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryTradeListByUniformSymbolReq>() {
       @java.lang.Override
-      public RpcQueryTradeListByUnifiedSymbolReq parsePartialFrom(
+      public RpcQueryTradeListByUniformSymbolReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryTradeListByUnifiedSymbolReq(input, extensionRegistry);
+        return new RpcQueryTradeListByUniformSymbolReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolReq> parser() {
+    public static com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolReq> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolReq getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RpcQueryTradeListByUnifiedSymbolRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
+  public interface RpcQueryTradeListByUniformSymbolRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -22481,18 +22427,18 @@ public final class CoreRpc {
         int index);
   }
   /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp}
    */
-  public static final class RpcQueryTradeListByUnifiedSymbolRsp extends
+  public static final class RpcQueryTradeListByUniformSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
-      RpcQueryTradeListByUnifiedSymbolRspOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp)
+      RpcQueryTradeListByUniformSymbolRspOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryTradeListByUnifiedSymbolRsp.newBuilder() to construct.
-    private RpcQueryTradeListByUnifiedSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryTradeListByUniformSymbolRsp.newBuilder() to construct.
+    private RpcQueryTradeListByUniformSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryTradeListByUnifiedSymbolRsp() {
+    private RpcQueryTradeListByUniformSymbolRsp() {
       trade_ = java.util.Collections.emptyList();
     }
 
@@ -22500,7 +22446,7 @@ public final class CoreRpc {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryTradeListByUnifiedSymbolRsp();
+      return new RpcQueryTradeListByUniformSymbolRsp();
     }
 
     @java.lang.Override
@@ -22508,7 +22454,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryTradeListByUnifiedSymbolRsp(
+    private RpcQueryTradeListByUniformSymbolRsp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -22573,15 +22519,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.Builder.class);
     }
 
     public static final int COMMONRSP_FIELD_NUMBER = 1;
@@ -22697,10 +22643,10 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp) obj;
 
       if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
@@ -22733,69 +22679,69 @@ public final class CoreRpc {
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -22808,7 +22754,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -22824,26 +22770,26 @@ public final class CoreRpc {
       return builder;
     }
     /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRspOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp)
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRspOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -22880,17 +22826,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -22898,8 +22844,8 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp(this);
         int from_bitField0_ = bitField0_;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
@@ -22953,16 +22899,16 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp.getDefaultInstance()) return this;
         if (other.hasCommonRsp()) {
           mergeCommonRsp(other.getCommonRsp());
         }
@@ -23007,11 +22953,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -23393,41 +23339,41 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryTradeListByUnifiedSymbolRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryTradeListByUniformSymbolRsp)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryTradeListByUnifiedSymbolRsp>() {
+    private static final com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolRsp>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryTradeListByUniformSymbolRsp>() {
       @java.lang.Override
-      public RpcQueryTradeListByUnifiedSymbolRsp parsePartialFrom(
+      public RpcQueryTradeListByUniformSymbolRsp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryTradeListByUnifiedSymbolRsp(input, extensionRegistry);
+        return new RpcQueryTradeListByUniformSymbolRsp(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolRsp> parser() {
+    public static com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolRsp> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryTradeListByUnifiedSymbolRsp> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryTradeListByUniformSymbolRsp> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUnifiedSymbolRsp getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryTradeListByUniformSymbolRsp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -23466,7 +23412,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 29 List&lt;TradeField&gt; queryTradeListByAccountId(String accountId); 
+   * 29 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByAccountIdReq}
@@ -23801,7 +23747,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 29 List&lt;TradeField&gt; queryTradeListByAccountId(String accountId); 
+     * 29 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByAccountIdReq}
@@ -25241,7 +25187,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 31 List&lt;TradeField&gt; queryTradeListByOrderId(String orderId); 
+   * 31 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOrderIdReq}
@@ -25576,7 +25522,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 31 List&lt;TradeField&gt; queryTradeListByOrderId(String orderId); 
+     * 31 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOrderIdReq}
@@ -27016,7 +26962,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 33 List&lt;TradeField&gt; queryTradeListByOriginOrderId(String originOrderId); 
+   * 33 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdReq}
@@ -27351,7 +27297,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 33 List&lt;TradeField&gt; queryTradeListByOriginOrderId(String originOrderId); 
+     * 33 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryTradeListByOriginOrderIdReq}
@@ -28779,7 +28725,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 35 List&lt;PositionField&gt; getPositionList(); 
+   * 35 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetPositionListReq}
@@ -29059,7 +29005,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 35 List&lt;PositionField&gt; getPositionList(); 
+     * 35 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetPositionListReq}
@@ -30416,7 +30362,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 37 PositionField queryPositionByPositionId(String positionId); 
+   * 37 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionByPositionIdReq}
@@ -30751,7 +30697,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 37 PositionField queryPositionByPositionId(String positionId); 
+     * 37 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionByPositionIdReq}
@@ -32019,7 +31965,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 39 List&lt;PositionField&gt; queryPositionListByAccountId(String accountId); 
+   * 39 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByAccountIdReq}
@@ -32354,7 +32300,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 39 List&lt;PositionField&gt; queryPositionListByAccountId(String accountId); 
+     * 39 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByAccountIdReq}
@@ -33761,8 +33707,8 @@ public final class CoreRpc {
 
   }
 
-  public interface RpcQueryPositionListByUnifiedSymbolReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
+  public interface RpcQueryPositionListByUniformSymbolReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -33781,42 +33727,42 @@ public final class CoreRpc {
     xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
 
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
   }
   /**
    * <pre>
-   * 41 List&lt;PositionField&gt; queryPositionListByUnifiedSymbol(String unifiedSymbol); 
+   * 41 
    * </pre>
    *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq}
    */
-  public static final class RpcQueryPositionListByUnifiedSymbolReq extends
+  public static final class RpcQueryPositionListByUniformSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
-      RpcQueryPositionListByUnifiedSymbolReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq)
+      RpcQueryPositionListByUniformSymbolReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryPositionListByUnifiedSymbolReq.newBuilder() to construct.
-    private RpcQueryPositionListByUnifiedSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryPositionListByUniformSymbolReq.newBuilder() to construct.
+    private RpcQueryPositionListByUniformSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryPositionListByUnifiedSymbolReq() {
-      unifiedSymbol_ = "";
+    private RpcQueryPositionListByUniformSymbolReq() {
+      uniformSymbol_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryPositionListByUnifiedSymbolReq();
+      return new RpcQueryPositionListByUniformSymbolReq();
     }
 
     @java.lang.Override
@@ -33824,7 +33770,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryPositionListByUnifiedSymbolReq(
+    private RpcQueryPositionListByUniformSymbolReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -33858,7 +33804,7 @@ public final class CoreRpc {
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             default: {
@@ -33882,15 +33828,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.Builder.class);
     }
 
     public static final int COMMONREQ_FIELD_NUMBER = 1;
@@ -33919,38 +33865,38 @@ public final class CoreRpc {
       return getCommonReq();
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -33974,8 +33920,8 @@ public final class CoreRpc {
       if (commonReq_ != null) {
         output.writeMessage(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uniformSymbol_);
       }
       unknownFields.writeTo(output);
     }
@@ -33990,8 +33936,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getCommonReq());
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uniformSymbol_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -34003,18 +33949,18 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq) obj;
 
       if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
         if (!getCommonReq()
             .equals(other.getCommonReq())) return false;
       }
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -34030,76 +33976,76 @@ public final class CoreRpc {
         hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
         hash = (53 * hash) + getCommonReq().hashCode();
       }
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -34112,7 +34058,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -34129,29 +34075,29 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 41 List&lt;PositionField&gt; queryPositionListByUnifiedSymbol(String unifiedSymbol); 
+     * 41 
      * </pre>
      *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq)
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -34175,7 +34121,7 @@ public final class CoreRpc {
           commonReq_ = null;
           commonReqBuilder_ = null;
         }
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         return this;
       }
@@ -34183,17 +34129,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -34201,14 +34147,14 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq(this);
         if (commonReqBuilder_ == null) {
           result.commonReq_ = commonReq_;
         } else {
           result.commonReq_ = commonReqBuilder_.build();
         }
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         onBuilt();
         return result;
       }
@@ -34247,21 +34193,21 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq.getDefaultInstance()) return this;
         if (other.hasCommonReq()) {
           mergeCommonReq(other.getCommonReq());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -34279,11 +34225,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -34412,78 +34358,78 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
+       * <code>string uniformSymbol = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -34500,48 +34446,48 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolReq)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryPositionListByUnifiedSymbolReq>() {
+    private static final com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolReq>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryPositionListByUniformSymbolReq>() {
       @java.lang.Override
-      public RpcQueryPositionListByUnifiedSymbolReq parsePartialFrom(
+      public RpcQueryPositionListByUniformSymbolReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryPositionListByUnifiedSymbolReq(input, extensionRegistry);
+        return new RpcQueryPositionListByUniformSymbolReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolReq> parser() {
+    public static com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolReq> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolReq getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RpcQueryPositionListByUnifiedSymbolRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
+  public interface RpcQueryPositionListByUniformSymbolRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -34584,18 +34530,18 @@ public final class CoreRpc {
         int index);
   }
   /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp}
    */
-  public static final class RpcQueryPositionListByUnifiedSymbolRsp extends
+  public static final class RpcQueryPositionListByUniformSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
-      RpcQueryPositionListByUnifiedSymbolRspOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp)
+      RpcQueryPositionListByUniformSymbolRspOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryPositionListByUnifiedSymbolRsp.newBuilder() to construct.
-    private RpcQueryPositionListByUnifiedSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryPositionListByUniformSymbolRsp.newBuilder() to construct.
+    private RpcQueryPositionListByUniformSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryPositionListByUnifiedSymbolRsp() {
+    private RpcQueryPositionListByUniformSymbolRsp() {
       position_ = java.util.Collections.emptyList();
     }
 
@@ -34603,7 +34549,7 @@ public final class CoreRpc {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryPositionListByUnifiedSymbolRsp();
+      return new RpcQueryPositionListByUniformSymbolRsp();
     }
 
     @java.lang.Override
@@ -34611,7 +34557,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryPositionListByUnifiedSymbolRsp(
+    private RpcQueryPositionListByUniformSymbolRsp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -34676,15 +34622,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.Builder.class);
     }
 
     public static final int COMMONRSP_FIELD_NUMBER = 1;
@@ -34800,10 +34746,10 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp) obj;
 
       if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
@@ -34836,69 +34782,69 @@ public final class CoreRpc {
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -34911,7 +34857,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -34927,26 +34873,26 @@ public final class CoreRpc {
       return builder;
     }
     /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRspOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp)
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRspOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -34983,17 +34929,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -35001,8 +34947,8 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp(this);
         int from_bitField0_ = bitField0_;
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
@@ -35056,16 +35002,16 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp.getDefaultInstance()) return this;
         if (other.hasCommonRsp()) {
           mergeCommonRsp(other.getCommonRsp());
         }
@@ -35110,11 +35056,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -35496,41 +35442,41 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryPositionListByUnifiedSymbolRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryPositionListByUniformSymbolRsp)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryPositionListByUnifiedSymbolRsp>() {
+    private static final com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolRsp>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryPositionListByUniformSymbolRsp>() {
       @java.lang.Override
-      public RpcQueryPositionListByUnifiedSymbolRsp parsePartialFrom(
+      public RpcQueryPositionListByUniformSymbolRsp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryPositionListByUnifiedSymbolRsp(input, extensionRegistry);
+        return new RpcQueryPositionListByUniformSymbolRsp(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolRsp> parser() {
+    public static com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolRsp> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryPositionListByUnifiedSymbolRsp> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryPositionListByUniformSymbolRsp> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUnifiedSymbolRsp getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryPositionListByUniformSymbolRsp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -35557,7 +35503,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 43 List&lt;AccountField&gt; getAccountList(); 
+   * 43 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetAccountListReq}
@@ -35837,7 +35783,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 43 List&lt;AccountField&gt; getAccountList(); 
+     * 43 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetAccountListReq}
@@ -37194,7 +37140,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 45 AccountField queryAccountByAccountId(String accountId); 
+   * 45 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountByAccountIdReq}
@@ -37529,7 +37475,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 45 AccountField queryAccountByAccountId(String accountId); 
+     * 45 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountByAccountIdReq}
@@ -38797,7 +38743,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 47 List&lt;AccountField&gt; queryAccountListByAccountCode(String accountCode); 
+   * 47 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountListByAccountCodeReq}
@@ -39132,7 +39078,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 47 List&lt;AccountField&gt; queryAccountListByAccountCode(String accountCode); 
+     * 47 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryAccountListByAccountCodeReq}
@@ -40560,7 +40506,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 49 List&lt;ContractField&gt; getContractList(); 
+   * 49 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetContractListReq}
@@ -40840,7 +40786,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 49 List&lt;ContractField&gt; getContractList(); 
+     * 49 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetContractListReq}
@@ -42164,8 +42110,8 @@ public final class CoreRpc {
 
   }
 
-  public interface RpcQueryContractByContractIdReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
+  public interface RpcQueryContractByUniformSymbolReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -42184,42 +42130,42 @@ public final class CoreRpc {
     xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
 
     /**
-     * <code>string contractId = 2;</code>
-     * @return The contractId.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getContractId();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string contractId = 2;</code>
-     * @return The bytes for contractId.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getContractIdBytes();
+        getUniformSymbolBytes();
   }
   /**
    * <pre>
-   * 51 ContractField queryContractByContractId(String contractId); 
+   * 51 
    * </pre>
    *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdReq}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq}
    */
-  public static final class RpcQueryContractByContractIdReq extends
+  public static final class RpcQueryContractByUniformSymbolReq extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
-      RpcQueryContractByContractIdReqOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq)
+      RpcQueryContractByUniformSymbolReqOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractByContractIdReq.newBuilder() to construct.
-    private RpcQueryContractByContractIdReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryContractByUniformSymbolReq.newBuilder() to construct.
+    private RpcQueryContractByUniformSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryContractByContractIdReq() {
-      contractId_ = "";
+    private RpcQueryContractByUniformSymbolReq() {
+      uniformSymbol_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryContractByContractIdReq();
+      return new RpcQueryContractByUniformSymbolReq();
     }
 
     @java.lang.Override
@@ -42227,7 +42173,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryContractByContractIdReq(
+    private RpcQueryContractByUniformSymbolReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -42261,7 +42207,7 @@ public final class CoreRpc {
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              contractId_ = s;
+              uniformSymbol_ = s;
               break;
             }
             default: {
@@ -42285,15 +42231,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.Builder.class);
     }
 
     public static final int COMMONREQ_FIELD_NUMBER = 1;
@@ -42322,38 +42268,38 @@ public final class CoreRpc {
       return getCommonReq();
     }
 
-    public static final int CONTRACTID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object contractId_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string contractId = 2;</code>
-     * @return The contractId.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getContractId() {
-      java.lang.Object ref = contractId_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        contractId_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string contractId = 2;</code>
-     * @return The bytes for contractId.
+     * <code>string uniformSymbol = 2;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getContractIdBytes() {
-      java.lang.Object ref = contractId_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        contractId_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -42377,8 +42323,8 @@ public final class CoreRpc {
       if (commonReq_ != null) {
         output.writeMessage(1, getCommonReq());
       }
-      if (!getContractIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, contractId_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uniformSymbol_);
       }
       unknownFields.writeTo(output);
     }
@@ -42393,8 +42339,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getCommonReq());
       }
-      if (!getContractIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, contractId_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uniformSymbol_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -42406,18 +42352,18 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq) obj;
 
       if (hasCommonReq() != other.hasCommonReq()) return false;
       if (hasCommonReq()) {
         if (!getCommonReq()
             .equals(other.getCommonReq())) return false;
       }
-      if (!getContractId()
-          .equals(other.getContractId())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -42433,76 +42379,76 @@ public final class CoreRpc {
         hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
         hash = (53 * hash) + getCommonReq().hashCode();
       }
-      hash = (37 * hash) + CONTRACTID_FIELD_NUMBER;
-      hash = (53 * hash) + getContractId().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -42515,7 +42461,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -42532,29 +42478,29 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 51 ContractField queryContractByContractId(String contractId); 
+     * 51 
      * </pre>
      *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdReq}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReqOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq)
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -42578,7 +42524,7 @@ public final class CoreRpc {
           commonReq_ = null;
           commonReqBuilder_ = null;
         }
-        contractId_ = "";
+        uniformSymbol_ = "";
 
         return this;
       }
@@ -42586,17 +42532,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -42604,14 +42550,14 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq(this);
         if (commonReqBuilder_ == null) {
           result.commonReq_ = commonReq_;
         } else {
           result.commonReq_ = commonReqBuilder_.build();
         }
-        result.contractId_ = contractId_;
+        result.uniformSymbol_ = uniformSymbol_;
         onBuilt();
         return result;
       }
@@ -42650,21 +42596,21 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq.getDefaultInstance()) return this;
         if (other.hasCommonReq()) {
           mergeCommonReq(other.getCommonReq());
         }
-        if (!other.getContractId().isEmpty()) {
-          contractId_ = other.contractId_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -42682,11 +42628,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -42815,78 +42761,78 @@ public final class CoreRpc {
         return commonReqBuilder_;
       }
 
-      private java.lang.Object contractId_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string contractId = 2;</code>
-       * @return The contractId.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getContractId() {
-        java.lang.Object ref = contractId_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          contractId_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string contractId = 2;</code>
-       * @return The bytes for contractId.
+       * <code>string uniformSymbol = 2;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getContractIdBytes() {
-        java.lang.Object ref = contractId_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          contractId_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string contractId = 2;</code>
-       * @param value The contractId to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setContractId(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        contractId_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string contractId = 2;</code>
+       * <code>string uniformSymbol = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearContractId() {
+      public Builder clearUniformSymbol() {
         
-        contractId_ = getDefaultInstance().getContractId();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string contractId = 2;</code>
-       * @param value The bytes for contractId to set.
+       * <code>string uniformSymbol = 2;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setContractIdBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        contractId_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -42903,48 +42849,48 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractByContractIdReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractByUniformSymbolReq)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryContractByContractIdReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractByContractIdReq>() {
+    private static final com.google.protobuf.Parser<RpcQueryContractByUniformSymbolReq>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractByUniformSymbolReq>() {
       @java.lang.Override
-      public RpcQueryContractByContractIdReq parsePartialFrom(
+      public RpcQueryContractByUniformSymbolReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractByContractIdReq(input, extensionRegistry);
+        return new RpcQueryContractByUniformSymbolReq(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryContractByContractIdReq> parser() {
+    public static com.google.protobuf.Parser<RpcQueryContractByUniformSymbolReq> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractByContractIdReq> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryContractByUniformSymbolReq> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdReq getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RpcQueryContractByContractIdRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
+  public interface RpcQueryContractByUniformSymbolRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -42978,25 +42924,25 @@ public final class CoreRpc {
     xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder();
   }
   /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdRsp}
+   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp}
    */
-  public static final class RpcQueryContractByContractIdRsp extends
+  public static final class RpcQueryContractByUniformSymbolRsp extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
-      RpcQueryContractByContractIdRspOrBuilder {
+      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp)
+      RpcQueryContractByUniformSymbolRspOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractByContractIdRsp.newBuilder() to construct.
-    private RpcQueryContractByContractIdRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RpcQueryContractByUniformSymbolRsp.newBuilder() to construct.
+    private RpcQueryContractByUniformSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RpcQueryContractByContractIdRsp() {
+    private RpcQueryContractByUniformSymbolRsp() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RpcQueryContractByContractIdRsp();
+      return new RpcQueryContractByUniformSymbolRsp();
     }
 
     @java.lang.Override
@@ -43004,7 +42950,7 @@ public final class CoreRpc {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RpcQueryContractByContractIdRsp(
+    private RpcQueryContractByUniformSymbolRsp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -43069,15 +43015,15 @@ public final class CoreRpc {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor;
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_fieldAccessorTable
+      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.Builder.class);
+              xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.Builder.class);
     }
 
     public static final int COMMONRSP_FIELD_NUMBER = 1;
@@ -43179,10 +43125,10 @@ public final class CoreRpc {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp)) {
+      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp)) {
         return super.equals(obj);
       }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp) obj;
+      xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp) obj;
 
       if (hasCommonRsp() != other.hasCommonRsp()) return false;
       if (hasCommonRsp()) {
@@ -43218,69 +43164,69 @@ public final class CoreRpc {
       return hash;
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(byte[] data)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseDelimitedFrom(java.io.InputStream input)
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseDelimitedFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parseFrom(
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -43293,7 +43239,7 @@ public final class CoreRpc {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp prototype) {
+    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -43309,26 +43255,26 @@ public final class CoreRpc {
       return builder;
     }
     /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByContractIdRsp}
+     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRspOrBuilder {
+        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp)
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRspOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_fieldAccessorTable
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.Builder.class);
+                xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.Builder.class);
       }
 
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.newBuilder()
+      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -43364,17 +43310,17 @@ public final class CoreRpc {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor;
+        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor;
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.getDefaultInstance();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp getDefaultInstanceForType() {
+        return xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.getDefaultInstance();
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp result = buildPartial();
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp build() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -43382,8 +43328,8 @@ public final class CoreRpc {
       }
 
       @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp(this);
+      public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp buildPartial() {
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp(this);
         if (commonRspBuilder_ == null) {
           result.commonRsp_ = commonRsp_;
         } else {
@@ -43432,16 +43378,16 @@ public final class CoreRpc {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp)other);
+        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp) {
+          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp.getDefaultInstance()) return this;
+      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp other) {
+        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp.getDefaultInstance()) return this;
         if (other.hasCommonRsp()) {
           mergeCommonRsp(other.getCommonRsp());
         }
@@ -43463,11 +43409,11 @@ public final class CoreRpc {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp parsedMessage = null;
+        xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp) e.getUnfinishedMessage();
+          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -43727,3591 +43673,41 @@ public final class CoreRpc {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
+      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp)
     }
 
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractByContractIdRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractByUniformSymbolRsp)
+    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp();
+      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp();
     }
 
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp getDefaultInstance() {
+    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RpcQueryContractByContractIdRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractByContractIdRsp>() {
+    private static final com.google.protobuf.Parser<RpcQueryContractByUniformSymbolRsp>
+        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractByUniformSymbolRsp>() {
       @java.lang.Override
-      public RpcQueryContractByContractIdRsp parsePartialFrom(
+      public RpcQueryContractByUniformSymbolRsp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractByContractIdRsp(input, extensionRegistry);
+        return new RpcQueryContractByUniformSymbolRsp(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RpcQueryContractByContractIdRsp> parser() {
+    public static com.google.protobuf.Parser<RpcQueryContractByUniformSymbolRsp> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractByContractIdRsp> getParserForType() {
+    public com.google.protobuf.Parser<RpcQueryContractByUniformSymbolRsp> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractByContractIdRsp getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RpcQueryContractListByUnifiedSymbolReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    boolean hasCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
-
-    /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
-     */
-    java.lang.String getUnifiedSymbol();
-    /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
-     */
-    com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
-  }
-  /**
-   * <pre>
-   * 53 List&lt;ContractField&gt; queryContractListByUnifiedSymbol(String unifiedSymbol); 
-   * </pre>
-   *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq}
-   */
-  public static final class RpcQueryContractListByUnifiedSymbolReq extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
-      RpcQueryContractListByUnifiedSymbolReqOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractListByUnifiedSymbolReq.newBuilder() to construct.
-    private RpcQueryContractListByUnifiedSymbolReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcQueryContractListByUnifiedSymbolReq() {
-      unifiedSymbol_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcQueryContractListByUnifiedSymbolReq();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcQueryContractListByUnifiedSymbolReq(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonReqField.Builder subBuilder = null;
-              if (commonReq_ != null) {
-                subBuilder = commonReq_.toBuilder();
-              }
-              commonReq_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonReqField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonReq_);
-                commonReq_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              unifiedSymbol_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.Builder.class);
-    }
-
-    public static final int COMMONREQ_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonReq() {
-      return commonReq_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-      return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-      return getCommonReq();
-    }
-
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 2;
-    private volatile java.lang.Object unifiedSymbol_;
-    /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The unifiedSymbol.
-     */
-    @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string unifiedSymbol = 2;</code>
-     * @return The bytes for unifiedSymbol.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        unifiedSymbol_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonReq_ != null) {
-        output.writeMessage(1, getCommonReq());
-      }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, unifiedSymbol_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonReq_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonReq());
-      }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, unifiedSymbol_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq) obj;
-
-      if (hasCommonReq() != other.hasCommonReq()) return false;
-      if (hasCommonReq()) {
-        if (!getCommonReq()
-            .equals(other.getCommonReq())) return false;
-      }
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonReq()) {
-        hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonReq().hashCode();
-      }
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 53 List&lt;ContractField&gt; queryContractListByUnifiedSymbol(String unifiedSymbol); 
-     * </pre>
-     *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReqOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-        unifiedSymbol_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq(this);
-        if (commonReqBuilder_ == null) {
-          result.commonReq_ = commonReq_;
-        } else {
-          result.commonReq_ = commonReqBuilder_.build();
-        }
-        result.unifiedSymbol_ = unifiedSymbol_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq.getDefaultInstance()) return this;
-        if (other.hasCommonReq()) {
-          mergeCommonReq(other.getCommonReq());
-        }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return Whether the commonReq field is set.
-       */
-      public boolean hasCommonReq() {
-        return commonReqBuilder_ != null || commonReq_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return The commonReq.
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-        if (commonReqBuilder_ == null) {
-          return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        } else {
-          return commonReqBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonReq_ = value;
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(
-          xyz.redtorch.pb.CoreField.CommonReqField.Builder builderForValue) {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder mergeCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (commonReq_ != null) {
-            commonReq_ =
-              xyz.redtorch.pb.CoreField.CommonReqField.newBuilder(commonReq_).mergeFrom(value).buildPartial();
-          } else {
-            commonReq_ = value;
-          }
-          onChanged();
-        } else {
-          commonReqBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder clearCommonReq() {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-          onChanged();
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField.Builder getCommonReqBuilder() {
-        
-        onChanged();
-        return getCommonReqFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-        if (commonReqBuilder_ != null) {
-          return commonReqBuilder_.getMessageOrBuilder();
-        } else {
-          return commonReq_ == null ?
-              xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> 
-          getCommonReqFieldBuilder() {
-        if (commonReqBuilder_ == null) {
-          commonReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder>(
-                  getCommonReq(),
-                  getParentForChildren(),
-                  isClean());
-          commonReq_ = null;
-        }
-        return commonReqBuilder_;
-      }
-
-      private java.lang.Object unifiedSymbol_ = "";
-      /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The unifiedSymbol.
-       */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return The bytes for unifiedSymbol.
-       */
-      public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          unifiedSymbol_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The unifiedSymbol to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUnifiedSymbol(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        unifiedSymbol_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearUnifiedSymbol() {
-        
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string unifiedSymbol = 2;</code>
-       * @param value The bytes for unifiedSymbol to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUnifiedSymbolBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        unifiedSymbol_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractListByUnifiedSymbolReq>() {
-      @java.lang.Override
-      public RpcQueryContractListByUnifiedSymbolReq parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractListByUnifiedSymbolReq(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolReq> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolReq> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RpcQueryContractListByUnifiedSymbolRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    boolean hasCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder();
-
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<xyz.redtorch.pb.CoreField.ContractField> 
-        getContractList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractField getContract(int index);
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    int getContractCount();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp}
-   */
-  public static final class RpcQueryContractListByUnifiedSymbolRsp extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
-      RpcQueryContractListByUnifiedSymbolRspOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractListByUnifiedSymbolRsp.newBuilder() to construct.
-    private RpcQueryContractListByUnifiedSymbolRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcQueryContractListByUnifiedSymbolRsp() {
-      contract_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcQueryContractListByUnifiedSymbolRsp();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcQueryContractListByUnifiedSymbolRsp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonRspField.Builder subBuilder = null;
-              if (commonRsp_ != null) {
-                subBuilder = commonRsp_.toBuilder();
-              }
-              commonRsp_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonRspField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonRsp_);
-                commonRsp_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              contract_.add(
-                  input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          contract_ = java.util.Collections.unmodifiableList(contract_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.Builder.class);
-    }
-
-    public static final int COMMONRSP_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonRsp() {
-      return commonRsp_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-      return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-      return getCommonRsp();
-    }
-
-    public static final int CONTRACT_FIELD_NUMBER = 2;
-    private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_;
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public int getContractCount() {
-      return contract_.size();
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-      return contract_.get(index);
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index) {
-      return contract_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonRsp_ != null) {
-        output.writeMessage(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        output.writeMessage(2, contract_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonRsp_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, contract_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp) obj;
-
-      if (hasCommonRsp() != other.hasCommonRsp()) return false;
-      if (hasCommonRsp()) {
-        if (!getCommonRsp()
-            .equals(other.getCommonRsp())) return false;
-      }
-      if (!getContractList()
-          .equals(other.getContractList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonRsp()) {
-        hash = (37 * hash) + COMMONRSP_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonRsp().hashCode();
-      }
-      if (getContractCount() > 0) {
-        hash = (37 * hash) + CONTRACT_FIELD_NUMBER;
-        hash = (53 * hash) + getContractList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRspOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getContractFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp(this);
-        int from_bitField0_ = bitField0_;
-        if (commonRspBuilder_ == null) {
-          result.commonRsp_ = commonRsp_;
-        } else {
-          result.commonRsp_ = commonRspBuilder_.build();
-        }
-        if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.contract_ = contract_;
-        } else {
-          result.contract_ = contractBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp.getDefaultInstance()) return this;
-        if (other.hasCommonRsp()) {
-          mergeCommonRsp(other.getCommonRsp());
-        }
-        if (contractBuilder_ == null) {
-          if (!other.contract_.isEmpty()) {
-            if (contract_.isEmpty()) {
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureContractIsMutable();
-              contract_.addAll(other.contract_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.contract_.isEmpty()) {
-            if (contractBuilder_.isEmpty()) {
-              contractBuilder_.dispose();
-              contractBuilder_ = null;
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              contractBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getContractFieldBuilder() : null;
-            } else {
-              contractBuilder_.addAllMessages(other.contract_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return Whether the commonRsp field is set.
-       */
-      public boolean hasCommonRsp() {
-        return commonRspBuilder_ != null || commonRsp_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return The commonRsp.
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        } else {
-          return commonRspBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonRsp_ = value;
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(
-          xyz.redtorch.pb.CoreField.CommonRspField.Builder builderForValue) {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder mergeCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (commonRsp_ != null) {
-            commonRsp_ =
-              xyz.redtorch.pb.CoreField.CommonRspField.newBuilder(commonRsp_).mergeFrom(value).buildPartial();
-          } else {
-            commonRsp_ = value;
-          }
-          onChanged();
-        } else {
-          commonRspBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder clearCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-          onChanged();
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField.Builder getCommonRspBuilder() {
-        
-        onChanged();
-        return getCommonRspFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-        if (commonRspBuilder_ != null) {
-          return commonRspBuilder_.getMessageOrBuilder();
-        } else {
-          return commonRsp_ == null ?
-              xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> 
-          getCommonRspFieldBuilder() {
-        if (commonRspBuilder_ == null) {
-          commonRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder>(
-                  getCommonRsp(),
-                  getParentForChildren(),
-                  isClean());
-          commonRsp_ = null;
-        }
-        return commonRspBuilder_;
-      }
-
-      private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
-        java.util.Collections.emptyList();
-      private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
-
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-        if (contractBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(contract_);
-        } else {
-          return contractBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public int getContractCount() {
-        if (contractBuilder_ == null) {
-          return contract_.size();
-        } else {
-          return contractBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);
-        } else {
-          return contractBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.set(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addAllContract(
-          java.lang.Iterable<? extends xyz.redtorch.pb.CoreField.ContractField> values) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, contract_);
-          onChanged();
-        } else {
-          contractBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder clearContract() {
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder removeContract(int index) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.remove(index);
-          onChanged();
-        } else {
-          contractBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder getContractBuilder(
-          int index) {
-        return getContractFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-          int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);  } else {
-          return contractBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-           getContractOrBuilderList() {
-        if (contractBuilder_ != null) {
-          return contractBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(contract_);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder() {
-        return getContractFieldBuilder().addBuilder(
-            xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder(
-          int index) {
-        return getContractFieldBuilder().addBuilder(
-            index, xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField.Builder> 
-           getContractBuilderList() {
-        return getContractFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-          getContractFieldBuilder() {
-        if (contractBuilder_ == null) {
-          contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
-                  contract_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          contract_ = null;
-        }
-        return contractBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractListByUnifiedSymbolRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractListByUnifiedSymbolRsp>() {
-      @java.lang.Override
-      public RpcQueryContractListByUnifiedSymbolRsp parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractListByUnifiedSymbolRsp(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolRsp> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractListByUnifiedSymbolRsp> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByUnifiedSymbolRsp getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RpcQueryContractListByGatewayIdReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    boolean hasCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
-
-    /**
-     * <code>string gatewayId = 2;</code>
-     * @return The gatewayId.
-     */
-    java.lang.String getGatewayId();
-    /**
-     * <code>string gatewayId = 2;</code>
-     * @return The bytes for gatewayId.
-     */
-    com.google.protobuf.ByteString
-        getGatewayIdBytes();
-  }
-  /**
-   * <pre>
-   * 55 List&lt;ContractField&gt; queryContractListByGatewayId(String gatewayId); 
-   * </pre>
-   *
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq}
-   */
-  public static final class RpcQueryContractListByGatewayIdReq extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
-      RpcQueryContractListByGatewayIdReqOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractListByGatewayIdReq.newBuilder() to construct.
-    private RpcQueryContractListByGatewayIdReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcQueryContractListByGatewayIdReq() {
-      gatewayId_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcQueryContractListByGatewayIdReq();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcQueryContractListByGatewayIdReq(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonReqField.Builder subBuilder = null;
-              if (commonReq_ != null) {
-                subBuilder = commonReq_.toBuilder();
-              }
-              commonReq_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonReqField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonReq_);
-                commonReq_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              gatewayId_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.Builder.class);
-    }
-
-    public static final int COMMONREQ_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonReq() {
-      return commonReq_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-      return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-      return getCommonReq();
-    }
-
-    public static final int GATEWAYID_FIELD_NUMBER = 2;
-    private volatile java.lang.Object gatewayId_;
-    /**
-     * <code>string gatewayId = 2;</code>
-     * @return The gatewayId.
-     */
-    @java.lang.Override
-    public java.lang.String getGatewayId() {
-      java.lang.Object ref = gatewayId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        gatewayId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string gatewayId = 2;</code>
-     * @return The bytes for gatewayId.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getGatewayIdBytes() {
-      java.lang.Object ref = gatewayId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        gatewayId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonReq_ != null) {
-        output.writeMessage(1, getCommonReq());
-      }
-      if (!getGatewayIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayId_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonReq_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonReq());
-      }
-      if (!getGatewayIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayId_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq) obj;
-
-      if (hasCommonReq() != other.hasCommonReq()) return false;
-      if (hasCommonReq()) {
-        if (!getCommonReq()
-            .equals(other.getCommonReq())) return false;
-      }
-      if (!getGatewayId()
-          .equals(other.getGatewayId())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonReq()) {
-        hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonReq().hashCode();
-      }
-      hash = (37 * hash) + GATEWAYID_FIELD_NUMBER;
-      hash = (53 * hash) + getGatewayId().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 55 List&lt;ContractField&gt; queryContractListByGatewayId(String gatewayId); 
-     * </pre>
-     *
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReqOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-        gatewayId_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq(this);
-        if (commonReqBuilder_ == null) {
-          result.commonReq_ = commonReq_;
-        } else {
-          result.commonReq_ = commonReqBuilder_.build();
-        }
-        result.gatewayId_ = gatewayId_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq.getDefaultInstance()) return this;
-        if (other.hasCommonReq()) {
-          mergeCommonReq(other.getCommonReq());
-        }
-        if (!other.getGatewayId().isEmpty()) {
-          gatewayId_ = other.gatewayId_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return Whether the commonReq field is set.
-       */
-      public boolean hasCommonReq() {
-        return commonReqBuilder_ != null || commonReq_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return The commonReq.
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-        if (commonReqBuilder_ == null) {
-          return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        } else {
-          return commonReqBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonReq_ = value;
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(
-          xyz.redtorch.pb.CoreField.CommonReqField.Builder builderForValue) {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder mergeCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (commonReq_ != null) {
-            commonReq_ =
-              xyz.redtorch.pb.CoreField.CommonReqField.newBuilder(commonReq_).mergeFrom(value).buildPartial();
-          } else {
-            commonReq_ = value;
-          }
-          onChanged();
-        } else {
-          commonReqBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder clearCommonReq() {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-          onChanged();
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField.Builder getCommonReqBuilder() {
-        
-        onChanged();
-        return getCommonReqFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-        if (commonReqBuilder_ != null) {
-          return commonReqBuilder_.getMessageOrBuilder();
-        } else {
-          return commonReq_ == null ?
-              xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> 
-          getCommonReqFieldBuilder() {
-        if (commonReqBuilder_ == null) {
-          commonReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder>(
-                  getCommonReq(),
-                  getParentForChildren(),
-                  isClean());
-          commonReq_ = null;
-        }
-        return commonReqBuilder_;
-      }
-
-      private java.lang.Object gatewayId_ = "";
-      /**
-       * <code>string gatewayId = 2;</code>
-       * @return The gatewayId.
-       */
-      public java.lang.String getGatewayId() {
-        java.lang.Object ref = gatewayId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          gatewayId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string gatewayId = 2;</code>
-       * @return The bytes for gatewayId.
-       */
-      public com.google.protobuf.ByteString
-          getGatewayIdBytes() {
-        java.lang.Object ref = gatewayId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          gatewayId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string gatewayId = 2;</code>
-       * @param value The gatewayId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setGatewayId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        gatewayId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string gatewayId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearGatewayId() {
-        
-        gatewayId_ = getDefaultInstance().getGatewayId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string gatewayId = 2;</code>
-       * @param value The bytes for gatewayId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setGatewayIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        gatewayId_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractListByGatewayIdReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcQueryContractListByGatewayIdReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractListByGatewayIdReq>() {
-      @java.lang.Override
-      public RpcQueryContractListByGatewayIdReq parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractListByGatewayIdReq(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcQueryContractListByGatewayIdReq> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractListByGatewayIdReq> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RpcQueryContractListByGatewayIdRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    boolean hasCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder();
-
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<xyz.redtorch.pb.CoreField.ContractField> 
-        getContractList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractField getContract(int index);
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    int getContractCount();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp}
-   */
-  public static final class RpcQueryContractListByGatewayIdRsp extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
-      RpcQueryContractListByGatewayIdRspOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcQueryContractListByGatewayIdRsp.newBuilder() to construct.
-    private RpcQueryContractListByGatewayIdRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcQueryContractListByGatewayIdRsp() {
-      contract_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcQueryContractListByGatewayIdRsp();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcQueryContractListByGatewayIdRsp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonRspField.Builder subBuilder = null;
-              if (commonRsp_ != null) {
-                subBuilder = commonRsp_.toBuilder();
-              }
-              commonRsp_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonRspField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonRsp_);
-                commonRsp_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              contract_.add(
-                  input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          contract_ = java.util.Collections.unmodifiableList(contract_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.Builder.class);
-    }
-
-    public static final int COMMONRSP_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonRsp() {
-      return commonRsp_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-      return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-      return getCommonRsp();
-    }
-
-    public static final int CONTRACT_FIELD_NUMBER = 2;
-    private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_;
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public int getContractCount() {
-      return contract_.size();
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-      return contract_.get(index);
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index) {
-      return contract_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonRsp_ != null) {
-        output.writeMessage(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        output.writeMessage(2, contract_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonRsp_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, contract_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp other = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp) obj;
-
-      if (hasCommonRsp() != other.hasCommonRsp()) return false;
-      if (hasCommonRsp()) {
-        if (!getCommonRsp()
-            .equals(other.getCommonRsp())) return false;
-      }
-      if (!getContractList()
-          .equals(other.getContractList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonRsp()) {
-        hash = (37 * hash) + COMMONRSP_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonRsp().hashCode();
-      }
-      if (getContractCount() > 0) {
-        hash = (37 * hash) + CONTRACT_FIELD_NUMBER;
-        hash = (53 * hash) + getContractList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRspOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.class, xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getContractFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp result = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp(this);
-        int from_bitField0_ = bitField0_;
-        if (commonRspBuilder_ == null) {
-          result.commonRsp_ = commonRsp_;
-        } else {
-          result.commonRsp_ = commonRspBuilder_.build();
-        }
-        if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.contract_ = contract_;
-        } else {
-          result.contract_ = contractBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp.getDefaultInstance()) return this;
-        if (other.hasCommonRsp()) {
-          mergeCommonRsp(other.getCommonRsp());
-        }
-        if (contractBuilder_ == null) {
-          if (!other.contract_.isEmpty()) {
-            if (contract_.isEmpty()) {
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureContractIsMutable();
-              contract_.addAll(other.contract_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.contract_.isEmpty()) {
-            if (contractBuilder_.isEmpty()) {
-              contractBuilder_.dispose();
-              contractBuilder_ = null;
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              contractBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getContractFieldBuilder() : null;
-            } else {
-              contractBuilder_.addAllMessages(other.contract_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return Whether the commonRsp field is set.
-       */
-      public boolean hasCommonRsp() {
-        return commonRspBuilder_ != null || commonRsp_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return The commonRsp.
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        } else {
-          return commonRspBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonRsp_ = value;
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(
-          xyz.redtorch.pb.CoreField.CommonRspField.Builder builderForValue) {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder mergeCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (commonRsp_ != null) {
-            commonRsp_ =
-              xyz.redtorch.pb.CoreField.CommonRspField.newBuilder(commonRsp_).mergeFrom(value).buildPartial();
-          } else {
-            commonRsp_ = value;
-          }
-          onChanged();
-        } else {
-          commonRspBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder clearCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-          onChanged();
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField.Builder getCommonRspBuilder() {
-        
-        onChanged();
-        return getCommonRspFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-        if (commonRspBuilder_ != null) {
-          return commonRspBuilder_.getMessageOrBuilder();
-        } else {
-          return commonRsp_ == null ?
-              xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> 
-          getCommonRspFieldBuilder() {
-        if (commonRspBuilder_ == null) {
-          commonRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder>(
-                  getCommonRsp(),
-                  getParentForChildren(),
-                  isClean());
-          commonRsp_ = null;
-        }
-        return commonRspBuilder_;
-      }
-
-      private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
-        java.util.Collections.emptyList();
-      private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
-
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-        if (contractBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(contract_);
-        } else {
-          return contractBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public int getContractCount() {
-        if (contractBuilder_ == null) {
-          return contract_.size();
-        } else {
-          return contractBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);
-        } else {
-          return contractBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.set(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addAllContract(
-          java.lang.Iterable<? extends xyz.redtorch.pb.CoreField.ContractField> values) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, contract_);
-          onChanged();
-        } else {
-          contractBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder clearContract() {
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder removeContract(int index) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.remove(index);
-          onChanged();
-        } else {
-          contractBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder getContractBuilder(
-          int index) {
-        return getContractFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-          int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);  } else {
-          return contractBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-           getContractOrBuilderList() {
-        if (contractBuilder_ != null) {
-          return contractBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(contract_);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder() {
-        return getContractFieldBuilder().addBuilder(
-            xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder(
-          int index) {
-        return getContractFieldBuilder().addBuilder(
-            index, xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField.Builder> 
-           getContractBuilderList() {
-        return getContractFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-          getContractFieldBuilder() {
-        if (contractBuilder_ == null) {
-          contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
-                  contract_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          contract_ = null;
-        }
-        return contractBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcQueryContractListByGatewayIdRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcQueryContractListByGatewayIdRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcQueryContractListByGatewayIdRsp>() {
-      @java.lang.Override
-      public RpcQueryContractListByGatewayIdRsp parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcQueryContractListByGatewayIdRsp(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcQueryContractListByGatewayIdRsp> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcQueryContractListByGatewayIdRsp> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcQueryContractListByGatewayIdRsp getDefaultInstanceForType() {
+    public xyz.redtorch.pb.CoreRpc.RpcQueryContractByUniformSymbolRsp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -47362,7 +43758,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 57 RpcSyncSlaveNodeRuntimeDataRsp syncSlaveNodeRuntimeData(CommonReqField commonReq, List&lt;GatewayField&gt; gatewayList) 
+   * 53 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataReq}
@@ -47709,7 +44105,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 57 RpcSyncSlaveNodeRuntimeDataRsp syncSlaveNodeRuntimeData(CommonReqField commonReq, List&lt;GatewayField&gt; gatewayList) 
+     * 53 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcSyncSlaveNodeRuntimeDataReq}
@@ -49689,1631 +46085,6 @@ public final class CoreRpc {
 
   }
 
-  public interface RpcGetMixContractListReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcGetMixContractListReq)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    boolean hasCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    xyz.redtorch.pb.CoreField.CommonReqField getCommonReq();
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder();
-  }
-  /**
-   * <pre>
-   * 59 List&lt;ContractField&gt; getMixContractList(); 
-   * </pre>
-   *
-   * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListReq}
-   */
-  public static final class RpcGetMixContractListReq extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetMixContractListReq)
-      RpcGetMixContractListReqOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcGetMixContractListReq.newBuilder() to construct.
-    private RpcGetMixContractListReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcGetMixContractListReq() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcGetMixContractListReq();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcGetMixContractListReq(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonReqField.Builder subBuilder = null;
-              if (commonReq_ != null) {
-                subBuilder = commonReq_.toBuilder();
-              }
-              commonReq_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonReqField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonReq_);
-                commonReq_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.class, xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.Builder.class);
-    }
-
-    public static final int COMMONREQ_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return Whether the commonReq field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonReq() {
-      return commonReq_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     * @return The commonReq.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-      return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-      return getCommonReq();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonReq_ != null) {
-        output.writeMessage(1, getCommonReq());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonReq_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonReq());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq other = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq) obj;
-
-      if (hasCommonReq() != other.hasCommonReq()) return false;
-      if (hasCommonReq()) {
-        if (!getCommonReq()
-            .equals(other.getCommonReq())) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonReq()) {
-        hash = (37 * hash) + COMMONREQ_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonReq().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 59 List&lt;ContractField&gt; getMixContractList(); 
-     * </pre>
-     *
-     * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListReq}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcGetMixContractListReq)
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReqOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.class, xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq build() {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq result = new xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq(this);
-        if (commonReqBuilder_ == null) {
-          result.commonReq_ = commonReq_;
-        } else {
-          result.commonReq_ = commonReqBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq.getDefaultInstance()) return this;
-        if (other.hasCommonReq()) {
-          mergeCommonReq(other.getCommonReq());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private xyz.redtorch.pb.CoreField.CommonReqField commonReq_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> commonReqBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return Whether the commonReq field is set.
-       */
-      public boolean hasCommonReq() {
-        return commonReqBuilder_ != null || commonReq_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       * @return The commonReq.
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField getCommonReq() {
-        if (commonReqBuilder_ == null) {
-          return commonReq_ == null ? xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        } else {
-          return commonReqBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonReq_ = value;
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder setCommonReq(
-          xyz.redtorch.pb.CoreField.CommonReqField.Builder builderForValue) {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonReqBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder mergeCommonReq(xyz.redtorch.pb.CoreField.CommonReqField value) {
-        if (commonReqBuilder_ == null) {
-          if (commonReq_ != null) {
-            commonReq_ =
-              xyz.redtorch.pb.CoreField.CommonReqField.newBuilder(commonReq_).mergeFrom(value).buildPartial();
-          } else {
-            commonReq_ = value;
-          }
-          onChanged();
-        } else {
-          commonReqBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public Builder clearCommonReq() {
-        if (commonReqBuilder_ == null) {
-          commonReq_ = null;
-          onChanged();
-        } else {
-          commonReq_ = null;
-          commonReqBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqField.Builder getCommonReqBuilder() {
-        
-        onChanged();
-        return getCommonReqFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder getCommonReqOrBuilder() {
-        if (commonReqBuilder_ != null) {
-          return commonReqBuilder_.getMessageOrBuilder();
-        } else {
-          return commonReq_ == null ?
-              xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance() : commonReq_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonReqField commonReq = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder> 
-          getCommonReqFieldBuilder() {
-        if (commonReqBuilder_ == null) {
-          commonReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonReqField, xyz.redtorch.pb.CoreField.CommonReqField.Builder, xyz.redtorch.pb.CoreField.CommonReqFieldOrBuilder>(
-                  getCommonReq(),
-                  getParentForChildren(),
-                  isClean());
-          commonReq_ = null;
-        }
-        return commonReqBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcGetMixContractListReq)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcGetMixContractListReq)
-    private static final xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcGetMixContractListReq>
-        PARSER = new com.google.protobuf.AbstractParser<RpcGetMixContractListReq>() {
-      @java.lang.Override
-      public RpcGetMixContractListReq parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcGetMixContractListReq(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcGetMixContractListReq> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcGetMixContractListReq> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RpcGetMixContractListRspOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcGetMixContractListRsp)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    boolean hasCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp();
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder();
-
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<xyz.redtorch.pb.CoreField.ContractField> 
-        getContractList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractField getContract(int index);
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    int getContractCount();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList();
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListRsp}
-   */
-  public static final class RpcGetMixContractListRsp extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:xyz.redtorch.pb.RpcGetMixContractListRsp)
-      RpcGetMixContractListRspOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RpcGetMixContractListRsp.newBuilder() to construct.
-    private RpcGetMixContractListRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RpcGetMixContractListRsp() {
-      contract_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RpcGetMixContractListRsp();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RpcGetMixContractListRsp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              xyz.redtorch.pb.CoreField.CommonRspField.Builder subBuilder = null;
-              if (commonRsp_ != null) {
-                subBuilder = commonRsp_.toBuilder();
-              }
-              commonRsp_ = input.readMessage(xyz.redtorch.pb.CoreField.CommonRspField.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commonRsp_);
-                commonRsp_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              contract_.add(
-                  input.readMessage(xyz.redtorch.pb.CoreField.ContractField.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          contract_ = java.util.Collections.unmodifiableList(contract_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.Builder.class);
-    }
-
-    public static final int COMMONRSP_FIELD_NUMBER = 1;
-    private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return Whether the commonRsp field is set.
-     */
-    @java.lang.Override
-    public boolean hasCommonRsp() {
-      return commonRsp_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     * @return The commonRsp.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-      return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-      return getCommonRsp();
-    }
-
-    public static final int CONTRACT_FIELD_NUMBER = 2;
-    private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_;
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-        getContractOrBuilderList() {
-      return contract_;
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public int getContractCount() {
-      return contract_.size();
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-      return contract_.get(index);
-    }
-    /**
-     * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-        int index) {
-      return contract_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (commonRsp_ != null) {
-        output.writeMessage(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        output.writeMessage(2, contract_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (commonRsp_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getCommonRsp());
-      }
-      for (int i = 0; i < contract_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, contract_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp)) {
-        return super.equals(obj);
-      }
-      xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp other = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp) obj;
-
-      if (hasCommonRsp() != other.hasCommonRsp()) return false;
-      if (hasCommonRsp()) {
-        if (!getCommonRsp()
-            .equals(other.getCommonRsp())) return false;
-      }
-      if (!getContractList()
-          .equals(other.getContractList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasCommonRsp()) {
-        hash = (37 * hash) + COMMONRSP_FIELD_NUMBER;
-        hash = (53 * hash) + getCommonRsp().hashCode();
-      }
-      if (getContractCount() > 0) {
-        hash = (37 * hash) + CONTRACT_FIELD_NUMBER;
-        hash = (53 * hash) + getContractList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code xyz.redtorch.pb.RpcGetMixContractListRsp}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:xyz.redtorch.pb.RpcGetMixContractListRsp)
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRspOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.class, xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.Builder.class);
-      }
-
-      // Construct using xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getContractFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return xyz.redtorch.pb.CoreRpc.internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp getDefaultInstanceForType() {
-        return xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp build() {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp buildPartial() {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp result = new xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp(this);
-        int from_bitField0_ = bitField0_;
-        if (commonRspBuilder_ == null) {
-          result.commonRsp_ = commonRsp_;
-        } else {
-          result.commonRsp_ = commonRspBuilder_.build();
-        }
-        if (contractBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            contract_ = java.util.Collections.unmodifiableList(contract_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.contract_ = contract_;
-        } else {
-          result.contract_ = contractBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp) {
-          return mergeFrom((xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp other) {
-        if (other == xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp.getDefaultInstance()) return this;
-        if (other.hasCommonRsp()) {
-          mergeCommonRsp(other.getCommonRsp());
-        }
-        if (contractBuilder_ == null) {
-          if (!other.contract_.isEmpty()) {
-            if (contract_.isEmpty()) {
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureContractIsMutable();
-              contract_.addAll(other.contract_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.contract_.isEmpty()) {
-            if (contractBuilder_.isEmpty()) {
-              contractBuilder_.dispose();
-              contractBuilder_ = null;
-              contract_ = other.contract_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              contractBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getContractFieldBuilder() : null;
-            } else {
-              contractBuilder_.addAllMessages(other.contract_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private xyz.redtorch.pb.CoreField.CommonRspField commonRsp_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> commonRspBuilder_;
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return Whether the commonRsp field is set.
-       */
-      public boolean hasCommonRsp() {
-        return commonRspBuilder_ != null || commonRsp_ != null;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       * @return The commonRsp.
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField getCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          return commonRsp_ == null ? xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        } else {
-          return commonRspBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          commonRsp_ = value;
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder setCommonRsp(
-          xyz.redtorch.pb.CoreField.CommonRspField.Builder builderForValue) {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = builderForValue.build();
-          onChanged();
-        } else {
-          commonRspBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder mergeCommonRsp(xyz.redtorch.pb.CoreField.CommonRspField value) {
-        if (commonRspBuilder_ == null) {
-          if (commonRsp_ != null) {
-            commonRsp_ =
-              xyz.redtorch.pb.CoreField.CommonRspField.newBuilder(commonRsp_).mergeFrom(value).buildPartial();
-          } else {
-            commonRsp_ = value;
-          }
-          onChanged();
-        } else {
-          commonRspBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public Builder clearCommonRsp() {
-        if (commonRspBuilder_ == null) {
-          commonRsp_ = null;
-          onChanged();
-        } else {
-          commonRsp_ = null;
-          commonRspBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspField.Builder getCommonRspBuilder() {
-        
-        onChanged();
-        return getCommonRspFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      public xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder getCommonRspOrBuilder() {
-        if (commonRspBuilder_ != null) {
-          return commonRspBuilder_.getMessageOrBuilder();
-        } else {
-          return commonRsp_ == null ?
-              xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance() : commonRsp_;
-        }
-      }
-      /**
-       * <code>.xyz.redtorch.pb.CommonRspField commonRsp = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder> 
-          getCommonRspFieldBuilder() {
-        if (commonRspBuilder_ == null) {
-          commonRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.CommonRspField, xyz.redtorch.pb.CoreField.CommonRspField.Builder, xyz.redtorch.pb.CoreField.CommonRspFieldOrBuilder>(
-                  getCommonRsp(),
-                  getParentForChildren(),
-                  isClean());
-          commonRsp_ = null;
-        }
-        return commonRspBuilder_;
-      }
-
-      private java.util.List<xyz.redtorch.pb.CoreField.ContractField> contract_ =
-        java.util.Collections.emptyList();
-      private void ensureContractIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          contract_ = new java.util.ArrayList<xyz.redtorch.pb.CoreField.ContractField>(contract_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> contractBuilder_;
-
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField> getContractList() {
-        if (contractBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(contract_);
-        } else {
-          return contractBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public int getContractCount() {
-        if (contractBuilder_ == null) {
-          return contract_.size();
-        } else {
-          return contractBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField getContract(int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);
-        } else {
-          return contractBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.set(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder setContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField value) {
-        if (contractBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureContractIsMutable();
-          contract_.add(index, value);
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addContract(
-          int index, xyz.redtorch.pb.CoreField.ContractField.Builder builderForValue) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          contractBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder addAllContract(
-          java.lang.Iterable<? extends xyz.redtorch.pb.CoreField.ContractField> values) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, contract_);
-          onChanged();
-        } else {
-          contractBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder clearContract() {
-        if (contractBuilder_ == null) {
-          contract_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          contractBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public Builder removeContract(int index) {
-        if (contractBuilder_ == null) {
-          ensureContractIsMutable();
-          contract_.remove(index);
-          onChanged();
-        } else {
-          contractBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder getContractBuilder(
-          int index) {
-        return getContractFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractFieldOrBuilder getContractOrBuilder(
-          int index) {
-        if (contractBuilder_ == null) {
-          return contract_.get(index);  } else {
-          return contractBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<? extends xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-           getContractOrBuilderList() {
-        if (contractBuilder_ != null) {
-          return contractBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(contract_);
-        }
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder() {
-        return getContractFieldBuilder().addBuilder(
-            xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public xyz.redtorch.pb.CoreField.ContractField.Builder addContractBuilder(
-          int index) {
-        return getContractFieldBuilder().addBuilder(
-            index, xyz.redtorch.pb.CoreField.ContractField.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .xyz.redtorch.pb.ContractField contract = 2;</code>
-       */
-      public java.util.List<xyz.redtorch.pb.CoreField.ContractField.Builder> 
-           getContractBuilderList() {
-        return getContractFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder> 
-          getContractFieldBuilder() {
-        if (contractBuilder_ == null) {
-          contractBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              xyz.redtorch.pb.CoreField.ContractField, xyz.redtorch.pb.CoreField.ContractField.Builder, xyz.redtorch.pb.CoreField.ContractFieldOrBuilder>(
-                  contract_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          contract_ = null;
-        }
-        return contractBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:xyz.redtorch.pb.RpcGetMixContractListRsp)
-    }
-
-    // @@protoc_insertion_point(class_scope:xyz.redtorch.pb.RpcGetMixContractListRsp)
-    private static final xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp();
-    }
-
-    public static xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RpcGetMixContractListRsp>
-        PARSER = new com.google.protobuf.AbstractParser<RpcGetMixContractListRsp>() {
-      @java.lang.Override
-      public RpcGetMixContractListRsp parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RpcGetMixContractListRsp(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RpcGetMixContractListRsp> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RpcGetMixContractListRsp> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreRpc.RpcGetMixContractListRsp getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface RpcGetTickListReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:xyz.redtorch.pb.RpcGetTickListReq)
       com.google.protobuf.MessageOrBuilder {
@@ -51335,7 +46106,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 61 List&lt;TickField&gt; getTickList(); 
+   * 55 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcGetTickListReq}
@@ -51615,7 +46386,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 61 List&lt;TickField&gt; getTickList(); 
+     * 55 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcGetTickListReq}
@@ -52971,16 +47742,16 @@ public final class CoreRpc {
     long getEndTimestamp();
 
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <code>.xyz.redtorch.pb.BarPeriodEnum barPeriod = 5;</code>
@@ -53006,7 +47777,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) 
+   * 57 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListReq}
@@ -53021,7 +47792,7 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryDBBarListReq() {
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
       barPeriod_ = 0;
       marketDataDBType_ = 0;
     }
@@ -53082,7 +47853,7 @@ public final class CoreRpc {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 40: {
@@ -53177,38 +47948,38 @@ public final class CoreRpc {
       return endTimestamp_;
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 4;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -53276,8 +48047,8 @@ public final class CoreRpc {
       if (endTimestamp_ != 0L) {
         output.writeFixed64(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, uniformSymbol_);
       }
       if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
         output.writeEnum(5, barPeriod_);
@@ -53306,8 +48077,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed64Size(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, uniformSymbol_);
       }
       if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -53341,8 +48112,8 @@ public final class CoreRpc {
           != other.getStartTimestamp()) return false;
       if (getEndTimestamp()
           != other.getEndTimestamp()) return false;
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (barPeriod_ != other.barPeriod_) return false;
       if (marketDataDBType_ != other.marketDataDBType_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -53366,8 +48137,8 @@ public final class CoreRpc {
       hash = (37 * hash) + ENDTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getEndTimestamp());
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + BARPERIOD_FIELD_NUMBER;
       hash = (53 * hash) + barPeriod_;
       hash = (37 * hash) + MARKETDATADBTYPE_FIELD_NUMBER;
@@ -53469,7 +48240,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 63 List&lt;BarField&gt; queryDBBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod,MarketDataDBTypeEnum marketDataDBType) 
+     * 57 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBBarListReq}
@@ -53519,7 +48290,7 @@ public final class CoreRpc {
 
         endTimestamp_ = 0L;
 
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         barPeriod_ = 0;
 
@@ -53558,7 +48329,7 @@ public final class CoreRpc {
         }
         result.startTimestamp_ = startTimestamp_;
         result.endTimestamp_ = endTimestamp_;
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.barPeriod_ = barPeriod_;
         result.marketDataDBType_ = marketDataDBType_;
         onBuilt();
@@ -53618,8 +48389,8 @@ public final class CoreRpc {
         if (other.getEndTimestamp() != 0L) {
           setEndTimestamp(other.getEndTimestamp());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (other.barPeriod_ != 0) {
@@ -53838,78 +48609,78 @@ public final class CoreRpc {
         return this;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
+       * <code>string uniformSymbol = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -55102,16 +49873,16 @@ public final class CoreRpc {
     long getEndTimestamp();
 
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <code>.xyz.redtorch.pb.MarketDataDBTypeEnum marketDataDBType = 5;</code>
@@ -55126,7 +49897,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 65 List&lt;TickField&gt; queryDBTickList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType) 
+   * 59 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBTickListReq}
@@ -55141,7 +49912,7 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryDBTickListReq() {
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
       marketDataDBType_ = 0;
     }
 
@@ -55201,7 +49972,7 @@ public final class CoreRpc {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 40: {
@@ -55290,38 +50061,38 @@ public final class CoreRpc {
       return endTimestamp_;
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 4;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -55370,8 +50141,8 @@ public final class CoreRpc {
       if (endTimestamp_ != 0L) {
         output.writeFixed64(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, uniformSymbol_);
       }
       if (marketDataDBType_ != xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.MDDT_MIX.getNumber()) {
         output.writeEnum(5, marketDataDBType_);
@@ -55397,8 +50168,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed64Size(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, uniformSymbol_);
       }
       if (marketDataDBType_ != xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.MDDT_MIX.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -55428,8 +50199,8 @@ public final class CoreRpc {
           != other.getStartTimestamp()) return false;
       if (getEndTimestamp()
           != other.getEndTimestamp()) return false;
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (marketDataDBType_ != other.marketDataDBType_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -55452,8 +50223,8 @@ public final class CoreRpc {
       hash = (37 * hash) + ENDTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getEndTimestamp());
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + MARKETDATADBTYPE_FIELD_NUMBER;
       hash = (53 * hash) + marketDataDBType_;
       hash = (29 * hash) + unknownFields.hashCode();
@@ -55553,7 +50324,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 65 List&lt;TickField&gt; queryDBTickList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType) 
+     * 59 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryDBTickListReq}
@@ -55603,7 +50374,7 @@ public final class CoreRpc {
 
         endTimestamp_ = 0L;
 
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         marketDataDBType_ = 0;
 
@@ -55640,7 +50411,7 @@ public final class CoreRpc {
         }
         result.startTimestamp_ = startTimestamp_;
         result.endTimestamp_ = endTimestamp_;
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.marketDataDBType_ = marketDataDBType_;
         onBuilt();
         return result;
@@ -55699,8 +50470,8 @@ public final class CoreRpc {
         if (other.getEndTimestamp() != 0L) {
           setEndTimestamp(other.getEndTimestamp());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (other.marketDataDBType_ != 0) {
@@ -55916,78 +50687,78 @@ public final class CoreRpc {
         return this;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
+       * <code>string uniformSymbol = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -57126,16 +51897,16 @@ public final class CoreRpc {
     long getEndTimestamp();
 
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <code>fixed32 volume = 5;</code>
@@ -57145,7 +51916,7 @@ public final class CoreRpc {
   }
   /**
    * <pre>
-   * 67 List&lt;BarField&gt; queryVolumeBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, int volume) 
+   * 61 
    * </pre>
    *
    * Protobuf type {@code xyz.redtorch.pb.RpcQueryVolumeBarListReq}
@@ -57160,7 +51931,7 @@ public final class CoreRpc {
       super(builder);
     }
     private RpcQueryVolumeBarListReq() {
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
     }
 
     @java.lang.Override
@@ -57219,7 +51990,7 @@ public final class CoreRpc {
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 45: {
@@ -57307,38 +52078,38 @@ public final class CoreRpc {
       return endTimestamp_;
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 4;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 4;
+    private volatile java.lang.Object uniformSymbol_;
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
     /**
-     * <code>string unifiedSymbol = 4;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 4;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -57379,8 +52150,8 @@ public final class CoreRpc {
       if (endTimestamp_ != 0L) {
         output.writeFixed64(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, uniformSymbol_);
       }
       if (volume_ != 0) {
         output.writeFixed32(5, volume_);
@@ -57406,8 +52177,8 @@ public final class CoreRpc {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed64Size(3, endTimestamp_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, uniformSymbol_);
       }
       if (volume_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -57437,8 +52208,8 @@ public final class CoreRpc {
           != other.getStartTimestamp()) return false;
       if (getEndTimestamp()
           != other.getEndTimestamp()) return false;
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (getVolume()
           != other.getVolume()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -57462,8 +52233,8 @@ public final class CoreRpc {
       hash = (37 * hash) + ENDTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getEndTimestamp());
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + VOLUME_FIELD_NUMBER;
       hash = (53 * hash) + getVolume();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -57563,7 +52334,7 @@ public final class CoreRpc {
     }
     /**
      * <pre>
-     * 67 List&lt;BarField&gt; queryVolumeBarList(CommonReqField commonReq,long startTimestamp, long endTimestamp, String unifiedSymbol, int volume) 
+     * 61 
      * </pre>
      *
      * Protobuf type {@code xyz.redtorch.pb.RpcQueryVolumeBarListReq}
@@ -57613,7 +52384,7 @@ public final class CoreRpc {
 
         endTimestamp_ = 0L;
 
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         volume_ = 0;
 
@@ -57650,7 +52421,7 @@ public final class CoreRpc {
         }
         result.startTimestamp_ = startTimestamp_;
         result.endTimestamp_ = endTimestamp_;
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.volume_ = volume_;
         onBuilt();
         return result;
@@ -57709,8 +52480,8 @@ public final class CoreRpc {
         if (other.getEndTimestamp() != 0L) {
           setEndTimestamp(other.getEndTimestamp());
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (other.getVolume() != 0) {
@@ -57926,78 +52697,78 @@ public final class CoreRpc {
         return this;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 4;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
+       * <code>string uniformSymbol = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
       /**
-       * <code>string unifiedSymbol = 4;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 4;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -69258,15 +64029,15 @@ public final class CoreRpc {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_xyz_redtorch_pb_RpcQueryOrderListByAccountIdRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_xyz_redtorch_pb_RpcGetTradeListReq_descriptor;
   private static final 
@@ -69288,15 +64059,15 @@ public final class CoreRpc {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_xyz_redtorch_pb_RpcQueryTradeByTradeIdRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_xyz_redtorch_pb_RpcQueryTradeListByAccountIdReq_descriptor;
   private static final 
@@ -69358,15 +64129,15 @@ public final class CoreRpc {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_xyz_redtorch_pb_RpcQueryPositionListByAccountIdRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_xyz_redtorch_pb_RpcGetAccountListReq_descriptor;
   private static final 
@@ -69408,35 +64179,15 @@ public final class CoreRpc {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_xyz_redtorch_pb_RpcGetContractListRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor;
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_fieldAccessorTable;
+      internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataReq_descriptor;
   private static final 
@@ -69447,16 +64198,6 @@ public final class CoreRpc {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataRsp_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_xyz_redtorch_pb_RpcGetTickListReq_descriptor;
   private static final 
@@ -69633,10 +64374,10 @@ public final class CoreRpc {
       "tIdRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch" +
       ".pb.CommonRspField\022*\n\005order\030\002 \003(\0132\033.xyz." +
       "redtorch.pb.OrderField\"p\n#RpcQueryOrderL" +
-      "istByUnifiedSymbolReq\0222\n\tcommonReq\030\001 \001(\013" +
+      "istByUniformSymbolReq\0222\n\tcommonReq\030\001 \001(\013" +
       "2\037.xyz.redtorch.pb.CommonReqField\022\025\n\runi" +
-      "fiedSymbol\030\002 \001(\t\"\205\001\n#RpcQueryOrderListBy" +
-      "UnifiedSymbolRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xy" +
+      "formSymbol\030\002 \001(\t\"\205\001\n#RpcQueryOrderListBy" +
+      "UniformSymbolRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xy" +
       "z.redtorch.pb.CommonRspField\022*\n\005order\030\002 " +
       "\003(\0132\033.xyz.redtorch.pb.OrderField\"H\n\022RpcG" +
       "etTradeListReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz." +
@@ -69649,10 +64390,10 @@ public final class CoreRpc {
       "(\t\"{\n\031RpcQueryTradeByTradeIdRsp\0222\n\tcommo" +
       "nRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonRspFi" +
       "eld\022*\n\005trade\030\002 \001(\0132\033.xyz.redtorch.pb.Tra" +
-      "deField\"p\n#RpcQueryTradeListByUnifiedSym" +
+      "deField\"p\n#RpcQueryTradeListByUniformSym" +
       "bolReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch" +
-      ".pb.CommonReqField\022\025\n\runifiedSymbol\030\002 \001(" +
-      "\t\"\205\001\n#RpcQueryTradeListByUnifiedSymbolRs" +
+      ".pb.CommonReqField\022\025\n\runiformSymbol\030\002 \001(" +
+      "\t\"\205\001\n#RpcQueryTradeListByUniformSymbolRs" +
       "p\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.C" +
       "ommonRspField\022*\n\005trade\030\002 \003(\0132\033.xyz.redto" +
       "rch.pb.TradeField\"h\n\037RpcQueryTradeListBy" +
@@ -69691,10 +64432,10 @@ public final class CoreRpc {
       "yAccountIdRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.r" +
       "edtorch.pb.CommonRspField\0220\n\010position\030\002 " +
       "\003(\0132\036.xyz.redtorch.pb.PositionField\"s\n&R" +
-      "pcQueryPositionListByUnifiedSymbolReq\0222\n" +
+      "pcQueryPositionListByUniformSymbolReq\0222\n" +
       "\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Commo" +
-      "nReqField\022\025\n\runifiedSymbol\030\002 \001(\t\"\216\001\n&Rpc" +
-      "QueryPositionListByUnifiedSymbolRsp\0222\n\tc" +
+      "nReqField\022\025\n\runiformSymbol\030\002 \001(\t\"\216\001\n&Rpc" +
+      "QueryPositionListByUniformSymbolRsp\0222\n\tc" +
       "ommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonR" +
       "spField\0220\n\010position\030\002 \003(\0132\036.xyz.redtorch" +
       ".pb.PositionField\"J\n\024RpcGetAccountListRe" +
@@ -69719,158 +64460,135 @@ public final class CoreRpc {
       "dtorch.pb.CommonReqField\"}\n\025RpcGetContra" +
       "ctListRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redto" +
       "rch.pb.CommonRspField\0220\n\010contract\030\002 \003(\0132" +
-      "\036.xyz.redtorch.pb.ContractField\"i\n\037RpcQu" +
-      "eryContractByContractIdReq\0222\n\tcommonReq\030" +
-      "\001 \001(\0132\037.xyz.redtorch.pb.CommonReqField\022\022" +
-      "\n\ncontractId\030\002 \001(\t\"\207\001\n\037RpcQueryContractB" +
-      "yContractIdRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz." +
-      "redtorch.pb.CommonRspField\0220\n\010contract\030\002" +
-      " \001(\0132\036.xyz.redtorch.pb.ContractField\"s\n&" +
-      "RpcQueryContractListByUnifiedSymbolReq\0222" +
-      "\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Comm" +
-      "onReqField\022\025\n\runifiedSymbol\030\002 \001(\t\"\216\001\n&Rp" +
-      "cQueryContractListByUnifiedSymbolRsp\0222\n\t" +
-      "commonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.Common" +
-      "RspField\0220\n\010contract\030\002 \003(\0132\036.xyz.redtorc" +
-      "h.pb.ContractField\"k\n\"RpcQueryContractLi" +
-      "stByGatewayIdReq\0222\n\tcommonReq\030\001 \001(\0132\037.xy" +
-      "z.redtorch.pb.CommonReqField\022\021\n\tgatewayI" +
-      "d\030\002 \001(\t\"\212\001\n\"RpcQueryContractListByGatewa" +
-      "yIdRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch" +
-      ".pb.CommonRspField\0220\n\010contract\030\002 \003(\0132\036.x" +
-      "yz.redtorch.pb.ContractField\"\204\001\n\036RpcSync" +
-      "SlaveNodeRuntimeDataReq\0222\n\tcommonReq\030\001 \001" +
-      "(\0132\037.xyz.redtorch.pb.CommonReqField\022.\n\007g" +
-      "ateway\030\002 \003(\0132\035.xyz.redtorch.pb.GatewayFi" +
-      "eld\"\316\001\n\036RpcSyncSlaveNodeRuntimeDataRsp\0222" +
-      "\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.Comm" +
-      "onRspField\022<\n\016gatewaySetting\030\002 \003(\0132$.xyz" +
-      ".redtorch.pb.GatewaySettingField\022:\n\022subs" +
-      "cribedContract\030\003 \003(\0132\036.xyz.redtorch.pb.C" +
-      "ontractField\"N\n\030RpcGetMixContractListReq" +
-      "\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Co" +
-      "mmonReqField\"\200\001\n\030RpcGetMixContractListRs" +
-      "p\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.C" +
-      "ommonRspField\0220\n\010contract\030\002 \003(\0132\036.xyz.re" +
-      "dtorch.pb.ContractField\"G\n\021RpcGetTickLis" +
-      "tReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.p" +
-      "b.CommonReqField\"q\n\021RpcGetTickListRsp\0222\n" +
-      "\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.Commo" +
-      "nRspField\022(\n\004tick\030\002 \003(\0132\032.xyz.redtorch.p" +
-      "b.TickField\"\203\002\n\024RpcQueryDBBarListReq\0222\n\t" +
-      "commonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Common" +
-      "ReqField\022\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endT" +
-      "imestamp\030\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\0221\n" +
-      "\tbarPeriod\030\005 \001(\0162\036.xyz.redtorch.pb.BarPe" +
-      "riodEnum\022?\n\020marketDataDBType\030\006 \001(\0162%.xyz" +
-      ".redtorch.pb.MarketDataDBTypeEnum\"r\n\024Rpc" +
-      "QueryDBBarListRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.x" +
-      "yz.redtorch.pb.CommonRspField\022&\n\003bar\030\002 \003" +
-      "(\0132\031.xyz.redtorch.pb.BarField\"\321\001\n\025RpcQue" +
-      "ryDBTickListReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz" +
-      ".redtorch.pb.CommonReqField\022\026\n\016startTime" +
-      "stamp\030\002 \001(\006\022\024\n\014endTimestamp\030\003 \001(\006\022\025\n\runi" +
-      "fiedSymbol\030\004 \001(\t\022?\n\020marketDataDBType\030\005 \001" +
-      "(\0162%.xyz.redtorch.pb.MarketDataDBTypeEnu" +
-      "m\"u\n\025RpcQueryDBTickListRsp\0222\n\tcommonRsp\030" +
-      "\001 \001(\0132\037.xyz.redtorch.pb.CommonRspField\022(" +
-      "\n\004tick\030\002 \003(\0132\032.xyz.redtorch.pb.TickField" +
-      "\"\243\001\n\030RpcQueryVolumeBarListReq\0222\n\tcommonR" +
+      "\036.xyz.redtorch.pb.ContractField\"o\n\"RpcQu" +
+      "eryContractByUniformSymbolReq\0222\n\tcommonR" +
       "eq\030\001 \001(\0132\037.xyz.redtorch.pb.CommonReqFiel" +
-      "d\022\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endTimestam" +
-      "p\030\003 \001(\006\022\025\n\runifiedSymbol\030\004 \001(\t\022\016\n\006volume" +
-      "\030\005 \001(\007\"v\n\030RpcQueryVolumeBarListRsp\0222\n\tco" +
-      "mmonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonRs" +
-      "pField\022&\n\003bar\030\002 \003(\0132\031.xyz.redtorch.pb.Ba" +
-      "rField\"p\n\017RpcExceptionRsp\022\025\n\roriginalRpc" +
-      "Id\030\001 \001(\007\022\035\n\025originalTransactionId\030\002 \001(\t\022" +
-      "\031\n\021originalTimestamp\030\003 \001(\006\022\014\n\004info\030\004 \001(\t" +
-      "\"9\n\013RpcOrderRtn\022*\n\005order\030\001 \001(\0132\033.xyz.red" +
-      "torch.pb.OrderField\"9\n\013RpcTradeRtn\022*\n\005tr" +
-      "ade\030\001 \001(\0132\033.xyz.redtorch.pb.TradeField\"B" +
-      "\n\016RpcContractRtn\0220\n\010contract\030\001 \001(\0132\036.xyz" +
-      ".redtorch.pb.ContractField\"B\n\016RpcPositio" +
-      "nRtn\0220\n\010position\030\001 \001(\0132\036.xyz.redtorch.pb" +
-      ".PositionField\"?\n\rRpcAccountRtn\022.\n\007accou" +
-      "nt\030\001 \001(\0132\035.xyz.redtorch.pb.AccountField\"" +
-      "6\n\nRpcTickRtn\022(\n\004tick\030\001 \001(\0132\032.xyz.redtor" +
-      "ch.pb.TickField\"=\n\017RpcOrderListRtn\022*\n\005or" +
-      "der\030\001 \003(\0132\033.xyz.redtorch.pb.OrderField\"=" +
-      "\n\017RpcTradeListRtn\022*\n\005trade\030\001 \003(\0132\033.xyz.r" +
-      "edtorch.pb.TradeField\"F\n\022RpcContractList" +
-      "Rtn\0220\n\010contract\030\001 \003(\0132\036.xyz.redtorch.pb." +
-      "ContractField\"F\n\022RpcPositionListRtn\0220\n\010p" +
-      "osition\030\001 \003(\0132\036.xyz.redtorch.pb.Position" +
-      "Field\"C\n\021RpcAccountListRtn\022.\n\007account\030\001 " +
-      "\003(\0132\035.xyz.redtorch.pb.AccountField\":\n\016Rp" +
-      "cTickListRtn\022(\n\004tick\030\001 \003(\0132\032.xyz.redtorc" +
-      "h.pb.TickField\"<\n\014RpcNoticeRtn\022,\n\006notice" +
-      "\030\001 \001(\0132\034.xyz.redtorch.pb.NoticeField*\233\024\n" +
-      "\005RpcId\022\022\n\016UNKNOWN_RPC_ID\020\000\022\021\n\rSUBSCRIBE_" +
-      "REQ\020\001\022\021\n\rSUBSCRIBE_RSP\020\002\022\023\n\017UNSUBSCRIBE_" +
-      "REQ\020\003\022\023\n\017UNSUBSCRIBE_RSP\020\004\022\024\n\020SUBMIT_ORD" +
-      "ER_REQ\020\005\022\024\n\020SUBMIT_ORDER_RSP\020\006\022\024\n\020CANCEL" +
-      "_ORDER_REQ\020\007\022\024\n\020CANCEL_ORDER_RSP\020\010\022\027\n\023SE" +
-      "ARCH_CONTRACT_REQ\020\t\022\027\n\023SEARCH_CONTRACT_R" +
-      "SP\020\n\022\026\n\022GET_ORDER_LIST_REQ\020\013\022\026\n\022GET_ORDE" +
-      "R_LIST_RSP\020\014\022\036\n\032GET_WORKING_ORDER_LIST_R" +
-      "EQ\020\r\022\036\n\032GET_WORKING_ORDER_LIST_RSP\020\016\022\037\n\033" +
-      "QUERY_ORDER_BY_ORDER_ID_REQ\020\017\022\037\n\033QUERY_O" +
-      "RDER_BY_ORDER_ID_RSP\020\020\022&\n\"QUERY_ORDER_BY" +
-      "_ORIGIN_ORDER_ID_REQ\020\021\022&\n\"QUERY_ORDER_BY" +
-      "_ORIGIN_ORDER_ID_RSP\020\022\022&\n\"QUERY_ORDER_LI" +
-      "ST_BY_ACCOUNT_ID_REQ\020\023\022&\n\"QUERY_ORDER_LI" +
-      "ST_BY_ACCOUNT_ID_RSP\020\024\022*\n&QUERY_ORDER_LI" +
-      "ST_BY_UNIFIED_SYMBOL_REQ\020\025\022*\n&QUERY_ORDE" +
-      "R_LIST_BY_UNIFIED_SYMBOL_RSP\020\026\022\026\n\022GET_TR" +
-      "ADE_LIST_REQ\020\027\022\026\n\022GET_TRADE_LIST_RSP\020\030\022\037" +
-      "\n\033QUERY_TRADE_BY_TRADE_ID_REQ\020\031\022\037\n\033QUERY" +
-      "_TRADE_BY_TRADE_ID_RSP\020\032\022*\n&QUERY_TRADE_" +
-      "LIST_BY_UNIFIED_SYMBOL_REQ\020\033\022*\n&QUERY_TR" +
-      "ADE_LIST_BY_UNIFIED_SYMBOL_RSP\020\034\022&\n\"QUER" +
-      "Y_TRADE_LIST_BY_ACCOUNT_ID_REQ\020\035\022&\n\"QUER" +
-      "Y_TRADE_LIST_BY_ACCOUNT_ID_RSP\020\036\022$\n QUER" +
-      "Y_TRADE_LIST_BY_ORDER_ID_REQ\020\037\022$\n QUERY_" +
-      "TRADE_LIST_BY_ORDER_ID_RSP\020 \022+\n\'QUERY_TR" +
-      "ADE_LIST_BY_ORIGIN_ORDER_ID_REQ\020!\022+\n\'QUE" +
-      "RY_TRADE_LIST_BY_ORIGIN_ORDER_ID_RSP\020\"\022\031" +
-      "\n\025GET_POSITION_LIST_REQ\020#\022\031\n\025GET_POSITIO" +
-      "N_LIST_RSP\020$\022%\n!QUERY_POSITION_BY_POSITI" +
-      "ON_ID_REQ\020%\022%\n!QUERY_POSITION_BY_POSITIO" +
-      "N_ID_RSP\020&\022)\n%QUERY_POSITION_LIST_BY_ACC" +
-      "OUNT_ID_REQ\020\'\022)\n%QUERY_POSITION_LIST_BY_" +
-      "ACCOUNT_ID_RSP\020(\022-\n)QUERY_POSITION_LIST_" +
-      "BY_UNIFIED_SYMBOL_REQ\020)\022-\n)QUERY_POSITIO" +
-      "N_LIST_BY_UNIFIED_SYMBOL_RSP\020*\022\030\n\024GET_AC" +
-      "COUNT_LIST_REQ\020+\022\030\n\024GET_ACCOUNT_LIST_RSP" +
-      "\020,\022#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_REQ\020-\022" +
-      "#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_RSP\020.\022*\n&" +
-      "QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_REQ\020/" +
-      "\022*\n&QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE_R" +
-      "SP\0200\022\031\n\025GET_CONTRACT_LIST_REQ\0201\022\031\n\025GET_C" +
-      "ONTRACT_LIST_RSP\0202\022%\n!QUERY_CONTRACT_BY_" +
-      "CONTRACT_ID_REQ\0203\022%\n!QUERY_CONTRACT_BY_C" +
-      "ONTRACT_ID_RSP\0204\022-\n)QUERY_CONTRACT_LIST_" +
-      "BY_UNIFIED_SYMBOL_REQ\0205\022-\n)QUERY_CONTRAC" +
-      "T_LIST_BY_UNIFIED_SYMBOL_RSP\0206\022)\n%QUERY_" +
-      "CONTRACT_LIST_BY_GATEWAY_ID_REQ\0207\022)\n%QUE" +
-      "RY_CONTRACT_LIST_BY_GATEWAY_ID_RSP\0208\022$\n " +
-      "SYNC_SLAVE_NODE_RUNTIME_DATA_REQ\0209\022$\n SY" +
-      "NC_SLAVE_NODE_RUNTIME_DATA_RSP\020:\022\035\n\031GET_" +
-      "MIX_CONTRACT_LIST_REQ\020;\022\035\n\031GET_MIX_CONTR" +
-      "ACT_LIST_RSP\020<\022\025\n\021GET_TICK_LIST_REQ\020=\022\025\n" +
-      "\021GET_TICK_LIST_RSP\020>\022\031\n\025QUERY_DB_BAR_LIS" +
-      "T_REQ\020?\022\031\n\025QUERY_DB_BAR_LIST_RSP\020@\022\032\n\026QU" +
-      "ERY_DB_TICK_LIST_REQ\020A\022\032\n\026QUERY_DB_TICK_" +
-      "LIST_RSP\020B\022\035\n\031QUERY_VOLUME_BAR_LIST_REQ\020" +
-      "C\022\035\n\031QUERY_VOLUME_BAR_LIST_RSP\020D\022\023\n\rEXCE" +
-      "PTION_RSP\020\277\204=\022\016\n\tORDER_RTN\020\351\007\022\016\n\tTRADE_R" +
-      "TN\020\352\007\022\021\n\014CONTRACT_RTN\020\353\007\022\021\n\014POSITION_RTN" +
-      "\020\354\007\022\020\n\013ACCOUNT_RTN\020\355\007\022\r\n\010TICK_RTN\020\356\007\022\023\n\016" +
-      "ORDER_LIST_RTN\020\357\007\022\023\n\016TRADE_LIST_RTN\020\360\007\022\026" +
-      "\n\021CONTRACT_LIST_RTN\020\361\007\022\026\n\021POSITION_LIST_" +
-      "RTN\020\362\007\022\025\n\020ACCOUNT_LIST_RTN\020\363\007\022\022\n\rTICK_LI" +
-      "ST_RTN\020\364\007\022\017\n\nNOTICE_RTN\020\365\007b\006proto3"
+      "d\022\025\n\runiformSymbol\030\002 \001(\t\"\212\001\n\"RpcQueryCon" +
+      "tractByUniformSymbolRsp\0222\n\tcommonRsp\030\001 \001" +
+      "(\0132\037.xyz.redtorch.pb.CommonRspField\0220\n\010c" +
+      "ontract\030\002 \001(\0132\036.xyz.redtorch.pb.Contract" +
+      "Field\"\204\001\n\036RpcSyncSlaveNodeRuntimeDataReq" +
+      "\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.pb.Co" +
+      "mmonReqField\022.\n\007gateway\030\002 \003(\0132\035.xyz.redt" +
+      "orch.pb.GatewayField\"\316\001\n\036RpcSyncSlaveNod" +
+      "eRuntimeDataRsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz" +
+      ".redtorch.pb.CommonRspField\022<\n\016gatewaySe" +
+      "tting\030\002 \003(\0132$.xyz.redtorch.pb.GatewaySet" +
+      "tingField\022:\n\022subscribedContract\030\003 \003(\0132\036." +
+      "xyz.redtorch.pb.ContractField\"G\n\021RpcGetT" +
+      "ickListReq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redt" +
+      "orch.pb.CommonReqField\"q\n\021RpcGetTickList" +
+      "Rsp\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb" +
+      ".CommonRspField\022(\n\004tick\030\002 \003(\0132\032.xyz.redt" +
+      "orch.pb.TickField\"\203\002\n\024RpcQueryDBBarListR" +
+      "eq\0222\n\tcommonReq\030\001 \001(\0132\037.xyz.redtorch.pb." +
+      "CommonReqField\022\026\n\016startTimestamp\030\002 \001(\006\022\024" +
+      "\n\014endTimestamp\030\003 \001(\006\022\025\n\runiformSymbol\030\004 " +
+      "\001(\t\0221\n\tbarPeriod\030\005 \001(\0162\036.xyz.redtorch.pb" +
+      ".BarPeriodEnum\022?\n\020marketDataDBType\030\006 \001(\016" +
+      "2%.xyz.redtorch.pb.MarketDataDBTypeEnum\"" +
+      "r\n\024RpcQueryDBBarListRsp\0222\n\tcommonRsp\030\001 \001" +
+      "(\0132\037.xyz.redtorch.pb.CommonRspField\022&\n\003b" +
+      "ar\030\002 \003(\0132\031.xyz.redtorch.pb.BarField\"\321\001\n\025" +
+      "RpcQueryDBTickListReq\0222\n\tcommonReq\030\001 \001(\013" +
+      "2\037.xyz.redtorch.pb.CommonReqField\022\026\n\016sta" +
+      "rtTimestamp\030\002 \001(\006\022\024\n\014endTimestamp\030\003 \001(\006\022" +
+      "\025\n\runiformSymbol\030\004 \001(\t\022?\n\020marketDataDBTy" +
+      "pe\030\005 \001(\0162%.xyz.redtorch.pb.MarketDataDBT" +
+      "ypeEnum\"u\n\025RpcQueryDBTickListRsp\0222\n\tcomm" +
+      "onRsp\030\001 \001(\0132\037.xyz.redtorch.pb.CommonRspF" +
+      "ield\022(\n\004tick\030\002 \003(\0132\032.xyz.redtorch.pb.Tic" +
+      "kField\"\243\001\n\030RpcQueryVolumeBarListReq\0222\n\tc" +
+      "ommonReq\030\001 \001(\0132\037.xyz.redtorch.pb.CommonR" +
+      "eqField\022\026\n\016startTimestamp\030\002 \001(\006\022\024\n\014endTi" +
+      "mestamp\030\003 \001(\006\022\025\n\runiformSymbol\030\004 \001(\t\022\016\n\006" +
+      "volume\030\005 \001(\007\"v\n\030RpcQueryVolumeBarListRsp" +
+      "\0222\n\tcommonRsp\030\001 \001(\0132\037.xyz.redtorch.pb.Co" +
+      "mmonRspField\022&\n\003bar\030\002 \003(\0132\031.xyz.redtorch" +
+      ".pb.BarField\"p\n\017RpcExceptionRsp\022\025\n\rorigi" +
+      "nalRpcId\030\001 \001(\007\022\035\n\025originalTransactionId\030" +
+      "\002 \001(\t\022\031\n\021originalTimestamp\030\003 \001(\006\022\014\n\004info" +
+      "\030\004 \001(\t\"9\n\013RpcOrderRtn\022*\n\005order\030\001 \001(\0132\033.x" +
+      "yz.redtorch.pb.OrderField\"9\n\013RpcTradeRtn" +
+      "\022*\n\005trade\030\001 \001(\0132\033.xyz.redtorch.pb.TradeF" +
+      "ield\"B\n\016RpcContractRtn\0220\n\010contract\030\001 \001(\013" +
+      "2\036.xyz.redtorch.pb.ContractField\"B\n\016RpcP" +
+      "ositionRtn\0220\n\010position\030\001 \001(\0132\036.xyz.redto" +
+      "rch.pb.PositionField\"?\n\rRpcAccountRtn\022.\n" +
+      "\007account\030\001 \001(\0132\035.xyz.redtorch.pb.Account" +
+      "Field\"6\n\nRpcTickRtn\022(\n\004tick\030\001 \001(\0132\032.xyz." +
+      "redtorch.pb.TickField\"=\n\017RpcOrderListRtn" +
+      "\022*\n\005order\030\001 \003(\0132\033.xyz.redtorch.pb.OrderF" +
+      "ield\"=\n\017RpcTradeListRtn\022*\n\005trade\030\001 \003(\0132\033" +
+      ".xyz.redtorch.pb.TradeField\"F\n\022RpcContra" +
+      "ctListRtn\0220\n\010contract\030\001 \003(\0132\036.xyz.redtor" +
+      "ch.pb.ContractField\"F\n\022RpcPositionListRt" +
+      "n\0220\n\010position\030\001 \003(\0132\036.xyz.redtorch.pb.Po" +
+      "sitionField\"C\n\021RpcAccountListRtn\022.\n\007acco" +
+      "unt\030\001 \003(\0132\035.xyz.redtorch.pb.AccountField" +
+      "\":\n\016RpcTickListRtn\022(\n\004tick\030\001 \003(\0132\032.xyz.r" +
+      "edtorch.pb.TickField\"<\n\014RpcNoticeRtn\022,\n\006" +
+      "notice\030\001 \001(\0132\034.xyz.redtorch.pb.NoticeFie" +
+      "ld*\257\022\n\005RpcId\022\022\n\016UNKNOWN_RPC_ID\020\000\022\021\n\rSUBS" +
+      "CRIBE_REQ\020\001\022\021\n\rSUBSCRIBE_RSP\020\002\022\023\n\017UNSUBS" +
+      "CRIBE_REQ\020\003\022\023\n\017UNSUBSCRIBE_RSP\020\004\022\024\n\020SUBM" +
+      "IT_ORDER_REQ\020\005\022\024\n\020SUBMIT_ORDER_RSP\020\006\022\024\n\020" +
+      "CANCEL_ORDER_REQ\020\007\022\024\n\020CANCEL_ORDER_RSP\020\010" +
+      "\022\027\n\023SEARCH_CONTRACT_REQ\020\t\022\027\n\023SEARCH_CONT" +
+      "RACT_RSP\020\n\022\026\n\022GET_ORDER_LIST_REQ\020\013\022\026\n\022GE" +
+      "T_ORDER_LIST_RSP\020\014\022\036\n\032GET_WORKING_ORDER_" +
+      "LIST_REQ\020\r\022\036\n\032GET_WORKING_ORDER_LIST_RSP" +
+      "\020\016\022\037\n\033QUERY_ORDER_BY_ORDER_ID_REQ\020\017\022\037\n\033Q" +
+      "UERY_ORDER_BY_ORDER_ID_RSP\020\020\022&\n\"QUERY_OR" +
+      "DER_BY_ORIGIN_ORDER_ID_REQ\020\021\022&\n\"QUERY_OR" +
+      "DER_BY_ORIGIN_ORDER_ID_RSP\020\022\022&\n\"QUERY_OR" +
+      "DER_LIST_BY_ACCOUNT_ID_REQ\020\023\022&\n\"QUERY_OR" +
+      "DER_LIST_BY_ACCOUNT_ID_RSP\020\024\022*\n&QUERY_OR" +
+      "DER_LIST_BY_UNIFORM_SYMBOL_REQ\020\025\022*\n&QUER" +
+      "Y_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP\020\026\022\026\n\022" +
+      "GET_TRADE_LIST_REQ\020\027\022\026\n\022GET_TRADE_LIST_R" +
+      "SP\020\030\022\037\n\033QUERY_TRADE_BY_TRADE_ID_REQ\020\031\022\037\n" +
+      "\033QUERY_TRADE_BY_TRADE_ID_RSP\020\032\022*\n&QUERY_" +
+      "TRADE_LIST_BY_UNIFORM_SYMBOL_REQ\020\033\022*\n&QU" +
+      "ERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP\020\034\022&" +
+      "\n\"QUERY_TRADE_LIST_BY_ACCOUNT_ID_REQ\020\035\022&" +
+      "\n\"QUERY_TRADE_LIST_BY_ACCOUNT_ID_RSP\020\036\022$" +
+      "\n QUERY_TRADE_LIST_BY_ORDER_ID_REQ\020\037\022$\n " +
+      "QUERY_TRADE_LIST_BY_ORDER_ID_RSP\020 \022+\n\'QU" +
+      "ERY_TRADE_LIST_BY_ORIGIN_ORDER_ID_REQ\020!\022" +
+      "+\n\'QUERY_TRADE_LIST_BY_ORIGIN_ORDER_ID_R" +
+      "SP\020\"\022\031\n\025GET_POSITION_LIST_REQ\020#\022\031\n\025GET_P" +
+      "OSITION_LIST_RSP\020$\022%\n!QUERY_POSITION_BY_" +
+      "POSITION_ID_REQ\020%\022%\n!QUERY_POSITION_BY_P" +
+      "OSITION_ID_RSP\020&\022)\n%QUERY_POSITION_LIST_" +
+      "BY_ACCOUNT_ID_REQ\020\'\022)\n%QUERY_POSITION_LI" +
+      "ST_BY_ACCOUNT_ID_RSP\020(\022-\n)QUERY_POSITION" +
+      "_LIST_BY_UNIFORM_SYMBOL_REQ\020)\022-\n)QUERY_P" +
+      "OSITION_LIST_BY_UNIFORM_SYMBOL_RSP\020*\022\030\n\024" +
+      "GET_ACCOUNT_LIST_REQ\020+\022\030\n\024GET_ACCOUNT_LI" +
+      "ST_RSP\020,\022#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_" +
+      "REQ\020-\022#\n\037QUERY_ACCOUNT_BY_ACCOUNT_ID_RSP" +
+      "\020.\022*\n&QUERY_ACCOUNT_LIST_BY_ACCOUNT_CODE" +
+      "_REQ\020/\022*\n&QUERY_ACCOUNT_LIST_BY_ACCOUNT_" +
+      "CODE_RSP\0200\022\031\n\025GET_CONTRACT_LIST_REQ\0201\022\031\n" +
+      "\025GET_CONTRACT_LIST_RSP\0202\022(\n$QUERY_CONTRA" +
+      "CT_BY_UNIFORM_SYMBOL_REQ\0203\022(\n$QUERY_CONT" +
+      "RACT_BY_UNIFORM_SYMBOL_RSP\0204\022$\n SYNC_SLA" +
+      "VE_NODE_RUNTIME_DATA_REQ\0205\022$\n SYNC_SLAVE" +
+      "_NODE_RUNTIME_DATA_RSP\0206\022\025\n\021GET_TICK_LIS" +
+      "T_REQ\0207\022\025\n\021GET_TICK_LIST_RSP\0208\022\031\n\025QUERY_" +
+      "DB_BAR_LIST_REQ\0209\022\031\n\025QUERY_DB_BAR_LIST_R" +
+      "SP\020:\022\032\n\026QUERY_DB_TICK_LIST_REQ\020;\022\032\n\026QUER" +
+      "Y_DB_TICK_LIST_RSP\020<\022\035\n\031QUERY_VOLUME_BAR" +
+      "_LIST_REQ\020=\022\035\n\031QUERY_VOLUME_BAR_LIST_RSP" +
+      "\020>\022\023\n\rEXCEPTION_RSP\020\277\204=\022\016\n\tORDER_RTN\020\351\007\022" +
+      "\016\n\tTRADE_RTN\020\352\007\022\021\n\014CONTRACT_RTN\020\353\007\022\021\n\014PO" +
+      "SITION_RTN\020\354\007\022\020\n\013ACCOUNT_RTN\020\355\007\022\r\n\010TICK_" +
+      "RTN\020\356\007\022\023\n\016ORDER_LIST_RTN\020\357\007\022\023\n\016TRADE_LIS" +
+      "T_RTN\020\360\007\022\026\n\021CONTRACT_LIST_RTN\020\361\007\022\026\n\021POSI" +
+      "TION_LIST_RTN\020\362\007\022\025\n\020ACCOUNT_LIST_RTN\020\363\007\022" +
+      "\022\n\rTICK_LIST_RTN\020\364\007\022\017\n\nNOTICE_RTN\020\365\007b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -69998,17 +64716,17 @@ public final class CoreRpc {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryOrderListByAccountIdRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Order", });
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor =
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor =
       getDescriptor().getMessageTypes().get(20);
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolReq_descriptor,
-        new java.lang.String[] { "CommonReq", "UnifiedSymbol", });
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor =
+        internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolReq_descriptor,
+        new java.lang.String[] { "CommonReq", "UniformSymbol", });
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor =
       getDescriptor().getMessageTypes().get(21);
-    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryOrderListByUnifiedSymbolRsp_descriptor,
+        internal_static_xyz_redtorch_pb_RpcQueryOrderListByUniformSymbolRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Order", });
     internal_static_xyz_redtorch_pb_RpcGetTradeListReq_descriptor =
       getDescriptor().getMessageTypes().get(22);
@@ -70034,17 +64752,17 @@ public final class CoreRpc {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryTradeByTradeIdRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Trade", });
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor =
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor =
       getDescriptor().getMessageTypes().get(26);
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolReq_descriptor,
-        new java.lang.String[] { "CommonReq", "UnifiedSymbol", });
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor =
+        internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolReq_descriptor,
+        new java.lang.String[] { "CommonReq", "UniformSymbol", });
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor =
       getDescriptor().getMessageTypes().get(27);
-    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryTradeListByUnifiedSymbolRsp_descriptor,
+        internal_static_xyz_redtorch_pb_RpcQueryTradeListByUniformSymbolRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Trade", });
     internal_static_xyz_redtorch_pb_RpcQueryTradeListByAccountIdReq_descriptor =
       getDescriptor().getMessageTypes().get(28);
@@ -70118,17 +64836,17 @@ public final class CoreRpc {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryPositionListByAccountIdRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Position", });
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor =
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor =
       getDescriptor().getMessageTypes().get(40);
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolReq_descriptor,
-        new java.lang.String[] { "CommonReq", "UnifiedSymbol", });
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor =
+        internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolReq_descriptor,
+        new java.lang.String[] { "CommonReq", "UniformSymbol", });
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor =
       getDescriptor().getMessageTypes().get(41);
-    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryPositionListByUnifiedSymbolRsp_descriptor,
+        internal_static_xyz_redtorch_pb_RpcQueryPositionListByUniformSymbolRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Position", });
     internal_static_xyz_redtorch_pb_RpcGetAccountListReq_descriptor =
       getDescriptor().getMessageTypes().get(42);
@@ -70178,194 +64896,158 @@ public final class CoreRpc {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcGetContractListRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Contract", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor =
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor =
       getDescriptor().getMessageTypes().get(50);
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdReq_descriptor,
-        new java.lang.String[] { "CommonReq", "ContractId", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor =
+        internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolReq_descriptor,
+        new java.lang.String[] { "CommonReq", "UniformSymbol", });
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor =
       getDescriptor().getMessageTypes().get(51);
-    internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_fieldAccessorTable = new
+    internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractByContractIdRsp_descriptor,
-        new java.lang.String[] { "CommonRsp", "Contract", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor =
-      getDescriptor().getMessageTypes().get(52);
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolReq_descriptor,
-        new java.lang.String[] { "CommonReq", "UnifiedSymbol", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor =
-      getDescriptor().getMessageTypes().get(53);
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractListByUnifiedSymbolRsp_descriptor,
-        new java.lang.String[] { "CommonRsp", "Contract", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor =
-      getDescriptor().getMessageTypes().get(54);
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdReq_descriptor,
-        new java.lang.String[] { "CommonReq", "GatewayId", });
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor =
-      getDescriptor().getMessageTypes().get(55);
-    internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcQueryContractListByGatewayIdRsp_descriptor,
+        internal_static_xyz_redtorch_pb_RpcQueryContractByUniformSymbolRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Contract", });
     internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataReq_descriptor =
-      getDescriptor().getMessageTypes().get(56);
+      getDescriptor().getMessageTypes().get(52);
     internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataReq_descriptor,
         new java.lang.String[] { "CommonReq", "Gateway", });
     internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataRsp_descriptor =
-      getDescriptor().getMessageTypes().get(57);
+      getDescriptor().getMessageTypes().get(53);
     internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcSyncSlaveNodeRuntimeDataRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "GatewaySetting", "SubscribedContract", });
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor =
-      getDescriptor().getMessageTypes().get(58);
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcGetMixContractListReq_descriptor,
-        new java.lang.String[] { "CommonReq", });
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor =
-      getDescriptor().getMessageTypes().get(59);
-    internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_xyz_redtorch_pb_RpcGetMixContractListRsp_descriptor,
-        new java.lang.String[] { "CommonRsp", "Contract", });
     internal_static_xyz_redtorch_pb_RpcGetTickListReq_descriptor =
-      getDescriptor().getMessageTypes().get(60);
+      getDescriptor().getMessageTypes().get(54);
     internal_static_xyz_redtorch_pb_RpcGetTickListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcGetTickListReq_descriptor,
         new java.lang.String[] { "CommonReq", });
     internal_static_xyz_redtorch_pb_RpcGetTickListRsp_descriptor =
-      getDescriptor().getMessageTypes().get(61);
+      getDescriptor().getMessageTypes().get(55);
     internal_static_xyz_redtorch_pb_RpcGetTickListRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcGetTickListRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Tick", });
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListReq_descriptor =
-      getDescriptor().getMessageTypes().get(62);
+      getDescriptor().getMessageTypes().get(56);
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryDBBarListReq_descriptor,
-        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UnifiedSymbol", "BarPeriod", "MarketDataDBType", });
+        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UniformSymbol", "BarPeriod", "MarketDataDBType", });
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListRsp_descriptor =
-      getDescriptor().getMessageTypes().get(63);
+      getDescriptor().getMessageTypes().get(57);
     internal_static_xyz_redtorch_pb_RpcQueryDBBarListRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryDBBarListRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Bar", });
     internal_static_xyz_redtorch_pb_RpcQueryDBTickListReq_descriptor =
-      getDescriptor().getMessageTypes().get(64);
+      getDescriptor().getMessageTypes().get(58);
     internal_static_xyz_redtorch_pb_RpcQueryDBTickListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryDBTickListReq_descriptor,
-        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UnifiedSymbol", "MarketDataDBType", });
+        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UniformSymbol", "MarketDataDBType", });
     internal_static_xyz_redtorch_pb_RpcQueryDBTickListRsp_descriptor =
-      getDescriptor().getMessageTypes().get(65);
+      getDescriptor().getMessageTypes().get(59);
     internal_static_xyz_redtorch_pb_RpcQueryDBTickListRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryDBTickListRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Tick", });
     internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListReq_descriptor =
-      getDescriptor().getMessageTypes().get(66);
+      getDescriptor().getMessageTypes().get(60);
     internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListReq_descriptor,
-        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UnifiedSymbol", "Volume", });
+        new java.lang.String[] { "CommonReq", "StartTimestamp", "EndTimestamp", "UniformSymbol", "Volume", });
     internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListRsp_descriptor =
-      getDescriptor().getMessageTypes().get(67);
+      getDescriptor().getMessageTypes().get(61);
     internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcQueryVolumeBarListRsp_descriptor,
         new java.lang.String[] { "CommonRsp", "Bar", });
     internal_static_xyz_redtorch_pb_RpcExceptionRsp_descriptor =
-      getDescriptor().getMessageTypes().get(68);
+      getDescriptor().getMessageTypes().get(62);
     internal_static_xyz_redtorch_pb_RpcExceptionRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcExceptionRsp_descriptor,
         new java.lang.String[] { "OriginalRpcId", "OriginalTransactionId", "OriginalTimestamp", "Info", });
     internal_static_xyz_redtorch_pb_RpcOrderRtn_descriptor =
-      getDescriptor().getMessageTypes().get(69);
+      getDescriptor().getMessageTypes().get(63);
     internal_static_xyz_redtorch_pb_RpcOrderRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcOrderRtn_descriptor,
         new java.lang.String[] { "Order", });
     internal_static_xyz_redtorch_pb_RpcTradeRtn_descriptor =
-      getDescriptor().getMessageTypes().get(70);
+      getDescriptor().getMessageTypes().get(64);
     internal_static_xyz_redtorch_pb_RpcTradeRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcTradeRtn_descriptor,
         new java.lang.String[] { "Trade", });
     internal_static_xyz_redtorch_pb_RpcContractRtn_descriptor =
-      getDescriptor().getMessageTypes().get(71);
+      getDescriptor().getMessageTypes().get(65);
     internal_static_xyz_redtorch_pb_RpcContractRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcContractRtn_descriptor,
         new java.lang.String[] { "Contract", });
     internal_static_xyz_redtorch_pb_RpcPositionRtn_descriptor =
-      getDescriptor().getMessageTypes().get(72);
+      getDescriptor().getMessageTypes().get(66);
     internal_static_xyz_redtorch_pb_RpcPositionRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcPositionRtn_descriptor,
         new java.lang.String[] { "Position", });
     internal_static_xyz_redtorch_pb_RpcAccountRtn_descriptor =
-      getDescriptor().getMessageTypes().get(73);
+      getDescriptor().getMessageTypes().get(67);
     internal_static_xyz_redtorch_pb_RpcAccountRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcAccountRtn_descriptor,
         new java.lang.String[] { "Account", });
     internal_static_xyz_redtorch_pb_RpcTickRtn_descriptor =
-      getDescriptor().getMessageTypes().get(74);
+      getDescriptor().getMessageTypes().get(68);
     internal_static_xyz_redtorch_pb_RpcTickRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcTickRtn_descriptor,
         new java.lang.String[] { "Tick", });
     internal_static_xyz_redtorch_pb_RpcOrderListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(75);
+      getDescriptor().getMessageTypes().get(69);
     internal_static_xyz_redtorch_pb_RpcOrderListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcOrderListRtn_descriptor,
         new java.lang.String[] { "Order", });
     internal_static_xyz_redtorch_pb_RpcTradeListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(76);
+      getDescriptor().getMessageTypes().get(70);
     internal_static_xyz_redtorch_pb_RpcTradeListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcTradeListRtn_descriptor,
         new java.lang.String[] { "Trade", });
     internal_static_xyz_redtorch_pb_RpcContractListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(77);
+      getDescriptor().getMessageTypes().get(71);
     internal_static_xyz_redtorch_pb_RpcContractListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcContractListRtn_descriptor,
         new java.lang.String[] { "Contract", });
     internal_static_xyz_redtorch_pb_RpcPositionListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(78);
+      getDescriptor().getMessageTypes().get(72);
     internal_static_xyz_redtorch_pb_RpcPositionListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcPositionListRtn_descriptor,
         new java.lang.String[] { "Position", });
     internal_static_xyz_redtorch_pb_RpcAccountListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(79);
+      getDescriptor().getMessageTypes().get(73);
     internal_static_xyz_redtorch_pb_RpcAccountListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcAccountListRtn_descriptor,
         new java.lang.String[] { "Account", });
     internal_static_xyz_redtorch_pb_RpcTickListRtn_descriptor =
-      getDescriptor().getMessageTypes().get(80);
+      getDescriptor().getMessageTypes().get(74);
     internal_static_xyz_redtorch_pb_RpcTickListRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcTickListRtn_descriptor,
         new java.lang.String[] { "Tick", });
     internal_static_xyz_redtorch_pb_RpcNoticeRtn_descriptor =
-      getDescriptor().getMessageTypes().get(81);
+      getDescriptor().getMessageTypes().get(75);
     internal_static_xyz_redtorch_pb_RpcNoticeRtn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_RpcNoticeRtn_descriptor,

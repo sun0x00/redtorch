@@ -21,7 +21,7 @@ message ContractField {
 	string name = 2;  // 简称
 	string fullName = 3;  // 全称
 	string thirdPartyId = 4;  // 第三方ID
-	string unifiedSymbol = 7;  // 统一ID，通常是 <合约代码@交易所代码@产品类型>
+	string uniformSymbol = 7;  // 统一ID，通常是 <合约代码@交易所代码@产品类型>
 	string symbol = 8;  // 代码
 	ExchangeEnum exchange = 9;  // 交易所
 	ProductClassEnum productClass = 10;  // 产品类型
@@ -166,7 +166,7 @@ message PositionField {
 
 // Tick
 message TickField {
-	string unifiedSymbol = 1;  // 统一合约标识
+	string uniformSymbol = 1;  // 统一合约标识
 	string gatewayId = 2; // 网关ID
 	string tradingDay = 3;  // 交易日
 	string actionDay = 4;  // 业务发生日
@@ -206,7 +206,7 @@ message TickField {
 
 // Bar
 message BarField {
-	string unifiedSymbol = 1;  // 统一合约标识
+	string uniformSymbol = 1;  // 统一合约标识
 	string gatewayId = 2; // 网关ID
 	string tradingDay = 3;  // 交易日
 	string actionDay = 4;  // 业务发生日

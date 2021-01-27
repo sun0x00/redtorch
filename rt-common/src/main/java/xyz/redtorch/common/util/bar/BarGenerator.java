@@ -26,7 +26,7 @@ public class BarGenerator {
 
 	private boolean newFlag = false;
 
-	private String barUnifiedSymbol = null;
+	private String barUniformSymbol = null;
 	
 	CommonBarCallBack commonBarCallBack;
 
@@ -43,14 +43,14 @@ public class BarGenerator {
 
 		// 如果tick为空或者合约不匹配则返回
 		if (tick == null) {
-			logger.warn("输入的Tick数据为空,当前Bar合约{}",barUnifiedSymbol);
+			logger.warn("输入的Tick数据为空,当前Bar合约{}",barUniformSymbol);
 			return;
 		}
 
-		if (barUnifiedSymbol == null) {
-			barUnifiedSymbol = tick.getUnifiedSymbol();
-		} else if (!barUnifiedSymbol.equals(tick.getUnifiedSymbol())) {
-			logger.warn("合约不匹配,当前Bar合约{}",barUnifiedSymbol);
+		if (barUniformSymbol == null) {
+			barUniformSymbol = tick.getUniformSymbol();
+		} else if (!barUniformSymbol.equals(tick.getUniformSymbol())) {
+			logger.warn("合约不匹配,当前Bar合约{}",barUniformSymbol);
 			return;
 		}
 
@@ -58,7 +58,7 @@ public class BarGenerator {
 
 		// 此处过滤用于一个策略在多个网关订阅了同一个合约的情况下,Tick到达顺序和实际产生顺序不一致或者重复的情况
 		if (lastTickLocalDateTime != null && tickLocalDateTime.isBefore(lastTickLocalDateTime)) {
-			logger.warn("时间乱序,当前Bar合约{}",barUnifiedSymbol);
+			logger.warn("时间乱序,当前Bar合约{}",barUniformSymbol);
 			return;
 		}
 
@@ -90,7 +90,7 @@ public class BarGenerator {
 		}
 
 		if (newFlag) {
-			barBuilder.setUnifiedSymbol(tick.getUnifiedSymbol());
+			barBuilder.setUniformSymbol(tick.getUniformSymbol());
 			barBuilder.setGatewayId(tick.getGatewayId());
 			barBuilder.setTradingDay(tick.getTradingDay());
 			barBuilder.setActionDay(tick.getActionDay());

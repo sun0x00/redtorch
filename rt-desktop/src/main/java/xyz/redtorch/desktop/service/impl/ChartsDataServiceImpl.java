@@ -41,7 +41,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
     private final ExecutorService executor = Executors.newCachedThreadPool();
 
     @Override
-    public void generateCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, String key) {
+    public void generateCandlestickData(long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, String key) {
         chartDataMap.remove(key);
         processingKeySet.add(key);
         executor.execute(new Runnable() {
@@ -49,9 +49,9 @@ public class ChartsDataServiceImpl implements ChartsDataService {
             @Override
             public void run() {
                 try {
-                    RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientApiService.queryDBBarList(startTimestamp, endTimestamp, unifiedSymbol, barPeriod, MarketDataDBTypeEnum.MDDT_MIX, null, 120);
+                    RpcQueryDBBarListRsp rpcQueryDBBarListRsp = rpcClientApiService.queryDBBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod, MarketDataDBTypeEnum.MDDT_MIX, null, 120);
 
-                    JSONObject erchartsOptionData = new JSONObject();
+                    JSONObject echartsOptionData = new JSONObject();
 
                     List<JSONArray> valueList = new ArrayList<>();
                     List<String> categoryList = new ArrayList<>();
@@ -66,7 +66,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 
                     if (rpcQueryDBBarListRsp != null) {
                         List<BarField> barList = rpcQueryDBBarListRsp.getBarList();
-                        logger.info("共加载Bar数据{}条,合约:{},key:{}", barList.size(), unifiedSymbol, key);
+                        logger.info("共加载Bar数据{}条,合约:{},key:{}", barList.size(), uniformSymbol, key);
 
                         if (!barList.isEmpty()) {
                             for (int i = 0; i < barList.size(); i++) {
@@ -110,25 +110,25 @@ public class ChartsDataServiceImpl implements ChartsDataService {
                         }
                     }
 
-                    erchartsOptionData.put("valueList", valueList);
-                    erchartsOptionData.put("categoryList", categoryList);
-                    erchartsOptionData.put("volumeDeltaList", volumeDeltaList);
-                    erchartsOptionData.put("openInterestList", openInterestList);
+                    echartsOptionData.put("valueList", valueList);
+                    echartsOptionData.put("categoryList", categoryList);
+                    echartsOptionData.put("volumeDeltaList", volumeDeltaList);
+                    echartsOptionData.put("openInterestList", openInterestList);
 
-                    erchartsOptionData.put("ma5List", ma5List);
-                    erchartsOptionData.put("ma10List", ma10List);
-                    erchartsOptionData.put("ma20List", ma20List);
-                    erchartsOptionData.put("ma30List", ma30List);
+                    echartsOptionData.put("ma5List", ma5List);
+                    echartsOptionData.put("ma10List", ma10List);
+                    echartsOptionData.put("ma20List", ma20List);
+                    echartsOptionData.put("ma30List", ma30List);
 
                     JSONObject resData = new JSONObject();
-                    resData.put("data", erchartsOptionData);
+                    resData.put("data", echartsOptionData);
                     resData.put("chartType", "candlestick");
 
                     if (processingKeySet.contains(key)) {
                         chartDataMap.put(key, resData);
                     }
                 } catch (Exception e) {
-                    logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
+                    logger.error("生成K数据错误,合约:{},key:{}", uniformSymbol, key, e);
                 } finally {
                     processingKeySet.remove(key);
                 }
@@ -165,7 +165,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
     }
 
     @Override
-    public void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String unifiedSymbol, String key) {
+    public void generateVolOPIDeltaHistogramData(long startTimestamp, long endTimestamp, String uniformSymbol, String key) {
 
         chartDataMap.remove(key);
         processingKeySet.add(key);
@@ -173,7 +173,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
             @Override
             public void run() {
                 try {
-                    RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
+                    RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, uniformSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
 
                     JSONObject echartsOptionData = new JSONObject();
 
@@ -183,7 +183,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 
                     if (rpcQueryDBTickListRsp != null) {
                         List<TickField> tickList = rpcQueryDBTickListRsp.getTickList();
-                        logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), unifiedSymbol, key);
+                        logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), uniformSymbol, key);
 
                         if (!tickList.isEmpty()) {
                             Map<Long, Map<String, Object>> dataMap = new HashMap<>();
@@ -238,7 +238,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
                         chartDataMap.put(key, resData);
                     }
                 } catch (Exception e) {
-                    logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
+                    logger.error("生成K数据错误,合约:{},key:{}", uniformSymbol, key, e);
                 } finally {
                     processingKeySet.remove(key);
                 }
@@ -248,7 +248,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
     }
 
     @Override
-    public void generateTickLineData(long startTimestamp, long endTimestamp, String unifiedSymbol, String key) {
+    public void generateTickLineData(long startTimestamp, long endTimestamp, String uniformSymbol, String key) {
         chartDataMap.remove(key);
         processingKeySet.add(key);
         executor.execute(new Runnable() {
@@ -256,7 +256,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
             @Override
             public void run() {
                 try {
-                    RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, unifiedSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
+                    RpcQueryDBTickListRsp rpcQueryDBTickListRsp = rpcClientApiService.queryDBTickList(startTimestamp, endTimestamp, uniformSymbol, MarketDataDBTypeEnum.MDDT_MIX, null, 180);
 
                     JSONObject erchartsOptionData = new JSONObject();
 
@@ -267,7 +267,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 
                     if (rpcQueryDBTickListRsp != null) {
                         List<TickField> tickList = rpcQueryDBTickListRsp.getTickList();
-                        logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), unifiedSymbol, key);
+                        logger.info("共加载Tick数据{}条,合约:{},key:{}", tickList.size(), uniformSymbol, key);
 
                         if (tickList.size() > 0) {
                             for (int i = 0; i < tickList.size(); i++) {
@@ -296,7 +296,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
                         chartDataMap.put(key, resData);
                     }
                 } catch (Exception e) {
-                    logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
+                    logger.error("生成K数据错误,合约:{},key:{}", uniformSymbol, key, e);
                 } finally {
                     processingKeySet.remove(key);
                 }
@@ -307,14 +307,14 @@ public class ChartsDataServiceImpl implements ChartsDataService {
     }
 
     @Override
-    public void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String unifiedSymbol, int volumeBarSize, String key) {
+    public void generateVolumeBarCandlestickData(long startTimestamp, long endTimestamp, String uniformSymbol, int volumeBarSize, String key) {
         chartDataMap.remove(key);
         processingKeySet.add(key);
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientApiService.queryVolumeBarList(startTimestamp, endTimestamp, unifiedSymbol, volumeBarSize, null, 120);
+                    RpcQueryVolumeBarListRsp rpcQueryVolumeBarListRsp = rpcClientApiService.queryVolumeBarList(startTimestamp, endTimestamp, uniformSymbol, volumeBarSize, null, 120);
 
                     JSONObject erchartsOptionData = new JSONObject();
 
@@ -331,7 +331,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
 
                     if (rpcQueryVolumeBarListRsp != null) {
                         List<BarField> barList = rpcQueryVolumeBarListRsp.getBarList();
-                        logger.info("共加载Bar数据{}条,合约:{},key:{}", barList.size(), unifiedSymbol, key);
+                        logger.info("共加载Bar数据{}条,合约:{},key:{}", barList.size(), uniformSymbol, key);
 
                         if (barList.size() > 0) {
                             for (int i = 0; i < barList.size(); i++) {
@@ -393,7 +393,7 @@ public class ChartsDataServiceImpl implements ChartsDataService {
                         chartDataMap.put(key, resData);
                     }
                 } catch (Exception e) {
-                    logger.error("生成K数据错误,合约:{},key:{}", unifiedSymbol, key, e);
+                    logger.error("生成K数据错误,合约:{},key:{}", uniformSymbol, key, e);
                 } finally {
                     processingKeySet.remove(key);
                 }

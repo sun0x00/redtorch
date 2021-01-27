@@ -168,7 +168,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryOrderListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol) {
+    public byte[] queryOrderListByUniformSymbol(CommonReqField commonReq, String uniformSymbol) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -178,21 +178,21 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
         List<OrderField> orderList = null;
 
-        if (StringUtils.isBlank(unifiedSymbol)) {
-            logger.error("参数unifiedSymbol缺失");
-            commonRspBuilder.setErrorId(1).setErrorMsg("参数unifiedSymbol缺失");
+        if (StringUtils.isBlank(uniformSymbol)) {
+            logger.error("参数uniformSymbol缺失");
+            commonRspBuilder.setErrorId(1).setErrorMsg("参数uniformSymbol缺失");
         } else {
-            orderList = masterTradeCachesService.queryOrderListByUnifiedSymbol(commonReq.getOperatorId(), unifiedSymbol);
+            orderList = masterTradeCachesService.queryOrderListByUniformSymbol(commonReq.getOperatorId(), uniformSymbol);
         }
         if (orderList == null) {
             orderList = new ArrayList<>();
         }
 
-        RpcQueryOrderListByUnifiedSymbolRsp.Builder rpcQueryOrderListByUnifiedSymbolRspBuilder = RpcQueryOrderListByUnifiedSymbolRsp.newBuilder() //
+        RpcQueryOrderListByUniformSymbolRsp.Builder rpcQueryOrderListByUniformSymbolRspBuilder = RpcQueryOrderListByUniformSymbolRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllOrder(orderList);
 
-        return RpcUtils.generateRpcDep(RpcId.QUERY_ORDER_LIST_BY_UNIFIED_SYMBOL_RSP, transactionId, rpcQueryOrderListByUnifiedSymbolRspBuilder.build().toByteString());
+        return RpcUtils.generateRpcDep(RpcId.QUERY_ORDER_LIST_BY_UNIFORM_SYMBOL_RSP, transactionId, rpcQueryOrderListByUniformSymbolRspBuilder.build().toByteString());
     }
 
     @Override
@@ -245,7 +245,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryTradeListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol) {
+    public byte[] queryTradeListByUniformSymbol(CommonReqField commonReq, String uniformSymbol) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -255,21 +255,21 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
         List<TradeField> tradeList = null;
 
-        if (StringUtils.isBlank(unifiedSymbol)) {
-            logger.error("参数unifiedSymbol缺失");
-            commonRspBuilder.setErrorId(1).setErrorMsg("参数unifiedSymbol缺失");
+        if (StringUtils.isBlank(uniformSymbol)) {
+            logger.error("参数uniformSymbol缺失");
+            commonRspBuilder.setErrorId(1).setErrorMsg("参数uniformSymbol缺失");
         } else {
-            tradeList = masterTradeCachesService.queryTradeListByUnifiedSymbol(commonReq.getOperatorId(), unifiedSymbol);
+            tradeList = masterTradeCachesService.queryTradeListByUniformSymbol(commonReq.getOperatorId(), uniformSymbol);
         }
 
         if (tradeList == null) {
             tradeList = new ArrayList<>();
         }
 
-        RpcQueryTradeListByUnifiedSymbolRsp.Builder rpcQueryTradeListByUnifiedSymbolRspBuilder = RpcQueryTradeListByUnifiedSymbolRsp.newBuilder() //
+        RpcQueryTradeListByUniformSymbolRsp.Builder rpcQueryTradeListByUniformSymbolRspBuilder = RpcQueryTradeListByUniformSymbolRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllTrade(tradeList); //
-        return RpcUtils.generateRpcDep(RpcId.QUERY_TRADE_LIST_BY_UNIFIED_SYMBOL_RSP, transactionId, rpcQueryTradeListByUnifiedSymbolRspBuilder.build().toByteString());
+        return RpcUtils.generateRpcDep(RpcId.QUERY_TRADE_LIST_BY_UNIFORM_SYMBOL_RSP, transactionId, rpcQueryTradeListByUniformSymbolRspBuilder.build().toByteString());
     }
 
     @Override
@@ -433,7 +433,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryPositionListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol) {
+    public byte[] queryPositionListByUniformSymbol(CommonReqField commonReq, String uniformSymbol) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -442,20 +442,20 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
                 .setErrorId(0);
 
         List<PositionField> positionList = null;
-        if (StringUtils.isBlank(unifiedSymbol)) {
-            logger.error("参数unifiedSymbol缺失");
-            commonRspBuilder.setErrorId(1).setErrorMsg("参数unifiedSymbol缺失");
+        if (StringUtils.isBlank(uniformSymbol)) {
+            logger.error("参数uniformSymbol缺失");
+            commonRspBuilder.setErrorId(1).setErrorMsg("参数uniformSymbol缺失");
         } else {
-            positionList = masterTradeCachesService.queryPositionListByUnifiedSymbol(commonReq.getOperatorId(), unifiedSymbol);
+            positionList = masterTradeCachesService.queryPositionListByUniformSymbol(commonReq.getOperatorId(), uniformSymbol);
         }
         if (positionList == null) {
             positionList = new ArrayList<>();
         }
 
-        RpcQueryPositionListByUnifiedSymbolRsp.Builder rpcQueryPositionListByUnifiedSymbolRspBuilder = RpcQueryPositionListByUnifiedSymbolRsp.newBuilder() //
+        RpcQueryPositionListByUniformSymbolRsp.Builder rpcQueryPositionListByUniformSymbolRspBuilder = RpcQueryPositionListByUniformSymbolRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
                 .addAllPosition(positionList);
-        return RpcUtils.generateRpcDep(RpcId.QUERY_POSITION_LIST_BY_UNIFIED_SYMBOL_RSP, transactionId, rpcQueryPositionListByUnifiedSymbolRspBuilder.build().toByteString());
+        return RpcUtils.generateRpcDep(RpcId.QUERY_POSITION_LIST_BY_UNIFORM_SYMBOL_RSP, transactionId, rpcQueryPositionListByUniformSymbolRspBuilder.build().toByteString());
     }
 
     @Override
@@ -555,28 +555,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] getMixContractList(CommonReqField commonReq) {
-        String transactionId = commonReq.getTransactionId();
-
-
-        CommonRspField.Builder commonRspBuilder = CommonRspField.newBuilder() //
-                .setTransactionId(transactionId) //
-                .setErrorId(0);
-
-        List<ContractField> mixContractList = masterTradeCachesService.getMixContractList(commonReq.getOperatorId());
-
-        if (mixContractList == null) {
-            mixContractList = new ArrayList<>();
-        }
-
-        RpcGetMixContractListRsp.Builder rpcGetMixContractListRspBuilder = RpcGetMixContractListRsp.newBuilder() //
-                .setCommonRsp(commonRspBuilder) //
-                .addAllContract(mixContractList);
-        return RpcUtils.generateRpcDep(RpcId.GET_MIX_CONTRACT_LIST_RSP, transactionId, rpcGetMixContractListRspBuilder.build().toByteString());
-    }
-
-    @Override
-    public byte[] queryContractByContractId(CommonReqField commonReq, String contractId) {
+    public byte[] queryContractByUniformSymbol(CommonReqField commonReq, String uniformSymbol) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -586,72 +565,20 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
         ContractField contract = null;
 
-        if (StringUtils.isBlank(contractId)) {
+        if (StringUtils.isBlank(uniformSymbol)) {
             logger.error("参数contractId缺失");
             commonRspBuilder.setErrorId(1).setErrorMsg("合约ID缺失");
         } else {
-            contract = masterTradeCachesService.queryContractByContractId(commonReq.getOperatorId(), contractId);
+            contract = masterTradeCachesService.queryContractByUniformSymbol(commonReq.getOperatorId(), uniformSymbol);
         }
 
-        RpcQueryContractByContractIdRsp.Builder rpcQueryContractByContractIdRsp = RpcQueryContractByContractIdRsp.newBuilder();
+        RpcQueryContractByUniformSymbolRsp.Builder rpcQueryContractByUniformSymbolRsp = RpcQueryContractByUniformSymbolRsp.newBuilder();
         if (contract == null) {
-            rpcQueryContractByContractIdRsp.setCommonRsp(commonRspBuilder);
+            rpcQueryContractByUniformSymbolRsp.setCommonRsp(commonRspBuilder);
         } else {
-            rpcQueryContractByContractIdRsp.setCommonRsp(commonRspBuilder).setContract(contract);
+            rpcQueryContractByUniformSymbolRsp.setCommonRsp(commonRspBuilder).setContract(contract);
         }
-        return RpcUtils.generateRpcDep(RpcId.QUERY_CONTRACT_BY_CONTRACT_ID_RSP, transactionId, rpcQueryContractByContractIdRsp.build().toByteString());
-    }
-
-    @Override
-    public byte[] queryContractListByUnifiedSymbol(CommonReqField commonReq, String unifiedSymbol) {
-        String transactionId = commonReq.getTransactionId();
-
-
-        CommonRspField.Builder commonRspBuilder = CommonRspField.newBuilder() //
-                .setTransactionId(transactionId) //
-                .setErrorId(0);
-
-        List<ContractField> contractList = null;
-        if (StringUtils.isBlank(unifiedSymbol)) {
-            logger.error("参数unifiedSymbol缺失");
-            commonRspBuilder.setErrorId(1).setErrorMsg("参数unifiedSymbol缺失");
-        } else {
-            contractList = masterTradeCachesService.queryContractListByUnifiedSymbol(commonReq.getOperatorId(), unifiedSymbol);
-        }
-        if (contractList == null) {
-            contractList = new ArrayList<>();
-        }
-
-        RpcQueryContractListByUnifiedSymbolRsp.Builder rpcQueryContractListByUnifiedSymbolRspBuilder = RpcQueryContractListByUnifiedSymbolRsp.newBuilder() //
-                .setCommonRsp(commonRspBuilder) //
-                .addAllContract(contractList);
-        return RpcUtils.generateRpcDep(RpcId.QUERY_CONTRACT_LIST_BY_UNIFIED_SYMBOL_RSP, transactionId, rpcQueryContractListByUnifiedSymbolRspBuilder.build().toByteString());
-    }
-
-    @Override
-    public byte[] queryContractListByGatewayId(CommonReqField commonReq, String gatewayId) {
-        String transactionId = commonReq.getTransactionId();
-
-
-        CommonRspField.Builder commonRspBuilder = CommonRspField.newBuilder() //
-                .setTransactionId(transactionId) //
-                .setErrorId(0);
-
-        List<ContractField> contractList = null;
-        if (StringUtils.isBlank(gatewayId)) {
-            logger.error("参数gatewayId缺失");
-            commonRspBuilder.setErrorId(1).setErrorMsg("参数gatewayId缺失");
-        } else {
-            contractList = masterTradeCachesService.queryContractListByUnifiedSymbol(commonReq.getOperatorId(), gatewayId);
-        }
-        if (contractList == null) {
-            contractList = new ArrayList<>();
-        }
-
-        RpcQueryContractListByGatewayIdRsp.Builder rpcQueryContractListByGatewayIdRspBuilder = RpcQueryContractListByGatewayIdRsp.newBuilder() //
-                .setCommonRsp(commonRspBuilder) //
-                .addAllContract(contractList);
-        return RpcUtils.generateRpcDep(RpcId.QUERY_CONTRACT_LIST_BY_GATEWAY_ID_RSP, transactionId, rpcQueryContractListByGatewayIdRspBuilder.build().toByteString());
+        return RpcUtils.generateRpcDep(RpcId.QUERY_CONTRACT_BY_UNIFORM_SYMBOL_RSP, transactionId, rpcQueryContractByUniformSymbolRsp.build().toByteString());
     }
 
     @Override
@@ -705,8 +632,8 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
             if (tickList != null && subscribeKeySet != null && subscribeKeySet.size() > 0) {
                 for (TickField tick : tickList) {
-                    String subscribeKey1 = tick.getUnifiedSymbol();
-                    String subscribeKey2 = tick.getUnifiedSymbol() + "@" + tick.getGatewayId();
+                    String subscribeKey1 = tick.getUniformSymbol();
+                    String subscribeKey2 = tick.getUniformSymbol() + "@" + tick.getGatewayId();
 
                     if (subscribeKeySet.contains(subscribeKey1) || subscribeKeySet.contains(subscribeKey2)) {
                         resultTickList.add(tick);
@@ -724,7 +651,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryDBBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType) {
+    public byte[] queryDBBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, BarPeriodEnum barPeriod, MarketDataDBTypeEnum marketDataDBType) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -736,43 +663,43 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
         if (MarketDataDBTypeEnum.MDDT_MIX.equals(marketDataDBType)) {
             if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_1Day.equals(barPeriod)) {
-                barList = marketDataService.queryBar1DayList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
             }
         } else if (MarketDataDBTypeEnum.MDDT_TD.equals(marketDataDBType)) {
             if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryTodayBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryTodayBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryTodayBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryTodayBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryTodayBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
             }
         } else if (MarketDataDBTypeEnum.MDDT_HIST.equals(marketDataDBType)) {
             if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar5SecList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar1MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar3MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar5MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar15MinList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
             } else if (BarPeriodEnum.B_1Day.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar1DayList(startTimestamp, endTimestamp, unifiedSymbol);
+                barList = marketDataService.queryHistBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
             }
         }
 
@@ -787,7 +714,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryDBTickList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, MarketDataDBTypeEnum marketDataDBType) {
+    public byte[] queryDBTickList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, MarketDataDBTypeEnum marketDataDBType) {
         String transactionId = commonReq.getTransactionId();
 
 
@@ -798,11 +725,11 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
         List<TickField> tickList = null;
 
         if (MarketDataDBTypeEnum.MDDT_MIX.equals(marketDataDBType)) {
-            tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, unifiedSymbol);
+            tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, uniformSymbol);
         } else if (MarketDataDBTypeEnum.MDDT_TD.equals(marketDataDBType)) {
-            tickList = marketDataService.queryTodayTickList(startTimestamp, endTimestamp, unifiedSymbol);
+            tickList = marketDataService.queryTodayTickList(startTimestamp, endTimestamp, uniformSymbol);
         } else if (MarketDataDBTypeEnum.MDDT_HIST.equals(marketDataDBType)) {
-            tickList = marketDataService.queryHistTickList(startTimestamp, endTimestamp, unifiedSymbol);
+            tickList = marketDataService.queryHistTickList(startTimestamp, endTimestamp, uniformSymbol);
         }
 
         if (tickList == null) {
@@ -816,7 +743,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     }
 
     @Override
-    public byte[] queryVolumeBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String unifiedSymbol, int volume) {
+    public byte[] queryVolumeBarList(CommonReqField commonReq, long startTimestamp, long endTimestamp, String uniformSymbol, int volume) {
         String transactionId = commonReq.getTransactionId();
 
         CommonRspField.Builder commonRspBuilder = CommonRspField.newBuilder() //
@@ -824,7 +751,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
                 .setErrorId(0);
 
         List<BarField> barList = null;
-        List<TickField> tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, unifiedSymbol);
+        List<TickField> tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, uniformSymbol);
 
         if (tickList != null && !tickList.isEmpty()) {
             barList = BarUtils.generateVolBar(volume, tickList);

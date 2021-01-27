@@ -9,7 +9,7 @@ public interface FavoriteContractService {
 
 	void deleteContractByUsername(String username);
 
-	void deleteContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol);
+	void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol);
 
-	void upsertContractByUsernameAndUnifiedSymbol(String username, String unifiedSymbol);
+	void upsertContractByUsernameAndUniformSymbol(String username, String uniformSymbol);
 }

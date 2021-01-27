@@ -79,12 +79,12 @@ public class TradeFXBean {
 
     private void updateContract(TradeField newTradeField) {
         VBox vBox = new VBox();
-        Text unifiedSymbolText = new Text(newTradeField.getContract().getUnifiedSymbol());
+        Text uniformSymbolText = new Text(newTradeField.getContract().getUniformSymbol());
         Text shortNameText = new Text(newTradeField.getContract().getName());
-        vBox.getChildren().add(unifiedSymbolText);
+        vBox.getChildren().add(uniformSymbolText);
         vBox.getChildren().add(shortNameText);
         if (contractSelectedFlag) {
-            unifiedSymbolText.getStyleClass().add("trade-remind-color");
+            uniformSymbolText.getStyleClass().add("trade-remind-color");
         }
         vBox.setUserData(newTradeField);
         setContract(vBox);

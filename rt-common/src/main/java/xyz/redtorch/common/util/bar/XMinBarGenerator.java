@@ -21,7 +21,7 @@ public class XMinBarGenerator {
 	private BarField.Builder xMinBarBuilder = null;
 	private LocalDateTime xMinBarLocalDateTime = null;
 
-	private String xMinBarUnifiedSymbol = null;
+	private String xMinBarUniformSymbol = null;
 	
 	CommonBarCallBack commonBarCallBack;
 	private LocalDateTime lastBarLocalDateTime = null;
@@ -43,21 +43,21 @@ public class XMinBarGenerator {
 		
 		// 如果bar为空或者合约不匹配则返回
 		if (bar == null) {
-			logger.warn("输入的Bar数据为空,当前XMinBar合约{}",xMinBarUnifiedSymbol);
+			logger.warn("输入的Bar数据为空,当前XMinBar合约{}",xMinBarUniformSymbol);
 			return;
 		}
 
-		if (xMinBarUnifiedSymbol == null) {
-			xMinBarUnifiedSymbol = bar.getUnifiedSymbol();
-		} else if (!xMinBarUnifiedSymbol.equals(bar.getUnifiedSymbol())) {
-			logger.warn("合约不匹配,当前XMinBar合约{}",xMinBarUnifiedSymbol);
+		if (xMinBarUniformSymbol == null) {
+			xMinBarUniformSymbol = bar.getUniformSymbol();
+		} else if (!xMinBarUniformSymbol.equals(bar.getUniformSymbol())) {
+			logger.warn("合约不匹配,当前XMinBar合约{}",xMinBarUniformSymbol);
 			return;
 		}
 
 		LocalDateTime barLocalDateTime = CommonUtils.millsToLocalDateTime(bar.getActionTimestamp());
 
 		if(lastBarLocalDateTime!=null && barLocalDateTime.isBefore(lastBarLocalDateTime)) {
-			logger.warn("时间乱序,当前XMinBar合约{}",xMinBarUnifiedSymbol);
+			logger.warn("时间乱序,当前XMinBar合约{}",xMinBarUniformSymbol);
 		}
 		
 		lastBarLocalDateTime = barLocalDateTime;
@@ -79,7 +79,7 @@ public class XMinBarGenerator {
 
 		if (xMinBarBuilder == null) {
 			xMinBarBuilder = BarField.newBuilder();
-			xMinBarBuilder.setUnifiedSymbol(bar.getUnifiedSymbol());
+			xMinBarBuilder.setUniformSymbol(bar.getUniformSymbol());
 			xMinBarBuilder.setGatewayId(bar.getGatewayId());
 
 			xMinBarBuilder.setTradingDay(bar.getTradingDay());

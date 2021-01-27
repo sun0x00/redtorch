@@ -86,7 +86,7 @@ public class TradeLayout {
 
             for (TradeField trade : filteredTradeList) {
 
-                String key = trade.getContract().getUnifiedSymbol() + "#" + trade.getDirection().getValueDescriptor() + "#" + trade.getOffsetFlagValue();
+                String key = trade.getContract().getUniformSymbol() + "#" + trade.getDirection().getValueDescriptor() + "#" + trade.getOffsetFlagValue();
 
                 TradeField.Builder tradeFieldBuilder;
                 if (mergedTradeFieldBuilderMap.containsKey(key)) {
@@ -161,7 +161,7 @@ public class TradeLayout {
             try {
                 TradeField trade1 = (TradeField) p1.getUserData();
                 TradeField trade2 = (TradeField) p2.getUserData();
-                return StringUtils.compare(trade1.getContract().getUnifiedSymbol(), trade2.getContract().getUnifiedSymbol());
+                return StringUtils.compare(trade1.getContract().getUniformSymbol(), trade2.getContract().getUniformSymbol());
             } catch (Exception e) {
                 logger.error("排序错误", e);
             }
