@@ -1,349 +1,222 @@
 package xyz.redtorch.common.web.socket;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.socket.BinaryMessage;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.PingMessage;
-import org.springframework.web.socket.PongMessage;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.*;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
-
-import xyz.redtorch.common.service.RpcClientProcessService;
-
-import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.ByteBuffer;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import xyz.redtorch.common.constant.CommonConstant;
+import xyz.redtorch.common.util.UUIDStringPoolUtils;
 
 import java.io.IOException;
+import java.net.URI;
+import java.nio.ByteBuffer;
 
 public class RtWebSocketClient {
-	private static final Logger logger = LoggerFactory.getLogger(RtWebSocketClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(RtWebSocketClient.class);
 
-	private RpcClientProcessService rpcClientProcessService;
-	private String masterServerUri;
-	private Boolean autoReconnect = true;
-	private int nodeId;
-	private String token;
-	private Boolean skipTradeEvents = true;
-	private String operatorId;
-	private Boolean usingHttpSession = false;
-	private HttpHeaders httpHeaders;
+    private URI websocketUri;
+    private String authToken;
 
-	private boolean initialized = false;
+    private final String clientId = UUIDStringPoolUtils.getUUIDString();
+    private final WebSocketClient webSocketClient = new StandardWebSocketClient();
+    private final WebSocketHandler webSocketHandler;
+    private ThreadSafeWebSocketSession webSocketSession;
 
-	public String getMasterServerUri() {
-		return masterServerUri;
-	}
+    private boolean connectedFlag = false;
+    private boolean connectingFlag = false;
+    private boolean authFailFlag = false;
 
-	public void setMasterServerUri(String masterServerUri) {
-		this.masterServerUri = masterServerUri;
-	}
+    public RtWebSocketClient( URI websocketUri, RtWebSocketClientCallBack callBack) {
+        this.websocketUri = websocketUri;
 
-	public Boolean getAutoReconnect() {
-		return autoReconnect;
-	}
+        webSocketHandler = new AbstractWebSocketHandler() {
+            private void tryClose(WebSocketSession session){
+                try {
+                    if(session.isOpen()){
+                        session.close();
+                    }
+                    webSocketSession = null;
+                    connectingFlag = false;
+                    connectedFlag = false;
+                } catch (Exception e) {
+                    logger.error("关闭异常,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+                }
+            }
 
-	public void setAutoReconnect(Boolean autoReconnect) {
-		this.autoReconnect = autoReconnect;
-	}
+            @Override
+            public void afterConnectionEstablished(WebSocketSession session) {
+                logger.info("连接已建立,准备发起验证,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
+                connectingFlag = true;
+                try {
+                    JSONObject jsonData = new JSONObject();
+                    jsonData.put(CommonConstant.KEY_AUTH_TOKEN, authToken);
+                    session.sendMessage(new TextMessage(jsonData.toJSONString()));
+                } catch (Exception e) {
+                    logger.error("发送验证信息异常,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
+                    tryClose(session);
+                }
+            }
 
-	public int getNodeId() {
-		return nodeId;
-	}
+            @Override
+            public void handleTextMessage(WebSocketSession session, TextMessage message) {
+                try {
+                    if (connectedFlag) {
+                        logger.error("重复推送文本消息,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
+                        tryClose(session);
+                    } else {
+                        String data = message.getPayload();
+                        if (JSON.parseObject(data).getBoolean(CommonConstant.KEY_VERIFIED)) {
+                            logger.info("连接已通过验证,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
+                            webSocketSession = new ThreadSafeWebSocketSession(session);
+                            connectedFlag = true;
+                            connectingFlag = false;
+                            callBack.onConnected(clientId);
+                        }else{
+                            authFailFlag = true;
+                            logger.error("连接已通过失败,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
+                            tryClose(session);
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.error("处理文本消息数据发生错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(),e);
+                    tryClose(session);
+                }
+            }
 
-	public void setNodeId(int nodeId) {
-		this.nodeId = nodeId;
-	}
+            @Override
+            protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
+                ByteBuffer byteBuffer = message.getPayload();
+                byte[] data = new byte[byteBuffer.remaining()];
+                byteBuffer.get(data);
+                callBack.onBinaryMessage(clientId, data);
+            }
 
-	public String getToken() {
-		return token;
-	}
+            @Override
+            protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {
+                long pingTimestamp = message.getPayload().asLongBuffer().get();
+                callBack.onPongMessage(clientId, pingTimestamp);
+            }
 
-	public void setToken(String token) {
-		this.token = token;
-	}
+            @Override
+            public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+                logger.error("传输错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(),exception);
+                tryClose(session);
+            }
 
-	public Boolean getSkipTradeEvents() {
-		return skipTradeEvents;
-	}
+            @Override
+            public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+                logger.error("连接已关闭,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
+                webSocketSession = null;
+                connectedFlag = false;
+                connectingFlag = false;
+            }
+        };
+    }
 
-	public void setSkipTradeEvents(Boolean skipTradeEvents) {
-		this.skipTradeEvents = skipTradeEvents;
-	}
+    public URI getWebsocketUri() {
+        return websocketUri;
+    }
 
-	public String getOperatorId() {
-		return operatorId;
-	}
+    public void setWebsocketUri(URI websocketUri) {
+        this.websocketUri = websocketUri;
+    }
 
-	public void setOperatorId(String operatorId) {
-		this.operatorId = operatorId;
-	}
+    public String getAuthToken() {
+        return authToken;
+    }
 
-	public Boolean getUsingHttpSession() {
-		return usingHttpSession;
-	}
+    public void setAuthToken(String authToken) {
+        this.authFailFlag = false;
+        this.authToken = authToken;
+    }
 
-	public void setUsingHttpSession(Boolean usingHttpSession) {
-		this.usingHttpSession = usingHttpSession;
-	}
+    public String getClientId(){
+        return  clientId;
+    }
 
-	public HttpHeaders getHttpHeaders() {
-		return httpHeaders;
-	}
+    public long ping(){
+        long pingTimestamp = System.currentTimeMillis();
 
-	public void setHttpHeaders(HttpHeaders httpHeaders) {
-		this.httpHeaders = httpHeaders;
-	}
+        if (connectingFlag ||!connectedFlag ||webSocketSession == null) {
+            logger.error("发送PING错误,会话不存在,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+        }else if (!webSocketSession.isOpen()) {
+            logger.error("发送PING错误,会话处于关闭状态,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+        }
+        try {
+            ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(pingTimestamp).flip();
+            PingMessage message = new PingMessage(byteBuffer);
+            webSocketSession.sendMessage(message);
+        } catch (IOException e) {
+            logger.error("发送PING错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(),e);
+        }
+        return pingTimestamp;
+    }
 
-	private ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+    public void connect() {
+        try {
+            if (!connectingFlag) {
+                logger.info("开始连接,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+                connectingFlag = true;
+                webSocketClient.doHandshake(webSocketHandler, new WebSocketHttpHeaders(), websocketUri).get();
+            } else {
+                logger.warn("拒绝发起新连接,仍在验证中,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+            }
+        } catch (Exception e) {
+            logger.error("发起连接错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+            connectingFlag = false;
+            connectedFlag = false;
+        }
+    }
 
-	private ExecutorService executor = Executors.newCachedThreadPool();
+    public void close(CloseStatus closeStatus) {
+        try {
+            if (webSocketSession != null) {
+                webSocketSession.close(closeStatus);
+            }
+        } catch (Exception e) {
+            logger.error("关闭连接错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+        }
+        webSocketSession = null;
+        connectingFlag = false;
+        connectedFlag = false;
+    }
 
-	private WebSocketClient webSocketClient = new StandardWebSocketClient();
-	private WebSocketHandler webSocketHandler;
-	private ThreadSafeWebSocketSession webSocketSession;
+    public boolean isConnected(){
+        return connectedFlag;
+    }
 
-	private LinkedBlockingQueue<byte[]> dataQueue = new LinkedBlockingQueue<>();
+    public boolean isAuthFailed(){
+        return authFailFlag;
+    }
 
-	private Long pingStartTimestamp = null;
+    public boolean sendData(byte[] data) {
+        if (connectingFlag ||!connectedFlag ||webSocketSession == null) {
+            logger.error("发送二进制数据错误,会话不存在,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+            return false;
+        }
+        if (!webSocketSession.isOpen()) {
+            logger.error("发送二进制数据错误,会话处于关闭状态,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+            return false;
+        }
+        BinaryMessage message = new BinaryMessage(data);
+        try {
+            webSocketSession.sendMessage(message);
+            return true;
+        } catch (IOException e) {
+            logger.error("发送二进制数据错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(),e);
+            return false;
+        }
+    }
 
-	public RtWebSocketClient(RpcClientProcessService rpcClientProcessService) {
-		this.rpcClientProcessService = rpcClientProcessService;
-		webSocketHandler = new AbstractWebSocketHandler() {
-			@Override
-			public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-				session.getHandshakeHeaders();
-				logger.info("连接已建立,会话ID:{}", session.getId());
-				webSocketSession = new ThreadSafeWebSocketSession(session);
-				executor.execute(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							rpcClientProcessService.onWsConnected();
-						} catch (Exception e) {
-							logger.error("建立连接后响应方法异常", e);
-						}
-					}
-				});
-			}
-
-			@Override
-			public void handleTextMessage(WebSocketSession session, TextMessage message)
-					throws InterruptedException, IOException {
-				logger.warn("接收到文本消息,会话ID:{}", session.getId());
-				session.close(CloseStatus.NOT_ACCEPTABLE.withReason("Text messages not supported"));
-			}
-
-			@Override
-			protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
-				ByteBuffer byteBuffer = message.getPayload();
-				byte[] data = new byte[byteBuffer.remaining()];
-				byteBuffer.get(data);
-				dataQueue.put(data);
-			}
-
-			@Override
-			protected void handlePongMessage(WebSocketSession session, PongMessage message) throws Exception {
-				Long pingTimestamp = message.getPayload().asLongBuffer().get();
-				Long delay = System.currentTimeMillis() - pingTimestamp;
-				executor.execute(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							rpcClientProcessService.onHeartbeat(delay + "ms");
-						} catch (Exception e) {
-							logger.error("心跳响应方法异常", e);
-						}
-					}
-				});
-				logger.info("收到PONG,延时{}ms", delay);
-				pingStartTimestamp = null;
-			}
-
-			@Override
-			public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-				logger.error("传输错误,会话ID:{}", session.getId(), exception);
-				executor.execute(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							rpcClientProcessService.onWsError();
-						} catch (Exception e) {
-							logger.error("连接错误后响应方法异常", e);
-						}
-					}
-				});
-				try {
-					if (session.isOpen()) {
-						session.close();
-					}
-				} catch (Exception e) {
-					logger.error("关闭会话错误,会话ID:{}", session.getId(), exception);
-				}
-
-			}
-
-			@Override
-			public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-				logger.info("连接已关闭,会话ID:{}", session.getId());
-				webSocketSession = null;
-				executor.execute(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							rpcClientProcessService.onWsClosed();
-						} catch (Exception e) {
-							logger.error("连接关闭后响应方法异常", e);
-						}
-					}
-				});
-			}
-		};
-	}
-
-	public void initialize() {
-		if (!initialized) {
-
-			executor.execute(new Runnable() {
-				@Override
-				public void run() {
-					while (true) {
-						try {
-							byte[] data = dataQueue.take();
-							rpcClientProcessService.processData(data);
-						} catch (Exception e) {
-							logger.error("数据队列处理线程发生错误", e);
-						}
-
-					}
-				}
-			});
-
-			if (autoReconnect) {
-				logger.warn("自动重连服务器已启用");
-			} else {
-				logger.warn("自动重连服务器未启用");
-			}
-
-			scheduledExecutorService.scheduleAtFixedRate(() -> {
-				try {
-
-					if (pingStartTimestamp != null) {
-						if (System.currentTimeMillis() - pingStartTimestamp > 21000) {
-							logger.error("PING服务器超时,主动断开");
-							WebSocketSession closeWebSocketSession = webSocketSession;
-							webSocketSession = null;
-							closeWebSocketSession.close();
-							pingStartTimestamp = null;
-						}
-					}
-
-					if (webSocketSession != null && webSocketSession.isOpen()) {
-						logger.info("PING服务器");
-						ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(System.currentTimeMillis())
-								.flip();
-						PingMessage message = new PingMessage(byteBuffer);
-						webSocketSession.sendMessage(message);
-						if (pingStartTimestamp == null) {
-							pingStartTimestamp = System.currentTimeMillis();
-						}
-					}
-				} catch (Exception e) {
-					if (rpcClientProcessService != null) {
-						executor.execute(new Runnable() {
-							@Override
-							public void run() {
-								try {
-									rpcClientProcessService.onHeartbeat("ERROR");
-								} catch (Exception e) {
-									logger.error("心跳响应方法异常", e);
-								}
-							}
-						});
-					}
-					logger.error("定时PING发生异常", e);
-				}
-			}, 10, 10, TimeUnit.SECONDS);
-
-			scheduledExecutorService.scheduleWithFixedDelay(() -> {
-				try {
-					if (autoReconnect) {
-						if (webSocketSession == null || !webSocketSession.isOpen()) {
-							logger.info("自动重连服务器");
-							connect();
-						}
-					}
-				} catch (Exception e) {
-					logger.error("自动重连服务器发生异常");
-				}
-			}, 3, 3, TimeUnit.SECONDS);
-
-			initialized = true;
-		}
-
-	}
-
-	public void connect() {
-		try {
-			if (usingHttpSession) {
-				webSocketClient
-						.doHandshake(webSocketHandler, new WebSocketHttpHeaders(httpHeaders),
-								URI.create(masterServerUri + "?nodeId=" + URLEncoder.encode(nodeId + "", "utf-8")
-										+ "&skipTradeEvents=" + URLEncoder.encode(skipTradeEvents + "", "utf-8")))
-						.get();
-			} else {
-				webSocketClient.doHandshake(webSocketHandler, new WebSocketHttpHeaders(),
-						URI.create(masterServerUri + "?nodeId=" + URLEncoder.encode(nodeId + "", "utf-8") + "&token="
-								+ URLEncoder.encode(token, "utf-8") + "&skipTradeEvents="
-								+ URLEncoder.encode(skipTradeEvents + "", "utf-8") + "&operatorId="
-								+ URLEncoder.encode(operatorId, "utf-8")))
-						.get();
-			}
-
-		} catch (Exception e) {
-			logger.error("连接服务器发生错误", e);
-		}
-	}
-
-	public void clsoe(CloseStatus closeStatus) {
-		try {
-			if (webSocketSession != null) {
-				webSocketSession.close(closeStatus);
-			}
-		} catch (Exception e) {
-			logger.error("关闭连接错误", e);
-		}
-	}
-
-	public boolean sendData(byte[] data) {
-		if (webSocketSession == null) {
-			logger.error("发送二进制数据错误,未能找到会话");
-			return false;
-		}
-		if (!webSocketSession.isOpen()) {
-			logger.error("发送二进制数据错误,会话处于关闭状态,会话ID:{}", webSocketSession.getId());
-			return false;
-		}
-		BinaryMessage message = new BinaryMessage(data);
-		try {
-			webSocketSession.sendMessage(message);
-			return true;
-		} catch (IOException e) {
-			logger.error("发送二进制数据错误,会话ID:{}", webSocketSession.getId(), e);
-			return false;
-		}
-	}
+    public interface RtWebSocketClientCallBack {
+        void onDisconnected(String clientId);
+        void onConnected(String clientId);
+        void onBinaryMessage(String clientId, byte[] data);
+        void onPongMessage(String clientId, long pingTimestamp);
+    }
 
 }

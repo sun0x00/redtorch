@@ -1,20 +1,16 @@
 package xyz.redtorch.common.util;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CommonFileUtils {
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
+public class CommonFileUtils {
+	
 	private static final Logger logger = LoggerFactory.getLogger(CommonFileUtils.class);
 
 	public static List<String> getFileAbsolutePathList(String path, boolean includeSubfolders) {
@@ -33,12 +29,12 @@ public class CommonFileUtils {
 				}
 			}
 		} else {
-			logger.warn("文件列表为空，路径{}", path);
+			logger.warn("文件列表为空，路径{}",path);
 		}
 		return fileAbsolutePathList;
 	}
 
-	public static List<String> getFileAbsolutePathList(String path, boolean includeSubfolders, String... suffixes) {
+	public static List<String> getFileAbsolutePathList(String path, boolean includeSubFolders, String... suffixes) {
 
 		Set<String> suffixSet = new HashSet<>();
 		for (String suffix : suffixes) {
@@ -53,9 +49,8 @@ public class CommonFileUtils {
 
 		if (tmpFileList != null) {
 			for (File tmpFile : tmpFileList) {
-				if (tmpFile.isDirectory() && includeSubfolders) {
-					fileAbsolutePathList
-							.addAll(getFileAbsolutePathList(tmpFile.getAbsolutePath(), includeSubfolders, suffixes));
+				if (tmpFile.isDirectory() && includeSubFolders) {
+					fileAbsolutePathList.addAll(getFileAbsolutePathList(tmpFile.getAbsolutePath(), includeSubFolders, suffixes));
 				} else {
 					String tmpAbsolutePath = tmpFile.getAbsolutePath();
 					for (String suffix : suffixSet) {
@@ -67,15 +62,16 @@ public class CommonFileUtils {
 				}
 			}
 		} else {
-			logger.warn("文件列表为空，路径{}", path);
+			logger.warn("文件列表为空，路径{}",path);
 		}
 		return fileAbsolutePathList;
 	}
-
+	
 	/**
 	 * 读取文件到字符串
 	 * 
-	 * @param file
+	 * @param filePath
+	 * @param encoding
 	 * @return
 	 */
 	public static String readFileToString(String filePath, String encoding) {
@@ -86,8 +82,7 @@ public class CommonFileUtils {
 		}
 		try (FileReader fileReader = new FileReader(filePath); Scanner scanner = new Scanner(fileReader);) {
 			// Read the entire contents of sample.txt
-			String content = FileUtils.readFileToString(tmpFile, encoding);
-			return content;
+			return FileUtils.readFileToString(tmpFile, encoding);
 		} catch (Exception e) {
 			logger.error("读取发生异常", e);
 		}

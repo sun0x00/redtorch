@@ -1,33 +1,20 @@
 package xyz.redtorch.common.service.impl;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+import com.lmax.disruptor.*;
+import com.lmax.disruptor.dsl.Disruptor;
+import com.lmax.disruptor.dsl.ProducerType;
+import com.lmax.disruptor.util.DaemonThreadFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
-import com.lmax.disruptor.BatchEventProcessor;
-import com.lmax.disruptor.BlockingWaitStrategy;
-import com.lmax.disruptor.BusySpinWaitStrategy;
-import com.lmax.disruptor.EventHandler;
-import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.SleepingWaitStrategy;
-import com.lmax.disruptor.YieldingWaitStrategy;
-import com.lmax.disruptor.dsl.Disruptor;
-import com.lmax.disruptor.dsl.ProducerType;
-import com.lmax.disruptor.util.DaemonThreadFactory;
-
 import xyz.redtorch.common.service.FastEventService;
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.NoticeField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
+import xyz.redtorch.pb.CoreField.*;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 //@Service
 public class FastEventServiceImpl implements FastEventService, InitializingBean {
@@ -42,7 +29,7 @@ public class FastEventServiceImpl implements FastEventService, InitializingBean 
 
 	private RingBuffer<FastEvent> ringBuffer;
 
-	@Value("${rt.common.service.fast-event-wait-strategy}")
+	@Value("${xyz.redtorch.common.service.impl.FastEventServiceImpl.waitStrategy}")
 	private String waitStrategy;
 
 	@Override
@@ -84,8 +71,7 @@ public class FastEventServiceImpl implements FastEventService, InitializingBean 
 			try {
 				handler.awaitShutdown();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
-				logger.error("关闭时发生异常", e);
+				logger.error("捕获到中断",e);
 			}
 			// Remove the gating sequence from the ring buffer
 			ringBuffer.removeGatingSequence(processor.getSequence());
@@ -175,7 +161,7 @@ public class FastEventServiceImpl implements FastEventService, InitializingBean 
 		try {
 			FastEvent fastEvent = ringBuffer.get(sequence); // Get the entry in the Disruptor for the sequence
 			fastEvent.setObj(tick);
-			fastEvent.setEvent(tick.getUnifiedSymbol() + "@" + tick.getGatewayId());
+			fastEvent.setEvent(tick.getUniformSymbol()+"@"+tick.getGatewayId());
 			fastEvent.setFastEventType(FastEventType.TICK);
 
 		} finally {

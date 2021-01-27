@@ -21,10 +21,10 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 	private static final Logger logger = LoggerFactory.getLogger(CtpGatewayImpl.class);
 
 	static {
-		String envTmpDir = "";
+		String envTmpDir;
 		String tempLibPath = "";
 		try {
-			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			if (System.getProperties().getProperty("os.name").toUpperCase().contains("WINDOWS")) {
 
 				envTmpDir = System.getProperty("java.io.tmpdir");
 				tempLibPath = envTmpDir + File.separator + "xyz" + File.separator + "redtorch" + File.separator + "api" + File.separator + "jctp" + File.separator + "lib" + File.separator
@@ -49,7 +49,7 @@ public class CtpGatewayImpl extends GatewayApiAbstract {
 		}
 
 		try {
-			if (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS") != -1) {
+			if (System.getProperties().getProperty("os.name").toUpperCase().contains("WINDOWS")) {
 				System.load(tempLibPath + File.separator + "libiconv.dll");
 				System.load(tempLibPath + File.separator + "thostmduserapi_se.dll");
 				System.load(tempLibPath + File.separator + "thosttraderapi_se.dll");

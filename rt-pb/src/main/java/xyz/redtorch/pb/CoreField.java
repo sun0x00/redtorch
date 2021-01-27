@@ -536,7 +536,7 @@ public final class CoreField {
       if (gatewayAdapterType_ != xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.GAT_CTP.getNumber()) {
         output.writeEnum(5, gatewayAdapterType_);
       }
-      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unkonwn.getNumber()) {
+      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
         output.writeEnum(6, status_);
       }
       if (authErrorFlag_ != false) {
@@ -568,7 +568,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, gatewayAdapterType_);
       }
-      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unkonwn.getNumber()) {
+      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_);
       }
@@ -1607,20 +1607,20 @@ public final class CoreField {
      * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
      * </pre>
      *
-     * <code>string unifiedSymbol = 7;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 7;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
      * <pre>
      * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
      * </pre>
      *
-     * <code>string unifiedSymbol = 7;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 7;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <pre>
@@ -1928,7 +1928,7 @@ public final class CoreField {
       name_ = "";
       fullName_ = "";
       thirdPartyId_ = "";
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
       symbol_ = "";
       exchange_ = 0;
       productClass_ = 0;
@@ -1997,7 +1997,7 @@ public final class CoreField {
             case 58: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 66: {
@@ -2325,26 +2325,26 @@ public final class CoreField {
       }
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 7;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 7;
+    private volatile java.lang.Object uniformSymbol_;
     /**
      * <pre>
      * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
      * </pre>
      *
-     * <code>string unifiedSymbol = 7;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 7;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
@@ -2353,18 +2353,18 @@ public final class CoreField {
      * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
      * </pre>
      *
-     * <code>string unifiedSymbol = 7;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 7;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -2881,8 +2881,8 @@ public final class CoreField {
       if (!getThirdPartyIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, thirdPartyId_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, uniformSymbol_);
       }
       if (!getSymbolBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, symbol_);
@@ -2965,8 +2965,8 @@ public final class CoreField {
       if (!getThirdPartyIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, thirdPartyId_);
       }
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, uniformSymbol_);
       }
       if (!getSymbolBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, symbol_);
@@ -3067,8 +3067,8 @@ public final class CoreField {
           .equals(other.getFullName())) return false;
       if (!getThirdPartyId()
           .equals(other.getThirdPartyId())) return false;
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!getSymbol()
           .equals(other.getSymbol())) return false;
       if (exchange_ != other.exchange_) return false;
@@ -3129,8 +3129,8 @@ public final class CoreField {
       hash = (53 * hash) + getFullName().hashCode();
       hash = (37 * hash) + THIRDPARTYID_FIELD_NUMBER;
       hash = (53 * hash) + getThirdPartyId().hashCode();
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + SYMBOL_FIELD_NUMBER;
       hash = (53 * hash) + getSymbol().hashCode();
       hash = (37 * hash) + EXCHANGE_FIELD_NUMBER;
@@ -3323,7 +3323,7 @@ public final class CoreField {
 
         thirdPartyId_ = "";
 
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         symbol_ = "";
 
@@ -3395,7 +3395,7 @@ public final class CoreField {
         result.name_ = name_;
         result.fullName_ = fullName_;
         result.thirdPartyId_ = thirdPartyId_;
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.symbol_ = symbol_;
         result.exchange_ = exchange_;
         result.productClass_ = productClass_;
@@ -3480,8 +3480,8 @@ public final class CoreField {
           thirdPartyId_ = other.thirdPartyId_;
           onChanged();
         }
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (!other.getSymbol().isEmpty()) {
@@ -3961,22 +3961,22 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
        * <pre>
        * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
        * </pre>
        *
-       * <code>string unifiedSymbol = 7;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 7;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3987,17 +3987,17 @@ public final class CoreField {
        * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
        * </pre>
        *
-       * <code>string unifiedSymbol = 7;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 7;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -4008,17 +4008,17 @@ public final class CoreField {
        * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
        * </pre>
        *
-       * <code>string unifiedSymbol = 7;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 7;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -4027,12 +4027,12 @@ public final class CoreField {
        * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
        * </pre>
        *
-       * <code>string unifiedSymbol = 7;</code>
+       * <code>string uniformSymbol = 7;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
@@ -4041,18 +4041,18 @@ public final class CoreField {
        * 统一ID，通常是 &lt;合约代码&#64;交易所代码&#64;产品类型&gt;
        * </pre>
        *
-       * <code>string unifiedSymbol = 7;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 7;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -10102,7 +10102,7 @@ public final class CoreField {
       if (direction_ != xyz.redtorch.pb.CoreEnum.DirectionEnum.D_Unknown.getNumber()) {
         output.writeEnum(9, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         output.writeEnum(10, offsetFlag_);
       }
       if (hedgeFlag_ != xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.HF_Unknown.getNumber()) {
@@ -10123,25 +10123,25 @@ public final class CoreField {
       if (tradedVolume_ != 0) {
         output.writeFixed32(16, tradedVolume_);
       }
-      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unkonwn.getNumber()) {
+      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unknown.getNumber()) {
         output.writeEnum(17, timeCondition_);
       }
       if (!getGtdDateBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 18, gtdDate_);
       }
-      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unkonwn.getNumber()) {
+      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unknown.getNumber()) {
         output.writeEnum(19, volumeCondition_);
       }
       if (minVolume_ != 0) {
         output.writeFixed32(20, minVolume_);
       }
-      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unkonwn.getNumber()) {
+      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unknown.getNumber()) {
         output.writeEnum(21, contingentCondition_);
       }
       if (stopPrice_ != 0D) {
         output.writeDouble(22, stopPrice_);
       }
-      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unkonwn.getNumber()) {
+      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unknown.getNumber()) {
         output.writeEnum(23, forceCloseReason_);
       }
       if (autoSuspend_ != 0) {
@@ -10229,7 +10229,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(10, offsetFlag_);
       }
@@ -10257,14 +10257,14 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(16, tradedVolume_);
       }
-      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unkonwn.getNumber()) {
+      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(17, timeCondition_);
       }
       if (!getGtdDateBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(18, gtdDate_);
       }
-      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unkonwn.getNumber()) {
+      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(19, volumeCondition_);
       }
@@ -10272,7 +10272,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(20, minVolume_);
       }
-      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unkonwn.getNumber()) {
+      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(21, contingentCondition_);
       }
@@ -10280,7 +10280,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(22, stopPrice_);
       }
-      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unkonwn.getNumber()) {
+      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(23, forceCloseReason_);
       }
@@ -15788,7 +15788,7 @@ public final class CoreField {
       if (direction_ != xyz.redtorch.pb.CoreEnum.DirectionEnum.D_Unknown.getNumber()) {
         output.writeEnum(12, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         output.writeEnum(13, offsetFlag_);
       }
       if (hedgeFlag_ != xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.HF_Unknown.getNumber()) {
@@ -15800,10 +15800,10 @@ public final class CoreField {
       if (volume_ != 0) {
         output.writeFixed32(16, volume_);
       }
-      if (tradeType_ != xyz.redtorch.pb.CoreEnum.TradeTypeEnum.TT_Unkonwn.getNumber()) {
+      if (tradeType_ != xyz.redtorch.pb.CoreEnum.TradeTypeEnum.TT_Unknown.getNumber()) {
         output.writeEnum(17, tradeType_);
       }
-      if (priceSource_ != xyz.redtorch.pb.CoreEnum.PriceSourceEnum.PSRC_Unkonwn.getNumber()) {
+      if (priceSource_ != xyz.redtorch.pb.CoreEnum.PriceSourceEnum.PSRC_Unknown.getNumber()) {
         output.writeEnum(18, priceSource_);
       }
       if (!getTradingDayBytes().isEmpty()) {
@@ -15870,7 +15870,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(12, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(13, offsetFlag_);
       }
@@ -15886,11 +15886,11 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(16, volume_);
       }
-      if (tradeType_ != xyz.redtorch.pb.CoreEnum.TradeTypeEnum.TT_Unkonwn.getNumber()) {
+      if (tradeType_ != xyz.redtorch.pb.CoreEnum.TradeTypeEnum.TT_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(17, tradeType_);
       }
-      if (priceSource_ != xyz.redtorch.pb.CoreEnum.PriceSourceEnum.PSRC_Unkonwn.getNumber()) {
+      if (priceSource_ != xyz.redtorch.pb.CoreEnum.PriceSourceEnum.PSRC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(18, priceSource_);
       }
@@ -21869,20 +21869,20 @@ public final class CoreField {
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
      * <pre>
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <pre>
@@ -22367,7 +22367,7 @@ public final class CoreField {
       super(builder);
     }
     private TickField() {
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
       gatewayId_ = "";
       tradingDay_ = "";
       actionDay_ = "";
@@ -22412,7 +22412,7 @@ public final class CoreField {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 18: {
@@ -22702,26 +22702,26 @@ public final class CoreField {
               xyz.redtorch.pb.CoreField.TickField.class, xyz.redtorch.pb.CoreField.TickField.Builder.class);
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object uniformSymbol_;
     /**
      * <pre>
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
@@ -22730,18 +22730,18 @@ public final class CoreField {
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -23512,8 +23512,8 @@ public final class CoreField {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uniformSymbol_);
       }
       if (!getGatewayIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayId_);
@@ -23645,8 +23645,8 @@ public final class CoreField {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uniformSymbol_);
       }
       if (!getGatewayIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayId_);
@@ -23827,8 +23827,8 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.TickField other = (xyz.redtorch.pb.CoreField.TickField) obj;
 
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!getGatewayId()
           .equals(other.getGatewayId())) return false;
       if (!getTradingDay()
@@ -23929,8 +23929,8 @@ public final class CoreField {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + GATEWAYID_FIELD_NUMBER;
       hash = (53 * hash) + getGatewayId().hashCode();
       hash = (37 * hash) + TRADINGDAY_FIELD_NUMBER;
@@ -24172,7 +24172,7 @@ public final class CoreField {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         gatewayId_ = "";
 
@@ -24271,7 +24271,7 @@ public final class CoreField {
       public xyz.redtorch.pb.CoreField.TickField buildPartial() {
         xyz.redtorch.pb.CoreField.TickField result = new xyz.redtorch.pb.CoreField.TickField(this);
         int from_bitField0_ = bitField0_;
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.gatewayId_ = gatewayId_;
         result.tradingDay_ = tradingDay_;
         result.actionDay_ = actionDay_;
@@ -24371,8 +24371,8 @@ public final class CoreField {
 
       public Builder mergeFrom(xyz.redtorch.pb.CoreField.TickField other) {
         if (other == xyz.redtorch.pb.CoreField.TickField.getDefaultInstance()) return this;
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (!other.getGatewayId().isEmpty()) {
@@ -24542,22 +24542,22 @@ public final class CoreField {
       }
       private int bitField0_;
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
        * <pre>
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 1;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -24568,17 +24568,17 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 1;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -24589,17 +24589,17 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 1;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -24608,12 +24608,12 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
+       * <code>string uniformSymbol = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
@@ -24622,18 +24622,18 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 1;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -26672,20 +26672,20 @@ public final class CoreField {
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The uniformSymbol.
      */
-    java.lang.String getUnifiedSymbol();
+    java.lang.String getUniformSymbol();
     /**
      * <pre>
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The bytes for uniformSymbol.
      */
     com.google.protobuf.ByteString
-        getUnifiedSymbolBytes();
+        getUniformSymbolBytes();
 
     /**
      * <pre>
@@ -26944,7 +26944,7 @@ public final class CoreField {
       super(builder);
     }
     private BarField() {
-      unifiedSymbol_ = "";
+      uniformSymbol_ = "";
       gatewayId_ = "";
       tradingDay_ = "";
       actionDay_ = "";
@@ -26984,7 +26984,7 @@ public final class CoreField {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              unifiedSymbol_ = s;
+              uniformSymbol_ = s;
               break;
             }
             case 18: {
@@ -27123,26 +27123,26 @@ public final class CoreField {
               xyz.redtorch.pb.CoreField.BarField.class, xyz.redtorch.pb.CoreField.BarField.Builder.class);
     }
 
-    public static final int UNIFIEDSYMBOL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object unifiedSymbol_;
+    public static final int UNIFORMSYMBOL_FIELD_NUMBER = 1;
+    private volatile java.lang.Object uniformSymbol_;
     /**
      * <pre>
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The uniformSymbol.
      */
     @java.lang.Override
-    public java.lang.String getUnifiedSymbol() {
-      java.lang.Object ref = unifiedSymbol_;
+    public java.lang.String getUniformSymbol() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        unifiedSymbol_ = s;
+        uniformSymbol_ = s;
         return s;
       }
     }
@@ -27151,18 +27151,18 @@ public final class CoreField {
      * 统一合约标识
      * </pre>
      *
-     * <code>string unifiedSymbol = 1;</code>
-     * @return The bytes for unifiedSymbol.
+     * <code>string uniformSymbol = 1;</code>
+     * @return The bytes for uniformSymbol.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getUnifiedSymbolBytes() {
-      java.lang.Object ref = unifiedSymbol_;
+        getUniformSymbolBytes() {
+      java.lang.Object ref = uniformSymbol_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        unifiedSymbol_ = b;
+        uniformSymbol_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -27607,8 +27607,8 @@ public final class CoreField {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uniformSymbol_);
       }
       if (!getGatewayIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayId_);
@@ -27679,8 +27679,8 @@ public final class CoreField {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUnifiedSymbolBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, unifiedSymbol_);
+      if (!getUniformSymbolBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uniformSymbol_);
       }
       if (!getGatewayIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayId_);
@@ -27773,8 +27773,8 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.BarField other = (xyz.redtorch.pb.CoreField.BarField) obj;
 
-      if (!getUnifiedSymbol()
-          .equals(other.getUnifiedSymbol())) return false;
+      if (!getUniformSymbol()
+          .equals(other.getUniformSymbol())) return false;
       if (!getGatewayId()
           .equals(other.getGatewayId())) return false;
       if (!getTradingDay()
@@ -27837,8 +27837,8 @@ public final class CoreField {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + UNIFIEDSYMBOL_FIELD_NUMBER;
-      hash = (53 * hash) + getUnifiedSymbol().hashCode();
+      hash = (37 * hash) + UNIFORMSYMBOL_FIELD_NUMBER;
+      hash = (53 * hash) + getUniformSymbol().hashCode();
       hash = (37 * hash) + GATEWAYID_FIELD_NUMBER;
       hash = (53 * hash) + getGatewayId().hashCode();
       hash = (37 * hash) + TRADINGDAY_FIELD_NUMBER;
@@ -28032,7 +28032,7 @@ public final class CoreField {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        unifiedSymbol_ = "";
+        uniformSymbol_ = "";
 
         gatewayId_ = "";
 
@@ -28100,7 +28100,7 @@ public final class CoreField {
       @java.lang.Override
       public xyz.redtorch.pb.CoreField.BarField buildPartial() {
         xyz.redtorch.pb.CoreField.BarField result = new xyz.redtorch.pb.CoreField.BarField(this);
-        result.unifiedSymbol_ = unifiedSymbol_;
+        result.uniformSymbol_ = uniformSymbol_;
         result.gatewayId_ = gatewayId_;
         result.tradingDay_ = tradingDay_;
         result.actionDay_ = actionDay_;
@@ -28169,8 +28169,8 @@ public final class CoreField {
 
       public Builder mergeFrom(xyz.redtorch.pb.CoreField.BarField other) {
         if (other == xyz.redtorch.pb.CoreField.BarField.getDefaultInstance()) return this;
-        if (!other.getUnifiedSymbol().isEmpty()) {
-          unifiedSymbol_ = other.unifiedSymbol_;
+        if (!other.getUniformSymbol().isEmpty()) {
+          uniformSymbol_ = other.uniformSymbol_;
           onChanged();
         }
         if (!other.getGatewayId().isEmpty()) {
@@ -28266,22 +28266,22 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object unifiedSymbol_ = "";
+      private java.lang.Object uniformSymbol_ = "";
       /**
        * <pre>
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @return The unifiedSymbol.
+       * <code>string uniformSymbol = 1;</code>
+       * @return The uniformSymbol.
        */
-      public java.lang.String getUnifiedSymbol() {
-        java.lang.Object ref = unifiedSymbol_;
+      public java.lang.String getUniformSymbol() {
+        java.lang.Object ref = uniformSymbol_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          unifiedSymbol_ = s;
+          uniformSymbol_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -28292,17 +28292,17 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @return The bytes for unifiedSymbol.
+       * <code>string uniformSymbol = 1;</code>
+       * @return The bytes for uniformSymbol.
        */
       public com.google.protobuf.ByteString
-          getUnifiedSymbolBytes() {
-        java.lang.Object ref = unifiedSymbol_;
+          getUniformSymbolBytes() {
+        java.lang.Object ref = uniformSymbol_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          unifiedSymbol_ = b;
+          uniformSymbol_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -28313,17 +28313,17 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @param value The unifiedSymbol to set.
+       * <code>string uniformSymbol = 1;</code>
+       * @param value The uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbol(
+      public Builder setUniformSymbol(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -28332,12 +28332,12 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
+       * <code>string uniformSymbol = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearUnifiedSymbol() {
+      public Builder clearUniformSymbol() {
         
-        unifiedSymbol_ = getDefaultInstance().getUnifiedSymbol();
+        uniformSymbol_ = getDefaultInstance().getUniformSymbol();
         onChanged();
         return this;
       }
@@ -28346,18 +28346,18 @@ public final class CoreField {
        * 统一合约标识
        * </pre>
        *
-       * <code>string unifiedSymbol = 1;</code>
-       * @param value The bytes for unifiedSymbol to set.
+       * <code>string uniformSymbol = 1;</code>
+       * @param value The bytes for uniformSymbol to set.
        * @return This builder for chaining.
        */
-      public Builder setUnifiedSymbolBytes(
+      public Builder setUniformSymbolBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        unifiedSymbol_ = value;
+        uniformSymbol_ = value;
         onChanged();
         return this;
       }
@@ -29492,23 +29492,23 @@ public final class CoreField {
 
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
      */
-    java.lang.String getReqId();
+    java.lang.String getTransactionId();
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The bytes for reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
      */
     com.google.protobuf.ByteString
-        getReqIdBytes();
+        getTransactionIdBytes();
 
     /**
      * <pre>
@@ -29529,26 +29529,6 @@ public final class CoreField {
      */
     com.google.protobuf.ByteString
         getOperatorIdBytes();
-
-    /**
-     * <pre>
-     * 目标节点ID
-     * </pre>
-     *
-     * <code>fixed32 targetNodeId = 3;</code>
-     * @return The targetNodeId.
-     */
-    int getTargetNodeId();
-
-    /**
-     * <pre>
-     * 来源节点ID
-     * </pre>
-     *
-     * <code>fixed32 sourceNodeId = 4;</code>
-     * @return The sourceNodeId.
-     */
-    int getSourceNodeId();
   }
   /**
    * <pre>
@@ -29567,7 +29547,7 @@ public final class CoreField {
       super(builder);
     }
     private CommonReqField() {
-      reqId_ = "";
+      transactionId_ = "";
       operatorId_ = "";
     }
 
@@ -29604,23 +29584,13 @@ public final class CoreField {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              reqId_ = s;
+              transactionId_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               operatorId_ = s;
-              break;
-            }
-            case 29: {
-
-              targetNodeId_ = input.readFixed32();
-              break;
-            }
-            case 37: {
-
-              sourceNodeId_ = input.readFixed32();
               break;
             }
             default: {
@@ -29655,46 +29625,46 @@ public final class CoreField {
               xyz.redtorch.pb.CoreField.CommonReqField.class, xyz.redtorch.pb.CoreField.CommonReqField.Builder.class);
     }
 
-    public static final int REQID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object reqId_;
+    public static final int TRANSACTIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object transactionId_;
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
      */
     @java.lang.Override
-    public java.lang.String getReqId() {
-      java.lang.Object ref = reqId_;
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        reqId_ = s;
+        transactionId_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The bytes for reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getReqIdBytes() {
-      java.lang.Object ref = reqId_;
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        reqId_ = b;
+        transactionId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -29747,36 +29717,6 @@ public final class CoreField {
       }
     }
 
-    public static final int TARGETNODEID_FIELD_NUMBER = 3;
-    private int targetNodeId_;
-    /**
-     * <pre>
-     * 目标节点ID
-     * </pre>
-     *
-     * <code>fixed32 targetNodeId = 3;</code>
-     * @return The targetNodeId.
-     */
-    @java.lang.Override
-    public int getTargetNodeId() {
-      return targetNodeId_;
-    }
-
-    public static final int SOURCENODEID_FIELD_NUMBER = 4;
-    private int sourceNodeId_;
-    /**
-     * <pre>
-     * 来源节点ID
-     * </pre>
-     *
-     * <code>fixed32 sourceNodeId = 4;</code>
-     * @return The sourceNodeId.
-     */
-    @java.lang.Override
-    public int getSourceNodeId() {
-      return sourceNodeId_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -29791,17 +29731,11 @@ public final class CoreField {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getReqIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, reqId_);
+      if (!getTransactionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, transactionId_);
       }
       if (!getOperatorIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, operatorId_);
-      }
-      if (targetNodeId_ != 0) {
-        output.writeFixed32(3, targetNodeId_);
-      }
-      if (sourceNodeId_ != 0) {
-        output.writeFixed32(4, sourceNodeId_);
       }
       unknownFields.writeTo(output);
     }
@@ -29812,19 +29746,11 @@ public final class CoreField {
       if (size != -1) return size;
 
       size = 0;
-      if (!getReqIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, reqId_);
+      if (!getTransactionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, transactionId_);
       }
       if (!getOperatorIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, operatorId_);
-      }
-      if (targetNodeId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(3, targetNodeId_);
-      }
-      if (sourceNodeId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(4, sourceNodeId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -29841,14 +29767,10 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.CommonReqField other = (xyz.redtorch.pb.CoreField.CommonReqField) obj;
 
-      if (!getReqId()
-          .equals(other.getReqId())) return false;
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
       if (!getOperatorId()
           .equals(other.getOperatorId())) return false;
-      if (getTargetNodeId()
-          != other.getTargetNodeId()) return false;
-      if (getSourceNodeId()
-          != other.getSourceNodeId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -29860,14 +29782,10 @@ public final class CoreField {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + REQID_FIELD_NUMBER;
-      hash = (53 * hash) + getReqId().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
       hash = (37 * hash) + OPERATORID_FIELD_NUMBER;
       hash = (53 * hash) + getOperatorId().hashCode();
-      hash = (37 * hash) + TARGETNODEID_FIELD_NUMBER;
-      hash = (53 * hash) + getTargetNodeId();
-      hash = (37 * hash) + SOURCENODEID_FIELD_NUMBER;
-      hash = (53 * hash) + getSourceNodeId();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -30005,13 +29923,9 @@ public final class CoreField {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        reqId_ = "";
+        transactionId_ = "";
 
         operatorId_ = "";
-
-        targetNodeId_ = 0;
-
-        sourceNodeId_ = 0;
 
         return this;
       }
@@ -30039,10 +29953,8 @@ public final class CoreField {
       @java.lang.Override
       public xyz.redtorch.pb.CoreField.CommonReqField buildPartial() {
         xyz.redtorch.pb.CoreField.CommonReqField result = new xyz.redtorch.pb.CoreField.CommonReqField(this);
-        result.reqId_ = reqId_;
+        result.transactionId_ = transactionId_;
         result.operatorId_ = operatorId_;
-        result.targetNodeId_ = targetNodeId_;
-        result.sourceNodeId_ = sourceNodeId_;
         onBuilt();
         return result;
       }
@@ -30091,19 +30003,13 @@ public final class CoreField {
 
       public Builder mergeFrom(xyz.redtorch.pb.CoreField.CommonReqField other) {
         if (other == xyz.redtorch.pb.CoreField.CommonReqField.getDefaultInstance()) return this;
-        if (!other.getReqId().isEmpty()) {
-          reqId_ = other.reqId_;
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
           onChanged();
         }
         if (!other.getOperatorId().isEmpty()) {
           operatorId_ = other.operatorId_;
           onChanged();
-        }
-        if (other.getTargetNodeId() != 0) {
-          setTargetNodeId(other.getTargetNodeId());
-        }
-        if (other.getSourceNodeId() != 0) {
-          setSourceNodeId(other.getSourceNodeId());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -30134,22 +30040,22 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object reqId_ = "";
+      private java.lang.Object transactionId_ = "";
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @return The reqId.
+       * <code>string transactionId = 1;</code>
+       * @return The transactionId.
        */
-      public java.lang.String getReqId() {
-        java.lang.Object ref = reqId_;
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          reqId_ = s;
+          transactionId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -30157,20 +30063,20 @@ public final class CoreField {
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @return The bytes for reqId.
+       * <code>string transactionId = 1;</code>
+       * @return The bytes for transactionId.
        */
       public com.google.protobuf.ByteString
-          getReqIdBytes() {
-        java.lang.Object ref = reqId_;
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          reqId_ = b;
+          transactionId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -30178,54 +30084,54 @@ public final class CoreField {
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @param value The reqId to set.
+       * <code>string transactionId = 1;</code>
+       * @param value The transactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setReqId(
+      public Builder setTransactionId(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        reqId_ = value;
+        transactionId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
+       * <code>string transactionId = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearReqId() {
+      public Builder clearTransactionId() {
         
-        reqId_ = getDefaultInstance().getReqId();
+        transactionId_ = getDefaultInstance().getTransactionId();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @param value The bytes for reqId to set.
+       * <code>string transactionId = 1;</code>
+       * @param value The bytes for transactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setReqIdBytes(
+      public Builder setTransactionIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        reqId_ = value;
+        transactionId_ = value;
         onChanged();
         return this;
       }
@@ -30325,92 +30231,6 @@ public final class CoreField {
         onChanged();
         return this;
       }
-
-      private int targetNodeId_ ;
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 3;</code>
-       * @return The targetNodeId.
-       */
-      @java.lang.Override
-      public int getTargetNodeId() {
-        return targetNodeId_;
-      }
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 3;</code>
-       * @param value The targetNodeId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTargetNodeId(int value) {
-        
-        targetNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTargetNodeId() {
-        
-        targetNodeId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int sourceNodeId_ ;
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @return The sourceNodeId.
-       */
-      @java.lang.Override
-      public int getSourceNodeId() {
-        return sourceNodeId_;
-      }
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @param value The sourceNodeId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSourceNodeId(int value) {
-        
-        sourceNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSourceNodeId() {
-        
-        sourceNodeId_ = 0;
-        onChanged();
-        return this;
-      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -30470,23 +30290,23 @@ public final class CoreField {
 
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
      */
-    java.lang.String getReqId();
+    java.lang.String getTransactionId();
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The bytes for reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
      */
     com.google.protobuf.ByteString
-        getReqIdBytes();
+        getTransactionIdBytes();
 
     /**
      * <pre>
@@ -30535,7 +30355,7 @@ public final class CoreField {
       super(builder);
     }
     private CommonRspField() {
-      reqId_ = "";
+      transactionId_ = "";
       errorMsg_ = "";
     }
 
@@ -30572,7 +30392,7 @@ public final class CoreField {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              reqId_ = s;
+              transactionId_ = s;
               break;
             }
             case 21: {
@@ -30618,46 +30438,46 @@ public final class CoreField {
               xyz.redtorch.pb.CoreField.CommonRspField.class, xyz.redtorch.pb.CoreField.CommonRspField.Builder.class);
     }
 
-    public static final int REQID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object reqId_;
+    public static final int TRANSACTIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object transactionId_;
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The transactionId.
      */
     @java.lang.Override
-    public java.lang.String getReqId() {
-      java.lang.Object ref = reqId_;
+    public java.lang.String getTransactionId() {
+      java.lang.Object ref = transactionId_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        reqId_ = s;
+        transactionId_ = s;
         return s;
       }
     }
     /**
      * <pre>
-     * 请求ID
+     * 业务ID
      * </pre>
      *
-     * <code>string reqId = 1;</code>
-     * @return The bytes for reqId.
+     * <code>string transactionId = 1;</code>
+     * @return The bytes for transactionId.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getReqIdBytes() {
-      java.lang.Object ref = reqId_;
+        getTransactionIdBytes() {
+      java.lang.Object ref = transactionId_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        reqId_ = b;
+        transactionId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -30739,8 +30559,8 @@ public final class CoreField {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getReqIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, reqId_);
+      if (!getTransactionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, transactionId_);
       }
       if (errorId_ != 0) {
         output.writeFixed32(2, errorId_);
@@ -30757,8 +30577,8 @@ public final class CoreField {
       if (size != -1) return size;
 
       size = 0;
-      if (!getReqIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, reqId_);
+      if (!getTransactionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, transactionId_);
       }
       if (errorId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -30782,8 +30602,8 @@ public final class CoreField {
       }
       xyz.redtorch.pb.CoreField.CommonRspField other = (xyz.redtorch.pb.CoreField.CommonRspField) obj;
 
-      if (!getReqId()
-          .equals(other.getReqId())) return false;
+      if (!getTransactionId()
+          .equals(other.getTransactionId())) return false;
       if (getErrorId()
           != other.getErrorId()) return false;
       if (!getErrorMsg()
@@ -30799,8 +30619,8 @@ public final class CoreField {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + REQID_FIELD_NUMBER;
-      hash = (53 * hash) + getReqId().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
       hash = (37 * hash) + ERRORID_FIELD_NUMBER;
       hash = (53 * hash) + getErrorId();
       hash = (37 * hash) + ERRORMSG_FIELD_NUMBER;
@@ -30942,7 +30762,7 @@ public final class CoreField {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        reqId_ = "";
+        transactionId_ = "";
 
         errorId_ = 0;
 
@@ -30974,7 +30794,7 @@ public final class CoreField {
       @java.lang.Override
       public xyz.redtorch.pb.CoreField.CommonRspField buildPartial() {
         xyz.redtorch.pb.CoreField.CommonRspField result = new xyz.redtorch.pb.CoreField.CommonRspField(this);
-        result.reqId_ = reqId_;
+        result.transactionId_ = transactionId_;
         result.errorId_ = errorId_;
         result.errorMsg_ = errorMsg_;
         onBuilt();
@@ -31025,8 +30845,8 @@ public final class CoreField {
 
       public Builder mergeFrom(xyz.redtorch.pb.CoreField.CommonRspField other) {
         if (other == xyz.redtorch.pb.CoreField.CommonRspField.getDefaultInstance()) return this;
-        if (!other.getReqId().isEmpty()) {
-          reqId_ = other.reqId_;
+        if (!other.getTransactionId().isEmpty()) {
+          transactionId_ = other.transactionId_;
           onChanged();
         }
         if (other.getErrorId() != 0) {
@@ -31065,22 +30885,22 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object reqId_ = "";
+      private java.lang.Object transactionId_ = "";
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @return The reqId.
+       * <code>string transactionId = 1;</code>
+       * @return The transactionId.
        */
-      public java.lang.String getReqId() {
-        java.lang.Object ref = reqId_;
+      public java.lang.String getTransactionId() {
+        java.lang.Object ref = transactionId_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          reqId_ = s;
+          transactionId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -31088,20 +30908,20 @@ public final class CoreField {
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @return The bytes for reqId.
+       * <code>string transactionId = 1;</code>
+       * @return The bytes for transactionId.
        */
       public com.google.protobuf.ByteString
-          getReqIdBytes() {
-        java.lang.Object ref = reqId_;
+          getTransactionIdBytes() {
+        java.lang.Object ref = transactionId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          reqId_ = b;
+          transactionId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -31109,54 +30929,54 @@ public final class CoreField {
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @param value The reqId to set.
+       * <code>string transactionId = 1;</code>
+       * @param value The transactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setReqId(
+      public Builder setTransactionId(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        reqId_ = value;
+        transactionId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
+       * <code>string transactionId = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearReqId() {
+      public Builder clearTransactionId() {
         
-        reqId_ = getDefaultInstance().getReqId();
+        transactionId_ = getDefaultInstance().getTransactionId();
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * 请求ID
+       * 业务ID
        * </pre>
        *
-       * <code>string reqId = 1;</code>
-       * @param value The bytes for reqId to set.
+       * <code>string transactionId = 1;</code>
+       * @param value The bytes for transactionId to set.
        * @return This builder for chaining.
        */
-      public Builder setReqIdBytes(
+      public Builder setTransactionIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        reqId_ = value;
+        transactionId_ = value;
         onChanged();
         return this;
       }
@@ -32535,31 +32355,31 @@ public final class CoreField {
       if (direction_ != xyz.redtorch.pb.CoreEnum.DirectionEnum.D_Unknown.getNumber()) {
         output.writeEnum(9, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         output.writeEnum(10, offsetFlag_);
       }
       if (hedgeFlag_ != xyz.redtorch.pb.CoreEnum.HedgeFlagEnum.HF_Unknown.getNumber()) {
         output.writeEnum(11, hedgeFlag_);
       }
-      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unkonwn.getNumber()) {
+      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unknown.getNumber()) {
         output.writeEnum(12, timeCondition_);
       }
       if (!getGtdDateBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 13, gtdDate_);
       }
-      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unkonwn.getNumber()) {
+      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unknown.getNumber()) {
         output.writeEnum(14, volumeCondition_);
       }
       if (minVolume_ != 0) {
         output.writeFixed32(15, minVolume_);
       }
-      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unkonwn.getNumber()) {
+      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unknown.getNumber()) {
         output.writeEnum(16, contingentCondition_);
       }
       if (stopPrice_ != 0D) {
         output.writeDouble(17, stopPrice_);
       }
-      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unkonwn.getNumber()) {
+      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unknown.getNumber()) {
         output.writeEnum(18, forceCloseReason_);
       }
       if (autoSuspend_ != 0) {
@@ -32613,7 +32433,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, direction_);
       }
-      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unkonwn.getNumber()) {
+      if (offsetFlag_ != xyz.redtorch.pb.CoreEnum.OffsetFlagEnum.OF_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(10, offsetFlag_);
       }
@@ -32621,14 +32441,14 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(11, hedgeFlag_);
       }
-      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unkonwn.getNumber()) {
+      if (timeCondition_ != xyz.redtorch.pb.CoreEnum.TimeConditionEnum.TC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(12, timeCondition_);
       }
       if (!getGtdDateBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, gtdDate_);
       }
-      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unkonwn.getNumber()) {
+      if (volumeCondition_ != xyz.redtorch.pb.CoreEnum.VolumeConditionEnum.VC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(14, volumeCondition_);
       }
@@ -32636,7 +32456,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(15, minVolume_);
       }
-      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unkonwn.getNumber()) {
+      if (contingentCondition_ != xyz.redtorch.pb.CoreEnum.ContingentConditionEnum.CC_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, contingentCondition_);
       }
@@ -32644,7 +32464,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(17, stopPrice_);
       }
-      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unkonwn.getNumber()) {
+      if (forceCloseReason_ != xyz.redtorch.pb.CoreEnum.ForceCloseReasonEnum.FCR_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(18, forceCloseReason_);
       }
@@ -38875,7 +38695,7 @@ public final class CoreField {
       if (ibApiSetting_ != null) {
         output.writeMessage(9, getIbApiSetting());
       }
-      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unkonwn.getNumber()) {
+      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
         output.writeEnum(10, status_);
       }
       if (version_ != 0L) {
@@ -38921,7 +38741,7 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getIbApiSetting());
       }
-      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unkonwn.getNumber()) {
+      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(10, status_);
       }
@@ -41917,7 +41737,7 @@ public final class CoreField {
       "tStatusEnum\022\025\n\rauthErrorFlag\030\007 \001(\010\"\207\006\n\rC" +
       "ontractField\022\022\n\ncontractId\030\001 \001(\t\022\014\n\004name" +
       "\030\002 \001(\t\022\020\n\010fullName\030\003 \001(\t\022\024\n\014thirdPartyId" +
-      "\030\004 \001(\t\022\025\n\runifiedSymbol\030\007 \001(\t\022\016\n\006symbol\030" +
+      "\030\004 \001(\t\022\025\n\runiformSymbol\030\007 \001(\t\022\016\n\006symbol\030" +
       "\010 \001(\t\022/\n\010exchange\030\t \001(\0162\035.xyz.redtorch.p" +
       "b.ExchangeEnum\0227\n\014productClass\030\n \001(\0162!.x" +
       "yz.redtorch.pb.ProductClassEnum\022/\n\010curre" +
@@ -42007,7 +41827,7 @@ public final class CoreField {
       "\0162\036.xyz.redtorch.pb.HedgeFlagEnum\0220\n\010con" +
       "tract\030\027 \001(\0132\036.xyz.redtorch.pb.ContractFi" +
       "eld\022\021\n\tgatewayId\030\030 \001(\t\022\035\n\025localCreatedTi" +
-      "mestamp\030\031 \001(\006\"\372\005\n\tTickField\022\025\n\runifiedSy" +
+      "mestamp\030\031 \001(\006\"\372\005\n\tTickField\022\025\n\runiformSy" +
       "mbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntrading" +
       "Day\030\003 \001(\t\022\021\n\tactionDay\030\004 \001(\t\022\022\n\nactionTi" +
       "me\030\005 \001(\t\022\027\n\017actionTimestamp\030\006 \001(\006\022\016\n\006sta" +
@@ -42026,8 +41846,8 @@ public final class CoreField {
       "\030\035 \001(\001\022\020\n\010lowPrice\030\036 \001(\001\022\022\n\nupperLimit\030\037" +
       " \001(\001\022\022\n\nlowerLimit\030  \001(\001\022\020\n\010bidPrice\030! \003" +
       "(\001\022\020\n\010askPrice\030\" \003(\001\022\021\n\tbidVolume\030# \003(\007\022" +
-      "\021\n\taskVolume\030$ \003(\007\"\306\003\n\010BarField\022\025\n\runifi" +
-      "edSymbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntra" +
+      "\021\n\taskVolume\030$ \003(\007\"\306\003\n\010BarField\022\025\n\runifo" +
+      "rmSymbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntra" +
       "dingDay\030\003 \001(\t\022\021\n\tactionDay\030\004 \001(\t\022\022\n\nacti" +
       "onTime\030\005 \001(\t\022\027\n\017actionTimestamp\030\006 \001(\006\022\021\n" +
       "\topenPrice\030\007 \001(\001\022\021\n\thighPrice\030\010 \001(\001\022\020\n\010l" +
@@ -42037,58 +41857,57 @@ public final class CoreField {
       "\020\n\010turnover\030\017 \001(\001\022\025\n\rturnoverDelta\030\020 \001(\001" +
       "\022\021\n\tnumTrades\030\021 \001(\006\022\026\n\016numTradesDelta\030\022 " +
       "\001(\006\022\027\n\017preOpenInterest\030\023 \001(\001\022\025\n\rpreClose" +
-      "Price\030\024 \001(\001\022\026\n\016preSettlePrice\030\025 \001(\001\"_\n\016C" +
-      "ommonReqField\022\r\n\005reqId\030\001 \001(\t\022\022\n\noperator" +
-      "Id\030\002 \001(\t\022\024\n\014targetNodeId\030\003 \001(\007\022\024\n\014source" +
-      "NodeId\030\004 \001(\007\"B\n\016CommonRspField\022\r\n\005reqId\030" +
-      "\001 \001(\t\022\017\n\007errorId\030\002 \001(\007\022\020\n\010errorMsg\030\003 \001(\t" +
-      "\"\247\006\n\023SubmitOrderReqField\022\025\n\roriginOrderI" +
-      "d\030\001 \001(\t\022\023\n\013accountCode\030\002 \001(\t\022/\n\010currency" +
-      "\030\003 \001(\0162\035.xyz.redtorch.pb.CurrencyEnum\0220\n" +
-      "\010contract\030\004 \001(\0132\036.xyz.redtorch.pb.Contra" +
-      "ctField\022\021\n\tgatewayId\030\005 \001(\t\022\016\n\006volume\030\006 \001" +
-      "(\007\022\r\n\005price\030\007 \001(\001\022;\n\016orderPriceType\030\010 \001(" +
-      "\0162#.xyz.redtorch.pb.OrderPriceTypeEnum\0221" +
-      "\n\tdirection\030\t \001(\0162\036.xyz.redtorch.pb.Dire" +
-      "ctionEnum\0223\n\noffsetFlag\030\n \001(\0162\037.xyz.redt" +
-      "orch.pb.OffsetFlagEnum\0221\n\thedgeFlag\030\013 \001(" +
-      "\0162\036.xyz.redtorch.pb.HedgeFlagEnum\0229\n\rtim" +
-      "eCondition\030\014 \001(\0162\".xyz.redtorch.pb.TimeC" +
-      "onditionEnum\022\017\n\007gtdDate\030\r \001(\t\022=\n\017volumeC" +
-      "ondition\030\016 \001(\0162$.xyz.redtorch.pb.VolumeC" +
-      "onditionEnum\022\021\n\tminVolume\030\017 \001(\007\022E\n\023conti" +
-      "ngentCondition\030\020 \001(\0162(.xyz.redtorch.pb.C" +
-      "ontingentConditionEnum\022\021\n\tstopPrice\030\021 \001(" +
-      "\001\022?\n\020forceCloseReason\030\022 \001(\0162%.xyz.redtor" +
-      "ch.pb.ForceCloseReasonEnum\022\023\n\013autoSuspen" +
-      "d\030\023 \001(\007\022\026\n\016userForceClose\030\024 \001(\007\022\021\n\tswapO" +
-      "rder\030\025 \001(\007\"=\n\023CancelOrderReqField\022\025\n\rori" +
-      "ginOrderId\030\003 \001(\t\022\017\n\007orderId\030\004 \001(\t\"\373\005\n\023Ga" +
-      "tewaySettingField\022\021\n\tgatewayId\030\001 \001(\t\022\023\n\013" +
-      "gatewayName\030\002 \001(\t\022\032\n\022gatewayDescription\030" +
-      "\004 \001(\t\022\032\n\022implementClassName\030\005 \001(\t\0225\n\013gat" +
-      "ewayType\030\006 \001(\0162 .xyz.redtorch.pb.Gateway" +
-      "TypeEnum\022C\n\022gatewayAdapterType\030\007 \001(\0162\'.x" +
-      "yz.redtorch.pb.GatewayAdapterTypeEnum\022N\n" +
-      "\rctpApiSetting\030\010 \001(\01327.xyz.redtorch.pb.G" +
-      "atewaySettingField.CtpApiSettingField\022L\n" +
-      "\014ibApiSetting\030\t \001(\01326.xyz.redtorch.pb.Ga" +
-      "tewaySettingField.IbApiSettingField\0222\n\006s" +
-      "tatus\030\n \001(\0162\".xyz.redtorch.pb.ConnectSta" +
-      "tusEnum\022\017\n\007version\030\013 \001(\006\022\035\n\025autoConnectT" +
-      "imeRanges\030\014 \001(\t\032\302\001\n\022CtpApiSettingField\022\016" +
-      "\n\006userId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\020\n\010brok" +
-      "erId\030\003 \001(\t\022\016\n\006tdHost\030\004 \001(\t\022\016\n\006tdPort\030\005 \001" +
-      "(\t\022\016\n\006mdHost\030\006 \001(\t\022\016\n\006mdPort\030\007 \001(\t\022\020\n\010au" +
-      "thCode\030\010 \001(\t\022\027\n\017userProductInfo\030\t \001(\t\022\r\n" +
-      "\005appId\030\n \001(\t\032A\n\021IbApiSettingField\022\014\n\004hos" +
-      "t\030\001 \001(\t\022\014\n\004port\030\002 \001(\007\022\020\n\010clientId\030\003 \001(\007\"" +
-      "_\n\010LogField\022/\n\010logLevel\030\001 \001(\0162\035.xyz.redt" +
-      "orch.pb.LogLevelEnum\022\021\n\ttimestamp\030\002 \001(\006\022" +
-      "\017\n\007content\030\003 \001(\t\"d\n\013NoticeField\0221\n\006statu" +
-      "s\030\001 \001(\0162!.xyz.redtorch.pb.CommonStatusEn" +
-      "um\022\021\n\ttimestamp\030\002 \001(\006\022\017\n\007content\030\003 \001(\tb\006" +
-      "proto3"
+      "Price\030\024 \001(\001\022\026\n\016preSettlePrice\030\025 \001(\001\";\n\016C" +
+      "ommonReqField\022\025\n\rtransactionId\030\001 \001(\t\022\022\n\n" +
+      "operatorId\030\002 \001(\t\"J\n\016CommonRspField\022\025\n\rtr" +
+      "ansactionId\030\001 \001(\t\022\017\n\007errorId\030\002 \001(\007\022\020\n\010er" +
+      "rorMsg\030\003 \001(\t\"\247\006\n\023SubmitOrderReqField\022\025\n\r" +
+      "originOrderId\030\001 \001(\t\022\023\n\013accountCode\030\002 \001(\t" +
+      "\022/\n\010currency\030\003 \001(\0162\035.xyz.redtorch.pb.Cur" +
+      "rencyEnum\0220\n\010contract\030\004 \001(\0132\036.xyz.redtor" +
+      "ch.pb.ContractField\022\021\n\tgatewayId\030\005 \001(\t\022\016" +
+      "\n\006volume\030\006 \001(\007\022\r\n\005price\030\007 \001(\001\022;\n\016orderPr" +
+      "iceType\030\010 \001(\0162#.xyz.redtorch.pb.OrderPri" +
+      "ceTypeEnum\0221\n\tdirection\030\t \001(\0162\036.xyz.redt" +
+      "orch.pb.DirectionEnum\0223\n\noffsetFlag\030\n \001(" +
+      "\0162\037.xyz.redtorch.pb.OffsetFlagEnum\0221\n\the" +
+      "dgeFlag\030\013 \001(\0162\036.xyz.redtorch.pb.HedgeFla" +
+      "gEnum\0229\n\rtimeCondition\030\014 \001(\0162\".xyz.redto" +
+      "rch.pb.TimeConditionEnum\022\017\n\007gtdDate\030\r \001(" +
+      "\t\022=\n\017volumeCondition\030\016 \001(\0162$.xyz.redtorc" +
+      "h.pb.VolumeConditionEnum\022\021\n\tminVolume\030\017 " +
+      "\001(\007\022E\n\023contingentCondition\030\020 \001(\0162(.xyz.r" +
+      "edtorch.pb.ContingentConditionEnum\022\021\n\tst" +
+      "opPrice\030\021 \001(\001\022?\n\020forceCloseReason\030\022 \001(\0162" +
+      "%.xyz.redtorch.pb.ForceCloseReasonEnum\022\023" +
+      "\n\013autoSuspend\030\023 \001(\007\022\026\n\016userForceClose\030\024 " +
+      "\001(\007\022\021\n\tswapOrder\030\025 \001(\007\"=\n\023CancelOrderReq" +
+      "Field\022\025\n\roriginOrderId\030\003 \001(\t\022\017\n\007orderId\030" +
+      "\004 \001(\t\"\373\005\n\023GatewaySettingField\022\021\n\tgateway" +
+      "Id\030\001 \001(\t\022\023\n\013gatewayName\030\002 \001(\t\022\032\n\022gateway" +
+      "Description\030\004 \001(\t\022\032\n\022implementClassName\030" +
+      "\005 \001(\t\0225\n\013gatewayType\030\006 \001(\0162 .xyz.redtorc" +
+      "h.pb.GatewayTypeEnum\022C\n\022gatewayAdapterTy" +
+      "pe\030\007 \001(\0162\'.xyz.redtorch.pb.GatewayAdapte" +
+      "rTypeEnum\022N\n\rctpApiSetting\030\010 \001(\01327.xyz.r" +
+      "edtorch.pb.GatewaySettingField.CtpApiSet" +
+      "tingField\022L\n\014ibApiSetting\030\t \001(\01326.xyz.re" +
+      "dtorch.pb.GatewaySettingField.IbApiSetti" +
+      "ngField\0222\n\006status\030\n \001(\0162\".xyz.redtorch.p" +
+      "b.ConnectStatusEnum\022\017\n\007version\030\013 \001(\006\022\035\n\025" +
+      "autoConnectTimeRanges\030\014 \001(\t\032\302\001\n\022CtpApiSe" +
+      "ttingField\022\016\n\006userId\030\001 \001(\t\022\020\n\010password\030\002" +
+      " \001(\t\022\020\n\010brokerId\030\003 \001(\t\022\016\n\006tdHost\030\004 \001(\t\022\016" +
+      "\n\006tdPort\030\005 \001(\t\022\016\n\006mdHost\030\006 \001(\t\022\016\n\006mdPort" +
+      "\030\007 \001(\t\022\020\n\010authCode\030\010 \001(\t\022\027\n\017userProductI" +
+      "nfo\030\t \001(\t\022\r\n\005appId\030\n \001(\t\032A\n\021IbApiSetting" +
+      "Field\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\007\022\020\n\010cli" +
+      "entId\030\003 \001(\007\"_\n\010LogField\022/\n\010logLevel\030\001 \001(" +
+      "\0162\035.xyz.redtorch.pb.LogLevelEnum\022\021\n\ttime" +
+      "stamp\030\002 \001(\006\022\017\n\007content\030\003 \001(\t\"d\n\013NoticeFi" +
+      "eld\0221\n\006status\030\001 \001(\0162!.xyz.redtorch.pb.Co" +
+      "mmonStatusEnum\022\021\n\ttimestamp\030\002 \001(\006\022\017\n\007con" +
+      "tent\030\003 \001(\tb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -42106,7 +41925,7 @@ public final class CoreField {
     internal_static_xyz_redtorch_pb_ContractField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_ContractField_descriptor,
-        new java.lang.String[] { "ContractId", "Name", "FullName", "ThirdPartyId", "UnifiedSymbol", "Symbol", "Exchange", "ProductClass", "Currency", "Multiplier", "PriceTick", "LongMarginRatio", "ShortMarginRatio", "MaxMarginSideAlgorithm", "UnderlyingSymbol", "StrikePrice", "OptionsType", "UnderlyingMultiplier", "LastTradeDateOrContractMonth", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "CombinationType", "GatewayId", });
+        new java.lang.String[] { "ContractId", "Name", "FullName", "ThirdPartyId", "UniformSymbol", "Symbol", "Exchange", "ProductClass", "Currency", "Multiplier", "PriceTick", "LongMarginRatio", "ShortMarginRatio", "MaxMarginSideAlgorithm", "UnderlyingSymbol", "StrikePrice", "OptionsType", "UnderlyingMultiplier", "LastTradeDateOrContractMonth", "MaxMarketOrderVolume", "MinMarketOrderVolume", "MaxLimitOrderVolume", "MinLimitOrderVolume", "CombinationType", "GatewayId", });
     internal_static_xyz_redtorch_pb_AccountField_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_xyz_redtorch_pb_AccountField_fieldAccessorTable = new
@@ -42136,25 +41955,25 @@ public final class CoreField {
     internal_static_xyz_redtorch_pb_TickField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_TickField_descriptor,
-        new java.lang.String[] { "UnifiedSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "Status", "LastPrice", "AvgPrice", "TotalBidVol", "TotalAskVol", "WeightedAvgBidPrice", "WeightedAvgAskPrice", "Iopv", "YieldToMaturity", "VolumeDelta", "Volume", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "OpenInterest", "OpenInterestDelta", "PreOpenInterest", "PreClosePrice", "SettlePrice", "PreSettlePrice", "OpenPrice", "HighPrice", "LowPrice", "UpperLimit", "LowerLimit", "BidPrice", "AskPrice", "BidVolume", "AskVolume", });
+        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "Status", "LastPrice", "AvgPrice", "TotalBidVol", "TotalAskVol", "WeightedAvgBidPrice", "WeightedAvgAskPrice", "Iopv", "YieldToMaturity", "VolumeDelta", "Volume", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "OpenInterest", "OpenInterestDelta", "PreOpenInterest", "PreClosePrice", "SettlePrice", "PreSettlePrice", "OpenPrice", "HighPrice", "LowPrice", "UpperLimit", "LowerLimit", "BidPrice", "AskPrice", "BidVolume", "AskVolume", });
     internal_static_xyz_redtorch_pb_BarField_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_xyz_redtorch_pb_BarField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_BarField_descriptor,
-        new java.lang.String[] { "UnifiedSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "OpenPrice", "HighPrice", "LowPrice", "ClosePrice", "OpenInterest", "OpenInterestDelta", "Volume", "VolumeDelta", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "PreOpenInterest", "PreClosePrice", "PreSettlePrice", });
+        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "OpenPrice", "HighPrice", "LowPrice", "ClosePrice", "OpenInterest", "OpenInterestDelta", "Volume", "VolumeDelta", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "PreOpenInterest", "PreClosePrice", "PreSettlePrice", });
     internal_static_xyz_redtorch_pb_CommonReqField_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_xyz_redtorch_pb_CommonReqField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_CommonReqField_descriptor,
-        new java.lang.String[] { "ReqId", "OperatorId", "TargetNodeId", "SourceNodeId", });
+        new java.lang.String[] { "TransactionId", "OperatorId", });
     internal_static_xyz_redtorch_pb_CommonRspField_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_xyz_redtorch_pb_CommonRspField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_CommonRspField_descriptor,
-        new java.lang.String[] { "ReqId", "ErrorId", "ErrorMsg", });
+        new java.lang.String[] { "TransactionId", "ErrorId", "ErrorMsg", });
     internal_static_xyz_redtorch_pb_SubmitOrderReqField_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_xyz_redtorch_pb_SubmitOrderReqField_fieldAccessorTable = new

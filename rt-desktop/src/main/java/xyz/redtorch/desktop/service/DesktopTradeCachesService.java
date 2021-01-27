@@ -1,110 +1,99 @@
 package xyz.redtorch.desktop.service;
 
+import xyz.redtorch.pb.CoreField.*;
+
 import java.util.List;
 
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.ContractField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
-
 public interface DesktopTradeCachesService {
-	List<OrderField> getOrderList();
+    List<OrderField> getOrderList();
 
-	List<OrderField> getWorkingOrderList();
+    List<OrderField> getWorkingOrderList();
 
-	OrderField queryOrderByOrderId(String orderId);
+    OrderField queryOrderByOrderId(String orderId);
 
-	OrderField queryOrderByOriginOrderId(String originOrderId);
+    OrderField queryOrderByOriginOrderId(String originOrderId);
 
-	List<OrderField> queryOrderListByAccountId(String accountId);
+    List<OrderField> queryOrderListByAccountId(String accountId);
 
-	List<OrderField> queryOrderListByUnifiedSymbol(String unifiedSymbol);
+    List<OrderField> queryOrderListByUniformSymbol(String uniformSymbol);
 
-	List<TradeField> getTradeList();
+    List<TradeField> getTradeList();
 
-	TradeField queryTradeByTradeId(String tradeId);
+    TradeField queryTradeByTradeId(String tradeId);
 
-	List<TradeField> queryTradeListByUnifiedSymbol(String unifiedSymbol);
+    List<TradeField> queryTradeListByUniformSymbol(String uniformSymbol);
 
-	List<TradeField> queryTradeListByAccountId(String accountId);
+    List<TradeField> queryTradeListByAccountId(String accountId);
 
-	List<TradeField> queryTradeListByOrderId(String orderId);
+    List<TradeField> queryTradeListByOrderId(String orderId);
 
-	List<TradeField> queryTradeListByOriginOrderId(String originOrderId);
+    List<TradeField> queryTradeListByOriginOrderId(String originOrderId);
 
-	List<PositionField> getPositionList();
+    List<PositionField> getPositionList();
 
-	PositionField queryPositionByPositionId(String positionId);
+    PositionField queryPositionByPositionId(String positionId);
 
-	List<PositionField> queryPositionListByAccountId(String accountId);
+    List<PositionField> queryPositionListByAccountId(String accountId);
 
-	List<PositionField> queryPositionListByUnifiedSymbol(String unifiedSymbol);
+    List<PositionField> queryPositionListByUniformSymbol(String uniformSymbol);
 
-	List<AccountField> getAccountList();
+    List<AccountField> getAccountList();
 
-	AccountField queryAccountByAccountId(String accountId);
+    AccountField queryAccountByAccountId(String accountId);
 
-	List<AccountField> queryAccountListByAccountCode(String accountCode);
+    List<AccountField> queryAccountListByAccountCode(String accountCode);
 
-	List<ContractField> getContractList();
+    List<ContractField> getContractList();
 
-	ContractField queryContractByContractId(String contractId);
+    ContractField queryContractByUniformSymbol(String uniformSymbol);
 
-	List<ContractField> queryContractListByUnifiedSymbol(String unifiedSymbol);
+    List<ContractField> getMixContractList();
 
-	List<ContractField> queryContractListByGatewayId(String gatewayId);
+    List<TickField> getTickList();
 
-	List<ContractField> getMixContractList();
+    List<TickField> getMixTickList();
 
-	ContractField queryContractByUnifiedSymbol(String unifiedSymbol);
+    TickField queryTickByUniformSymbol(String uniformSymbol);
+    // ------------------------------------------------------------
 
-	List<TickField> getTickList();
+    void cacheOrder(OrderField order);
 
-	List<TickField> getMixTickList();
+    void cacheTrade(TradeField trade);
 
-	TickField queryTickByUnifiedSymbol(String unifiedSymbol);
-	// ------------------------------------------------------------
+    void cacheContract(ContractField contract);
 
-	void cacheOrder(OrderField order);
+    void cachePosition(PositionField position);
 
-	void cacheTrade(TradeField trade);
+    void cacheAccount(AccountField account);
 
-	void cacheContract(ContractField contract);
+    void cacheTick(TickField tick);
 
-	void cachePosition(PositionField position);
+    void cacheOrderList(List<OrderField> orderList);
 
-	void cacheAccount(AccountField account);
+    void cacheTradeList(List<TradeField> tradeList);
 
-	void cacheTick(TickField tick);
+    void cacheContractList(List<ContractField> contractList);
 
-	void cacheOrderList(List<OrderField> orderList);
+    void cachePositionList(List<PositionField> positionList);
 
-	void cacheTradeList(List<TradeField> tradeList);
+    void cacheAccountList(List<AccountField> accountList);
 
-	void cacheContractList(List<ContractField> contractList);
+    void cacheTickList(List<TickField> tickList);
 
-	void cachePositionList(List<PositionField> positionList);
+    // ------------------------------------------------------------
 
-	void cacheAccountList(List<AccountField> accountList);
+    void clearAndCacheOrderList(List<OrderField> orderList);
 
-	void cacheTickList(List<TickField> tickList);
+    void clearAndCacheTradeList(List<TradeField> tradeList);
 
-	// ------------------------------------------------------------
+    void clearAndCacheContractList(List<ContractField> contractList);
 
-	void clearAndCacheOrderList(List<OrderField> orderList);
+    void clearAndCachePositionList(List<PositionField> positionList);
 
-	void clearAndCacheTradeList(List<TradeField> tradeList);
+    void clearAndCacheAccountList(List<AccountField> accountList);
 
-	void clearAndCacheContractList(List<ContractField> contractList);
+    void clearAndCacheTickList(List<TickField> tickList);
 
-	void clearAndCachePositionList(List<PositionField> positionList);
-
-	void clearAndCacheAccountList(List<AccountField> accountList);
-
-	void clearAndCacheTickList(List<TickField> tickList);
-
-	void reloadData();
+    void reloadData();
 
 }

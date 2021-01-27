@@ -1,21 +1,25 @@
 package xyz.redtorch.desktop.service;
 
-import java.util.Set;
-
 import xyz.redtorch.pb.CoreField.ContractField;
 
+import java.util.Set;
+
 public interface GuiMainService {
-	void reloadData();
+    void reloadData();
 
-	void updateSelectedAccountIdSet(Set<String> selectedAccountIdSet);
+    void updateSelectedAccountIdSet(Set<String> selectedAccountIdSet);
 
-	Set<String> getSelectedAccountIdSet();
+    Set<String> getSelectedAccountIdSet();
 
-	void updateSelectedContarct(ContractField contractField);
+    void updateSelectedContract(ContractField contractField);
 
-	ContractField getSelectedContract();
+    ContractField getSelectedContract();
 
-	void refreshContractData();
+    void refreshContractData();
 
-	void writeAccountsDataToFile();
+    void writeAccountsDataToFile();
+
+    boolean isSelectedAccountId(String accountId);
+
+    boolean isSelectedContract(ContractField contractField);
 }

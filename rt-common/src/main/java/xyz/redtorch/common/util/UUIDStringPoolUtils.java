@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class UUIDStringPoolUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(UUIDStringPoolUtils.class);
-	private static Queue<String> uuidStringQueue = new ConcurrentLinkedQueue<String>();
+	private static final Queue<String> uuidStringQueue = new ConcurrentLinkedQueue<String>();
 	protected static volatile boolean isCharging = false;
 	static {
 		for (int i = 0; i < 100000; i++) {

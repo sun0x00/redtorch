@@ -2,38 +2,23 @@ package xyz.redtorch.common.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.net.URL;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Modifier;
 import java.net.JarURLConnection;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TimeZone;
-import java.util.UUID;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CommonUtils {
 
@@ -65,6 +50,7 @@ public class CommonUtils {
 
 	public static final DateTimeFormatter D_FORMAT_INT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT_INT);
 	public static final DateTimeFormatter D_FORMAT_FORMATTER = DateTimeFormatter.ofPattern(D_FORMAT);
+
 
 	/**
 	 * 从包package中获取所有的Class
@@ -403,31 +389,30 @@ public class CommonUtils {
 			return true;
 		}
 	}
-
 	public static int getNumberDecimalDigits(Double value) {
-
-		if (isInteger(value)) {
+		
+		if(isInteger(value)) {
 			return 0;
 		}
-
-		int dcimalDigits = 0;
-		String valueStr = Double.toString(value);
-		int indexOf = valueStr.indexOf(".");
-		if (indexOf > 0) {
-			dcimalDigits = valueStr.length() - 1 - indexOf;
-		}
-		return dcimalDigits;
+		
+		int decimalDigits = 0;
+		String valueStr = Double.toString(value); 
+		int indexOf = valueStr.indexOf("."); 
+		if(indexOf > 0){ 
+			decimalDigits = valueStr.length() - 1 - indexOf;
+		} 
+		return decimalDigits;
 	}
-
-	public static boolean isInteger(double obj) {
-		double eps = 1e-10; // 精度范围
-		return obj - Math.floor(obj) < eps;
+	
+	public static boolean isInteger(double obj) {  
+	    double eps = 1e-10;  // 精度范围  
+	    return obj-Math.floor(obj) < eps;  
 	}
-
-	public static boolean isEquals(double d1, double d2) {
-		double eps = 1e-6;
-		if (Math.abs(d1 - d2) < eps) {
-			return true;
+	
+	public static boolean isEquals(double d1,double d2) {
+		double eps=1e-6;
+		if(Math.abs(d1-d2)<eps){
+		 return true;
 		}
 		return false;
 	}

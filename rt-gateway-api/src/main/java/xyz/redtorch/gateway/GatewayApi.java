@@ -45,21 +45,21 @@ public interface GatewayApi {
 	/**
 	 * 订阅
 	 * 
-	 * @param subscribeReq
+	 * @param contract
 	 */
 	boolean subscribe(ContractField contract);
 
 	/**
 	 * 退订
 	 * 
-	 * @param subscribeReq
+	 * @param contract
 	 */
 	boolean unsubscribe(ContractField contract);
 
 	/**
 	 * 提交定单
 	 * 
-	 * @param orderReq
+	 * @param submitOrderReq
 	 * @return
 	 */
 	String submitOrder(SubmitOrderReqField submitOrderReq);
@@ -180,9 +180,8 @@ public interface GatewayApi {
 
 	/**
 	 * 获取近似时间戳
-	 * 
 	 * @return
 	 */
-	long getApproximateTimestamp();
+	long getApproximatelyTimestamp();
 
 }

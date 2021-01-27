@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml> 
+<configuration debug="true">
+    <property name="LOG_HOME" value="./" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-20thread] [%-5level] %logger{0} >>> %msg %n</pattern>
+        </encoder>
+    </appender>
+	<appender name="FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/rt-master.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>      
+            <MaxHistory>5</MaxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-20thread] [%-5level] %logger{0} >>> %msg %n</pattern>
+        </encoder>
+    </appender>
+     <appender name ="ASYNC_FILE" class= "ch.qos.logback.classic.AsyncAppender">  
+            <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->  
+            <discardingThreshold >0</discardingThreshold>  
+            <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->  
+            <queueSize>2048</queueSize>  
+            <!-- 添加附加的appender,最多只能添加一个 -->  
+         <appender-ref ref ="FILE_LOG"/>  
+     </appender>  
+     <appender name ="ASYNC_STDOUT" class= "ch.qos.logback.classic.AsyncAppender">  
+            <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->  
+            <discardingThreshold >0</discardingThreshold>  
+            <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->  
+            <queueSize>2048</queueSize>  
+            <!-- 添加附加的appender,最多只能添加一个 -->  
+         <appender-ref ref ="STDOUT"/>  
+     </appender>  
+    <root level="INFO">
+        <appender-ref ref ="ASYNC_FILE"/>  
+        <appender-ref ref ="ASYNC_STDOUT"/>
+    </root>
+    <!--日志异步到数据库 -->
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+        <!--&lt;!&ndash;日志异步到数据库 &ndash;&gt;-->
+        <!--<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
+            <!--&lt;!&ndash;连接池 &ndash;&gt;-->
+            <!--<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+                <!--<driverClass>com.mysql.jdbc.Driver</driverClass>-->
+                <!--<url>jdbc:mysql://127.0.0.1:3306/databaseName</url>-->
+                <!--<user>root</user>-->
+                <!--<password>root</password>-->
+            <!--</dataSource>-->
+        <!--</connectionSource>-->
+    <!--</appender>-->
+</configuration>

@@ -27,11 +27,11 @@ public abstract class GatewayApiAbstract implements GatewayApi {
 
 	protected GatewaySettingField gatewaySetting;
 
-	private FastEventService fastEventService;
+	private final FastEventService fastEventService;
 
-	private GatewayField gateway;
-
-	private long approximateTimestamp = System.currentTimeMillis();
+	private final GatewayField gateway;
+	
+	private long approximatelyTimestamp = System.currentTimeMillis();
 
 	public GatewayApiAbstract(FastEventService fastEventService, GatewaySettingField gatewaySetting) {
 		this.fastEventService = fastEventService;
@@ -53,13 +53,13 @@ public abstract class GatewayApiAbstract implements GatewayApi {
 	}
 
 	@Override
-	public long getApproximateTimestamp() {
-		return approximateTimestamp;
+	public long getApproximatelyTimestamp() {
+		return approximatelyTimestamp;
 	}
-
+	
 	@Override
 	public void updateApproximateTimestamp() {
-		this.approximateTimestamp = System.currentTimeMillis();
+		this.approximatelyTimestamp = System.currentTimeMillis();
 	}
 
 	@Override

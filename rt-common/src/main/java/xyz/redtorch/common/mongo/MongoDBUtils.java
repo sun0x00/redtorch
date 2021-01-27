@@ -141,8 +141,8 @@ public class MongoDBUtils {
 				if (objectClzz == String.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						String castingObject = object.toString();
 						m.invoke(bean, castingObject);
@@ -156,8 +156,8 @@ public class MongoDBUtils {
 				if (objectClzz == Integer.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Integer castingObject = Integer.valueOf(object.toString());
 						m.invoke(bean, castingObject);
@@ -171,8 +171,8 @@ public class MongoDBUtils {
 				if (objectClzz == int.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						int castingObject = Integer.valueOf(object.toString()).intValue();
 						m.invoke(bean, castingObject);
@@ -186,8 +186,8 @@ public class MongoDBUtils {
 				if (objectClzz == Boolean.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Boolean castingObject = Boolean.valueOf(object.toString());
 						m.invoke(bean, castingObject);
@@ -201,8 +201,8 @@ public class MongoDBUtils {
 				if (objectClzz == boolean.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						boolean castingObject = Boolean.valueOf(object.toString()).booleanValue();
 						m.invoke(bean, castingObject);
@@ -216,8 +216,8 @@ public class MongoDBUtils {
 				if (objectClzz == Long.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Long castingObject = Long.valueOf(object.toString());
 						m.invoke(bean, castingObject);
@@ -231,8 +231,8 @@ public class MongoDBUtils {
 				if (objectClzz == long.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						long castingObject = Long.valueOf(object.toString()).longValue();
 						m.invoke(bean, castingObject);
@@ -246,8 +246,8 @@ public class MongoDBUtils {
 				if (objectClzz == Float.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Float castingObject = Float.valueOf(object.toString());
 						m.invoke(bean, castingObject);
@@ -261,8 +261,8 @@ public class MongoDBUtils {
 				if (objectClzz == float.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						float castingObject = Float.valueOf(object.toString()).floatValue();
 						m.invoke(bean, castingObject);
@@ -276,8 +276,8 @@ public class MongoDBUtils {
 				if (objectClzz == Double.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						Double castingObject = Double.valueOf(object.toString());
 						m.invoke(bean, castingObject);
@@ -291,8 +291,8 @@ public class MongoDBUtils {
 				if (objectClzz == double.class) {
 					m.invoke(bean, object);
 				} else {
-					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(),
-							varName, beanFieldClazz, objectClzz);
+					logger.debug("Class-{}中成员变量{}的类型{}与当前值的类型{}不匹配,将尝试转换,可能丢失精度、溢出或出错", bean.getClass().getName(), varName,
+							beanFieldClazz, objectClzz);
 					try {
 						double castingObject = Double.valueOf(object.toString()).doubleValue();
 						m.invoke(bean, castingObject);

@@ -47,7 +47,7 @@ enum MarketDataDBTypeEnum {
 }
 
 // Bar周期
-enum BarCycleEnum {
+enum BarPeriodEnum {
 	B_5Sec = 0;
 	B_1Min = 1;
 	B_3Min = 2;
@@ -58,7 +58,7 @@ enum BarCycleEnum {
 
 // 连接状态
 enum ConnectStatusEnum {
-	CS_Unkonwn = 0; // 未知
+	CS_Unknown = 0; // 未知
 	CS_Disconnected = 1; // 已经断开
 	CS_Connected = 2;  // 已经连接
 	CS_Disconnecting = 3; // 断开中
@@ -67,7 +67,7 @@ enum ConnectStatusEnum {
 
 // OrderActionStatusEnum是一个报单操作状态类型
 enum OrderActionStatusTyp {
-	OAS_Unkonwn = 0; // 未知
+	OAS_Unknown = 0; // 未知
 	OAS_Submitted = 1; // 已经提交
 	OAS_Accepted = 2; // 已经接受
 	OAS_Rejected = 3; // 已经被拒绝
@@ -178,7 +178,7 @@ enum OrderPriceTypeEnum {
 
 // OffsetFlagEnum是一个开平标志类型
 enum OffsetFlagEnum {
-	OF_Unkonwn = 0; // 未知
+	OF_Unknown = 0; // 未知
 	OF_Open = 1; // 开仓
 	OF_Close = 2; // 平仓
 	OF_ForceClose = 3; // 强平
@@ -190,7 +190,7 @@ enum OffsetFlagEnum {
 
 // ForceCloseReasonEnum是一个强平原因类型
 enum ForceCloseReasonEnum {
-	FCR_Unkonwn = 0; // 未知
+	FCR_Unknown = 0; // 未知
 	FCR_NotForceClose = 1; // 非强平
 	FCR_LackDeposit = 2; // 资金不足
 	FCR_ClientOverPositionLimit = 3; // 客户超仓
@@ -203,7 +203,7 @@ enum ForceCloseReasonEnum {
 
 // OrderTypeEnum是一个报单类型类型
 enum OrderTypeEnum {
-	OT_Unkonwn = 0; // 未知
+	OT_Unknown = 0; // 未知
 	OT_Normal = 1; // 正常
 	OT_DeriveFromQuote = 2; // 报价衍生
 	OT_DeriveFromCombination = 3; // 组合衍生
@@ -214,7 +214,7 @@ enum OrderTypeEnum {
 
 // TimeConditionEnum是一个有效期类型类型
 enum TimeConditionEnum {
-	TC_Unkonwn = 0; // 未知
+	TC_Unknown = 0; // 未知
 	TC_IOC = 1; // 立即完成，否则撤销
 	TC_GFS = 2; // 本节有效
 	TC_GFD = 3; // 当日有效
@@ -226,7 +226,7 @@ enum TimeConditionEnum {
 
 // VolumeConditionEnum是一个成交量类型类型
 enum VolumeConditionEnum {
-	VC_Unkonwn = 0; // 未知
+	VC_Unknown = 0; // 未知
 	VC_AV = 1; // 任何数量
 	VC_MV = 2; // 最小数量
 	VC_CV = 3; // 全部数量
@@ -234,7 +234,7 @@ enum VolumeConditionEnum {
 
 // ContingentConditionEnum是一个触发条件类型
 enum ContingentConditionEnum {
-	CC_Unkonwn = 0; // 未知
+	CC_Unknown = 0; // 未知
 	CC_Immediately = 1; // 立即
 	CC_Touch = 2; // 止损
 	CC_TouchProfit = 3; // 止赢
@@ -257,14 +257,14 @@ enum ContingentConditionEnum {
 
 // ActionFlagEnum是一个操作标志类型
 enum ActionFlagEnum {
-	AF_Unkonwn = 0; // 未知
+	AF_Unknown = 0; // 未知
 	AF_Delete = 1; // 删除
 	AF_Modify = 2; // 修改
 }
 
 // TradingRightEnum是一个交易权限类型
 enum TradingRightEnum {
-	TR_Unkonwn = 0; // 未知
+	TR_Unknown = 0; // 未知
 	TR_Allow = 1; // 可以交易
 	TR_CloseOnly = 2; // 只能平仓
 	TR_Forbidden = 3; // 不能交易
@@ -272,14 +272,14 @@ enum TradingRightEnum {
 
 // OrderSourceEnum是一个报单来源类型
 enum OrderSourceEnum {
-	ODS_Unkonwn = 0; // 未知
+	ODS_Unknown = 0; // 未知
 	ODS_Participant = 1; // 来自参与者
 	ODS_Administrator = 2; // 来自管理员
 }
 
 // TradeTypeEnum是一个成交类型类型
 enum TradeTypeEnum {
-	TT_Unkonwn = 0; // 未知
+	TT_Unknown = 0; // 未知
 	TT_SplitCombination = 1; // 组合持仓拆分为单一持仓,初始化不应包含该类型的持仓
 	TT_Common = 2; // 普通成交
 	TT_OptionsExecution = 3; // 期权执行
@@ -291,7 +291,7 @@ enum TradeTypeEnum {
 
 // PriceSourceEnum是一个成交价来源类型
 enum PriceSourceEnum {
-	PSRC_Unkonwn = 0; // 未知
+	PSRC_Unknown = 0; // 未知
 	PSRC_LastPrice = 1; // 前成交价
 	PSRC_Buy = 2; // 买委托价 
 	PSRC_Sell = 3; // 卖委托价

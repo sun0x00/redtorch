@@ -38,85 +38,34 @@ public final class Dep {
     xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType getContentType();
 
     /**
-     * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-     * @return The enum numeric value on the wire for rpcType.
-     */
-    int getRpcTypeValue();
-    /**
-     * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-     * @return The rpcType.
-     */
-    xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType();
-
-    /**
      * <pre>
-     * 时间戳
+     * RPC ID
      * </pre>
      *
-     * <code>fixed64 timestamp = 3;</code>
-     * @return The timestamp.
-     */
-    long getTimestamp();
-
-    /**
-     * <pre>
-     * 来源节点ID
-     * </pre>
-     *
-     * <code>fixed32 sourceNodeId = 4;</code>
-     * @return The sourceNodeId.
-     */
-    int getSourceNodeId();
-
-    /**
-     * <pre>
-     * 目标节点ID
-     * </pre>
-     *
-     * <code>fixed32 targetNodeId = 5;</code>
-     * @return The targetNodeId.
-     */
-    int getTargetNodeId();
-
-    /**
-     * <pre>
-     * 业务ID
-     * </pre>
-     *
-     * <code>fixed32 rpcId = 6;</code>
+     * <code>fixed32 rpcId = 2;</code>
      * @return The rpcId.
      */
     int getRpcId();
 
     /**
      * <pre>
-     * 请求ID
-     * </pre>
-     *
-     * <code>string reqId = 7;</code>
-     * @return The reqId.
-     */
-    java.lang.String getReqId();
-    /**
-     * <pre>
-     * 请求ID
-     * </pre>
-     *
-     * <code>string reqId = 7;</code>
-     * @return The bytes for reqId.
-     */
-    com.google.protobuf.ByteString
-        getReqIdBytes();
-
-    /**
-     * <pre>
      * 数据内容
      * </pre>
      *
-     * <code>bytes contentBytes = 8;</code>
+     * <code>bytes contentBytes = 3;</code>
      * @return The contentBytes.
      */
     com.google.protobuf.ByteString getContentBytes();
+
+    /**
+     * <pre>
+     * 时间戳
+     * </pre>
+     *
+     * <code>fixed64 timestamp = 4;</code>
+     * @return The timestamp.
+     */
+    long getTimestamp();
   }
   /**
    * <pre>
@@ -136,8 +85,6 @@ public final class Dep {
     }
     private DataExchangeProtocol() {
       contentType_ = 0;
-      rpcType_ = 0;
-      reqId_ = "";
       contentBytes_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -177,41 +124,19 @@ public final class Dep {
               contentType_ = rawValue;
               break;
             }
-            case 16: {
-              int rawValue = input.readEnum();
-
-              rpcType_ = rawValue;
-              break;
-            }
-            case 25: {
-
-              timestamp_ = input.readFixed64();
-              break;
-            }
-            case 37: {
-
-              sourceNodeId_ = input.readFixed32();
-              break;
-            }
-            case 45: {
-
-              targetNodeId_ = input.readFixed32();
-              break;
-            }
-            case 53: {
+            case 21: {
 
               rpcId_ = input.readFixed32();
               break;
             }
-            case 58: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              reqId_ = s;
-              break;
-            }
-            case 66: {
+            case 26: {
 
               contentBytes_ = input.readBytes();
+              break;
+            }
+            case 33: {
+
+              timestamp_ = input.readFixed64();
               break;
             }
             default: {
@@ -244,105 +169,6 @@ public final class Dep {
       return xyz.redtorch.pb.Dep.internal_static_xyz_redtorch_pb_DataExchangeProtocol_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               xyz.redtorch.pb.Dep.DataExchangeProtocol.class, xyz.redtorch.pb.Dep.DataExchangeProtocol.Builder.class);
-    }
-
-    /**
-     * Protobuf enum {@code xyz.redtorch.pb.DataExchangeProtocol.RpcType}
-     */
-    public enum RpcType
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>CORE_RPC = 0;</code>
-       */
-      CORE_RPC(0),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>CORE_RPC = 0;</code>
-       */
-      public static final int CORE_RPC_VALUE = 0;
-
-
-      public final int getNumber() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
-        }
-        return value;
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static RpcType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      /**
-       * @param value The numeric wire value of the corresponding enum entry.
-       * @return The enum associated with the given numeric wire value.
-       */
-      public static RpcType forNumber(int value) {
-        switch (value) {
-          case 0: return CORE_RPC;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<RpcType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          RpcType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<RpcType>() {
-              public RpcType findValueByNumber(int number) {
-                return RpcType.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalStateException(
-              "Can't get the descriptor of an unrecognized enum value.");
-        }
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return xyz.redtorch.pb.Dep.DataExchangeProtocol.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final RpcType[] VALUES = values();
-
-      public static RpcType valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private RpcType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:xyz.redtorch.pb.DataExchangeProtocol.RpcType)
     }
 
     /**
@@ -447,7 +273,7 @@ public final class Dep {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return xyz.redtorch.pb.Dep.DataExchangeProtocol.getDescriptor().getEnumTypes().get(1);
+        return xyz.redtorch.pb.Dep.DataExchangeProtocol.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final ContentType[] VALUES = values();
@@ -500,78 +326,14 @@ public final class Dep {
       return result == null ? xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType.UNRECOGNIZED : result;
     }
 
-    public static final int RPCTYPE_FIELD_NUMBER = 2;
-    private int rpcType_;
-    /**
-     * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-     * @return The enum numeric value on the wire for rpcType.
-     */
-    @java.lang.Override public int getRpcTypeValue() {
-      return rpcType_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-     * @return The rpcType.
-     */
-    @java.lang.Override public xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType() {
-      @SuppressWarnings("deprecation")
-      xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.valueOf(rpcType_);
-      return result == null ? xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.UNRECOGNIZED : result;
-    }
-
-    public static final int TIMESTAMP_FIELD_NUMBER = 3;
-    private long timestamp_;
-    /**
-     * <pre>
-     * 时间戳
-     * </pre>
-     *
-     * <code>fixed64 timestamp = 3;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    public static final int SOURCENODEID_FIELD_NUMBER = 4;
-    private int sourceNodeId_;
-    /**
-     * <pre>
-     * 来源节点ID
-     * </pre>
-     *
-     * <code>fixed32 sourceNodeId = 4;</code>
-     * @return The sourceNodeId.
-     */
-    @java.lang.Override
-    public int getSourceNodeId() {
-      return sourceNodeId_;
-    }
-
-    public static final int TARGETNODEID_FIELD_NUMBER = 5;
-    private int targetNodeId_;
-    /**
-     * <pre>
-     * 目标节点ID
-     * </pre>
-     *
-     * <code>fixed32 targetNodeId = 5;</code>
-     * @return The targetNodeId.
-     */
-    @java.lang.Override
-    public int getTargetNodeId() {
-      return targetNodeId_;
-    }
-
-    public static final int RPCID_FIELD_NUMBER = 6;
+    public static final int RPCID_FIELD_NUMBER = 2;
     private int rpcId_;
     /**
      * <pre>
-     * 业务ID
+     * RPC ID
      * </pre>
      *
-     * <code>fixed32 rpcId = 6;</code>
+     * <code>fixed32 rpcId = 2;</code>
      * @return The rpcId.
      */
     @java.lang.Override
@@ -579,65 +341,34 @@ public final class Dep {
       return rpcId_;
     }
 
-    public static final int REQID_FIELD_NUMBER = 7;
-    private volatile java.lang.Object reqId_;
-    /**
-     * <pre>
-     * 请求ID
-     * </pre>
-     *
-     * <code>string reqId = 7;</code>
-     * @return The reqId.
-     */
-    @java.lang.Override
-    public java.lang.String getReqId() {
-      java.lang.Object ref = reqId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        reqId_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 请求ID
-     * </pre>
-     *
-     * <code>string reqId = 7;</code>
-     * @return The bytes for reqId.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getReqIdBytes() {
-      java.lang.Object ref = reqId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        reqId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CONTENTBYTES_FIELD_NUMBER = 8;
+    public static final int CONTENTBYTES_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString contentBytes_;
     /**
      * <pre>
      * 数据内容
      * </pre>
      *
-     * <code>bytes contentBytes = 8;</code>
+     * <code>bytes contentBytes = 3;</code>
      * @return The contentBytes.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString getContentBytes() {
       return contentBytes_;
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 4;
+    private long timestamp_;
+    /**
+     * <pre>
+     * 时间戳
+     * </pre>
+     *
+     * <code>fixed64 timestamp = 4;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -657,26 +388,14 @@ public final class Dep {
       if (contentType_ != xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType.ROUTINE.getNumber()) {
         output.writeEnum(1, contentType_);
       }
-      if (rpcType_ != xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.CORE_RPC.getNumber()) {
-        output.writeEnum(2, rpcType_);
-      }
-      if (timestamp_ != 0L) {
-        output.writeFixed64(3, timestamp_);
-      }
-      if (sourceNodeId_ != 0) {
-        output.writeFixed32(4, sourceNodeId_);
-      }
-      if (targetNodeId_ != 0) {
-        output.writeFixed32(5, targetNodeId_);
-      }
       if (rpcId_ != 0) {
-        output.writeFixed32(6, rpcId_);
-      }
-      if (!getReqIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, reqId_);
+        output.writeFixed32(2, rpcId_);
       }
       if (!contentBytes_.isEmpty()) {
-        output.writeBytes(8, contentBytes_);
+        output.writeBytes(3, contentBytes_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeFixed64(4, timestamp_);
       }
       unknownFields.writeTo(output);
     }
@@ -691,32 +410,17 @@ public final class Dep {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, contentType_);
       }
-      if (rpcType_ != xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.CORE_RPC.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, rpcType_);
-      }
-      if (timestamp_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(3, timestamp_);
-      }
-      if (sourceNodeId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(4, sourceNodeId_);
-      }
-      if (targetNodeId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(5, targetNodeId_);
-      }
       if (rpcId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(6, rpcId_);
-      }
-      if (!getReqIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, reqId_);
+          .computeFixed32Size(2, rpcId_);
       }
       if (!contentBytes_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(8, contentBytes_);
+          .computeBytesSize(3, contentBytes_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed64Size(4, timestamp_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -734,19 +438,12 @@ public final class Dep {
       xyz.redtorch.pb.Dep.DataExchangeProtocol other = (xyz.redtorch.pb.Dep.DataExchangeProtocol) obj;
 
       if (contentType_ != other.contentType_) return false;
-      if (rpcType_ != other.rpcType_) return false;
-      if (getTimestamp()
-          != other.getTimestamp()) return false;
-      if (getSourceNodeId()
-          != other.getSourceNodeId()) return false;
-      if (getTargetNodeId()
-          != other.getTargetNodeId()) return false;
       if (getRpcId()
           != other.getRpcId()) return false;
-      if (!getReqId()
-          .equals(other.getReqId())) return false;
       if (!getContentBytes()
           .equals(other.getContentBytes())) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -760,21 +457,13 @@ public final class Dep {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CONTENTTYPE_FIELD_NUMBER;
       hash = (53 * hash) + contentType_;
-      hash = (37 * hash) + RPCTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + rpcType_;
+      hash = (37 * hash) + RPCID_FIELD_NUMBER;
+      hash = (53 * hash) + getRpcId();
+      hash = (37 * hash) + CONTENTBYTES_FIELD_NUMBER;
+      hash = (53 * hash) + getContentBytes().hashCode();
       hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTimestamp());
-      hash = (37 * hash) + SOURCENODEID_FIELD_NUMBER;
-      hash = (53 * hash) + getSourceNodeId();
-      hash = (37 * hash) + TARGETNODEID_FIELD_NUMBER;
-      hash = (53 * hash) + getTargetNodeId();
-      hash = (37 * hash) + RPCID_FIELD_NUMBER;
-      hash = (53 * hash) + getRpcId();
-      hash = (37 * hash) + REQID_FIELD_NUMBER;
-      hash = (53 * hash) + getReqId().hashCode();
-      hash = (37 * hash) + CONTENTBYTES_FIELD_NUMBER;
-      hash = (53 * hash) + getContentBytes().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -914,19 +603,11 @@ public final class Dep {
         super.clear();
         contentType_ = 0;
 
-        rpcType_ = 0;
-
-        timestamp_ = 0L;
-
-        sourceNodeId_ = 0;
-
-        targetNodeId_ = 0;
-
         rpcId_ = 0;
 
-        reqId_ = "";
-
         contentBytes_ = com.google.protobuf.ByteString.EMPTY;
+
+        timestamp_ = 0L;
 
         return this;
       }
@@ -955,13 +636,9 @@ public final class Dep {
       public xyz.redtorch.pb.Dep.DataExchangeProtocol buildPartial() {
         xyz.redtorch.pb.Dep.DataExchangeProtocol result = new xyz.redtorch.pb.Dep.DataExchangeProtocol(this);
         result.contentType_ = contentType_;
-        result.rpcType_ = rpcType_;
-        result.timestamp_ = timestamp_;
-        result.sourceNodeId_ = sourceNodeId_;
-        result.targetNodeId_ = targetNodeId_;
         result.rpcId_ = rpcId_;
-        result.reqId_ = reqId_;
         result.contentBytes_ = contentBytes_;
+        result.timestamp_ = timestamp_;
         onBuilt();
         return result;
       }
@@ -1013,27 +690,14 @@ public final class Dep {
         if (other.contentType_ != 0) {
           setContentTypeValue(other.getContentTypeValue());
         }
-        if (other.rpcType_ != 0) {
-          setRpcTypeValue(other.getRpcTypeValue());
-        }
-        if (other.getTimestamp() != 0L) {
-          setTimestamp(other.getTimestamp());
-        }
-        if (other.getSourceNodeId() != 0) {
-          setSourceNodeId(other.getSourceNodeId());
-        }
-        if (other.getTargetNodeId() != 0) {
-          setTargetNodeId(other.getTargetNodeId());
-        }
         if (other.getRpcId() != 0) {
           setRpcId(other.getRpcId());
         }
-        if (!other.getReqId().isEmpty()) {
-          reqId_ = other.reqId_;
-          onChanged();
-        }
         if (other.getContentBytes() != com.google.protobuf.ByteString.EMPTY) {
           setContentBytes(other.getContentBytes());
+        }
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1138,196 +802,13 @@ public final class Dep {
         return this;
       }
 
-      private int rpcType_ = 0;
-      /**
-       * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-       * @return The enum numeric value on the wire for rpcType.
-       */
-      @java.lang.Override public int getRpcTypeValue() {
-        return rpcType_;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-       * @param value The enum numeric value on the wire for rpcType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRpcTypeValue(int value) {
-        
-        rpcType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-       * @return The rpcType.
-       */
-      @java.lang.Override
-      public xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType getRpcType() {
-        @SuppressWarnings("deprecation")
-        xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType result = xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.valueOf(rpcType_);
-        return result == null ? xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-       * @param value The rpcType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRpcType(xyz.redtorch.pb.Dep.DataExchangeProtocol.RpcType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        rpcType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.DataExchangeProtocol.RpcType rpcType = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRpcType() {
-        
-        rpcType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private long timestamp_ ;
-      /**
-       * <pre>
-       * 时间戳
-       * </pre>
-       *
-       * <code>fixed64 timestamp = 3;</code>
-       * @return The timestamp.
-       */
-      @java.lang.Override
-      public long getTimestamp() {
-        return timestamp_;
-      }
-      /**
-       * <pre>
-       * 时间戳
-       * </pre>
-       *
-       * <code>fixed64 timestamp = 3;</code>
-       * @param value The timestamp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTimestamp(long value) {
-        
-        timestamp_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 时间戳
-       * </pre>
-       *
-       * <code>fixed64 timestamp = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTimestamp() {
-        
-        timestamp_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int sourceNodeId_ ;
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @return The sourceNodeId.
-       */
-      @java.lang.Override
-      public int getSourceNodeId() {
-        return sourceNodeId_;
-      }
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @param value The sourceNodeId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSourceNodeId(int value) {
-        
-        sourceNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 来源节点ID
-       * </pre>
-       *
-       * <code>fixed32 sourceNodeId = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSourceNodeId() {
-        
-        sourceNodeId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int targetNodeId_ ;
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 5;</code>
-       * @return The targetNodeId.
-       */
-      @java.lang.Override
-      public int getTargetNodeId() {
-        return targetNodeId_;
-      }
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 5;</code>
-       * @param value The targetNodeId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTargetNodeId(int value) {
-        
-        targetNodeId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 目标节点ID
-       * </pre>
-       *
-       * <code>fixed32 targetNodeId = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTargetNodeId() {
-        
-        targetNodeId_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int rpcId_ ;
       /**
        * <pre>
-       * 业务ID
+       * RPC ID
        * </pre>
        *
-       * <code>fixed32 rpcId = 6;</code>
+       * <code>fixed32 rpcId = 2;</code>
        * @return The rpcId.
        */
       @java.lang.Override
@@ -1336,10 +817,10 @@ public final class Dep {
       }
       /**
        * <pre>
-       * 业务ID
+       * RPC ID
        * </pre>
        *
-       * <code>fixed32 rpcId = 6;</code>
+       * <code>fixed32 rpcId = 2;</code>
        * @param value The rpcId to set.
        * @return This builder for chaining.
        */
@@ -1351,111 +832,15 @@ public final class Dep {
       }
       /**
        * <pre>
-       * 业务ID
+       * RPC ID
        * </pre>
        *
-       * <code>fixed32 rpcId = 6;</code>
+       * <code>fixed32 rpcId = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearRpcId() {
         
         rpcId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object reqId_ = "";
-      /**
-       * <pre>
-       * 请求ID
-       * </pre>
-       *
-       * <code>string reqId = 7;</code>
-       * @return The reqId.
-       */
-      public java.lang.String getReqId() {
-        java.lang.Object ref = reqId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          reqId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 请求ID
-       * </pre>
-       *
-       * <code>string reqId = 7;</code>
-       * @return The bytes for reqId.
-       */
-      public com.google.protobuf.ByteString
-          getReqIdBytes() {
-        java.lang.Object ref = reqId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          reqId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 请求ID
-       * </pre>
-       *
-       * <code>string reqId = 7;</code>
-       * @param value The reqId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReqId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        reqId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 请求ID
-       * </pre>
-       *
-       * <code>string reqId = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearReqId() {
-        
-        reqId_ = getDefaultInstance().getReqId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 请求ID
-       * </pre>
-       *
-       * <code>string reqId = 7;</code>
-       * @param value The bytes for reqId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReqIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        reqId_ = value;
         onChanged();
         return this;
       }
@@ -1466,7 +851,7 @@ public final class Dep {
        * 数据内容
        * </pre>
        *
-       * <code>bytes contentBytes = 8;</code>
+       * <code>bytes contentBytes = 3;</code>
        * @return The contentBytes.
        */
       @java.lang.Override
@@ -1478,7 +863,7 @@ public final class Dep {
        * 数据内容
        * </pre>
        *
-       * <code>bytes contentBytes = 8;</code>
+       * <code>bytes contentBytes = 3;</code>
        * @param value The contentBytes to set.
        * @return This builder for chaining.
        */
@@ -1496,12 +881,55 @@ public final class Dep {
        * 数据内容
        * </pre>
        *
-       * <code>bytes contentBytes = 8;</code>
+       * <code>bytes contentBytes = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearContentBytes() {
         
         contentBytes_ = getDefaultInstance().getContentBytes();
+        onChanged();
+        return this;
+      }
+
+      private long timestamp_ ;
+      /**
+       * <pre>
+       * 时间戳
+       * </pre>
+       *
+       * <code>fixed64 timestamp = 4;</code>
+       * @return The timestamp.
+       */
+      @java.lang.Override
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <pre>
+       * 时间戳
+       * </pre>
+       *
+       * <code>fixed64 timestamp = 4;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimestamp(long value) {
+        
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间戳
+       * </pre>
+       *
+       * <code>fixed64 timestamp = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimestamp() {
+        
+        timestamp_ = 0L;
         onChanged();
         return this;
       }
@@ -1573,16 +1001,12 @@ public final class Dep {
   static {
     java.lang.String[] descriptorData = {
       "\n\031xyz/redtorch/pb/dep.proto\022\017xyz.redtorc" +
-      "h.pb\"\332\002\n\024DataExchangeProtocol\022F\n\013content" +
+      "h.pb\"\306\001\n\024DataExchangeProtocol\022F\n\013content" +
       "Type\030\001 \001(\01621.xyz.redtorch.pb.DataExchang" +
-      "eProtocol.ContentType\022>\n\007rpcType\030\002 \001(\0162-" +
-      ".xyz.redtorch.pb.DataExchangeProtocol.Rp" +
-      "cType\022\021\n\ttimestamp\030\003 \001(\006\022\024\n\014sourceNodeId" +
-      "\030\004 \001(\007\022\024\n\014targetNodeId\030\005 \001(\007\022\r\n\005rpcId\030\006 " +
-      "\001(\007\022\r\n\005reqId\030\007 \001(\t\022\024\n\014contentBytes\030\010 \001(\014" +
-      "\"\027\n\007RpcType\022\014\n\010CORE_RPC\020\000\".\n\013ContentType" +
-      "\022\013\n\007ROUTINE\020\000\022\022\n\016COMPRESSED_LZ4\020\001b\006proto" +
-      "3"
+      "eProtocol.ContentType\022\r\n\005rpcId\030\002 \001(\007\022\024\n\014" +
+      "contentBytes\030\003 \001(\014\022\021\n\ttimestamp\030\004 \001(\006\".\n" +
+      "\013ContentType\022\013\n\007ROUTINE\020\000\022\022\n\016COMPRESSED_" +
+      "LZ4\020\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1593,7 +1017,7 @@ public final class Dep {
     internal_static_xyz_redtorch_pb_DataExchangeProtocol_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_DataExchangeProtocol_descriptor,
-        new java.lang.String[] { "ContentType", "RpcType", "Timestamp", "SourceNodeId", "TargetNodeId", "RpcId", "ReqId", "ContentBytes", });
+        new java.lang.String[] { "ContentType", "RpcId", "ContentBytes", "Timestamp", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
