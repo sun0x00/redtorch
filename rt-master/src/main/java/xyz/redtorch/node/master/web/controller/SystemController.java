@@ -88,8 +88,8 @@ public class SystemController {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 			responseVo.setMessage("注销成功");
-			if (request.getSession().getAttribute(CommonConstant.KEY_USER_PO) != null) {
-				UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			if (request.getAttribute(CommonConstant.KEY_USER_PO) != null) {
+				UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 				logger.info("用户{}注销,地址{}:{}", user.getUsername(), request.getRemoteAddr(), request.getRemotePort());
 				request.getSession().removeAttribute(CommonConstant.KEY_USER_PO);
 			}
@@ -110,8 +110,8 @@ public class SystemController {
 				responseVo.setStatus(false);
 				responseVo.setMessage("修改密码失败,未找到请求体");
 			} else {
-				if (request.getSession().getAttribute(CommonConstant.KEY_USER_PO) != null) {
-					UserPo sessionUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+				if (request.getAttribute(CommonConstant.KEY_USER_PO) != null) {
+					UserPo sessionUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 					logger.info("用户{}修改密码,地址{}:{}", sessionUser.getUsername(), request.getRemoteAddr(), request.getRemotePort());
 					if ("admin".equals(sessionUser.getUsername())) {
 						responseVo.setStatus(false);

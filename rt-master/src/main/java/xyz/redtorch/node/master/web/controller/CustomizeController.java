@@ -31,7 +31,7 @@ public class CustomizeController {
 	public ResponseVo<List<ContractPo>> getFavoriteContractList(HttpServletRequest request) {
 		ResponseVo<List<ContractPo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			responseVo.setVoData(favoriteContractService.getContractListByUsername(user.getUsername()));
 		} catch (Exception e) {
 			logger.error("获取常用合约列表错误", e);
@@ -46,7 +46,7 @@ public class CustomizeController {
 	public ResponseVo<String> addFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			favoriteContractService.upsertContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
 		} catch (Exception e) {
 			logger.error("根据统一合约标识新增合约错误", e);
@@ -61,7 +61,7 @@ public class CustomizeController {
 	public ResponseVo<String> deleteFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			favoriteContractService.deleteContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
 		} catch (Exception e) {
 			logger.error("根据用户名和统一合约标识删除合约错误", e);

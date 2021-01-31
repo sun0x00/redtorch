@@ -38,8 +38,8 @@ public class UserController {
 				responseVo.setStatus(false);
 				responseVo.setMessage("修改密码失败,未找到请求体");
 			} else {
-				if (request.getSession().getAttribute(CommonConstant.KEY_USER_PO) != null) {
-					UserPo sessionUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+				if (request.getAttribute(CommonConstant.KEY_USER_PO) != null) {
+					UserPo sessionUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 					logger.info("用户{}修改密码,地址{}:{}", sessionUser.getUsername(), request.getRemoteAddr(), request.getRemotePort());
 					if ("admin".equals(sessionUser.getUsername())) {
 						responseVo.setStatus(false);
@@ -71,7 +71,7 @@ public class UserController {
 	public ResponseVo<List<UserPo>> getUserList(HttpServletRequest request) {
 		ResponseVo<List<UserPo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanReadUser()) {
 				List<UserPo> userList = userService.getUserList();
 				responseVo.setVoData(userList);
@@ -93,7 +93,7 @@ public class UserController {
 	public ResponseVo<String> deleteUserByUsername(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanWriteUser()) {
 				logger.info("用户{}删除用户,用户名:{}", loginUser.getUsername(), requestVo.getVoData());
 				userService.deleteUserByUsername(requestVo.getVoData());
@@ -115,7 +115,7 @@ public class UserController {
 	public ResponseVo<String> updateUserDescriptionByUsername(HttpServletRequest request, @RequestBody UserPo user) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanWriteUser()) {
 				logger.info("用户{}更新用户描述,用户名:{}", loginUser.getUsername(), user.getUsername());
 				userService.updateUserDescriptionByUsername(user);
@@ -138,7 +138,7 @@ public class UserController {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanWriteUser()) {
 				logger.info("用户{}更新用户密码,用户名:{}", loginUser.getUsername(), user.getUsername());
 				userService.updateUserPasswordByUsername(user);
@@ -162,7 +162,7 @@ public class UserController {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
 
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanWriteUser()) {
 				if (user == null) {
 					responseVo.setStatus(false);
@@ -188,7 +188,7 @@ public class UserController {
 	public ResponseVo<String> updateUserPermissionByUsername(HttpServletRequest request, @RequestBody UserPo user) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo loginUser = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo loginUser = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (loginUser.isCanWriteUser()) {
 				logger.info("用户{}更新用户权限,用户名:{}", loginUser.getUsername(), user.getUsername());
 				userService.updateUserPermissionByUsername(user);

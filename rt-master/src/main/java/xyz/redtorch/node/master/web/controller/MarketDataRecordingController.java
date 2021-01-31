@@ -30,7 +30,7 @@ public class MarketDataRecordingController {
 	public ResponseVo<List<ContractPo>> getContractList(HttpServletRequest request) {
 		ResponseVo<List<ContractPo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanReadMarketDataRecording()) {
 				List<ContractPo> contractList = marketDataRecordingService.getContractList();
 				responseVo.setVoData(contractList);
@@ -52,7 +52,7 @@ public class MarketDataRecordingController {
 	public ResponseVo<String> addContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteMarketDataRecording()) {
 				logger.info("用户{}新增合约,合约统一标识:{}", user.getUsername(), requestVo.getVoData());
 				marketDataRecordingService.addContractByUniformSymbol(requestVo.getVoData());
@@ -74,7 +74,7 @@ public class MarketDataRecordingController {
 	public ResponseVo<String> deleteGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteGateway()) {
 				logger.info("用户{}删除合约,合约统一标识:{}", user.getUsername(), requestVo.getVoData());
 				marketDataRecordingService.deleteContractByUniformSymbol(requestVo.getVoData());

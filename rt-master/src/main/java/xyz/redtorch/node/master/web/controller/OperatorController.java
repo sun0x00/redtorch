@@ -33,7 +33,7 @@ public class OperatorController {
 	public ResponseVo<List<OperatorPo>> getOperatorList(HttpServletRequest request) {
 		ResponseVo<List<OperatorPo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanReadOperator()) {
 				List<OperatorPo> operatorList = operatorService.getOperatorList();
 				responseVo.setVoData(operatorList);
@@ -55,7 +55,7 @@ public class OperatorController {
 	public ResponseVo<String> deleteOperatorByOperatorId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteOperator()) {
 				logger.info("用户{}删除操作员,ID:{}", user.getUsername(), requestVo.getVoData());
 				operatorService.deleteOperatorByOperatorId(requestVo.getVoData());
@@ -76,7 +76,7 @@ public class OperatorController {
 	public ResponseVo<String> saveOrUpdateOperator(HttpServletRequest request, @RequestBody OperatorPo operator) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteOperator()) {
 				if (StringUtils.isBlank(operator.getOperatorId())) {
 					operator.setOperatorId(UUIDStringPoolUtils.getUUIDString());
@@ -103,7 +103,7 @@ public class OperatorController {
 	public ResponseVo<String> createOperator(HttpServletRequest request) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteOperator()) {
 				OperatorPo operator = operatorService.createOperator();
 				logger.info("用户{}新增操作员,操作员ID:{}", user.getUsername(), operator.getOperatorId());

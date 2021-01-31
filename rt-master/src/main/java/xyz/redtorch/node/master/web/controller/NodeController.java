@@ -31,7 +31,7 @@ public class NodeController {
 	public ResponseVo<List<NodePo>> getNodeList(HttpServletRequest request) {
 		ResponseVo<List<NodePo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanReadNode()) {
 				List<NodePo> nodeList = nodeService.getNodeList();
 				responseVo.setVoData(nodeList);
@@ -53,7 +53,7 @@ public class NodeController {
 	public ResponseVo<String> deleteNodeByNodeId(HttpServletRequest request, @RequestBody RequestVo<Integer> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteNode()) {
 				logger.info("用户{}删除节点,ID:{}", user.getUsername(), requestVo.getVoData());
 				nodeService.deleteNodeByNodeId(requestVo.getVoData());
@@ -75,7 +75,7 @@ public class NodeController {
 	public ResponseVo<String> resetNodeTokenByNodeId(HttpServletRequest request, @RequestBody RequestVo<Integer> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanChangeNodeToken()) {
 				logger.info("用户{}重置节点令牌,ID:{}", user.getUsername(), requestVo.getVoData());
 				nodeService.resetNodeTokenByNodeId(requestVo.getVoData());
@@ -97,7 +97,7 @@ public class NodeController {
 	public ResponseVo<String> updateNodeDescriptionByNodeId(HttpServletRequest request, @RequestBody NodePo node) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteNode()) {
 				logger.info("用户{}更新节点描述,ID:{}", user.getUsername(), node.getNodeId());
 				nodeService.updateNodeDescriptionByNodeId(node);
@@ -119,7 +119,7 @@ public class NodeController {
 	public ResponseVo<String> createNode(HttpServletRequest request) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteNode()) {
 				NodePo node = nodeService.createNode();
 				logger.info("用户{}新增节点,节点ID:{}", user.getUsername(), node.getNodeId());

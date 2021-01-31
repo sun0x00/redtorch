@@ -33,7 +33,7 @@ public class GatewayController {
 	public ResponseVo<List<GatewayPo>> getGatewayList(HttpServletRequest request) {
 		ResponseVo<List<GatewayPo>> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanReadGateway()) {
 				List<GatewayPo> gatewayList = gatewayService.getGatewayList();
 				for (GatewayPo gateway : gatewayList) {
@@ -62,7 +62,7 @@ public class GatewayController {
 	public ResponseVo<GatewayPo> getGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<GatewayPo> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanReadGateway()) {
 				String gatewayId = requestVo.getVoData();
 				GatewayPo gatewayPo = gatewayService.getGatewayByGatewayId(gatewayId);
@@ -85,7 +85,7 @@ public class GatewayController {
 	public ResponseVo<String> deleteGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteGateway()) {
 				logger.info("用户{}删除网关,ID:{}", user.getUsername(), requestVo.getVoData());
 				gatewayService.deleteGatewayByGatewayId(requestVo.getVoData());
@@ -106,7 +106,7 @@ public class GatewayController {
 	public ResponseVo<String> saveOrUpdateGateway(HttpServletRequest request, @RequestBody GatewayPo gateway) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanWriteGateway()) {
 				long version = System.currentTimeMillis();
 				if (StringUtils.isBlank(gateway.getGatewayId())) {
@@ -135,7 +135,7 @@ public class GatewayController {
 	public ResponseVo<String> connectGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanChangeGatewayStatus()) {
 				logger.info("用户{}连接网关,ID:{}", user.getUsername(), requestVo.getVoData());
 				gatewayService.connectGatewayByGatewayId(requestVo.getVoData());
@@ -157,7 +157,7 @@ public class GatewayController {
 	public ResponseVo<String> disconnectGatewayByGatewayId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanChangeGatewayStatus()) {
 				logger.info("用户{}断开网关,ID:{}", user.getUsername(), requestVo.getVoData());
 				gatewayService.disconnectGatewayByGatewayId(requestVo.getVoData());
@@ -179,7 +179,7 @@ public class GatewayController {
 	public ResponseVo<String> disconnectAllGateways(HttpServletRequest request) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanChangeGatewayStatus()) {
 				logger.info("用户{}断开全部网关", user.getUsername());
 				gatewayService.disconnectAllGateways();
@@ -201,7 +201,7 @@ public class GatewayController {
 	public ResponseVo<String> connectAllGateways(HttpServletRequest request) {
 		ResponseVo<String> responseVo = new ResponseVo<>();
 		try {
-			UserPo user = (UserPo) request.getSession().getAttribute(CommonConstant.KEY_USER_PO);
+			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
 			if (user.isCanChangeGatewayStatus()) {
 				logger.info("用户{}连接全部网关", user.getUsername());
 				gatewayService.connectAllGateways();
