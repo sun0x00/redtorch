@@ -292,7 +292,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 								}
 							}
 							
-							if(bar1MinInsertList.isEmpty()) {
+							if(!bar1MinInsertList.isEmpty()) {
 								try {
 									marketDataService.upsertBar1MinListToTodayDB(bar1MinInsertList);
 									bar1MinInsertList = new ArrayList<>();
@@ -302,7 +302,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 								}
 							}
 							
-							if(bar3MinInsertList.isEmpty()) {
+							if(!bar3MinInsertList.isEmpty()) {
 								try {
 									marketDataService.upsertBar3MinListToTodayDB(bar3MinInsertList);
 									bar3MinInsertList = new ArrayList<>();
@@ -312,7 +312,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 								}
 							}
 							
-							if(bar5MinInsertList.isEmpty()) {
+							if(!bar5MinInsertList.isEmpty()) {
 								try {
 									marketDataService.upsertBar5MinListToTodayDB(bar5MinInsertList);
 									bar5MinInsertList = new ArrayList<>();
@@ -322,7 +322,7 @@ public class MarketDataRecordingServiceImpl implements MarketDataRecordingServic
 								}
 							}
 							
-							if(bar15MinInsertList.isEmpty()) {
+							if(!bar15MinInsertList.isEmpty()) {
 								try {
 									marketDataService.upsertBar15MinListToTodayDB(bar15MinInsertList);
 									bar15MinInsertList = new ArrayList<>();

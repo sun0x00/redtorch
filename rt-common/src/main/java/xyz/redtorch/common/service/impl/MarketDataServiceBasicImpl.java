@@ -20,11 +20,8 @@ import com.mongodb.client.model.WriteModel;
 import xyz.redtorch.common.mongo.MongoDBClient;
 import xyz.redtorch.common.service.MarketDataService;
 import xyz.redtorch.common.util.CommonUtils;
-import xyz.redtorch.pb.CoreEnum.ExchangeEnum;
 import xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum;
-import xyz.redtorch.pb.CoreEnum.ProductClassEnum;
 import xyz.redtorch.pb.CoreField.BarField;
-import xyz.redtorch.pb.CoreField.ContractField;
 import xyz.redtorch.pb.CoreField.TickField;
 
 public class MarketDataServiceBasicImpl implements MarketDataService {
@@ -276,20 +273,7 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 				try {
 					BarField.Builder barBuilder = BarField.newBuilder();
 
-					ContractField.Builder contractBuilder = ContractField.newBuilder();
-
-					String uniformSymbol = document.getString("uniformSymbol");
-					String[] uniformSymbolStrArr = uniformSymbol.split("@");
-					String symbol = uniformSymbolStrArr[0];
-					String exchangeStr = uniformSymbolStrArr[1];
-					String productClassStr = uniformSymbolStrArr[2];
-
-					contractBuilder.setUniformSymbol(uniformSymbol);
-					contractBuilder.setSymbol(symbol);
-					contractBuilder.setExchange(ExchangeEnum.valueOf(exchangeStr));
-					contractBuilder.setProductClass(ProductClassEnum.valueOf(productClassStr));
-
-					barBuilder.setUniformSymbol(uniformSymbol);
+					barBuilder.setUniformSymbol(document.getString("uniformSymbol"));
 					barBuilder.setGatewayId(gatewayId);
 
 					barBuilder.setActionDay(document.getString("actionDay"));
@@ -330,20 +314,8 @@ public class MarketDataServiceBasicImpl implements MarketDataService {
 			for (Document document : documentList) {
 				try {
 					TickField.Builder tickBuilder = TickField.newBuilder();
-					ContractField.Builder contractBuilder = ContractField.newBuilder();
 
-					String uniformSymbol = document.getString("uniformSymbol");
-					String[] uniformSymbolStrArr = uniformSymbol.split("@");
-					String symbol = uniformSymbolStrArr[0];
-					String exchangeStr = uniformSymbolStrArr[1];
-					String productClassStr = uniformSymbolStrArr[2];
-
-					contractBuilder.setUniformSymbol(uniformSymbol);
-					contractBuilder.setSymbol(symbol);
-					contractBuilder.setExchange(ExchangeEnum.valueOf(exchangeStr));
-					contractBuilder.setProductClass(ProductClassEnum.valueOf(productClassStr));
-
-					tickBuilder.setUniformSymbol(uniformSymbol);
+					tickBuilder.setUniformSymbol(document.getString("uniformSymbol"));
 					tickBuilder.setGatewayId(gatewayId);
 
 					List<Double> askPriceList = new ArrayList<>();
