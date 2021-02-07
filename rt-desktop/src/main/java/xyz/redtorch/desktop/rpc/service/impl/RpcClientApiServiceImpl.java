@@ -440,7 +440,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
 
         RpcLock rpcLock = rpcRspHandlerService.getRpcLock(transactionId, timeoutSeconds);
         String finalTransactionId = rpcLock.getTransactionId();
-        if (!asyncQueryDBBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod, marketDataDBType, transactionId)) {
+        if (!asyncQueryDBBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod, marketDataDBType, finalTransactionId)) {
             rpcRspHandlerService.unregisterLock(rpcLock);
             return null;
         }
