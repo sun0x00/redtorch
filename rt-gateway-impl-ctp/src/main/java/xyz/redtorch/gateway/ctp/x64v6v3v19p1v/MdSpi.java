@@ -394,11 +394,11 @@ public class MdSpi extends CThostFtdcMdSpi {
 				
 				long actionTimestamp = CommonUtils.localDateTimeToMills(dateTime);
 
-//				// 以下代码可用于实盘过滤垃圾数据
-//				if(Math.abs(actionTimestamp-ctpGatewayImpl.getApproximatelyTimestamp())>5*60*1000) {
-//					logger.error("接收到与本地时间戳相差较大的行情数据,疑似错误,合约{},发生时间{}",symbol,actionTimestamp);
-//					return;
-//				}
+				// 以下代码可用于实盘过滤垃圾数据
+				if(Math.abs(actionTimestamp-ctpGatewayImpl.getApproximatelyTimestamp())>5*60*1000) {
+					logger.error("接收到与本地时间戳相差较大的行情数据,疑似错误,合约{},发生时间{}",symbol,actionTimestamp);
+					return;
+				}
 				
 				String contractId = contract.getContractId();
 				String actionTime = dateTime.format(CommonConstant.T_FORMAT_WITH_MS_INT_FORMATTER);

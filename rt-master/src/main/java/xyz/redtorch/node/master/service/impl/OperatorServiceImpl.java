@@ -37,6 +37,9 @@ public class OperatorServiceImpl implements OperatorService, InitializingBean {
 
 	@Override
 	public OperatorPo getOperatorByOperatorId(String operatorId) {
+        if (!operatorMap.containsKey(operatorId)) {
+            getOperatorList();
+        }
 		return operatorMap.get(operatorId);
 	}
 
