@@ -1,23 +1,10 @@
 package xyz.redtorch.node.master.service.impl;
 
-import java.util.Map.Entry;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.locks.ReentrantLock;
-
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import xyz.redtorch.node.master.rpc.service.RpcServerOverWebSocketProcessService;
 import xyz.redtorch.node.master.service.MarketDataRecordingService;
 import xyz.redtorch.node.master.service.MasterTradeExecuteService;
@@ -25,26 +12,22 @@ import xyz.redtorch.node.master.service.MasterTradeRtnRelayService;
 import xyz.redtorch.node.master.service.OperatorService;
 import xyz.redtorch.node.master.web.socket.WebSocketServerHandler;
 import xyz.redtorch.pb.CoreEnum.ExchangeEnum;
-import xyz.redtorch.pb.CoreField.AccountField;
-import xyz.redtorch.pb.CoreField.NoticeField;
-import xyz.redtorch.pb.CoreField.OrderField;
-import xyz.redtorch.pb.CoreField.PositionField;
-import xyz.redtorch.pb.CoreField.TickField;
-import xyz.redtorch.pb.CoreField.TradeField;
-import xyz.redtorch.pb.CoreRpc.RpcAccountListRtn;
-import xyz.redtorch.pb.CoreRpc.RpcId;
-import xyz.redtorch.pb.CoreRpc.RpcNoticeRtn;
-import xyz.redtorch.pb.CoreRpc.RpcOrderListRtn;
-import xyz.redtorch.pb.CoreRpc.RpcOrderRtn;
-import xyz.redtorch.pb.CoreRpc.RpcPositionListRtn;
-import xyz.redtorch.pb.CoreRpc.RpcTickRtn;
-import xyz.redtorch.pb.CoreRpc.RpcTradeListRtn;
-import xyz.redtorch.pb.CoreRpc.RpcTradeRtn;
+import xyz.redtorch.pb.CoreField.*;
+import xyz.redtorch.pb.CoreRpc.*;
+
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayService, InitializingBean {
 
     private static final Logger logger = LoggerFactory.getLogger(MasterTradeRtnRelayServiceImpl.class);
+
     private final Map<String, Long> tickTimestampFilterMap = new ConcurrentHashMap<>();
     private final Map<String, Long> tickLastLocalTimestampFilterMap = new ConcurrentHashMap<>();
     private final Map<String, String> tickGatewayIdFilterMap = new ConcurrentHashMap<>();
@@ -54,6 +37,7 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
     private final ExecutorService cachedThreadPoolService = Executors.newCachedThreadPool();
     private final ExecutorService tradeRtnQueueSingleExecutorService = Executors.newSingleThreadExecutor();
     private final ExecutorService marketRtnQueueSingleExecutorService = Executors.newSingleThreadExecutor();
+
     @Autowired
     private WebSocketServerHandler webSocketServerHandler;
     @Autowired
@@ -65,8 +49,25 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
     @Autowired
     private MarketDataRecordingService marketDataRecordingService;
 
+    // 避免频繁调用获取系统时间API,用近似时间即可
+    private long approximatelyTimestamp = System.currentTimeMillis();
+
     @Override
     public void afterPropertiesSet() throws Exception {
+        cachedThreadPoolService.execute(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                approximatelyTimestamp = System.currentTimeMillis();
+                try {
+                    Thread.sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    logger.error("捕获到中断", e);
+                    break;
+                }
+
+            }
+
+        });
+
         cachedThreadPoolService.execute(new Runnable() {
             long lastTimestamp = System.currentTimeMillis();
             List<PositionField> positionList = new ArrayList<>();
@@ -75,7 +76,7 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
             public void run() {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
-                        if (positionList.size() > 50 || (System.currentTimeMillis() - lastTimestamp > 200 && !positionList.isEmpty())) {
+                        if (positionList.size() > 50 || (System.currentTimeMillis() - lastTimestamp > 250 && !positionList.isEmpty())) {
 
                             Map<String, Set<String>> operatorIdSessionIdSetMap = webSocketServerHandler.getOperatorIdSessionIdSetMap();
                             ReentrantLock operatorIdSessionIdSetMapLock = webSocketServerHandler.getOperatorIdSessionIdSetMapLock();
@@ -106,12 +107,7 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
                                         RpcPositionListRtn.Builder rpcPositionRtnBuilder = RpcPositionListRtn.newBuilder();
                                         rpcPositionRtnBuilder.addAllPosition(filteredPositionList);
 
-                                        cachedThreadPoolService.execute(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                rpcOverWebSocketProcessService.sendCoreRpc(sessionId, RpcId.POSITION_LIST_RTN, "", rpcPositionRtnBuilder.build().toByteString());
-                                            }
-                                        });
+                                        cachedThreadPoolService.execute(() -> rpcOverWebSocketProcessService.sendCoreRpc(sessionId, RpcId.POSITION_LIST_RTN, "", rpcPositionRtnBuilder.build().toByteString()));
 
                                     }
                                 }
@@ -144,7 +140,7 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
             public void run() {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
-                        if (accountList.size() > 50 || (System.currentTimeMillis() - lastTimestamp > 200 && !accountList.isEmpty())) {
+                        if (accountList.size() > 50 || (System.currentTimeMillis() - lastTimestamp > 250 && !accountList.isEmpty())) {
 
                             Map<String, Set<String>> operatorIdSessionIdSetMap = webSocketServerHandler.getOperatorIdSessionIdSetMap();
                             ReentrantLock operatorIdSessionIdSetMapLock = webSocketServerHandler.getOperatorIdSessionIdSetMapLock();
@@ -284,6 +280,12 @@ public class MasterTradeRtnRelayServiceImpl implements MasterTradeRtnRelayServic
         String uniformSymbol = tick.getUniformSymbol();
 
         long actionTimestamp = tick.getActionTimestamp();
+
+        // 过滤垃圾数据
+        if(Math.abs(tick.getActionTimestamp()-approximatelyTimestamp)>30*1000){
+            logger.error("接收到垃圾数据,uniformSymbol:{},网关:{},交易日:{},业务发生时间:{},时间戳:{}", tick.getUniformSymbol(), tick.getGatewayId(), tick.getTradingDay(), tick.getActionTime(), tick.getActionTimestamp());
+            return;
+        }
 
         if (tick.getUniformSymbol().contains(ExchangeEnum.CZCE.getValueDescriptor().getName())) {
             if (tickGatewayIdFilterMap.containsKey(uniformSymbol)) {
