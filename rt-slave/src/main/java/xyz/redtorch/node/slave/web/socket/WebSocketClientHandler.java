@@ -51,51 +51,51 @@ public class WebSocketClientHandler implements InitializingBean {
             @Override
             public void onPongMessage(String clientId, long pingTimestamp) {
                 long delay = System.currentTimeMillis() - pingTimestamp;
-                logger.info("收到PING回报,客户端ID:{},延迟{}ms",clientId,delay);
+                logger.info("收到PING回报,客户端ID:{},延迟{}ms", clientId, delay);
             }
         };
 
         rtWebSocketClient = new RtWebSocketClient(configService.getWebSocketURI(), callBack);
         rtWebSocketClient.setAuthToken(configService.getAuthToken());
 
-        executor.execute(()->{
-            while(!Thread.currentThread().isInterrupted()){
-                if(rtWebSocketClient.isConnected()&&!rtWebSocketClient.isAuthFailed()){
-                    logger.info("发起PING,客户端ID:{}",rtWebSocketClient.getClientId());
+        executor.execute(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                if (rtWebSocketClient.isConnected() && !rtWebSocketClient.isAuthFailed()) {
+                    logger.info("发起PING,客户端ID:{}", rtWebSocketClient.getClientId());
                     rtWebSocketClient.ping();
                 }
                 try {
-                    Thread.sleep(10*1000);
+                    Thread.sleep(10 * 1000);
                 } catch (InterruptedException e) {
-                    logger.error("捕获到中断",e);
+                    logger.error("捕获到中断", e);
                     return;
                 }
             }
         });
 
-        executor.execute(()->{
-            while(!Thread.currentThread().isInterrupted()){
+        executor.execute(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
 
-                if(!rtWebSocketClient.isConnected()){
+                if (!rtWebSocketClient.isConnected()) {
                     rtWebSocketClient.connect();
                 }
                 try {
-                    Thread.sleep(5*1000);
+                    Thread.sleep(5 * 1000);
                 } catch (InterruptedException e) {
-                    logger.error("捕获到中断",e);
+                    logger.error("捕获到中断", e);
                     return;
                 }
             }
         });
 
-        executor.execute(()->{
-            while(!Thread.currentThread().isInterrupted()){
+        executor.execute(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
                 try {
                     byte[] data = dataQueue.take();
                     rpcClientProcessService.processData(data);
                 } catch (InterruptedException e) {
-                    logger.error("捕获到中断",e);
-                   return;
+                    logger.error("捕获到中断", e);
+                    return;
                 }
             }
         });

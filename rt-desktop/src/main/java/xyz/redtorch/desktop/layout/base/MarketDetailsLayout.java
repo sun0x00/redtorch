@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.common.util.CommonUtils;
 import xyz.redtorch.desktop.service.DesktopTradeCachesService;
 import xyz.redtorch.pb.CoreField.ContractField;
@@ -493,7 +494,7 @@ public class MarketDetailsLayout {
                 this.settlePriceText.setText(String.format(priceStringFormat, tick.getSettlePrice()));
             }
 
-            this.timeText.setText(CommonUtils.millsToLocalDateTime(tick.getActionTimestamp()).format(CommonUtils.T_FORMAT_WITH_MS_FORMATTER));
+            this.timeText.setText(CommonUtils.millsToLocalDateTime(tick.getActionTimestamp()).format(CommonConstant.T_FORMAT_WITH_MS_FORMATTER));
 
         }
     }

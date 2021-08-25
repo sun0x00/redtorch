@@ -198,60 +198,60 @@ public class OrderFXBean {
 
 
     private void updatePrice(OrderField newOrderField) {
-            String price = "渲染错误";
-            try {
-                int decimalDigits = CommonUtils.getNumberDecimalDigits(newOrderField.getContract().getPriceTick());
-                if (decimalDigits < 0) {
-                    decimalDigits = 0;
-                }
-                String priceStringFormat = "%,." + decimalDigits + "f";
-
-                price = String.format(priceStringFormat, newOrderField.getPrice());
-            } catch (Exception e) {
-                logger.error("渲染错误", e);
+        String price = "渲染错误";
+        try {
+            int decimalDigits = CommonUtils.getNumberDecimalDigits(newOrderField.getContract().getPriceTick());
+            if (decimalDigits < 0) {
+                decimalDigits = 0;
             }
-            setPrice(price);
+            String priceStringFormat = "%,." + decimalDigits + "f";
+
+            price = String.format(priceStringFormat, newOrderField.getPrice());
+        } catch (Exception e) {
+            logger.error("渲染错误", e);
+        }
+        setPrice(price);
     }
 
     private void updateVolume(OrderField newOrderField) {
-        if (orderField == null  || orderField.getOrderStatusValue()!=newOrderField.getOrderStatusValue() || orderField.getTradedVolume()!=newOrderField.getTradedVolume()) {
+        if (orderField == null || orderField.getOrderStatusValue() != newOrderField.getOrderStatusValue() || orderField.getTradedVolume() != newOrderField.getTradedVolume()) {
             VBox vBox = new VBox();
 
-                HBox totalVolumeHBox = new HBox();
-                Text totalVolumeLabelText = new Text("总计");
-                totalVolumeLabelText.setWrappingWidth(35);
-                totalVolumeLabelText.getStyleClass().add("trade-label");
-                totalVolumeHBox.getChildren().add(totalVolumeLabelText);
+            HBox totalVolumeHBox = new HBox();
+            Text totalVolumeLabelText = new Text("总计");
+            totalVolumeLabelText.setWrappingWidth(35);
+            totalVolumeLabelText.getStyleClass().add("trade-label");
+            totalVolumeHBox.getChildren().add(totalVolumeLabelText);
 
-                Text totalVolumeText = new Text("" + newOrderField.getTotalVolume());
-                totalVolumeHBox.getChildren().add(totalVolumeText);
-                vBox.getChildren().add(totalVolumeHBox);
+            Text totalVolumeText = new Text("" + newOrderField.getTotalVolume());
+            totalVolumeHBox.getChildren().add(totalVolumeText);
+            vBox.getChildren().add(totalVolumeHBox);
 
-                HBox tradedVolumeHBox = new HBox();
-                Text tradedVolumeLabelText = new Text("成交");
-                tradedVolumeLabelText.setWrappingWidth(35);
-                tradedVolumeLabelText.getStyleClass().add("trade-label");
-                tradedVolumeHBox.getChildren().add(tradedVolumeLabelText);
+            HBox tradedVolumeHBox = new HBox();
+            Text tradedVolumeLabelText = new Text("成交");
+            tradedVolumeLabelText.setWrappingWidth(35);
+            tradedVolumeLabelText.getStyleClass().add("trade-label");
+            tradedVolumeHBox.getChildren().add(tradedVolumeLabelText);
 
-                Text tradedVolumeText = new Text("" + newOrderField.getTradedVolume());
-                tradedVolumeHBox.getChildren().add(tradedVolumeText);
-                vBox.getChildren().add(tradedVolumeHBox);
+            Text tradedVolumeText = new Text("" + newOrderField.getTradedVolume());
+            tradedVolumeHBox.getChildren().add(tradedVolumeText);
+            vBox.getChildren().add(tradedVolumeHBox);
 
-                vBox.setUserData(newOrderField);
-                if (CommonConstant.ORDER_STATUS_WORKING_SET.contains(newOrderField.getOrderStatus())) {
-                    if (newOrderField.getDirection() == DirectionEnum.D_Buy) {
-                        totalVolumeText.getStyleClass().add("trade-long-color");
-                    } else if (newOrderField.getDirection() == DirectionEnum.D_Sell) {
-                        totalVolumeText.getStyleClass().add("trade-short-color");
-                    }
+            vBox.setUserData(newOrderField);
+            if (CommonConstant.ORDER_STATUS_WORKING_SET.contains(newOrderField.getOrderStatus())) {
+                if (newOrderField.getDirection() == DirectionEnum.D_Buy) {
+                    totalVolumeText.getStyleClass().add("trade-long-color");
+                } else if (newOrderField.getDirection() == DirectionEnum.D_Sell) {
+                    totalVolumeText.getStyleClass().add("trade-short-color");
                 }
+            }
             setVolume(vBox);
         }
 
     }
 
     private void updateOrderStatus(OrderField newOrderField) {
-        if(orderField == null || orderField.getOrderStatusValue() != newOrderField.getOrderStatusValue()){
+        if (orderField == null || orderField.getOrderStatusValue() != newOrderField.getOrderStatusValue()) {
 
             Text orderStatusText = new Text();
 
@@ -293,7 +293,7 @@ public class OrderFXBean {
 
 
     private void updateStatusMsg(OrderField newOrderField) {
-        if(orderField == null || !orderField.getStatusMsg().equals(newOrderField.getStatusMsg())){
+        if (orderField == null || !orderField.getStatusMsg().equals(newOrderField.getStatusMsg())) {
             setStatusMsg(newOrderField.getStatusMsg());
         }
     }
@@ -303,70 +303,74 @@ public class OrderFXBean {
         setOrderTime(newOrderField.getOrderTime());
     }
 
-    private void updateTimeCondition(OrderField newOrderField){
+    private void updateTimeCondition(OrderField newOrderField) {
         String timeCondition;
 
-            if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFA) {
-                timeCondition = "(GFA)集合竞价有效";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFD) {
-                timeCondition = "(GFD)当日有效";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFS) {
-                timeCondition = "(GFS)本节有效";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GTC) {
-                timeCondition = "(GTC)撤销前有效";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GTD) {
-                timeCondition = "(GTD)指定日期前有效";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_IOC) {
-                timeCondition = "(IOC)立即完成,否则撤销";
-            } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_Unknown) {
-                timeCondition = "未知";
-            } else {
-                timeCondition = newOrderField.getTimeCondition().getValueDescriptor().getName();
-            }
-            setTimeCondition(timeCondition);
+        if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFA) {
+            timeCondition = "(GFA)集合竞价有效";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFD) {
+            timeCondition = "(GFD)当日有效";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GFS) {
+            timeCondition = "(GFS)本节有效";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GTC) {
+            timeCondition = "(GTC)撤销前有效";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_GTD) {
+            timeCondition = "(GTD)指定日期前有效";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_IOC) {
+            timeCondition = "(IOC)立即完成,否则撤销";
+        } else if (newOrderField.getTimeCondition() == TimeConditionEnum.TC_Unknown) {
+            timeCondition = "未知";
+        } else {
+            timeCondition = newOrderField.getTimeCondition().getValueDescriptor().getName();
+        }
+        setTimeCondition(timeCondition);
     }
-    private void updateVolumeCondition(OrderField newOrderField){
+
+    private void updateVolumeCondition(OrderField newOrderField) {
         String volumeCondition;
 
-            if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_AV) {
-                volumeCondition = "任何数量";
-            } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_CV) {
-                volumeCondition = "全部数量";
-            } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_MV) {
-                volumeCondition = "最小数量";
-            } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_Unknown) {
-                volumeCondition = "未知";
-            } else {
-                volumeCondition = newOrderField.getVolumeCondition().getValueDescriptor().getName();
-            }
-            setVolumeCondition(volumeCondition);
+        if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_AV) {
+            volumeCondition = "任何数量";
+        } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_CV) {
+            volumeCondition = "全部数量";
+        } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_MV) {
+            volumeCondition = "最小数量";
+        } else if (newOrderField.getVolumeCondition() == VolumeConditionEnum.VC_Unknown) {
+            volumeCondition = "未知";
+        } else {
+            volumeCondition = newOrderField.getVolumeCondition().getValueDescriptor().getName();
+        }
+        setVolumeCondition(volumeCondition);
 
     }
-    private void updateMinVolume(OrderField newOrderField){
+
+    private void updateMinVolume(OrderField newOrderField) {
         setMinVolume(newOrderField.getMinVolume());
     }
-    private void updateContingentCondition(OrderField newOrderField){
+
+    private void updateContingentCondition(OrderField newOrderField) {
         String contingentCondition;
 
-            if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_Immediately) {
-                contingentCondition = "立即";
-            } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceGreaterEqualStopPrice) {
-                contingentCondition = "(本地)最新价大于等于条件价";
-            } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceLesserEqualStopPrice) {
-                contingentCondition = "(本地)最新价小于等于条件价";
-            } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LastPriceGreaterEqualStopPrice) {
-                contingentCondition = "最新价大于等于条件价";
-            } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LastPriceLesserEqualStopPrice) {
-                contingentCondition = "最新价小于等于条件价";
-            } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_Unknown) {
-                contingentCondition = "未知";
-            } else {
-                contingentCondition = newOrderField.getContingentCondition().getValueDescriptor().getName();
-            }
+        if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_Immediately) {
+            contingentCondition = "立即";
+        } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceGreaterEqualStopPrice) {
+            contingentCondition = "(本地)最新价大于等于条件价";
+        } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LocalLastPriceLesserEqualStopPrice) {
+            contingentCondition = "(本地)最新价小于等于条件价";
+        } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LastPriceGreaterEqualStopPrice) {
+            contingentCondition = "最新价大于等于条件价";
+        } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_LastPriceLesserEqualStopPrice) {
+            contingentCondition = "最新价小于等于条件价";
+        } else if (newOrderField.getContingentCondition() == ContingentConditionEnum.CC_Unknown) {
+            contingentCondition = "未知";
+        } else {
+            contingentCondition = newOrderField.getContingentCondition().getValueDescriptor().getName();
+        }
 
-            setContingentCondition(contingentCondition);
+        setContingentCondition(contingentCondition);
     }
-    private void updateStopPrice(OrderField newOrderField){
+
+    private void updateStopPrice(OrderField newOrderField) {
         String stopPrice = "渲染错误";
         try {
             int decimalDigits = CommonUtils.getNumberDecimalDigits(newOrderField.getContract().getPriceTick());

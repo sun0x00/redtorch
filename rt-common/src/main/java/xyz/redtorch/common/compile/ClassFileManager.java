@@ -1,8 +1,10 @@
 package xyz.redtorch.common.compile;
 
+import javax.tools.FileObject;
+import javax.tools.ForwardingJavaFileManager;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
 import java.io.IOException;
-
-import javax.tools.*;
 
 /**
  * 类文件管理器 用于JavaCompiler将编译好后的class，保存到jclassObject中

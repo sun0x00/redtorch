@@ -80,7 +80,7 @@ public class AccountFXBean {
         updateWithdraw(newAccountField);
     }
 
-    private void updateSelected(boolean selected){
+    private void updateSelected(boolean selected) {
         setSelected(selected);
     }
 

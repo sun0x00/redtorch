@@ -20,7 +20,6 @@ import xyz.redtorch.common.web.vo.ResponseVo;
 import xyz.redtorch.pb.CoreField;
 import xyz.redtorch.pb.CoreField.CommonRspField;
 import xyz.redtorch.pb.CoreRpc.RpcId;
-import xyz.redtorch.pb.Dep;
 import xyz.redtorch.pb.Dep.DataExchangeProtocol;
 import xyz.redtorch.pb.Dep.DataExchangeProtocol.ContentType;
 
@@ -46,8 +45,8 @@ public class RpcUtils {
 
     public static byte[] generateRoutineRpcDep(RpcId rpcId, ByteString content) {
 
-        Dep.DataExchangeProtocol.Builder depBuilder = Dep.DataExchangeProtocol.newBuilder() //
-                .setContentType(Dep.DataExchangeProtocol.ContentType.ROUTINE) //
+        DataExchangeProtocol.Builder depBuilder = DataExchangeProtocol.newBuilder() //
+                .setContentType(ContentType.ROUTINE) //
                 .setRpcId(rpcId.getNumber()) //
                 .setContentBytes(content) //
                 .setTimestamp(System.currentTimeMillis());
@@ -68,7 +67,7 @@ public class RpcUtils {
             lzOut.close();
             in.close();
             contentByteString = ByteString.copyFrom(bOut.toByteArray());
-            if (contentByteString.size()>1048576) {
+            if (contentByteString.size() > 1048576) {
                 logger.info("生成DEP数据, RPC:{}, 业务ID:{}, 压缩耗时{}ms,原始数据大小{},压缩后数据大小{},压缩率{}", rpcId.getValueDescriptor().getName(), transactionId, System.currentTimeMillis() - beginTime,
                         content.size(), contentByteString.size(), contentByteString.size() / (double) content.size());
             }
@@ -77,8 +76,8 @@ public class RpcUtils {
             throw new RuntimeException("生成DEP数据错误", e);
         }
 
-        Dep.DataExchangeProtocol.Builder depBuilder = Dep.DataExchangeProtocol.newBuilder() //
-                .setContentType(Dep.DataExchangeProtocol.ContentType.COMPRESSED_LZ4) //
+        DataExchangeProtocol.Builder depBuilder = DataExchangeProtocol.newBuilder() //
+                .setContentType(ContentType.COMPRESSED_LZ4) //
                 .setRpcId(rpcId.getNumber()) //
                 .setContentBytes(contentByteString) //
                 .setTimestamp(System.currentTimeMillis());
@@ -87,7 +86,7 @@ public class RpcUtils {
     }
 
     // 这个方法一般用于发送同步请求Req
-    public static DataExchangeProtocol sendSyncHttpRpc(RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId,String transactionId, ByteString content) {
+    public static DataExchangeProtocol sendSyncHttpRpc(RestTemplate restTemplate, URI uri, String authToken, RpcId rpcId, String transactionId, ByteString content) {
 
         try {
             HttpEntity<String> requestEntity = generateHttpEntity(authToken, rpcId, transactionId, content);
@@ -98,17 +97,18 @@ public class RpcUtils {
                 if (resultJSONObject.getBooleanValue("status")) {
                     ResponseVo<String> ret = JSON.parseObject(responseEntity.getBody(), new TypeReference<ResponseVo<String>>() {
                     });
-                    if(ret == null){
+                    if (ret == null) {
                         logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{},业务ID:{}", rpcId, transactionId);
-                    }else if (ret.isStatus()) {                    String base64Data = ret.getVoData();
+                    } else if (ret.isStatus()) {
+                        String base64Data = ret.getVoData();
                         if (logger.isDebugEnabled()) {
-                            logger.debug("HTTP RPC,RPC{},业务ID:{}接收到的Base64Data:{}",rpcId, transactionId, base64Data);
+                            logger.debug("HTTP RPC,RPC{},业务ID:{}接收到的Base64Data:{}", rpcId, transactionId, base64Data);
                         }
                         if (base64Data != null) {
                             byte[] data = Base64.getDecoder().decode(base64Data);
                             return DataExchangeProtocol.parseFrom(data);
                         }
-                    }else{
+                    } else {
                         logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},业务ID{},信息:{}", rpcId, transactionId, ret.getMessage());
                     }
                 } else {
@@ -135,9 +135,9 @@ public class RpcUtils {
                     if (resultJSONObject.getBooleanValue("status")) {
                         ResponseVo<String> ret = JSON.parseObject(responseEntity.getBody(), new TypeReference<ResponseVo<String>>() {
                         });
-                        if(ret == null){
+                        if (ret == null) {
                             logger.error("HTTP RPC错误,解析JSON数据错误,RPC:{},业务ID:{}", rpcId, transactionId);
-                        }else if (!ret.isStatus()) {
+                        } else if (!ret.isStatus()) {
                             logger.error("HTTP RPC返回200,但状态回报错误,RPC:{},业务ID:{},信息:{}", rpcId, transactionId, ret.getMessage());
                         }
                     } else {

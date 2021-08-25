@@ -1,146 +1,120 @@
 package xyz.redtorch.node.master.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
-import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.alibaba.fastjson.JSON;
-
-import xyz.redtorch.common.mongo.MongoDBClient;
-import xyz.redtorch.node.db.MongoDBClientService;
+import xyz.redtorch.node.db.ZookeeperService;
 import xyz.redtorch.node.master.dao.FavoriteContractDao;
 import xyz.redtorch.node.master.po.ContractPo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
-public class FavoriteContractDaoImpl implements FavoriteContractDao, InitializingBean {
-	private static final Logger logger = LoggerFactory.getLogger(FavoriteContractDaoImpl.class);
+public class FavoriteContractDaoImpl implements FavoriteContractDao {
+    private static final Logger logger = LoggerFactory.getLogger(FavoriteContractDaoImpl.class);
 
-	private static final String FAVORITE_CONTRACT_COLLECTION_NAME = "favorite_contract_collection";
+    private static final String FAVORITE_CONTRACT_COLLECTION_NAME = "favorite_contract";
 
-	@Autowired
-	private MongoDBClientService mongoDBClientService;
+    @Autowired
+    ZookeeperService zookeeperService;
 
-	private MongoDBClient managementDBClient;
-	private String managementDBName;
+    @Override
+    public List<ContractPo> queryContractList() {
+        List<ContractPo> contractList = new ArrayList<>();
+        try {
+            List<JSONObject> jsonObjectList = zookeeperService.find(FAVORITE_CONTRACT_COLLECTION_NAME);
+            if (jsonObjectList != null) {
+                for (JSONObject jsonObject : jsonObjectList) {
+                    try {
+                        contractList.add(jsonObject.toJavaObject(ContractPo.class));
+                    } catch (Exception e) {
+                        logger.error("查询合约列表,数据转换发生错误", e);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("查询网关列表发生错误", e);
+        }
+        return contractList;
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		this.managementDBClient = mongoDBClientService.getManagementDBClient();
-		this.managementDBName = mongoDBClientService.getManagementDBName();
-	}
+    @Override
+    public List<ContractPo> queryContractListByUsername(String username) {
+        if (StringUtils.isBlank(username)) {
+            logger.error("根据用户名查询常用合约列表错误,参数username缺失");
+            throw new IllegalArgumentException("根据用户名查询常用合约列表错误,参数username缺失");
+        }
 
-	@Override
-	public List<ContractPo> queryContractList() {
-		List<Document> documentList = managementDBClient.find(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME);
-		List<ContractPo> contractList = new ArrayList<>();
+        List<ContractPo> contractPoList = queryContractList();
 
-		for (Document document : documentList) {
-			try {
-				ContractPo contract = JSON.parseObject(JSON.toJSONString(document), ContractPo.class);
-				contractList.add(contract);
-			} catch (Exception e) {
-				logger.error("查询合约列表,数据转换发生错误,Document-{}", document.toJson(), e);
-			}
-		}
+        return contractPoList.stream().filter(contract -> contract.getContractId().startsWith(username + "-")).collect(Collectors.toList());
 
-		return contractList;
-	}
+    }
 
-	@Override
-	public List<ContractPo> queryContractListByUsername(String username) {
-		if (StringUtils.isBlank(username)) {
-			logger.error("根据用户名查询常用合约列表错误,参数username缺失");
-			throw new IllegalArgumentException("根据用户名查询常用合约列表错误,参数username缺失");
-		}
+    @Override
+    public void upsertContractByUsernameAndUniformSymbol(String username, ContractPo contract) {
+        if (StringUtils.isBlank(username)) {
+            logger.error("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
+            throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
+        }
+        if (contract == null) {
+            logger.error("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
+            throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
+        }
+        if (StringUtils.isBlank(contract.getUniformSymbol())) {
+            logger.error("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
+            throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
+        }
+        try {
+            String contractId = username + "-" + contract.getUniformSymbol();
+            ContractPo newContract = JSON.parseObject(JSON.toJSONString(contract), ContractPo.class);
+            newContract.setContractId(contractId);
+            zookeeperService.upsert(FAVORITE_CONTRACT_COLLECTION_NAME, contractId, JSON.toJSONString(newContract));
+        } catch (IllegalArgumentException e) {
+            logger.error("根据用户名和合约统一标识更新或保存合约错误", e);
+        }
 
-		Document filter = new Document();
-		filter.append("username", username);
+    }
 
-		List<Document> documentList = managementDBClient.find(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, filter);
-		List<ContractPo> contractList = new ArrayList<>();
+    @Override
+    public void deleteContractByUsername(String username) {
+        if (StringUtils.isBlank(username)) {
+            logger.error("根据用户名删除合约错误,参数username缺失");
+            throw new IllegalArgumentException("根据用户名删除合约错误,参数username缺失");
+        }
 
-		for (Document document : documentList) {
-			try {
-				ContractPo contract = JSON.parseObject(JSON.toJSONString(document), ContractPo.class);
-				contractList.add(contract);
-			} catch (Exception e) {
-				logger.error("根据用户名查询常用合约列表错误,数据转换发生错误,Document-{}", document.toJson(), e);
-			}
-		}
+        try {
+            List<ContractPo> contractPoList = queryContractListByUsername(username);
+            for (ContractPo contractPo : contractPoList) {
+                zookeeperService.deleteById(FAVORITE_CONTRACT_COLLECTION_NAME, contractPo.getContractId());
+            }
+        } catch (IllegalArgumentException e) {
+            logger.error("根据用户名删除合约错误,用户名:{}", username, e);
+        }
+    }
 
-		return contractList;
-	}
+    @Override
+    public void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol) {
+        if (StringUtils.isBlank(uniformSymbol)) {
+            logger.error("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
+            throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
+        }
 
-	@Override
-	public void upsertContractByUsernameAndUniformSymbol(String username, ContractPo contract) {
-		if (StringUtils.isBlank(username)) {
-			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数username缺失");
-		}
-		if (contract == null) {
-			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数contract缺失");
-		}
-		if (StringUtils.isBlank(contract.getUniformSymbol())) {
-			logger.error("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识更新或保存合约错误,参数uniformSymbol缺失");
-		}
+        if (StringUtils.isBlank(username)) {
+            logger.error("根据用户名和合约统一标识删除合约错误,参数username缺失");
+            throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数username缺失");
+        }
 
-		try {
-			Document document = Document.parse(JSON.toJSONString(contract));
-			document.append("username", username);
-			Document filter = new Document();
-			filter.append("username", username);
-			filter.append("uniformSymbol", contract.getUniformSymbol());
-			managementDBClient.upsert(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, document, filter);
-		} catch (IllegalArgumentException e) {
-			logger.error("根据用户名和合约统一标识更新或保存合约错误", e);
-		}
-
-	}
-
-	@Override
-	public void deleteContractByUsername(String username) {
-		if (StringUtils.isBlank(username)) {
-			logger.error("根据用户名删除合约错误,参数username缺失");
-			throw new IllegalArgumentException("根据用户名删除合约错误,参数username缺失");
-		}
-
-		try {
-			Document filter = new Document();
-			filter.append("username", username);
-			managementDBClient.delete(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, filter);
-		} catch (IllegalArgumentException e) {
-			logger.error("根据用户名删除合约错误,用户名:{}", username, e);
-		}
-	}
-
-	@Override
-	public void deleteContractByUsernameAndUniformSymbol(String username, String uniformSymbol) {
-		if (StringUtils.isBlank(uniformSymbol)) {
-			logger.error("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数uniformSymbol缺失");
-		}
-
-		if (StringUtils.isBlank(username)) {
-			logger.error("根据用户名和合约统一标识删除合约错误,参数username缺失");
-			throw new IllegalArgumentException("根据用户名和合约统一标识删除合约错误,参数username缺失");
-		}
-
-		try {
-			Document filter = new Document();
-			filter.append("username", username);
-			filter.append("uniformSymbol", uniformSymbol);
-			managementDBClient.delete(managementDBName, FAVORITE_CONTRACT_COLLECTION_NAME, filter);
-		} catch (IllegalArgumentException e) {
-			logger.error("根据用户名和合约统一标识删除合约错误,用户名:{}", username, e);
-		}
-	}
+        try {
+            zookeeperService.deleteById(FAVORITE_CONTRACT_COLLECTION_NAME, username + "-" + uniformSymbol);
+        } catch (IllegalArgumentException e) {
+            logger.error("根据用户名和合约统一标识删除合约错误,用户名:{}", username, e);
+        }
+    }
 }

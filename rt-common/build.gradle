@@ -12,4 +12,7 @@ dependencies {
 	compileOnly group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
    	compileOnly group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoJavaDriverVersion}"
 	compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}"
+	compileOnly group: 'org.apache.zookeeper', name: 'zookeeper', version: "${rootProject.zookeeperVersion}"
+	compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version:"${rootProject.springBootVersion}"
+
 }

@@ -1,25 +1,21 @@
 package xyz.redtorch.node.master.service;
 
-import java.util.List;
-
 import xyz.redtorch.node.master.po.NodePo;
 
+import java.util.List;
+
 public interface NodeService {
-	List<NodePo> getNodeList();
+    List<NodePo> getNodeList();
 
-	void deleteNodeByNodeId(Integer nodeId);
+    void deleteNodeByNodeId(Integer nodeId);
 
-	NodePo resetNodeTokenByNodeId(Integer nodeId);
+    NodePo resetNodeTokenByNodeId(Integer nodeId);
 
-	NodePo createNode();
+    NodePo createNode();
 
-	NodePo nodeAuth(NodePo node);
+    NodePo nodeAuth(NodePo node);
 
-	void updateNodeLoginInfo(Integer nodeId, String sessionId, String ipAddress, int port);
+    void updateNodeDescriptionByNodeId(NodePo node);
 
-	void updateNodeLogoutInfo(Integer nodeId);
-
-	void updateNodeDescriptionByNodeId(NodePo node);
-
-	Integer getNodeIdByToken(String authToken);
+    Integer getNodeIdByToken(String authToken);
 }

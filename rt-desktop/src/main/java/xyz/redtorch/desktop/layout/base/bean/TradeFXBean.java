@@ -155,7 +155,7 @@ public class TradeFXBean {
     }
 
     private void updatePrice(TradeField newTradeField) {
-        if (tradeField == null || !CommonUtils.isEquals(tradeField.getPrice(),newTradeField.getPrice())) {
+        if (tradeField == null || !CommonUtils.isEquals(tradeField.getPrice(), newTradeField.getPrice())) {
             String price = "渲染错误";
             try {
                 int decimalDigits = CommonUtils.getNumberDecimalDigits(newTradeField.getContract().getPriceTick());
@@ -173,7 +173,7 @@ public class TradeFXBean {
     }
 
     private void updateVolume(TradeField newTradeField) {
-        if(tradeField == null || tradeField.getVolume() != newTradeField.getVolume()){
+        if (tradeField == null || tradeField.getVolume() != newTradeField.getVolume()) {
             setVolume(newTradeField.getVolume());
         }
     }

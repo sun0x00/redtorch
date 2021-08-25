@@ -30,20 +30,20 @@ public class RtWebSocketClient {
     private boolean connectingFlag = false;
     private boolean authFailFlag = false;
 
-    public RtWebSocketClient( URI websocketUri, RtWebSocketClientCallBack callBack) {
+    public RtWebSocketClient(URI websocketUri, RtWebSocketClientCallBack callBack) {
         this.websocketUri = websocketUri;
 
         webSocketHandler = new AbstractWebSocketHandler() {
-            private void tryClose(WebSocketSession session){
+            private void tryClose(WebSocketSession session) {
                 try {
-                    if(session.isOpen()){
+                    if (session.isOpen()) {
                         session.close();
                     }
                     webSocketSession = null;
                     connectingFlag = false;
                     connectedFlag = false;
                 } catch (Exception e) {
-                    logger.error("关闭异常,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+                    logger.error("关闭异常,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
                 }
             }
 
@@ -75,14 +75,14 @@ public class RtWebSocketClient {
                             connectedFlag = true;
                             connectingFlag = false;
                             callBack.onConnected(clientId);
-                        }else{
+                        } else {
                             authFailFlag = true;
                             logger.error("连接已通过失败,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId());
                             tryClose(session);
                         }
                     }
                 } catch (Exception e) {
-                    logger.error("处理文本消息数据发生错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(),e);
+                    logger.error("处理文本消息数据发生错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(), e);
                     tryClose(session);
                 }
             }
@@ -103,7 +103,7 @@ public class RtWebSocketClient {
 
             @Override
             public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-                logger.error("传输错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(),exception);
+                logger.error("传输错误,客户端ID:{},URI:{},会话ID:{}", clientId, websocketUri.toString(), session.getId(), exception);
                 tryClose(session);
             }
 
@@ -134,24 +134,24 @@ public class RtWebSocketClient {
         this.authToken = authToken;
     }
 
-    public String getClientId(){
-        return  clientId;
+    public String getClientId() {
+        return clientId;
     }
 
-    public long ping(){
+    public long ping() {
         long pingTimestamp = System.currentTimeMillis();
 
-        if (connectingFlag ||!connectedFlag ||webSocketSession == null) {
-            logger.error("发送PING错误,会话不存在,客户端ID:{},URI:{}",clientId, websocketUri.toString());
-        }else if (!webSocketSession.isOpen()) {
-            logger.error("发送PING错误,会话处于关闭状态,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+        if (connectingFlag || !connectedFlag || webSocketSession == null) {
+            logger.error("发送PING错误,会话不存在,客户端ID:{},URI:{}", clientId, websocketUri.toString());
+        } else if (!webSocketSession.isOpen()) {
+            logger.error("发送PING错误,会话处于关闭状态,客户端ID:{},URI:{}", clientId, websocketUri.toString());
         }
         try {
             ByteBuffer byteBuffer = ByteBuffer.allocate(Long.BYTES).putLong(pingTimestamp).flip();
             PingMessage message = new PingMessage(byteBuffer);
             webSocketSession.sendMessage(message);
         } catch (IOException e) {
-            logger.error("发送PING错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(),e);
+            logger.error("发送PING错误,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
         }
         return pingTimestamp;
     }
@@ -159,14 +159,14 @@ public class RtWebSocketClient {
     public void connect() {
         try {
             if (!connectingFlag) {
-                logger.info("开始连接,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+                logger.info("开始连接,客户端ID:{},URI:{}", clientId, websocketUri.toString());
                 connectingFlag = true;
                 webSocketClient.doHandshake(webSocketHandler, new WebSocketHttpHeaders(), websocketUri).get();
             } else {
-                logger.warn("拒绝发起新连接,仍在验证中,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+                logger.warn("拒绝发起新连接,仍在验证中,客户端ID:{},URI:{}", clientId, websocketUri.toString());
             }
         } catch (Exception e) {
-            logger.error("发起连接错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+            logger.error("发起连接错误,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
             connectingFlag = false;
             connectedFlag = false;
         }
@@ -178,28 +178,28 @@ public class RtWebSocketClient {
                 webSocketSession.close(closeStatus);
             }
         } catch (Exception e) {
-            logger.error("关闭连接错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(), e);
+            logger.error("关闭连接错误,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
         }
         webSocketSession = null;
         connectingFlag = false;
         connectedFlag = false;
     }
 
-    public boolean isConnected(){
+    public boolean isConnected() {
         return connectedFlag;
     }
 
-    public boolean isAuthFailed(){
+    public boolean isAuthFailed() {
         return authFailFlag;
     }
 
     public boolean sendData(byte[] data) {
-        if (connectingFlag ||!connectedFlag ||webSocketSession == null) {
-            logger.error("发送二进制数据错误,会话不存在,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+        if (connectingFlag || !connectedFlag || webSocketSession == null) {
+            logger.error("发送二进制数据错误,会话不存在,客户端ID:{},URI:{}", clientId, websocketUri.toString());
             return false;
         }
         if (!webSocketSession.isOpen()) {
-            logger.error("发送二进制数据错误,会话处于关闭状态,客户端ID:{},URI:{}",clientId, websocketUri.toString());
+            logger.error("发送二进制数据错误,会话处于关闭状态,客户端ID:{},URI:{}", clientId, websocketUri.toString());
             return false;
         }
         BinaryMessage message = new BinaryMessage(data);
@@ -207,15 +207,18 @@ public class RtWebSocketClient {
             webSocketSession.sendMessage(message);
             return true;
         } catch (IOException e) {
-            logger.error("发送二进制数据错误,客户端ID:{},URI:{}",clientId, websocketUri.toString(),e);
+            logger.error("发送二进制数据错误,客户端ID:{},URI:{}", clientId, websocketUri.toString(), e);
             return false;
         }
     }
 
     public interface RtWebSocketClientCallBack {
         void onDisconnected(String clientId);
+
         void onConnected(String clientId);
+
         void onBinaryMessage(String clientId, byte[] data);
+
         void onPongMessage(String clientId, long pingTimestamp);
     }
 

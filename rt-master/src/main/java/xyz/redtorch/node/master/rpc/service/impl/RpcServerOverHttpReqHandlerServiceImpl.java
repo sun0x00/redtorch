@@ -5,7 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xyz.redtorch.common.service.HistoryMarketDataService;
 import xyz.redtorch.common.service.MarketDataService;
+import xyz.redtorch.common.service.TodayMarketDataService;
 import xyz.redtorch.common.util.bar.BarUtils;
 import xyz.redtorch.common.util.rpc.RpcUtils;
 import xyz.redtorch.node.master.rpc.service.RpcServerOverHttpReqHandlerService;
@@ -36,6 +38,10 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
     private MasterSystemService masterSystemService;
     @Autowired
     private MarketDataService marketDataService;
+    @Autowired
+    private HistoryMarketDataService historyMarketDataService;
+    @Autowired
+    private TodayMarketDataService todayMarketDataService;
     @Autowired
     private MarketDataRecordingService marketDataRecordingService;
     @Autowired
@@ -627,7 +633,7 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
 
         List<TickField> resultTickList = new ArrayList<>();
 
-        if(StringUtils.isNotBlank(sessionId)){
+        if (StringUtils.isNotBlank(sessionId)) {
             Set<String> subscribeKeySet = masterTradeExecuteService.getSubscribeKeySet(sessionId);
 
             if (tickList != null && subscribeKeySet != null && subscribeKeySet.size() > 0) {
@@ -662,50 +668,16 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
         List<BarField> barList = null;
 
         if (MarketDataDBTypeEnum.MDDT_MIX.equals(marketDataDBType)) {
-            if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_1Day.equals(barPeriod)) {
-                barList = marketDataService.queryBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
-            }
+            barList = marketDataService.queryBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod);
         } else if (MarketDataDBTypeEnum.MDDT_TD.equals(marketDataDBType)) {
-            if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryTodayBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
-            }
+            barList = todayMarketDataService.queryBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod);
         } else if (MarketDataDBTypeEnum.MDDT_HIST.equals(marketDataDBType)) {
-            if (BarPeriodEnum.B_5Sec.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar5SecList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_1Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar1MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_3Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar3MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_5Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar5MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_15Min.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar15MinList(startTimestamp, endTimestamp, uniformSymbol);
-            } else if (BarPeriodEnum.B_1Day.equals(barPeriod)) {
-                barList = marketDataService.queryHistBar1DayList(startTimestamp, endTimestamp, uniformSymbol);
-            }
+            barList = historyMarketDataService.queryBarList(startTimestamp, endTimestamp, uniformSymbol, barPeriod);
         }
 
-		if (barList == null) {
-			barList = new ArrayList<>();
-		}
+        if (barList == null) {
+            barList = new ArrayList<>();
+        }
 
         RpcQueryDBBarListRsp.Builder rpcQueryDBBarListRspBuilder = RpcQueryDBBarListRsp.newBuilder() //
                 .setCommonRsp(commonRspBuilder) //
@@ -727,9 +699,9 @@ public class RpcServerOverHttpReqHandlerServiceImpl implements RpcServerOverHttp
         if (MarketDataDBTypeEnum.MDDT_MIX.equals(marketDataDBType)) {
             tickList = marketDataService.queryTickList(startTimestamp, endTimestamp, uniformSymbol);
         } else if (MarketDataDBTypeEnum.MDDT_TD.equals(marketDataDBType)) {
-            tickList = marketDataService.queryTodayTickList(startTimestamp, endTimestamp, uniformSymbol);
+            tickList = todayMarketDataService.queryTickList(startTimestamp, endTimestamp, uniformSymbol);
         } else if (MarketDataDBTypeEnum.MDDT_HIST.equals(marketDataDBType)) {
-            tickList = marketDataService.queryHistTickList(startTimestamp, endTimestamp, uniformSymbol);
+            tickList = historyMarketDataService.queryTickList(startTimestamp, endTimestamp, uniformSymbol);
         }
 
         if (tickList == null) {

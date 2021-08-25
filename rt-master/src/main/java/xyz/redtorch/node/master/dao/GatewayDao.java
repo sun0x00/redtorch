@@ -1,15 +1,15 @@
 package xyz.redtorch.node.master.dao;
 
-import java.util.List;
-
 import xyz.redtorch.node.master.po.GatewayPo;
 
+import java.util.List;
+
 public interface GatewayDao {
-	GatewayPo queryGatewayByGatewayId(String gatewayId);
+    GatewayPo queryGatewayByGatewayId(String gatewayId);
 
-	List<GatewayPo> queryGatewayList();
+    List<GatewayPo> queryGatewayList();
 
-	void upsertGatewayByGatewayId(GatewayPo gateway);
+    void upsertGatewayByGatewayId(GatewayPo gateway);
 
-	void deleteGatewayByGatewayId(String gatewayId);
+    void deleteGatewayByGatewayId(String gatewayId);
 }

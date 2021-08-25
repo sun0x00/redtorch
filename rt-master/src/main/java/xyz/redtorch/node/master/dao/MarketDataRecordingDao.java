@@ -1,13 +1,13 @@
 package xyz.redtorch.node.master.dao;
 
-import java.util.List;
-
 import xyz.redtorch.node.master.po.ContractPo;
 
+import java.util.List;
+
 public interface MarketDataRecordingDao {
-	List<ContractPo> queryContractList();
+    List<ContractPo> queryContractList();
 
-	void deleteContractByUniformSymbol(String uniformSymbol);
+    void deleteContractByUniformSymbol(String uniformSymbol);
 
-	void upsertContractByUniformSymbol(ContractPo contract);
+    void upsertContractByUniformSymbol(ContractPo contract);
 }

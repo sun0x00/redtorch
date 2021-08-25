@@ -14,7 +14,7 @@ import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.common.web.socket.ThreadSafeWebSocketSession;
 import xyz.redtorch.node.master.po.UserPo;
 import xyz.redtorch.node.master.rpc.service.RpcServerOverWebSocketProcessService;
-import xyz.redtorch.node.master.service.HaSessionManger;
+import xyz.redtorch.node.master.service.HaSessionMangerService;
 import xyz.redtorch.node.master.service.MasterSystemService;
 import xyz.redtorch.node.master.service.MasterTradeExecuteService;
 import xyz.redtorch.node.master.service.NodeService;
@@ -61,7 +61,7 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
     @Autowired
     private RpcServerOverWebSocketProcessService rpcOverWebSocketProcessService;
     @Autowired
-    private HaSessionManger haSessionManger;
+    private HaSessionMangerService haSessionMangerService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -154,7 +154,7 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
                 session.getAttributes().put(CommonConstant.KEY_NODE_ID, nodeId);
                 session.getAttributes().put(CommonConstant.KEY_AUTH_TOKEN, authToken);
 
-            } else if (haSessionManger.getUserPoByAuthToken(authToken) != null) {
+            } else if (haSessionMangerService.getUserPoByAuthToken(authToken) != null) {
                 logger.error("连接前校验authToken成功,HA接入,远程地址{}", remoteAddress);
                 session.getAttributes().put(CommonConstant.KEY_AUTH_TOKEN, authToken);
             } else {
@@ -196,13 +196,9 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
                 nodeIdSessionIdMap.put(nodeId, sessionId);
                 sessionIdNodeIdMap.put(sessionId, nodeId);
 
-                if (session.getRemoteAddress() != null) {
-                    nodeService.updateNodeLoginInfo(nodeId, sessionId, session.getRemoteAddress().getHostName(), session.getRemoteAddress().getPort());
-                }
-
             } else {
 
-                UserPo userPo = haSessionManger.getUserPoByAuthToken(authToken);
+                UserPo userPo = haSessionMangerService.getUserPoByAuthToken(authToken);
                 String operatorId = userPo.getOperatorId();
 
                 sessionIdOperatorIdMap.put(sessionId, operatorId);
@@ -228,7 +224,7 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
                     while (true) {
                         try {
                             byte[] data = dataQueue.take();
-                            if(haSessionManger.getUserPoByAuthToken(authToken)==null&&!session.getAttributes().containsKey(CommonConstant.KEY_NODE_ID)){
+                            if (!session.getAttributes().containsKey(CommonConstant.KEY_NODE_ID) && haSessionMangerService.getUserPoByAuthToken(authToken) == null) {
                                 try {
                                     session.close(CloseStatus.NORMAL.withReason("授权无效"));
                                 } catch (Exception e) {
@@ -297,8 +293,10 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
             return;
         }
 
-        String authToken = sessionIdToAuthTokenMap.get(session.getId());
-        haSessionManger.freshAuthToken(authToken);
+        if (!session.getAttributes().containsKey(CommonConstant.KEY_NODE_ID)) {
+            String authToken = sessionIdToAuthTokenMap.get(session.getId());
+            haSessionMangerService.refreshAuthToken(authToken);
+        }
 
         long pingTimestamp = message.getPayload().asLongBuffer().get();
         sessionIdPingStartTimeMap.remove(session.getId());
@@ -328,13 +326,9 @@ public class WebSocketServerHandler extends AbstractWebSocketHandler implements 
                 Integer nodeId = (Integer) session.getAttributes().get(CommonConstant.KEY_NODE_ID);
                 logger.info("连接已关闭,会话ID:{},节点ID:{}", sessionId, nodeId);
 
-                masterSystemService.removeGatewayIdByNodeId(nodeId);
+                masterSystemService.removeGatewayByNodeId(nodeId);
                 nodeIdSessionIdMap.remove(nodeId);
                 sessionIdNodeIdMap.remove(sessionId);
-
-                if (session.getAttributes().get(CommonConstant.KEY_VERIFIED) != null && (boolean) session.getAttributes().get(CommonConstant.KEY_VERIFIED)) {
-                    nodeService.updateNodeLogoutInfo(nodeId);
-                }
 
             } else {
                 String operatorId = sessionIdOperatorIdMap.remove(sessionId);

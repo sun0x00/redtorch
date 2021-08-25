@@ -1,17 +1,19 @@
 package xyz.redtorch.node.master.service;
 
-import java.util.List;
-
 import xyz.redtorch.pb.CoreField.CommonReqField;
 import xyz.redtorch.pb.CoreField.GatewayField;
 import xyz.redtorch.pb.CoreField.GatewaySettingField;
 
+import java.util.List;
+
 public interface MasterSystemService {
-	List<Integer> getNodeIdList();
+    List<Integer> getNodeIdList();
 
-	Integer getNodeIdByGatewayId(String gatewayId);
+    GatewayField getGatewayByGatewayId(String gatewayId);
 
-	List<GatewaySettingField> queryGatewaySettingList(CommonReqField commonReq, List<GatewayField> gatewayList, Integer nodeId);
+    Integer getNodeIdByGatewayId(String gatewayId);
 
-	void removeGatewayIdByNodeId(Integer nodeId);
+    List<GatewaySettingField> queryGatewaySettingList(CommonReqField commonReq, List<GatewayField> gatewayList, Integer nodeId);
+
+    void removeGatewayByNodeId(Integer nodeId);
 }

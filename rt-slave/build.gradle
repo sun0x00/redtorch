@@ -18,9 +18,9 @@ dependencies {
 	compile project(':rt-common')
 	compile project(':rt-gateway-api')
 	compile project(':rt-gateway-impl-ctp')
-   	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
-			exclude(module: 'spring-boot-starter-tomcat')
-    }
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
+		exclude(module: 'spring-boot-starter-tomcat')
+	}
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
 }

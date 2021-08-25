@@ -48,12 +48,13 @@ enum MarketDataDBTypeEnum {
 
 // Bar周期
 enum BarPeriodEnum {
-	B_5Sec = 0;
-	B_1Min = 1;
-	B_3Min = 2;
-	B_5Min = 3;
-	B_15Min = 4;
-	B_1Day = 5;
+	B_UNKNOWN = 0;
+	B_5Sec = 5;
+	B_1Min = 60;
+	B_3Min = 180;
+	B_5Min = 300;
+	B_15Min = 900;
+	B_1Day = 86400;
 }
 
 // 连接状态

@@ -10,12 +10,12 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocketServerConfig implements WebSocketConfigurer {
 
-	@Autowired
-	private WebSocketServerHandshakeInterceptor webSocketServerHandshakeInterceptor;
-	@Autowired
-	private WebSocketServerHandler webSocketServerHandler;
+    @Autowired
+    private WebSocketServerHandshakeInterceptor webSocketServerHandshakeInterceptor;
+    @Autowired
+    private WebSocketServerHandler webSocketServerHandler;
 
-	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(webSocketServerHandler, "/websocket").setAllowedOrigins("*").addInterceptors(webSocketServerHandshakeInterceptor);
-	}
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketServerHandler, "/websocket").setAllowedOrigins("*").addInterceptors(webSocketServerHandshakeInterceptor);
+    }
 }

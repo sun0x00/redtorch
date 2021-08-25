@@ -1,22 +1,11 @@
 package xyz.redtorch.desktop.layout.base;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -24,6 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import xyz.redtorch.desktop.layout.charts.BasicMarketDataChartLayout;
 import xyz.redtorch.desktop.service.GuiMainService;
 
@@ -216,7 +210,6 @@ public class MainLayout {
         sessionMenu.getItems().add(reloadDataMenuItem);
 
         Menu accountGroupMenu = new Menu("账户组合");
-
         MenuItem accountGroupFileWriterMenuItem = new MenuItem("账户数据写入文件");
         accountGroupFileWriterMenuItem.setOnAction(event -> new Thread(() -> {
             try {

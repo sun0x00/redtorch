@@ -24,8 +24,8 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 
-@SpringBootApplication(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class })
-@Import({ FastEventServiceImpl.class })
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
+@Import({FastEventServiceImpl.class})
 public class RtNodeSlaveApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(RtNodeSlaveApplication.class);
@@ -68,7 +68,7 @@ public class RtNodeSlaveApplication {
 			if (pidFile.exists()) {
 				FileInputStream fisTargetFile = new FileInputStream(pidFile);
 				String pidStr = IOUtils.toString(fisTargetFile, StandardCharsets.UTF_8);
-				if (CommonUtils.isStillAllive(pidStr)) {
+				if (CommonUtils.isStillAlive(pidStr)) {
 					logger.error("#### PID:{} 对应的进程仍在运行 ####", pidStr);
 					System.exit(0);
 				}

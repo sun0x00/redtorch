@@ -1,15 +1,15 @@
 package xyz.redtorch.node.master.dao;
 
-import java.util.List;
-
 import xyz.redtorch.node.master.po.UserPo;
 
+import java.util.List;
+
 public interface UserDao {
-	UserPo queryUserByUsername(String username);
+    UserPo queryUserByUsername(String username);
 
-	void upsertUserByUsername(UserPo user);
+    void upsertUserByUsername(UserPo user);
 
-	List<UserPo> queryUserList();
+    List<UserPo> queryUserList();
 
-	void deleteUserByUsername(String username);
+    void deleteUserByUsername(String username);
 }

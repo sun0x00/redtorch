@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xyz.redtorch.common.constant.CommonConstant;
 import xyz.redtorch.common.util.CommonUtils;
 import xyz.redtorch.pb.CoreField.ContractField;
 import xyz.redtorch.pb.CoreField.TickField;
@@ -41,7 +42,7 @@ public class TickFXBean {
 
     public void update(TickField newTickField, boolean newContractSelectedFlag, ContractField newContractField) {
         if (contractField == null && newContractField != null) {
-            if (tickField==null || newContractField.getUniformSymbol().equals(tickField.getUniformSymbol())) {
+            if (tickField == null || newContractField.getUniformSymbol().equals(tickField.getUniformSymbol())) {
                 contractField = newContractField;
                 int decimalDigits = CommonUtils.getNumberDecimalDigits(contractField.getPriceTick());
 
@@ -165,7 +166,7 @@ public class TickFXBean {
     }
 
     private void updateAbPrice(TickField newTickField) {
-        if (tickField == null || !tickField.getActionTime().equals(newTickField.getActionTime()) || tickField.getVolume() != newTickField.getVolume()) {
+        if (tickField == null || tickField.getActionTime() != newTickField.getActionTime() || tickField.getVolume() != newTickField.getVolume()) {
             VBox vBox = new VBox();
 
             try {
@@ -219,7 +220,7 @@ public class TickFXBean {
 
     public void updateAbVolume(TickField newTickField) {
 
-        if (tickField == null || !tickField.getActionTime().equals(newTickField.getActionTime()) || tickField.getVolume() != newTickField.getVolume()) {
+        if (tickField == null || tickField.getActionTime() != newTickField.getActionTime() || tickField.getVolume() != newTickField.getVolume()) {
             VBox vBox = new VBox();
             try {
 
@@ -299,8 +300,8 @@ public class TickFXBean {
     }
 
     public void updateActionTime(TickField newTickField) {
-        if (tickField == null || !tickField.getActionTime().equals(newTickField.getActionTime())) {
-            setActionTime(CommonUtils.millsToLocalDateTime(newTickField.getActionTimestamp()).format(CommonUtils.T_FORMAT_WITH_MS_FORMATTER));
+        if (tickField == null || tickField.getActionTime() != newTickField.getActionTime()) {
+            setActionTime(CommonUtils.millsToLocalDateTime(newTickField.getActionTimestamp()).format(CommonConstant.T_FORMAT_WITH_MS_FORMATTER));
         }
     }
 

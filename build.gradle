@@ -1,20 +1,23 @@
 group = 'xyz.redtorch'
-version = '1.0.0'
+version = '1.1.0'
 description = """Java开源量化交易开发框架 http://redtorch.io/"""
 
 ext {
-        springBootVersion = '2.4.2'
-        disruptorVersion = '3.4.2'
-        lz4JavaVersion = '1.7.1'
-        fastjsonVersion = '1.2.75'
-		commonsCodecVersion = '1.15'
-		commonsLang3Version = '3.11'
-		commonsIOVersion = '2.8.0'
-		slf4jApiVersion = '1.7.30'
-		logbackVersion = '1.2.3'
-		commonsCsvVersion = '1.8'
-        mongoJavaDriverVersion = '3.10.2'
-		junrarVersion = '7.3.0'
+	springBootVersion = '2.4.5'
+	disruptorVersion = '3.4.3'
+	lz4JavaVersion = '1.7.1'
+	fastjsonVersion = '1.2.76'
+	commonsCodecVersion = '1.15'
+	commonsLang3Version = '3.12.0'
+	commonsIOVersion = '2.8.0'
+	slf4jApiVersion = '1.7.30'
+	logbackVersion = '1.2.3'
+	commonsCsvVersion = '1.8'
+	mongoJavaDriverVersion = '3.12.8'
+	junrarVersion = '7.3.0'
+	zookeeperVersion = '3.6.2'
+	clickhouseJdbcVersion = '0.2.5'
+	commonsMath3Version = '3.6.1'
 }
 
 subprojects {
@@ -24,25 +27,25 @@ subprojects {
 		targetCompatibility = 11
 		options.encoding = "UTF-8"
 	}
-	
+
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
 	apply plugin: 'idea'
 
 	eclipse {
-	    classpath {
-	        downloadJavadoc = true
-	        downloadSources = true
-	    }
+		classpath {
+			downloadJavadoc = true
+			downloadSources = true
+		}
 	}
-	
+
 	idea {
-	    module {
-	        downloadJavadoc = true
-	        downloadSources = true
-	    }
+		module {
+			downloadJavadoc = true
+			downloadSources = true
+		}
 	}
-	
+
 	test.onlyIf {Boolean.getBoolean('skip.tests')}
 
 	repositories {
@@ -53,8 +56,8 @@ subprojects {
 		jcenter()
 		mavenCentral()
 	}
-	
-	dependencies {  
+
+	dependencies {
 		compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jApiVersion}"
 		compile group: 'ch.qos.logback', name: 'logback-core', version: "${logbackVersion}"
 		compile group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackVersion}"

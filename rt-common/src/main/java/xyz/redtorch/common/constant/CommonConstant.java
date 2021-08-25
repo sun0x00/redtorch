@@ -43,6 +43,7 @@ public interface CommonConstant {
 
 	HashSet<OrderStatusEnum> ORDER_STATUS_FINISHED_SET = new HashSet<>() {
 		private static final long serialVersionUID = 909683985291870766L;
+
 		{
 			add(OrderStatusEnum.OS_Rejected);
 			add(OrderStatusEnum.OS_Canceled);
@@ -53,6 +54,7 @@ public interface CommonConstant {
 
 	HashSet<OrderStatusEnum> ORDER_STATUS_WORKING_SET = new HashSet<>() {
 		private static final long serialVersionUID = 909683985291870766L;
+
 		{
 			add(OrderStatusEnum.OS_Unknown);
 			add(OrderStatusEnum.OS_NoTradeQueueing);

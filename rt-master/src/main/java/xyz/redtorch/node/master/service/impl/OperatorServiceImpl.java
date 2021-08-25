@@ -20,149 +20,157 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class OperatorServiceImpl implements OperatorService, InitializingBean {
 
-	private static final Logger logger = LoggerFactory.getLogger(OperatorServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(OperatorServiceImpl.class);
 
-	@Autowired
-	private OperatorDao operatorDao;
-	@Value("${rt.master.operatorId}")
-	private String adminOperatorId;
+    @Autowired
+    private OperatorDao operatorDao;
+    @Value("${rt.master.operatorId}")
+    private String adminOperatorId;
 
-	private Map<String, OperatorPo> operatorMap = new ConcurrentHashMap<>();
+    private Map<String, OperatorPo> operatorMap = new ConcurrentHashMap<>();
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		this.getOperatorList();
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        new Thread(()->{
+            try {
+                Thread.sleep(3*1000);
+            } catch (InterruptedException e) {
+                // NOP
+            }
+            this.getOperatorList();
+        }).start();
 
-	}
 
-	@Override
-	public OperatorPo getOperatorByOperatorId(String operatorId) {
+    }
+
+    @Override
+    public OperatorPo getOperatorByOperatorId(String operatorId) {
         if (!operatorMap.containsKey(operatorId)) {
             getOperatorList();
         }
-		return operatorMap.get(operatorId);
-	}
+        return operatorMap.get(operatorId);
+    }
 
-	@Override
-	public List<OperatorPo> getOperatorList() {
-		List<OperatorPo> operatorList = operatorDao.queryOperatorList();
-		if (operatorList != null) {
-			Map<String, OperatorPo> newOperatorMap = new ConcurrentHashMap<>();
-			for (OperatorPo operator : operatorList) {
-				newOperatorMap.put(operator.getOperatorId(), operator);
-			}
-			operatorMap = newOperatorMap;
-		}
-		return new ArrayList<>(operatorMap.values());
-	}
+    @Override
+    public List<OperatorPo> getOperatorList() {
+        List<OperatorPo> operatorList = operatorDao.queryOperatorList();
+        if (operatorList != null) {
+            Map<String, OperatorPo> newOperatorMap = new ConcurrentHashMap<>();
+            for (OperatorPo operator : operatorList) {
+                newOperatorMap.put(operator.getOperatorId(), operator);
+            }
+            operatorMap = newOperatorMap;
+        }
+        return new ArrayList<>(operatorMap.values());
+    }
 
-	@Override
-	public void upsertOperatorByOperatorId(OperatorPo operator) {
-		if (operator == null) {
-			logger.error("更新或新增操作员错误,参数operator缺失");
-			throw new IllegalArgumentException("更新或新增操作员错误,参数operator缺失");
-		}
+    @Override
+    public void upsertOperatorByOperatorId(OperatorPo operator) {
+        if (operator == null) {
+            logger.error("更新或新增操作员错误,参数operator缺失");
+            throw new IllegalArgumentException("更新或新增操作员错误,参数operator缺失");
+        }
 
-		if (StringUtils.isBlank(operator.getOperatorId())) {
-			logger.error("根据操作员ID删除操作员错误,参数operatorId缺失");
-			throw new IllegalArgumentException("根据操作员ID删除操作员错误,参数operatorId缺失");
-		}
+        if (StringUtils.isBlank(operator.getOperatorId())) {
+            logger.error("根据操作员ID删除操作员错误,参数operatorId缺失");
+            throw new IllegalArgumentException("根据操作员ID删除操作员错误,参数operatorId缺失");
+        }
 
-		OperatorPo dbOperator = operatorDao.queryOperatorByOperatorId(operator.getOperatorId());
-		if (dbOperator != null && dbOperator.isAssociatedToUser()) {
-			operator.setUsername(dbOperator.getUsername());
-			operator.setAssociatedToUser(true);
-		}
+        OperatorPo dbOperator = operatorDao.queryOperatorByOperatorId(operator.getOperatorId());
+        if (dbOperator != null && dbOperator.isAssociatedToUser()) {
+            operator.setUsername(dbOperator.getUsername());
+            operator.setAssociatedToUser(true);
+        }
 
-		operatorDao.upsertOperatorByOperatorId(operator);
-		this.getOperatorList();
-	}
+        operatorDao.upsertOperatorByOperatorId(operator);
+        this.getOperatorList();
+    }
 
-	@Override
-	public void deleteOperatorByOperatorId(String operatorId) {
-		if (StringUtils.isBlank(operatorId)) {
-			logger.error("根据操作员ID删除操作员错误,参数operatorId缺失");
-			throw new IllegalArgumentException("根据操作员ID删除操作员错误,参数operatorId缺失");
-		}
-		operatorDao.deleteOperatorByOperatorId(operatorId);
-		this.getOperatorList();
-	}
+    @Override
+    public void deleteOperatorByOperatorId(String operatorId) {
+        if (StringUtils.isBlank(operatorId)) {
+            logger.error("根据操作员ID删除操作员错误,参数operatorId缺失");
+            throw new IllegalArgumentException("根据操作员ID删除操作员错误,参数operatorId缺失");
+        }
+        operatorDao.deleteOperatorByOperatorId(operatorId);
+        this.getOperatorList();
+    }
 
-	@Override
-	public OperatorPo createOperator() {
-		OperatorPo operator = new OperatorPo();
-		operator.setOperatorId(UUIDStringPoolUtils.getUUIDString());
-		this.upsertOperatorByOperatorId(operator);
-		return operator;
-	}
+    @Override
+    public OperatorPo createOperator() {
+        OperatorPo operator = new OperatorPo();
+        operator.setOperatorId(UUIDStringPoolUtils.getUUIDString());
+        this.upsertOperatorByOperatorId(operator);
+        return operator;
+    }
 
-	@Override
-	public boolean checkSubscribePermission(String operatorId, String uniformSymbol) {
-		boolean canSubscribe = false;
-		if (adminOperatorId.equals(operatorId)) {
-			canSubscribe = true;
-		} else {
-			OperatorPo operator = getOperatorByOperatorId(operatorId);
-			if (operator != null && operator.isCanSubscribeAllContracts() && !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
-				canSubscribe = true;
-			} else if (operator != null && operator.getAcceptSubscribeSpecialUniformSymbolSet().contains(uniformSymbol)
-					&& !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
-				canSubscribe = true;
-			}
-		}
-		return canSubscribe;
-	}
+    @Override
+    public boolean checkSubscribePermission(String operatorId, String uniformSymbol) {
+        boolean canSubscribe = false;
+        if (adminOperatorId.equals(operatorId)) {
+            canSubscribe = true;
+        } else {
+            OperatorPo operator = getOperatorByOperatorId(operatorId);
+            if (operator != null && operator.isCanSubscribeAllContracts() && !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
+                canSubscribe = true;
+            } else if (operator != null && operator.getAcceptSubscribeSpecialUniformSymbolSet().contains(uniformSymbol)
+                    && !operator.getDenySubscribeSpecialUniformSymbolSet().contains(uniformSymbol)) {
+                canSubscribe = true;
+            }
+        }
+        return canSubscribe;
+    }
 
-	@Override
-	public boolean checkReadAccountPermission(String operatorId, String accountId) {
-		boolean canReadAccount = false;
-		if (adminOperatorId.equals(operatorId)) {
-			canReadAccount = true;
-		} else {
-			OperatorPo operator = getOperatorByOperatorId(operatorId);
-			if (operator != null && operator.isCanReadAllAccounts() && !operator.getDenyReadSpecialAccountIdSet().contains(accountId)) {
-				canReadAccount = true;
-			} else if (operator != null && operator.getAcceptReadSpecialAccountIdSet().contains(accountId) && !operator.getDenyReadSpecialAccountIdSet().contains(accountId)) {
-				canReadAccount = true;
-			}
-		}
-		return canReadAccount;
-	}
+    @Override
+    public boolean checkReadAccountPermission(String operatorId, String accountId) {
+        boolean canReadAccount = false;
+        if (adminOperatorId.equals(operatorId)) {
+            canReadAccount = true;
+        } else {
+            OperatorPo operator = getOperatorByOperatorId(operatorId);
+            if (operator != null && operator.isCanReadAllAccounts() && !operator.getDenyReadSpecialAccountIdSet().contains(accountId)) {
+                canReadAccount = true;
+            } else if (operator != null && operator.getAcceptReadSpecialAccountIdSet().contains(accountId) && !operator.getDenyReadSpecialAccountIdSet().contains(accountId)) {
+                canReadAccount = true;
+            }
+        }
+        return canReadAccount;
+    }
 
-	@Override
-	public boolean checkTradeAccountPermission(String operatorId, String accountId) {
-		boolean canTradeAccount = false;
-		if (adminOperatorId.equals(operatorId)) {
-			canTradeAccount = true;
-		} else {
-			OperatorPo operator = getOperatorByOperatorId(operatorId);
-			if (operator != null && operator.isCanTradeAllAccounts() && !operator.getDenyTradeSpecialAccountIdSet().contains(accountId)) {
-				canTradeAccount = true;
-			} else if (operator != null && operator.getAcceptTradeSpecialAccountIdSet().contains(accountId) && !operator.getDenyTradeSpecialAccountIdSet().contains(accountId)) {
-				canTradeAccount = true;
-			}
-		}
-		return canTradeAccount;
-	}
+    @Override
+    public boolean checkTradeAccountPermission(String operatorId, String accountId) {
+        boolean canTradeAccount = false;
+        if (adminOperatorId.equals(operatorId)) {
+            canTradeAccount = true;
+        } else {
+            OperatorPo operator = getOperatorByOperatorId(operatorId);
+            if (operator != null && operator.isCanTradeAllAccounts() && !operator.getDenyTradeSpecialAccountIdSet().contains(accountId)) {
+                canTradeAccount = true;
+            } else if (operator != null && operator.getAcceptTradeSpecialAccountIdSet().contains(accountId) && !operator.getDenyTradeSpecialAccountIdSet().contains(accountId)) {
+                canTradeAccount = true;
+            }
+        }
+        return canTradeAccount;
+    }
 
-	@Override
-	public boolean checkTradeContractPermission(String operatorId, String uniformSymbol) {
-		boolean canTradeContract = false;
+    @Override
+    public boolean checkTradeContractPermission(String operatorId, String uniformSymbol) {
+        boolean canTradeContract = false;
 
-		if (adminOperatorId.equals(operatorId)) {
-			canTradeContract = true;
-		} else {
-			OperatorPo operator = getOperatorByOperatorId(operatorId);
+        if (adminOperatorId.equals(operatorId)) {
+            canTradeContract = true;
+        } else {
+            OperatorPo operator = getOperatorByOperatorId(operatorId);
 
-			if (operator != null && operator.isCanTradeAllContracts() && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
-				canTradeContract = true;
-			} else if (operator != null && operator.getAcceptTradeSpecialUniformSymbolSet().contains(uniformSymbol) && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
-				canTradeContract = true;
-			}
+            if (operator != null && operator.isCanTradeAllContracts() && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
+                canTradeContract = true;
+            } else if (operator != null && operator.getAcceptTradeSpecialUniformSymbolSet().contains(uniformSymbol) && !operator.getDenyTradeSpecialUniformSymbolSet().contains(uniformSymbol)) {
+                canTradeContract = true;
+            }
 
-		}
+        }
 
-		return canTradeContract;
-	}
+        return canTradeContract;
+    }
 
 }

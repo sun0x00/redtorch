@@ -13,6 +13,8 @@ message GatewayField {
 	GatewayAdapterTypeEnum gatewayAdapterType = 5;  // 网关适配器类型
 	ConnectStatusEnum status = 6;  // 网关状态
 	bool authErrorFlag = 7; // 登录失败标志
+	fixed32 targetNodeId = 8; // 目标节点
+	fixed64 version = 9; // 版本
 }
 
 // 合约
@@ -159,7 +161,7 @@ message PositionField {
 	double exchangeMargin = 20;  // 交易所的保证金
 	double contractValue = 21;  // 最新合约价值
 	HedgeFlagEnum hedgeFlag = 22; // 投机套保标识
-    ContractField contract = 23;  // 合约
+	ContractField contract = 23;  // 合约
 	string gatewayId = 24;  // 网关ID
 	fixed64 localCreatedTimestamp = 25; // 本地创建时间
 }
@@ -168,49 +170,40 @@ message PositionField {
 message TickField {
 	string uniformSymbol = 1;  // 统一合约标识
 	string gatewayId = 2; // 网关ID
-	string tradingDay = 3;  // 交易日
-	string actionDay = 4;  // 业务发生日
-	string actionTime = 5;  // 时间(HHmmssSSS)
+	fixed32 tradingDay = 3;  // 交易日
+	fixed32 actionDay = 4;  // 业务发生日
+	fixed32 actionTime = 5;  // 时间(HHmmssSSS)
 	fixed64 actionTimestamp = 6;  // 时间戳
-	fixed32 status = 7;  // 状态
-	double lastPrice = 8;  // 最新成交价
-	double avgPrice = 9;  // 均价
-	fixed64 totalBidVol = 10;  // 定单买入总量
-	fixed64 totalAskVol = 11;  // 定单卖出总量
-	double weightedAvgBidPrice = 12;  // 加权平均委买价格
-	double weightedAvgAskPrice = 13;  // 加权平均卖价格
-	double iopv = 14;  // 净值估值
-	double yieldToMaturity = 15;   // 到期收益率
-	fixed64 volumeDelta = 16;  // 成交量变化
-	fixed64 volume = 17;  // 总成交量
-	double turnover = 18;  // 成交总额
-	double turnoverDelta = 19;  // 成交总额变化
-	fixed64 numTrades = 20;  // 成交笔数
-	fixed64 numTradesDelta = 21;  // 成交笔数
-	double openInterest = 22;  // 持仓量
-	double openInterestDelta = 23;  // 持仓量变化
-	double preOpenInterest = 24;// 昨持仓
-	double preClosePrice = 25;  // 前收盘价
-	double settlePrice = 26;  // 结算价
-	double preSettlePrice = 27;  // 昨结算价
-	double openPrice = 28;  // 开盘价
-	double highPrice = 29;  // 最高价
-	double lowPrice = 30;  // 最低价
-	double upperLimit = 31;  // 涨停价
-	double lowerLimit = 32;  // 跌停价
-	repeated double bidPrice = 33;  // 买价
-	repeated double askPrice = 34;  // 卖价
-	repeated fixed32 bidVolume = 35;  // 买量
-	repeated fixed32 askVolume = 36;  // 卖量
+	double lastPrice = 7;  // 最新成交价
+	double avgPrice = 8;  // 均价
+	fixed64 volumeDelta = 9;  // 成交量变化
+	fixed64 volume = 10;  // 总成交量
+	double turnover = 11;  // 成交总额
+	double turnoverDelta = 12;  // 成交总额变化
+	double openInterest = 13;  // 持仓量
+	double openInterestDelta = 14;  // 持仓量变化
+	double preOpenInterest = 15;// 昨持仓
+	double preClosePrice = 16;  // 前收盘价
+	double settlePrice = 17;  // 结算价
+	double preSettlePrice = 18;  // 昨结算价
+	double openPrice = 19;  // 开盘价
+	double highPrice = 20;  // 最高价
+	double lowPrice = 21;  // 最低价
+	double upperLimit = 22;  // 涨停价
+	double lowerLimit = 23;  // 跌停价
+	repeated double bidPrice = 24;  // 买价
+	repeated double askPrice = 25;  // 卖价
+	repeated fixed32 bidVolume = 26;  // 买量
+	repeated fixed32 askVolume = 27;  // 卖量
 }
 
 // Bar
 message BarField {
 	string uniformSymbol = 1;  // 统一合约标识
 	string gatewayId = 2; // 网关ID
-	string tradingDay = 3;  // 交易日
-	string actionDay = 4;  // 业务发生日
-	string actionTime = 5;  // 时间(HHmmssSSS)
+	fixed32 tradingDay = 3;  // 交易日
+	fixed32 actionDay = 4;  // 业务发生日
+	fixed32 actionTime = 5;  // 时间(HHmmssSSS)
 	fixed64 actionTimestamp = 6;  // 时间戳
 	double openPrice = 7;  // 开
 	double highPrice = 8;  // 高
@@ -222,11 +215,10 @@ message BarField {
 	fixed64 volumeDelta = 14;  // 成交量（Bar）
 	double turnover = 15;  // 最后成交总额
 	double turnoverDelta = 16;  // 成交总额（Bar）
-	fixed64 numTrades = 17;  // 最新成交笔数
-	fixed64 numTradesDelta = 18;  // 成交笔数（Bar）
-	double preOpenInterest = 19;// 昨持仓
-	double preClosePrice = 20;  // 前收盘价
-	double preSettlePrice = 21;  // 昨结算价
+	double preOpenInterest = 17;// 昨持仓
+	double preClosePrice = 18;  // 前收盘价
+	double preSettlePrice = 19;  // 昨结算价
+	int32 period = 20; // 周期
 }
 
 // 通用请求
@@ -296,16 +288,17 @@ message GatewaySettingField {
 	
 	string gatewayId = 1;  // 网关ID
 	string gatewayName = 2;  // 网关名称
-	string gatewayDescription = 4;  // 网关描述
-	string implementClassName = 5;  // 实现类
-	
-	GatewayTypeEnum gatewayType = 6;  // 网关类型
-	GatewayAdapterTypeEnum gatewayAdapterType = 7;  // 网关适配器类型
-	CtpApiSettingField ctpApiSetting = 8;
-	IbApiSettingField ibApiSetting = 9;
-	ConnectStatusEnum status = 10;
-	fixed64 version = 11;
-	string autoConnectTimeRanges = 12;
+	string gatewayDescription = 3;  // 网关描述
+	string implementClassName = 4;  // 实现类
+	GatewayTypeEnum gatewayType = 5;  // 网关类型
+	GatewayAdapterTypeEnum gatewayAdapterType = 6;  // 网关适配器类型
+	fixed32 targetNodeId = 7;
+	string autoConnectTimeRanges = 8;
+	ConnectStatusEnum status = 9;
+	fixed64 version = 10;
+
+	CtpApiSettingField ctpApiSetting = 11;
+	IbApiSettingField ibApiSetting = 12;
 	
 }
 

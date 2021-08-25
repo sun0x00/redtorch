@@ -21,54 +21,54 @@ import java.util.List;
 @RequestMapping("${rt.master.apiBasePath}/customize")
 public class CustomizeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CustomizeController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CustomizeController.class);
 
-	@Autowired
-	private FavoriteContractService favoriteContractService;
+    @Autowired
+    private FavoriteContractService favoriteContractService;
 
-	@RequestMapping(value = { "/getFavoriteContractList" })
-	@ResponseBody
-	public ResponseVo<List<ContractPo>> getFavoriteContractList(HttpServletRequest request) {
-		ResponseVo<List<ContractPo>> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			responseVo.setVoData(favoriteContractService.getContractListByUsername(user.getUsername()));
-		} catch (Exception e) {
-			logger.error("获取常用合约列表错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/getFavoriteContractList"})
+    @ResponseBody
+    public ResponseVo<List<ContractPo>> getFavoriteContractList(HttpServletRequest request) {
+        ResponseVo<List<ContractPo>> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            responseVo.setVoData(favoriteContractService.getContractListByUsername(user.getUsername()));
+        } catch (Exception e) {
+            logger.error("获取常用合约列表错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 
-	@RequestMapping(value = { "/addFavoriteContractByUniformSymbol" })
-	@ResponseBody
-	public ResponseVo<String> addFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
-		ResponseVo<String> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			favoriteContractService.upsertContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
-		} catch (Exception e) {
-			logger.error("根据统一合约标识新增合约错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/addFavoriteContractByUniformSymbol"})
+    @ResponseBody
+    public ResponseVo<String> addFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+        ResponseVo<String> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            favoriteContractService.upsertContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
+        } catch (Exception e) {
+            logger.error("根据统一合约标识新增合约错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 
-	@RequestMapping(value = { "/deleteFavoriteContractByUniformSymbol" })
-	@ResponseBody
-	public ResponseVo<String> deleteFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
-		ResponseVo<String> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			favoriteContractService.deleteContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
-		} catch (Exception e) {
-			logger.error("根据用户名和统一合约标识删除合约错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
+    @RequestMapping(value = {"/deleteFavoriteContractByUniformSymbol"})
+    @ResponseBody
+    public ResponseVo<String> deleteFavoriteContractByUniformSymbol(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+        ResponseVo<String> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            favoriteContractService.deleteContractByUsernameAndUniformSymbol(user.getUsername(), requestVo.getVoData());
+        } catch (Exception e) {
+            logger.error("根据用户名和统一合约标识删除合约错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
 
-	}
+    }
 }

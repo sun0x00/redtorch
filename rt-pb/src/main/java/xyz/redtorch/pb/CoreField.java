@@ -144,6 +144,26 @@ public final class CoreField {
      * @return The authErrorFlag.
      */
     boolean getAuthErrorFlag();
+
+    /**
+     * <pre>
+     * 目标节点
+     * </pre>
+     *
+     * <code>fixed32 targetNodeId = 8;</code>
+     * @return The targetNodeId.
+     */
+    int getTargetNodeId();
+
+    /**
+     * <pre>
+     * 版本
+     * </pre>
+     *
+     * <code>fixed64 version = 9;</code>
+     * @return The version.
+     */
+    long getVersion();
   }
   /**
    * <pre>
@@ -239,6 +259,16 @@ public final class CoreField {
             case 56: {
 
               authErrorFlag_ = input.readBool();
+              break;
+            }
+            case 69: {
+
+              targetNodeId_ = input.readFixed32();
+              break;
+            }
+            case 73: {
+
+              version_ = input.readFixed64();
               break;
             }
             default: {
@@ -507,6 +537,36 @@ public final class CoreField {
       return authErrorFlag_;
     }
 
+    public static final int TARGETNODEID_FIELD_NUMBER = 8;
+    private int targetNodeId_;
+    /**
+     * <pre>
+     * 目标节点
+     * </pre>
+     *
+     * <code>fixed32 targetNodeId = 8;</code>
+     * @return The targetNodeId.
+     */
+    @java.lang.Override
+    public int getTargetNodeId() {
+      return targetNodeId_;
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 9;
+    private long version_;
+    /**
+     * <pre>
+     * 版本
+     * </pre>
+     *
+     * <code>fixed64 version = 9;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public long getVersion() {
+      return version_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -542,6 +602,12 @@ public final class CoreField {
       if (authErrorFlag_ != false) {
         output.writeBool(7, authErrorFlag_);
       }
+      if (targetNodeId_ != 0) {
+        output.writeFixed32(8, targetNodeId_);
+      }
+      if (version_ != 0L) {
+        output.writeFixed64(9, version_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -576,6 +642,14 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, authErrorFlag_);
       }
+      if (targetNodeId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(8, targetNodeId_);
+      }
+      if (version_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed64Size(9, version_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -602,6 +676,10 @@ public final class CoreField {
       if (status_ != other.status_) return false;
       if (getAuthErrorFlag()
           != other.getAuthErrorFlag()) return false;
+      if (getTargetNodeId()
+          != other.getTargetNodeId()) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -628,6 +706,11 @@ public final class CoreField {
       hash = (37 * hash) + AUTHERRORFLAG_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getAuthErrorFlag());
+      hash = (37 * hash) + TARGETNODEID_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetNodeId();
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getVersion());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -779,6 +862,10 @@ public final class CoreField {
 
         authErrorFlag_ = false;
 
+        targetNodeId_ = 0;
+
+        version_ = 0L;
+
         return this;
       }
 
@@ -812,6 +899,8 @@ public final class CoreField {
         result.gatewayAdapterType_ = gatewayAdapterType_;
         result.status_ = status_;
         result.authErrorFlag_ = authErrorFlag_;
+        result.targetNodeId_ = targetNodeId_;
+        result.version_ = version_;
         onBuilt();
         return result;
       }
@@ -883,6 +972,12 @@ public final class CoreField {
         }
         if (other.getAuthErrorFlag() != false) {
           setAuthErrorFlag(other.getAuthErrorFlag());
+        }
+        if (other.getTargetNodeId() != 0) {
+          setTargetNodeId(other.getTargetNodeId());
+        }
+        if (other.getVersion() != 0L) {
+          setVersion(other.getVersion());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1462,6 +1557,92 @@ public final class CoreField {
       public Builder clearAuthErrorFlag() {
         
         authErrorFlag_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int targetNodeId_ ;
+      /**
+       * <pre>
+       * 目标节点
+       * </pre>
+       *
+       * <code>fixed32 targetNodeId = 8;</code>
+       * @return The targetNodeId.
+       */
+      @java.lang.Override
+      public int getTargetNodeId() {
+        return targetNodeId_;
+      }
+      /**
+       * <pre>
+       * 目标节点
+       * </pre>
+       *
+       * <code>fixed32 targetNodeId = 8;</code>
+       * @param value The targetNodeId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetNodeId(int value) {
+        
+        targetNodeId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 目标节点
+       * </pre>
+       *
+       * <code>fixed32 targetNodeId = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetNodeId() {
+        
+        targetNodeId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long version_ ;
+      /**
+       * <pre>
+       * 版本
+       * </pre>
+       *
+       * <code>fixed64 version = 9;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public long getVersion() {
+        return version_;
+      }
+      /**
+       * <pre>
+       * 版本
+       * </pre>
+       *
+       * <code>fixed64 version = 9;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(long value) {
+        
+        version_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 版本
+       * </pre>
+       *
+       * <code>fixed64 version = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        
+        version_ = 0L;
         onChanged();
         return this;
       }
@@ -21909,60 +22090,30 @@ public final class CoreField {
      * 交易日
      * </pre>
      *
-     * <code>string tradingDay = 3;</code>
+     * <code>fixed32 tradingDay = 3;</code>
      * @return The tradingDay.
      */
-    java.lang.String getTradingDay();
-    /**
-     * <pre>
-     * 交易日
-     * </pre>
-     *
-     * <code>string tradingDay = 3;</code>
-     * @return The bytes for tradingDay.
-     */
-    com.google.protobuf.ByteString
-        getTradingDayBytes();
+    int getTradingDay();
 
     /**
      * <pre>
      * 业务发生日
      * </pre>
      *
-     * <code>string actionDay = 4;</code>
+     * <code>fixed32 actionDay = 4;</code>
      * @return The actionDay.
      */
-    java.lang.String getActionDay();
-    /**
-     * <pre>
-     * 业务发生日
-     * </pre>
-     *
-     * <code>string actionDay = 4;</code>
-     * @return The bytes for actionDay.
-     */
-    com.google.protobuf.ByteString
-        getActionDayBytes();
+    int getActionDay();
 
     /**
      * <pre>
      * 时间(HHmmssSSS)
      * </pre>
      *
-     * <code>string actionTime = 5;</code>
+     * <code>fixed32 actionTime = 5;</code>
      * @return The actionTime.
      */
-    java.lang.String getActionTime();
-    /**
-     * <pre>
-     * 时间(HHmmssSSS)
-     * </pre>
-     *
-     * <code>string actionTime = 5;</code>
-     * @return The bytes for actionTime.
-     */
-    com.google.protobuf.ByteString
-        getActionTimeBytes();
+    int getActionTime();
 
     /**
      * <pre>
@@ -21976,20 +22127,10 @@ public final class CoreField {
 
     /**
      * <pre>
-     * 状态
-     * </pre>
-     *
-     * <code>fixed32 status = 7;</code>
-     * @return The status.
-     */
-    int getStatus();
-
-    /**
-     * <pre>
      * 最新成交价
      * </pre>
      *
-     * <code>double lastPrice = 8;</code>
+     * <code>double lastPrice = 7;</code>
      * @return The lastPrice.
      */
     double getLastPrice();
@@ -21999,77 +22140,17 @@ public final class CoreField {
      * 均价
      * </pre>
      *
-     * <code>double avgPrice = 9;</code>
+     * <code>double avgPrice = 8;</code>
      * @return The avgPrice.
      */
     double getAvgPrice();
 
     /**
      * <pre>
-     * 定单买入总量
-     * </pre>
-     *
-     * <code>fixed64 totalBidVol = 10;</code>
-     * @return The totalBidVol.
-     */
-    long getTotalBidVol();
-
-    /**
-     * <pre>
-     * 定单卖出总量
-     * </pre>
-     *
-     * <code>fixed64 totalAskVol = 11;</code>
-     * @return The totalAskVol.
-     */
-    long getTotalAskVol();
-
-    /**
-     * <pre>
-     * 加权平均委买价格
-     * </pre>
-     *
-     * <code>double weightedAvgBidPrice = 12;</code>
-     * @return The weightedAvgBidPrice.
-     */
-    double getWeightedAvgBidPrice();
-
-    /**
-     * <pre>
-     * 加权平均卖价格
-     * </pre>
-     *
-     * <code>double weightedAvgAskPrice = 13;</code>
-     * @return The weightedAvgAskPrice.
-     */
-    double getWeightedAvgAskPrice();
-
-    /**
-     * <pre>
-     * 净值估值
-     * </pre>
-     *
-     * <code>double iopv = 14;</code>
-     * @return The iopv.
-     */
-    double getIopv();
-
-    /**
-     * <pre>
-     * 到期收益率
-     * </pre>
-     *
-     * <code>double yieldToMaturity = 15;</code>
-     * @return The yieldToMaturity.
-     */
-    double getYieldToMaturity();
-
-    /**
-     * <pre>
      * 成交量变化
      * </pre>
      *
-     * <code>fixed64 volumeDelta = 16;</code>
+     * <code>fixed64 volumeDelta = 9;</code>
      * @return The volumeDelta.
      */
     long getVolumeDelta();
@@ -22079,7 +22160,7 @@ public final class CoreField {
      * 总成交量
      * </pre>
      *
-     * <code>fixed64 volume = 17;</code>
+     * <code>fixed64 volume = 10;</code>
      * @return The volume.
      */
     long getVolume();
@@ -22089,7 +22170,7 @@ public final class CoreField {
      * 成交总额
      * </pre>
      *
-     * <code>double turnover = 18;</code>
+     * <code>double turnover = 11;</code>
      * @return The turnover.
      */
     double getTurnover();
@@ -22099,37 +22180,17 @@ public final class CoreField {
      * 成交总额变化
      * </pre>
      *
-     * <code>double turnoverDelta = 19;</code>
+     * <code>double turnoverDelta = 12;</code>
      * @return The turnoverDelta.
      */
     double getTurnoverDelta();
 
     /**
      * <pre>
-     * 成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTrades = 20;</code>
-     * @return The numTrades.
-     */
-    long getNumTrades();
-
-    /**
-     * <pre>
-     * 成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTradesDelta = 21;</code>
-     * @return The numTradesDelta.
-     */
-    long getNumTradesDelta();
-
-    /**
-     * <pre>
      * 持仓量
      * </pre>
      *
-     * <code>double openInterest = 22;</code>
+     * <code>double openInterest = 13;</code>
      * @return The openInterest.
      */
     double getOpenInterest();
@@ -22139,7 +22200,7 @@ public final class CoreField {
      * 持仓量变化
      * </pre>
      *
-     * <code>double openInterestDelta = 23;</code>
+     * <code>double openInterestDelta = 14;</code>
      * @return The openInterestDelta.
      */
     double getOpenInterestDelta();
@@ -22149,7 +22210,7 @@ public final class CoreField {
      * 昨持仓
      * </pre>
      *
-     * <code>double preOpenInterest = 24;</code>
+     * <code>double preOpenInterest = 15;</code>
      * @return The preOpenInterest.
      */
     double getPreOpenInterest();
@@ -22159,7 +22220,7 @@ public final class CoreField {
      * 前收盘价
      * </pre>
      *
-     * <code>double preClosePrice = 25;</code>
+     * <code>double preClosePrice = 16;</code>
      * @return The preClosePrice.
      */
     double getPreClosePrice();
@@ -22169,7 +22230,7 @@ public final class CoreField {
      * 结算价
      * </pre>
      *
-     * <code>double settlePrice = 26;</code>
+     * <code>double settlePrice = 17;</code>
      * @return The settlePrice.
      */
     double getSettlePrice();
@@ -22179,7 +22240,7 @@ public final class CoreField {
      * 昨结算价
      * </pre>
      *
-     * <code>double preSettlePrice = 27;</code>
+     * <code>double preSettlePrice = 18;</code>
      * @return The preSettlePrice.
      */
     double getPreSettlePrice();
@@ -22189,7 +22250,7 @@ public final class CoreField {
      * 开盘价
      * </pre>
      *
-     * <code>double openPrice = 28;</code>
+     * <code>double openPrice = 19;</code>
      * @return The openPrice.
      */
     double getOpenPrice();
@@ -22199,7 +22260,7 @@ public final class CoreField {
      * 最高价
      * </pre>
      *
-     * <code>double highPrice = 29;</code>
+     * <code>double highPrice = 20;</code>
      * @return The highPrice.
      */
     double getHighPrice();
@@ -22209,7 +22270,7 @@ public final class CoreField {
      * 最低价
      * </pre>
      *
-     * <code>double lowPrice = 30;</code>
+     * <code>double lowPrice = 21;</code>
      * @return The lowPrice.
      */
     double getLowPrice();
@@ -22219,7 +22280,7 @@ public final class CoreField {
      * 涨停价
      * </pre>
      *
-     * <code>double upperLimit = 31;</code>
+     * <code>double upperLimit = 22;</code>
      * @return The upperLimit.
      */
     double getUpperLimit();
@@ -22229,7 +22290,7 @@ public final class CoreField {
      * 跌停价
      * </pre>
      *
-     * <code>double lowerLimit = 32;</code>
+     * <code>double lowerLimit = 23;</code>
      * @return The lowerLimit.
      */
     double getLowerLimit();
@@ -22239,7 +22300,7 @@ public final class CoreField {
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @return A list containing the bidPrice.
      */
     java.util.List<java.lang.Double> getBidPriceList();
@@ -22248,7 +22309,7 @@ public final class CoreField {
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @return The count of bidPrice.
      */
     int getBidPriceCount();
@@ -22257,7 +22318,7 @@ public final class CoreField {
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @param index The index of the element to return.
      * @return The bidPrice at the given index.
      */
@@ -22268,7 +22329,7 @@ public final class CoreField {
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @return A list containing the askPrice.
      */
     java.util.List<java.lang.Double> getAskPriceList();
@@ -22277,7 +22338,7 @@ public final class CoreField {
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @return The count of askPrice.
      */
     int getAskPriceCount();
@@ -22286,7 +22347,7 @@ public final class CoreField {
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @param index The index of the element to return.
      * @return The askPrice at the given index.
      */
@@ -22297,7 +22358,7 @@ public final class CoreField {
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @return A list containing the bidVolume.
      */
     java.util.List<java.lang.Integer> getBidVolumeList();
@@ -22306,7 +22367,7 @@ public final class CoreField {
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @return The count of bidVolume.
      */
     int getBidVolumeCount();
@@ -22315,7 +22376,7 @@ public final class CoreField {
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @param index The index of the element to return.
      * @return The bidVolume at the given index.
      */
@@ -22326,7 +22387,7 @@ public final class CoreField {
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @return A list containing the askVolume.
      */
     java.util.List<java.lang.Integer> getAskVolumeList();
@@ -22335,7 +22396,7 @@ public final class CoreField {
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @return The count of askVolume.
      */
     int getAskVolumeCount();
@@ -22344,7 +22405,7 @@ public final class CoreField {
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @param index The index of the element to return.
      * @return The askVolume at the given index.
      */
@@ -22369,9 +22430,6 @@ public final class CoreField {
     private TickField() {
       uniformSymbol_ = "";
       gatewayId_ = "";
-      tradingDay_ = "";
-      actionDay_ = "";
-      actionTime_ = "";
       bidPrice_ = emptyDoubleList();
       askPrice_ = emptyDoubleList();
       bidVolume_ = emptyIntList();
@@ -22421,22 +22479,19 @@ public final class CoreField {
               gatewayId_ = s;
               break;
             }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 29: {
 
-              tradingDay_ = s;
+              tradingDay_ = input.readFixed32();
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 37: {
 
-              actionDay_ = s;
+              actionDay_ = input.readFixed32();
               break;
             }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 45: {
 
-              actionTime_ = s;
+              actionTime_ = input.readFixed32();
               break;
             }
             case 49: {
@@ -22444,137 +22499,92 @@ public final class CoreField {
               actionTimestamp_ = input.readFixed64();
               break;
             }
-            case 61: {
-
-              status_ = input.readFixed32();
-              break;
-            }
-            case 65: {
+            case 57: {
 
               lastPrice_ = input.readDouble();
               break;
             }
-            case 73: {
+            case 65: {
 
               avgPrice_ = input.readDouble();
               break;
             }
-            case 81: {
-
-              totalBidVol_ = input.readFixed64();
-              break;
-            }
-            case 89: {
-
-              totalAskVol_ = input.readFixed64();
-              break;
-            }
-            case 97: {
-
-              weightedAvgBidPrice_ = input.readDouble();
-              break;
-            }
-            case 105: {
-
-              weightedAvgAskPrice_ = input.readDouble();
-              break;
-            }
-            case 113: {
-
-              iopv_ = input.readDouble();
-              break;
-            }
-            case 121: {
-
-              yieldToMaturity_ = input.readDouble();
-              break;
-            }
-            case 129: {
+            case 73: {
 
               volumeDelta_ = input.readFixed64();
               break;
             }
-            case 137: {
+            case 81: {
 
               volume_ = input.readFixed64();
               break;
             }
-            case 145: {
+            case 89: {
 
               turnover_ = input.readDouble();
               break;
             }
-            case 153: {
+            case 97: {
 
               turnoverDelta_ = input.readDouble();
               break;
             }
-            case 161: {
-
-              numTrades_ = input.readFixed64();
-              break;
-            }
-            case 169: {
-
-              numTradesDelta_ = input.readFixed64();
-              break;
-            }
-            case 177: {
+            case 105: {
 
               openInterest_ = input.readDouble();
               break;
             }
-            case 185: {
+            case 113: {
 
               openInterestDelta_ = input.readDouble();
               break;
             }
-            case 193: {
+            case 121: {
 
               preOpenInterest_ = input.readDouble();
               break;
             }
-            case 201: {
+            case 129: {
 
               preClosePrice_ = input.readDouble();
               break;
             }
-            case 209: {
+            case 137: {
 
               settlePrice_ = input.readDouble();
               break;
             }
-            case 217: {
+            case 145: {
 
               preSettlePrice_ = input.readDouble();
               break;
             }
-            case 225: {
+            case 153: {
 
               openPrice_ = input.readDouble();
               break;
             }
-            case 233: {
+            case 161: {
 
               highPrice_ = input.readDouble();
               break;
             }
-            case 241: {
+            case 169: {
 
               lowPrice_ = input.readDouble();
               break;
             }
-            case 249: {
+            case 177: {
 
               upperLimit_ = input.readDouble();
               break;
             }
-            case 257: {
+            case 185: {
 
               lowerLimit_ = input.readDouble();
               break;
             }
-            case 265: {
+            case 193: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 bidPrice_ = newDoubleList();
                 mutable_bitField0_ |= 0x00000001;
@@ -22582,7 +22592,7 @@ public final class CoreField {
               bidPrice_.addDouble(input.readDouble());
               break;
             }
-            case 266: {
+            case 194: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
@@ -22595,7 +22605,7 @@ public final class CoreField {
               input.popLimit(limit);
               break;
             }
-            case 273: {
+            case 201: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                 askPrice_ = newDoubleList();
                 mutable_bitField0_ |= 0x00000002;
@@ -22603,7 +22613,7 @@ public final class CoreField {
               askPrice_.addDouble(input.readDouble());
               break;
             }
-            case 274: {
+            case 202: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
@@ -22616,7 +22626,7 @@ public final class CoreField {
               input.popLimit(limit);
               break;
             }
-            case 285: {
+            case 213: {
               if (!((mutable_bitField0_ & 0x00000004) != 0)) {
                 bidVolume_ = newIntList();
                 mutable_bitField0_ |= 0x00000004;
@@ -22624,7 +22634,7 @@ public final class CoreField {
               bidVolume_.addInt(input.readFixed32());
               break;
             }
-            case 282: {
+            case 210: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000004) != 0) && input.getBytesUntilLimit() > 0) {
@@ -22637,7 +22647,7 @@ public final class CoreField {
               input.popLimit(limit);
               break;
             }
-            case 293: {
+            case 221: {
               if (!((mutable_bitField0_ & 0x00000008) != 0)) {
                 askVolume_ = newIntList();
                 mutable_bitField0_ |= 0x00000008;
@@ -22645,7 +22655,7 @@ public final class CoreField {
               askVolume_.addInt(input.readFixed32());
               break;
             }
-            case 290: {
+            case 218: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000008) != 0) && input.getBytesUntilLimit() > 0) {
@@ -22795,141 +22805,48 @@ public final class CoreField {
     }
 
     public static final int TRADINGDAY_FIELD_NUMBER = 3;
-    private volatile java.lang.Object tradingDay_;
+    private int tradingDay_;
     /**
      * <pre>
      * 交易日
      * </pre>
      *
-     * <code>string tradingDay = 3;</code>
+     * <code>fixed32 tradingDay = 3;</code>
      * @return The tradingDay.
      */
     @java.lang.Override
-    public java.lang.String getTradingDay() {
-      java.lang.Object ref = tradingDay_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tradingDay_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 交易日
-     * </pre>
-     *
-     * <code>string tradingDay = 3;</code>
-     * @return The bytes for tradingDay.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTradingDayBytes() {
-      java.lang.Object ref = tradingDay_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tradingDay_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getTradingDay() {
+      return tradingDay_;
     }
 
     public static final int ACTIONDAY_FIELD_NUMBER = 4;
-    private volatile java.lang.Object actionDay_;
+    private int actionDay_;
     /**
      * <pre>
      * 业务发生日
      * </pre>
      *
-     * <code>string actionDay = 4;</code>
+     * <code>fixed32 actionDay = 4;</code>
      * @return The actionDay.
      */
     @java.lang.Override
-    public java.lang.String getActionDay() {
-      java.lang.Object ref = actionDay_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        actionDay_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 业务发生日
-     * </pre>
-     *
-     * <code>string actionDay = 4;</code>
-     * @return The bytes for actionDay.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getActionDayBytes() {
-      java.lang.Object ref = actionDay_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        actionDay_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getActionDay() {
+      return actionDay_;
     }
 
     public static final int ACTIONTIME_FIELD_NUMBER = 5;
-    private volatile java.lang.Object actionTime_;
+    private int actionTime_;
     /**
      * <pre>
      * 时间(HHmmssSSS)
      * </pre>
      *
-     * <code>string actionTime = 5;</code>
+     * <code>fixed32 actionTime = 5;</code>
      * @return The actionTime.
      */
     @java.lang.Override
-    public java.lang.String getActionTime() {
-      java.lang.Object ref = actionTime_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        actionTime_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 时间(HHmmssSSS)
-     * </pre>
-     *
-     * <code>string actionTime = 5;</code>
-     * @return The bytes for actionTime.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getActionTimeBytes() {
-      java.lang.Object ref = actionTime_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        actionTime_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getActionTime() {
+      return actionTime_;
     }
 
     public static final int ACTIONTIMESTAMP_FIELD_NUMBER = 6;
@@ -22947,29 +22864,14 @@ public final class CoreField {
       return actionTimestamp_;
     }
 
-    public static final int STATUS_FIELD_NUMBER = 7;
-    private int status_;
-    /**
-     * <pre>
-     * 状态
-     * </pre>
-     *
-     * <code>fixed32 status = 7;</code>
-     * @return The status.
-     */
-    @java.lang.Override
-    public int getStatus() {
-      return status_;
-    }
-
-    public static final int LASTPRICE_FIELD_NUMBER = 8;
+    public static final int LASTPRICE_FIELD_NUMBER = 7;
     private double lastPrice_;
     /**
      * <pre>
      * 最新成交价
      * </pre>
      *
-     * <code>double lastPrice = 8;</code>
+     * <code>double lastPrice = 7;</code>
      * @return The lastPrice.
      */
     @java.lang.Override
@@ -22977,14 +22879,14 @@ public final class CoreField {
       return lastPrice_;
     }
 
-    public static final int AVGPRICE_FIELD_NUMBER = 9;
+    public static final int AVGPRICE_FIELD_NUMBER = 8;
     private double avgPrice_;
     /**
      * <pre>
      * 均价
      * </pre>
      *
-     * <code>double avgPrice = 9;</code>
+     * <code>double avgPrice = 8;</code>
      * @return The avgPrice.
      */
     @java.lang.Override
@@ -22992,104 +22894,14 @@ public final class CoreField {
       return avgPrice_;
     }
 
-    public static final int TOTALBIDVOL_FIELD_NUMBER = 10;
-    private long totalBidVol_;
-    /**
-     * <pre>
-     * 定单买入总量
-     * </pre>
-     *
-     * <code>fixed64 totalBidVol = 10;</code>
-     * @return The totalBidVol.
-     */
-    @java.lang.Override
-    public long getTotalBidVol() {
-      return totalBidVol_;
-    }
-
-    public static final int TOTALASKVOL_FIELD_NUMBER = 11;
-    private long totalAskVol_;
-    /**
-     * <pre>
-     * 定单卖出总量
-     * </pre>
-     *
-     * <code>fixed64 totalAskVol = 11;</code>
-     * @return The totalAskVol.
-     */
-    @java.lang.Override
-    public long getTotalAskVol() {
-      return totalAskVol_;
-    }
-
-    public static final int WEIGHTEDAVGBIDPRICE_FIELD_NUMBER = 12;
-    private double weightedAvgBidPrice_;
-    /**
-     * <pre>
-     * 加权平均委买价格
-     * </pre>
-     *
-     * <code>double weightedAvgBidPrice = 12;</code>
-     * @return The weightedAvgBidPrice.
-     */
-    @java.lang.Override
-    public double getWeightedAvgBidPrice() {
-      return weightedAvgBidPrice_;
-    }
-
-    public static final int WEIGHTEDAVGASKPRICE_FIELD_NUMBER = 13;
-    private double weightedAvgAskPrice_;
-    /**
-     * <pre>
-     * 加权平均卖价格
-     * </pre>
-     *
-     * <code>double weightedAvgAskPrice = 13;</code>
-     * @return The weightedAvgAskPrice.
-     */
-    @java.lang.Override
-    public double getWeightedAvgAskPrice() {
-      return weightedAvgAskPrice_;
-    }
-
-    public static final int IOPV_FIELD_NUMBER = 14;
-    private double iopv_;
-    /**
-     * <pre>
-     * 净值估值
-     * </pre>
-     *
-     * <code>double iopv = 14;</code>
-     * @return The iopv.
-     */
-    @java.lang.Override
-    public double getIopv() {
-      return iopv_;
-    }
-
-    public static final int YIELDTOMATURITY_FIELD_NUMBER = 15;
-    private double yieldToMaturity_;
-    /**
-     * <pre>
-     * 到期收益率
-     * </pre>
-     *
-     * <code>double yieldToMaturity = 15;</code>
-     * @return The yieldToMaturity.
-     */
-    @java.lang.Override
-    public double getYieldToMaturity() {
-      return yieldToMaturity_;
-    }
-
-    public static final int VOLUMEDELTA_FIELD_NUMBER = 16;
+    public static final int VOLUMEDELTA_FIELD_NUMBER = 9;
     private long volumeDelta_;
     /**
      * <pre>
      * 成交量变化
      * </pre>
      *
-     * <code>fixed64 volumeDelta = 16;</code>
+     * <code>fixed64 volumeDelta = 9;</code>
      * @return The volumeDelta.
      */
     @java.lang.Override
@@ -23097,14 +22909,14 @@ public final class CoreField {
       return volumeDelta_;
     }
 
-    public static final int VOLUME_FIELD_NUMBER = 17;
+    public static final int VOLUME_FIELD_NUMBER = 10;
     private long volume_;
     /**
      * <pre>
      * 总成交量
      * </pre>
      *
-     * <code>fixed64 volume = 17;</code>
+     * <code>fixed64 volume = 10;</code>
      * @return The volume.
      */
     @java.lang.Override
@@ -23112,14 +22924,14 @@ public final class CoreField {
       return volume_;
     }
 
-    public static final int TURNOVER_FIELD_NUMBER = 18;
+    public static final int TURNOVER_FIELD_NUMBER = 11;
     private double turnover_;
     /**
      * <pre>
      * 成交总额
      * </pre>
      *
-     * <code>double turnover = 18;</code>
+     * <code>double turnover = 11;</code>
      * @return The turnover.
      */
     @java.lang.Override
@@ -23127,14 +22939,14 @@ public final class CoreField {
       return turnover_;
     }
 
-    public static final int TURNOVERDELTA_FIELD_NUMBER = 19;
+    public static final int TURNOVERDELTA_FIELD_NUMBER = 12;
     private double turnoverDelta_;
     /**
      * <pre>
      * 成交总额变化
      * </pre>
      *
-     * <code>double turnoverDelta = 19;</code>
+     * <code>double turnoverDelta = 12;</code>
      * @return The turnoverDelta.
      */
     @java.lang.Override
@@ -23142,44 +22954,14 @@ public final class CoreField {
       return turnoverDelta_;
     }
 
-    public static final int NUMTRADES_FIELD_NUMBER = 20;
-    private long numTrades_;
-    /**
-     * <pre>
-     * 成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTrades = 20;</code>
-     * @return The numTrades.
-     */
-    @java.lang.Override
-    public long getNumTrades() {
-      return numTrades_;
-    }
-
-    public static final int NUMTRADESDELTA_FIELD_NUMBER = 21;
-    private long numTradesDelta_;
-    /**
-     * <pre>
-     * 成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTradesDelta = 21;</code>
-     * @return The numTradesDelta.
-     */
-    @java.lang.Override
-    public long getNumTradesDelta() {
-      return numTradesDelta_;
-    }
-
-    public static final int OPENINTEREST_FIELD_NUMBER = 22;
+    public static final int OPENINTEREST_FIELD_NUMBER = 13;
     private double openInterest_;
     /**
      * <pre>
      * 持仓量
      * </pre>
      *
-     * <code>double openInterest = 22;</code>
+     * <code>double openInterest = 13;</code>
      * @return The openInterest.
      */
     @java.lang.Override
@@ -23187,14 +22969,14 @@ public final class CoreField {
       return openInterest_;
     }
 
-    public static final int OPENINTERESTDELTA_FIELD_NUMBER = 23;
+    public static final int OPENINTERESTDELTA_FIELD_NUMBER = 14;
     private double openInterestDelta_;
     /**
      * <pre>
      * 持仓量变化
      * </pre>
      *
-     * <code>double openInterestDelta = 23;</code>
+     * <code>double openInterestDelta = 14;</code>
      * @return The openInterestDelta.
      */
     @java.lang.Override
@@ -23202,14 +22984,14 @@ public final class CoreField {
       return openInterestDelta_;
     }
 
-    public static final int PREOPENINTEREST_FIELD_NUMBER = 24;
+    public static final int PREOPENINTEREST_FIELD_NUMBER = 15;
     private double preOpenInterest_;
     /**
      * <pre>
      * 昨持仓
      * </pre>
      *
-     * <code>double preOpenInterest = 24;</code>
+     * <code>double preOpenInterest = 15;</code>
      * @return The preOpenInterest.
      */
     @java.lang.Override
@@ -23217,14 +22999,14 @@ public final class CoreField {
       return preOpenInterest_;
     }
 
-    public static final int PRECLOSEPRICE_FIELD_NUMBER = 25;
+    public static final int PRECLOSEPRICE_FIELD_NUMBER = 16;
     private double preClosePrice_;
     /**
      * <pre>
      * 前收盘价
      * </pre>
      *
-     * <code>double preClosePrice = 25;</code>
+     * <code>double preClosePrice = 16;</code>
      * @return The preClosePrice.
      */
     @java.lang.Override
@@ -23232,14 +23014,14 @@ public final class CoreField {
       return preClosePrice_;
     }
 
-    public static final int SETTLEPRICE_FIELD_NUMBER = 26;
+    public static final int SETTLEPRICE_FIELD_NUMBER = 17;
     private double settlePrice_;
     /**
      * <pre>
      * 结算价
      * </pre>
      *
-     * <code>double settlePrice = 26;</code>
+     * <code>double settlePrice = 17;</code>
      * @return The settlePrice.
      */
     @java.lang.Override
@@ -23247,14 +23029,14 @@ public final class CoreField {
       return settlePrice_;
     }
 
-    public static final int PRESETTLEPRICE_FIELD_NUMBER = 27;
+    public static final int PRESETTLEPRICE_FIELD_NUMBER = 18;
     private double preSettlePrice_;
     /**
      * <pre>
      * 昨结算价
      * </pre>
      *
-     * <code>double preSettlePrice = 27;</code>
+     * <code>double preSettlePrice = 18;</code>
      * @return The preSettlePrice.
      */
     @java.lang.Override
@@ -23262,14 +23044,14 @@ public final class CoreField {
       return preSettlePrice_;
     }
 
-    public static final int OPENPRICE_FIELD_NUMBER = 28;
+    public static final int OPENPRICE_FIELD_NUMBER = 19;
     private double openPrice_;
     /**
      * <pre>
      * 开盘价
      * </pre>
      *
-     * <code>double openPrice = 28;</code>
+     * <code>double openPrice = 19;</code>
      * @return The openPrice.
      */
     @java.lang.Override
@@ -23277,14 +23059,14 @@ public final class CoreField {
       return openPrice_;
     }
 
-    public static final int HIGHPRICE_FIELD_NUMBER = 29;
+    public static final int HIGHPRICE_FIELD_NUMBER = 20;
     private double highPrice_;
     /**
      * <pre>
      * 最高价
      * </pre>
      *
-     * <code>double highPrice = 29;</code>
+     * <code>double highPrice = 20;</code>
      * @return The highPrice.
      */
     @java.lang.Override
@@ -23292,14 +23074,14 @@ public final class CoreField {
       return highPrice_;
     }
 
-    public static final int LOWPRICE_FIELD_NUMBER = 30;
+    public static final int LOWPRICE_FIELD_NUMBER = 21;
     private double lowPrice_;
     /**
      * <pre>
      * 最低价
      * </pre>
      *
-     * <code>double lowPrice = 30;</code>
+     * <code>double lowPrice = 21;</code>
      * @return The lowPrice.
      */
     @java.lang.Override
@@ -23307,14 +23089,14 @@ public final class CoreField {
       return lowPrice_;
     }
 
-    public static final int UPPERLIMIT_FIELD_NUMBER = 31;
+    public static final int UPPERLIMIT_FIELD_NUMBER = 22;
     private double upperLimit_;
     /**
      * <pre>
      * 涨停价
      * </pre>
      *
-     * <code>double upperLimit = 31;</code>
+     * <code>double upperLimit = 22;</code>
      * @return The upperLimit.
      */
     @java.lang.Override
@@ -23322,14 +23104,14 @@ public final class CoreField {
       return upperLimit_;
     }
 
-    public static final int LOWERLIMIT_FIELD_NUMBER = 32;
+    public static final int LOWERLIMIT_FIELD_NUMBER = 23;
     private double lowerLimit_;
     /**
      * <pre>
      * 跌停价
      * </pre>
      *
-     * <code>double lowerLimit = 32;</code>
+     * <code>double lowerLimit = 23;</code>
      * @return The lowerLimit.
      */
     @java.lang.Override
@@ -23337,14 +23119,14 @@ public final class CoreField {
       return lowerLimit_;
     }
 
-    public static final int BIDPRICE_FIELD_NUMBER = 33;
+    public static final int BIDPRICE_FIELD_NUMBER = 24;
     private com.google.protobuf.Internal.DoubleList bidPrice_;
     /**
      * <pre>
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @return A list containing the bidPrice.
      */
     @java.lang.Override
@@ -23357,7 +23139,7 @@ public final class CoreField {
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @return The count of bidPrice.
      */
     public int getBidPriceCount() {
@@ -23368,7 +23150,7 @@ public final class CoreField {
      * 买价
      * </pre>
      *
-     * <code>repeated double bidPrice = 33;</code>
+     * <code>repeated double bidPrice = 24;</code>
      * @param index The index of the element to return.
      * @return The bidPrice at the given index.
      */
@@ -23377,14 +23159,14 @@ public final class CoreField {
     }
     private int bidPriceMemoizedSerializedSize = -1;
 
-    public static final int ASKPRICE_FIELD_NUMBER = 34;
+    public static final int ASKPRICE_FIELD_NUMBER = 25;
     private com.google.protobuf.Internal.DoubleList askPrice_;
     /**
      * <pre>
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @return A list containing the askPrice.
      */
     @java.lang.Override
@@ -23397,7 +23179,7 @@ public final class CoreField {
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @return The count of askPrice.
      */
     public int getAskPriceCount() {
@@ -23408,7 +23190,7 @@ public final class CoreField {
      * 卖价
      * </pre>
      *
-     * <code>repeated double askPrice = 34;</code>
+     * <code>repeated double askPrice = 25;</code>
      * @param index The index of the element to return.
      * @return The askPrice at the given index.
      */
@@ -23417,14 +23199,14 @@ public final class CoreField {
     }
     private int askPriceMemoizedSerializedSize = -1;
 
-    public static final int BIDVOLUME_FIELD_NUMBER = 35;
+    public static final int BIDVOLUME_FIELD_NUMBER = 26;
     private com.google.protobuf.Internal.IntList bidVolume_;
     /**
      * <pre>
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @return A list containing the bidVolume.
      */
     @java.lang.Override
@@ -23437,7 +23219,7 @@ public final class CoreField {
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @return The count of bidVolume.
      */
     public int getBidVolumeCount() {
@@ -23448,7 +23230,7 @@ public final class CoreField {
      * 买量
      * </pre>
      *
-     * <code>repeated fixed32 bidVolume = 35;</code>
+     * <code>repeated fixed32 bidVolume = 26;</code>
      * @param index The index of the element to return.
      * @return The bidVolume at the given index.
      */
@@ -23457,14 +23239,14 @@ public final class CoreField {
     }
     private int bidVolumeMemoizedSerializedSize = -1;
 
-    public static final int ASKVOLUME_FIELD_NUMBER = 36;
+    public static final int ASKVOLUME_FIELD_NUMBER = 27;
     private com.google.protobuf.Internal.IntList askVolume_;
     /**
      * <pre>
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @return A list containing the askVolume.
      */
     @java.lang.Override
@@ -23477,7 +23259,7 @@ public final class CoreField {
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @return The count of askVolume.
      */
     public int getAskVolumeCount() {
@@ -23488,7 +23270,7 @@ public final class CoreField {
      * 卖量
      * </pre>
      *
-     * <code>repeated fixed32 askVolume = 36;</code>
+     * <code>repeated fixed32 askVolume = 27;</code>
      * @param index The index of the element to return.
      * @return The askVolume at the given index.
      */
@@ -23518,119 +23300,92 @@ public final class CoreField {
       if (!getGatewayIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayId_);
       }
-      if (!getTradingDayBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tradingDay_);
+      if (tradingDay_ != 0) {
+        output.writeFixed32(3, tradingDay_);
       }
-      if (!getActionDayBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, actionDay_);
+      if (actionDay_ != 0) {
+        output.writeFixed32(4, actionDay_);
       }
-      if (!getActionTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, actionTime_);
+      if (actionTime_ != 0) {
+        output.writeFixed32(5, actionTime_);
       }
       if (actionTimestamp_ != 0L) {
         output.writeFixed64(6, actionTimestamp_);
       }
-      if (status_ != 0) {
-        output.writeFixed32(7, status_);
-      }
       if (lastPrice_ != 0D) {
-        output.writeDouble(8, lastPrice_);
+        output.writeDouble(7, lastPrice_);
       }
       if (avgPrice_ != 0D) {
-        output.writeDouble(9, avgPrice_);
-      }
-      if (totalBidVol_ != 0L) {
-        output.writeFixed64(10, totalBidVol_);
-      }
-      if (totalAskVol_ != 0L) {
-        output.writeFixed64(11, totalAskVol_);
-      }
-      if (weightedAvgBidPrice_ != 0D) {
-        output.writeDouble(12, weightedAvgBidPrice_);
-      }
-      if (weightedAvgAskPrice_ != 0D) {
-        output.writeDouble(13, weightedAvgAskPrice_);
-      }
-      if (iopv_ != 0D) {
-        output.writeDouble(14, iopv_);
-      }
-      if (yieldToMaturity_ != 0D) {
-        output.writeDouble(15, yieldToMaturity_);
+        output.writeDouble(8, avgPrice_);
       }
       if (volumeDelta_ != 0L) {
-        output.writeFixed64(16, volumeDelta_);
+        output.writeFixed64(9, volumeDelta_);
       }
       if (volume_ != 0L) {
-        output.writeFixed64(17, volume_);
+        output.writeFixed64(10, volume_);
       }
       if (turnover_ != 0D) {
-        output.writeDouble(18, turnover_);
+        output.writeDouble(11, turnover_);
       }
       if (turnoverDelta_ != 0D) {
-        output.writeDouble(19, turnoverDelta_);
-      }
-      if (numTrades_ != 0L) {
-        output.writeFixed64(20, numTrades_);
-      }
-      if (numTradesDelta_ != 0L) {
-        output.writeFixed64(21, numTradesDelta_);
+        output.writeDouble(12, turnoverDelta_);
       }
       if (openInterest_ != 0D) {
-        output.writeDouble(22, openInterest_);
+        output.writeDouble(13, openInterest_);
       }
       if (openInterestDelta_ != 0D) {
-        output.writeDouble(23, openInterestDelta_);
+        output.writeDouble(14, openInterestDelta_);
       }
       if (preOpenInterest_ != 0D) {
-        output.writeDouble(24, preOpenInterest_);
+        output.writeDouble(15, preOpenInterest_);
       }
       if (preClosePrice_ != 0D) {
-        output.writeDouble(25, preClosePrice_);
+        output.writeDouble(16, preClosePrice_);
       }
       if (settlePrice_ != 0D) {
-        output.writeDouble(26, settlePrice_);
+        output.writeDouble(17, settlePrice_);
       }
       if (preSettlePrice_ != 0D) {
-        output.writeDouble(27, preSettlePrice_);
+        output.writeDouble(18, preSettlePrice_);
       }
       if (openPrice_ != 0D) {
-        output.writeDouble(28, openPrice_);
+        output.writeDouble(19, openPrice_);
       }
       if (highPrice_ != 0D) {
-        output.writeDouble(29, highPrice_);
+        output.writeDouble(20, highPrice_);
       }
       if (lowPrice_ != 0D) {
-        output.writeDouble(30, lowPrice_);
+        output.writeDouble(21, lowPrice_);
       }
       if (upperLimit_ != 0D) {
-        output.writeDouble(31, upperLimit_);
+        output.writeDouble(22, upperLimit_);
       }
       if (lowerLimit_ != 0D) {
-        output.writeDouble(32, lowerLimit_);
+        output.writeDouble(23, lowerLimit_);
       }
       if (getBidPriceList().size() > 0) {
-        output.writeUInt32NoTag(266);
+        output.writeUInt32NoTag(194);
         output.writeUInt32NoTag(bidPriceMemoizedSerializedSize);
       }
       for (int i = 0; i < bidPrice_.size(); i++) {
         output.writeDoubleNoTag(bidPrice_.getDouble(i));
       }
       if (getAskPriceList().size() > 0) {
-        output.writeUInt32NoTag(274);
+        output.writeUInt32NoTag(202);
         output.writeUInt32NoTag(askPriceMemoizedSerializedSize);
       }
       for (int i = 0; i < askPrice_.size(); i++) {
         output.writeDoubleNoTag(askPrice_.getDouble(i));
       }
       if (getBidVolumeList().size() > 0) {
-        output.writeUInt32NoTag(282);
+        output.writeUInt32NoTag(210);
         output.writeUInt32NoTag(bidVolumeMemoizedSerializedSize);
       }
       for (int i = 0; i < bidVolume_.size(); i++) {
         output.writeFixed32NoTag(bidVolume_.getInt(i));
       }
       if (getAskVolumeList().size() > 0) {
-        output.writeUInt32NoTag(290);
+        output.writeUInt32NoTag(218);
         output.writeUInt32NoTag(askVolumeMemoizedSerializedSize);
       }
       for (int i = 0; i < askVolume_.size(); i++) {
@@ -23651,122 +23406,89 @@ public final class CoreField {
       if (!getGatewayIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayId_);
       }
-      if (!getTradingDayBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tradingDay_);
+      if (tradingDay_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(3, tradingDay_);
       }
-      if (!getActionDayBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, actionDay_);
+      if (actionDay_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(4, actionDay_);
       }
-      if (!getActionTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, actionTime_);
+      if (actionTime_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(5, actionTime_);
       }
       if (actionTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed64Size(6, actionTimestamp_);
       }
-      if (status_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed32Size(7, status_);
-      }
       if (lastPrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(8, lastPrice_);
+          .computeDoubleSize(7, lastPrice_);
       }
       if (avgPrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(9, avgPrice_);
-      }
-      if (totalBidVol_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(10, totalBidVol_);
-      }
-      if (totalAskVol_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(11, totalAskVol_);
-      }
-      if (weightedAvgBidPrice_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(12, weightedAvgBidPrice_);
-      }
-      if (weightedAvgAskPrice_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(13, weightedAvgAskPrice_);
-      }
-      if (iopv_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(14, iopv_);
-      }
-      if (yieldToMaturity_ != 0D) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(15, yieldToMaturity_);
+          .computeDoubleSize(8, avgPrice_);
       }
       if (volumeDelta_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(16, volumeDelta_);
+          .computeFixed64Size(9, volumeDelta_);
       }
       if (volume_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(17, volume_);
+          .computeFixed64Size(10, volume_);
       }
       if (turnover_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(18, turnover_);
+          .computeDoubleSize(11, turnover_);
       }
       if (turnoverDelta_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(19, turnoverDelta_);
-      }
-      if (numTrades_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(20, numTrades_);
-      }
-      if (numTradesDelta_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(21, numTradesDelta_);
+          .computeDoubleSize(12, turnoverDelta_);
       }
       if (openInterest_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(22, openInterest_);
+          .computeDoubleSize(13, openInterest_);
       }
       if (openInterestDelta_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(23, openInterestDelta_);
+          .computeDoubleSize(14, openInterestDelta_);
       }
       if (preOpenInterest_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(24, preOpenInterest_);
+          .computeDoubleSize(15, preOpenInterest_);
       }
       if (preClosePrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(25, preClosePrice_);
+          .computeDoubleSize(16, preClosePrice_);
       }
       if (settlePrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(26, settlePrice_);
+          .computeDoubleSize(17, settlePrice_);
       }
       if (preSettlePrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(27, preSettlePrice_);
+          .computeDoubleSize(18, preSettlePrice_);
       }
       if (openPrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(28, openPrice_);
+          .computeDoubleSize(19, openPrice_);
       }
       if (highPrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(29, highPrice_);
+          .computeDoubleSize(20, highPrice_);
       }
       if (lowPrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(30, lowPrice_);
+          .computeDoubleSize(21, lowPrice_);
       }
       if (upperLimit_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(31, upperLimit_);
+          .computeDoubleSize(22, upperLimit_);
       }
       if (lowerLimit_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(32, lowerLimit_);
+          .computeDoubleSize(23, lowerLimit_);
       }
       {
         int dataSize = 0;
@@ -23831,38 +23553,20 @@ public final class CoreField {
           .equals(other.getUniformSymbol())) return false;
       if (!getGatewayId()
           .equals(other.getGatewayId())) return false;
-      if (!getTradingDay()
-          .equals(other.getTradingDay())) return false;
-      if (!getActionDay()
-          .equals(other.getActionDay())) return false;
-      if (!getActionTime()
-          .equals(other.getActionTime())) return false;
+      if (getTradingDay()
+          != other.getTradingDay()) return false;
+      if (getActionDay()
+          != other.getActionDay()) return false;
+      if (getActionTime()
+          != other.getActionTime()) return false;
       if (getActionTimestamp()
           != other.getActionTimestamp()) return false;
-      if (getStatus()
-          != other.getStatus()) return false;
       if (java.lang.Double.doubleToLongBits(getLastPrice())
           != java.lang.Double.doubleToLongBits(
               other.getLastPrice())) return false;
       if (java.lang.Double.doubleToLongBits(getAvgPrice())
           != java.lang.Double.doubleToLongBits(
               other.getAvgPrice())) return false;
-      if (getTotalBidVol()
-          != other.getTotalBidVol()) return false;
-      if (getTotalAskVol()
-          != other.getTotalAskVol()) return false;
-      if (java.lang.Double.doubleToLongBits(getWeightedAvgBidPrice())
-          != java.lang.Double.doubleToLongBits(
-              other.getWeightedAvgBidPrice())) return false;
-      if (java.lang.Double.doubleToLongBits(getWeightedAvgAskPrice())
-          != java.lang.Double.doubleToLongBits(
-              other.getWeightedAvgAskPrice())) return false;
-      if (java.lang.Double.doubleToLongBits(getIopv())
-          != java.lang.Double.doubleToLongBits(
-              other.getIopv())) return false;
-      if (java.lang.Double.doubleToLongBits(getYieldToMaturity())
-          != java.lang.Double.doubleToLongBits(
-              other.getYieldToMaturity())) return false;
       if (getVolumeDelta()
           != other.getVolumeDelta()) return false;
       if (getVolume()
@@ -23873,10 +23577,6 @@ public final class CoreField {
       if (java.lang.Double.doubleToLongBits(getTurnoverDelta())
           != java.lang.Double.doubleToLongBits(
               other.getTurnoverDelta())) return false;
-      if (getNumTrades()
-          != other.getNumTrades()) return false;
-      if (getNumTradesDelta()
-          != other.getNumTradesDelta()) return false;
       if (java.lang.Double.doubleToLongBits(getOpenInterest())
           != java.lang.Double.doubleToLongBits(
               other.getOpenInterest())) return false;
@@ -23934,40 +23634,20 @@ public final class CoreField {
       hash = (37 * hash) + GATEWAYID_FIELD_NUMBER;
       hash = (53 * hash) + getGatewayId().hashCode();
       hash = (37 * hash) + TRADINGDAY_FIELD_NUMBER;
-      hash = (53 * hash) + getTradingDay().hashCode();
+      hash = (53 * hash) + getTradingDay();
       hash = (37 * hash) + ACTIONDAY_FIELD_NUMBER;
-      hash = (53 * hash) + getActionDay().hashCode();
+      hash = (53 * hash) + getActionDay();
       hash = (37 * hash) + ACTIONTIME_FIELD_NUMBER;
-      hash = (53 * hash) + getActionTime().hashCode();
+      hash = (53 * hash) + getActionTime();
       hash = (37 * hash) + ACTIONTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getActionTimestamp());
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus();
       hash = (37 * hash) + LASTPRICE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getLastPrice()));
       hash = (37 * hash) + AVGPRICE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getAvgPrice()));
-      hash = (37 * hash) + TOTALBIDVOL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTotalBidVol());
-      hash = (37 * hash) + TOTALASKVOL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getTotalAskVol());
-      hash = (37 * hash) + WEIGHTEDAVGBIDPRICE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getWeightedAvgBidPrice()));
-      hash = (37 * hash) + WEIGHTEDAVGASKPRICE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getWeightedAvgAskPrice()));
-      hash = (37 * hash) + IOPV_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getIopv()));
-      hash = (37 * hash) + YIELDTOMATURITY_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getYieldToMaturity()));
       hash = (37 * hash) + VOLUMEDELTA_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getVolumeDelta());
@@ -23980,12 +23660,6 @@ public final class CoreField {
       hash = (37 * hash) + TURNOVERDELTA_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getTurnoverDelta()));
-      hash = (37 * hash) + NUMTRADES_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getNumTrades());
-      hash = (37 * hash) + NUMTRADESDELTA_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getNumTradesDelta());
       hash = (37 * hash) + OPENINTEREST_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getOpenInterest()));
@@ -24176,31 +23850,17 @@ public final class CoreField {
 
         gatewayId_ = "";
 
-        tradingDay_ = "";
+        tradingDay_ = 0;
 
-        actionDay_ = "";
+        actionDay_ = 0;
 
-        actionTime_ = "";
+        actionTime_ = 0;
 
         actionTimestamp_ = 0L;
-
-        status_ = 0;
 
         lastPrice_ = 0D;
 
         avgPrice_ = 0D;
-
-        totalBidVol_ = 0L;
-
-        totalAskVol_ = 0L;
-
-        weightedAvgBidPrice_ = 0D;
-
-        weightedAvgAskPrice_ = 0D;
-
-        iopv_ = 0D;
-
-        yieldToMaturity_ = 0D;
 
         volumeDelta_ = 0L;
 
@@ -24209,10 +23869,6 @@ public final class CoreField {
         turnover_ = 0D;
 
         turnoverDelta_ = 0D;
-
-        numTrades_ = 0L;
-
-        numTradesDelta_ = 0L;
 
         openInterest_ = 0D;
 
@@ -24277,21 +23933,12 @@ public final class CoreField {
         result.actionDay_ = actionDay_;
         result.actionTime_ = actionTime_;
         result.actionTimestamp_ = actionTimestamp_;
-        result.status_ = status_;
         result.lastPrice_ = lastPrice_;
         result.avgPrice_ = avgPrice_;
-        result.totalBidVol_ = totalBidVol_;
-        result.totalAskVol_ = totalAskVol_;
-        result.weightedAvgBidPrice_ = weightedAvgBidPrice_;
-        result.weightedAvgAskPrice_ = weightedAvgAskPrice_;
-        result.iopv_ = iopv_;
-        result.yieldToMaturity_ = yieldToMaturity_;
         result.volumeDelta_ = volumeDelta_;
         result.volume_ = volume_;
         result.turnover_ = turnover_;
         result.turnoverDelta_ = turnoverDelta_;
-        result.numTrades_ = numTrades_;
-        result.numTradesDelta_ = numTradesDelta_;
         result.openInterest_ = openInterest_;
         result.openInterestDelta_ = openInterestDelta_;
         result.preOpenInterest_ = preOpenInterest_;
@@ -24379,47 +24026,23 @@ public final class CoreField {
           gatewayId_ = other.gatewayId_;
           onChanged();
         }
-        if (!other.getTradingDay().isEmpty()) {
-          tradingDay_ = other.tradingDay_;
-          onChanged();
+        if (other.getTradingDay() != 0) {
+          setTradingDay(other.getTradingDay());
         }
-        if (!other.getActionDay().isEmpty()) {
-          actionDay_ = other.actionDay_;
-          onChanged();
+        if (other.getActionDay() != 0) {
+          setActionDay(other.getActionDay());
         }
-        if (!other.getActionTime().isEmpty()) {
-          actionTime_ = other.actionTime_;
-          onChanged();
+        if (other.getActionTime() != 0) {
+          setActionTime(other.getActionTime());
         }
         if (other.getActionTimestamp() != 0L) {
           setActionTimestamp(other.getActionTimestamp());
-        }
-        if (other.getStatus() != 0) {
-          setStatus(other.getStatus());
         }
         if (other.getLastPrice() != 0D) {
           setLastPrice(other.getLastPrice());
         }
         if (other.getAvgPrice() != 0D) {
           setAvgPrice(other.getAvgPrice());
-        }
-        if (other.getTotalBidVol() != 0L) {
-          setTotalBidVol(other.getTotalBidVol());
-        }
-        if (other.getTotalAskVol() != 0L) {
-          setTotalAskVol(other.getTotalAskVol());
-        }
-        if (other.getWeightedAvgBidPrice() != 0D) {
-          setWeightedAvgBidPrice(other.getWeightedAvgBidPrice());
-        }
-        if (other.getWeightedAvgAskPrice() != 0D) {
-          setWeightedAvgAskPrice(other.getWeightedAvgAskPrice());
-        }
-        if (other.getIopv() != 0D) {
-          setIopv(other.getIopv());
-        }
-        if (other.getYieldToMaturity() != 0D) {
-          setYieldToMaturity(other.getYieldToMaturity());
         }
         if (other.getVolumeDelta() != 0L) {
           setVolumeDelta(other.getVolumeDelta());
@@ -24432,12 +24055,6 @@ public final class CoreField {
         }
         if (other.getTurnoverDelta() != 0D) {
           setTurnoverDelta(other.getTurnoverDelta());
-        }
-        if (other.getNumTrades() != 0L) {
-          setNumTrades(other.getNumTrades());
-        }
-        if (other.getNumTradesDelta() != 0L) {
-          setNumTradesDelta(other.getNumTradesDelta());
         }
         if (other.getOpenInterest() != 0D) {
           setOpenInterest(other.getOpenInterest());
@@ -24734,63 +24351,30 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object tradingDay_ = "";
+      private int tradingDay_ ;
       /**
        * <pre>
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @return The tradingDay.
        */
-      public java.lang.String getTradingDay() {
-        java.lang.Object ref = tradingDay_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          tradingDay_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getTradingDay() {
+        return tradingDay_;
       }
       /**
        * <pre>
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
-       * @return The bytes for tradingDay.
-       */
-      public com.google.protobuf.ByteString
-          getTradingDayBytes() {
-        java.lang.Object ref = tradingDay_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          tradingDay_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 交易日
-       * </pre>
-       *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @param value The tradingDay to set.
        * @return This builder for chaining.
        */
-      public Builder setTradingDay(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setTradingDay(int value) {
+        
         tradingDay_ = value;
         onChanged();
         return this;
@@ -24800,93 +24384,40 @@ public final class CoreField {
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
-        tradingDay_ = getDefaultInstance().getTradingDay();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 交易日
-       * </pre>
-       *
-       * <code>string tradingDay = 3;</code>
-       * @param value The bytes for tradingDay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTradingDayBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        tradingDay_ = value;
+        tradingDay_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object actionDay_ = "";
+      private int actionDay_ ;
       /**
        * <pre>
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @return The actionDay.
        */
-      public java.lang.String getActionDay() {
-        java.lang.Object ref = actionDay_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          actionDay_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getActionDay() {
+        return actionDay_;
       }
       /**
        * <pre>
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
-       * @return The bytes for actionDay.
-       */
-      public com.google.protobuf.ByteString
-          getActionDayBytes() {
-        java.lang.Object ref = actionDay_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          actionDay_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 业务发生日
-       * </pre>
-       *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @param value The actionDay to set.
        * @return This builder for chaining.
        */
-      public Builder setActionDay(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setActionDay(int value) {
+        
         actionDay_ = value;
         onChanged();
         return this;
@@ -24896,93 +24427,40 @@ public final class CoreField {
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearActionDay() {
         
-        actionDay_ = getDefaultInstance().getActionDay();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 业务发生日
-       * </pre>
-       *
-       * <code>string actionDay = 4;</code>
-       * @param value The bytes for actionDay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setActionDayBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        actionDay_ = value;
+        actionDay_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object actionTime_ = "";
+      private int actionTime_ ;
       /**
        * <pre>
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @return The actionTime.
        */
-      public java.lang.String getActionTime() {
-        java.lang.Object ref = actionTime_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          actionTime_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getActionTime() {
+        return actionTime_;
       }
       /**
        * <pre>
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
-       * @return The bytes for actionTime.
-       */
-      public com.google.protobuf.ByteString
-          getActionTimeBytes() {
-        java.lang.Object ref = actionTime_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          actionTime_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 时间(HHmmssSSS)
-       * </pre>
-       *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @param value The actionTime to set.
        * @return This builder for chaining.
        */
-      public Builder setActionTime(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setActionTime(int value) {
+        
         actionTime_ = value;
         onChanged();
         return this;
@@ -24992,32 +24470,12 @@ public final class CoreField {
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearActionTime() {
         
-        actionTime_ = getDefaultInstance().getActionTime();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 时间(HHmmssSSS)
-       * </pre>
-       *
-       * <code>string actionTime = 5;</code>
-       * @param value The bytes for actionTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setActionTimeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        actionTime_ = value;
+        actionTime_ = 0;
         onChanged();
         return this;
       }
@@ -25065,56 +24523,13 @@ public final class CoreField {
         return this;
       }
 
-      private int status_ ;
-      /**
-       * <pre>
-       * 状态
-       * </pre>
-       *
-       * <code>fixed32 status = 7;</code>
-       * @return The status.
-       */
-      @java.lang.Override
-      public int getStatus() {
-        return status_;
-      }
-      /**
-       * <pre>
-       * 状态
-       * </pre>
-       *
-       * <code>fixed32 status = 7;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 状态
-       * </pre>
-       *
-       * <code>fixed32 status = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-
       private double lastPrice_ ;
       /**
        * <pre>
        * 最新成交价
        * </pre>
        *
-       * <code>double lastPrice = 8;</code>
+       * <code>double lastPrice = 7;</code>
        * @return The lastPrice.
        */
       @java.lang.Override
@@ -25126,7 +24541,7 @@ public final class CoreField {
        * 最新成交价
        * </pre>
        *
-       * <code>double lastPrice = 8;</code>
+       * <code>double lastPrice = 7;</code>
        * @param value The lastPrice to set.
        * @return This builder for chaining.
        */
@@ -25141,7 +24556,7 @@ public final class CoreField {
        * 最新成交价
        * </pre>
        *
-       * <code>double lastPrice = 8;</code>
+       * <code>double lastPrice = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearLastPrice() {
@@ -25157,7 +24572,7 @@ public final class CoreField {
        * 均价
        * </pre>
        *
-       * <code>double avgPrice = 9;</code>
+       * <code>double avgPrice = 8;</code>
        * @return The avgPrice.
        */
       @java.lang.Override
@@ -25169,7 +24584,7 @@ public final class CoreField {
        * 均价
        * </pre>
        *
-       * <code>double avgPrice = 9;</code>
+       * <code>double avgPrice = 8;</code>
        * @param value The avgPrice to set.
        * @return This builder for chaining.
        */
@@ -25184,270 +24599,12 @@ public final class CoreField {
        * 均价
        * </pre>
        *
-       * <code>double avgPrice = 9;</code>
+       * <code>double avgPrice = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearAvgPrice() {
         
         avgPrice_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private long totalBidVol_ ;
-      /**
-       * <pre>
-       * 定单买入总量
-       * </pre>
-       *
-       * <code>fixed64 totalBidVol = 10;</code>
-       * @return The totalBidVol.
-       */
-      @java.lang.Override
-      public long getTotalBidVol() {
-        return totalBidVol_;
-      }
-      /**
-       * <pre>
-       * 定单买入总量
-       * </pre>
-       *
-       * <code>fixed64 totalBidVol = 10;</code>
-       * @param value The totalBidVol to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTotalBidVol(long value) {
-        
-        totalBidVol_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 定单买入总量
-       * </pre>
-       *
-       * <code>fixed64 totalBidVol = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTotalBidVol() {
-        
-        totalBidVol_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long totalAskVol_ ;
-      /**
-       * <pre>
-       * 定单卖出总量
-       * </pre>
-       *
-       * <code>fixed64 totalAskVol = 11;</code>
-       * @return The totalAskVol.
-       */
-      @java.lang.Override
-      public long getTotalAskVol() {
-        return totalAskVol_;
-      }
-      /**
-       * <pre>
-       * 定单卖出总量
-       * </pre>
-       *
-       * <code>fixed64 totalAskVol = 11;</code>
-       * @param value The totalAskVol to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTotalAskVol(long value) {
-        
-        totalAskVol_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 定单卖出总量
-       * </pre>
-       *
-       * <code>fixed64 totalAskVol = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTotalAskVol() {
-        
-        totalAskVol_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private double weightedAvgBidPrice_ ;
-      /**
-       * <pre>
-       * 加权平均委买价格
-       * </pre>
-       *
-       * <code>double weightedAvgBidPrice = 12;</code>
-       * @return The weightedAvgBidPrice.
-       */
-      @java.lang.Override
-      public double getWeightedAvgBidPrice() {
-        return weightedAvgBidPrice_;
-      }
-      /**
-       * <pre>
-       * 加权平均委买价格
-       * </pre>
-       *
-       * <code>double weightedAvgBidPrice = 12;</code>
-       * @param value The weightedAvgBidPrice to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWeightedAvgBidPrice(double value) {
-        
-        weightedAvgBidPrice_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 加权平均委买价格
-       * </pre>
-       *
-       * <code>double weightedAvgBidPrice = 12;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearWeightedAvgBidPrice() {
-        
-        weightedAvgBidPrice_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private double weightedAvgAskPrice_ ;
-      /**
-       * <pre>
-       * 加权平均卖价格
-       * </pre>
-       *
-       * <code>double weightedAvgAskPrice = 13;</code>
-       * @return The weightedAvgAskPrice.
-       */
-      @java.lang.Override
-      public double getWeightedAvgAskPrice() {
-        return weightedAvgAskPrice_;
-      }
-      /**
-       * <pre>
-       * 加权平均卖价格
-       * </pre>
-       *
-       * <code>double weightedAvgAskPrice = 13;</code>
-       * @param value The weightedAvgAskPrice to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWeightedAvgAskPrice(double value) {
-        
-        weightedAvgAskPrice_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 加权平均卖价格
-       * </pre>
-       *
-       * <code>double weightedAvgAskPrice = 13;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearWeightedAvgAskPrice() {
-        
-        weightedAvgAskPrice_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private double iopv_ ;
-      /**
-       * <pre>
-       * 净值估值
-       * </pre>
-       *
-       * <code>double iopv = 14;</code>
-       * @return The iopv.
-       */
-      @java.lang.Override
-      public double getIopv() {
-        return iopv_;
-      }
-      /**
-       * <pre>
-       * 净值估值
-       * </pre>
-       *
-       * <code>double iopv = 14;</code>
-       * @param value The iopv to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIopv(double value) {
-        
-        iopv_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 净值估值
-       * </pre>
-       *
-       * <code>double iopv = 14;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearIopv() {
-        
-        iopv_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private double yieldToMaturity_ ;
-      /**
-       * <pre>
-       * 到期收益率
-       * </pre>
-       *
-       * <code>double yieldToMaturity = 15;</code>
-       * @return The yieldToMaturity.
-       */
-      @java.lang.Override
-      public double getYieldToMaturity() {
-        return yieldToMaturity_;
-      }
-      /**
-       * <pre>
-       * 到期收益率
-       * </pre>
-       *
-       * <code>double yieldToMaturity = 15;</code>
-       * @param value The yieldToMaturity to set.
-       * @return This builder for chaining.
-       */
-      public Builder setYieldToMaturity(double value) {
-        
-        yieldToMaturity_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 到期收益率
-       * </pre>
-       *
-       * <code>double yieldToMaturity = 15;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearYieldToMaturity() {
-        
-        yieldToMaturity_ = 0D;
         onChanged();
         return this;
       }
@@ -25458,7 +24615,7 @@ public final class CoreField {
        * 成交量变化
        * </pre>
        *
-       * <code>fixed64 volumeDelta = 16;</code>
+       * <code>fixed64 volumeDelta = 9;</code>
        * @return The volumeDelta.
        */
       @java.lang.Override
@@ -25470,7 +24627,7 @@ public final class CoreField {
        * 成交量变化
        * </pre>
        *
-       * <code>fixed64 volumeDelta = 16;</code>
+       * <code>fixed64 volumeDelta = 9;</code>
        * @param value The volumeDelta to set.
        * @return This builder for chaining.
        */
@@ -25485,7 +24642,7 @@ public final class CoreField {
        * 成交量变化
        * </pre>
        *
-       * <code>fixed64 volumeDelta = 16;</code>
+       * <code>fixed64 volumeDelta = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearVolumeDelta() {
@@ -25501,7 +24658,7 @@ public final class CoreField {
        * 总成交量
        * </pre>
        *
-       * <code>fixed64 volume = 17;</code>
+       * <code>fixed64 volume = 10;</code>
        * @return The volume.
        */
       @java.lang.Override
@@ -25513,7 +24670,7 @@ public final class CoreField {
        * 总成交量
        * </pre>
        *
-       * <code>fixed64 volume = 17;</code>
+       * <code>fixed64 volume = 10;</code>
        * @param value The volume to set.
        * @return This builder for chaining.
        */
@@ -25528,7 +24685,7 @@ public final class CoreField {
        * 总成交量
        * </pre>
        *
-       * <code>fixed64 volume = 17;</code>
+       * <code>fixed64 volume = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearVolume() {
@@ -25544,7 +24701,7 @@ public final class CoreField {
        * 成交总额
        * </pre>
        *
-       * <code>double turnover = 18;</code>
+       * <code>double turnover = 11;</code>
        * @return The turnover.
        */
       @java.lang.Override
@@ -25556,7 +24713,7 @@ public final class CoreField {
        * 成交总额
        * </pre>
        *
-       * <code>double turnover = 18;</code>
+       * <code>double turnover = 11;</code>
        * @param value The turnover to set.
        * @return This builder for chaining.
        */
@@ -25571,7 +24728,7 @@ public final class CoreField {
        * 成交总额
        * </pre>
        *
-       * <code>double turnover = 18;</code>
+       * <code>double turnover = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearTurnover() {
@@ -25587,7 +24744,7 @@ public final class CoreField {
        * 成交总额变化
        * </pre>
        *
-       * <code>double turnoverDelta = 19;</code>
+       * <code>double turnoverDelta = 12;</code>
        * @return The turnoverDelta.
        */
       @java.lang.Override
@@ -25599,7 +24756,7 @@ public final class CoreField {
        * 成交总额变化
        * </pre>
        *
-       * <code>double turnoverDelta = 19;</code>
+       * <code>double turnoverDelta = 12;</code>
        * @param value The turnoverDelta to set.
        * @return This builder for chaining.
        */
@@ -25614,98 +24771,12 @@ public final class CoreField {
        * 成交总额变化
        * </pre>
        *
-       * <code>double turnoverDelta = 19;</code>
+       * <code>double turnoverDelta = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearTurnoverDelta() {
         
         turnoverDelta_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      private long numTrades_ ;
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 20;</code>
-       * @return The numTrades.
-       */
-      @java.lang.Override
-      public long getNumTrades() {
-        return numTrades_;
-      }
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 20;</code>
-       * @param value The numTrades to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNumTrades(long value) {
-        
-        numTrades_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 20;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearNumTrades() {
-        
-        numTrades_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long numTradesDelta_ ;
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 21;</code>
-       * @return The numTradesDelta.
-       */
-      @java.lang.Override
-      public long getNumTradesDelta() {
-        return numTradesDelta_;
-      }
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 21;</code>
-       * @param value The numTradesDelta to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNumTradesDelta(long value) {
-        
-        numTradesDelta_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 21;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearNumTradesDelta() {
-        
-        numTradesDelta_ = 0L;
         onChanged();
         return this;
       }
@@ -25716,7 +24787,7 @@ public final class CoreField {
        * 持仓量
        * </pre>
        *
-       * <code>double openInterest = 22;</code>
+       * <code>double openInterest = 13;</code>
        * @return The openInterest.
        */
       @java.lang.Override
@@ -25728,7 +24799,7 @@ public final class CoreField {
        * 持仓量
        * </pre>
        *
-       * <code>double openInterest = 22;</code>
+       * <code>double openInterest = 13;</code>
        * @param value The openInterest to set.
        * @return This builder for chaining.
        */
@@ -25743,7 +24814,7 @@ public final class CoreField {
        * 持仓量
        * </pre>
        *
-       * <code>double openInterest = 22;</code>
+       * <code>double openInterest = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearOpenInterest() {
@@ -25759,7 +24830,7 @@ public final class CoreField {
        * 持仓量变化
        * </pre>
        *
-       * <code>double openInterestDelta = 23;</code>
+       * <code>double openInterestDelta = 14;</code>
        * @return The openInterestDelta.
        */
       @java.lang.Override
@@ -25771,7 +24842,7 @@ public final class CoreField {
        * 持仓量变化
        * </pre>
        *
-       * <code>double openInterestDelta = 23;</code>
+       * <code>double openInterestDelta = 14;</code>
        * @param value The openInterestDelta to set.
        * @return This builder for chaining.
        */
@@ -25786,7 +24857,7 @@ public final class CoreField {
        * 持仓量变化
        * </pre>
        *
-       * <code>double openInterestDelta = 23;</code>
+       * <code>double openInterestDelta = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearOpenInterestDelta() {
@@ -25802,7 +24873,7 @@ public final class CoreField {
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 24;</code>
+       * <code>double preOpenInterest = 15;</code>
        * @return The preOpenInterest.
        */
       @java.lang.Override
@@ -25814,7 +24885,7 @@ public final class CoreField {
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 24;</code>
+       * <code>double preOpenInterest = 15;</code>
        * @param value The preOpenInterest to set.
        * @return This builder for chaining.
        */
@@ -25829,7 +24900,7 @@ public final class CoreField {
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 24;</code>
+       * <code>double preOpenInterest = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreOpenInterest() {
@@ -25845,7 +24916,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 25;</code>
+       * <code>double preClosePrice = 16;</code>
        * @return The preClosePrice.
        */
       @java.lang.Override
@@ -25857,7 +24928,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 25;</code>
+       * <code>double preClosePrice = 16;</code>
        * @param value The preClosePrice to set.
        * @return This builder for chaining.
        */
@@ -25872,7 +24943,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 25;</code>
+       * <code>double preClosePrice = 16;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreClosePrice() {
@@ -25888,7 +24959,7 @@ public final class CoreField {
        * 结算价
        * </pre>
        *
-       * <code>double settlePrice = 26;</code>
+       * <code>double settlePrice = 17;</code>
        * @return The settlePrice.
        */
       @java.lang.Override
@@ -25900,7 +24971,7 @@ public final class CoreField {
        * 结算价
        * </pre>
        *
-       * <code>double settlePrice = 26;</code>
+       * <code>double settlePrice = 17;</code>
        * @param value The settlePrice to set.
        * @return This builder for chaining.
        */
@@ -25915,7 +24986,7 @@ public final class CoreField {
        * 结算价
        * </pre>
        *
-       * <code>double settlePrice = 26;</code>
+       * <code>double settlePrice = 17;</code>
        * @return This builder for chaining.
        */
       public Builder clearSettlePrice() {
@@ -25931,7 +25002,7 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 27;</code>
+       * <code>double preSettlePrice = 18;</code>
        * @return The preSettlePrice.
        */
       @java.lang.Override
@@ -25943,7 +25014,7 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 27;</code>
+       * <code>double preSettlePrice = 18;</code>
        * @param value The preSettlePrice to set.
        * @return This builder for chaining.
        */
@@ -25958,7 +25029,7 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 27;</code>
+       * <code>double preSettlePrice = 18;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreSettlePrice() {
@@ -25974,7 +25045,7 @@ public final class CoreField {
        * 开盘价
        * </pre>
        *
-       * <code>double openPrice = 28;</code>
+       * <code>double openPrice = 19;</code>
        * @return The openPrice.
        */
       @java.lang.Override
@@ -25986,7 +25057,7 @@ public final class CoreField {
        * 开盘价
        * </pre>
        *
-       * <code>double openPrice = 28;</code>
+       * <code>double openPrice = 19;</code>
        * @param value The openPrice to set.
        * @return This builder for chaining.
        */
@@ -26001,7 +25072,7 @@ public final class CoreField {
        * 开盘价
        * </pre>
        *
-       * <code>double openPrice = 28;</code>
+       * <code>double openPrice = 19;</code>
        * @return This builder for chaining.
        */
       public Builder clearOpenPrice() {
@@ -26017,7 +25088,7 @@ public final class CoreField {
        * 最高价
        * </pre>
        *
-       * <code>double highPrice = 29;</code>
+       * <code>double highPrice = 20;</code>
        * @return The highPrice.
        */
       @java.lang.Override
@@ -26029,7 +25100,7 @@ public final class CoreField {
        * 最高价
        * </pre>
        *
-       * <code>double highPrice = 29;</code>
+       * <code>double highPrice = 20;</code>
        * @param value The highPrice to set.
        * @return This builder for chaining.
        */
@@ -26044,7 +25115,7 @@ public final class CoreField {
        * 最高价
        * </pre>
        *
-       * <code>double highPrice = 29;</code>
+       * <code>double highPrice = 20;</code>
        * @return This builder for chaining.
        */
       public Builder clearHighPrice() {
@@ -26060,7 +25131,7 @@ public final class CoreField {
        * 最低价
        * </pre>
        *
-       * <code>double lowPrice = 30;</code>
+       * <code>double lowPrice = 21;</code>
        * @return The lowPrice.
        */
       @java.lang.Override
@@ -26072,7 +25143,7 @@ public final class CoreField {
        * 最低价
        * </pre>
        *
-       * <code>double lowPrice = 30;</code>
+       * <code>double lowPrice = 21;</code>
        * @param value The lowPrice to set.
        * @return This builder for chaining.
        */
@@ -26087,7 +25158,7 @@ public final class CoreField {
        * 最低价
        * </pre>
        *
-       * <code>double lowPrice = 30;</code>
+       * <code>double lowPrice = 21;</code>
        * @return This builder for chaining.
        */
       public Builder clearLowPrice() {
@@ -26103,7 +25174,7 @@ public final class CoreField {
        * 涨停价
        * </pre>
        *
-       * <code>double upperLimit = 31;</code>
+       * <code>double upperLimit = 22;</code>
        * @return The upperLimit.
        */
       @java.lang.Override
@@ -26115,7 +25186,7 @@ public final class CoreField {
        * 涨停价
        * </pre>
        *
-       * <code>double upperLimit = 31;</code>
+       * <code>double upperLimit = 22;</code>
        * @param value The upperLimit to set.
        * @return This builder for chaining.
        */
@@ -26130,7 +25201,7 @@ public final class CoreField {
        * 涨停价
        * </pre>
        *
-       * <code>double upperLimit = 31;</code>
+       * <code>double upperLimit = 22;</code>
        * @return This builder for chaining.
        */
       public Builder clearUpperLimit() {
@@ -26146,7 +25217,7 @@ public final class CoreField {
        * 跌停价
        * </pre>
        *
-       * <code>double lowerLimit = 32;</code>
+       * <code>double lowerLimit = 23;</code>
        * @return The lowerLimit.
        */
       @java.lang.Override
@@ -26158,7 +25229,7 @@ public final class CoreField {
        * 跌停价
        * </pre>
        *
-       * <code>double lowerLimit = 32;</code>
+       * <code>double lowerLimit = 23;</code>
        * @param value The lowerLimit to set.
        * @return This builder for chaining.
        */
@@ -26173,7 +25244,7 @@ public final class CoreField {
        * 跌停价
        * </pre>
        *
-       * <code>double lowerLimit = 32;</code>
+       * <code>double lowerLimit = 23;</code>
        * @return This builder for chaining.
        */
       public Builder clearLowerLimit() {
@@ -26195,7 +25266,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @return A list containing the bidPrice.
        */
       public java.util.List<java.lang.Double>
@@ -26208,7 +25279,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @return The count of bidPrice.
        */
       public int getBidPriceCount() {
@@ -26219,7 +25290,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @param index The index of the element to return.
        * @return The bidPrice at the given index.
        */
@@ -26231,7 +25302,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @param index The index to set the value at.
        * @param value The bidPrice to set.
        * @return This builder for chaining.
@@ -26248,7 +25319,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @param value The bidPrice to add.
        * @return This builder for chaining.
        */
@@ -26263,7 +25334,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @param values The bidPrice to add.
        * @return This builder for chaining.
        */
@@ -26280,7 +25351,7 @@ public final class CoreField {
        * 买价
        * </pre>
        *
-       * <code>repeated double bidPrice = 33;</code>
+       * <code>repeated double bidPrice = 24;</code>
        * @return This builder for chaining.
        */
       public Builder clearBidPrice() {
@@ -26302,7 +25373,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @return A list containing the askPrice.
        */
       public java.util.List<java.lang.Double>
@@ -26315,7 +25386,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @return The count of askPrice.
        */
       public int getAskPriceCount() {
@@ -26326,7 +25397,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @param index The index of the element to return.
        * @return The askPrice at the given index.
        */
@@ -26338,7 +25409,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @param index The index to set the value at.
        * @param value The askPrice to set.
        * @return This builder for chaining.
@@ -26355,7 +25426,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @param value The askPrice to add.
        * @return This builder for chaining.
        */
@@ -26370,7 +25441,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @param values The askPrice to add.
        * @return This builder for chaining.
        */
@@ -26387,7 +25458,7 @@ public final class CoreField {
        * 卖价
        * </pre>
        *
-       * <code>repeated double askPrice = 34;</code>
+       * <code>repeated double askPrice = 25;</code>
        * @return This builder for chaining.
        */
       public Builder clearAskPrice() {
@@ -26409,7 +25480,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @return A list containing the bidVolume.
        */
       public java.util.List<java.lang.Integer>
@@ -26422,7 +25493,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @return The count of bidVolume.
        */
       public int getBidVolumeCount() {
@@ -26433,7 +25504,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @param index The index of the element to return.
        * @return The bidVolume at the given index.
        */
@@ -26445,7 +25516,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @param index The index to set the value at.
        * @param value The bidVolume to set.
        * @return This builder for chaining.
@@ -26462,7 +25533,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @param value The bidVolume to add.
        * @return This builder for chaining.
        */
@@ -26477,7 +25548,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @param values The bidVolume to add.
        * @return This builder for chaining.
        */
@@ -26494,7 +25565,7 @@ public final class CoreField {
        * 买量
        * </pre>
        *
-       * <code>repeated fixed32 bidVolume = 35;</code>
+       * <code>repeated fixed32 bidVolume = 26;</code>
        * @return This builder for chaining.
        */
       public Builder clearBidVolume() {
@@ -26516,7 +25587,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @return A list containing the askVolume.
        */
       public java.util.List<java.lang.Integer>
@@ -26529,7 +25600,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @return The count of askVolume.
        */
       public int getAskVolumeCount() {
@@ -26540,7 +25611,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @param index The index of the element to return.
        * @return The askVolume at the given index.
        */
@@ -26552,7 +25623,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @param index The index to set the value at.
        * @param value The askVolume to set.
        * @return This builder for chaining.
@@ -26569,7 +25640,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @param value The askVolume to add.
        * @return This builder for chaining.
        */
@@ -26584,7 +25655,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @param values The askVolume to add.
        * @return This builder for chaining.
        */
@@ -26601,7 +25672,7 @@ public final class CoreField {
        * 卖量
        * </pre>
        *
-       * <code>repeated fixed32 askVolume = 36;</code>
+       * <code>repeated fixed32 askVolume = 27;</code>
        * @return This builder for chaining.
        */
       public Builder clearAskVolume() {
@@ -26712,60 +25783,30 @@ public final class CoreField {
      * 交易日
      * </pre>
      *
-     * <code>string tradingDay = 3;</code>
+     * <code>fixed32 tradingDay = 3;</code>
      * @return The tradingDay.
      */
-    java.lang.String getTradingDay();
-    /**
-     * <pre>
-     * 交易日
-     * </pre>
-     *
-     * <code>string tradingDay = 3;</code>
-     * @return The bytes for tradingDay.
-     */
-    com.google.protobuf.ByteString
-        getTradingDayBytes();
+    int getTradingDay();
 
     /**
      * <pre>
      * 业务发生日
      * </pre>
      *
-     * <code>string actionDay = 4;</code>
+     * <code>fixed32 actionDay = 4;</code>
      * @return The actionDay.
      */
-    java.lang.String getActionDay();
-    /**
-     * <pre>
-     * 业务发生日
-     * </pre>
-     *
-     * <code>string actionDay = 4;</code>
-     * @return The bytes for actionDay.
-     */
-    com.google.protobuf.ByteString
-        getActionDayBytes();
+    int getActionDay();
 
     /**
      * <pre>
      * 时间(HHmmssSSS)
      * </pre>
      *
-     * <code>string actionTime = 5;</code>
+     * <code>fixed32 actionTime = 5;</code>
      * @return The actionTime.
      */
-    java.lang.String getActionTime();
-    /**
-     * <pre>
-     * 时间(HHmmssSSS)
-     * </pre>
-     *
-     * <code>string actionTime = 5;</code>
-     * @return The bytes for actionTime.
-     */
-    com.google.protobuf.ByteString
-        getActionTimeBytes();
+    int getActionTime();
 
     /**
      * <pre>
@@ -26879,30 +25920,10 @@ public final class CoreField {
 
     /**
      * <pre>
-     * 最新成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTrades = 17;</code>
-     * @return The numTrades.
-     */
-    long getNumTrades();
-
-    /**
-     * <pre>
-     * 成交笔数（Bar）
-     * </pre>
-     *
-     * <code>fixed64 numTradesDelta = 18;</code>
-     * @return The numTradesDelta.
-     */
-    long getNumTradesDelta();
-
-    /**
-     * <pre>
      * 昨持仓
      * </pre>
      *
-     * <code>double preOpenInterest = 19;</code>
+     * <code>double preOpenInterest = 17;</code>
      * @return The preOpenInterest.
      */
     double getPreOpenInterest();
@@ -26912,7 +25933,7 @@ public final class CoreField {
      * 前收盘价
      * </pre>
      *
-     * <code>double preClosePrice = 20;</code>
+     * <code>double preClosePrice = 18;</code>
      * @return The preClosePrice.
      */
     double getPreClosePrice();
@@ -26922,10 +25943,20 @@ public final class CoreField {
      * 昨结算价
      * </pre>
      *
-     * <code>double preSettlePrice = 21;</code>
+     * <code>double preSettlePrice = 19;</code>
      * @return The preSettlePrice.
      */
     double getPreSettlePrice();
+
+    /**
+     * <pre>
+     * 周期
+     * </pre>
+     *
+     * <code>int32 period = 20;</code>
+     * @return The period.
+     */
+    int getPeriod();
   }
   /**
    * <pre>
@@ -26946,9 +25977,6 @@ public final class CoreField {
     private BarField() {
       uniformSymbol_ = "";
       gatewayId_ = "";
-      tradingDay_ = "";
-      actionDay_ = "";
-      actionTime_ = "";
     }
 
     @java.lang.Override
@@ -26993,22 +26021,19 @@ public final class CoreField {
               gatewayId_ = s;
               break;
             }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 29: {
 
-              tradingDay_ = s;
+              tradingDay_ = input.readFixed32();
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 37: {
 
-              actionDay_ = s;
+              actionDay_ = input.readFixed32();
               break;
             }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 45: {
 
-              actionTime_ = s;
+              actionTime_ = input.readFixed32();
               break;
             }
             case 49: {
@@ -27068,27 +26093,22 @@ public final class CoreField {
             }
             case 137: {
 
-              numTrades_ = input.readFixed64();
+              preOpenInterest_ = input.readDouble();
               break;
             }
             case 145: {
 
-              numTradesDelta_ = input.readFixed64();
+              preClosePrice_ = input.readDouble();
               break;
             }
             case 153: {
 
-              preOpenInterest_ = input.readDouble();
-              break;
-            }
-            case 161: {
-
-              preClosePrice_ = input.readDouble();
-              break;
-            }
-            case 169: {
-
               preSettlePrice_ = input.readDouble();
+              break;
+            }
+            case 160: {
+
+              period_ = input.readInt32();
               break;
             }
             default: {
@@ -27216,141 +26236,48 @@ public final class CoreField {
     }
 
     public static final int TRADINGDAY_FIELD_NUMBER = 3;
-    private volatile java.lang.Object tradingDay_;
+    private int tradingDay_;
     /**
      * <pre>
      * 交易日
      * </pre>
      *
-     * <code>string tradingDay = 3;</code>
+     * <code>fixed32 tradingDay = 3;</code>
      * @return The tradingDay.
      */
     @java.lang.Override
-    public java.lang.String getTradingDay() {
-      java.lang.Object ref = tradingDay_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        tradingDay_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 交易日
-     * </pre>
-     *
-     * <code>string tradingDay = 3;</code>
-     * @return The bytes for tradingDay.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTradingDayBytes() {
-      java.lang.Object ref = tradingDay_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        tradingDay_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getTradingDay() {
+      return tradingDay_;
     }
 
     public static final int ACTIONDAY_FIELD_NUMBER = 4;
-    private volatile java.lang.Object actionDay_;
+    private int actionDay_;
     /**
      * <pre>
      * 业务发生日
      * </pre>
      *
-     * <code>string actionDay = 4;</code>
+     * <code>fixed32 actionDay = 4;</code>
      * @return The actionDay.
      */
     @java.lang.Override
-    public java.lang.String getActionDay() {
-      java.lang.Object ref = actionDay_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        actionDay_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 业务发生日
-     * </pre>
-     *
-     * <code>string actionDay = 4;</code>
-     * @return The bytes for actionDay.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getActionDayBytes() {
-      java.lang.Object ref = actionDay_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        actionDay_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getActionDay() {
+      return actionDay_;
     }
 
     public static final int ACTIONTIME_FIELD_NUMBER = 5;
-    private volatile java.lang.Object actionTime_;
+    private int actionTime_;
     /**
      * <pre>
      * 时间(HHmmssSSS)
      * </pre>
      *
-     * <code>string actionTime = 5;</code>
+     * <code>fixed32 actionTime = 5;</code>
      * @return The actionTime.
      */
     @java.lang.Override
-    public java.lang.String getActionTime() {
-      java.lang.Object ref = actionTime_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        actionTime_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 时间(HHmmssSSS)
-     * </pre>
-     *
-     * <code>string actionTime = 5;</code>
-     * @return The bytes for actionTime.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getActionTimeBytes() {
-      java.lang.Object ref = actionTime_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        actionTime_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getActionTime() {
+      return actionTime_;
     }
 
     public static final int ACTIONTIMESTAMP_FIELD_NUMBER = 6;
@@ -27518,44 +26445,14 @@ public final class CoreField {
       return turnoverDelta_;
     }
 
-    public static final int NUMTRADES_FIELD_NUMBER = 17;
-    private long numTrades_;
-    /**
-     * <pre>
-     * 最新成交笔数
-     * </pre>
-     *
-     * <code>fixed64 numTrades = 17;</code>
-     * @return The numTrades.
-     */
-    @java.lang.Override
-    public long getNumTrades() {
-      return numTrades_;
-    }
-
-    public static final int NUMTRADESDELTA_FIELD_NUMBER = 18;
-    private long numTradesDelta_;
-    /**
-     * <pre>
-     * 成交笔数（Bar）
-     * </pre>
-     *
-     * <code>fixed64 numTradesDelta = 18;</code>
-     * @return The numTradesDelta.
-     */
-    @java.lang.Override
-    public long getNumTradesDelta() {
-      return numTradesDelta_;
-    }
-
-    public static final int PREOPENINTEREST_FIELD_NUMBER = 19;
+    public static final int PREOPENINTEREST_FIELD_NUMBER = 17;
     private double preOpenInterest_;
     /**
      * <pre>
      * 昨持仓
      * </pre>
      *
-     * <code>double preOpenInterest = 19;</code>
+     * <code>double preOpenInterest = 17;</code>
      * @return The preOpenInterest.
      */
     @java.lang.Override
@@ -27563,14 +26460,14 @@ public final class CoreField {
       return preOpenInterest_;
     }
 
-    public static final int PRECLOSEPRICE_FIELD_NUMBER = 20;
+    public static final int PRECLOSEPRICE_FIELD_NUMBER = 18;
     private double preClosePrice_;
     /**
      * <pre>
      * 前收盘价
      * </pre>
      *
-     * <code>double preClosePrice = 20;</code>
+     * <code>double preClosePrice = 18;</code>
      * @return The preClosePrice.
      */
     @java.lang.Override
@@ -27578,19 +26475,34 @@ public final class CoreField {
       return preClosePrice_;
     }
 
-    public static final int PRESETTLEPRICE_FIELD_NUMBER = 21;
+    public static final int PRESETTLEPRICE_FIELD_NUMBER = 19;
     private double preSettlePrice_;
     /**
      * <pre>
      * 昨结算价
      * </pre>
      *
-     * <code>double preSettlePrice = 21;</code>
+     * <code>double preSettlePrice = 19;</code>
      * @return The preSettlePrice.
      */
     @java.lang.Override
     public double getPreSettlePrice() {
       return preSettlePrice_;
+    }
+
+    public static final int PERIOD_FIELD_NUMBER = 20;
+    private int period_;
+    /**
+     * <pre>
+     * 周期
+     * </pre>
+     *
+     * <code>int32 period = 20;</code>
+     * @return The period.
+     */
+    @java.lang.Override
+    public int getPeriod() {
+      return period_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -27613,14 +26525,14 @@ public final class CoreField {
       if (!getGatewayIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayId_);
       }
-      if (!getTradingDayBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tradingDay_);
+      if (tradingDay_ != 0) {
+        output.writeFixed32(3, tradingDay_);
       }
-      if (!getActionDayBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, actionDay_);
+      if (actionDay_ != 0) {
+        output.writeFixed32(4, actionDay_);
       }
-      if (!getActionTimeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, actionTime_);
+      if (actionTime_ != 0) {
+        output.writeFixed32(5, actionTime_);
       }
       if (actionTimestamp_ != 0L) {
         output.writeFixed64(6, actionTimestamp_);
@@ -27655,20 +26567,17 @@ public final class CoreField {
       if (turnoverDelta_ != 0D) {
         output.writeDouble(16, turnoverDelta_);
       }
-      if (numTrades_ != 0L) {
-        output.writeFixed64(17, numTrades_);
-      }
-      if (numTradesDelta_ != 0L) {
-        output.writeFixed64(18, numTradesDelta_);
-      }
       if (preOpenInterest_ != 0D) {
-        output.writeDouble(19, preOpenInterest_);
+        output.writeDouble(17, preOpenInterest_);
       }
       if (preClosePrice_ != 0D) {
-        output.writeDouble(20, preClosePrice_);
+        output.writeDouble(18, preClosePrice_);
       }
       if (preSettlePrice_ != 0D) {
-        output.writeDouble(21, preSettlePrice_);
+        output.writeDouble(19, preSettlePrice_);
+      }
+      if (period_ != 0) {
+        output.writeInt32(20, period_);
       }
       unknownFields.writeTo(output);
     }
@@ -27685,14 +26594,17 @@ public final class CoreField {
       if (!getGatewayIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayId_);
       }
-      if (!getTradingDayBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tradingDay_);
+      if (tradingDay_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(3, tradingDay_);
       }
-      if (!getActionDayBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, actionDay_);
+      if (actionDay_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(4, actionDay_);
       }
-      if (!getActionTimeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, actionTime_);
+      if (actionTime_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(5, actionTime_);
       }
       if (actionTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
@@ -27738,25 +26650,21 @@ public final class CoreField {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(16, turnoverDelta_);
       }
-      if (numTrades_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(17, numTrades_);
-      }
-      if (numTradesDelta_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(18, numTradesDelta_);
-      }
       if (preOpenInterest_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(19, preOpenInterest_);
+          .computeDoubleSize(17, preOpenInterest_);
       }
       if (preClosePrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(20, preClosePrice_);
+          .computeDoubleSize(18, preClosePrice_);
       }
       if (preSettlePrice_ != 0D) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(21, preSettlePrice_);
+          .computeDoubleSize(19, preSettlePrice_);
+      }
+      if (period_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(20, period_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -27777,12 +26685,12 @@ public final class CoreField {
           .equals(other.getUniformSymbol())) return false;
       if (!getGatewayId()
           .equals(other.getGatewayId())) return false;
-      if (!getTradingDay()
-          .equals(other.getTradingDay())) return false;
-      if (!getActionDay()
-          .equals(other.getActionDay())) return false;
-      if (!getActionTime()
-          .equals(other.getActionTime())) return false;
+      if (getTradingDay()
+          != other.getTradingDay()) return false;
+      if (getActionDay()
+          != other.getActionDay()) return false;
+      if (getActionTime()
+          != other.getActionTime()) return false;
       if (getActionTimestamp()
           != other.getActionTimestamp()) return false;
       if (java.lang.Double.doubleToLongBits(getOpenPrice())
@@ -27813,10 +26721,6 @@ public final class CoreField {
       if (java.lang.Double.doubleToLongBits(getTurnoverDelta())
           != java.lang.Double.doubleToLongBits(
               other.getTurnoverDelta())) return false;
-      if (getNumTrades()
-          != other.getNumTrades()) return false;
-      if (getNumTradesDelta()
-          != other.getNumTradesDelta()) return false;
       if (java.lang.Double.doubleToLongBits(getPreOpenInterest())
           != java.lang.Double.doubleToLongBits(
               other.getPreOpenInterest())) return false;
@@ -27826,6 +26730,8 @@ public final class CoreField {
       if (java.lang.Double.doubleToLongBits(getPreSettlePrice())
           != java.lang.Double.doubleToLongBits(
               other.getPreSettlePrice())) return false;
+      if (getPeriod()
+          != other.getPeriod()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -27842,11 +26748,11 @@ public final class CoreField {
       hash = (37 * hash) + GATEWAYID_FIELD_NUMBER;
       hash = (53 * hash) + getGatewayId().hashCode();
       hash = (37 * hash) + TRADINGDAY_FIELD_NUMBER;
-      hash = (53 * hash) + getTradingDay().hashCode();
+      hash = (53 * hash) + getTradingDay();
       hash = (37 * hash) + ACTIONDAY_FIELD_NUMBER;
-      hash = (53 * hash) + getActionDay().hashCode();
+      hash = (53 * hash) + getActionDay();
       hash = (37 * hash) + ACTIONTIME_FIELD_NUMBER;
-      hash = (53 * hash) + getActionTime().hashCode();
+      hash = (53 * hash) + getActionTime();
       hash = (37 * hash) + ACTIONTIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getActionTimestamp());
@@ -27880,12 +26786,6 @@ public final class CoreField {
       hash = (37 * hash) + TURNOVERDELTA_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getTurnoverDelta()));
-      hash = (37 * hash) + NUMTRADES_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getNumTrades());
-      hash = (37 * hash) + NUMTRADESDELTA_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getNumTradesDelta());
       hash = (37 * hash) + PREOPENINTEREST_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getPreOpenInterest()));
@@ -27895,6 +26795,8 @@ public final class CoreField {
       hash = (37 * hash) + PRESETTLEPRICE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           java.lang.Double.doubleToLongBits(getPreSettlePrice()));
+      hash = (37 * hash) + PERIOD_FIELD_NUMBER;
+      hash = (53 * hash) + getPeriod();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -28036,11 +26938,11 @@ public final class CoreField {
 
         gatewayId_ = "";
 
-        tradingDay_ = "";
+        tradingDay_ = 0;
 
-        actionDay_ = "";
+        actionDay_ = 0;
 
-        actionTime_ = "";
+        actionTime_ = 0;
 
         actionTimestamp_ = 0L;
 
@@ -28064,15 +26966,13 @@ public final class CoreField {
 
         turnoverDelta_ = 0D;
 
-        numTrades_ = 0L;
-
-        numTradesDelta_ = 0L;
-
         preOpenInterest_ = 0D;
 
         preClosePrice_ = 0D;
 
         preSettlePrice_ = 0D;
+
+        period_ = 0;
 
         return this;
       }
@@ -28116,11 +27016,10 @@ public final class CoreField {
         result.volumeDelta_ = volumeDelta_;
         result.turnover_ = turnover_;
         result.turnoverDelta_ = turnoverDelta_;
-        result.numTrades_ = numTrades_;
-        result.numTradesDelta_ = numTradesDelta_;
         result.preOpenInterest_ = preOpenInterest_;
         result.preClosePrice_ = preClosePrice_;
         result.preSettlePrice_ = preSettlePrice_;
+        result.period_ = period_;
         onBuilt();
         return result;
       }
@@ -28177,17 +27076,14 @@ public final class CoreField {
           gatewayId_ = other.gatewayId_;
           onChanged();
         }
-        if (!other.getTradingDay().isEmpty()) {
-          tradingDay_ = other.tradingDay_;
-          onChanged();
+        if (other.getTradingDay() != 0) {
+          setTradingDay(other.getTradingDay());
         }
-        if (!other.getActionDay().isEmpty()) {
-          actionDay_ = other.actionDay_;
-          onChanged();
+        if (other.getActionDay() != 0) {
+          setActionDay(other.getActionDay());
         }
-        if (!other.getActionTime().isEmpty()) {
-          actionTime_ = other.actionTime_;
-          onChanged();
+        if (other.getActionTime() != 0) {
+          setActionTime(other.getActionTime());
         }
         if (other.getActionTimestamp() != 0L) {
           setActionTimestamp(other.getActionTimestamp());
@@ -28222,12 +27118,6 @@ public final class CoreField {
         if (other.getTurnoverDelta() != 0D) {
           setTurnoverDelta(other.getTurnoverDelta());
         }
-        if (other.getNumTrades() != 0L) {
-          setNumTrades(other.getNumTrades());
-        }
-        if (other.getNumTradesDelta() != 0L) {
-          setNumTradesDelta(other.getNumTradesDelta());
-        }
         if (other.getPreOpenInterest() != 0D) {
           setPreOpenInterest(other.getPreOpenInterest());
         }
@@ -28236,6 +27126,9 @@ public final class CoreField {
         }
         if (other.getPreSettlePrice() != 0D) {
           setPreSettlePrice(other.getPreSettlePrice());
+        }
+        if (other.getPeriod() != 0) {
+          setPeriod(other.getPeriod());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -28458,63 +27351,30 @@ public final class CoreField {
         return this;
       }
 
-      private java.lang.Object tradingDay_ = "";
+      private int tradingDay_ ;
       /**
        * <pre>
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @return The tradingDay.
        */
-      public java.lang.String getTradingDay() {
-        java.lang.Object ref = tradingDay_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          tradingDay_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getTradingDay() {
+        return tradingDay_;
       }
       /**
        * <pre>
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
-       * @return The bytes for tradingDay.
-       */
-      public com.google.protobuf.ByteString
-          getTradingDayBytes() {
-        java.lang.Object ref = tradingDay_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          tradingDay_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 交易日
-       * </pre>
-       *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @param value The tradingDay to set.
        * @return This builder for chaining.
        */
-      public Builder setTradingDay(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setTradingDay(int value) {
+        
         tradingDay_ = value;
         onChanged();
         return this;
@@ -28524,93 +27384,40 @@ public final class CoreField {
        * 交易日
        * </pre>
        *
-       * <code>string tradingDay = 3;</code>
+       * <code>fixed32 tradingDay = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearTradingDay() {
         
-        tradingDay_ = getDefaultInstance().getTradingDay();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 交易日
-       * </pre>
-       *
-       * <code>string tradingDay = 3;</code>
-       * @param value The bytes for tradingDay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTradingDayBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        tradingDay_ = value;
+        tradingDay_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object actionDay_ = "";
+      private int actionDay_ ;
       /**
        * <pre>
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @return The actionDay.
        */
-      public java.lang.String getActionDay() {
-        java.lang.Object ref = actionDay_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          actionDay_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getActionDay() {
+        return actionDay_;
       }
       /**
        * <pre>
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
-       * @return The bytes for actionDay.
-       */
-      public com.google.protobuf.ByteString
-          getActionDayBytes() {
-        java.lang.Object ref = actionDay_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          actionDay_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 业务发生日
-       * </pre>
-       *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @param value The actionDay to set.
        * @return This builder for chaining.
        */
-      public Builder setActionDay(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setActionDay(int value) {
+        
         actionDay_ = value;
         onChanged();
         return this;
@@ -28620,93 +27427,40 @@ public final class CoreField {
        * 业务发生日
        * </pre>
        *
-       * <code>string actionDay = 4;</code>
+       * <code>fixed32 actionDay = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearActionDay() {
         
-        actionDay_ = getDefaultInstance().getActionDay();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 业务发生日
-       * </pre>
-       *
-       * <code>string actionDay = 4;</code>
-       * @param value The bytes for actionDay to set.
-       * @return This builder for chaining.
-       */
-      public Builder setActionDayBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        actionDay_ = value;
+        actionDay_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object actionTime_ = "";
+      private int actionTime_ ;
       /**
        * <pre>
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @return The actionTime.
        */
-      public java.lang.String getActionTime() {
-        java.lang.Object ref = actionTime_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          actionTime_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getActionTime() {
+        return actionTime_;
       }
       /**
        * <pre>
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
-       * @return The bytes for actionTime.
-       */
-      public com.google.protobuf.ByteString
-          getActionTimeBytes() {
-        java.lang.Object ref = actionTime_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          actionTime_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 时间(HHmmssSSS)
-       * </pre>
-       *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @param value The actionTime to set.
        * @return This builder for chaining.
        */
-      public Builder setActionTime(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setActionTime(int value) {
+        
         actionTime_ = value;
         onChanged();
         return this;
@@ -28716,32 +27470,12 @@ public final class CoreField {
        * 时间(HHmmssSSS)
        * </pre>
        *
-       * <code>string actionTime = 5;</code>
+       * <code>fixed32 actionTime = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearActionTime() {
         
-        actionTime_ = getDefaultInstance().getActionTime();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 时间(HHmmssSSS)
-       * </pre>
-       *
-       * <code>string actionTime = 5;</code>
-       * @param value The bytes for actionTime to set.
-       * @return This builder for chaining.
-       */
-      public Builder setActionTimeBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        actionTime_ = value;
+        actionTime_ = 0;
         onChanged();
         return this;
       }
@@ -29219,99 +27953,13 @@ public final class CoreField {
         return this;
       }
 
-      private long numTrades_ ;
-      /**
-       * <pre>
-       * 最新成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 17;</code>
-       * @return The numTrades.
-       */
-      @java.lang.Override
-      public long getNumTrades() {
-        return numTrades_;
-      }
-      /**
-       * <pre>
-       * 最新成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 17;</code>
-       * @param value The numTrades to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNumTrades(long value) {
-        
-        numTrades_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 最新成交笔数
-       * </pre>
-       *
-       * <code>fixed64 numTrades = 17;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearNumTrades() {
-        
-        numTrades_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long numTradesDelta_ ;
-      /**
-       * <pre>
-       * 成交笔数（Bar）
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 18;</code>
-       * @return The numTradesDelta.
-       */
-      @java.lang.Override
-      public long getNumTradesDelta() {
-        return numTradesDelta_;
-      }
-      /**
-       * <pre>
-       * 成交笔数（Bar）
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 18;</code>
-       * @param value The numTradesDelta to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNumTradesDelta(long value) {
-        
-        numTradesDelta_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 成交笔数（Bar）
-       * </pre>
-       *
-       * <code>fixed64 numTradesDelta = 18;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearNumTradesDelta() {
-        
-        numTradesDelta_ = 0L;
-        onChanged();
-        return this;
-      }
-
       private double preOpenInterest_ ;
       /**
        * <pre>
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 19;</code>
+       * <code>double preOpenInterest = 17;</code>
        * @return The preOpenInterest.
        */
       @java.lang.Override
@@ -29323,7 +27971,7 @@ public final class CoreField {
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 19;</code>
+       * <code>double preOpenInterest = 17;</code>
        * @param value The preOpenInterest to set.
        * @return This builder for chaining.
        */
@@ -29338,7 +27986,7 @@ public final class CoreField {
        * 昨持仓
        * </pre>
        *
-       * <code>double preOpenInterest = 19;</code>
+       * <code>double preOpenInterest = 17;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreOpenInterest() {
@@ -29354,7 +28002,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 20;</code>
+       * <code>double preClosePrice = 18;</code>
        * @return The preClosePrice.
        */
       @java.lang.Override
@@ -29366,7 +28014,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 20;</code>
+       * <code>double preClosePrice = 18;</code>
        * @param value The preClosePrice to set.
        * @return This builder for chaining.
        */
@@ -29381,7 +28029,7 @@ public final class CoreField {
        * 前收盘价
        * </pre>
        *
-       * <code>double preClosePrice = 20;</code>
+       * <code>double preClosePrice = 18;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreClosePrice() {
@@ -29397,7 +28045,7 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 21;</code>
+       * <code>double preSettlePrice = 19;</code>
        * @return The preSettlePrice.
        */
       @java.lang.Override
@@ -29409,7 +28057,7 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 21;</code>
+       * <code>double preSettlePrice = 19;</code>
        * @param value The preSettlePrice to set.
        * @return This builder for chaining.
        */
@@ -29424,12 +28072,55 @@ public final class CoreField {
        * 昨结算价
        * </pre>
        *
-       * <code>double preSettlePrice = 21;</code>
+       * <code>double preSettlePrice = 19;</code>
        * @return This builder for chaining.
        */
       public Builder clearPreSettlePrice() {
         
         preSettlePrice_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private int period_ ;
+      /**
+       * <pre>
+       * 周期
+       * </pre>
+       *
+       * <code>int32 period = 20;</code>
+       * @return The period.
+       */
+      @java.lang.Override
+      public int getPeriod() {
+        return period_;
+      }
+      /**
+       * <pre>
+       * 周期
+       * </pre>
+       *
+       * <code>int32 period = 20;</code>
+       * @param value The period to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPeriod(int value) {
+        
+        period_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 周期
+       * </pre>
+       *
+       * <code>int32 period = 20;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPeriod() {
+        
+        period_ = 0;
         onChanged();
         return this;
       }
@@ -35373,7 +34064,7 @@ public final class CoreField {
      * 网关描述
      * </pre>
      *
-     * <code>string gatewayDescription = 4;</code>
+     * <code>string gatewayDescription = 3;</code>
      * @return The gatewayDescription.
      */
     java.lang.String getGatewayDescription();
@@ -35382,7 +34073,7 @@ public final class CoreField {
      * 网关描述
      * </pre>
      *
-     * <code>string gatewayDescription = 4;</code>
+     * <code>string gatewayDescription = 3;</code>
      * @return The bytes for gatewayDescription.
      */
     com.google.protobuf.ByteString
@@ -35393,7 +34084,7 @@ public final class CoreField {
      * 实现类
      * </pre>
      *
-     * <code>string implementClassName = 5;</code>
+     * <code>string implementClassName = 4;</code>
      * @return The implementClassName.
      */
     java.lang.String getImplementClassName();
@@ -35402,7 +34093,7 @@ public final class CoreField {
      * 实现类
      * </pre>
      *
-     * <code>string implementClassName = 5;</code>
+     * <code>string implementClassName = 4;</code>
      * @return The bytes for implementClassName.
      */
     com.google.protobuf.ByteString
@@ -35413,7 +34104,7 @@ public final class CoreField {
      * 网关类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
      * @return The enum numeric value on the wire for gatewayType.
      */
     int getGatewayTypeValue();
@@ -35422,7 +34113,7 @@ public final class CoreField {
      * 网关类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
      * @return The gatewayType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType();
@@ -35432,7 +34123,7 @@ public final class CoreField {
      * 网关适配器类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
      * @return The enum numeric value on the wire for gatewayAdapterType.
      */
     int getGatewayAdapterTypeValue();
@@ -35441,69 +34132,75 @@ public final class CoreField {
      * 网关适配器类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
      * @return The gatewayAdapterType.
      */
     xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType();
 
     /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     * @return Whether the ctpApiSetting field is set.
+     * <code>fixed32 targetNodeId = 7;</code>
+     * @return The targetNodeId.
      */
-    boolean hasCtpApiSetting();
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     * @return The ctpApiSetting.
-     */
-    xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting();
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     */
-    xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder();
+    int getTargetNodeId();
 
     /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     * @return Whether the ibApiSetting field is set.
+     * <code>string autoConnectTimeRanges = 8;</code>
+     * @return The autoConnectTimeRanges.
      */
-    boolean hasIbApiSetting();
+    java.lang.String getAutoConnectTimeRanges();
     /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     * @return The ibApiSetting.
+     * <code>string autoConnectTimeRanges = 8;</code>
+     * @return The bytes for autoConnectTimeRanges.
      */
-    xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting();
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     */
-    xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder();
+    com.google.protobuf.ByteString
+        getAutoConnectTimeRangesBytes();
 
     /**
-     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
      * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
-     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
+     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
      * @return The status.
      */
     xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus();
 
     /**
-     * <code>fixed64 version = 11;</code>
+     * <code>fixed64 version = 10;</code>
      * @return The version.
      */
     long getVersion();
 
     /**
-     * <code>string autoConnectTimeRanges = 12;</code>
-     * @return The autoConnectTimeRanges.
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     * @return Whether the ctpApiSetting field is set.
      */
-    java.lang.String getAutoConnectTimeRanges();
+    boolean hasCtpApiSetting();
     /**
-     * <code>string autoConnectTimeRanges = 12;</code>
-     * @return The bytes for autoConnectTimeRanges.
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     * @return The ctpApiSetting.
      */
-    com.google.protobuf.ByteString
-        getAutoConnectTimeRangesBytes();
+    xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting();
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     */
+    xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder();
+
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     * @return Whether the ibApiSetting field is set.
+     */
+    boolean hasIbApiSetting();
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     * @return The ibApiSetting.
+     */
+    xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting();
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     */
+    xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder();
   }
   /**
    * <pre>
@@ -35528,8 +34225,8 @@ public final class CoreField {
       implementClassName_ = "";
       gatewayType_ = 0;
       gatewayAdapterType_ = 0;
-      status_ = 0;
       autoConnectTimeRanges_ = "";
+      status_ = 0;
     }
 
     @java.lang.Override
@@ -35574,31 +34271,53 @@ public final class CoreField {
               gatewayName_ = s;
               break;
             }
-            case 34: {
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               gatewayDescription_ = s;
               break;
             }
-            case 42: {
+            case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
               implementClassName_ = s;
               break;
             }
-            case 48: {
+            case 40: {
               int rawValue = input.readEnum();
 
               gatewayType_ = rawValue;
               break;
             }
-            case 56: {
+            case 48: {
               int rawValue = input.readEnum();
 
               gatewayAdapterType_ = rawValue;
               break;
             }
+            case 61: {
+
+              targetNodeId_ = input.readFixed32();
+              break;
+            }
             case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              autoConnectTimeRanges_ = s;
+              break;
+            }
+            case 72: {
+              int rawValue = input.readEnum();
+
+              status_ = rawValue;
+              break;
+            }
+            case 81: {
+
+              version_ = input.readFixed64();
+              break;
+            }
+            case 90: {
               xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder subBuilder = null;
               if (ctpApiSetting_ != null) {
                 subBuilder = ctpApiSetting_.toBuilder();
@@ -35611,7 +34330,7 @@ public final class CoreField {
 
               break;
             }
-            case 74: {
+            case 98: {
               xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder subBuilder = null;
               if (ibApiSetting_ != null) {
                 subBuilder = ibApiSetting_.toBuilder();
@@ -35622,23 +34341,6 @@ public final class CoreField {
                 ibApiSetting_ = subBuilder.buildPartial();
               }
 
-              break;
-            }
-            case 80: {
-              int rawValue = input.readEnum();
-
-              status_ = rawValue;
-              break;
-            }
-            case 89: {
-
-              version_ = input.readFixed64();
-              break;
-            }
-            case 98: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              autoConnectTimeRanges_ = s;
               break;
             }
             default: {
@@ -38391,14 +37093,14 @@ public final class CoreField {
       }
     }
 
-    public static final int GATEWAYDESCRIPTION_FIELD_NUMBER = 4;
+    public static final int GATEWAYDESCRIPTION_FIELD_NUMBER = 3;
     private volatile java.lang.Object gatewayDescription_;
     /**
      * <pre>
      * 网关描述
      * </pre>
      *
-     * <code>string gatewayDescription = 4;</code>
+     * <code>string gatewayDescription = 3;</code>
      * @return The gatewayDescription.
      */
     @java.lang.Override
@@ -38419,7 +37121,7 @@ public final class CoreField {
      * 网关描述
      * </pre>
      *
-     * <code>string gatewayDescription = 4;</code>
+     * <code>string gatewayDescription = 3;</code>
      * @return The bytes for gatewayDescription.
      */
     @java.lang.Override
@@ -38437,14 +37139,14 @@ public final class CoreField {
       }
     }
 
-    public static final int IMPLEMENTCLASSNAME_FIELD_NUMBER = 5;
+    public static final int IMPLEMENTCLASSNAME_FIELD_NUMBER = 4;
     private volatile java.lang.Object implementClassName_;
     /**
      * <pre>
      * 实现类
      * </pre>
      *
-     * <code>string implementClassName = 5;</code>
+     * <code>string implementClassName = 4;</code>
      * @return The implementClassName.
      */
     @java.lang.Override
@@ -38465,7 +37167,7 @@ public final class CoreField {
      * 实现类
      * </pre>
      *
-     * <code>string implementClassName = 5;</code>
+     * <code>string implementClassName = 4;</code>
      * @return The bytes for implementClassName.
      */
     @java.lang.Override
@@ -38483,14 +37185,14 @@ public final class CoreField {
       }
     }
 
-    public static final int GATEWAYTYPE_FIELD_NUMBER = 6;
+    public static final int GATEWAYTYPE_FIELD_NUMBER = 5;
     private int gatewayType_;
     /**
      * <pre>
      * 网关类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
      * @return The enum numeric value on the wire for gatewayType.
      */
     @java.lang.Override public int getGatewayTypeValue() {
@@ -38501,7 +37203,7 @@ public final class CoreField {
      * 网关类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+     * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
      * @return The gatewayType.
      */
     @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayTypeEnum getGatewayType() {
@@ -38510,14 +37212,14 @@ public final class CoreField {
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.UNRECOGNIZED : result;
     }
 
-    public static final int GATEWAYADAPTERTYPE_FIELD_NUMBER = 7;
+    public static final int GATEWAYADAPTERTYPE_FIELD_NUMBER = 6;
     private int gatewayAdapterType_;
     /**
      * <pre>
      * 网关适配器类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
      * @return The enum numeric value on the wire for gatewayAdapterType.
      */
     @java.lang.Override public int getGatewayAdapterTypeValue() {
@@ -38528,7 +37230,7 @@ public final class CoreField {
      * 网关适配器类型
      * </pre>
      *
-     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+     * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
      * @return The gatewayAdapterType.
      */
     @java.lang.Override public xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum getGatewayAdapterType() {
@@ -38537,92 +37239,21 @@ public final class CoreField {
       return result == null ? xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.UNRECOGNIZED : result;
     }
 
-    public static final int CTPAPISETTING_FIELD_NUMBER = 8;
-    private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_;
+    public static final int TARGETNODEID_FIELD_NUMBER = 7;
+    private int targetNodeId_;
     /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     * @return Whether the ctpApiSetting field is set.
+     * <code>fixed32 targetNodeId = 7;</code>
+     * @return The targetNodeId.
      */
     @java.lang.Override
-    public boolean hasCtpApiSetting() {
-      return ctpApiSetting_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     * @return The ctpApiSetting.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting() {
-      return ctpApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.getDefaultInstance() : ctpApiSetting_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder() {
-      return getCtpApiSetting();
+    public int getTargetNodeId() {
+      return targetNodeId_;
     }
 
-    public static final int IBAPISETTING_FIELD_NUMBER = 9;
-    private xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField ibApiSetting_;
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     * @return Whether the ibApiSetting field is set.
-     */
-    @java.lang.Override
-    public boolean hasIbApiSetting() {
-      return ibApiSetting_ != null;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     * @return The ibApiSetting.
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting() {
-      return ibApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.getDefaultInstance() : ibApiSetting_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
-     */
-    @java.lang.Override
-    public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder() {
-      return getIbApiSetting();
-    }
-
-    public static final int STATUS_FIELD_NUMBER = 10;
-    private int status_;
-    /**
-     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-     * @return The enum numeric value on the wire for status.
-     */
-    @java.lang.Override public int getStatusValue() {
-      return status_;
-    }
-    /**
-     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-     * @return The status.
-     */
-    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
-      @SuppressWarnings("deprecation")
-      xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
-      return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
-    }
-
-    public static final int VERSION_FIELD_NUMBER = 11;
-    private long version_;
-    /**
-     * <code>fixed64 version = 11;</code>
-     * @return The version.
-     */
-    @java.lang.Override
-    public long getVersion() {
-      return version_;
-    }
-
-    public static final int AUTOCONNECTTIMERANGES_FIELD_NUMBER = 12;
+    public static final int AUTOCONNECTTIMERANGES_FIELD_NUMBER = 8;
     private volatile java.lang.Object autoConnectTimeRanges_;
     /**
-     * <code>string autoConnectTimeRanges = 12;</code>
+     * <code>string autoConnectTimeRanges = 8;</code>
      * @return The autoConnectTimeRanges.
      */
     @java.lang.Override
@@ -38639,7 +37270,7 @@ public final class CoreField {
       }
     }
     /**
-     * <code>string autoConnectTimeRanges = 12;</code>
+     * <code>string autoConnectTimeRanges = 8;</code>
      * @return The bytes for autoConnectTimeRanges.
      */
     @java.lang.Override
@@ -38655,6 +37286,88 @@ public final class CoreField {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 9;
+    private int status_;
+    /**
+     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+     * @return The enum numeric value on the wire for status.
+     */
+    @java.lang.Override public int getStatusValue() {
+      return status_;
+    }
+    /**
+     * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+     * @return The status.
+     */
+    @java.lang.Override public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
+      @SuppressWarnings("deprecation")
+      xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
+      return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
+    }
+
+    public static final int VERSION_FIELD_NUMBER = 10;
+    private long version_;
+    /**
+     * <code>fixed64 version = 10;</code>
+     * @return The version.
+     */
+    @java.lang.Override
+    public long getVersion() {
+      return version_;
+    }
+
+    public static final int CTPAPISETTING_FIELD_NUMBER = 11;
+    private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_;
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     * @return Whether the ctpApiSetting field is set.
+     */
+    @java.lang.Override
+    public boolean hasCtpApiSetting() {
+      return ctpApiSetting_ != null;
+    }
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     * @return The ctpApiSetting.
+     */
+    @java.lang.Override
+    public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting() {
+      return ctpApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.getDefaultInstance() : ctpApiSetting_;
+    }
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
+     */
+    @java.lang.Override
+    public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder() {
+      return getCtpApiSetting();
+    }
+
+    public static final int IBAPISETTING_FIELD_NUMBER = 12;
+    private xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField ibApiSetting_;
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     * @return Whether the ibApiSetting field is set.
+     */
+    @java.lang.Override
+    public boolean hasIbApiSetting() {
+      return ibApiSetting_ != null;
+    }
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     * @return The ibApiSetting.
+     */
+    @java.lang.Override
+    public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting() {
+      return ibApiSetting_ == null ? xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.getDefaultInstance() : ibApiSetting_;
+    }
+    /**
+     * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
+     */
+    @java.lang.Override
+    public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder() {
+      return getIbApiSetting();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -38678,31 +37391,34 @@ public final class CoreField {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gatewayName_);
       }
       if (!getGatewayDescriptionBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, gatewayDescription_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, gatewayDescription_);
       }
       if (!getImplementClassNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, implementClassName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, implementClassName_);
       }
       if (gatewayType_ != xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.GTE_TradeAndMarketData.getNumber()) {
-        output.writeEnum(6, gatewayType_);
+        output.writeEnum(5, gatewayType_);
       }
       if (gatewayAdapterType_ != xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.GAT_CTP.getNumber()) {
-        output.writeEnum(7, gatewayAdapterType_);
+        output.writeEnum(6, gatewayAdapterType_);
       }
-      if (ctpApiSetting_ != null) {
-        output.writeMessage(8, getCtpApiSetting());
-      }
-      if (ibApiSetting_ != null) {
-        output.writeMessage(9, getIbApiSetting());
-      }
-      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
-        output.writeEnum(10, status_);
-      }
-      if (version_ != 0L) {
-        output.writeFixed64(11, version_);
+      if (targetNodeId_ != 0) {
+        output.writeFixed32(7, targetNodeId_);
       }
       if (!getAutoConnectTimeRangesBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, autoConnectTimeRanges_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, autoConnectTimeRanges_);
+      }
+      if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
+        output.writeEnum(9, status_);
+      }
+      if (version_ != 0L) {
+        output.writeFixed64(10, version_);
+      }
+      if (ctpApiSetting_ != null) {
+        output.writeMessage(11, getCtpApiSetting());
+      }
+      if (ibApiSetting_ != null) {
+        output.writeMessage(12, getIbApiSetting());
       }
       unknownFields.writeTo(output);
     }
@@ -38720,37 +37436,41 @@ public final class CoreField {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gatewayName_);
       }
       if (!getGatewayDescriptionBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, gatewayDescription_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, gatewayDescription_);
       }
       if (!getImplementClassNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, implementClassName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, implementClassName_);
       }
       if (gatewayType_ != xyz.redtorch.pb.CoreEnum.GatewayTypeEnum.GTE_TradeAndMarketData.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, gatewayType_);
+          .computeEnumSize(5, gatewayType_);
       }
       if (gatewayAdapterType_ != xyz.redtorch.pb.CoreEnum.GatewayAdapterTypeEnum.GAT_CTP.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(7, gatewayAdapterType_);
+          .computeEnumSize(6, gatewayAdapterType_);
       }
-      if (ctpApiSetting_ != null) {
+      if (targetNodeId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getCtpApiSetting());
+          .computeFixed32Size(7, targetNodeId_);
       }
-      if (ibApiSetting_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, getIbApiSetting());
+      if (!getAutoConnectTimeRangesBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, autoConnectTimeRanges_);
       }
       if (status_ != xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.CS_Unknown.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(10, status_);
+          .computeEnumSize(9, status_);
       }
       if (version_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(11, version_);
+          .computeFixed64Size(10, version_);
       }
-      if (!getAutoConnectTimeRangesBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, autoConnectTimeRanges_);
+      if (ctpApiSetting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, getCtpApiSetting());
+      }
+      if (ibApiSetting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getIbApiSetting());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -38777,6 +37497,13 @@ public final class CoreField {
           .equals(other.getImplementClassName())) return false;
       if (gatewayType_ != other.gatewayType_) return false;
       if (gatewayAdapterType_ != other.gatewayAdapterType_) return false;
+      if (getTargetNodeId()
+          != other.getTargetNodeId()) return false;
+      if (!getAutoConnectTimeRanges()
+          .equals(other.getAutoConnectTimeRanges())) return false;
+      if (status_ != other.status_) return false;
+      if (getVersion()
+          != other.getVersion()) return false;
       if (hasCtpApiSetting() != other.hasCtpApiSetting()) return false;
       if (hasCtpApiSetting()) {
         if (!getCtpApiSetting()
@@ -38787,11 +37514,6 @@ public final class CoreField {
         if (!getIbApiSetting()
             .equals(other.getIbApiSetting())) return false;
       }
-      if (status_ != other.status_) return false;
-      if (getVersion()
-          != other.getVersion()) return false;
-      if (!getAutoConnectTimeRanges()
-          .equals(other.getAutoConnectTimeRanges())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -38815,6 +37537,15 @@ public final class CoreField {
       hash = (53 * hash) + gatewayType_;
       hash = (37 * hash) + GATEWAYADAPTERTYPE_FIELD_NUMBER;
       hash = (53 * hash) + gatewayAdapterType_;
+      hash = (37 * hash) + TARGETNODEID_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetNodeId();
+      hash = (37 * hash) + AUTOCONNECTTIMERANGES_FIELD_NUMBER;
+      hash = (53 * hash) + getAutoConnectTimeRanges().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + status_;
+      hash = (37 * hash) + VERSION_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getVersion());
       if (hasCtpApiSetting()) {
         hash = (37 * hash) + CTPAPISETTING_FIELD_NUMBER;
         hash = (53 * hash) + getCtpApiSetting().hashCode();
@@ -38823,13 +37554,6 @@ public final class CoreField {
         hash = (37 * hash) + IBAPISETTING_FIELD_NUMBER;
         hash = (53 * hash) + getIbApiSetting().hashCode();
       }
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + status_;
-      hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getVersion());
-      hash = (37 * hash) + AUTOCONNECTTIMERANGES_FIELD_NUMBER;
-      hash = (53 * hash) + getAutoConnectTimeRanges().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -38979,6 +37703,14 @@ public final class CoreField {
 
         gatewayAdapterType_ = 0;
 
+        targetNodeId_ = 0;
+
+        autoConnectTimeRanges_ = "";
+
+        status_ = 0;
+
+        version_ = 0L;
+
         if (ctpApiSettingBuilder_ == null) {
           ctpApiSetting_ = null;
         } else {
@@ -38991,12 +37723,6 @@ public final class CoreField {
           ibApiSetting_ = null;
           ibApiSettingBuilder_ = null;
         }
-        status_ = 0;
-
-        version_ = 0L;
-
-        autoConnectTimeRanges_ = "";
-
         return this;
       }
 
@@ -39029,6 +37755,10 @@ public final class CoreField {
         result.implementClassName_ = implementClassName_;
         result.gatewayType_ = gatewayType_;
         result.gatewayAdapterType_ = gatewayAdapterType_;
+        result.targetNodeId_ = targetNodeId_;
+        result.autoConnectTimeRanges_ = autoConnectTimeRanges_;
+        result.status_ = status_;
+        result.version_ = version_;
         if (ctpApiSettingBuilder_ == null) {
           result.ctpApiSetting_ = ctpApiSetting_;
         } else {
@@ -39039,9 +37769,6 @@ public final class CoreField {
         } else {
           result.ibApiSetting_ = ibApiSettingBuilder_.build();
         }
-        result.status_ = status_;
-        result.version_ = version_;
-        result.autoConnectTimeRanges_ = autoConnectTimeRanges_;
         onBuilt();
         return result;
       }
@@ -39112,11 +37839,12 @@ public final class CoreField {
         if (other.gatewayAdapterType_ != 0) {
           setGatewayAdapterTypeValue(other.getGatewayAdapterTypeValue());
         }
-        if (other.hasCtpApiSetting()) {
-          mergeCtpApiSetting(other.getCtpApiSetting());
+        if (other.getTargetNodeId() != 0) {
+          setTargetNodeId(other.getTargetNodeId());
         }
-        if (other.hasIbApiSetting()) {
-          mergeIbApiSetting(other.getIbApiSetting());
+        if (!other.getAutoConnectTimeRanges().isEmpty()) {
+          autoConnectTimeRanges_ = other.autoConnectTimeRanges_;
+          onChanged();
         }
         if (other.status_ != 0) {
           setStatusValue(other.getStatusValue());
@@ -39124,9 +37852,11 @@ public final class CoreField {
         if (other.getVersion() != 0L) {
           setVersion(other.getVersion());
         }
-        if (!other.getAutoConnectTimeRanges().isEmpty()) {
-          autoConnectTimeRanges_ = other.autoConnectTimeRanges_;
-          onChanged();
+        if (other.hasCtpApiSetting()) {
+          mergeCtpApiSetting(other.getCtpApiSetting());
+        }
+        if (other.hasIbApiSetting()) {
+          mergeIbApiSetting(other.getIbApiSetting());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -39355,7 +38085,7 @@ public final class CoreField {
        * 网关描述
        * </pre>
        *
-       * <code>string gatewayDescription = 4;</code>
+       * <code>string gatewayDescription = 3;</code>
        * @return The gatewayDescription.
        */
       public java.lang.String getGatewayDescription() {
@@ -39375,7 +38105,7 @@ public final class CoreField {
        * 网关描述
        * </pre>
        *
-       * <code>string gatewayDescription = 4;</code>
+       * <code>string gatewayDescription = 3;</code>
        * @return The bytes for gatewayDescription.
        */
       public com.google.protobuf.ByteString
@@ -39396,7 +38126,7 @@ public final class CoreField {
        * 网关描述
        * </pre>
        *
-       * <code>string gatewayDescription = 4;</code>
+       * <code>string gatewayDescription = 3;</code>
        * @param value The gatewayDescription to set.
        * @return This builder for chaining.
        */
@@ -39415,7 +38145,7 @@ public final class CoreField {
        * 网关描述
        * </pre>
        *
-       * <code>string gatewayDescription = 4;</code>
+       * <code>string gatewayDescription = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearGatewayDescription() {
@@ -39429,7 +38159,7 @@ public final class CoreField {
        * 网关描述
        * </pre>
        *
-       * <code>string gatewayDescription = 4;</code>
+       * <code>string gatewayDescription = 3;</code>
        * @param value The bytes for gatewayDescription to set.
        * @return This builder for chaining.
        */
@@ -39451,7 +38181,7 @@ public final class CoreField {
        * 实现类
        * </pre>
        *
-       * <code>string implementClassName = 5;</code>
+       * <code>string implementClassName = 4;</code>
        * @return The implementClassName.
        */
       public java.lang.String getImplementClassName() {
@@ -39471,7 +38201,7 @@ public final class CoreField {
        * 实现类
        * </pre>
        *
-       * <code>string implementClassName = 5;</code>
+       * <code>string implementClassName = 4;</code>
        * @return The bytes for implementClassName.
        */
       public com.google.protobuf.ByteString
@@ -39492,7 +38222,7 @@ public final class CoreField {
        * 实现类
        * </pre>
        *
-       * <code>string implementClassName = 5;</code>
+       * <code>string implementClassName = 4;</code>
        * @param value The implementClassName to set.
        * @return This builder for chaining.
        */
@@ -39511,7 +38241,7 @@ public final class CoreField {
        * 实现类
        * </pre>
        *
-       * <code>string implementClassName = 5;</code>
+       * <code>string implementClassName = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearImplementClassName() {
@@ -39525,7 +38255,7 @@ public final class CoreField {
        * 实现类
        * </pre>
        *
-       * <code>string implementClassName = 5;</code>
+       * <code>string implementClassName = 4;</code>
        * @param value The bytes for implementClassName to set.
        * @return This builder for chaining.
        */
@@ -39547,7 +38277,7 @@ public final class CoreField {
        * 网关类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
        * @return The enum numeric value on the wire for gatewayType.
        */
       @java.lang.Override public int getGatewayTypeValue() {
@@ -39558,7 +38288,7 @@ public final class CoreField {
        * 网关类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
        * @param value The enum numeric value on the wire for gatewayType to set.
        * @return This builder for chaining.
        */
@@ -39573,7 +38303,7 @@ public final class CoreField {
        * 网关类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
        * @return The gatewayType.
        */
       @java.lang.Override
@@ -39587,7 +38317,7 @@ public final class CoreField {
        * 网关类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
        * @param value The gatewayType to set.
        * @return This builder for chaining.
        */
@@ -39605,7 +38335,7 @@ public final class CoreField {
        * 网关类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 6;</code>
+       * <code>.xyz.redtorch.pb.GatewayTypeEnum gatewayType = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearGatewayType() {
@@ -39621,7 +38351,7 @@ public final class CoreField {
        * 网关适配器类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
        * @return The enum numeric value on the wire for gatewayAdapterType.
        */
       @java.lang.Override public int getGatewayAdapterTypeValue() {
@@ -39632,7 +38362,7 @@ public final class CoreField {
        * 网关适配器类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
        * @param value The enum numeric value on the wire for gatewayAdapterType to set.
        * @return This builder for chaining.
        */
@@ -39647,7 +38377,7 @@ public final class CoreField {
        * 网关适配器类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
        * @return The gatewayAdapterType.
        */
       @java.lang.Override
@@ -39661,7 +38391,7 @@ public final class CoreField {
        * 网关适配器类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
        * @param value The gatewayAdapterType to set.
        * @return This builder for chaining.
        */
@@ -39679,7 +38409,7 @@ public final class CoreField {
        * 网关适配器类型
        * </pre>
        *
-       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 7;</code>
+       * <code>.xyz.redtorch.pb.GatewayAdapterTypeEnum gatewayAdapterType = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearGatewayAdapterType() {
@@ -39689,18 +38419,210 @@ public final class CoreField {
         return this;
       }
 
+      private int targetNodeId_ ;
+      /**
+       * <code>fixed32 targetNodeId = 7;</code>
+       * @return The targetNodeId.
+       */
+      @java.lang.Override
+      public int getTargetNodeId() {
+        return targetNodeId_;
+      }
+      /**
+       * <code>fixed32 targetNodeId = 7;</code>
+       * @param value The targetNodeId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetNodeId(int value) {
+        
+        targetNodeId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>fixed32 targetNodeId = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetNodeId() {
+        
+        targetNodeId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object autoConnectTimeRanges_ = "";
+      /**
+       * <code>string autoConnectTimeRanges = 8;</code>
+       * @return The autoConnectTimeRanges.
+       */
+      public java.lang.String getAutoConnectTimeRanges() {
+        java.lang.Object ref = autoConnectTimeRanges_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          autoConnectTimeRanges_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string autoConnectTimeRanges = 8;</code>
+       * @return The bytes for autoConnectTimeRanges.
+       */
+      public com.google.protobuf.ByteString
+          getAutoConnectTimeRangesBytes() {
+        java.lang.Object ref = autoConnectTimeRanges_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          autoConnectTimeRanges_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string autoConnectTimeRanges = 8;</code>
+       * @param value The autoConnectTimeRanges to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAutoConnectTimeRanges(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        autoConnectTimeRanges_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string autoConnectTimeRanges = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAutoConnectTimeRanges() {
+        
+        autoConnectTimeRanges_ = getDefaultInstance().getAutoConnectTimeRanges();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string autoConnectTimeRanges = 8;</code>
+       * @param value The bytes for autoConnectTimeRanges to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAutoConnectTimeRangesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        autoConnectTimeRanges_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int status_ = 0;
+      /**
+       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+       * @return The enum numeric value on the wire for status.
+       */
+      @java.lang.Override public int getStatusValue() {
+        return status_;
+      }
+      /**
+       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+       * @param value The enum numeric value on the wire for status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusValue(int value) {
+        
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
+        @SuppressWarnings("deprecation")
+        xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
+        return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(xyz.redtorch.pb.CoreEnum.ConnectStatusEnum value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        status_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long version_ ;
+      /**
+       * <code>fixed64 version = 10;</code>
+       * @return The version.
+       */
+      @java.lang.Override
+      public long getVersion() {
+        return version_;
+      }
+      /**
+       * <code>fixed64 version = 10;</code>
+       * @param value The version to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVersion(long value) {
+        
+        version_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>fixed64 version = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVersion() {
+        
+        version_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField ctpApiSetting_;
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder> ctpApiSettingBuilder_;
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        * @return Whether the ctpApiSetting field is set.
        */
       public boolean hasCtpApiSetting() {
         return ctpApiSettingBuilder_ != null || ctpApiSetting_ != null;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        * @return The ctpApiSetting.
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField getCtpApiSetting() {
@@ -39711,7 +38633,7 @@ public final class CoreField {
         }
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public Builder setCtpApiSetting(xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField value) {
         if (ctpApiSettingBuilder_ == null) {
@@ -39727,7 +38649,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public Builder setCtpApiSetting(
           xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder builderForValue) {
@@ -39741,7 +38663,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public Builder mergeCtpApiSetting(xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField value) {
         if (ctpApiSettingBuilder_ == null) {
@@ -39759,7 +38681,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public Builder clearCtpApiSetting() {
         if (ctpApiSettingBuilder_ == null) {
@@ -39773,7 +38695,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder getCtpApiSettingBuilder() {
         
@@ -39781,7 +38703,7 @@ public final class CoreField {
         return getCtpApiSettingFieldBuilder().getBuilder();
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder getCtpApiSettingOrBuilder() {
         if (ctpApiSettingBuilder_ != null) {
@@ -39792,7 +38714,7 @@ public final class CoreField {
         }
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 8;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.CtpApiSettingField ctpApiSetting = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.CtpApiSettingFieldOrBuilder> 
@@ -39812,14 +38734,14 @@ public final class CoreField {
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder> ibApiSettingBuilder_;
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        * @return Whether the ibApiSetting field is set.
        */
       public boolean hasIbApiSetting() {
         return ibApiSettingBuilder_ != null || ibApiSetting_ != null;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        * @return The ibApiSetting.
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField getIbApiSetting() {
@@ -39830,7 +38752,7 @@ public final class CoreField {
         }
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public Builder setIbApiSetting(xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField value) {
         if (ibApiSettingBuilder_ == null) {
@@ -39846,7 +38768,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public Builder setIbApiSetting(
           xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder builderForValue) {
@@ -39860,7 +38782,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public Builder mergeIbApiSetting(xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField value) {
         if (ibApiSettingBuilder_ == null) {
@@ -39878,7 +38800,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public Builder clearIbApiSetting() {
         if (ibApiSettingBuilder_ == null) {
@@ -39892,7 +38814,7 @@ public final class CoreField {
         return this;
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder getIbApiSettingBuilder() {
         
@@ -39900,7 +38822,7 @@ public final class CoreField {
         return getIbApiSettingFieldBuilder().getBuilder();
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       public xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder getIbApiSettingOrBuilder() {
         if (ibApiSettingBuilder_ != null) {
@@ -39911,7 +38833,7 @@ public final class CoreField {
         }
       }
       /**
-       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 9;</code>
+       * <code>.xyz.redtorch.pb.GatewaySettingField.IbApiSettingField ibApiSetting = 12;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingField.Builder, xyz.redtorch.pb.CoreField.GatewaySettingField.IbApiSettingFieldOrBuilder> 
@@ -39925,167 +38847,6 @@ public final class CoreField {
           ibApiSetting_ = null;
         }
         return ibApiSettingBuilder_;
-      }
-
-      private int status_ = 0;
-      /**
-       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-       * @return The enum numeric value on the wire for status.
-       */
-      @java.lang.Override public int getStatusValue() {
-        return status_;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-       * @param value The enum numeric value on the wire for status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatusValue(int value) {
-        
-        status_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-       * @return The status.
-       */
-      @java.lang.Override
-      public xyz.redtorch.pb.CoreEnum.ConnectStatusEnum getStatus() {
-        @SuppressWarnings("deprecation")
-        xyz.redtorch.pb.CoreEnum.ConnectStatusEnum result = xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.valueOf(status_);
-        return result == null ? xyz.redtorch.pb.CoreEnum.ConnectStatusEnum.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(xyz.redtorch.pb.CoreEnum.ConnectStatusEnum value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        status_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.xyz.redtorch.pb.ConnectStatusEnum status = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        
-        status_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private long version_ ;
-      /**
-       * <code>fixed64 version = 11;</code>
-       * @return The version.
-       */
-      @java.lang.Override
-      public long getVersion() {
-        return version_;
-      }
-      /**
-       * <code>fixed64 version = 11;</code>
-       * @param value The version to set.
-       * @return This builder for chaining.
-       */
-      public Builder setVersion(long value) {
-        
-        version_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>fixed64 version = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearVersion() {
-        
-        version_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object autoConnectTimeRanges_ = "";
-      /**
-       * <code>string autoConnectTimeRanges = 12;</code>
-       * @return The autoConnectTimeRanges.
-       */
-      public java.lang.String getAutoConnectTimeRanges() {
-        java.lang.Object ref = autoConnectTimeRanges_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          autoConnectTimeRanges_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string autoConnectTimeRanges = 12;</code>
-       * @return The bytes for autoConnectTimeRanges.
-       */
-      public com.google.protobuf.ByteString
-          getAutoConnectTimeRangesBytes() {
-        java.lang.Object ref = autoConnectTimeRanges_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          autoConnectTimeRanges_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string autoConnectTimeRanges = 12;</code>
-       * @param value The autoConnectTimeRanges to set.
-       * @return This builder for chaining.
-       */
-      public Builder setAutoConnectTimeRanges(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        autoConnectTimeRanges_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string autoConnectTimeRanges = 12;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearAutoConnectTimeRanges() {
-        
-        autoConnectTimeRanges_ = getDefaultInstance().getAutoConnectTimeRanges();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string autoConnectTimeRanges = 12;</code>
-       * @param value The bytes for autoConnectTimeRanges to set.
-       * @return This builder for chaining.
-       */
-      public Builder setAutoConnectTimeRangesBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        autoConnectTimeRanges_ = value;
-        onChanged();
-        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -41728,186 +40489,182 @@ public final class CoreField {
     java.lang.String[] descriptorData = {
       "\n xyz/redtorch/pb/core_field.proto\022\017xyz." +
       "redtorch.pb\032\037xyz/redtorch/pb/core_enum.p" +
-      "roto\"\213\002\n\014GatewayField\022\021\n\tgatewayId\030\001 \001(\t" +
+      "roto\"\262\002\n\014GatewayField\022\021\n\tgatewayId\030\001 \001(\t" +
       "\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\0225\n\013g" +
       "atewayType\030\004 \001(\0162 .xyz.redtorch.pb.Gatew" +
       "ayTypeEnum\022C\n\022gatewayAdapterType\030\005 \001(\0162\'" +
       ".xyz.redtorch.pb.GatewayAdapterTypeEnum\022" +
       "2\n\006status\030\006 \001(\0162\".xyz.redtorch.pb.Connec" +
-      "tStatusEnum\022\025\n\rauthErrorFlag\030\007 \001(\010\"\207\006\n\rC" +
-      "ontractField\022\022\n\ncontractId\030\001 \001(\t\022\014\n\004name" +
-      "\030\002 \001(\t\022\020\n\010fullName\030\003 \001(\t\022\024\n\014thirdPartyId" +
-      "\030\004 \001(\t\022\025\n\runiformSymbol\030\007 \001(\t\022\016\n\006symbol\030" +
-      "\010 \001(\t\022/\n\010exchange\030\t \001(\0162\035.xyz.redtorch.p" +
-      "b.ExchangeEnum\0227\n\014productClass\030\n \001(\0162!.x" +
-      "yz.redtorch.pb.ProductClassEnum\022/\n\010curre" +
-      "ncy\030\013 \001(\0162\035.xyz.redtorch.pb.CurrencyEnum" +
-      "\022\022\n\nmultiplier\030\014 \001(\001\022\021\n\tpriceTick\030\r \001(\001\022" +
-      "\027\n\017longMarginRatio\030\016 \001(\001\022\030\n\020shortMarginR" +
-      "atio\030\017 \001(\001\022\036\n\026maxMarginSideAlgorithm\030\020 \001" +
-      "(\010\022\030\n\020underlyingSymbol\030\021 \001(\t\022\023\n\013strikePr" +
-      "ice\030\022 \001(\001\0225\n\013optionsType\030\023 \001(\0162 .xyz.red" +
-      "torch.pb.OptionsTypeEnum\022\034\n\024underlyingMu" +
-      "ltiplier\030\024 \001(\001\022$\n\034lastTradeDateOrContrac" +
-      "tMonth\030\025 \001(\t\022\034\n\024maxMarketOrderVolume\030\026 \001" +
-      "(\007\022\034\n\024minMarketOrderVolume\030\027 \001(\007\022\033\n\023maxL" +
-      "imitOrderVolume\030\030 \001(\007\022\033\n\023minLimitOrderVo" +
-      "lume\030\031 \001(\007\022=\n\017combinationType\030\032 \001(\0162$.xy" +
-      "z.redtorch.pb.CombinationTypeEnum\022\021\n\tgat" +
-      "ewayId\030\033 \001(\t\"\334\002\n\014AccountField\022\021\n\taccount" +
-      "Id\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\016\n\006" +
-      "holder\030\004 \001(\t\022/\n\010currency\030\005 \001(\0162\035.xyz.red" +
-      "torch.pb.CurrencyEnum\022\022\n\npreBalance\030\006 \001(" +
-      "\001\022\017\n\007balance\030\007 \001(\001\022\021\n\tavailable\030\010 \001(\001\022\022\n" +
-      "\ncommission\030\t \001(\001\022\016\n\006margin\030\n \001(\001\022\023\n\013clo" +
-      "seProfit\030\013 \001(\001\022\026\n\016positionProfit\030\014 \001(\001\022\017" +
-      "\n\007deposit\030\r \001(\001\022\020\n\010withdraw\030\016 \001(\001\022\021\n\tgat" +
-      "ewayId\030\017 \001(\t\022\035\n\025localCreatedTimestamp\030\020 " +
-      "\001(\006\"\301\t\n\nOrderField\022\025\n\roriginOrderId\030\001 \001(" +
-      "\t\022\017\n\007orderId\030\002 \001(\t\022\026\n\016adapterOrderId\030\003 \001" +
-      "(\t\022\021\n\taccountId\030\004 \001(\t\022\024\n\014orderLocalId\030\005 " +
-      "\001(\t\022\026\n\016brokerOrderSeq\030\006 \001(\t\022\022\n\norderSysI" +
-      "d\030\007 \001(\t\022\022\n\nsequenceNo\030\010 \001(\t\0221\n\tdirection" +
-      "\030\t \001(\0162\036.xyz.redtorch.pb.DirectionEnum\0223" +
-      "\n\noffsetFlag\030\n \001(\0162\037.xyz.redtorch.pb.Off" +
-      "setFlagEnum\0221\n\thedgeFlag\030\013 \001(\0162\036.xyz.red" +
-      "torch.pb.HedgeFlagEnum\022;\n\016orderPriceType" +
-      "\030\014 \001(\0162#.xyz.redtorch.pb.OrderPriceTypeE" +
-      "num\0225\n\013orderStatus\030\r \001(\0162 .xyz.redtorch." +
-      "pb.OrderStatusEnum\022\r\n\005price\030\016 \001(\001\022\023\n\013tot" +
-      "alVolume\030\017 \001(\007\022\024\n\014tradedVolume\030\020 \001(\007\0229\n\r" +
-      "timeCondition\030\021 \001(\0162\".xyz.redtorch.pb.Ti" +
-      "meConditionEnum\022\017\n\007gtdDate\030\022 \001(\t\022=\n\017volu" +
-      "meCondition\030\023 \001(\0162$.xyz.redtorch.pb.Volu" +
-      "meConditionEnum\022\021\n\tminVolume\030\024 \001(\007\022E\n\023co" +
-      "ntingentCondition\030\025 \001(\0162(.xyz.redtorch.p" +
-      "b.ContingentConditionEnum\022\021\n\tstopPrice\030\026" +
-      " \001(\001\022?\n\020forceCloseReason\030\027 \001(\0162%.xyz.red" +
-      "torch.pb.ForceCloseReasonEnum\022\023\n\013autoSus" +
-      "pend\030\030 \001(\007\022\026\n\016userForceClose\030\031 \001(\007\022\021\n\tsw" +
-      "apOrder\030\032 \001(\007\022\022\n\ntradingDay\030\033 \001(\t\022\021\n\tord" +
-      "erDate\030\034 \001(\t\022\021\n\torderTime\030\035 \001(\t\022\022\n\nactiv" +
-      "eTime\030\036 \001(\t\022\023\n\013suspendTime\030\037 \001(\t\022\022\n\ncanc" +
-      "elTime\030  \001(\t\022\022\n\nupdateTime\030! \001(\t\022\021\n\tstat" +
-      "usMsg\030\" \001(\t\022\017\n\007frontId\030# \001(\007\022\021\n\tsessionI" +
-      "d\030$ \001(\007\0220\n\010contract\030% \001(\0132\036.xyz.redtorch" +
-      ".pb.ContractField\022\021\n\tgatewayId\030& \001(\t\022A\n\021" +
-      "orderSubmitStatus\030\' \001(\0162&.xyz.redtorch.p" +
-      "b.OrderSubmitStatusEnum\"\257\005\n\nTradeField\022\017" +
-      "\n\007tradeId\030\001 \001(\t\022\026\n\016adapterTradeId\030\002 \001(\t\022" +
-      "\025\n\roriginOrderId\030\003 \001(\t\022\017\n\007orderId\030\004 \001(\t\022" +
-      "\026\n\016adapterOrderId\030\005 \001(\t\022\024\n\014orderLocalId\030" +
-      "\006 \001(\t\022\026\n\016brokerOrderSeq\030\007 \001(\t\022\022\n\norderSy" +
-      "sId\030\010 \001(\t\022\024\n\014settlementId\030\t \001(\t\022\022\n\nseque" +
-      "nceNo\030\n \001(\t\022\021\n\taccountId\030\013 \001(\t\0221\n\tdirect" +
-      "ion\030\014 \001(\0162\036.xyz.redtorch.pb.DirectionEnu" +
-      "m\0223\n\noffsetFlag\030\r \001(\0162\037.xyz.redtorch.pb." +
-      "OffsetFlagEnum\0221\n\thedgeFlag\030\016 \001(\0162\036.xyz." +
-      "redtorch.pb.HedgeFlagEnum\022\r\n\005price\030\017 \001(\001" +
-      "\022\016\n\006volume\030\020 \001(\007\0221\n\ttradeType\030\021 \001(\0162\036.xy" +
-      "z.redtorch.pb.TradeTypeEnum\0225\n\013priceSour" +
-      "ce\030\022 \001(\0162 .xyz.redtorch.pb.PriceSourceEn" +
-      "um\022\022\n\ntradingDay\030\023 \001(\t\022\021\n\ttradeDate\030\024 \001(" +
-      "\t\022\021\n\ttradeTime\030\025 \001(\t\022\026\n\016tradeTimestamp\030\026" +
-      " \001(\006\0220\n\010contract\030\027 \001(\0132\036.xyz.redtorch.pb" +
-      ".ContractField\022\021\n\tgatewayId\030\030 \001(\t\"\221\005\n\rPo" +
-      "sitionField\022\022\n\npositionId\030\001 \001(\t\022\021\n\taccou" +
-      "ntId\030\002 \001(\t\022A\n\021positionDirection\030\003 \001(\0162&." +
-      "xyz.redtorch.pb.PositionDirectionEnum\022\020\n" +
-      "\010position\030\004 \001(\007\022\016\n\006frozen\030\005 \001(\007\022\022\n\nydPos" +
-      "ition\030\006 \001(\007\022\020\n\010ydFrozen\030\007 \001(\007\022\022\n\ntdPosit" +
-      "ion\030\010 \001(\007\022\020\n\010tdFrozen\030\t \001(\007\022\021\n\tlastPrice" +
-      "\030\n \001(\001\022\r\n\005price\030\013 \001(\001\022\021\n\tpriceDiff\030\014 \001(\001" +
-      "\022\021\n\topenPrice\030\r \001(\001\022\025\n\ropenPriceDiff\030\016 \001" +
-      "(\001\022\026\n\016positionProfit\030\017 \001(\001\022\033\n\023positionPr" +
-      "ofitRatio\030\020 \001(\001\022\032\n\022openPositionProfit\030\021 " +
-      "\001(\001\022\037\n\027openPositionProfitRatio\030\022 \001(\001\022\021\n\t" +
-      "useMargin\030\023 \001(\001\022\026\n\016exchangeMargin\030\024 \001(\001\022" +
-      "\025\n\rcontractValue\030\025 \001(\001\0221\n\thedgeFlag\030\026 \001(" +
-      "\0162\036.xyz.redtorch.pb.HedgeFlagEnum\0220\n\010con" +
-      "tract\030\027 \001(\0132\036.xyz.redtorch.pb.ContractFi" +
-      "eld\022\021\n\tgatewayId\030\030 \001(\t\022\035\n\025localCreatedTi" +
-      "mestamp\030\031 \001(\006\"\372\005\n\tTickField\022\025\n\runiformSy" +
-      "mbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntrading" +
-      "Day\030\003 \001(\t\022\021\n\tactionDay\030\004 \001(\t\022\022\n\nactionTi" +
-      "me\030\005 \001(\t\022\027\n\017actionTimestamp\030\006 \001(\006\022\016\n\006sta" +
-      "tus\030\007 \001(\007\022\021\n\tlastPrice\030\010 \001(\001\022\020\n\010avgPrice" +
-      "\030\t \001(\001\022\023\n\013totalBidVol\030\n \001(\006\022\023\n\013totalAskV" +
-      "ol\030\013 \001(\006\022\033\n\023weightedAvgBidPrice\030\014 \001(\001\022\033\n" +
-      "\023weightedAvgAskPrice\030\r \001(\001\022\014\n\004iopv\030\016 \001(\001" +
-      "\022\027\n\017yieldToMaturity\030\017 \001(\001\022\023\n\013volumeDelta" +
-      "\030\020 \001(\006\022\016\n\006volume\030\021 \001(\006\022\020\n\010turnover\030\022 \001(\001" +
-      "\022\025\n\rturnoverDelta\030\023 \001(\001\022\021\n\tnumTrades\030\024 \001" +
-      "(\006\022\026\n\016numTradesDelta\030\025 \001(\006\022\024\n\014openIntere" +
-      "st\030\026 \001(\001\022\031\n\021openInterestDelta\030\027 \001(\001\022\027\n\017p" +
-      "reOpenInterest\030\030 \001(\001\022\025\n\rpreClosePrice\030\031 " +
-      "\001(\001\022\023\n\013settlePrice\030\032 \001(\001\022\026\n\016preSettlePri" +
-      "ce\030\033 \001(\001\022\021\n\topenPrice\030\034 \001(\001\022\021\n\thighPrice" +
-      "\030\035 \001(\001\022\020\n\010lowPrice\030\036 \001(\001\022\022\n\nupperLimit\030\037" +
-      " \001(\001\022\022\n\nlowerLimit\030  \001(\001\022\020\n\010bidPrice\030! \003" +
-      "(\001\022\020\n\010askPrice\030\" \003(\001\022\021\n\tbidVolume\030# \003(\007\022" +
-      "\021\n\taskVolume\030$ \003(\007\"\306\003\n\010BarField\022\025\n\runifo" +
-      "rmSymbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntra" +
-      "dingDay\030\003 \001(\t\022\021\n\tactionDay\030\004 \001(\t\022\022\n\nacti" +
-      "onTime\030\005 \001(\t\022\027\n\017actionTimestamp\030\006 \001(\006\022\021\n" +
-      "\topenPrice\030\007 \001(\001\022\021\n\thighPrice\030\010 \001(\001\022\020\n\010l" +
-      "owPrice\030\t \001(\001\022\022\n\nclosePrice\030\n \001(\001\022\024\n\014ope" +
-      "nInterest\030\013 \001(\001\022\031\n\021openInterestDelta\030\014 \001" +
-      "(\001\022\016\n\006volume\030\r \001(\006\022\023\n\013volumeDelta\030\016 \001(\006\022" +
-      "\020\n\010turnover\030\017 \001(\001\022\025\n\rturnoverDelta\030\020 \001(\001" +
-      "\022\021\n\tnumTrades\030\021 \001(\006\022\026\n\016numTradesDelta\030\022 " +
-      "\001(\006\022\027\n\017preOpenInterest\030\023 \001(\001\022\025\n\rpreClose" +
-      "Price\030\024 \001(\001\022\026\n\016preSettlePrice\030\025 \001(\001\";\n\016C" +
-      "ommonReqField\022\025\n\rtransactionId\030\001 \001(\t\022\022\n\n" +
-      "operatorId\030\002 \001(\t\"J\n\016CommonRspField\022\025\n\rtr" +
-      "ansactionId\030\001 \001(\t\022\017\n\007errorId\030\002 \001(\007\022\020\n\010er" +
-      "rorMsg\030\003 \001(\t\"\247\006\n\023SubmitOrderReqField\022\025\n\r" +
-      "originOrderId\030\001 \001(\t\022\023\n\013accountCode\030\002 \001(\t" +
-      "\022/\n\010currency\030\003 \001(\0162\035.xyz.redtorch.pb.Cur" +
-      "rencyEnum\0220\n\010contract\030\004 \001(\0132\036.xyz.redtor" +
-      "ch.pb.ContractField\022\021\n\tgatewayId\030\005 \001(\t\022\016" +
-      "\n\006volume\030\006 \001(\007\022\r\n\005price\030\007 \001(\001\022;\n\016orderPr" +
-      "iceType\030\010 \001(\0162#.xyz.redtorch.pb.OrderPri" +
-      "ceTypeEnum\0221\n\tdirection\030\t \001(\0162\036.xyz.redt" +
-      "orch.pb.DirectionEnum\0223\n\noffsetFlag\030\n \001(" +
-      "\0162\037.xyz.redtorch.pb.OffsetFlagEnum\0221\n\the" +
-      "dgeFlag\030\013 \001(\0162\036.xyz.redtorch.pb.HedgeFla" +
-      "gEnum\0229\n\rtimeCondition\030\014 \001(\0162\".xyz.redto" +
-      "rch.pb.TimeConditionEnum\022\017\n\007gtdDate\030\r \001(" +
-      "\t\022=\n\017volumeCondition\030\016 \001(\0162$.xyz.redtorc" +
-      "h.pb.VolumeConditionEnum\022\021\n\tminVolume\030\017 " +
-      "\001(\007\022E\n\023contingentCondition\030\020 \001(\0162(.xyz.r" +
-      "edtorch.pb.ContingentConditionEnum\022\021\n\tst" +
-      "opPrice\030\021 \001(\001\022?\n\020forceCloseReason\030\022 \001(\0162" +
-      "%.xyz.redtorch.pb.ForceCloseReasonEnum\022\023" +
-      "\n\013autoSuspend\030\023 \001(\007\022\026\n\016userForceClose\030\024 " +
-      "\001(\007\022\021\n\tswapOrder\030\025 \001(\007\"=\n\023CancelOrderReq" +
-      "Field\022\025\n\roriginOrderId\030\003 \001(\t\022\017\n\007orderId\030" +
-      "\004 \001(\t\"\373\005\n\023GatewaySettingField\022\021\n\tgateway" +
-      "Id\030\001 \001(\t\022\023\n\013gatewayName\030\002 \001(\t\022\032\n\022gateway" +
-      "Description\030\004 \001(\t\022\032\n\022implementClassName\030" +
-      "\005 \001(\t\0225\n\013gatewayType\030\006 \001(\0162 .xyz.redtorc" +
-      "h.pb.GatewayTypeEnum\022C\n\022gatewayAdapterTy" +
-      "pe\030\007 \001(\0162\'.xyz.redtorch.pb.GatewayAdapte" +
-      "rTypeEnum\022N\n\rctpApiSetting\030\010 \001(\01327.xyz.r" +
-      "edtorch.pb.GatewaySettingField.CtpApiSet" +
-      "tingField\022L\n\014ibApiSetting\030\t \001(\01326.xyz.re" +
-      "dtorch.pb.GatewaySettingField.IbApiSetti" +
-      "ngField\0222\n\006status\030\n \001(\0162\".xyz.redtorch.p" +
-      "b.ConnectStatusEnum\022\017\n\007version\030\013 \001(\006\022\035\n\025" +
-      "autoConnectTimeRanges\030\014 \001(\t\032\302\001\n\022CtpApiSe" +
-      "ttingField\022\016\n\006userId\030\001 \001(\t\022\020\n\010password\030\002" +
-      " \001(\t\022\020\n\010brokerId\030\003 \001(\t\022\016\n\006tdHost\030\004 \001(\t\022\016" +
-      "\n\006tdPort\030\005 \001(\t\022\016\n\006mdHost\030\006 \001(\t\022\016\n\006mdPort" +
-      "\030\007 \001(\t\022\020\n\010authCode\030\010 \001(\t\022\027\n\017userProductI" +
-      "nfo\030\t \001(\t\022\r\n\005appId\030\n \001(\t\032A\n\021IbApiSetting" +
-      "Field\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\007\022\020\n\010cli" +
-      "entId\030\003 \001(\007\"_\n\010LogField\022/\n\010logLevel\030\001 \001(" +
-      "\0162\035.xyz.redtorch.pb.LogLevelEnum\022\021\n\ttime" +
-      "stamp\030\002 \001(\006\022\017\n\007content\030\003 \001(\t\"d\n\013NoticeFi" +
-      "eld\0221\n\006status\030\001 \001(\0162!.xyz.redtorch.pb.Co" +
-      "mmonStatusEnum\022\021\n\ttimestamp\030\002 \001(\006\022\017\n\007con" +
-      "tent\030\003 \001(\tb\006proto3"
+      "tStatusEnum\022\025\n\rauthErrorFlag\030\007 \001(\010\022\024\n\014ta" +
+      "rgetNodeId\030\010 \001(\007\022\017\n\007version\030\t \001(\006\"\207\006\n\rCo" +
+      "ntractField\022\022\n\ncontractId\030\001 \001(\t\022\014\n\004name\030" +
+      "\002 \001(\t\022\020\n\010fullName\030\003 \001(\t\022\024\n\014thirdPartyId\030" +
+      "\004 \001(\t\022\025\n\runiformSymbol\030\007 \001(\t\022\016\n\006symbol\030\010" +
+      " \001(\t\022/\n\010exchange\030\t \001(\0162\035.xyz.redtorch.pb" +
+      ".ExchangeEnum\0227\n\014productClass\030\n \001(\0162!.xy" +
+      "z.redtorch.pb.ProductClassEnum\022/\n\010curren" +
+      "cy\030\013 \001(\0162\035.xyz.redtorch.pb.CurrencyEnum\022" +
+      "\022\n\nmultiplier\030\014 \001(\001\022\021\n\tpriceTick\030\r \001(\001\022\027" +
+      "\n\017longMarginRatio\030\016 \001(\001\022\030\n\020shortMarginRa" +
+      "tio\030\017 \001(\001\022\036\n\026maxMarginSideAlgorithm\030\020 \001(" +
+      "\010\022\030\n\020underlyingSymbol\030\021 \001(\t\022\023\n\013strikePri" +
+      "ce\030\022 \001(\001\0225\n\013optionsType\030\023 \001(\0162 .xyz.redt" +
+      "orch.pb.OptionsTypeEnum\022\034\n\024underlyingMul" +
+      "tiplier\030\024 \001(\001\022$\n\034lastTradeDateOrContract" +
+      "Month\030\025 \001(\t\022\034\n\024maxMarketOrderVolume\030\026 \001(" +
+      "\007\022\034\n\024minMarketOrderVolume\030\027 \001(\007\022\033\n\023maxLi" +
+      "mitOrderVolume\030\030 \001(\007\022\033\n\023minLimitOrderVol" +
+      "ume\030\031 \001(\007\022=\n\017combinationType\030\032 \001(\0162$.xyz" +
+      ".redtorch.pb.CombinationTypeEnum\022\021\n\tgate" +
+      "wayId\030\033 \001(\t\"\334\002\n\014AccountField\022\021\n\taccountI" +
+      "d\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\016\n\006h" +
+      "older\030\004 \001(\t\022/\n\010currency\030\005 \001(\0162\035.xyz.redt" +
+      "orch.pb.CurrencyEnum\022\022\n\npreBalance\030\006 \001(\001" +
+      "\022\017\n\007balance\030\007 \001(\001\022\021\n\tavailable\030\010 \001(\001\022\022\n\n" +
+      "commission\030\t \001(\001\022\016\n\006margin\030\n \001(\001\022\023\n\013clos" +
+      "eProfit\030\013 \001(\001\022\026\n\016positionProfit\030\014 \001(\001\022\017\n" +
+      "\007deposit\030\r \001(\001\022\020\n\010withdraw\030\016 \001(\001\022\021\n\tgate" +
+      "wayId\030\017 \001(\t\022\035\n\025localCreatedTimestamp\030\020 \001" +
+      "(\006\"\301\t\n\nOrderField\022\025\n\roriginOrderId\030\001 \001(\t" +
+      "\022\017\n\007orderId\030\002 \001(\t\022\026\n\016adapterOrderId\030\003 \001(" +
+      "\t\022\021\n\taccountId\030\004 \001(\t\022\024\n\014orderLocalId\030\005 \001" +
+      "(\t\022\026\n\016brokerOrderSeq\030\006 \001(\t\022\022\n\norderSysId" +
+      "\030\007 \001(\t\022\022\n\nsequenceNo\030\010 \001(\t\0221\n\tdirection\030" +
+      "\t \001(\0162\036.xyz.redtorch.pb.DirectionEnum\0223\n" +
+      "\noffsetFlag\030\n \001(\0162\037.xyz.redtorch.pb.Offs" +
+      "etFlagEnum\0221\n\thedgeFlag\030\013 \001(\0162\036.xyz.redt" +
+      "orch.pb.HedgeFlagEnum\022;\n\016orderPriceType\030" +
+      "\014 \001(\0162#.xyz.redtorch.pb.OrderPriceTypeEn" +
+      "um\0225\n\013orderStatus\030\r \001(\0162 .xyz.redtorch.p" +
+      "b.OrderStatusEnum\022\r\n\005price\030\016 \001(\001\022\023\n\013tota" +
+      "lVolume\030\017 \001(\007\022\024\n\014tradedVolume\030\020 \001(\007\0229\n\rt" +
+      "imeCondition\030\021 \001(\0162\".xyz.redtorch.pb.Tim" +
+      "eConditionEnum\022\017\n\007gtdDate\030\022 \001(\t\022=\n\017volum" +
+      "eCondition\030\023 \001(\0162$.xyz.redtorch.pb.Volum" +
+      "eConditionEnum\022\021\n\tminVolume\030\024 \001(\007\022E\n\023con" +
+      "tingentCondition\030\025 \001(\0162(.xyz.redtorch.pb" +
+      ".ContingentConditionEnum\022\021\n\tstopPrice\030\026 " +
+      "\001(\001\022?\n\020forceCloseReason\030\027 \001(\0162%.xyz.redt" +
+      "orch.pb.ForceCloseReasonEnum\022\023\n\013autoSusp" +
+      "end\030\030 \001(\007\022\026\n\016userForceClose\030\031 \001(\007\022\021\n\tswa" +
+      "pOrder\030\032 \001(\007\022\022\n\ntradingDay\030\033 \001(\t\022\021\n\torde" +
+      "rDate\030\034 \001(\t\022\021\n\torderTime\030\035 \001(\t\022\022\n\nactive" +
+      "Time\030\036 \001(\t\022\023\n\013suspendTime\030\037 \001(\t\022\022\n\ncance" +
+      "lTime\030  \001(\t\022\022\n\nupdateTime\030! \001(\t\022\021\n\tstatu" +
+      "sMsg\030\" \001(\t\022\017\n\007frontId\030# \001(\007\022\021\n\tsessionId" +
+      "\030$ \001(\007\0220\n\010contract\030% \001(\0132\036.xyz.redtorch." +
+      "pb.ContractField\022\021\n\tgatewayId\030& \001(\t\022A\n\021o" +
+      "rderSubmitStatus\030\' \001(\0162&.xyz.redtorch.pb" +
+      ".OrderSubmitStatusEnum\"\257\005\n\nTradeField\022\017\n" +
+      "\007tradeId\030\001 \001(\t\022\026\n\016adapterTradeId\030\002 \001(\t\022\025" +
+      "\n\roriginOrderId\030\003 \001(\t\022\017\n\007orderId\030\004 \001(\t\022\026" +
+      "\n\016adapterOrderId\030\005 \001(\t\022\024\n\014orderLocalId\030\006" +
+      " \001(\t\022\026\n\016brokerOrderSeq\030\007 \001(\t\022\022\n\norderSys" +
+      "Id\030\010 \001(\t\022\024\n\014settlementId\030\t \001(\t\022\022\n\nsequen" +
+      "ceNo\030\n \001(\t\022\021\n\taccountId\030\013 \001(\t\0221\n\tdirecti" +
+      "on\030\014 \001(\0162\036.xyz.redtorch.pb.DirectionEnum" +
+      "\0223\n\noffsetFlag\030\r \001(\0162\037.xyz.redtorch.pb.O" +
+      "ffsetFlagEnum\0221\n\thedgeFlag\030\016 \001(\0162\036.xyz.r" +
+      "edtorch.pb.HedgeFlagEnum\022\r\n\005price\030\017 \001(\001\022" +
+      "\016\n\006volume\030\020 \001(\007\0221\n\ttradeType\030\021 \001(\0162\036.xyz" +
+      ".redtorch.pb.TradeTypeEnum\0225\n\013priceSourc" +
+      "e\030\022 \001(\0162 .xyz.redtorch.pb.PriceSourceEnu" +
+      "m\022\022\n\ntradingDay\030\023 \001(\t\022\021\n\ttradeDate\030\024 \001(\t" +
+      "\022\021\n\ttradeTime\030\025 \001(\t\022\026\n\016tradeTimestamp\030\026 " +
+      "\001(\006\0220\n\010contract\030\027 \001(\0132\036.xyz.redtorch.pb." +
+      "ContractField\022\021\n\tgatewayId\030\030 \001(\t\"\221\005\n\rPos" +
+      "itionField\022\022\n\npositionId\030\001 \001(\t\022\021\n\taccoun" +
+      "tId\030\002 \001(\t\022A\n\021positionDirection\030\003 \001(\0162&.x" +
+      "yz.redtorch.pb.PositionDirectionEnum\022\020\n\010" +
+      "position\030\004 \001(\007\022\016\n\006frozen\030\005 \001(\007\022\022\n\nydPosi" +
+      "tion\030\006 \001(\007\022\020\n\010ydFrozen\030\007 \001(\007\022\022\n\ntdPositi" +
+      "on\030\010 \001(\007\022\020\n\010tdFrozen\030\t \001(\007\022\021\n\tlastPrice\030" +
+      "\n \001(\001\022\r\n\005price\030\013 \001(\001\022\021\n\tpriceDiff\030\014 \001(\001\022" +
+      "\021\n\topenPrice\030\r \001(\001\022\025\n\ropenPriceDiff\030\016 \001(" +
+      "\001\022\026\n\016positionProfit\030\017 \001(\001\022\033\n\023positionPro" +
+      "fitRatio\030\020 \001(\001\022\032\n\022openPositionProfit\030\021 \001" +
+      "(\001\022\037\n\027openPositionProfitRatio\030\022 \001(\001\022\021\n\tu" +
+      "seMargin\030\023 \001(\001\022\026\n\016exchangeMargin\030\024 \001(\001\022\025" +
+      "\n\rcontractValue\030\025 \001(\001\0221\n\thedgeFlag\030\026 \001(\016" +
+      "2\036.xyz.redtorch.pb.HedgeFlagEnum\0220\n\010cont" +
+      "ract\030\027 \001(\0132\036.xyz.redtorch.pb.ContractFie" +
+      "ld\022\021\n\tgatewayId\030\030 \001(\t\022\035\n\025localCreatedTim" +
+      "estamp\030\031 \001(\006\"\264\004\n\tTickField\022\025\n\runiformSym" +
+      "bol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntradingD" +
+      "ay\030\003 \001(\007\022\021\n\tactionDay\030\004 \001(\007\022\022\n\nactionTim" +
+      "e\030\005 \001(\007\022\027\n\017actionTimestamp\030\006 \001(\006\022\021\n\tlast" +
+      "Price\030\007 \001(\001\022\020\n\010avgPrice\030\010 \001(\001\022\023\n\013volumeD" +
+      "elta\030\t \001(\006\022\016\n\006volume\030\n \001(\006\022\020\n\010turnover\030\013" +
+      " \001(\001\022\025\n\rturnoverDelta\030\014 \001(\001\022\024\n\014openInter" +
+      "est\030\r \001(\001\022\031\n\021openInterestDelta\030\016 \001(\001\022\027\n\017" +
+      "preOpenInterest\030\017 \001(\001\022\025\n\rpreClosePrice\030\020" +
+      " \001(\001\022\023\n\013settlePrice\030\021 \001(\001\022\026\n\016preSettlePr" +
+      "ice\030\022 \001(\001\022\021\n\topenPrice\030\023 \001(\001\022\021\n\thighPric" +
+      "e\030\024 \001(\001\022\020\n\010lowPrice\030\025 \001(\001\022\022\n\nupperLimit\030" +
+      "\026 \001(\001\022\022\n\nlowerLimit\030\027 \001(\001\022\020\n\010bidPrice\030\030 " +
+      "\003(\001\022\020\n\010askPrice\030\031 \003(\001\022\021\n\tbidVolume\030\032 \003(\007" +
+      "\022\021\n\taskVolume\030\033 \003(\007\"\253\003\n\010BarField\022\025\n\runif" +
+      "ormSymbol\030\001 \001(\t\022\021\n\tgatewayId\030\002 \001(\t\022\022\n\ntr" +
+      "adingDay\030\003 \001(\007\022\021\n\tactionDay\030\004 \001(\007\022\022\n\nact" +
+      "ionTime\030\005 \001(\007\022\027\n\017actionTimestamp\030\006 \001(\006\022\021" +
+      "\n\topenPrice\030\007 \001(\001\022\021\n\thighPrice\030\010 \001(\001\022\020\n\010" +
+      "lowPrice\030\t \001(\001\022\022\n\nclosePrice\030\n \001(\001\022\024\n\014op" +
+      "enInterest\030\013 \001(\001\022\031\n\021openInterestDelta\030\014 " +
+      "\001(\001\022\016\n\006volume\030\r \001(\006\022\023\n\013volumeDelta\030\016 \001(\006" +
+      "\022\020\n\010turnover\030\017 \001(\001\022\025\n\rturnoverDelta\030\020 \001(" +
+      "\001\022\027\n\017preOpenInterest\030\021 \001(\001\022\025\n\rpreClosePr" +
+      "ice\030\022 \001(\001\022\026\n\016preSettlePrice\030\023 \001(\001\022\016\n\006per" +
+      "iod\030\024 \001(\005\";\n\016CommonReqField\022\025\n\rtransacti" +
+      "onId\030\001 \001(\t\022\022\n\noperatorId\030\002 \001(\t\"J\n\016Common" +
+      "RspField\022\025\n\rtransactionId\030\001 \001(\t\022\017\n\007error" +
+      "Id\030\002 \001(\007\022\020\n\010errorMsg\030\003 \001(\t\"\247\006\n\023SubmitOrd" +
+      "erReqField\022\025\n\roriginOrderId\030\001 \001(\t\022\023\n\013acc" +
+      "ountCode\030\002 \001(\t\022/\n\010currency\030\003 \001(\0162\035.xyz.r" +
+      "edtorch.pb.CurrencyEnum\0220\n\010contract\030\004 \001(" +
+      "\0132\036.xyz.redtorch.pb.ContractField\022\021\n\tgat" +
+      "ewayId\030\005 \001(\t\022\016\n\006volume\030\006 \001(\007\022\r\n\005price\030\007 " +
+      "\001(\001\022;\n\016orderPriceType\030\010 \001(\0162#.xyz.redtor" +
+      "ch.pb.OrderPriceTypeEnum\0221\n\tdirection\030\t " +
+      "\001(\0162\036.xyz.redtorch.pb.DirectionEnum\0223\n\no" +
+      "ffsetFlag\030\n \001(\0162\037.xyz.redtorch.pb.Offset" +
+      "FlagEnum\0221\n\thedgeFlag\030\013 \001(\0162\036.xyz.redtor" +
+      "ch.pb.HedgeFlagEnum\0229\n\rtimeCondition\030\014 \001" +
+      "(\0162\".xyz.redtorch.pb.TimeConditionEnum\022\017" +
+      "\n\007gtdDate\030\r \001(\t\022=\n\017volumeCondition\030\016 \001(\016" +
+      "2$.xyz.redtorch.pb.VolumeConditionEnum\022\021" +
+      "\n\tminVolume\030\017 \001(\007\022E\n\023contingentCondition" +
+      "\030\020 \001(\0162(.xyz.redtorch.pb.ContingentCondi" +
+      "tionEnum\022\021\n\tstopPrice\030\021 \001(\001\022?\n\020forceClos" +
+      "eReason\030\022 \001(\0162%.xyz.redtorch.pb.ForceClo" +
+      "seReasonEnum\022\023\n\013autoSuspend\030\023 \001(\007\022\026\n\016use" +
+      "rForceClose\030\024 \001(\007\022\021\n\tswapOrder\030\025 \001(\007\"=\n\023" +
+      "CancelOrderReqField\022\025\n\roriginOrderId\030\003 \001" +
+      "(\t\022\017\n\007orderId\030\004 \001(\t\"\221\006\n\023GatewaySettingFi" +
+      "eld\022\021\n\tgatewayId\030\001 \001(\t\022\023\n\013gatewayName\030\002 " +
+      "\001(\t\022\032\n\022gatewayDescription\030\003 \001(\t\022\032\n\022imple" +
+      "mentClassName\030\004 \001(\t\0225\n\013gatewayType\030\005 \001(\016" +
+      "2 .xyz.redtorch.pb.GatewayTypeEnum\022C\n\022ga" +
+      "tewayAdapterType\030\006 \001(\0162\'.xyz.redtorch.pb" +
+      ".GatewayAdapterTypeEnum\022\024\n\014targetNodeId\030" +
+      "\007 \001(\007\022\035\n\025autoConnectTimeRanges\030\010 \001(\t\0222\n\006" +
+      "status\030\t \001(\0162\".xyz.redtorch.pb.ConnectSt" +
+      "atusEnum\022\017\n\007version\030\n \001(\006\022N\n\rctpApiSetti" +
+      "ng\030\013 \001(\01327.xyz.redtorch.pb.GatewaySettin" +
+      "gField.CtpApiSettingField\022L\n\014ibApiSettin" +
+      "g\030\014 \001(\01326.xyz.redtorch.pb.GatewaySetting" +
+      "Field.IbApiSettingField\032\302\001\n\022CtpApiSettin" +
+      "gField\022\016\n\006userId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
+      "\022\020\n\010brokerId\030\003 \001(\t\022\016\n\006tdHost\030\004 \001(\t\022\016\n\006td" +
+      "Port\030\005 \001(\t\022\016\n\006mdHost\030\006 \001(\t\022\016\n\006mdPort\030\007 \001" +
+      "(\t\022\020\n\010authCode\030\010 \001(\t\022\027\n\017userProductInfo\030" +
+      "\t \001(\t\022\r\n\005appId\030\n \001(\t\032A\n\021IbApiSettingFiel" +
+      "d\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002 \001(\007\022\020\n\010clientI" +
+      "d\030\003 \001(\007\"_\n\010LogField\022/\n\010logLevel\030\001 \001(\0162\035." +
+      "xyz.redtorch.pb.LogLevelEnum\022\021\n\ttimestam" +
+      "p\030\002 \001(\006\022\017\n\007content\030\003 \001(\t\"d\n\013NoticeField\022" +
+      "1\n\006status\030\001 \001(\0162!.xyz.redtorch.pb.Common" +
+      "StatusEnum\022\021\n\ttimestamp\030\002 \001(\006\022\017\n\007content" +
+      "\030\003 \001(\tb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -41919,7 +40676,7 @@ public final class CoreField {
     internal_static_xyz_redtorch_pb_GatewayField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_GatewayField_descriptor,
-        new java.lang.String[] { "GatewayId", "Name", "Description", "GatewayType", "GatewayAdapterType", "Status", "AuthErrorFlag", });
+        new java.lang.String[] { "GatewayId", "Name", "Description", "GatewayType", "GatewayAdapterType", "Status", "AuthErrorFlag", "TargetNodeId", "Version", });
     internal_static_xyz_redtorch_pb_ContractField_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_xyz_redtorch_pb_ContractField_fieldAccessorTable = new
@@ -41955,13 +40712,13 @@ public final class CoreField {
     internal_static_xyz_redtorch_pb_TickField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_TickField_descriptor,
-        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "Status", "LastPrice", "AvgPrice", "TotalBidVol", "TotalAskVol", "WeightedAvgBidPrice", "WeightedAvgAskPrice", "Iopv", "YieldToMaturity", "VolumeDelta", "Volume", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "OpenInterest", "OpenInterestDelta", "PreOpenInterest", "PreClosePrice", "SettlePrice", "PreSettlePrice", "OpenPrice", "HighPrice", "LowPrice", "UpperLimit", "LowerLimit", "BidPrice", "AskPrice", "BidVolume", "AskVolume", });
+        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "LastPrice", "AvgPrice", "VolumeDelta", "Volume", "Turnover", "TurnoverDelta", "OpenInterest", "OpenInterestDelta", "PreOpenInterest", "PreClosePrice", "SettlePrice", "PreSettlePrice", "OpenPrice", "HighPrice", "LowPrice", "UpperLimit", "LowerLimit", "BidPrice", "AskPrice", "BidVolume", "AskVolume", });
     internal_static_xyz_redtorch_pb_BarField_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_xyz_redtorch_pb_BarField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_BarField_descriptor,
-        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "OpenPrice", "HighPrice", "LowPrice", "ClosePrice", "OpenInterest", "OpenInterestDelta", "Volume", "VolumeDelta", "Turnover", "TurnoverDelta", "NumTrades", "NumTradesDelta", "PreOpenInterest", "PreClosePrice", "PreSettlePrice", });
+        new java.lang.String[] { "UniformSymbol", "GatewayId", "TradingDay", "ActionDay", "ActionTime", "ActionTimestamp", "OpenPrice", "HighPrice", "LowPrice", "ClosePrice", "OpenInterest", "OpenInterestDelta", "Volume", "VolumeDelta", "Turnover", "TurnoverDelta", "PreOpenInterest", "PreClosePrice", "PreSettlePrice", "Period", });
     internal_static_xyz_redtorch_pb_CommonReqField_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_xyz_redtorch_pb_CommonReqField_fieldAccessorTable = new
@@ -41991,7 +40748,7 @@ public final class CoreField {
     internal_static_xyz_redtorch_pb_GatewaySettingField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_xyz_redtorch_pb_GatewaySettingField_descriptor,
-        new java.lang.String[] { "GatewayId", "GatewayName", "GatewayDescription", "ImplementClassName", "GatewayType", "GatewayAdapterType", "CtpApiSetting", "IbApiSetting", "Status", "Version", "AutoConnectTimeRanges", });
+        new java.lang.String[] { "GatewayId", "GatewayName", "GatewayDescription", "ImplementClassName", "GatewayType", "GatewayAdapterType", "TargetNodeId", "AutoConnectTimeRanges", "Status", "Version", "CtpApiSetting", "IbApiSetting", });
     internal_static_xyz_redtorch_pb_GatewaySettingField_CtpApiSettingField_descriptor =
       internal_static_xyz_redtorch_pb_GatewaySettingField_descriptor.getNestedTypes().get(0);
     internal_static_xyz_redtorch_pb_GatewaySettingField_CtpApiSettingField_fieldAccessorTable = new

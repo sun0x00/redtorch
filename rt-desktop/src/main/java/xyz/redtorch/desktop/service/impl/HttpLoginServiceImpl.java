@@ -57,7 +57,7 @@ public class HttpLoginServiceImpl implements HttpLoginService {
                     configService.setOperatorId(operatorId);
                     configService.setAuthToken(authToken);
                     logger.info("登录成功！");
-                    new Thread(()->{
+                    new Thread(() -> {
                         desktopTradeCachesService.reloadData();
                     }).start();
                     return true;

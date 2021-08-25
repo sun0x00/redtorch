@@ -23,100 +23,100 @@ import java.util.List;
 @RequestMapping("${rt.master.apiBasePath}/management/operator")
 public class OperatorController {
 
-	private static final Logger logger = LoggerFactory.getLogger(OperatorController.class);
+    private static final Logger logger = LoggerFactory.getLogger(OperatorController.class);
 
-	@Autowired
-	private OperatorService operatorService;
+    @Autowired
+    private OperatorService operatorService;
 
-	@RequestMapping(value = { "/getOperatorList" })
-	@ResponseBody
-	public ResponseVo<List<OperatorPo>> getOperatorList(HttpServletRequest request) {
-		ResponseVo<List<OperatorPo>> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			if (user.isCanReadOperator()) {
-				List<OperatorPo> operatorList = operatorService.getOperatorList();
-				responseVo.setVoData(operatorList);
-			} else {
-				logger.error("查询操作员列表错误,用户{}没有权限", user.getUsername());
-				responseVo.setStatus(false);
-				responseVo.setMessage("查询操作员列表错误,用户没有权限");
-			}
-		} catch (Exception e) {
-			logger.error("查询操作员列表错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/getOperatorList"})
+    @ResponseBody
+    public ResponseVo<List<OperatorPo>> getOperatorList(HttpServletRequest request) {
+        ResponseVo<List<OperatorPo>> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            if (user.isCanReadOperator()) {
+                List<OperatorPo> operatorList = operatorService.getOperatorList();
+                responseVo.setVoData(operatorList);
+            } else {
+                logger.error("查询操作员列表错误,用户{}没有权限", user.getUsername());
+                responseVo.setStatus(false);
+                responseVo.setMessage("查询操作员列表错误,用户没有权限");
+            }
+        } catch (Exception e) {
+            logger.error("查询操作员列表错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 
-	@RequestMapping(value = { "/deleteOperatorByOperatorId" })
-	@ResponseBody
-	public ResponseVo<String> deleteOperatorByOperatorId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
-		ResponseVo<String> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			if (user.isCanWriteOperator()) {
-				logger.info("用户{}删除操作员,ID:{}", user.getUsername(), requestVo.getVoData());
-				operatorService.deleteOperatorByOperatorId(requestVo.getVoData());
-			} else {
-				logger.error("根据操作员ID删除操作员错误,用户{}没有权限", user.getUsername());
-				responseVo.setStatus(false);
-				responseVo.setMessage("根据操作员ID删除操作员错误,用户没有权限");
-			}
-		} catch (Exception e) {
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/deleteOperatorByOperatorId"})
+    @ResponseBody
+    public ResponseVo<String> deleteOperatorByOperatorId(HttpServletRequest request, @RequestBody RequestVo<String> requestVo) {
+        ResponseVo<String> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            if (user.isCanWriteOperator()) {
+                logger.info("用户{}删除操作员,ID:{}", user.getUsername(), requestVo.getVoData());
+                operatorService.deleteOperatorByOperatorId(requestVo.getVoData());
+            } else {
+                logger.error("根据操作员ID删除操作员错误,用户{}没有权限", user.getUsername());
+                responseVo.setStatus(false);
+                responseVo.setMessage("根据操作员ID删除操作员错误,用户没有权限");
+            }
+        } catch (Exception e) {
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 
-	@RequestMapping(value = { "/saveOrUpdateOperator" })
-	@ResponseBody
-	public ResponseVo<String> saveOrUpdateOperator(HttpServletRequest request, @RequestBody OperatorPo operator) {
-		ResponseVo<String> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			if (user.isCanWriteOperator()) {
-				if (StringUtils.isBlank(operator.getOperatorId())) {
-					operator.setOperatorId(UUIDStringPoolUtils.getUUIDString());
-					logger.info("用户{}新建操作员,ID:{}", user.getUsername(), operator.getOperatorId());
-				} else {
-					logger.info("用户{}修改操作员,ID:{}", user.getUsername(), operator.getOperatorId());
-				}
-				operatorService.upsertOperatorByOperatorId(operator);
-			} else {
-				logger.error("新增或修改操作员错误,用户{}没有权限", user.getUsername());
-				responseVo.setStatus(false);
-				responseVo.setMessage("新增或修改操作员错误,用户没有权限");
-			}
-		} catch (Exception e) {
-			logger.error("新增或修改操作员错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/saveOrUpdateOperator"})
+    @ResponseBody
+    public ResponseVo<String> saveOrUpdateOperator(HttpServletRequest request, @RequestBody OperatorPo operator) {
+        ResponseVo<String> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            if (user.isCanWriteOperator()) {
+                if (StringUtils.isBlank(operator.getOperatorId())) {
+                    operator.setOperatorId(UUIDStringPoolUtils.getUUIDString());
+                    logger.info("用户{}新建操作员,ID:{}", user.getUsername(), operator.getOperatorId());
+                } else {
+                    logger.info("用户{}修改操作员,ID:{}", user.getUsername(), operator.getOperatorId());
+                }
+                operatorService.upsertOperatorByOperatorId(operator);
+            } else {
+                logger.error("新增或修改操作员错误,用户{}没有权限", user.getUsername());
+                responseVo.setStatus(false);
+                responseVo.setMessage("新增或修改操作员错误,用户没有权限");
+            }
+        } catch (Exception e) {
+            logger.error("新增或修改操作员错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 
-	@RequestMapping(value = { "/createOperator" })
-	@ResponseBody
-	public ResponseVo<String> createOperator(HttpServletRequest request) {
-		ResponseVo<String> responseVo = new ResponseVo<>();
-		try {
-			UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
-			if (user.isCanWriteOperator()) {
-				OperatorPo operator = operatorService.createOperator();
-				logger.info("用户{}新增操作员,操作员ID:{}", user.getUsername(), operator.getOperatorId());
-			} else {
-				logger.error("新增操作员发生错误,用户{}没有权限", user.getUsername());
-				responseVo.setStatus(false);
-				responseVo.setMessage("新增操作员发生错误,用户没有权限");
-			}
-		} catch (Exception e) {
-			logger.error("新增操作员发生错误", e);
-			responseVo.setStatus(false);
-			responseVo.setMessage(e.getMessage());
-		}
-		return responseVo;
-	}
+    @RequestMapping(value = {"/createOperator"})
+    @ResponseBody
+    public ResponseVo<String> createOperator(HttpServletRequest request) {
+        ResponseVo<String> responseVo = new ResponseVo<>();
+        try {
+            UserPo user = (UserPo) request.getAttribute(CommonConstant.KEY_USER_PO);
+            if (user.isCanWriteOperator()) {
+                OperatorPo operator = operatorService.createOperator();
+                logger.info("用户{}新增操作员,操作员ID:{}", user.getUsername(), operator.getOperatorId());
+            } else {
+                logger.error("新增操作员发生错误,用户{}没有权限", user.getUsername());
+                responseVo.setStatus(false);
+                responseVo.setMessage("新增操作员发生错误,用户没有权限");
+            }
+        } catch (Exception e) {
+            logger.error("新增操作员发生错误", e);
+            responseVo.setStatus(false);
+            responseVo.setMessage(e.getMessage());
+        }
+        return responseVo;
+    }
 }

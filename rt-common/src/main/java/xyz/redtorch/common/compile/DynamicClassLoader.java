@@ -1,7 +1,7 @@
 package xyz.redtorch.common.compile;
 
-import java.net.URLClassLoader;
 import java.net.URL;
+import java.net.URLClassLoader;
 
 public class DynamicClassLoader extends URLClassLoader {
 	public DynamicClassLoader(ClassLoader parent) {

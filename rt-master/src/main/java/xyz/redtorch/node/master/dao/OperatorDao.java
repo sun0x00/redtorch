@@ -1,15 +1,15 @@
 package xyz.redtorch.node.master.dao;
 
-import java.util.List;
-
 import xyz.redtorch.node.master.po.OperatorPo;
 
+import java.util.List;
+
 public interface OperatorDao {
-	OperatorPo queryOperatorByOperatorId(String operatorId);
+    OperatorPo queryOperatorByOperatorId(String operatorId);
 
-	List<OperatorPo> queryOperatorList();
+    List<OperatorPo> queryOperatorList();
 
-	void upsertOperatorByOperatorId(OperatorPo operator);
+    void upsertOperatorByOperatorId(OperatorPo operator);
 
-	void deleteOperatorByOperatorId(String operatorId);
+    void deleteOperatorByOperatorId(String operatorId);
 }

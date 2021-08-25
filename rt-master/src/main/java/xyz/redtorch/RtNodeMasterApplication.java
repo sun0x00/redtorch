@@ -6,28 +6,26 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfigurat
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import xyz.redtorch.common.service.impl.FastEventServiceImpl;
-import xyz.redtorch.common.service.impl.RpcRspHandlerServiceImpl;
+import xyz.redtorch.common.service.impl.*;
 
-@SpringBootApplication(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class })
-@Import({ FastEventServiceImpl.class, RpcRspHandlerServiceImpl.class })
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
+@Import({FastEventServiceImpl.class, RpcRspHandlerServiceImpl.class, TodayMarketDataServiceImpl.class, HistoryMarketDataServiceImpl.class, MarketDataServiceImpl.class})
 public class RtNodeMasterApplication {
 
-	@Bean
-	public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
-		return new RestTemplate(factory);
-	}
+    @Bean
+    public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
+        return new RestTemplate(factory);
+    }
 
-	@Bean
-	public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
-		return new SimpleClientHttpRequestFactory();
-	}
+    @Bean
+    public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
+        return new SimpleClientHttpRequestFactory();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(RtNodeMasterApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RtNodeMasterApplication.class, args);
+    }
 }

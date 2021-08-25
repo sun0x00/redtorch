@@ -71,7 +71,7 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
     public List<String> getConnectedGatewayIdList() {
         List<String> resultList = new ArrayList<>();
 
-        for (Map.Entry<String, GatewayApi> entry : gatewayApiMap.entrySet()) {
+        for (Entry<String, GatewayApi> entry : gatewayApiMap.entrySet()) {
             String gatewayId = entry.getKey();
             GatewayApi gatewayApi = entry.getValue();
             if (gatewayApi.isConnected()) {
@@ -170,7 +170,7 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
         public void run() {
             long startTime = System.currentTimeMillis();
             while (true) {
-                if ((System.currentTimeMillis() - startTime) < period * 1000) {
+                if ((System.currentTimeMillis() - startTime) < period * 1000L) {
                     try {
                         Thread.sleep(50);
                         continue;
@@ -197,7 +197,13 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
                             authErrorGatewayVersionSet.add(authErrorFlagKey);
                             authErrorFlag = true;
                         }
-                        GatewayField gateway = GatewayField.newBuilder().setAuthErrorFlag(authErrorFlag).setGatewayId(gatewayId).setStatus(gatewayStatus).build();
+                        GatewayField gateway = GatewayField.newBuilder() //
+                                .setAuthErrorFlag(authErrorFlag) //
+                                .setGatewayId(gatewayId) //
+                                .setStatus(gatewayStatus) //
+                                .setVersion(gatewayApi.getGatewaySetting().getVersion()) //
+                                .setTargetNodeId(gatewayApi.getGatewaySetting().getTargetNodeId()) //
+                                .build();
                         gatewayList.add(gateway);
                     }
 
@@ -321,7 +327,7 @@ public class SlaveSystemServiceImpl implements SlaveSystemService, InitializingB
                                         connectGatewayApi(gatewaySetting);
                                         logger.info("等待3秒");
                                         // TODO 等待3秒,避免登录过于集中造成网络阻塞,可根据实际情况修改
-                                        Thread.sleep(3*1000);
+                                        Thread.sleep(3 * 1000);
                                     } else {
                                         logger.info("网关{}不在自动连接时间范围:{}", gatewaySetting.getGatewayId(), gatewaySetting.getAutoConnectTimeRanges());
                                     }

@@ -25,12 +25,14 @@ bootJar {
 
 dependencies {
 	compile project(':rt-common')
-    compile group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoJavaDriverVersion}"
-   	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
-			exclude(module: 'spring-boot-starter-tomcat')
-    }
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+	compile group: 'org.mongodb', name: 'mongo-java-driver', version:"${rootProject.mongoJavaDriverVersion}"
+	compile(group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version:"${rootProject.springBootVersion}") {
+		exclude(module: 'spring-boot-starter-tomcat')
+	}
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version:"${rootProject.springBootVersion}"
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jdbc', version:"${rootProject.springBootVersion}"
+	compile group: 'ru.yandex.clickhouse', name: 'clickhouse-jdbc', version: "${rootProject.clickhouseJdbcVersion}"
 	compile group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
+	compile group: 'org.apache.zookeeper', name: 'zookeeper', version: "${rootProject.zookeeperVersion}"
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:"${rootProject.springBootVersion}"
-	
 }

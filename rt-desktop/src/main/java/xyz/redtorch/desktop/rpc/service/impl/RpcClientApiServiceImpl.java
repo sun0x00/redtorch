@@ -225,7 +225,7 @@ public class RpcClientApiServiceImpl implements RpcClientApiService {
             RpcGetContractListReq.Builder rpcGetContractListReqBuilder = RpcGetContractListReq.newBuilder() //
                     .setCommonReq(generateCommonReq(transactionId));
 
-            return rpcClientProcessService.sendAsyncHttpRpc( RpcId.GET_CONTRACT_LIST_REQ, transactionId, rpcGetContractListReqBuilder.build().toByteString());
+            return rpcClientProcessService.sendAsyncHttpRpc(RpcId.GET_CONTRACT_LIST_REQ, transactionId, rpcGetContractListReqBuilder.build().toByteString());
 
         }
     }

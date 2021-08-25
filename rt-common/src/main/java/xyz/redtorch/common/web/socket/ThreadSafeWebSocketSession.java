@@ -3,11 +3,11 @@ package xyz.redtorch.common.web.socket;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator;
 
-public class ThreadSafeWebSocketSession extends ConcurrentWebSocketSessionDecorator{
+public class ThreadSafeWebSocketSession extends ConcurrentWebSocketSessionDecorator {
 
-	public ThreadSafeWebSocketSession(WebSocketSession session) {
-		super(session, 30*1000, Integer.MAX_VALUE);
-	}
+    public ThreadSafeWebSocketSession(WebSocketSession session) {
+        super(session, 30 * 1000, Integer.MAX_VALUE);
+    }
 
 }
 

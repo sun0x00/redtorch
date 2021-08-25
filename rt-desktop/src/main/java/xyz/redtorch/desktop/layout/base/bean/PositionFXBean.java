@@ -37,16 +37,16 @@ public class PositionFXBean {
     private boolean contractSelectedFlag = false;
     private double accountBalance;
 
-    public PositionFXBean(PositionField positionField, boolean contractSelectedFlag, double accountBalance){
+    public PositionFXBean(PositionField positionField, boolean contractSelectedFlag, double accountBalance) {
         update(positionField, contractSelectedFlag, accountBalance);
     }
 
-    public PositionField getPositionField(){
+    public PositionField getPositionField() {
         return positionField;
     }
 
     public void update(PositionField newPositionField, boolean newContractSelectedFlag, double newAccountBalance) {
-        if(newPositionField == null){
+        if (newPositionField == null) {
             return;
         }
 
@@ -62,12 +62,12 @@ public class PositionFXBean {
             updateContract(newPositionField);
         }
 
-        if(newPositionField != positionField){
+        if (newPositionField != positionField) {
             // 如果持仓更新的数据对象地址不相同，则不是同一条新数据
             accountBalance = newAccountBalance;
             updateChangeable(newPositionField);
             positionField = newPositionField;
-        }else if(!CommonUtils.isEquals(accountBalance,newAccountBalance)) {
+        } else if (!CommonUtils.isEquals(accountBalance, newAccountBalance)) {
             // 如果持仓更新的对象是一条旧数据,但是账户资金发生了变化
             accountBalance = newAccountBalance;
             updateMarginRatio(newPositionField);

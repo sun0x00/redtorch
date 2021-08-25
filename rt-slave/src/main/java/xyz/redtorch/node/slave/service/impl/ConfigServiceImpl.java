@@ -56,11 +56,11 @@ public class ConfigServiceImpl implements ConfigService, InitializingBean {
 
     @Override
     public int getRpcProcessNormalThreadsNum() {
-        return syncRuntimeDataPeriod;
+        return rpcProcessNormalThreadsNum;
     }
 
     @Override
     public int getSyncRuntimeDataPeriod() {
-        return rpcProcessNormalThreadsNum;
+        return syncRuntimeDataPeriod;
     }
 }

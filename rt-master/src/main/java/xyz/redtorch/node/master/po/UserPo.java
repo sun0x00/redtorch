@@ -1,239 +1,248 @@
 package xyz.redtorch.node.master.po;
 
 public class UserPo {
-	private String username;
-	private String password;
-	private String newPassword;
-	private String description;
-	private Integer loginTimes;
-	private String operatorId;
-	private String randomAuthToken;
-	private String recentlySessionId;
-	private String recentlyIpAddress;
-	private Integer recentlyPort;
-	private String recentlyLoginTime;
-	private String recentlyLogoutTime;
-	// 简单的权限管理
-	private boolean canReadGateway = false;
-	private boolean canChangeGatewayStatus = false;
-	private boolean canWriteGateway = false;
-	private boolean canReadUser = false;
-	private boolean canWriteUser = false;
-	private boolean canReadOperator = false;
-	private boolean canChangeOperatorStatus = false;
-	private boolean canWriteOperator = false;
-	private boolean canReadNode = false;
-	private boolean canChangeNodeToken = false;
-	private boolean canWriteNode = false;
-	private boolean canReadLog = false;
-	private boolean canReadMarketDataRecording = false;
-	private boolean canWriteMarketDataRecording = false;
+    private String username;
+    private String password;
+    private String newPassword;
+    private String description;
+    private Integer loginTimes;
+    private String operatorId;
+    private String randomAuthToken;
+    private long tokenRefreshTimestamp;
+    private String recentlySessionId;
+    private String recentlyIpAddress;
+    private Integer recentlyPort;
+    private String recentlyLoginTime;
+    private String recentlyLogoutTime;
+    // 简单的权限管理
+    private boolean canReadGateway = false;
+    private boolean canChangeGatewayStatus = false;
+    private boolean canWriteGateway = false;
+    private boolean canReadUser = false;
+    private boolean canWriteUser = false;
+    private boolean canReadOperator = false;
+    private boolean canChangeOperatorStatus = false;
+    private boolean canWriteOperator = false;
+    private boolean canReadNode = false;
+    private boolean canChangeNodeToken = false;
+    private boolean canWriteNode = false;
+    private boolean canReadLog = false;
+    private boolean canReadMarketDataRecording = false;
+    private boolean canWriteMarketDataRecording = false;
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getNewPassword() {
-		return newPassword;
-	}
+    public String getNewPassword() {
+        return newPassword;
+    }
 
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
-	}
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Integer getLoginTimes() {
-		return loginTimes;
-	}
+    public Integer getLoginTimes() {
+        return loginTimes;
+    }
 
-	public void setLoginTimes(Integer loginTimes) {
-		this.loginTimes = loginTimes;
-	}
+    public void setLoginTimes(Integer loginTimes) {
+        this.loginTimes = loginTimes;
+    }
 
-	public String getOperatorId() {
-		return operatorId;
-	}
+    public String getOperatorId() {
+        return operatorId;
+    }
 
-	public void setOperatorId(String operatorId) {
-		this.operatorId = operatorId;
-	}
+    public void setOperatorId(String operatorId) {
+        this.operatorId = operatorId;
+    }
 
-	public String getRandomAuthToken() {
-		return randomAuthToken;
-	}
+    public String getRandomAuthToken() {
+        return randomAuthToken;
+    }
 
-	public void setRandomAuthToken(String randomAuthToken) {
-		this.randomAuthToken = randomAuthToken;
-	}
+    public void setRandomAuthToken(String randomAuthToken) {
+        this.randomAuthToken = randomAuthToken;
+    }
 
-	public String getRecentlySessionId() {
-		return recentlySessionId;
-	}
+    public long getTokenRefreshTimestamp() {
+        return tokenRefreshTimestamp;
+    }
 
-	public void setRecentlySessionId(String recentlySessionId) {
-		this.recentlySessionId = recentlySessionId;
-	}
+    public void setTokenRefreshTimestamp(long tokenRefreshTimestamp) {
+        this.tokenRefreshTimestamp = tokenRefreshTimestamp;
+    }
 
-	public String getRecentlyIpAddress() {
-		return recentlyIpAddress;
-	}
+    public String getRecentlySessionId() {
+        return recentlySessionId;
+    }
 
-	public void setRecentlyIpAddress(String recentlyIpAddress) {
-		this.recentlyIpAddress = recentlyIpAddress;
-	}
+    public void setRecentlySessionId(String recentlySessionId) {
+        this.recentlySessionId = recentlySessionId;
+    }
 
-	public Integer getRecentlyPort() {
-		return recentlyPort;
-	}
+    public String getRecentlyIpAddress() {
+        return recentlyIpAddress;
+    }
 
-	public void setRecentlyPort(Integer recentlyPort) {
-		this.recentlyPort = recentlyPort;
-	}
+    public void setRecentlyIpAddress(String recentlyIpAddress) {
+        this.recentlyIpAddress = recentlyIpAddress;
+    }
 
-	public String getRecentlyLoginTime() {
-		return recentlyLoginTime;
-	}
+    public Integer getRecentlyPort() {
+        return recentlyPort;
+    }
 
-	public void setRecentlyLoginTime(String recentlyLoginTime) {
-		this.recentlyLoginTime = recentlyLoginTime;
-	}
+    public void setRecentlyPort(Integer recentlyPort) {
+        this.recentlyPort = recentlyPort;
+    }
 
-	public String getRecentlyLogoutTime() {
-		return recentlyLogoutTime;
-	}
+    public String getRecentlyLoginTime() {
+        return recentlyLoginTime;
+    }
 
-	public void setRecentlyLogoutTime(String recentlyLogoutTime) {
-		this.recentlyLogoutTime = recentlyLogoutTime;
-	}
+    public void setRecentlyLoginTime(String recentlyLoginTime) {
+        this.recentlyLoginTime = recentlyLoginTime;
+    }
 
-	public boolean isCanReadGateway() {
-		return canReadGateway;
-	}
+    public String getRecentlyLogoutTime() {
+        return recentlyLogoutTime;
+    }
 
-	public void setCanReadGateway(boolean canReadGateway) {
-		this.canReadGateway = canReadGateway;
-	}
+    public void setRecentlyLogoutTime(String recentlyLogoutTime) {
+        this.recentlyLogoutTime = recentlyLogoutTime;
+    }
 
-	public boolean isCanChangeGatewayStatus() {
-		return canChangeGatewayStatus;
-	}
+    public boolean isCanReadGateway() {
+        return canReadGateway;
+    }
 
-	public void setCanChangeGatewayStatus(boolean canChangeGatewayStatus) {
-		this.canChangeGatewayStatus = canChangeGatewayStatus;
-	}
+    public void setCanReadGateway(boolean canReadGateway) {
+        this.canReadGateway = canReadGateway;
+    }
 
-	public boolean isCanWriteGateway() {
-		return canWriteGateway;
-	}
+    public boolean isCanChangeGatewayStatus() {
+        return canChangeGatewayStatus;
+    }
 
-	public void setCanWriteGateway(boolean canWriteGateway) {
-		this.canWriteGateway = canWriteGateway;
-	}
+    public void setCanChangeGatewayStatus(boolean canChangeGatewayStatus) {
+        this.canChangeGatewayStatus = canChangeGatewayStatus;
+    }
 
-	public boolean isCanReadUser() {
-		return canReadUser;
-	}
+    public boolean isCanWriteGateway() {
+        return canWriteGateway;
+    }
 
-	public void setCanReadUser(boolean canReadUser) {
-		this.canReadUser = canReadUser;
-	}
+    public void setCanWriteGateway(boolean canWriteGateway) {
+        this.canWriteGateway = canWriteGateway;
+    }
 
-	public boolean isCanWriteUser() {
-		return canWriteUser;
-	}
+    public boolean isCanReadUser() {
+        return canReadUser;
+    }
 
-	public void setCanWriteUser(boolean canWriteUser) {
-		this.canWriteUser = canWriteUser;
-	}
+    public void setCanReadUser(boolean canReadUser) {
+        this.canReadUser = canReadUser;
+    }
 
-	public boolean isCanReadOperator() {
-		return canReadOperator;
-	}
+    public boolean isCanWriteUser() {
+        return canWriteUser;
+    }
 
-	public void setCanReadOperator(boolean canReadOperator) {
-		this.canReadOperator = canReadOperator;
-	}
+    public void setCanWriteUser(boolean canWriteUser) {
+        this.canWriteUser = canWriteUser;
+    }
 
-	public boolean isCanChangeOperatorStatus() {
-		return canChangeOperatorStatus;
-	}
+    public boolean isCanReadOperator() {
+        return canReadOperator;
+    }
 
-	public void setCanChangeOperatorStatus(boolean canChangeOperatorStatus) {
-		this.canChangeOperatorStatus = canChangeOperatorStatus;
-	}
+    public void setCanReadOperator(boolean canReadOperator) {
+        this.canReadOperator = canReadOperator;
+    }
 
-	public boolean isCanWriteOperator() {
-		return canWriteOperator;
-	}
+    public boolean isCanChangeOperatorStatus() {
+        return canChangeOperatorStatus;
+    }
 
-	public void setCanWriteOperator(boolean canWriteOperator) {
-		this.canWriteOperator = canWriteOperator;
-	}
+    public void setCanChangeOperatorStatus(boolean canChangeOperatorStatus) {
+        this.canChangeOperatorStatus = canChangeOperatorStatus;
+    }
 
-	public boolean isCanReadNode() {
-		return canReadNode;
-	}
+    public boolean isCanWriteOperator() {
+        return canWriteOperator;
+    }
 
-	public void setCanReadNode(boolean canReadNode) {
-		this.canReadNode = canReadNode;
-	}
+    public void setCanWriteOperator(boolean canWriteOperator) {
+        this.canWriteOperator = canWriteOperator;
+    }
 
-	public boolean isCanChangeNodeToken() {
-		return canChangeNodeToken;
-	}
+    public boolean isCanReadNode() {
+        return canReadNode;
+    }
 
-	public void setCanChangeNodeToken(boolean canChangeNodeToken) {
-		this.canChangeNodeToken = canChangeNodeToken;
-	}
+    public void setCanReadNode(boolean canReadNode) {
+        this.canReadNode = canReadNode;
+    }
 
-	public boolean isCanWriteNode() {
-		return canWriteNode;
-	}
+    public boolean isCanChangeNodeToken() {
+        return canChangeNodeToken;
+    }
 
-	public void setCanWriteNode(boolean canWriteNode) {
-		this.canWriteNode = canWriteNode;
-	}
+    public void setCanChangeNodeToken(boolean canChangeNodeToken) {
+        this.canChangeNodeToken = canChangeNodeToken;
+    }
 
-	public boolean isCanReadLog() {
-		return canReadLog;
-	}
+    public boolean isCanWriteNode() {
+        return canWriteNode;
+    }
 
-	public void setCanReadLog(boolean canReadLog) {
-		this.canReadLog = canReadLog;
-	}
+    public void setCanWriteNode(boolean canWriteNode) {
+        this.canWriteNode = canWriteNode;
+    }
 
-	public boolean isCanReadMarketDataRecording() {
-		return canReadMarketDataRecording;
-	}
+    public boolean isCanReadLog() {
+        return canReadLog;
+    }
 
-	public void setCanReadMarketDataRecording(boolean canReadMarketDataRecording) {
-		this.canReadMarketDataRecording = canReadMarketDataRecording;
-	}
+    public void setCanReadLog(boolean canReadLog) {
+        this.canReadLog = canReadLog;
+    }
 
-	public boolean isCanWriteMarketDataRecording() {
-		return canWriteMarketDataRecording;
-	}
+    public boolean isCanReadMarketDataRecording() {
+        return canReadMarketDataRecording;
+    }
 
-	public void setCanWriteMarketDataRecording(boolean canWriteMarketDataRecording) {
-		this.canWriteMarketDataRecording = canWriteMarketDataRecording;
-	}
+    public void setCanReadMarketDataRecording(boolean canReadMarketDataRecording) {
+        this.canReadMarketDataRecording = canReadMarketDataRecording;
+    }
+
+    public boolean isCanWriteMarketDataRecording() {
+        return canWriteMarketDataRecording;
+    }
+
+    public void setCanWriteMarketDataRecording(boolean canWriteMarketDataRecording) {
+        this.canWriteMarketDataRecording = canWriteMarketDataRecording;
+    }
 }

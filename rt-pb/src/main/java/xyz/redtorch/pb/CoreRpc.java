@@ -48050,7 +48050,7 @@ public final class CoreRpc {
       if (!getUniformSymbolBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, uniformSymbol_);
       }
-      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
+      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_UNKNOWN.getNumber()) {
         output.writeEnum(5, barPeriod_);
       }
       if (marketDataDBType_ != xyz.redtorch.pb.CoreEnum.MarketDataDBTypeEnum.MDDT_MIX.getNumber()) {
@@ -48080,7 +48080,7 @@ public final class CoreRpc {
       if (!getUniformSymbolBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, uniformSymbol_);
       }
-      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_5Sec.getNumber()) {
+      if (barPeriod_ != xyz.redtorch.pb.CoreEnum.BarPeriodEnum.B_UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, barPeriod_);
       }

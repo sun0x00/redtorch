@@ -50,9 +50,9 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
             logger.debug("处理DEP记录,会话ID:{},内容类型:{},RPC ID:{},时间戳:{}", sessionId, contentTypeValueName, rpcId, timestamp);
         }
 
-        ByteString contentByteString = RpcUtils.processByteString( contentType,  dep.getContentBytes(),  rpcId, timestamp);
+        ByteString contentByteString = RpcUtils.processByteString(contentType, dep.getContentBytes(), rpcId, timestamp);
 
-        if(contentByteString == null){
+        if (contentByteString == null) {
             return null;
         }
 
@@ -361,8 +361,7 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                 }
             }
             // -----------------------------------------------------
-            case RpcId.GET_CONTRACT_LIST_RSP_VALUE:
-            {
+            case RpcId.GET_CONTRACT_LIST_RSP_VALUE: {
                 try {
                     RpcGetContractListRsp rpcGetContractListRsp = RpcGetContractListRsp.parseFrom(contentByteString);
                     RpcUtils.checkCommonRsp(rpcGetContractListRsp.getCommonRsp());
@@ -385,14 +384,14 @@ public class RpcServerOverHttpProcessServiceImpl implements RpcServerOverHttpPro
                 return null;
             }
             case RpcId.GET_POSITION_LIST_RSP_VALUE: {
-                        try {
-                            RpcGetPositionListRsp rpcGetPositionListRsp = RpcGetPositionListRsp.parseFrom(contentByteString);
-                            RpcUtils.checkCommonRsp(rpcGetPositionListRsp.getCommonRsp());
-                            transactionId = rpcGetPositionListRsp.getCommonRsp().getTransactionId();
-                            rpcRspHandlerService.onRpcRsp(transactionId, rpcGetPositionListRsp);
-                        } catch (Exception e) {
-                            logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:GET_POSITION_LIST_RSP", sessionId, transactionId, e);
-                        }
+                try {
+                    RpcGetPositionListRsp rpcGetPositionListRsp = RpcGetPositionListRsp.parseFrom(contentByteString);
+                    RpcUtils.checkCommonRsp(rpcGetPositionListRsp.getCommonRsp());
+                    transactionId = rpcGetPositionListRsp.getCommonRsp().getTransactionId();
+                    rpcRspHandlerService.onRpcRsp(transactionId, rpcGetPositionListRsp);
+                } catch (Exception e) {
+                    logger.error("处理RPC异常,会话ID:{},业务ID:{},RPC:GET_POSITION_LIST_RSP", sessionId, transactionId, e);
+                }
                 return null;
             }
             case RpcId.GET_ACCOUNT_LIST_RSP_VALUE: {
