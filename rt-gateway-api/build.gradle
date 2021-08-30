@@ -1,8 +1,0 @@
-group = "${rootProject.group}"
-version = "${rootProject.version}"
-description = """网关接口模块"""
-
-dependencies {
-	compile project(':rt-common')
-	compile group: 'com.lmax', name: 'disruptor', version:"${rootProject.disruptorVersion}"
-}
