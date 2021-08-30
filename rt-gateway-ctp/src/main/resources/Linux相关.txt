@@ -1,0 +1,4 @@
+非root用户运行可能有帮助的命令
+	sudo chmod a+s /usr/sbin/dmidecode
+	
+当前so编译使用的相关版本信息

@@ -1,0 +1,47 @@
+
+.table-row-cell:selected { -fx-background-color: #BBBBBB; }
+
+
+
+.trade-label{
+    -fx-light-text-color: rgb(220, 220, 220);
+    -fx-mid-text-color: rgb(100, 100, 100);
+    -fx-dark-text-color: rgb(20, 20, 20);
+}
+
+
+.trade-long-color {
+    -fx-light-text-color: rgb(255, 90, 90);
+    -fx-mid-text-color: rgb(217, 70, 00);
+    -fx-dark-text-color: rgb(217, 70, 00);
+    -fx-fill: rgb(217, 70, 00);
+}
+
+.trade-short-color {
+    -fx-light-text-color: rgb(0, 220, 0);
+    -fx-mid-text-color: rgb(0, 96, 0);
+    -fx-dark-text-color: rgb(0, 96, 0);
+    -fx-fill: rgb(0, 96, 0);
+}
+
+.trade-info-color {
+    -fx-light-text-color: rgb(80, 255, 255);
+    -fx-mid-text-color: rgb(0, 153, 204);
+    -fx-dark-text-color: rgb(0, 153, 204);
+    -fx-fill:rgb(0, 153, 204);
+}
+
+.trade-remind-color {
+    -fx-light-text-color: rgb(220, 220, 10);
+    -fx-mid-text-color: rgb(255, 153, 0);
+    -fx-dark-text-color: rgb(255, 153, 0);
+    -fx-fill:rgb(255, 153, 0);
+}
+
+.trade-long-color-background {
+    -fx-background-color: rgb(217, 70, 00);
+}
+
+.trade-short-color-background {
+    -fx-background-color: rgb(0, 96, 0);
+}
