@@ -182,8 +182,16 @@ class CacheServiceImpl : CacheService {
         return accountMap[accountId]
     }
 
+    override fun queryPositionByPositionId(positionId: String): Position? {
+        return positionMap[positionId]
+    }
+
     override fun queryTickByUniformSymbol(uniformSymbol: String): Tick? {
         return tickMap[uniformSymbol]
+    }
+
+    override fun queryContractByUniformSymbol(uniformSymbol: String): Contract? {
+        return contractMap[uniformSymbol]
     }
 
 }

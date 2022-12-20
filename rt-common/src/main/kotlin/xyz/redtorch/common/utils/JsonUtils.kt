@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.flipkart.zjsonpatch.DiffFlags
 import com.flipkart.zjsonpatch.JsonDiff
 import com.flipkart.zjsonpatch.JsonPatch
-import java.util.*
 
 
 object JsonUtils {
@@ -78,7 +77,7 @@ object JsonUtils {
      */
     @JvmStatic
     fun diffAsJsonPatchString(sourceObject: Any, targetObject: Any): String {
-        return diffAsJsonPatch(sourceObject, targetObject).toString();
+        return diffAsJsonPatch(sourceObject, targetObject).toString()
     }
 
     /**

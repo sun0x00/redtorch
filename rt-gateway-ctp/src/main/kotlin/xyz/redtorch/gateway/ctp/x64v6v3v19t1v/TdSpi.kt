@@ -17,7 +17,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
-import kotlin.collections.ArrayList
 
 class TdSpi internal constructor(private val ctpGatewayImpl: CtpGatewayImpl) : CThostFtdcTraderSpi() {
     companion object {
@@ -499,6 +498,7 @@ class TdSpi internal constructor(private val ctpGatewayImpl: CtpGatewayImpl) : C
                     reqUserLoginField.brokerID = brokerId
                     reqUserLoginField.userID = userId
                     reqUserLoginField.password = password
+                    reqUserLoginField.userProductInfo = userProductInfo
                     cThostFtdcTraderApi!!.ReqUserLogin(reqUserLoginField, reqId.incrementAndGet())
                 } else {
                     logger.error("{}交易接口客户端验证失败 错误ID:{},错误信息:{}", logInfo, pRspInfo.errorID, pRspInfo.errorMsg)
@@ -1023,30 +1023,15 @@ class TdSpi internal constructor(private val ctpGatewayImpl: CtpGatewayImpl) : C
                     position.tdPosition = position.tdPosition + pInvestorPosition.todayPosition
                     position.ydPosition = position.position - position.tdPosition
 
-                    // 中金所优先平今
-                    if (ExchangeEnum.CFFEX == position.contract.exchange) {
-                        if (position.tdPosition > 0) {
-                            if (position.tdPosition >= position.frozen) {
-                                position.tdFrozen = position.frozen
-                            } else {
-                                position.tdFrozen = position.tdPosition
-                                position.ydFrozen = position.frozen - position.tdPosition
-                            }
-                        } else {
+                    if (position.ydPosition > 0) {
+                        if (position.ydPosition >= position.frozen) {
                             position.ydFrozen = position.frozen
+                        } else {
+                            position.ydFrozen = position.ydPosition
+                            position.tdFrozen = position.frozen - position.ydPosition
                         }
                     } else {
-                        // 除了上面几个交易所之外的交易所，优先平昨
-                        if (position.ydPosition > 0) {
-                            if (position.ydPosition >= position.frozen) {
-                                position.ydFrozen = position.frozen
-                            } else {
-                                position.ydFrozen = position.ydPosition
-                                position.tdFrozen = position.frozen - position.ydPosition
-                            }
-                        } else {
-                            position.tdFrozen = position.frozen
-                        }
+                        position.tdFrozen = position.frozen
                     }
                 }
             }
@@ -1236,45 +1221,37 @@ class TdSpi internal constructor(private val ctpGatewayImpl: CtpGatewayImpl) : C
     ) {
         try {
             if (pInstrument != null) {
-                val productClass =
-                    CtpConstant.productTypeMapReverse[pInstrument.productClass] ?: ProductClassEnum.Unknown
-                var filterFlag = false
-                if (productClass == ProductClassEnum.Futures || productClass == ProductClassEnum.Options || productClass == ProductClassEnum.SpotOption) {
-                    filterFlag = true
+                val contract = Contract()
+                contract.symbol = pInstrument.instrumentID
+                contract.exchange = CtpConstant.exchangeMapReverse[pInstrument.exchangeID] ?: ExchangeEnum.Unknown
+                contract.productClass = CtpConstant.productTypeMapReverse[pInstrument.productClass] ?: ProductClassEnum.Unknown
+                contract.uniformSymbol = contract.symbol + "@" + contract.exchange
+                contract.name = pInstrument.instrumentName
+                contract.fullName = pInstrument.instrumentName
+                contract.thirdPartyId = contract.symbol
+                if (pInstrument.volumeMultiple <= 0) {
+                    contract.multiplier = 1.0
+                } else {
+                    contract.multiplier = pInstrument.volumeMultiple.toDouble()
                 }
-                if (filterFlag) {
-                    val contract = Contract()
-                    contract.symbol = pInstrument.instrumentID
-                    contract.exchange = CtpConstant.exchangeMapReverse[pInstrument.exchangeID] ?: ExchangeEnum.Unknown
-                    contract.productClass = productClass
-                    contract.uniformSymbol = contract.symbol + "@" + contract.exchange
-                    contract.name = pInstrument.instrumentName
-                    contract.fullName = pInstrument.instrumentName
-                    contract.thirdPartyId = contract.symbol
-                    if (pInstrument.volumeMultiple <= 0) {
-                        contract.multiplier = 1.0
-                    } else {
-                        contract.multiplier = pInstrument.volumeMultiple.toDouble()
-                    }
-                    contract.priceTick = pInstrument.priceTick
-                    contract.currency = CurrencyEnum.CNY // 默认人民币
-                    contract.lastTradeDateOrContractMonth = pInstrument.expireDate
-                    contract.strikePrice = pInstrument.strikePrice
-                    contract.optionsType =
-                        CtpConstant.optionTypeMapReverse[pInstrument.optionsType] ?: OptionsTypeEnum.Unknown
-                    if (pInstrument.underlyingInstrID != null) {
-                        contract.underlyingSymbol = pInstrument.underlyingInstrID
-                    }
-                    contract.underlyingMultiplier = pInstrument.underlyingMultiple
-                    contract.maxLimitOrderVolume = pInstrument.maxLimitOrderVolume
-                    contract.maxMarketOrderVolume = pInstrument.maxMarketOrderVolume
-                    contract.minLimitOrderVolume = pInstrument.minLimitOrderVolume
-                    contract.minMarketOrderVolume = pInstrument.minMarketOrderVolume
-                    contract.maxMarginSideAlgorithm = pInstrument.maxMarginSideAlgorithm == '1'
-                    contract.longMarginRatio = pInstrument.longMarginRatio
-                    contract.shortMarginRatio = pInstrument.shortMarginRatio
-                    ctpGatewayImpl.contractMap[contract.symbol] = contract
+                contract.priceTick = pInstrument.priceTick
+                contract.currency = CurrencyEnum.CNY // 默认人民币
+                contract.lastTradeDateOrContractMonth = pInstrument.expireDate
+                contract.strikePrice = pInstrument.strikePrice
+                contract.optionsType =
+                    CtpConstant.optionTypeMapReverse[pInstrument.optionsType] ?: OptionsTypeEnum.Unknown
+                if (pInstrument.underlyingInstrID != null) {
+                    contract.underlyingSymbol = pInstrument.underlyingInstrID
                 }
+                contract.underlyingMultiplier = pInstrument.underlyingMultiple
+                contract.maxLimitOrderVolume = pInstrument.maxLimitOrderVolume
+                contract.maxMarketOrderVolume = pInstrument.maxMarketOrderVolume
+                contract.minLimitOrderVolume = pInstrument.minLimitOrderVolume
+                contract.minMarketOrderVolume = pInstrument.minMarketOrderVolume
+                contract.maxMarginSideAlgorithm = pInstrument.maxMarginSideAlgorithm == '1'
+                contract.longMarginRatio = pInstrument.longMarginRatio
+                contract.shortMarginRatio = pInstrument.shortMarginRatio
+                ctpGatewayImpl.contractMap[contract.symbol] = contract
             }
             if (bIsLast) {
                 if (ctpGatewayImpl.contractMap.isNotEmpty()) {

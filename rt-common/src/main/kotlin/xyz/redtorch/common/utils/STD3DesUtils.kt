@@ -71,7 +71,7 @@ object STD3DesUtils {
      * CBC加密
      *
      * @param key   密钥
-     * @param keyiv IV
+     * @param keyIv IV
      * @param data  明文
      * @return Base64编码的密文
      * @throws Exception

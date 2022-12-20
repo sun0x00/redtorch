@@ -2,11 +2,9 @@ package xyz.redtorch.common.utils
 
 import org.apache.commons.io.FileUtils
 import org.slf4j.LoggerFactory
-import java.io.BufferedReader
-import java.io.File
-import java.io.IOException
-import java.io.InputStreamReader
+import java.io.*
 import java.net.URL
+import java.nio.charset.Charset
 import java.time.*
 import java.util.*
 import kotlin.math.abs
@@ -51,6 +49,38 @@ object CommonUtils {
     @JvmStatic
     fun forceMkdirParent(file: File) {
         FileUtils.forceMkdirParent(file)
+    }
+
+    @JvmStatic
+    fun readCsvToRecordList(file: File, charset: Charset): List<Map<String, String>> {
+        val recordList = ArrayList<Map<String, String>>()
+        val br = BufferedReader(InputStreamReader(FileInputStream(file), charset))
+
+        br.use {
+            // 读取表头
+            val header = it.readLine()
+            // 解析列名
+            val columnNameList = header.split(",")
+            // 标记列名在行中所处的位置
+            val indexToColumnNameMap = HashMap<Int, String>()
+            for ((index, columnName) in columnNameList.withIndex()) {
+                indexToColumnNameMap[index] = columnName
+            }
+            // 读取所有行
+            val lines = br.readLines()
+            // 解析行
+            for (line in lines) {
+                val record = HashMap<String, String>()
+                // 拆分列
+                val columnList = line.split(",")
+                for ((index, column) in columnList.withIndex()) {
+                    // 根据当前解析的列的位置确定cell对应的列名
+                    record[indexToColumnNameMap[index]!!] = column
+                }
+                recordList.add(record)
+            }
+        }
+        return recordList
     }
 
 

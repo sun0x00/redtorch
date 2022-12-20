@@ -45,6 +45,15 @@ class TradeClientSyncServiceImpl : TradeClientSyncService, InitializingBean, Web
     @Autowired
     private lateinit var cacheService: CacheService
 
+    fun setCacheService(cacheService: CacheService) {
+        this.cacheService = cacheService
+    }
+
+    fun setWebSocketUrl(websocketUrl: String) {
+        this.webSocketUrl = websocketUrl
+    }
+
+
     // 镜像,用于数据同步
     private var baseMirror: BaseMirror = BaseMirror()
     private var portfolioMirror: PortfolioMirror = PortfolioMirror()

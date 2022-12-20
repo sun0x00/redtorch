@@ -61,7 +61,7 @@ object Lz4Utils {
         try {
             val restored = lzIn.readAllBytes()
             logger.info("数据长度{},解压后后长度{},耗时{}ms", compressedData.size, restored.size, System.currentTimeMillis() - beginTimestamp)
-            return restored;
+            return restored
         } catch (e: Exception) {
             logger.error("解压异常", e)
         } finally {

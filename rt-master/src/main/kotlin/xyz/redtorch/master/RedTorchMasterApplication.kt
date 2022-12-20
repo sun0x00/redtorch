@@ -1,7 +1,6 @@
 package xyz.redtorch.master
 
 import javafx.application.Application
-import javafx.scene.control.ButtonType
 import javafx.stage.Stage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication

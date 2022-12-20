@@ -19,5 +19,7 @@ interface CacheService {
     fun updateTrade(trade: Trade)
     fun updateOrder(order: Order)
     fun queryAccountByAccountId(accountId: String): Account?
+    fun queryPositionByPositionId(positionId: String): Position?
     fun queryTickByUniformSymbol(uniformSymbol: String): Tick?
+    fun queryContractByUniformSymbol(uniformSymbol: String): Contract?
 }

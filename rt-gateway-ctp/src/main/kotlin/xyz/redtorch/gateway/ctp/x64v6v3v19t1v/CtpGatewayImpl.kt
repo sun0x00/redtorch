@@ -93,13 +93,17 @@ class CtpGatewayImpl(eventService: EventService, gatewaySetting: GatewaySetting)
 
     init {
 
-        if (getGatewaySetting().gatewayType == GatewayTypeEnum.Trade) {
-            tdSpi = TdSpi(this)
-        } else if (getGatewaySetting().gatewayType == GatewayTypeEnum.Quote) {
-            mdSpi = MdSpi(this)
-        } else {
-            mdSpi = MdSpi(this)
-            tdSpi = TdSpi(this)
+        when (getGatewaySetting().gatewayType) {
+            GatewayTypeEnum.Trade -> {
+                tdSpi = TdSpi(this)
+            }
+            GatewayTypeEnum.Quote -> {
+                mdSpi = MdSpi(this)
+            }
+            else -> {
+                mdSpi = MdSpi(this)
+                tdSpi = TdSpi(this)
+            }
         }
     }
 

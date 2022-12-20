@@ -4,13 +4,13 @@ description = """Java开源量化交易开发框架 http://redtorch.io/"""
 
 // 通过扩展配置统一管理版本
 extra.apply {
-    set("slf4jApiVersion", "1.7.30")
-    set("logbackVersion", "1.2.3")
-    set("jacksonVersion","2.12.4")
-    set("zookeeperVersion","3.6.2")
-    set("commonsIOVersion","2.8.0")
+    set("slf4jApiVersion", "1.7.36")
+    set("logbackVersion", "1.2.10")
+    set("jacksonVersion","2.14.1")
+    set("zookeeperVersion","3.8.0")
+    set("commonsIOVersion","2.11.0")
     set("lz4JavaVersion","1.8.0")
-    set("zjsonpatchVersion","0.4.11")
+    set("zjsonpatchVersion","0.4.13")
 
 }
 
@@ -21,7 +21,7 @@ allprojects {
 
         // 自定义Maven仓库镜像，必须使用https
         maven {
-            url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
+            url = uri("https://maven.aliyun.com/repository/public")
         }
 
         mavenCentral()
@@ -34,12 +34,12 @@ plugins {
     id("java")
 
     // Kotlin插件
-    kotlin("jvm") version "1.5.21"
-    kotlin("plugin.spring") version "1.5.21"
+    kotlin("jvm") version "1.7.20"
+    kotlin("plugin.spring") version "1.7.20"
 
     // Spring Boot 插件
-    id("org.springframework.boot") version "2.5.4"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("org.springframework.boot") version "2.7.6"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
 }
 
 // 应用于所有子项目
@@ -51,10 +51,19 @@ subprojects {
         plugin("kotlin")
 	}
 
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
+    }
+
     // 子项目均需要的依赖
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.slf4j:slf4j-api:${rootProject.extra.get("slf4jApiVersion")}")
         implementation("ch.qos.logback:logback-core:${rootProject.extra.get("logbackVersion")}")
         implementation("ch.qos.logback:logback-classic:${rootProject.extra.get("logbackVersion")}")

@@ -1,8 +1,6 @@
-import org.jetbrains.kotlin.ir.backend.js.compile
-
 plugins {
     id("application")
-    id("org.openjfx.javafxplugin") version "0.0.10"
+    id("org.openjfx.javafxplugin") version "0.0.13"
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 }

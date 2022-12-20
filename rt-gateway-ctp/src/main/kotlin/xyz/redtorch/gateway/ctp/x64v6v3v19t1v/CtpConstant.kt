@@ -62,6 +62,7 @@ object CtpConstant {
         put(ExchangeEnum.SSE, "SSE")
         put(ExchangeEnum.SZSE, "SZSE")
         put(ExchangeEnum.INE, "INE")
+        put(ExchangeEnum.GFEX, "GFEX")
         put(ExchangeEnum.Unknown, "")
     }
     val exchangeMapReverse = exchangeMap.entries.associateBy({ it.value }) { it.key }

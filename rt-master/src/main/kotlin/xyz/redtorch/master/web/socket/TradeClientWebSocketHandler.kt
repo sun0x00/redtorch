@@ -124,7 +124,7 @@ class TradeClientWebSocketHandler : AbstractWebSocketHandler(), InitializingBean
                                     }
                                 }
                             } catch (e: Exception) {
-                                logger.error("同步镜像异常,目标sessionId={}", e, transceiver.id)
+                                logger.error("同步镜像异常,目标sessionId={}", transceiver.id, e)
                             }
                             latch.countDown()
                         }
@@ -370,10 +370,10 @@ class TradeClientWebSocketHandler : AbstractWebSocketHandler(), InitializingBean
                 val periodAsDaysHHmmss = String.format(
                     "%03d Days %02d:%02d:%02d",
                     TimeUnit.MILLISECONDS.toDays(diffTime),
-                    TimeUnit.MILLISECONDS.toHours(diffTime),
+                    TimeUnit.MILLISECONDS.toHours(diffTime) % TimeUnit.DAYS.toHours(1),
                     TimeUnit.MILLISECONDS.toMinutes(diffTime) % TimeUnit.HOURS.toMinutes(1),
                     TimeUnit.MILLISECONDS.toSeconds(diffTime) % TimeUnit.MINUTES.toSeconds(1)
-                );
+                )
 
                 val userSessionFXBean = UserSessionFXBean(sessionId, address, userId, delay, periodAsDaysHHmmss)
 
